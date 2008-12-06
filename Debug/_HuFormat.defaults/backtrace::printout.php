@@ -1,10 +1,25 @@
 <?
+/**
+* Debug and backtrace toolkit.
+*
+* @package Debug
+* @version 2.1
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+*
+* @changelog
+* 2008-12-06 17:20 ver 2.0 to 2.1
+*	Correct argtype Array and String for log (FORMAT_FILE) output. Make it same as for console
+**/
+
 
 /**
 * Helper to more flexibility show large amount of data (long strings, dump of arrays etc.)
+*
 * @param string	$shortVar
 * @param string	$longVar
 * @return string
+*
 **/
 function backtrace__printout_WEB_helper($shortVar, $longVar, $innerTagStart = '<textarea', $innerTagEnd='</textarea>'){
 return '\'<span title="'.$longVar.'"
@@ -41,18 +56,7 @@ $GLOBALS['__CONFIG']['backtrace::printout'] = array(
 		'argtypes'	=> array(
 			'integer'	=> array('v:::'),//As is
 			'double'	=> array('v:::'),
-			
-//			array('vn:::', '<textarea style="height:2.3em; width: 32em">', '</textarea>'),
-//					   array('E:::', '\'\\\'\'.htmlspecialchars(substr($var, 0, 32)).((($sl = strlen($var)) < 32) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}\'');
-
-/*
-					array('E:::', '\'<span title="\'.$var.\'"
-onclick=\\\'this.bakonclick=this.onclick; this.onclick=null; var ttt = this.innerHTML; this.innerHTML="<textarea onclick=\"return false;\" style=\"color: green; width: 50em; height: 7em\" ondblclick=\"this.parentNode.onclick=this.parentNode.bakonclick; var ttt=this.parentNode.title; this.parentNode.title=this.defaultValue; this.parentNode.innerHTML = ttt; \">" + this.title + "</textarea>"; this.title = ttt;\\\'>\\\'\'.htmlspecialchars(substr($var, 0, 32)).((($sl = strlen($var)) < 32) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}
- </span>\''),
-*/
 			'string'	=> array('E:::', backtrace__printout_WEB_helper('\\\'\'.htmlspecialchars(substr($var, 0, 32)).((($sl = strlen($var)) < 32) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}', '\'.htmlspecialchars($var).\'')),
-
-//			'array'	=> array('E:::', '\'Array(\'.count($var).\')\''),
 			'array'	=> array('E:::', backtrace__printout_WEB_helper('\'.\'Array(\'.sizeof($var).\')\'.\'', '\'.htmlspecialchars(dump::byOutType(OS::OUT_TYPE_BROWSER, $var, null, true)).\'', '<div style=\"display: table; border: thick dashed green; border-top: none\"', '</div>')),
 			'object'	=> array('E:::', '\'Object(\'.get_class($var).\')\''),
 			'resource'=> array('E:::', '\'Resource(\'.strstr($var, \'#\').\')\''),
@@ -109,13 +113,15 @@ onclick=\\\'this.bakonclick=this.onclick; this.onclick=null; var ttt = this.inne
 		),
 	),
 );
-//$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']	= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB'];
-//$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']		= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB'];
-$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']	= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB']['argtypes'];
+$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']	=  $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB']['argtypes'];
 $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']['argtypes']	=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB']['argtypes'];
 #Difference in argTypes
-$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']['string']	= array('E:::', '\'\\\'\'.htmlspecialchars(substr($var, 0, 28)).((($sl = strlen($var)) < 28) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}\'');
-$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']['array']	= array('E:::', '\'Array(\'.count($var).\')\'');
+$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']['argtypes']['string']
+	= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']['string']
+	= array('E:::', '\'\\\'\'.htmlspecialchars(substr($var, 0, 28)).((($sl = strlen($var)) < 28) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}\'');
+$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']['argtypes']['array']
+	= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']['array']
+	= array('E:::', '\'Array(\'.count($var).\')\'');
 
 $GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_BROWSER]		=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB'];
 $GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_CONSOLE]		=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']; 
