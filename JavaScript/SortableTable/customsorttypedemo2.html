@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Sortable Table Demo (WebFX)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/sortabletable.js"></script>
+<script type="text/javascript" src="js/tablesort.js"></script>
+<!-- add sort type for sorting NumberK types -->
+<script type="text/javascript" src="js/numberksorttype.js"></script>
+<script type="text/javascript" src="js/uscurrencysorttype.js"></script>
+
+<link type="text/css" rel="StyleSheet" href="css/sortabletable.css" />
+<style type="text/css">
+body {
+	font-family:	Verdana, Helvetica, Arial, Sans-Serif;
+	font:			Message-Box;
+}
+
+code {
+	font-size:	1em;
+}
+</style>
+
+</head>
+<body>
+
+<h2>Table with Custom Sort Types. Более старый вариант. НО БЕЗ картинок в стрелочках</h2>
+
+<table onclick="sortColumn(event)" cellspacing="0" class="sort-table">
+<thead>
+	<tr>
+		<td style="width: 60px;" type="String">String</td>
+		<td style="width: 60px;" type="CaseInsensitiveString" title="CaseInsensitiveString">String</td>
+
+		<td style="width: 60px;" type="Number">Number</td>
+		<td style="width: 60px;" type="Date">Date</td>
+	</tr>
+</thead>
+
+	<tr>
+		<td>Strawberry</td>
+		<td>apple</td>
+		<td style="text-align: right;">987</td>
+		<td>1975-08-19</td>
+	</tr>
+	<tr>
+		<td>orange</td>
+		<td>Banana</td>
+		<td style="text-align: right;">4546</td>
+		<td>1949-07-04</td>
+	</tr>
+	<tr>
+		<td>Pear</td>
+		<td>blueberry</td>
+		<td style="text-align: right;">98743</td>
+		<td>2001-01-01</td>
+	</tr>
+	<tr>
+		<td>Banana</td>
+		<td>orange</td>
+		<td style="text-align: right;">7698</td>
+		<td>1789-07-14</td>
+	</tr>
+	<tr>
+		<td>blueberry</td>
+		<td>Pear</td>
+		<td style="text-align: right;">4</td>
+		<td>2001-04-18</td>
+	</tr>
+	<tr>
+		<td>apple</td>
+		<td>Strawberry</td>
+		<td style="text-align: right;">45</td>
+		<td>2001-03-13</td>
+	</tr>
+</table>
+
+</body>
+</html>

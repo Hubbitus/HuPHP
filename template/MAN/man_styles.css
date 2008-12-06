@@ -1,0 +1,27 @@
+body {
+    margin: 0px 0px 0px 0px;
+    border: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    }
+A.s:link {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #26A5B8; text-decoration: none}
+A.s:visited {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #26A5B8; text-decoration: none}
+A.s:active {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #26A5B8; text-decoration: none}
+A.s:hover {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #B12A0D; text-decoration: underline}
+
+A.k:link {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; color: #23468C; text-decoration: underline}
+A.k:visited {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; color: #23468C; text-decoration: underline}
+A.k:active {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; color: #23468C; text-decoration: underline}
+A.k:hover {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; color: #B12A0D; text-decoration: underline}
+
+.padd	{padding-left: 10px}
+.paddx2	{padding-left: 20px}
+
+.copyright {font-family:verdana, arial, helvetica; font-size:7pt; color:#336699;}
+
+h1, h4, h5 {font-family: Verdana, Arial, Helvetica, sans-serif; color:#23468C; text-align: center}
+h2, h3 {color:#23468C; text-align: center}
+
+th	{text-align: left; white-space: nowrap}
+p	{text-align: justify; text-indent: 30px}
+
+.center	{text-align: center}

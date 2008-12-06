@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Описание класса шаблонизатора</title>
+<link rel="stylesheet" href="man_styles.css" type="text/css">
+</head>
+
+<body>
+<h1>Описание класса шаблонизатора</h1>
+
+<p>Шаблонизатор использует несколько констант для управления своей работой. ВСЕ они необязательные и проинициализированы значениями поумолчанию, если не задано другого.
+<p>Прежде всего они используются для удобства и управления (корректирования) автоматическими функциями.
+<p>Ниже перечислены имена и значения поумолчанию, а также указано на что и как влияют.
+<p>Описание языка разметки для данного шаблонизатора представлено <a href=markup.htm>здесь</a>.
+<p>Сам класс описан <a href=template_man.htm>здесь</a>.
+
+<table border=1 width=95% align=center>
+<caption><h2>На данный момент определены следующие константы:</h2></caption>
+	<tr>
+		<th>TEMPLATE_DEBUG = <b>false</b>| true
+		<td>Если true, после всего результата, выводится список всех ошибок и варнингов в порядке их появления в шаблоне. Также внизу страницы выводится время генерации шаблона в Сек.
+	<tr>
+		<th>TEMPLATE_GENTIMECALC = <b>false</b>| true
+		<td>Если true, вычисляется и (и если TEMPLATE_DEBUG=true в конце выводится) время парсинга шаблона
+	<tr>
+		<th>TEMPLATE_TEMPLATES_DIR =
+			<br>= none | <директория откуда взят и сам файл класса шаблонизатора>
+		<td>Директория шаблонов, используемая поумолчанию. Имя директории БЕЗ завершающего слеша.
+			<p>Используется в методе <a href=template_man.htm#templateFind_path>find_path</a>
+			<p><b>Настоятельно рекомендую задавать всегда!</b></p>
+	<tr>
+		<th><a name=TEMPLATE_MODULES_SUBDIR>TEMPLATE_MODULES_SUBDIR = 'modules/'</a>
+		<td>поддиректория, где искать <a href=template_modules.htm>модули</a> шаблонизатора
+	<tr>
+		<th><a name=TEMPLATE_DEFAULT_SCHEME>TEMPLATE_DEFAULT_SCHEME = 'default.scheme'</a>
+		<td>Схема, используемая поумолчанию. Имя файла.
+	<tr>
+		<th>TEMPLATE_DEFAULT_SCHEME_DIR =
+			<br>= <директория откуда взят и сам шаблон>
+		<td>Директория схем, используемая поумолчанию. Имя директории БЕЗ завершающего слеша.
+	<tr>
+		<th><a name=templateConstantMessage>TEMPLATE_MESSAGE = 'message.tmpl'</a>
+		<td>Файл шаблона, который будет считаться фаблоном поумолчанию для метода message
+</table>
+
+<table>
+<!--Сноски и комментарии -->
+    <tr>
+	<td colspan=2><hr><hr>
+    <tr>
+	<td colspan=2><sup></sup> - 
+</table>
+</body>
+</html>

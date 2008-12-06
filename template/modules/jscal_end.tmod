@@ -1,0 +1,32 @@
+<?
+/*
+Модуль для шаблонизатора версии 2.x
+Встраивание селектора выбора дат. Дата конца.
+*/
+
+function jscal_end($parent, $matches){
+//Предполагаем что этот вызывается уже после jscal_start (Иначе end чего он??)
+//$cal = new DHTML_Calendar('/jscalendar/', 'ru_win_', 'calendar-blue', false);
+//$ret = $cal->get_load_files_code();	#Включение JS-файлов
+$ret = '';
+
+$ret .= '
+<input type="hidden" name="'.$matches[2][0].'" id="enddate" value="'.date("Y-m-d").'"/>
+<span style="background-color: #ff8; cursor: pointer;"
+onmouseover="this.style.backgroundColor=\'#ff0\';"
+onmouseout="this.style.backgroundColor=\'#ff8\';"
+id="show_d_end" title="Кликните для выбора">'.date("d . m . Y").'</span>';
+
+$ret .= '<script type="text/javascript">Calendar.setup({'
+.'ifFormat	:	"%Y-%m-%d",'
+.'inputField	:	"enddate",'
+.'displayArea	:	"show_d_end",'	//ID of the span where the date is to be shown
+.'daFormat	:	"%d.%m.%Y",'		//format of the displayed date
+.'align		:	"Bl",'			//alignment (defaults to "Bl")
+.'singleClick	:	true
+});</script>' ;
+
+return $ret;
+
+}#MOD
+?>

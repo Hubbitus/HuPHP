@@ -1,0 +1,41 @@
+<?
+/*
+В ГЕТ-строке заменяет значение переменной. Причем переменная (из $matches[1][0]) мо жет быть как
+обычным скаляром типа page, таки и массивом любой степени вложенности, типа: name[1][test][]...[]
+
+Если заменяемого значения не было - оно добавляется.
+*/
+
+function GET_REPLACE(&$parent, &$matches){
+$ret = $_SERVER['QUERY_STRING'];
+
+$i = 2;
+	while ( !empty($matches[$i][0]) ){#Сколько есть
+	$ret = __GET_REPLACE_replacer ($ret, $matches[$i][0], $parent->varrrs($parent->filename, $matches[$i+1][0], true));
+	$i += 2;
+	}
+
+return $ret;
+}
+
+//Сама замена.
+function __GET_REPLACE_replacer (&$GET_str, &$name, &$value){
+#Разбираем в массив
+parse_str($GET_str, $arr);
+//$arr[$name] = $value;
+//eval("\$arr['arr']['t1'] = '$value';");
+
+#Бесконечный уровень вложенности $name будем поддерживать. Тоесть и просто name и name[1][test][]...[]
+parse_str($name, $what);
+$evalstr = '$arr';
+	while ( $key = array_keys((array)$what) and isset($what[$key[0]]) ){#В две инструкции, потому что нельзя array_keys($)[0] использовать
+	$evalstr .= "['" . $key[0] . "']";
+	$what = $what[$key[0]];//Для следующей итерации
+	}
+$evalstr .= " = '$value';";
+eval($evalstr);
+
+return '?' . http_build_query($arr);
+}
+
+?>

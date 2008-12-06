@@ -1,0 +1,9 @@
+<?
+#Модуль для шаблона, реализующий вывод первого из 2 непустого (не false) аргумента
+function ili(&$maint, $match){
+//dump($match);	
+		if	(	$match[2] == ($content = $maint->varrrs($maint->filename, $tt = array(0,$match[2]), true)))
+		$content = $maint->varrrs($maint->filename, $tt = array(0,$match[3]), true);
+return $content;
+}
+?>

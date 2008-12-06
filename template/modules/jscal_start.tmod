@@ -1,0 +1,31 @@
+<?
+include_once('JavaScript/jscalendar/calendar.php');#Враппер
+/*
+Модуль для шаблонизатора версии 2.x
+Встраивание селектора выбора дат. Дата начала.
+*/
+function jscal_start($parent, $matches){
+//$cal = new DHTML_Calendar('/jscalendar/', 'ru_win_', 'aqua', true);
+$cal = new DHTML_Calendar('/jscalendar/', 'ru_win_', 'calendar-blue', false);
+
+$ret = $cal->get_load_files_code();	#Включение JS-файлов
+
+$ret .= '
+<input type="hidden" name="'.$matches[2][0].'" id="startdate" value="'.date("Y-m-d").'"/>
+<span style="background-color: #ff8; cursor: pointer;"
+onmouseover="this.style.backgroundColor=\'#ff0\';"
+onmouseout="this.style.backgroundColor=\'#ff8\';"
+id="show_d_start" title="Кликните для выбора">'.date("d . m . Y").'</span>';
+
+$ret .= '<script type="text/javascript">Calendar.setup({'
+.'ifFormat	:	"%Y-%m-%d",'
+.'inputField	:	"startdate",'
+.'displayArea	:	"show_d_start",'	//ID of the span where the date is to be shown
+.'daFormat	:	"%d.%m.%Y",'		//format of the displayed date
+.'align		:	"Bl",'			//alignment (defaults to "Bl")
+.'singleClick	:	true
+});</script>' ;
+
+return $ret;
+}#MOD
+?>
