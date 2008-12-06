@@ -76,7 +76,7 @@ private static $instance = array();
 		if (!class_exists($className) and isset($GLOBALS['__CONFIG'][$className]['class_file'])) OS::is_includeable($GLOBALS['__CONFIG'][$className]['class_file'], true);
 
 		#repetition check
-		if (!class_exists($className)) throw new ClassNotExistsException($className . ' NOT exist!'. (!@$GLOBALS['__CONFIG'][$className]['class_file'] ?'': 'And, additionaly include provided path ['.$GLOBALS['__CONFIG'][$className]['class_file'].'] not helped in this!'));
+		if (!class_exists($className)) throw new ClassNotExistsException($className . ' NOT exist!'. (!@$GLOBALS['__CONFIG'][$className]['class_file'] ?'': ' And, additionaly include provided path ['.$GLOBALS['__CONFIG'][$className]['class_file'].'] not helped in this!'));
 	}#m tryIncludeByClassName
 
 	/**
