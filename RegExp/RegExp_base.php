@@ -248,7 +248,7 @@ public $paireddelimeters = array(
 	**/
 	if (version_compare(PHP_VERSION, '5.3.0-dev', '>=')){
 	//eval to avoid fatal error on earler versions
-	eval ( <<< HEREDOC
+	eval ( '
 		abstract class RegExp_base extends RegExp_base_base{
 		/** Return string, matching Regexp
 		* $N - No of subpattern of regexp, 0 meen - match all regular expression
@@ -263,7 +263,7 @@ public $paireddelimeters = array(
 			* http://www.colder.ch/news/08-24-2007/28/late-static-bindings-expl.html
 			* This only works on PHP vrom version 5.3.0
 			**/
-			//Additionaly new static::className($regexp, $text); DON'T work, so using one more variable
+			//Additionaly new static::className($regexp, $text); DO NOT work, so using one more variable
 			//$tmpR = new static::className($regexp, $text);
 			$className = static::className;
 			$tmpR = new $className($regexp, $text);
@@ -271,7 +271,7 @@ public $paireddelimeters = array(
 			return $tmpR->match($N);
 			}#m getMatch
 		}
-HEREDOC
+	    '
 	);
 	}
 	else{
