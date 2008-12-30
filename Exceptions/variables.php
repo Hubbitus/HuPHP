@@ -72,11 +72,6 @@ private $tok_ = null;
 	}
 };
 
-/**
-* It's Before declaration of VariableRequiredException may produce cycle of includes...
-**/
-include_once('Debug/backtrace.php');
-
 class VariableEmptyException		extends VariableRequiredException{}
 class VariableIsNullException		extends VariableRequiredException{}
 
@@ -87,4 +82,9 @@ class VariableRangeGTException	extends VariableRangeException{}
 class VariableRangeLTException	extends VariableRangeException{}
 
 class VariableArrayInconsistentException extends VariableException{}
+
+/**
+* It's Before declaration of VariableRequiredException may produce cycle of includes...
+**/
+include_once('Debug/backtrace.php');
 ?>
