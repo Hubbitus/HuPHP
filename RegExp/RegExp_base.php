@@ -2,7 +2,7 @@
 /**
 * RegExp manupulation.
 * @package RegExp
-* @version 2.1b
+* @version 2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -19,6 +19,9 @@
 *
 *	* 2009-01-18 14:57 (No version bump)
 *	- Reflect renaming Class.php to HuClass.php
+*
+*	* 2009-01-18 23:39 ver 2.1b to 2.1
+*	- Add method getText in base class
 **/
 
 include_once('macroses/EMPTY_STR.php');
@@ -97,6 +100,15 @@ public $paireddelimeters = array(
 	$this->matchesValid = false;
 	return $this;
 	}#m setRegExp
+
+	/**
+	* Return current text.
+	*
+	* @return string
+	**/
+	public function getText(){
+	return $this->sourceText;
+	}#m getText
 
 	/**
 	* Set text to match from string.
@@ -226,7 +238,7 @@ public $paireddelimeters = array(
 
 	/**
 	* Description see {@link http://php.net/preg_replace}
-	* @limit В случае, если параметр limit указан, будет произведена замена limit вхождений шаблона; в случае, если limit опущен либо равняется -1, будут заменены все вхождения шаблона. 
+	* @limit  A;CG05, 5A;8 ?0@0<5B@ limit C:070=, 1C45B ?@>872545=0 70<5=0 limit 2E>645=89 H01;>=0; 2 A;CG05, 5A;8 limit >?CI5= ;81> @02=O5BAO -1, 1C4CB 70<5=5=K 2A5 2E>645=8O H01;>=0. 
 	* @return mixed	Replaced value.
 	**/
 	abstract public function replace($limit = -1);
