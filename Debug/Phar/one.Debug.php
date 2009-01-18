@@ -1,12 +1,27 @@
 <?
 /** This is automaticaly generated file. Please, do not edit it! **/
 ?><?
+/**
+* Debug and backtrace toolkit.
+*
+* @package Debug
+* @version 2.1
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+*
+* @changelog
+* 2008-12-06 17:20 ver 2.0 to 2.1
+*	Correct argtype Array and String for log (FORMAT_FILE) output. Make it same as for console
+**/
+
 
 /**
 * Helper to more flexibility show large amount of data (long strings, dump of arrays etc.)
+*
 * @param string	$shortVar
 * @param string	$longVar
 * @return string
+*
 **/
 function backtrace__printout_WEB_helper($shortVar, $longVar, $innerTagStart = '<textarea', $innerTagEnd='</textarea>'){
 return '\'<span title="'.$longVar.'"
@@ -43,18 +58,7 @@ $GLOBALS['__CONFIG']['backtrace::printout'] = array(
 		'argtypes'	=> array(
 			'integer'	=> array('v:::'),//As is
 			'double'	=> array('v:::'),
-			
-//			array('vn:::', '<textarea style="height:2.3em; width: 32em">', '</textarea>'),
-//					   array('E:::', '\'\\\'\'.htmlspecialchars(substr($var, 0, 32)).((($sl = strlen($var)) < 32) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}\'');
-
-/*
-					array('E:::', '\'<span title="\'.$var.\'"
-onclick=\\\'this.bakonclick=this.onclick; this.onclick=null; var ttt = this.innerHTML; this.innerHTML="<textarea onclick=\"return false;\" style=\"color: green; width: 50em; height: 7em\" ondblclick=\"this.parentNode.onclick=this.parentNode.bakonclick; var ttt=this.parentNode.title; this.parentNode.title=this.defaultValue; this.parentNode.innerHTML = ttt; \">" + this.title + "</textarea>"; this.title = ttt;\\\'>\\\'\'.htmlspecialchars(substr($var, 0, 32)).((($sl = strlen($var)) < 32) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}
- </span>\''),
-*/
 			'string'	=> array('E:::', backtrace__printout_WEB_helper('\\\'\'.htmlspecialchars(substr($var, 0, 32)).((($sl = strlen($var)) < 32) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}', '\'.htmlspecialchars($var).\'')),
-
-//			'array'	=> array('E:::', '\'Array(\'.count($var).\')\''),
 			'array'	=> array('E:::', backtrace__printout_WEB_helper('\'.\'Array(\'.sizeof($var).\')\'.\'', '\'.htmlspecialchars(dump::byOutType(OS::OUT_TYPE_BROWSER, $var, null, true)).\'', '<div style=\"display: table; border: thick dashed green; border-top: none\"', '</div>')),
 			'object'	=> array('E:::', '\'Object(\'.get_class($var).\')\''),
 			'resource'=> array('E:::', '\'Resource(\'.strstr($var, \'#\').\')\''),
@@ -74,10 +78,10 @@ onclick=\\\'this.bakonclick=this.onclick; this.onclick=null; var ttt = this.inne
 						array('sn:::class', "\033[35m", "\033[0m"),
 						array('sn:::type', "\033[33m", "\033[0m"),
 						array('sn:::function', "\033[35;1m", "\033[0m"),
-						array('E:::args', '\'(\'.$var->formatArgs().\')\''),
+						array('E:::args', '"\033[33m(\033[0m".$var->formatArgs()."\033[33m)\033[0m"'),
 						"\n",
 
-						"->\033[31;1mfile: \033[0m",
+						"\t->\033[31;1mfile: \033[0m",
 						array('sp:::file', '%s', '__vAr__'),
 						':',
 						array('sn:::line', "\033[43;1m", "\033[0m"),
@@ -111,13 +115,15 @@ onclick=\\\'this.bakonclick=this.onclick; this.onclick=null; var ttt = this.inne
 		),
 	),
 );
-//$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']	= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB'];
-//$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']		= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB'];
-$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']	= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB']['argtypes'];
+$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']	=  $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB']['argtypes'];
 $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']['argtypes']	=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB']['argtypes'];
 #Difference in argTypes
-$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']['string']	= array('E:::', '\'\\\'\'.htmlspecialchars(substr($var, 0, 28)).((($sl = strlen($var)) < 28) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}\'');
-$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']['array']	= array('E:::', '\'Array(\'.count($var).\')\'');
+$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']['argtypes']['string']
+	= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']['string']
+	= array('E:::', '\'\\\'\'.htmlspecialchars(substr($var, 0, 28)).((($sl = strlen($var)) < 28) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}\'');
+$GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']['argtypes']['array']
+	= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']['array']
+	= array('E:::', '\'Array(\'.count($var).\')\'');
 
 $GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_BROWSER]		=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB'];
 $GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_CONSOLE]		=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']; 
@@ -479,14 +485,18 @@ $this->_linesOffsets[0] = array($offset, ($offset += -1 + strlen(utf8_decode($li
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-29
+*	* 2008-05-29
 *	- Separate classes RegExp_base_base and RegExp_base to allov using this on PHP < 5.3.0-dev
 *	- Add doc to methods, reformatting.
-* 2008-05-30 19:05
+*
+*	* 2008-05-30 19:05
 *	- Made $paireddelimeters method NOT static. It is allowed in implementation, because it is may
 *		now be used as property. So, if outsource code use it static - must change it. This is sacrifice
 *		to to compatibility with PHP < 5.3.0 (whithout late static bindings)
 *	- getMatch add in eval-code, to avoid fatal errors in earler versions PHP
+*
+*	* 2009-01-18 14:57 (No version bump)
+*	- Reflect renaming Class.php to HuClass.php
 **/
 
 
@@ -720,7 +730,7 @@ public $paireddelimeters = array(
 	**/
 	if (version_compare(PHP_VERSION, '5.3.0-dev', '>=')){
 	//eval to avoid fatal error on earler versions
-	eval ( <<< HEREDOC
+	eval ( '
 		abstract class RegExp_base extends RegExp_base_base{
 		/** Return string, matching Regexp
 		* $N - No of subpattern of regexp, 0 meen - match all regular expression
@@ -735,7 +745,7 @@ public $paireddelimeters = array(
 			* http://www.colder.ch/news/08-24-2007/28/late-static-bindings-expl.html
 			* This only works on PHP vrom version 5.3.0
 			**/
-			//Additionaly new static::className($regexp, $text); DON'T work, so using one more variable
+			//Additionaly new static::className($regexp, $text); DO NOT work, so using one more variable
 			//$tmpR = new static::className($regexp, $text);
 			$className = static::className;
 			$tmpR = new $className($regexp, $text);
@@ -743,7 +753,7 @@ public $paireddelimeters = array(
 			return $tmpR->match($N);
 			}#m getMatch
 		}
-HEREDOC
+	    '
 	);
 	}
 	else{
@@ -922,7 +932,7 @@ private static $instance = array();
 		if (!class_exists($className) and isset($GLOBALS['__CONFIG'][$className]['class_file'])) OS::is_includeable($GLOBALS['__CONFIG'][$className]['class_file'], true);
 
 		#repetition check
-		if (!class_exists($className)) throw new ClassNotExistsException($className . ' NOT exist!'. (!@$GLOBALS['__CONFIG'][$className]['class_file'] ?'': 'And, additionaly include provided path ['.$GLOBALS['__CONFIG'][$className]['class_file'].'] not helped in this!'));
+		if (!class_exists($className)) throw new ClassNotExistsException($className . ' NOT exist!'. (!@$GLOBALS['__CONFIG'][$className]['class_file'] ?'': ' And, additionaly include provided path ['.$GLOBALS['__CONFIG'][$className]['class_file'].'] not helped in this!'));
 	}#m tryIncludeByClassName
 
 	/**
@@ -939,17 +949,22 @@ private static $instance = array();
 //$test = Single::singleton()->bark();
 ?><?
 /**
- * System environment and information
- * @package System ??
- * @version 2.0b
- * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
- * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
- */
+* System environment and information
+* @package System ??
+* @version 2.0.1
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+*
+*	@changelog
+*	* 2008-11-05 00:47 ver 2.0b to 2.0.1
+*	- In method OS::is_includeable() remove second parameter $include, because including file in caller context
+*		is not possible. And inclusion in context of this method is mistake!
+**/
 
 /**
 * Class OS has mainly (all) static methods, to determine system-enveroments, like OS or type of out.
 * Was System, but it is registered in PEAR, change to OS
-*/
+**/
 class OS {
 const OUT_TYPE_BROWSER = 1;
 const OUT_TYPE_CONSOLE = 2;
@@ -961,7 +976,7 @@ const OUT_TYPE_WAP = 16;
 /**
 * Possible return-values of 
 * http://ru2.php.net/php_sapi_name comment from "cheezy at lumumba dot luc dot ac dot be"
-*/
+**/
 static $SAPIs = array(
 	'aolserver',
 	'activescript',
@@ -989,7 +1004,7 @@ static $SAPIs = array(
 	/**
 	* Determines out type of current-running process.
 	* @return Now one of const: ::OUT_TYPE_BROWSER or ::OUT_TYPE_CONSOLE
-	*/
+	**/
 	static public function getOutType(){
 		if (isset($_SERVER['HTTP_USER_AGENT'])) return self::OUT_TYPE_BROWSER;
 		else return self::OUT_TYPE_CONSOLE;
@@ -998,7 +1013,7 @@ static $SAPIs = array(
 	/**
 	* php_sapi_name()
 	* @return
-	*/
+	**/
 	static public function phpSapiName(){
 	return php_sapi_name();
 	}#m phpSapiName
@@ -1016,17 +1031,15 @@ static $SAPIs = array(
 	*		in including files, and nested (included from including).
 	*	Result of check may be also applyable to require()
 	* @param	string $filenam As it can be passed to include or require.
-	* @param	bool(false)	$include If result is true, include it!
 	* @return
-	*/
-	static public function is_includeable($filename, $include = false){
+	**/
+	static public function is_includeable($filename){
 		/** is_file, is_readable not suitable, because include_path do not take effect.
 		* And opposite comment of "php at metagg dot com" and "medhefgo at googlemail dot com",
 		* woudn't manualy check all paths in include_path. Just open this file to read
 		* with include_path check parameter support! */
 		if ($res = @fopen($filename, 'r', true)){
 		fclose($res);	// Not realy need opened file, only result of opening.
-			if ($include) include($filename);
 		}
 	return (bool)$res;
 	}#m is_inludeable
@@ -1081,10 +1094,14 @@ function &REQUIRED_NOT_NULL(&$var, $varname = null){
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-31 5:31 v 1.0b to 1.1
+*	*2008-05-31 5:31 v 1.0b to 1.0c
 *	- Add static method ::createWithoutLSB.
-* 2008-06-05 16:00
+*
+*	*2008-06-05 16:00 v 1.0c to 1.1
 *	- In function classCREATE provide all aditions arguments to HuClass::createWithoutLSB
+*
+*	* 2009-01-18 13:13 ver 1.1 to 1.2
+*	- Rename file from Class.php to HuClass.php
 **/
 
 
@@ -1198,9 +1215,12 @@ return ( @$str ? (string)$prefix.$str.$suffix : $defValue);
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-30 23:19
+*	* 2008-05-30 23:19
 *	- Move include macroses REQUIRED_VAR.php and REQUIRED_NOT_NULL.php after declaration class
 *	 settings to break cycle of includes
+*
+*	* 2009-01-18 14:57 (No version bump)
+*	- Reflect renaming Class.php to HuClass.php
 **/
 
 
@@ -2203,11 +2223,6 @@ private $tok_ = null;
 	}
 };
 
-/**
-* It's Before declaration of VariableRequiredException may produce cycle of includes...
-**/
-
-
 class VariableEmptyException		extends VariableRequiredException{}
 class VariableIsNullException		extends VariableRequiredException{}
 
@@ -2218,6 +2233,11 @@ class VariableRangeGTException	extends VariableRangeException{}
 class VariableRangeLTException	extends VariableRangeException{}
 
 class VariableArrayInconsistentException extends VariableException{}
+
+/**
+* It's Before declaration of VariableRequiredException may produce cycle of includes...
+**/
+
 ?><?
 /**
 * Toolkit of small functions as "macroses".
@@ -3238,7 +3258,7 @@ class dump_utils{
 * Debug and backtrace toolkit.
 * @package Debug
 * @subpackage Debug
-* @version 2.3.3
+* @version 2.3.4
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -3257,7 +3277,10 @@ class dump_utils{
 *	- Handle xdebug.overload_var_dump option in dump::w
 *
 * 2008-09-15 22:15 Ver 2.3.2 to 2.3.3
-*	- Prevent html-output in dump::c evenif if html_errors=On  
+*	- Prevent html-output in dump::c even if html_errors=On
+*
+* 2008-10-04 22:25 ver 2.3.3 to 2.3.4
+*	- Add bacward-capability function implementation of function spl_object_hash() if it is not exists.
 **/
 
 define ('DUMP_DO_NOT_DEFINE_STUMP_DUMP', true);
@@ -3537,4 +3560,23 @@ class dump extends dump_utils{
 		}
 	}#m byOutType
 }#c debug
+
+/**
+* dump::getHeader assumed on spl_object_hash() for objects, so, we must emulate it on old versions of PHP.
+* Simple implementation got from http://xpoint.ru/forums/programming/PHP/thread/38733.xhtml
+*
+* @param Object $obj
+* @return string - object hash.
+**/
+if (!function_exists("spl_object_hash")) {
+	function spl_object_hash($obj){
+	static $cur_id = 0;
+		if (!is_object($obj))
+		return null;
+
+		!isset($obj->_obj_id_) and $obj->_obj_id_ = md5($cur_id++);
+
+	return $obj->_obj_id_;
+	}
+}
 ?>

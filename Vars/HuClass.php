@@ -9,10 +9,14 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-31 5:31 v 1.0b to 1.1
+*	*2008-05-31 5:31 v 1.0b to 1.0c
 *	- Add static method ::createWithoutLSB.
-* 2008-06-05 16:00
+*
+*	*2008-06-05 16:00 v 1.0c to 1.1
 *	- In function classCREATE provide all aditions arguments to HuClass::createWithoutLSB
+*
+*	* 2009-01-18 13:13 ver 1.1 to 1.2
+*	- Rename file from Class.php to HuClass.php
 **/
 
 include_once('Exceptions/classes.php');

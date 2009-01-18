@@ -11,13 +11,16 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-30 23:19
+*	* 2008-05-30 23:19
 *	- Move include macroses REQUIRED_VAR.php and REQUIRED_NOT_NULL.php after declaration class
 *	 settings to break cycle of includes
+*
+*	* 2009-01-18 14:57 (No version bump)
+*	- Reflect renaming Class.php to HuClass.php
 **/
 
 include_once('macroses/EMPTY_STR.php');
-include_once('Vars/Class.php');	#Static method ::create()
+include_once('Vars/HuClass.php');	#Static method ::create()
 
 class settings extends HuClass{
 protected $__SETS = array();#Сами настройки, массив

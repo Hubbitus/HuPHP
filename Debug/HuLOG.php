@@ -8,13 +8,18 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-30 23:19
+*	* 2008-05-30 23:19
 *	- Changes, to bakward capabilitys with PHP 5.1.6, it is not allow func_num_args() in argument of other function.
-* 2008-06-01 15:20
-*	- Replace exec('echo ... >> Filename') construction by fil_put_contents(Filename,, FILE_APPEND)
+*
+*	* 2008-06-01 15:20
+*	- Replace exec('echo ... >> Filename') construction by file_put_contents(Filename, FILE_APPEND)
 *	 Perfomance increased in few times.
-* 2008-05-25 17:26
+*
+*	* 2008-05-25 17:26
 *	- Change include_once('settings.php'); to include_once('Settings/settings.php');
+*
+*	* 2009-01-18 14:57 (No version bump)
+*	- Reflect renaming Class.php to HuClass.php
 **/
 
 include_once('macroses/REQUIRED_VAR.php');
@@ -23,7 +28,7 @@ include_once('Settings/settings.php');
 include_once('debug.php');	#dump::log
 include_once('System/OS.php');		#constants OS::OUT_TYPE_*
 
-include_once('Vars/Class.php');		#NullClass
+include_once('Vars/HuClass.php');		#NullClass
 include_once('HuError.php');
 
 class HuLOG_settings extends settings{

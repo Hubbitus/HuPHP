@@ -7,20 +7,24 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-29
+*	* 2008-05-29
 *	- Separate classes RegExp_base_base and RegExp_base to allov using this on PHP < 5.3.0-dev
 *	- Add doc to methods, reformatting.
-* 2008-05-30 19:05
+*
+*	* 2008-05-30 19:05
 *	- Made $paireddelimeters method NOT static. It is allowed in implementation, because it is may
 *		now be used as property. So, if outsource code use it static - must change it. This is sacrifice
 *		to to compatibility with PHP < 5.3.0 (whithout late static bindings)
 *	- getMatch add in eval-code, to avoid fatal errors in earler versions PHP
+*
+*	* 2009-01-18 14:57 (No version bump)
+*	- Reflect renaming Class.php to HuClass.php
 **/
 
 include_once('macroses/EMPTY_STR.php');
 include_once('macroses/REQUIRED_NOT_NULL.php');
 
-include_once('Vars/Class.php');	#To method "create"
+include_once('Vars/HuClass.php');	#To method "create"
 
 abstract class RegExp_base_base extends HuClass{
 #MUST be defined properly in childs
