@@ -72,6 +72,26 @@ abstract class HuClass{
 		if ($reflectionObj->getConstructor()) return $reflectionObj->newInstanceArgs(array_slice($args, 1));
 		else return $reflectionObj->newInstance();
 	}#m createWhithoutLSB
+
+	/**
+	* PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+	* See http://ru2.php.net/mysql_fetch_object comments by "Chris at r3i dot it"
+	* So, in this page, below, i found next fine workaraound (see comment and example of "trithaithus at tibiahumor dot net")
+	*
+	* Also this hack was be founded here http://blog.adaniels.nl/articles/a-dark-corner-of-php-class-casting/
+	* @param $toClassName string Class name to what casting do
+	* @param $what mixed
+	* @return Object($toClassName)
+	**/
+	static function cast($toClassName, $what){
+	return unserialize(
+			preg_replace(
+				'/^O:[0-9]+:"[^"]+":/',
+				'O:'.strlen($toClassName).':"' . $toClassName . '":',
+				serialize($what)
+			)
+		);
+	}#m cast
 }#c HuClass
 
 /**
