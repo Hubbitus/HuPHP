@@ -2,7 +2,7 @@
 /**
 * System environment and information
 * @package System ??
-* @version 2.0.1
+* @version 2.0.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -10,6 +10,9 @@
 *	* 2008-11-05 00:47 ver 2.0b to 2.0.1
 *	- In method OS::is_includeable() remove second parameter $include, because including file in caller context
 *		is not possible. And inclusion in context of this method is mistake!
+*
+*	* 2009-01-25 00:58 ver 2.0.1 to 2.0.2
+*	- Add method isPathAbsolute()
 **/
 
 /**
@@ -94,5 +97,22 @@ static $SAPIs = array(
 		}
 	return (bool)$res;
 	}#m is_inludeable
+
+	/**
+	* Check if given path is absolute or not.
+	*
+	* @param $pathToCheck	string Path to check
+	* @return boolean
+	**/
+	static public function isPathAbsolute($pathToCheck){
+		//@TODO: case 'DAR': ;break; //Darwin http://qaix.com/php-web-programming/139-944-constant-php-os-and-mac-server-read.shtml
+		// This check from http://ru2.php.net/php_uname
+		if ('WIN' != strtoupper(substr(PHP_OS, 0, 3))){
+		return ( '/' == $pathToCheck{0} );
+		}
+		else{//WIN
+		return ( ':' == $pathToCheck{1} );
+		}
+	}
 }#c OS
 ?>

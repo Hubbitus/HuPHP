@@ -3,14 +3,22 @@
 * Base file operations.
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @version 1.2
 *
 * @CHANGELOG
-*	- 2008-08-27
+*	* 2008-08-27 ver 1.0 to 1.1
 *	Added: clearPendingWrite(), __destructor(), appendString()
+*
+*	* 2009-01-25 00:00 ver 1.1 to 1.2
+*	- Modify setPath() to set full path into ->filename. ->rawFilename filled also.
+*	- Add method: rawPath().
+*	- Add include_once('System/OS.php'); (for the OS::isAbsolutePath)
 **/
 
 include_once('macroses/REQUIRED_VAR.php');
 include_once('Exceptions/filesystem.php');
+
+include_once('System/OS.php');
 
 class file_base{
 private $filename = '';
@@ -36,12 +44,45 @@ public function __destruct(){
 	if ($this->_writePending) $this->writeContents();
 }
 
+/**
+* Set new path. For example to writing new file.
+*
+* @param $filename	string New filename
+* @return &$this
+**/
 public function &setPath($filename){
 	if ($filename){
 	$this->rawFilename = $filename;
+	/**
+	* And we MUST set full path in ->filename because after f.e. chdir(...) relative path may change sense.
+	* Additionally, in __destruct call to getcwd return '/'!!! {@See http://bugs.php.net/bug.php?id=30210} 
+	**/
+		if (!($this->filename = realpath($this->rawFilename))){
+			/** Realpath failed because file not found. But we can't agree wit that,
+			* because setPath may be invoked to set path for write new (create) file!
+			* So, we try manually construct current full path (see abowe why we should do it)
+			*/
+			if (OS::isAbsolutePath($this->rawFilename)){
+			$this->filename = getcwd() . DIRECTORY_SEPARATOR . $this->rawFilename;
+			}
+		}
 	}
 return $this;
 }#m setPath
+
+/**
+* Return curent path
+**/
+public function path(){
+return $this->filename;
+}
+
+/**
+* Return curent RAW (what wich be passed into the {@see setPath()}, without any transformation) path.
+**/
+public function rawPath(){
+return $this->rawFilename;
+}
 
 public function getLineSep() { return $this->_lineSep; }#m getLineSep
 public function setLineSep($newSep) {
@@ -115,11 +156,7 @@ return ('' != $this->path() and file_exists($this->path()));
 
 public function isReadable(){return is_readable($this->path());}
 
-public function getDir(){return dirname($this->filename);}
-public function path(){
-//return $this->getDir().DIRECTORY_SEPARATOR.$this->path();
-return $this->rawFilename;
-}
+public function getDir(){return dirname($this->path());}
 
 /**
 * Return array of lines
