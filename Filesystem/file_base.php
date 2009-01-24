@@ -12,7 +12,7 @@
 *	* 2009-01-25 00:00 ver 1.1 to 1.2
 *	- Modify setPath() to set full path into ->filename. ->rawFilename filled also.
 *	- Add method: rawPath().
-*	- Add include_once('System/OS.php'); (for the OS::isAbsolutePath)
+*	- Add include_once('System/OS.php'); (for the OS::isPathAbsolute)
 **/
 
 include_once('macroses/REQUIRED_VAR.php');
@@ -36,7 +36,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 protected $_writePending = false;
 
 public function __construct($filename = ''){
-$this->setPath($filename);
+	if ($filename) $this->setPath($filename);
 }#__c
 
 #Write all pendings write
@@ -51,20 +51,18 @@ public function __destruct(){
 * @return &$this
 **/
 public function &setPath($filename){
-	if ($filename){
-	$this->rawFilename = $filename;
-	/**
-	* And we MUST set full path in ->filename because after f.e. chdir(...) relative path may change sense.
-	* Additionally, in __destruct call to getcwd return '/'!!! {@See http://bugs.php.net/bug.php?id=30210} 
-	**/
-		if (!($this->filename = realpath($this->rawFilename))){
-			/** Realpath failed because file not found. But we can't agree wit that,
-			* because setPath may be invoked to set path for write new (create) file!
-			* So, we try manually construct current full path (see abowe why we should do it)
-			*/
-			if (OS::isAbsolutePath($this->rawFilename)){
-			$this->filename = getcwd() . DIRECTORY_SEPARATOR . $this->rawFilename;
-			}
+$this->rawFilename = $filename;
+/**
+* And we MUST set full path in ->filename because after f.e. chdir(...) relative path may change sense.
+* Additionally, in __destruct call to getcwd return '/'!!! {@See http://bugs.php.net/bug.php?id=30210} 
+**/
+	if (!($this->filename = realpath($this->rawFilename))){
+		/** Realpath failed because file not found. But we can't agree wit that,
+		* because setPath may be invoked to set path for write new (create) file!
+		* So, we try manually construct current full path (see abowe why we should do it)
+		*/
+		if (! OS::isPathAbsolute($this->rawFilename)){
+		$this->filename = getcwd() . DIRECTORY_SEPARATOR . $this->rawFilename;
 		}
 	}
 return $this;
