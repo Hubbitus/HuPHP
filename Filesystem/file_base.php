@@ -220,6 +220,7 @@ $this->checkOpenError(
 	#$this->rawFilename because may be file generally not exists!
 	(bool) ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags, $resource_context))
 );
+$this->_writePending = false;
 return $count;
 }#m writeContent
 
@@ -251,8 +252,6 @@ $line = ceil($size / 2);
 	return $size;
 
 	do{
-//c_dump($line, '$line');
-//c_dump($prevLine, '$prevLine');
 		if ( $offset >= $this->_linesOffsets[$line][0] ){
 			if ( $offset <= $this->_linesOffsets[$line][1] ){
 			$found = true;	#Done
