@@ -209,11 +209,11 @@ return $this->setContentFromString($this->content . REQUIRED_VAR($string));
 
 /**
 * Writes whole contents to file (filename may be set via ->setPath('NewFileName'))
-* @param integer flags See http://php.net/file_put_contents
-* @param resource $resource_context See http://php.net/file_put_contents
+* @param integer	flags See http://php.net/file_put_contents
+* @param resource	$resource_context See http://php.net/file_put_contents
 * @param string	$implodeWith See descr ->implodeLines()
 * @param boolean	$updateLineSep See descr ->implodeLines()
-* @return integer Count of written bytes
+* @return integer	Count of written bytes
 **/
 public function writeContents($flags = null, $resource_context = null, $implodeWith = null, $updateLineSep = true){
 $this->checkOpenError(
