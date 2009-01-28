@@ -1,1 +1,0 @@
-rsync -arlDSzv --stats --human-readable --partial --progress --itemize-changes x-www.info:/var/www/_SHARED_/ ./
