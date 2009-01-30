@@ -1,6 +1,7 @@
 <?
 /**
 * Toolkit of small functions as "macroses".
+*
 * @package Macroses
 * @version 1.0
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
