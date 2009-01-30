@@ -93,7 +93,9 @@ class dump extends dump_utils{
 	* @return &mixed $var
 	**/
 	static public function getHeader(&$header, &$var){
-		if ($header) return $header;
+		if ($header){
+		return $header;
+		}
 		elseif(
 			//Be careful! Null, NOT false by default in dump::*()! It allows distinguish what it is
 			//not passed by default or it is not needed!!
