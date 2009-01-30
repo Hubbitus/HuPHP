@@ -163,11 +163,19 @@ class FileNotExistsException extends FileLoadErrorException{}
 * Base file operations.
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @version 1.2
 *
 * @CHANGELOG
-*	- 2008-08-27
+*	* 2008-08-27 ver 1.0 to 1.1
 *	Added: clearPendingWrite(), __destructor(), appendString()
+*
+*	* 2009-01-25 00:00 ver 1.1 to 1.2
+*	- Modify setPath() to set full path into ->filename. ->rawFilename filled also.
+*	- Add method: rawPath().
+*	- Add  (for the OS::isPathAbsolute)
 **/
+
+
 
 
 
@@ -188,7 +196,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 protected $_writePending = false;
 
 public function __construct($filename = ''){
-$this->setPath($filename);
+	if ($filename) $this->setPath($filename);
 }#__c
 
 #Write all pendings write
@@ -196,12 +204,43 @@ public function __destruct(){
 	if ($this->_writePending) $this->writeContents();
 }
 
+/**
+* Set new path. For example to writing new file.
+*
+* @param $filename	string New filename
+* @return &$this
+**/
 public function &setPath($filename){
-	if ($filename){
-	$this->rawFilename = $filename;
+$this->rawFilename = $filename;
+/**
+* And we MUST set full path in ->filename because after f.e. chdir(...) relative path may change sense.
+* Additionally, in __destruct call to getcwd return '/'!!! {@See http://bugs.php.net/bug.php?id=30210} 
+**/
+	if (!($this->filename = realpath($this->rawFilename))){
+		/** Realpath failed because file not found. But we can't agree wit that,
+		* because setPath may be invoked to set path for write new (create) file!
+		* So, we try manually construct current full path (see abowe why we should do it)
+		*/
+		if (! OS::isPathAbsolute($this->rawFilename)){
+		$this->filename = getcwd() . DIRECTORY_SEPARATOR . $this->rawFilename;
+		}
 	}
 return $this;
 }#m setPath
+
+/**
+* Return curent path
+**/
+public function path(){
+return $this->filename;
+}
+
+/**
+* Return curent RAW (what wich be passed into the {@see setPath()}, without any transformation) path.
+**/
+public function rawPath(){
+return $this->rawFilename;
+}
 
 public function getLineSep() { return $this->_lineSep; }#m getLineSep
 public function setLineSep($newSep) {
@@ -275,11 +314,7 @@ return ('' != $this->path() and file_exists($this->path()));
 
 public function isReadable(){return is_readable($this->path());}
 
-public function getDir(){return dirname($this->filename);}
-public function path(){
-//return $this->getDir().DIRECTORY_SEPARATOR.$this->path();
-return $this->rawFilename;
-}
+public function getDir(){return dirname($this->path());}
 
 /**
 * Return array of lines
@@ -369,17 +404,18 @@ return $this->setContentFromString($this->content . REQUIRED_VAR($string));
 
 /**
 * Writes whole contents to file (filename may be set via ->setPath('NewFileName'))
-* @param integer flags See http://php.net/file_put_contents
-* @param resource $resource_context See http://php.net/file_put_contents
+* @param integer	flags See http://php.net/file_put_contents
+* @param resource	$resource_context See http://php.net/file_put_contents
 * @param string	$implodeWith See descr ->implodeLines()
 * @param boolean	$updateLineSep See descr ->implodeLines()
-* @return integer Count of written bytes
+* @return integer	Count of written bytes
 **/
 public function writeContents($flags = null, $resource_context = null, $implodeWith = null, $updateLineSep = true){
 $this->checkOpenError(
 	#$this->rawFilename because may be file generally not exists!
 	(bool) ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags, $resource_context))
 );
+$this->_writePending = false;
 return $count;
 }#m writeContent
 
@@ -411,8 +447,6 @@ $line = ceil($size / 2);
 	return $size;
 
 	do{
-//c_dump($line, '$line');
-//c_dump($prevLine, '$prevLine');
 		if ( $offset >= $this->_linesOffsets[$line][0] ){
 			if ( $offset <= $this->_linesOffsets[$line][1] ){
 			$found = true;	#Done
@@ -480,7 +514,7 @@ $this->_linesOffsets[0] = array($offset, ($offset += -1 + strlen(utf8_decode($li
 /**
 * RegExp manupulation.
 * @package RegExp
-* @version 2.1b
+* @version 2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -497,6 +531,9 @@ $this->_linesOffsets[0] = array($offset, ($offset += -1 + strlen(utf8_decode($li
 *
 *	* 2009-01-18 14:57 (No version bump)
 *	- Reflect renaming Class.php to HuClass.php
+*
+*	* 2009-01-18 23:39 ver 2.1b to 2.1
+*	- Add method getText in base class
 **/
 
 
@@ -575,6 +612,15 @@ public $paireddelimeters = array(
 	$this->matchesValid = false;
 	return $this;
 	}#m setRegExp
+
+	/**
+	* Return current text.
+	*
+	* @return string
+	**/
+	public function getText(){
+	return $this->sourceText;
+	}#m getText
 
 	/**
 	* Set text to match from string.
@@ -704,7 +750,7 @@ public $paireddelimeters = array(
 
 	/**
 	* Description see {@link http://php.net/preg_replace}
-	* @limit В случае, если параметр limit указан, будет произведена замена limit вхождений шаблона; в случае, если limit опущен либо равняется -1, будут заменены все вхождения шаблона. 
+	* @limit  A;CG05, 5A;8 ?0@0<5B@ limit C:070=, 1C45B ?@>872545=0 70<5=0 limit 2E>645=89 H01;>=0; 2 A;CG05, 5A;8 limit >?CI5= ;81> @02=O5BAO -1, 1C4CB 70<5=5=K 2A5 2E>645=8O H01;>=0. 
 	* @return mixed	Replaced value.
 	**/
 	abstract public function replace($limit = -1);
@@ -951,7 +997,7 @@ private static $instance = array();
 /**
 * System environment and information
 * @package System ??
-* @version 2.0.1
+* @version 2.0.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -959,6 +1005,9 @@ private static $instance = array();
 *	* 2008-11-05 00:47 ver 2.0b to 2.0.1
 *	- In method OS::is_includeable() remove second parameter $include, because including file in caller context
 *		is not possible. And inclusion in context of this method is mistake!
+*
+*	* 2009-01-25 00:58 ver 2.0.1 to 2.0.2
+*	- Add method isPathAbsolute()
 **/
 
 /**
@@ -1043,6 +1092,23 @@ static $SAPIs = array(
 		}
 	return (bool)$res;
 	}#m is_inludeable
+
+	/**
+	* Check if given path is absolute or not.
+	*
+	* @param $pathToCheck	string Path to check
+	* @return boolean
+	**/
+	static public function isPathAbsolute($pathToCheck){
+		//@TODO: case 'DAR': ;break; //Darwin http://qaix.com/php-web-programming/139-944-constant-php-os-and-mac-server-read.shtml
+		// This check from http://ru2.php.net/php_uname
+		if ('WIN' != strtoupper(substr(PHP_OS, 0, 3))){
+		return ( '/' == $pathToCheck{0} );
+		}
+		else{//WIN
+		return ( ':' == $pathToCheck{1} );
+		}
+	}
 }#c OS
 ?><?
 /**
@@ -1157,6 +1223,26 @@ abstract class HuClass{
 		if ($reflectionObj->getConstructor()) return $reflectionObj->newInstanceArgs(array_slice($args, 1));
 		else return $reflectionObj->newInstance();
 	}#m createWhithoutLSB
+
+	/**
+	* PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+	* See http://ru2.php.net/mysql_fetch_object comments by "Chris at r3i dot it"
+	* So, in this page, below, i found next fine workaraound (see comment and example of "trithaithus at tibiahumor dot net")
+	*
+	* Also this hack was be founded here http://blog.adaniels.nl/articles/a-dark-corner-of-php-class-casting/
+	* @param $toClassName string Class name to what casting do
+	* @param $what mixed
+	* @return Object($toClassName)
+	**/
+	static function cast($toClassName, $what){
+	return unserialize(
+			preg_replace(
+				'/^O:[0-9]+:"[^"]+":/',
+				'O:'.strlen($toClassName).':"' . $toClassName . '":',
+				serialize($what)
+			)
+		);
+	}#m cast
 }#c HuClass
 
 /**
@@ -2280,6 +2366,7 @@ function &REQUIRED_VAR(&$var, $varname = null){
 ?><?
 /**
 * Toolkit of small functions as "macroses".
+*
 * @package Macroses
 * @version 1.0
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
@@ -3188,6 +3275,36 @@ private $_regexp = null;
 }#c Tokenizer
 ?><?
 /**
+* Toolkit of small functions as "macroses".
+*
+* @package Macroses
+* @version 1.0
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @changelog
+*	* 2009-01-30 15:10 ver 1.0
+**/
+
+/**
+* Return value of variable if it defined without notices and error-handling.
+*
+* In most cases check like "if ($variable)" is laconic form of more strict like "if (isset($variable) and $variable)".
+* So, if $variable was not defined yet we got notice. Well, when we do not need it, we can suppress it like "if (@$variable)"
+* all seems good on first glance but we only supress error message, NOT error processing if it occures!
+* So, if error handler was be set before (like set_error_handler("func_error_handler");) this error handler got control and stack will be broken!
+*
+* @param &mixed	$var variable amount of arguments.
+* @return &mixed
+**/
+function &ISSET_VAR(&$var){
+	if (isset($var)) return $var;
+	else{
+	$t = null; //To do not fire error "Only variables can be passed by reference in ..."
+	return $t;
+	}
+}
+?><?
+/**
 * Debug and backtrace toolkit.
 * @package Debug
 * @subpackage Dump-utils
@@ -3258,7 +3375,7 @@ class dump_utils{
 * Debug and backtrace toolkit.
 * @package Debug
 * @subpackage Debug
-* @version 2.3.4
+* @version 2.3.5
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -3281,6 +3398,11 @@ class dump_utils{
 *
 * 2008-10-04 22:25 ver 2.3.3 to 2.3.4
 *	- Add bacward-capability function implementation of function spl_object_hash() if it is not exists.
+*
+* 2009-01-30 15:10 ver 2.3.4 to 2.3.5
+*	- Add 
+*	- All checks to $__CONFIG values replaced by call call to macros {@see ISSET_VAR}.
+*		Full explanation reason of it see in description of macros {@see ISSET_VAR}
 **/
 
 define ('DUMP_DO_NOT_DEFINE_STUMP_DUMP', true);
@@ -3320,15 +3442,15 @@ define ('NO_DEBUG', false);
 	);
 	}
 
-	if (null !== $GLOBALS['__CONFIG']['debug']['errorReporting']){
+	if (null !== ISSET_VAR($GLOBALS['__CONFIG']['debug']['errorReporting'])){
 	error_reporting($GLOBALS['__CONFIG']['debug']['errorReporting']);
 	}
 
-	if (null !== $GLOBALS['__CONFIG']['debug']['display_errors']){
+	if (null !== ISSET_VAR($GLOBALS['__CONFIG']['debug']['display_errors'])){
 	ini_set('display_errors', $GLOBALS['__CONFIG']['debug']['display_errors']);
 	}
 
-	if (@$GLOBALS['__CONFIG']['debug']['parseCallParam']){
+	if (ISSET_VAR($GLOBALS['__CONFIG']['debug']['parseCallParam'])){
 	
 	
 	}
@@ -3341,19 +3463,21 @@ define ('NO_DEBUG', false);
 class dump extends dump_utils{
 	/**
 	* Return $header. If in $header present - return as is, else make guess as real be invoked.
-	* @param &mixed $header. Be careful! By default, in parent methods like dump::*() $heade=false!
+	*
+	* @param &mixed $header. Be careful! By default, in parent methods like dump::*() $header=false!
 	*	If passed $header === null it allows distinguish what it is not passed by default or
 	*	it is not needed!!
 	* @return &mixed $var
 	**/
 	static public function getHeader(&$header, &$var){
-		if ($header) return $header;
+		if ($header){
+		return $header;
+		}
 		elseif(
 			//Be careful! Null, NOT false by default in dump::*()! It allows distinguish what it is
 			//not passed by default or it is not needed!!
 			$header !== null
-			and
-			@$GLOBALS['__CONFIG']['debug']['parseCallParam']
+			and ISSET_VAR($GLOBALS['__CONFIG']['debug']['parseCallParam'])
 			and
 			(
 				$cp = Tokenizer::trimQuotes(

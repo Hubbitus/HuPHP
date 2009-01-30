@@ -3,7 +3,7 @@
 * Debug and backtrace toolkit.
 * @package Debug
 * @subpackage Debug
-* @version 2.3.4
+* @version 2.3.5
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -26,11 +26,16 @@
 *
 * 2008-10-04 22:25 ver 2.3.3 to 2.3.4
 *	- Add bacward-capability function implementation of function spl_object_hash() if it is not exists.
+*
+* 2009-01-30 15:10 ver 2.3.4 to 2.3.5
+*	- Add include_once('macroses/ISSET_VAR.php');
+*	- All checks to $__CONFIG values replaced by call call to macros {@see ISSET_VAR}.
+*		Full explanation reason of it see in description of macros {@see ISSET_VAR}
 **/
 
 define ('DUMP_DO_NOT_DEFINE_STUMP_DUMP', true);
 include_once('Debug/dump_utils.php');
-
+include_once('macroses/ISSET_VAR.php');
 
 define ('NO_DEBUG', false);
 
@@ -65,15 +70,15 @@ define ('NO_DEBUG', false);
 	);
 	}
 
-	if (null !== $GLOBALS['__CONFIG']['debug']['errorReporting']){
+	if (null !== ISSET_VAR($GLOBALS['__CONFIG']['debug']['errorReporting'])){
 	error_reporting($GLOBALS['__CONFIG']['debug']['errorReporting']);
 	}
 
-	if (null !== $GLOBALS['__CONFIG']['debug']['display_errors']){
+	if (null !== ISSET_VAR($GLOBALS['__CONFIG']['debug']['display_errors'])){
 	ini_set('display_errors', $GLOBALS['__CONFIG']['debug']['display_errors']);
 	}
 
-	if (@$GLOBALS['__CONFIG']['debug']['parseCallParam']){
+	if (ISSET_VAR($GLOBALS['__CONFIG']['debug']['parseCallParam'])){
 	include_once('Debug/Tokenizer.php');
 	include_once('Debug/backtrace.php');
 	}
@@ -100,8 +105,7 @@ class dump extends dump_utils{
 			//Be careful! Null, NOT false by default in dump::*()! It allows distinguish what it is
 			//not passed by default or it is not needed!!
 			$header !== null
-			and
-			@$GLOBALS['__CONFIG']['debug']['parseCallParam']
+			and ISSET_VAR($GLOBALS['__CONFIG']['debug']['parseCallParam'])
 			and
 			(
 				$cp = Tokenizer::trimQuotes(
