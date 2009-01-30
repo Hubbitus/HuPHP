@@ -86,7 +86,8 @@ define ('NO_DEBUG', false);
 class dump extends dump_utils{
 	/**
 	* Return $header. If in $header present - return as is, else make guess as real be invoked.
-	* @param &mixed $header. Be careful! By default, in parent methods like dump::*() $heade=false!
+	*
+	* @param &mixed $header. Be careful! By default, in parent methods like dump::*() $header=false!
 	*	If passed $header === null it allows distinguish what it is not passed by default or
 	*	it is not needed!!
 	* @return &mixed $var
