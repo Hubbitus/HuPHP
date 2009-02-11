@@ -514,7 +514,7 @@ $this->_linesOffsets[0] = array($offset, ($offset += -1 + strlen(utf8_decode($li
 /**
 * RegExp manupulation.
 * @package RegExp
-* @version 2.1
+* @version 2.1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -534,6 +534,9 @@ $this->_linesOffsets[0] = array($offset, ($offset += -1 + strlen(utf8_decode($li
 *
 *	* 2009-01-18 23:39 ver 2.1b to 2.1
 *	- Add method getText in base class
+
+*	* 2009-02-11 13:41 ver 2.1 to 2.1.1
+	- Add method split
 **/
 
 
@@ -565,15 +568,18 @@ public $paireddelimeters = array(
 );
 
 	/**
-	* Aka __construct, but for static call. Primarly needed to create object
-	* of future defined class in base (see getMatch method)
+	* Aka __construct, but for static call.
+	* 
+	* Primarly needed to create object of future defined class in base (see getMatch method)
 	* Derived from HuClass::create
+	*
 	* @method create()
 	* @return Object(RegExp_base)
 	**/
 
 	/**
 	* Constructor.
+	*
 	* For parameters {@see ->set()}
 	**/
 	public function __construct($regexp = null, $text = null, $replaceTo = null){
@@ -582,6 +588,7 @@ public $paireddelimeters = array(
 
 	/**
 	* Return N-th single match
+	*
 	* @param int	$Number Number of interesting match
 	* @return string|array
 	**/
@@ -693,13 +700,17 @@ public $paireddelimeters = array(
 	/**
 	* Description of $flags and $offset see on http://www.php.net/preg_match_all
 	* Called by default, in ->match()!
+	*
+	* @return &$this
 	**/
-	abstract public function doMatch($flags = null, $offset = null);#{}# MUST return $this;
+	abstract public function &doMatch($flags = null, $offset = null);
 
 	/**
-	* @see ->doMatch(). But match all occurences.
+	* {@see ->doMatch()}. But match all occurences.
+	*
+	* @return &$this
 	**/
-	abstract public function doMatchAll($flags = null, $offset = null);#{}# MUST return $this;
+	abstract public function &doMatchAll($flags = null, $offset = null);
 
 	/**
 	* Return startDelimiter
@@ -716,7 +727,7 @@ public $paireddelimeters = array(
 	/**
 	* Return endDelimiter
 	*
-	* @param integer $item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
+	* @param integer	$item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	* @return char
 	**/
 	public function getRegExpDelimiterEnd($item = null){
@@ -727,7 +738,8 @@ public $paireddelimeters = array(
 
 	/**
 	* Assume RegeExp correct. Do not check it.
-	* @param integer $item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
+	*
+	* @param integer	$item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	* @return string
 	**/
 	public function getRegExpBody($item = null){
@@ -739,7 +751,7 @@ public $paireddelimeters = array(
 	/**
 	* Return RegExpModifiers
 	*
-	* @param integer $item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
+	* @param integer	$item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	* @return char
 	**/
 	public function getRegExpModifiers($item = null){
@@ -750,20 +762,35 @@ public $paireddelimeters = array(
 
 	/**
 	* Description see {@link http://php.net/preg_replace}
-	* @limit  A;CG05, 5A;8 ?0@0<5B@ limit C:070=, 1C45B ?@>872545=0 70<5=0 limit 2E>645=89 H01;>=0; 2 A;CG05, 5A;8 limit >?CI5= ;81> @02=O5BAO -1, 1C4CB 70<5=5=K 2A5 2E>645=8O H01;>=0. 
+	*
+	* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL. 
 	* @return mixed	Replaced value.
 	**/
 	abstract public function replace($limit = -1);
 
 	/**
+	* Split by regexp. Results as usual in matches.
+	*
+	* @since Version 2.1.1
+	* 
+	* @param int(-1)	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
+	* @param int(null)	$flags Flags for the operation.
+	* @return &$this
+	**/
+	abstract public function &split($limit = -1, $flags = null);
+
+	/**
 	* Quote given string or each (recursive) string in array.
+	*
 	* @param	string|array	$toQuote
 	* @param	string='/'	$delimiter. Chars to addition escape. Usaly (and default) char start and end of regexp.
-	* @return	string|arrya	Same type as given.
+	* @return	string|array	Same type as given.
 	**/
 	abstract public static function quote($toQuote, $delimeter = '/');
 
 	/**
+	* Full array of matches after call (not checked!) {@see doMatch()}, {@see doMatchAll()}, {@see split()}
+	*
 	* @return array of last matches.
 	**/
 	public function getMatches(){
@@ -813,9 +840,13 @@ public $paireddelimeters = array(
 /**
 * RegExp manupulation. PCRE-version.
 * @package RegExp
-* @version 2.0b
+* @version 2.1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+*
+* @changelog
+*	* 2009-02-11 13:41 ver 2.1 to 2.1.1
+*	- Add method split
 **/
 
 
@@ -830,7 +861,9 @@ protected $matchCount;
 protected $matches;
 */
 
-#Do test, faster then doMatch, don't filling ->matches, ->matchCount and other.
+/**
+* {@inheritdoc}
+**/
 public function test(){
 return ($this->matchCount = preg_match($this->RegExp, $this->sourceText));
 }#m test
@@ -846,14 +879,20 @@ public static function quote($toQuote, $delimeter = '/'){
 	else return preg_quote($toQuote, $delimeter);
 }#m quote
 
-public function doMatch($flags = null, $offset = null){
+/**
+* {@inheritdoc}
+**/
+public function &doMatch($flags = null, $offset = null){
 $this->matchCount = preg_match($this->RegExp, $this->sourceText, $this->matches, $flags, $offset);
 $this->matchesValid = true;
 $this->convertOffsetToChars($flags);
 return $this;
 }#m doMatch
 
-public function doMatchAll($flags = null, $offset = null){
+/**
+* {@inheritdoc}
+**/
+public function &doMatchAll($flags = null, $offset = null){
 $this->matchCount = preg_match_all($this->RegExp, $this->sourceText, $this->matches, $flags, $offset);
 $this->matchesValid = true;
 $this->convertOffsetToChars($flags);
@@ -868,6 +907,8 @@ Now automaticaly copy them from Single::create in base constructor
 */
 
 /**
+* Conversion bytes offsets to characters.
+* 
 * Whith PREG_OFFSET_CAPTURE preg_match* returns bytes offset!!!! nor chars!!!! 
 * So, recalculate it in chars is several methods:
 * 1) Using utf8_decode. See http://ru2.php.net/manual/ru/function.strlen.php
@@ -875,6 +916,9 @@ Now automaticaly copy them from Single::create in base constructor
 * 2) And using mb_strlen http://ru2.php.net/manual/ru/function.preg-match.php comment "chuckie"
 *
 * I using combination of its. And it independent of the presence mbstring extension!
+*
+* @param int $flags Flags was used in previous operation.
+* @return nothing
 */
 private final function convertOffsetToChars($flags){
 	if ($this->matchCount and ($flags & PREG_OFFSET_CAPTURE) ){
@@ -886,9 +930,12 @@ private final function convertOffsetToChars($flags){
 }#m convertOffsetToChars
 
 /**
+* {@inheritdoc}
 * Description see {@link http://php.net/preg_replace}
-* @limit В случае, если параметр limit указан, будет произведена замена limit вхождений шаблона; в случае, если limit опущен либо равняется -1, будут заменены все вхождения шаблона. 
-* @return &$this
+* Results cached, so fill free invoke it several times without overhead of replace.
+*
+* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL. 
+* @return array Results of replace. Cached.
 **/
 public function replace($limit = -1){
 	if (!$this->replaceValid){
@@ -898,6 +945,20 @@ public function replace($limit = -1){
 return $this->replaceRes;
 }#m replace
 
+/**
+* Split by regexp.
+*
+* @since Version 2.1.1
+*
+* @param int(-1)	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
+* @param int(null)	$flags {@link http://php.net/preg-split} for detailed descriptions of $flags.
+* @return &$this
+**/
+public function &split($limit = -1, $flags = null){
+$this->matches = preg_split($this->RegExp, $this->sourceText, $limit, $flags);
+$this->matchesValid = true;
+return $this;
+}#m split
 }#c RegExp_pcre
 ?>
 <?
