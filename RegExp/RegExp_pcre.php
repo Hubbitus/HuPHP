@@ -19,7 +19,9 @@ protected $matchCount;
 protected $matches;
 */
 
-#Do test, faster then doMatch, don't filling ->matches, ->matchCount and other.
+/**
+* {@inheritdoc}
+**/
 public function test(){
 return ($this->matchCount = preg_match($this->RegExp, $this->sourceText));
 }#m test
@@ -35,6 +37,9 @@ public static function quote($toQuote, $delimeter = '/'){
 	else return preg_quote($toQuote, $delimeter);
 }#m quote
 
+/**
+* {@inheritdoc}
+**/
 public function doMatch($flags = null, $offset = null){
 $this->matchCount = preg_match($this->RegExp, $this->sourceText, $this->matches, $flags, $offset);
 $this->matchesValid = true;
@@ -42,6 +47,9 @@ $this->convertOffsetToChars($flags);
 return $this;
 }#m doMatch
 
+/**
+* {@inheritdoc}
+**/
 public function doMatchAll($flags = null, $offset = null){
 $this->matchCount = preg_match_all($this->RegExp, $this->sourceText, $this->matches, $flags, $offset);
 $this->matchesValid = true;
@@ -57,6 +65,8 @@ Now automaticaly copy them from Single::create in base constructor
 */
 
 /**
+* Conversion bytes offsets to characters.
+* 
 * Whith PREG_OFFSET_CAPTURE preg_match* returns bytes offset!!!! nor chars!!!! 
 * So, recalculate it in chars is several methods:
 * 1) Using utf8_decode. See http://ru2.php.net/manual/ru/function.strlen.php
@@ -64,6 +74,9 @@ Now automaticaly copy them from Single::create in base constructor
 * 2) And using mb_strlen http://ru2.php.net/manual/ru/function.preg-match.php comment "chuckie"
 *
 * I using combination of its. And it independent of the presence mbstring extension!
+*
+* @param int $flags Flags was used in previous operation.
+* @return nothing
 */
 private final function convertOffsetToChars($flags){
 	if ($this->matchCount and ($flags & PREG_OFFSET_CAPTURE) ){
@@ -75,8 +88,10 @@ private final function convertOffsetToChars($flags){
 }#m convertOffsetToChars
 
 /**
+* {@inheritdoc}
 * Description see {@link http://php.net/preg_replace}
-* @limit В случае, если параметр limit указан, будет произведена замена limit вхождений шаблона; в случае, если limit опущен либо равняется -1, будут заменены все вхождения шаблона. 
+*
+* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL. 
 * @return &$this
 **/
 public function replace($limit = -1){

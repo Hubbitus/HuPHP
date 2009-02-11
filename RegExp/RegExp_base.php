@@ -53,15 +53,18 @@ public $paireddelimeters = array(
 );
 
 	/**
-	* Aka __construct, but for static call. Primarly needed to create object
-	* of future defined class in base (see getMatch method)
+	* Aka __construct, but for static call.
+	* 
+	* Primarly needed to create object of future defined class in base (see getMatch method)
 	* Derived from HuClass::create
+	*
 	* @method create()
 	* @return Object(RegExp_base)
 	**/
 
 	/**
 	* Constructor.
+	*
 	* For parameters {@see ->set()}
 	**/
 	public function __construct($regexp = null, $text = null, $replaceTo = null){
@@ -70,6 +73,7 @@ public $paireddelimeters = array(
 
 	/**
 	* Return N-th single match
+	*
 	* @param int	$Number Number of interesting match
 	* @return string|array
 	**/
@@ -204,7 +208,7 @@ public $paireddelimeters = array(
 	/**
 	* Return endDelimiter
 	*
-	* @param integer $item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
+	* @param integer	$item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	* @return char
 	**/
 	public function getRegExpDelimiterEnd($item = null){
@@ -215,7 +219,8 @@ public $paireddelimeters = array(
 
 	/**
 	* Assume RegeExp correct. Do not check it.
-	* @param integer $item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
+	*
+	* @param integer	$item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	* @return string
 	**/
 	public function getRegExpBody($item = null){
@@ -227,7 +232,7 @@ public $paireddelimeters = array(
 	/**
 	* Return RegExpModifiers
 	*
-	* @param integer $item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
+	* @param integer	$item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	* @return char
 	**/
 	public function getRegExpModifiers($item = null){
@@ -238,13 +243,15 @@ public $paireddelimeters = array(
 
 	/**
 	* Description see {@link http://php.net/preg_replace}
-	* @limit  A;CG05, 5A;8 ?0@0<5B@ limit C:070=, 1C45B ?@>872545=0 70<5=0 limit 2E>645=89 H01;>=0; 2 A;CG05, 5A;8 limit >?CI5= ;81> @02=O5BAO -1, 1C4CB 70<5=5=K 2A5 2E>645=8O H01;>=0. 
+	*
+	* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL. 
 	* @return mixed	Replaced value.
 	**/
 	abstract public function replace($limit = -1);
 
 	/**
 	* Quote given string or each (recursive) string in array.
+	*
 	* @param	string|array	$toQuote
 	* @param	string='/'	$delimiter. Chars to addition escape. Usaly (and default) char start and end of regexp.
 	* @return	string|arrya	Same type as given.
@@ -252,6 +259,8 @@ public $paireddelimeters = array(
 	abstract public static function quote($toQuote, $delimeter = '/');
 
 	/**
+	* Full array of matches after call (not checked!) {@see doMatch()}, {@see doMatchAll()}, {@see split()}
+	*
 	* @return array of last matches.
 	**/
 	public function getMatches(){
