@@ -2,9 +2,13 @@
 /**
 * RegExp manupulation. PCRE-version.
 * @package RegExp
-* @version 2.0b
+* @version 2.1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+*
+* @changelog
+*	* 2009-02-11 13:41 ver 2.1 to 2.1.1
+*	- Add method split
 **/
 
 include_once('RegExp/RegExp_base.php');
@@ -40,7 +44,7 @@ public static function quote($toQuote, $delimeter = '/'){
 /**
 * {@inheritdoc}
 **/
-public function doMatch($flags = null, $offset = null){
+public function &doMatch($flags = null, $offset = null){
 $this->matchCount = preg_match($this->RegExp, $this->sourceText, $this->matches, $flags, $offset);
 $this->matchesValid = true;
 $this->convertOffsetToChars($flags);
@@ -50,7 +54,7 @@ return $this;
 /**
 * {@inheritdoc}
 **/
-public function doMatchAll($flags = null, $offset = null){
+public function &doMatchAll($flags = null, $offset = null){
 $this->matchCount = preg_match_all($this->RegExp, $this->sourceText, $this->matches, $flags, $offset);
 $this->matchesValid = true;
 $this->convertOffsetToChars($flags);
@@ -90,9 +94,10 @@ private final function convertOffsetToChars($flags){
 /**
 * {@inheritdoc}
 * Description see {@link http://php.net/preg_replace}
+* Results cached, so fill free invoke it several times without overhead of replace.
 *
 * @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL. 
-* @return &$this
+* @return array Results of replace. Cached.
 **/
 public function replace($limit = -1){
 	if (!$this->replaceValid){
@@ -102,5 +107,19 @@ public function replace($limit = -1){
 return $this->replaceRes;
 }#m replace
 
+/**
+* Split by regexp.
+*
+* @since Version 2.1.1
+*
+* @param int(-1)	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
+* @param int(null)	$flags {@link http://php.net/preg-split} for detailed descriptions of $flags.
+* @return &$this
+**/
+public function &split($limit = -1, $flags = null){
+$this->matches = preg_split($this->RegExp, $this->sourceText, $limit, $flags);
+$this->matchesValid = true;
+return $this;
+}#m split
 }#c RegExp_pcre
 ?>

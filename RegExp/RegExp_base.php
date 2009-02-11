@@ -2,7 +2,7 @@
 /**
 * RegExp manupulation.
 * @package RegExp
-* @version 2.1
+* @version 2.1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -22,6 +22,9 @@
 *
 *	* 2009-01-18 23:39 ver 2.1b to 2.1
 *	- Add method getText in base class
+
+*	* 2009-02-11 13:41 ver 2.1 to 2.1.1
+	- Add method split
 **/
 
 include_once('macroses/EMPTY_STR.php');
@@ -185,13 +188,17 @@ public $paireddelimeters = array(
 	/**
 	* Description of $flags and $offset see on http://www.php.net/preg_match_all
 	* Called by default, in ->match()!
+	*
+	* @return &$this
 	**/
-	abstract public function doMatch($flags = null, $offset = null);#{}# MUST return $this;
+	abstract public function &doMatch($flags = null, $offset = null);
 
 	/**
-	* @see ->doMatch(). But match all occurences.
+	* {@see ->doMatch()}. But match all occurences.
+	*
+	* @return &$this
 	**/
-	abstract public function doMatchAll($flags = null, $offset = null);#{}# MUST return $this;
+	abstract public function &doMatchAll($flags = null, $offset = null);
 
 	/**
 	* Return startDelimiter
@@ -250,11 +257,22 @@ public $paireddelimeters = array(
 	abstract public function replace($limit = -1);
 
 	/**
+	* Split by regexp. Results as usual in matches.
+	*
+	* @since Version 2.1.1
+	* 
+	* @param int(-1)	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
+	* @param int(null)	$flags Flags for the operation.
+	* @return &$this
+	**/
+	abstract public function &split($limit = -1, $flags = null);
+
+	/**
 	* Quote given string or each (recursive) string in array.
 	*
 	* @param	string|array	$toQuote
 	* @param	string='/'	$delimiter. Chars to addition escape. Usaly (and default) char start and end of regexp.
-	* @return	string|arrya	Same type as given.
+	* @return	string|array	Same type as given.
 	**/
 	abstract public static function quote($toQuote, $delimeter = '/');
 
