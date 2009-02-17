@@ -109,8 +109,8 @@ class HuArray extends settings{
 	function &__get($name){
 		/**
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference: 
-		PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
-		*/
+		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
+		**/
 		if ('_last_' == $name) return $this->last();
 	return $this->getProperty($name);
 	}#m __get
@@ -120,12 +120,12 @@ class HuArray extends settings{
 	*
 	* @param string	$name
 	* @param mixed	$value
-	*/
+	**/
 	function __set($name, $value){
 		/**
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference: 
-		PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
-		*/
+		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
+		**/
 		if ('_last_' == $name){
 		$ref =& $this->last();
 		}
@@ -136,7 +136,7 @@ class HuArray extends settings{
 	}#m __set
 
 	/**
-	* Apply callback function to yeach element.
+	* Apply callback function to each element.
 	* @return &$this
 	**/
 	public function walk($callback){
