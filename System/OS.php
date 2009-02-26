@@ -57,6 +57,7 @@ static $SAPIs = array(
 
 	/**
 	* Determines out type of current-running process.
+	*
 	* @return Now one of const: ::OUT_TYPE_BROWSER or ::OUT_TYPE_CONSOLE
 	**/
 	static public function getOutType(){
@@ -66,6 +67,7 @@ static $SAPIs = array(
 
 	/**
 	* php_sapi_name()
+	*
 	* @return
 	**/
 	static public function phpSapiName(){
@@ -84,6 +86,7 @@ static $SAPIs = array(
 	*		'file not found' or 'not readable', construction @include suppres ALL (even Critical!)
 	*		in including files, and nested (included from including).
 	*	Result of check may be also applyable to require()
+	*
 	* @param	string $filenam As it can be passed to include or require.
 	* @return
 	**/
