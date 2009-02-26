@@ -2,7 +2,7 @@
 /**
 * System environment and information
 * @package System ??
-* @version 2.0.2
+* @version 2.0.3
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -13,6 +13,9 @@
 *
 *	* 2009-01-25 00:58 ver 2.0.1 to 2.0.2
 *	- Add method isPathAbsolute()
+
+*	* 2009-02-26 15:56 ver 2.0.2 to 2.0.3
+*	- In method isPathAbsolute($pathToCheck) add handling registered wrappers to always absolute!
 **/
 
 /**
@@ -108,6 +111,8 @@ static $SAPIs = array(
 	* @return boolean
 	**/
 	static public function isPathAbsolute($pathToCheck){
+		if ( preg_match('#^(?:' . implode('|', stream_get_wrappers()) . ')://#', $pathToCheck) ) return true; // Registered wrappers always absolute!
+
 		//@TODO: case 'DAR': ;break; //Darwin http://qaix.com/php-web-programming/139-944-constant-php-os-and-mac-server-read.shtml
 		// This check from http://ru2.php.net/php_uname
 		if ('WIN' != strtoupper(substr(PHP_OS, 0, 3))){
