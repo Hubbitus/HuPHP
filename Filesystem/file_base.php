@@ -3,7 +3,7 @@
 * Base file operations.
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @version 1.2
+* @version 1.2.1
 *
 * @CHANGELOG
 *	* 2008-08-27 ver 1.0 to 1.1
@@ -13,6 +13,10 @@
 *	- Modify setPath() to set full path into ->filename. ->rawFilename filled also.
 *	- Add method: rawPath().
 *	- Add include_once('System/OS.php'); (for the OS::isPathAbsolute)
+*
+*	* 2009-02-26 15:59 ver 1.2 to 1.2.1
+*	- Add in setPath initial initialization of $this->filename in any case! In case if path is relative it will expanded. If not - old
+*	  behaviour it is not initialised!
 **/
 
 include_once('macroses/REQUIRED_VAR.php');
@@ -51,12 +55,12 @@ public function __destruct(){
 * @return &$this
 **/
 public function &setPath($filename){
-$this->rawFilename = $filename;
+$this->filename = $this->rawFilename = $filename;
 /**
 * And we MUST set full path in ->filename because after f.e. chdir(...) relative path may change sense.
 * Additionally, in __destruct call to getcwd return '/'!!! {@See http://bugs.php.net/bug.php?id=30210} 
 **/
-	if (!($this->filename = realpath($this->rawFilename))){
+	if (!($realpath = realpath($this->rawFilename))){//We can't direct use $this->filename instead of $realpath because if it ! we not always want null it!
 		/**
 		* Realpath may fail because file not found. But we can't agree with that,
 		* because setPath may be invoked to set path for write new (create) file!
@@ -66,6 +70,7 @@ $this->rawFilename = $filename;
 		$this->filename = getcwd() . DIRECTORY_SEPARATOR . $this->rawFilename;
 		}
 	}
+	else $this->filename = $realpath;
 return $this;
 }#m setPath
 
