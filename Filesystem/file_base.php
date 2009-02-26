@@ -57,10 +57,11 @@ $this->rawFilename = $filename;
 * Additionally, in __destruct call to getcwd return '/'!!! {@See http://bugs.php.net/bug.php?id=30210} 
 **/
 	if (!($this->filename = realpath($this->rawFilename))){
-		/** Realpath failed because file not found. But we can't agree wit that,
+		/**
+		* Realpath may fail because file not found. But we can't agree with that,
 		* because setPath may be invoked to set path for write new (create) file!
 		* So, we try manually construct current full path (see abowe why we should do it)
-		*/
+		**/
 		if (! OS::isPathAbsolute($this->rawFilename)){
 		$this->filename = getcwd() . DIRECTORY_SEPARATOR . $this->rawFilename;
 		}
@@ -158,6 +159,7 @@ public function getDir(){return dirname($this->path());}
 
 /**
 * Return array of lines
+*
 * @param array $lines. If empty array - whole array of lines. Else Array(int $offset  [, int $length  [, bool $preserve_keys  ]] ). See http://php.net/array_slice
 * @param boolean(true) $updateLineSep. See explanation in ->explodeLines() method.
 * @Throw(VariableEmptyException)
@@ -173,6 +175,7 @@ $this->checkLoad();
 
 /**
 * Explode whole contents by lines.
+*
 * @param boolean $updateLineSep if true - update lineSep by presented in whole content.
 **/
 protected function explodeLines($updateLineSep = true){
@@ -184,6 +187,7 @@ $this->_linesOffsets = array();
 
 /**
 * Implode lineContent to whole contents.
+*
 * @param string	$implodeWith String implode with. If null, by default - ->_lineSep.
 * @param boolean	$updateLineSep if true - update lineSep by presented $implodeWith.
 **/
@@ -195,6 +199,7 @@ return ($this->content = implode($this->getLineSep(), $this->lineContent));
 
 /**
 * Return string of content
+*
 * @param string	$implodeWith See descr ->implodeLines()
 * @param boolean	$updateLineSep See descr ->implodeLines()
 * @return string
@@ -220,6 +225,8 @@ return $this;
 }#m clearPendingWrite
 
 /**
+* Set content to write.
+*
 * @param string	$string. String to set from.
 * @return &$this
 * @Throw(VariableRequiredException)
@@ -234,6 +241,7 @@ return $this;
 
 /**
 * Append string to pending write buffer.
+*
 * @param string	$string. String to append from.
 * @return &$this
 * @Throw(VariableRequiredException)
@@ -244,6 +252,7 @@ return $this->setContentFromString($this->content . REQUIRED_VAR($string));
 
 /**
 * Writes whole contents to file (filename may be set via ->setPath('NewFileName'))
+*
 * @param integer	flags See http://php.net/file_put_contents
 * @param resource	$resource_context See http://php.net/file_put_contents
 * @param string	$implodeWith See descr ->implodeLines()
@@ -261,6 +270,7 @@ return $count;
 
 /**
 * Calculate lie number by offset. Line-separators on end of string.
+*
 * @param integer $offset
 * @return integer
 * @Throw(VariableRangeException)
@@ -307,7 +317,8 @@ $line = ceil($size / 2);
 }#m getLineByOffset
 
 /**
-* Oppositive ->getLineByOffset.
+* Opposit to {@see ::getLineByOffset()}
+*
 * @param integer $line
 * @return array(OffsetBeginLine, OffsetEndLine). In OffsetEndLine included length of ->_lineSep!
 **/
