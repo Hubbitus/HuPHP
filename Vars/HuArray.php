@@ -4,7 +4,7 @@
 * Class to provide OOP interface to array operations.
 *
 * @package Vars
-* @version 1.1.1
+* @version 1.1.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -12,21 +12,29 @@
 *	* 2008-09-22 17:55 ver 1.1 to 1.1.1
 *	* Add majority this phpdoc header.
 *	- Change include_once('settings.php'); to include_once('Settings/settings.php');
+*
+*	* 2009-02-27 15:08 ver 1.1.1 to 1.1.2
+*	- Add static property HuArray::$__CLASS__ to allow amulate LSB in old PHP!!!
+*	- Some minor fixes in comments.
 **/
 
 include_once('Settings/settings.php');
 
 class HuArray extends settings{
+protected static $__CLASS__ = __CLASS__; #Only for old PHP to emulate LSB!!!
+
 	/**
 	* Constructor.
+	*
 	* @param	(array)mixed=null	$array	 Mixed, explicit cast as array!
 	**/
 	function __construct(/*(array)*/ $array = null){
 	parent::__construct((array)$array);
-	}#constructor
+	}#__c
 
 	/**
 	* Push values.
+	*
 	* @param 	mixed	$var.
 	* @params	mixed	any amount of vars (First explicity to make mandatory one at once)
 	* @return	&$this
@@ -38,6 +46,7 @@ class HuArray extends settings{
 
 	/**
 	* Push array of values.
+	*
 	* @param 	array	$arr
 	* @return	&$this
 	**/
@@ -49,6 +58,7 @@ class HuArray extends settings{
 
 	/**
 	* Push values from Object(HuArray).
+	*
 	* @param 	mixed	$var.
 	* @return	$this->pushArray()
 	**/
@@ -58,6 +68,7 @@ class HuArray extends settings{
 
 	/**
 	* Return last element in array. Reference, direct-editable!!
+	*
 	* @return &mixed
 	**/
 	public function &last(){
@@ -67,6 +78,7 @@ class HuArray extends settings{
 
 	/**
 	* Return Array representation (cast to (array)).
+	*
 	* @return	array
 	**/
 	public function getArray(){
@@ -137,6 +149,7 @@ class HuArray extends settings{
 
 	/**
 	* Apply callback function to each element.
+	*
 	* @return &$this
 	**/
 	public function walk($callback){
