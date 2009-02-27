@@ -14,15 +14,12 @@
 *	- Change include_once('settings.php'); to include_once('Settings/settings.php');
 *
 *	* 2009-02-27 15:08 ver 1.1.1 to 1.1.2
-*	- Add static property HuArray::$__CLASS__ to allow amulate LSB in old PHP!!!
 *	- Some minor fixes in comments.
 **/
 
 include_once('Settings/settings.php');
 
 class HuArray extends settings{
-protected static $__CLASS__ = __CLASS__; #Only for old PHP to emulate LSB!!!
-
 	/**
 	* Constructor.
 	*

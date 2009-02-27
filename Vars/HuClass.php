@@ -21,7 +21,6 @@
 *	* 2009-02-27 15:23 ver 1.2 to 1.3
 *	- Make parameter $directClassName mandatory in ::createWithoutLSB()
 *	- and all logic to search name moved from it into ::create()!
-*	- In mentioned above logick added check to self::$__CLASS__ for the emulation if it is present.
 **/
 
 include_once('Exceptions/classes.php');
@@ -46,8 +45,8 @@ abstract class HuClass{
 //	$reflectionObj = new ReflectionClass(static::className);
 	#http://blog.felho.hu/what-is-new-in-php-53-part-2-late-static-binding.html
 		if (function_exists('get_called_class')) $className = get_called_class(); # Most reliable if available
-		elseif(isset(self::$__CLASS__)) $className = self::$__CLASS__; # Fallback to emulate if present
-		else throw new ClassUnknownException('Can\'t determinate class name for eho is called ::create() (LSB is not accesible [present start from PHP 5.3.0-dev] and emulation property class::$__CLASS__ is not set). You can use ::createWithoutLSB method or classCREATE fre function wit explicit name of needed class!');
+//??Possible??		elseif(isset(self::_CLASS_)) $className = self::_CLASS_; # Fallback to emulate if present
+		else throw new ClassUnknownException('Can\'t determinate class name for eho is called ::create() (LSB is not accesible [present start from PHP 5.3.0-dev]). You can use ::createWithoutLSB method or classCREATE() free function with explicit name of needed class!');
 	$reflectionObj = new ReflectionClass($className);
 
 		// use Reflection to create a new instance, using the array of args
