@@ -4,7 +4,7 @@
 * Class to provide OOP interface to array operations.
 *
 * @package Vars
-* @version 1.1.2
+* @version 1.1.3
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -15,6 +15,9 @@
 *
 *	* 2009-02-27 15:08 ver 1.1.1 to 1.1.2
 *	- Some minor fixes in comments.
+*
+*	* 2009-02-27 17:22 ver 1.1.2 to 1.1.3
+*	- Add method filter()
 **/
 
 include_once('Settings/settings.php');
@@ -153,5 +156,16 @@ class HuArray extends settings{
 	array_walk($this->__SETS, $callback);
 	return $this;
 	}#m walk
+
+	/**
+	* Filter array, using callback. If the callback function returns true, the current value from input is returned into the result
+	* array. Array keys are preserved.
+	*
+	* @return &$this
+	**/
+	public function filter($callback){
+	$this->__SETS = array_filter($this->__SETS, $callback);
+	return $this;
+	}#m filter
 }#c HuArray
 ?>
