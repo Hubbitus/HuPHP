@@ -18,11 +18,12 @@
 *
 *	* 2009-02-27 17:22 ver 1.1.2 to 1.1.3
 *	- Add method filter()
+*	- Add support and implementation of Iterator interface
 **/
 
 include_once('Settings/settings.php');
 
-class HuArray extends settings{
+class HuArray extends settings implements Iterator{
 	/**
 	* Constructor.
 	*
@@ -167,5 +168,28 @@ class HuArray extends settings{
 	$this->__SETS = array_filter($this->__SETS, $callback);
 	return $this;
 	}#m filter
+
+/*##########################################################
+## From interface Iterator
+##########################################################*/
+	public function rewind(){
+	reset($this->__SETS);
+	}#m rewind
+
+	public function current(){
+	return /* $var = */ current($this->__SETS);
+	}#m current
+
+	public function key(){
+	return /* $var = */ key($this->__SETS);
+	}#m key
+
+	public function next(){
+	return /* $var =*/ next($this->__SETS);
+	}#m next
+
+	public function valid(){
+	return ($this->current() !== false);
+	}#m valid
 }#c HuArray
 ?>
