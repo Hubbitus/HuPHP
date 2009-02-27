@@ -4,7 +4,7 @@
 *
 * @package Vars
 * @subpackage Classes
-* @version 1.1
+* @version 1.3
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -17,9 +17,15 @@
 *
 *	* 2009-01-18 13:13 ver 1.1 to 1.2
 *	- Rename file from Class.php to HuClass.php
+*
+*	* 2009-02-27 15:23 ver 1.2 to 1.3
+*	- Make parameter $directClassName mandatory in ::createWithoutLSB()
+*	- and all logic to search name moved from it into ::create()!
+*	- In mentioned above logick added check to self::$__CLASS__ for the emulation if it is present.
 **/
 
 include_once('Exceptions/classes.php');
+include_once('macroses/REQUIRED_VAR.php');
 
 /**
 * To explicit indicate what value not provided, also Null NOT provided too!
@@ -31,13 +37,18 @@ abstract class HuClass{
 	* To extends most (all) classes.
 	* Or to fast copy (with runkit_method_copy) into other classes.
 	* Method to allow constructions like: className::create()->methodName() because (new classname())->methodName are NOT allow them!!!
+	*
 	* @param variable parameters according to class.
 	* @return instance of the reguired new class.
+	* @Throw(ClassUnknownException)
 	**/
 	static function create(){
 //	$reflectionObj = new ReflectionClass(static::className);
 	#http://blog.felho.hu/what-is-new-in-php-53-part-2-late-static-binding.html
-	$reflectionObj = new ReflectionClass(get_called_class());
+		if (function_exists('get_called_class')) $className = get_called_class(); # Most reliable if available
+		elseif(isset(self::$__CLASS__)) $className = self::$__CLASS__; # Fallback to emulate if present
+		else throw new ClassUnknownException('Can\'t determinate class name for eho is called ::create() (LSB is not accesible [present start from PHP 5.3.0-dev] and emulation property class::$__CLASS__ is not set). You can use ::createWithoutLSB method or classCREATE fre function wit explicit name of needed class!');
+	$reflectionObj = new ReflectionClass($className);
 
 		// use Reflection to create a new instance, using the array of args
 		if ($reflectionObj->getConstructor()) return $reflectionObj->newInstanceArgs(func_get_args());
@@ -46,27 +57,17 @@ abstract class HuClass{
 
 	/**
 	* This is similar create, but created for backward capability only.
-	* It is UGLY. Do not use ti, if you have choice.
+	* It is UGLY. Do not use it, if you have choice.
 	* It is DEPRECATED immediately after creation! But now, realy, it is stil neded :(
 	*
 	* @deprecated
 	* @param $directClassName = null - The directy provided class name to instantiate.
-	*	If not provided, as last chance, try get_called_class, after throw exception 
 	* @params variable parameters according to class.
 	* @return instance of the reguired new class.
-	* @Throw(ClassUnknownException)
+	* @Throw(VariableRequired)
 	**/
-	static function createWithoutLSB($directClassName = null /*, Other Params */){
-		if (function_exists('get_called_class')){
-		$reflectionObj = new ReflectionClass(get_called_class());
-		}
-		elseif($directClassName){
-		$reflectionObj = new ReflectionClass($directClassName);
-		}
-		else{
-		throw new ClassUnknownException('You not provide ClassName, and Late State Binding (LSB) is not available on your system (present PHP 5.3.0-dev). Do not known what class need be instanciated. Sory! ');
-		}
-
+	static function createWithoutLSB($directClassName /*, Other Params */){
+	$reflectionObj = new ReflectionClass(REQUIRED_VAR($directClassName));
 	$args = func_get_args();//0 argument - $directClassName
 		// use Reflection to create a new instance, using the array of args
 		if ($reflectionObj->getConstructor()) return $reflectionObj->newInstanceArgs(array_slice($args, 1));
