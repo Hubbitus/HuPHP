@@ -21,6 +21,7 @@
 *	* 2009-02-27 15:23 ver 1.2 to 1.3
 *	- Make parameter $directClassName mandatory in ::createWithoutLSB()
 *	- and all logic to search name moved from it into ::create()!
+*	- Fix function classCREATE, make $ClassName parameter mandatory
 **/
 
 include_once('Exceptions/classes.php');
@@ -98,14 +99,18 @@ abstract class HuClass{
 * Free function. For instantiate all objects.
 * {@inheritdoc HuClass::createWithoutLSB}
 **/
-function classCREATE($ClassName = null /*, Other Params */){
-$args = func_get_args();//0 argument - $directClassName
+function classCREATE($ClassName /*, Other Params */){
+/*
+* We must use temporary variable due to error:
+* PHP Fatal error:  func_get_args(): Can't be used as a function parameter in /home/_SHARED_/Vars/HuClass.php on line 107
+**/
+$args = func_get_args(); //0 argument - $ClassName
 return call_user_func_array(
 	array(
 		'HuClass',
 		'createWithoutLSB'
-	),
-	array_slice($args, 1)
+	)
+	,$args
 );
 }
 ?>
