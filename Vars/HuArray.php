@@ -4,7 +4,7 @@
 * Class to provide OOP interface to array operations.
 *
 * @package Vars
-* @version 1.1.3
+* @version 1.1.4
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -19,6 +19,9 @@
 *	* 2009-02-27 17:22 ver 1.1.2 to 1.1.3
 *	- Add method filter()
 *	- Add support and implementation of Iterator interface
+*
+*	* 2009-03-02 02:04 ver 1.1.3 to 1.1.4
+*	- Add method ::implode()
 **/
 
 include_once('Settings/settings.php');
@@ -151,6 +154,7 @@ class HuArray extends settings implements Iterator{
 	/**
 	* Apply callback function to each element.
 	*
+	* @param callback	$callback
 	* @return &$this
 	**/
 	public function walk($callback){
@@ -162,11 +166,22 @@ class HuArray extends settings implements Iterator{
 	* Filter array, using callback. If the callback function returns true, the current value from input is returned into the result
 	* array. Array keys are preserved.
 	*
+	* @param callback	$callback
 	* @return &$this
 	**/
 	public function filter($callback){
 	$this->__SETS = array_filter($this->__SETS, $callback);
 	return $this;
+	}#m filter
+
+	/**
+	* Implode to the string using provided delimiter.
+	*
+	* @param string	$delim
+	* @return $string
+	**/
+	public function implode($delim){
+	return implode($delim, $this->__SETS);
 	}#m filter
 
 /*##########################################################
