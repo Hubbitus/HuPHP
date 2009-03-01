@@ -4,13 +4,19 @@
 *
 * @package Vars
 * @subpackage Classes
-* @version 1.0b
+* @version 1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
 *	2008-05-30 13:22
-*	- Fore bakward capability replace construction (!@var ?: "Error") to (!@var ? '' : "Error")
+*	- Fore backward capability replace construction (!@var ?: "Error") to (!@var ? '' : "Error")
+*
+*	* 2009-03-01 11:07 ver 1.0b to 1.1
+*	- Method tryIncludeByClassName now deprecated. Use autoload instead.
+*	- In ::def() method suppress error if config absent: @$GLOBALS['__CONFIG'][$className]
+*	- Method def now return reference, how it do method singleton too.
+*	- Add few examples of usage.
 **/
 
 include_once('Exceptions/classes.php');
@@ -32,20 +38,18 @@ private static $instance = array();
 	}//__c
 
 	/**
-	* The main singleton ststic method
+	* The main singleton static method
 	* All call must be: Single::singleton('ClassName'). Or by its short alias: Single::def('ClassName')
+	*
 	* @param	string	$className Class name to provide Singleton instance for it.
 	* @params variable number of parameters. Any other parameters directly passed to instantiated class-constructor.
 	**/
-	public static function singleton($className){
+	public static function &singleton($className){
 		if (!isset(self::$instance[$className])){// @TODO: provide hashing class name and args, and index by hash.
-		self::tryIncludeByClassName($className);
+			if (!function_exists('__autoload')) self::tryIncludeByClassName($className);
 
 		$args = func_get_args();
-		unset($args[0]);
-//		self::$instance[$className] = new $className($args);
-//		self::$instance[$className] = new $className(@$args[1]);
-
+		unset($args[0]);//Class name
 		/*
 		Using Reflection to instanciate class with any args.
 		See http://ru2.php.net/manual/ru/function.call-user-func-array.php, comment of richard_harrison at rjharrison dot org
@@ -61,17 +65,23 @@ private static $instance = array();
 
 	/**
 	* The default configured. Short alias for {@see ::singleton()}
+	*
+	* @return &Object($classname)
 	**/
-	public static function def($className){
-	return self::singleton($className, $GLOBALS['__CONFIG'][$className]);
+	public static function &def($className){
+	return self::singleton($className, @$GLOBALS['__CONFIG'][$className]);
 	}#m def
 
 	/**
-	* Description
+	* Try include 
+	* @deprecated Use autoload instead.
+	*
+	*
 	* @param string	$className Name of needed class
 	* @return
 	**/
 	public static function tryIncludeByClassName($className){
+	fprintf(STDERR, 'Usage of Single::tryIncludeByClassName is deprecated. Use autoload instead.');
 		#is_readable is not use include_path, so can not use this check. More explanation see {$link OS::is_includeable()}
 		if (!class_exists($className) and isset($GLOBALS['__CONFIG'][$className]['class_file'])) OS::is_includeable($GLOBALS['__CONFIG'][$className]['class_file'], true);
 
@@ -87,8 +97,14 @@ private static $instance = array();
 	}
 }#c Single
 
-// This will always retrieve a single instance of the class
-//$test = Single::singleton();
-//$test->bark();
-//$test = Single::singleton()->bark();
+/**
+* @example
+* This will always retrieve a single instance of the class
+*
+* $test = Single::singleton();
+* $test->bark();
+* $test = Single::singleton()->bark();
+* //Default invoke, using $GLOBALS['__CONFIG']['classname'] as arguments.
+* Single::def('classname')->...
+**/
 ?>
