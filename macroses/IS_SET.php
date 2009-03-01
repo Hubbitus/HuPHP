@@ -39,7 +39,7 @@
 * @param &(string|array)	$where Where check.
 * @return boolean
 **/
-function is_set($what, &$where){# Opposite to standard isset.
+function is_set($what, $where){# Opposite to standard isset.
 	if (is_string($where) and !is_numeric($what)) return false;
 	else return isset($where[$what]);
 }
