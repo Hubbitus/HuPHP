@@ -7,5 +7,5 @@ class ConnectErrorDBException extends DBException{}
 class DBSelectErrorDBException extends DBException{}
 class QueryFailedDBException extends DBException{}
 
-class DBnullGetException extends DBException{}//Получено из БД пустое множество
+class DBnullGetException extends DBException{}//Got empty results from DB
 ?>
