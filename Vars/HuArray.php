@@ -22,6 +22,7 @@
 *
 *	* 2009-03-02 02:04 ver 1.1.3 to 1.1.4
 *	- Add method ::implode()
+*	- Add metchod ::count()
 **/
 
 include_once('Settings/settings.php');
@@ -182,7 +183,16 @@ class HuArray extends settings implements Iterator{
 	**/
 	public function implode($delim){
 	return implode($delim, $this->__SETS);
-	}#m filter
+	}#m implode
+
+	/**
+	* Return number of elements
+	*
+	* @return int
+	**/
+	public function count(){
+	return count($this->__SETS);
+	}#m count
 
 /*##########################################################
 ## From interface Iterator
