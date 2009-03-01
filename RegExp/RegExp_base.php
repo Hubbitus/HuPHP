@@ -299,7 +299,7 @@ public $paireddelimeters = array(
 	**/
 	public function getHuMatches($n = null){
 	include_once('Vars/HuArray.php');
-	return new HuArrya($this->getMatches($n));
+	return new HuArray($this->getMatches($n));
 	}#m getHuMatches
 }#c RegExp_base_base
 
