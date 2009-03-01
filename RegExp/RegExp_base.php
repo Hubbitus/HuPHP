@@ -27,7 +27,8 @@
 *	- Add method split
 *
 *	* 2009-03-02 01:52 ver 2.1.1 to 2.1.2
-*	- Add optional parameter $n into getMatches method.
+*	- Add optional parameter $n into ::getMatches() method.
+*	- Add ::getHuMatches() method
 **/
 
 include_once('macroses/EMPTY_STR.php');
@@ -282,13 +283,24 @@ public $paireddelimeters = array(
 	/**
 	* Full(os sub, if $n present) array of matches after call (not checked!) {@see doMatch()}, {@see doMatchAll()}, {@see split()}
 	*
-	* @param	int|null	No of sub array
+	* @param	int|null	Number of sub array
 	* @return array of last matches.
 	**/
 	public function getMatches($n = null){
 		if (is_null($n)) return $this->matches;
 		else return $this->matches[$n];
 	}#m getMatches
+
+	/**
+	* Full equivalent of {@see getMatches()) except of result returned as Object(HuArray) instead of regular array.
+	*
+	* @param	int|null	Directly passed to {@see getMatches}
+	* @return Object(HuArray) of last matches.
+	**/
+	public function getHuMatches($n = null){
+	include_once('Vars/HuArray.php');
+	return new HuArrya($this->getMatches($n));
+	}#m getHuMatches
 }#c RegExp_base_base
 
 	/**
