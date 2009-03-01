@@ -2,7 +2,7 @@
 /**
 * RegExp manupulation.
 * @package RegExp
-* @version 2.1.1
+* @version 2.1.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -22,9 +22,12 @@
 *
 *	* 2009-01-18 23:39 ver 2.1b to 2.1
 *	- Add method getText in base class
-
+*
 *	* 2009-02-11 13:41 ver 2.1 to 2.1.1
-	- Add method split
+*	- Add method split
+*
+*	* 2009-03-02 01:52 ver 2.1.1 to 2.1.2
+*	- Add optional parameter $n into getMatches method.
 **/
 
 include_once('macroses/EMPTY_STR.php');
@@ -277,12 +280,14 @@ public $paireddelimeters = array(
 	abstract public static function quote($toQuote, $delimeter = '/');
 
 	/**
-	* Full array of matches after call (not checked!) {@see doMatch()}, {@see doMatchAll()}, {@see split()}
+	* Full(os sub, if $n present) array of matches after call (not checked!) {@see doMatch()}, {@see doMatchAll()}, {@see split()}
 	*
+	* @param	int|null	No of sub array
 	* @return array of last matches.
 	**/
-	public function getMatches(){
-	return $this->matches;
+	public function getMatches($n = null){
+		if (is_null($n)) return $this->matches;
+		else return $this->matches[$n];
 	}#m getMatches
 }#c RegExp_base_base
 
