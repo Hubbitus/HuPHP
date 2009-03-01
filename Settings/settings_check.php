@@ -9,7 +9,7 @@
 * @package settings
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @version 1.0.2
+* @version 1.0.3
 *
 * @changelog
 *	* 2008-05-30 16:08
@@ -18,6 +18,9 @@
 *
 *	* 2008-09-22 17:44 ver 1.0.1 to 1.0.2
 *	- Change include_once('settings.php'); to include_once('Settings/settings.php');
+*
+*	* 2009-03-01 14:55 ver 1.0.2 to 1.0.3
+*	- Method checkNamePossible() changed from private to protected (Primarly for Config class)
 **/
 
 include_once('Exceptions/classes.php');
@@ -83,7 +86,7 @@ static public $properties = array();
 	* @return	string	$name
 	* @Throw(ClassPropertyNotExistsException)
 	**/
-	private function checkNamePossible($name, $method, $walkmethod = null){
+	protected function checkNamePossible($name, $method, $walkmethod = null){
 		if (!in_array($name, self::$properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist!');
 	return	$name;
 	}#m checkNamePossible
