@@ -20,7 +20,7 @@ include_once('RegExp/RegExp_pcre.php');
 	}
 
 //$source = file_get_contents('example.php');
-$source = file_get_contents(($inputfile = isset($argv[1]) ? $argv[1] : 'php://stdin'));
+$source = file_get_contents(($inputfile = isset($argv[1]) ? $argv[1] : 'php://stdin')); #$argv[2] optionnaly part of DIRm which must be stripped
 $tokens = token_get_all($source);
 
 //dump::a($source, 'Original:');
@@ -77,5 +77,5 @@ foreach ($tokens as $token) {
 $m = classCreate('RegExp_pcre', '#function\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)->doMatchAll()->getHuMatches(1);
 	if ($m->count()) //Check for the \n
 //	echo($m->implode("\n") . ':' . $inputfile . "\n");
-	echo($m->walk(create_function('&$item', "\$item = \"\t\t'\$item'\t=> '$inputfile',\";"))->implode("\n") . "\n");
+	echo($m->walk(create_function('&$item', "\$item = \"\t\t'\$item'\t=> '" . RegExp_pcre::create('#^' . RegExp_pcre::quote(@$argv[2]) . '#', $inputfile)->replace() . "',\";"))->implode("\n") . "\n");
 ?>
