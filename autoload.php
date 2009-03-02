@@ -39,10 +39,10 @@ return false;
 function __autoload($classname) {
 	if (__load_class($classname, '')){
 	//Debug-log message
-	//fprintf(STDERR, 'Loading class "%s"' . "\n", $classname);
+	fprintf(STDERR, 'Loading class "%s"' . "\n", $classname);
 	return;
 	}
 //Debug-log message
-//fprintf(STDERR, 'Class "%s" not found' . "\n", $classname);
+fprintf(STDERR, 'Class "%s" not found' . "\n", $classname);
 }
 ?>
