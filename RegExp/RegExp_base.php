@@ -2,7 +2,7 @@
 /**
 * RegExp manupulation.
 * @package RegExp
-* @version 2.1.2
+* @version 2.1.2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -29,6 +29,9 @@
 *	* 2009-03-02 01:52 ver 2.1.1 to 2.1.2
 *	- Add optional parameter $n into ::getMatches() method.
 *	- Add ::getHuMatches() method
+*
+*	* 2009-03-02 16:49 ver 2.1.2 to 2.1.2.1
+*	- Fix setTextRef, to set ref, not copy :)
 **/
 
 include_once('macroses/EMPTY_STR.php');
@@ -140,7 +143,7 @@ public $paireddelimeters = array(
 	* @return &$this
 	**/
 	public function &setTextRef(&$text){
-	$this->sourceText = $text;
+	$this->sourceText =& $text;
 	$this->matchesValid = false;
 	return $this;
 	}#m setTextRef
