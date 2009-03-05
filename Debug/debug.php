@@ -8,26 +8,27 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-29 15:58 Version 2.3 from 2.2.b
+*	* 2008-05-29 15:58 Version 2.3 from 2.2.b
 *	- Add config-parameter "display_errors", default true.
 *	- Move methods transformCorrect_print_r and transformCorrect_var_dump to separate class dump_utils (dump_utils.php)
 *	- Move dump::log into log_dump.php in separate function log_dump.
 *		dump::log ReRealise with it.
 * 	It is isfull fo not only debug purpose, and very bad what it depends from much debug-tools (classes, functions, files)
-* 2008-06-06 16:40 Ver 2.3 to 2.3.1
+*
+*	* 2008-06-06 16:40 Ver 2.3 to 2.3.1
 *	- Include Debug/log_dump.php (in dump::log) and realize dump::log through log_dump free function.
 *	- Delete all deprecated free functions!
 *
-* 2008-08-27 19:15 Ver 2.3.1 to 2.3.2
+*	* 2008-08-27 19:15 Ver 2.3.1 to 2.3.2
 *	- Handle xdebug.overload_var_dump option in dump::w
 *
-* 2008-09-15 22:15 Ver 2.3.2 to 2.3.3
+*	* 2008-09-15 22:15 Ver 2.3.2 to 2.3.3
 *	- Prevent html-output in dump::c even if html_errors=On
 *
-* 2008-10-04 22:25 ver 2.3.3 to 2.3.4
+*	* 2008-10-04 22:25 ver 2.3.3 to 2.3.4
 *	- Add bacward-capability function implementation of function spl_object_hash() if it is not exists.
 *
-* 2009-01-30 15:10 ver 2.3.4 to 2.3.5
+*	* 2009-01-30 15:10 ver 2.3.4 to 2.3.5
 *	- Add include_once('macroses/ISSET_VAR.php');
 *	- All checks to $__CONFIG values replaced by call call to macros {@see ISSET_VAR}.
 *		Full explanation reason of it see in description of macros {@see ISSET_VAR}
@@ -133,6 +134,7 @@ class dump extends dump_utils{
 
 	/**
 	* Console dump. Useful in cli-php. See also {@link ::a()} and {@link ::auto()}
+	*
 	* @param	mixed $var Variable (or scalar) to dump.
 	* @param string|false	$header. Header to prepend dump of $var.
 	*	$header = ::getHeader($header, $var) . See {@link ::detHeader()} for more details and
@@ -163,6 +165,7 @@ class dump extends dump_utils{
 
 	/**
 	* Log dump. Useful to return string for file-write. See also {@link ::a()} and {@link ::auto()}
+	*
 	* @param	mixed $var Variable (or scalar) to dump.
 	* @param string|false	$header. Header to prepend dump of $var.
 	*	$header = ::getHeader($header, $var) . See {@link ::detHeader()} for more details and
@@ -177,6 +180,7 @@ class dump extends dump_utils{
 
 	/**
 	* Buffered dump. Useful to return string for file-write. See also {@link ::a()} and {@link ::auto()}
+	*
 	* @param	mixed $var Variable (or scalar) to dump.
 	* @param string|false	$header. Header to prepend dump of $var.
 	*	$header = ::getHeader($header, $var) . See {@link ::detHeader()} for more details and
@@ -185,7 +189,7 @@ class dump extends dump_utils{
 	* @return string|void	Depend of parameter $return
 	**/
 	static public function buff($var, $header = false, $debug_func = 'print_r'){
-	/**
+	/*
 	* For use with family ob_*!
 	* In this case do not restricted use standart print_r, var_dump and var_export
 	*
@@ -206,11 +210,12 @@ class dump extends dump_utils{
 	static public function b_c($var, $header = false){
 	$header = self::getHeader($header, $var);
 
-		return dump::buff($var, $header, 'dump::c');
+	return dump::buff($var, $header, 'dump::c');
 	}#m b_c
 
 	/**
 	* WEB dump. Useful to dump in Web-browser. See also {@link ::a()} and {@link ::auto()}
+	*
 	* @param	mixed $var Variable (or scalar) to dump.
 	* @param string|false	$header. Header to prepend dump of $var.
 	*	$header = ::getHeader($header, $var) . See {@link ::detHeader()} for more details and
@@ -244,6 +249,7 @@ class dump extends dump_utils{
 
 	/**
 	* WAP dump. Useful to dump in WAP-browser (XML).
+	*
 	* @param	mixed $var Variable (or scalar) to dump.
 	* @param string|false	$header. Header to prepend dump of $var.
 	* @param boolean $return If true - return result as string instead of echoing.
@@ -259,6 +265,7 @@ class dump extends dump_utils{
 
 	/**
 	* Make guess how invoked from cli or from WEB-server (any other) and turn next to c_dump or w_dump respectively.
+	*
 	* @return mixed	::c or ::w invoke whith same parameters.
 	**/
 	static public function auto($var, $header = false, $return = false){
@@ -271,6 +278,7 @@ class dump extends dump_utils{
 
 	/**
 	* Only short alias for {@link ::auto()}, nothing more!
+	*
 	* @return mixed	::c() or ::w() invoke whith same parameters.
 	**/
 	static public function a($var, $header = false, $return = false){
@@ -279,6 +287,7 @@ class dump extends dump_utils{
 
 	/**
 	* One name to invoke dependently by out type.
+	*
 	* @return mixed One of result call: ::c, ::a, ::log, ::wap.
 	* @Throw(VariableRangeException)
 	**/
