@@ -4,7 +4,7 @@
 *
 * @package Vars
 * @subpackage Classes
-* @version 1.1.1
+* @version 1.1.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -18,8 +18,11 @@
 *	- Method def now return reference, how it do method singleton too.
 *	- Add few examples of usage.
 *
-*	* 2009-03-05 13:18 ver 1.1.1 to 1.1.1
+*	* 2009-03-05 13:18 ver 1.1 to 1.1.1
 *	- fprintf(STDERR, ...) replaced to file_put_contents('php://stderr', ...) to do not fire warnings what STDERR defined when in web.
+*
+*	* 2009-03-05 13:39 ver 1.1.1 to 1.1.2
+*	* Adjust include, since OS::is_includeable now only return boolean, do not tryed include anything.
 **/
 
 include_once('Exceptions/classes.php');
@@ -86,7 +89,8 @@ private static $instance = array();
 	public static function tryIncludeByClassName($className){
 	file_put_contents('php://stderr', 'Usage of Single::tryIncludeByClassName is deprecated. Use autoload instead.');
 		#is_readable is not use include_path, so can not use this check. More explanation see {$link OS::is_includeable()}
-		if (!class_exists($className) and isset($GLOBALS['__CONFIG'][$className]['class_file'])) OS::is_includeable($GLOBALS['__CONFIG'][$className]['class_file'], true);
+		if (!class_exists($className) and isset($GLOBALS['__CONFIG'][$className]['class_file']) and OS::is_includeable($GLOBALS['__CONFIG'][$className]['class_file']))
+		include($GLOBALS['__CONFIG'][$className]['class_file']);
 
 		#repetition check
 		if (!class_exists($className)) throw new ClassNotExistsException($className . ' NOT exist!'. (!@$GLOBALS['__CONFIG'][$className]['class_file'] ? '' : ' And, additionaly include provided path ['.$GLOBALS['__CONFIG'][$className]['class_file'].'] not helped in this!'));
