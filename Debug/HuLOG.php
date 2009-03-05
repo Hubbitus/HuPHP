@@ -119,7 +119,7 @@ protected $lastLogTime = null;
 
 protected $_sets = null; 
 
-	function __construct ( /* HuLOG_settings OR array*/ $sets = null){
+	function __construct (/* HuLOG_settings OR array*/ $sets = null){
 		if (is_array($sets)) $this->_sets = new HuLOG_settings((array)$sets);
 		elseif($sets) $this->_sets = $sets;
 		else $this->_sets = new HuLOG_settings();#Default
@@ -142,10 +142,10 @@ protected $_sets = null;
 	protected function makeLogString($log_string, $file, $type, $extra){
 	$this->lastLogTime = time();
 	$this->lastLogText->setSettingsArray(
-		($extra instanceof NullClass) /** EXPLICIT check what $extra was provided! Null also possible value, what must be dumped, if it peovided, I can't ignore it, also as any other predefined value! **/ 
+		($extra instanceof NullClass) /* EXPLICIT check what $extra was provided! Null also possible value, what must be dumped, if it peovided, I can't ignore it, also as any other predefined value! **/ 
 		?
 		array(
-			'level'	=> sprintf('% '.(((int)$this->_level)*2).'s', ' '),	#Отступ
+			'level'	=> sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	#Отступ
 			'type'	=> $type,			#Type-prefix
 			'logText'	=> $log_string,	#Main text!
 		)
@@ -153,7 +153,7 @@ protected $_sets = null;
 		array(
 			# Now auto or disabled
 //-			'date'	=> date($this->_sets->DATE_TIME_FORMAT, $this->lastLogTime),#Дата-время
-			'level'	=> sprintf('% '.(((int)$this->_level)*2).'s', ' '),	#Отступ
+			'level'	=> sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	#Отступ
 			'type'	=> $type,			#Type-prefix
 			'logText'	=> $log_string,	#Main text!
 			'extra'	=> ( ($extra instanceof HuError) ? $extra : new ExtraData($extra))	#Additional extra data
@@ -175,7 +175,7 @@ protected $_sets = null;
 		$this->writeLogs($to);
 		}
 	/**
-	* In PHP 5.1.6 witout temporary variable $func_num_args we got error:
+	* In PHP 5.1.6 without temporary variable $func_num_args we got error:
 	* Fatal error: func_num_args(): Can't be used as a function parameter in /home/www/_shareDInclude_/_2.0_/Debug/HuLOG.php on line 162
 	**/
 	$func_num_args = func_num_args();
