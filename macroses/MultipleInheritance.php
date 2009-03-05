@@ -6,8 +6,8 @@
 * @param	string	$destClassName Class which are inherits from other.
 * @param	array	$srcClassNameList Array of class names (strings) to inherit from.
 * @return	void
-@ @example MultipleInheritance.example.php
-*/
+* @example MultipleInheritance.example.php
+**/
 function inherits_from($destClassName, array $srcClassNameList) {
 	foreach ($srcClassNameList as $s) {
 	@runkit_class_adopt($destClassName,$s);
