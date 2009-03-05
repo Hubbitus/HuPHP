@@ -1,17 +1,22 @@
 <?
 /**
 * Debug and backtrace toolkit.
+*
 * @package Debug
-* @version 2.0b
+* @version 2.0
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-31 03:19
+*	* 2008-05-31 03:19
 *	- Add capability to PHP < 5.3.0-dev:
 *		* Replace construction ($var ?: "text") with macros EMPTY_STR
-* 2008-05-25 17:26
+*
+*	* 2008-05-25 17:26
 *	- Change include_once('settings.php'); to include_once('Settings/settings.php');
+*
+*	* 2009-03-05 10:32 ver 2.0b to 2.0
+*	- Reformat all PHPdocs
 **/
 
 include_once('Settings/settings.php');
