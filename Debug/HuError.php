@@ -86,8 +86,9 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 
 	/**
 	* Due to absent mutiple inheritance in PHP, just copy/pasted from class get_settings.
-	* Переопределяем, чтобы сделать ссылку на настройки не изменяемой!
-	* таким образом настройки менять можно будет, а сменить объект настроек - нет
+	* Overloading to provide ref on settings without change possibility.
+	* In this case change settings is allowed, but change full settings object - not!
+	*
 	* @param string Needed name
 	* @return mixed Object of settings.
 	**/
@@ -113,6 +114,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 
 	/**
 	* String to print into file.
+	*
 	* @param string $format If @format not-empty use it for formating result. "Format of $format"
 	*	see in {@link settings::getString()}. If empty string, FORMAT_FILE setting used.
 	*	And if it settings empty (or not exists) too, just using dump::log() for all filled fields.
@@ -126,6 +128,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 
 	/**
 	* String to print into user browser.
+	*
 	* @param string $format If @format not-empty use it for formating result. "Format of $format"
 	*	see in {@link settings::getString()}. If empty string, FORMAT_WEB setting used.
 	*	And if it settings empty (or not exists) too, just using dump::w() for all filled fields.
@@ -138,7 +141,8 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 	}#m strToWeb
 
 	/**
-	* String to print into user brawser.
+	* String to print on console.
+	*
 	* @param string $format If @format not-empty use it for formating result. "Format of $format"
 	*	see in {@link settings::getString()}. If empty string, FORMAT_CONSOLE setting used.
 	*	And if it settings empty (or not exists) too, just using dump::c() for all filled fields.
@@ -153,6 +157,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 	/**
 	* String to print. Automaticaly detect Web or Console. Detect by {@link OS::getOutType()}
 	*	and invoke appropriate ::strToWeb() or ::strToConsole()
+	*
 	* @param string $format	If @format not-empty use it for formating result. "Format of $format"
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
@@ -165,6 +170,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 
 	/**
 	* Convert to string by type.
+	*
 	* @param integer $type	One of OS::OUT_TYPE_* constant. {@link OS::OUT_TYPE_BROWSER}
 	* @param string $format	If @format not-empty use it for formating result. "Format of $format"
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
@@ -197,7 +203,8 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 	}#m strByOutType
 
 	/**
-	* On echo and print was detect, and provide correct form
+	* Detect appropriate print (to Web or Console) and return correct form
+	*
 	* @return string ::strToPrint()
 	**/
 	public function __toString(){
@@ -206,6 +213,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 
 	/**
 	* Overload settings::setSetting() to handle autodate
+	*
 	* @inheritdoc
 	**/
 	public function setSetting($name, $value){
@@ -216,6 +224,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 
 	/**
 	* Overload settings::setSettingsArray() to handle autodate
+	*
 	* @inheritdoc
 	* @return $this
 	**/
@@ -229,6 +238,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 
 	/**
 	* Just alias for ::setSettingsArray()
+	*
 	* @param	$setArr
 	* @return mixed	::setSettingsArray()
 	**/
@@ -238,6 +248,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 
 	/**
 	* Overload settings::mergeSettingsArray() to handle autodate
+	*
 	* @inheritdoc
 	**/
 	public function mergeSettingsArray(array $setArr){
@@ -249,6 +260,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 
 	/**
 	* Just alias for ::mergeSettingsArray()
+	*
 	* @param	$setArr
 	* @return mixed	::mergeSettingsArray()
 	**/
@@ -256,9 +268,10 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 	$this->mergeSettingsArray($setArr);
 	}#m mergeFromArray
 
-	/** If settings->AUTO_DATE == true and settings->DATE_FORMAT correctly provided - update current
-	* date on ->date
-	* @param
+	/**
+	* If settings->AUTO_DATE == true and settings->DATE_FORMAT correctly provided - update current
+	* date in ->date
+	*
 	* @return
 	**/
 	public function updateDate(){
@@ -271,7 +284,8 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 
 	/**
 	* Overloading getString to separetly handle 'extra'
-	* @inheritdocs	
+	*
+	* @inheritdocs
 	**/
 	public function formatField($field){
 		if (is_array($field)){
@@ -299,6 +313,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 class ExtraData extends HuError{
 	/**
 	* Constructor
+	*
 	* @param mixed	$data
 	**/
 	public function __construct($data){
