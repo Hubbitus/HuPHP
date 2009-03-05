@@ -4,12 +4,12 @@
 *
 * @package Vars
 * @subpackage Classes
-* @version 1.1
+* @version 1.1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-*	2008-05-30 13:22
+*	* 2008-05-30 13:22
 *	- Fore backward capability replace construction (!@var ?: "Error") to (!@var ? '' : "Error")
 *
 *	* 2009-03-01 11:07 ver 1.0b to 1.1
@@ -17,6 +17,9 @@
 *	- In ::def() method suppress error if config absent: @$GLOBALS['__CONFIG'][$className]
 *	- Method def now return reference, how it do method singleton too.
 *	- Add few examples of usage.
+*
+*	* 2009-03-05 13:18 ver 1.1.1 to 1.1.1
+*	- fprintf(STDERR, ...) replaced to file_put_contents('php://stderr', ...) to do not fire warnings what STDERR defined when in web.
 **/
 
 include_once('Exceptions/classes.php');
@@ -81,12 +84,12 @@ private static $instance = array();
 	* @return
 	**/
 	public static function tryIncludeByClassName($className){
-	fprintf(STDERR, 'Usage of Single::tryIncludeByClassName is deprecated. Use autoload instead.');
+	file_put_contents('php://stderr', 'Usage of Single::tryIncludeByClassName is deprecated. Use autoload instead.');
 		#is_readable is not use include_path, so can not use this check. More explanation see {$link OS::is_includeable()}
 		if (!class_exists($className) and isset($GLOBALS['__CONFIG'][$className]['class_file'])) OS::is_includeable($GLOBALS['__CONFIG'][$className]['class_file'], true);
 
 		#repetition check
-		if (!class_exists($className)) throw new ClassNotExistsException($className . ' NOT exist!'. (!@$GLOBALS['__CONFIG'][$className]['class_file'] ?'': ' And, additionaly include provided path ['.$GLOBALS['__CONFIG'][$className]['class_file'].'] not helped in this!'));
+		if (!class_exists($className)) throw new ClassNotExistsException($className . ' NOT exist!'. (!@$GLOBALS['__CONFIG'][$className]['class_file'] ? '' : ' And, additionaly include provided path ['.$GLOBALS['__CONFIG'][$className]['class_file'].'] not helped in this!'));
 	}#m tryIncludeByClassName
 
 	/**
