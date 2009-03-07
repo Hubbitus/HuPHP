@@ -1,10 +1,9 @@
 <?
 /**
-* 
 * Class to provide OOP interface to array operations.
 *
 * @package Vars
-* @version 1.1.4
+* @version 1.1.5
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -23,9 +22,12 @@
 *	* 2009-03-02 02:04 ver 1.1.3 to 1.1.4
 *	- Add method ::implode()
 *	- Add metchod ::count()
+*
+*	* 2009-03-06 15:29 ver 1.1.4 to 1.1.5
+*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
 **/
 
-include_once('Settings/settings.php');
+include_once('Vars/Settings/settings.php');
 
 class HuArray extends settings implements Iterator{
 	/**
@@ -131,6 +133,17 @@ class HuArray extends settings implements Iterator{
 		if ('_last_' == $name) return $this->last();
 	return $this->getProperty($name);
 	}#m __get
+
+	/**
+	* Like standard {@see __get()}, but if returned value is regular array, convert it into HuArray and return refeence to it.
+	*
+	* @param	mixed	$name
+	* @return	&mixed
+	**/
+	function &hu($name){
+		if (is_array($this->$name)) $this->$name = new HuArray($this->$name);
+	return $this->$name;
+	}#m hu
 
 	/**
 	* Allow change value by short direct form->setttingName = 'qwerty';

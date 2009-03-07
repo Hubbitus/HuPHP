@@ -2,17 +2,20 @@
 /**
 * User-base.
 * @package Users
-* @version 1.1
+* @version 1.1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-09-22 17:33
+*	* 2008-09-22 17:33
 *	- Add major phpdoc.
 *	- Change include_once('settings.php'); to include_once('Settings/settings.php');
+*
+*	* 2009-03-06 15:29 ver 1.1 to 1.1.1
+*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
 **/
 
-include_once('Settings/settings.php');
+include_once('Vars/Settings/settings.php');
 include_once('macroses/EMPTY_VAR.php');
 
 include_once('Database/database_where.php');

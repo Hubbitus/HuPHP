@@ -4,17 +4,20 @@
 *
 * @package Vars
 * @subpackage Classes
-* @version 0.1
+* @version 0.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
 *	* 2009-03-01 22:12 ver 0.1
 *	- Initial version
+*
+*	* 2009-03-06 15:29 ver 0.1 to 0.2
+*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
 **/
 
 //It used for __autoload, so, we must directly prowide dependencies here
-include_once('Settings/settings_check.php');
+include_once('Vars/Settings/settings_check.php');
 include_once('Vars/HuArray.php');
 
 /**

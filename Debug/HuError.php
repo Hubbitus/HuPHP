@@ -3,7 +3,8 @@
 * Debug and backtrace toolkit.
 *
 * @package Debug
-* @version 2.0
+* @subpackage HuLOG
+* @version 2.1.3
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -17,13 +18,24 @@
 *
 *	* 2009-03-05 10:32 ver 2.0b to 2.0
 *	- Reformat all PHPdocs
+*
+*	* 2009-03-05 20:46 ver 2.0 to 2.1
+*	- HuError now implements outExtraData.
+*	- In all methods default value of $formar changed from '' to null (according to interface)
+*	- Implementation of ::strByOutType() and ::strToPrint() moved to "interface common implementation"
+*		(see Multiple Inheritance restrictions in it)
+*	- Delete now unused ExtraData class. Instead it implemented (in separate file) commonOutExtraData.
+*
+*	* 2009-03-06 15:29 ver 2.1.2 to 2.1.3
+*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
 **/
 
-include_once('Settings/settings.php');
+include_once('Vars/Settings/settings.php');
 include_once('macroses/EMPTY_VAR.php');
 include_once('Debug/debug.php');
 include_once('System/OS.php');
 include_once('Exceptions/variables.php');
+include_once('Vars/outExtraData.interface.php');
 
 class HuError_settings extends settings{
 #Defaults
@@ -75,10 +87,10 @@ protected $__SETS = array(
 **/
 }#c HuError_settings
 
-class HuError extends settings{
+class HuError extends settings implements outExtraData{
 /** Self settings. **/
 protected /* settings */ $_sets = null;
-protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
+public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide format (parts) and need known for what
 
 	public function __construct(HuError_settings $sets = null){
 	$this->_sets = EMPTY_VAR($sets, new HuError_settings);
@@ -120,7 +132,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 	*	And if it settings empty (or not exists) too, just using dump::log() for all filled fields.
 	* @return string
 	**/
-	public function strToFile($format = ''){
+	public function strToFile($format = null){
 	$this->_curTypeOut = OS::OUT_TYPE_FILE;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_FILE)) return $this->getString($format);
 		else return dump::log($this->__SETS, null, true);
@@ -134,7 +146,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 	*	And if it settings empty (or not exists) too, just using dump::w() for all filled fields.
 	* @return string
 	**/
-	public function strToWeb($format = ''){
+	public function strToWeb($format = null){
 	$this->_curTypeOut = OS::OUT_TYPE_BROWSER;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_WEB)) return $this->getString($format);
 		else return dump::w($this->__SETS, null, true);
@@ -148,7 +160,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 	*	And if it settings empty (or not exists) too, just using dump::c() for all filled fields.
 	* @return string
 	**/
-	public function strToConsole($format = ''){
+	public function strToConsole($format = null){
 	$this->_curTypeOut = OS::OUT_TYPE_CONSOLE;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_CONSOLE)) return $this->getString($format);
 		else return dump::c($this->__SETS, null, true);
@@ -162,10 +174,8 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
 	**/
-	public function strToPrint($format = ''){
-	$this->_curTypeOut = OS::OUT_TYPE_PRINT;//Pseudo. Will be clarified.
-		if (OS::OUT_TYPE_BROWSER == OS::getOutType()) return $this->strToWeb($format);
-		else return $this->strToConsole($format, null, true);
+	public function strToPrint($format = null){
+	return __outExtraData__common_implementation::strToPrint($this, $format);
 	}#m strToPrint
 
 	/**
@@ -177,29 +187,8 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 	* @return string
 	* @Throw(VariableRangeException)
 	**/
-	public function strByOutType($type, $format = ''){
-	$this->_curTypeOut = $type;
-		switch ($type){
-		case OS::OUT_TYPE_BROWSER:
-		return $this->strToWeb($format);
-		break;
-
-		case OS::OUT_TYPE_CONSOLE:
-		return $this->strToConsole($format);
-		break;
-
-		case OS::OUT_TYPE_FILE:
-		return $this->strToFile($format);
-		break;
-
-		#Addition
-		case OS::OUT_TYPE_PRINT:
-		return $this->strToPrint($format);
-		break;
-
-		default:
-		throw new VariableRangeException('$type MUST be one of: OS::OUT_TYPE_BROWSER, OS::OUT_TYPE_CONSOLE, OS::OUT_TYPE_FILE or OS::OUT_TYPE_PRINT!');
-		}
+	public function strByOutType($type, $format = null){
+	return __outExtraData__common_implementation::strByOutType($this, $type, $format);
 	}#m strByOutType
 
 	/**
@@ -297,7 +286,7 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 		$fieldValue = EMPTY_VAR(@$this->{$field[0]}, $field[0]); //Setting by name, or it is just text
 		}
 
-		if ($fieldValue instanceof HuError){
+		if ($fieldValue instanceof outExtraData){
 		return NON_EMPTY_STR($fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
 		}
 		elseif($fieldValue instanceof backtrace){
@@ -306,18 +295,4 @@ protected $_curTypeOut = OS::OUT_TYPE_BROWSER;
 		else return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]);
 	}#m formatField
 }#c HuError
-
-/**
-* To allow out any data
-**/
-class ExtraData extends HuError{
-	/**
-	* Constructor
-	*
-	* @param mixed	$data
-	**/
-	public function __construct($data){
-	$this->__SETS = $data;
-	}#__c
-}#c ExtraData
 ?>

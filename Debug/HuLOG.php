@@ -1,9 +1,10 @@
 <?
 /**
 * Debug and backtrace toolkit.
+*
 * @package Debug
 * @subpackage HuLOG
-* @version 2.0.2
+* @version 2.0.3
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -13,23 +14,32 @@
 *
 *	* 2008-06-01 15:20
 *	- Replace exec('echo ... >> Filename') construction by file_put_contents(Filename, FILE_APPEND)
-*	 Perfomance increased in few times.
+*	- Perfomance increased in few times.
 *
 *	* 2008-05-25 17:26
 *	- Change include_once('settings.php'); to include_once('Settings/settings.php');
 *
 *	* 2009-01-18 14:57 (No version bump)
 *	- Reflect renaming Class.php to HuClass.php
+*
+*	* 2009-03-06 15:29 ver 2.0.2 to 2.0.3
+*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
+*	- Now in makeLogString method $extra checked to instanceof outExtraData (was HuError) and if not, make "new commonOutExtraData($extra))" (was ExtraData object)
+*	- Rearrange order of includes. And delete (Debug/debug.php) what is excessive.
 **/
 
 include_once('macroses/REQUIRED_VAR.php');
 include_once('macroses/EMPTY_STR.php');
-include_once('Settings/settings.php');
-include_once('debug.php');	#dump::log
+
+include_once('Vars/Settings/settings.php');
+include_once('Vars/HuClass.php');		#NullClass
+include_once('Vars/commonOutExtraData.php');
+
+include_once('Debug/HuError.php');
+//include_once('Debug/debug.php');		#dump::log
+
 include_once('System/OS.php');		#constants OS::OUT_TYPE_*
 
-include_once('Vars/HuClass.php');		#NullClass
-include_once('HuError.php');
 
 class HuLOG_settings extends settings{
 const LOG_TO_FILE	= OS::OUT_TYPE_FILE;	#To file
@@ -113,7 +123,6 @@ protected $__SETS = array(
 class HuLOG extends get_settings{#HubbitusLOG :) log занял давно, для совместимости старого кода не заменяю имя!
 public $_level = 0;#Для установки уровней вложенности логовых сообщений в файле
 
-#Кешируем
 protected $lastLogText /*HuLOG_text*/= null;
 protected $lastLogTime = null;
 
@@ -156,7 +165,7 @@ protected $_sets = null;
 			'level'	=> sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	#Отступ
 			'type'	=> $type,			#Type-prefix
 			'logText'	=> $log_string,	#Main text!
-			'extra'	=> ( ($extra instanceof HuError) ? $extra : new ExtraData($extra))	#Additional extra data
+			'extra'	=> ( ($extra instanceof outExtraData) ? $extra : new commonOutExtraData($extra))	#Additional extra data
 		)
 	);
 	}

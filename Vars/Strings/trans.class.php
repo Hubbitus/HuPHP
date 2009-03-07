@@ -1,4 +1,20 @@
 <?
+/**
+* Class for transliteration Russian data.
+*
+* @package Vars
+* @subpackage translit
+* @version 1.1
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+*
+* @changelog
+*	* 2009-03-06 16:02 ver 1.0 to 1.1
+*	* Add header PhpDoc. Start Version enumerate (assume was 1.0)
+*	* file rename from translit_class.php to trans.class.php (it will be reflected in framework)
+*	* As it now part off Vars package move it into Vars directory (as part of /Strings directory).
+**/
+
 class trans{
 	function translit($rus_str){
 	$rusTable = array(
@@ -11,5 +27,5 @@ class trans{
 	);
 	return preg_replace($rusTable, $engTable, $rus_str);
 	}#m trans
-}#c translit
+}#c trans
 ?>

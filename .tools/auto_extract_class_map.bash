@@ -8,8 +8,9 @@ OUT_FILE=${OUT_FILE:-"$DIR/__autoload.map.php"}
 echo "<?
 \$GLOBALS['__CONFIG']['__autoload_map'] = array(" >> "$OUT_FILE"
 
-find .. -iname '*.php' -not -wholename "${DIR}Debug/Phar/*" -not -name 'exec.php' -not -name $( basename "$OUT_FILE" ) -exec egrep -iH '^\s*class|function.*{' {} \; | \
+find .. -type f -iname '*.php' -not -wholename "${DIR}Debug/Phar/*" -not -name 'exec.php' -not -name $( basename "$OUT_FILE" ) -exec egrep -iH '^\s*class|function.*{' {} \; | \
 	while read line; do
+	echo $line;
 	echo $line | sed -nr "/function/d;s@${DIR}(.*?\\.php):\s*class\s+([^[:space:]{]+)(\s+extends\s+[^[:space:]{]+)?(\s+implements\s+[^[:space:]]+)*\s*\{?\}?\s*(\$|(//|#).*|;)\$@\t'\2'\t=> '\1',@g;p" \
 		| grep -v 'Debug/log_dump.php' >> "$OUT_FILE"
 	echo $line; # This must be processed after whole cycle, to filter dupes and do it only once

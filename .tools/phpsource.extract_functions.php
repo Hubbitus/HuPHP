@@ -30,14 +30,20 @@ $curly_open = 0;
 
 $res = '';
 
-foreach ($tokens as $token) {
+foreach ($tokens as $token){
+//	if (is_array($token)){
+//	$token['const_mame'] = array_keys(consts::getNameByValue($token[0], '', '/^T_/', false));
+////	$token['const_mame'] = token_name($token[0]);
+//	}
+//dump::a($token);
+
 	if (is_string($token)){// simple 1-character token
-	//echo '===' . $token . "===\n";
-		if ( '{' == $token ){
+		if ( '{' == $token ){ #All in code
 			if ($class_started){
 			++$curly_open;
 			continue;
 			}
+			else $res .= $token;
 		}
 		elseif ( $class_started and '}' == $token ){
 		--$curly_open;
@@ -54,13 +60,22 @@ foreach ($tokens as $token) {
 	list($id, $text) = $token;
 	switch ($id){
 		case T_COMMENT:
-		case T_ML_COMMENT: // we've defined this
-		case T_DOC_COMMENT: // and this
-		// no action on comments
+		case T_ML_COMMENT:	// we've defined this
+		case T_DOC_COMMENT:	// and this
+		continue; // no action on comments
 		break;
 
 		case T_CLASS:
 		$class_started = true;
+		break;
+
+		case T_CURLY_OPEN: //All "{" in double quotes
+		case T_DOLLAR_OPEN_CURLY_BRACES: //Variables in text like "value of A={$obj->val}"
+			if ($class_started){
+			++$curly_open;
+			continue;
+			}
+			else $res .= $text;
 		break;
 
 		default: // anything else -> output "as is" if it not class definition
@@ -70,12 +85,21 @@ foreach ($tokens as $token) {
 		}
 	}
 }
-
+//dump::a($res);exit();
 //Echo only function names. one per line
 //RegExp for function name got from (in Russian is absent): http://ru.php.net/manual/en/functions.user-defined.php
 //dump::a(classCreate('RegExp_pcre', '#function\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)->doMatchAll()->getHuMatches(1));
 $m = classCreate('RegExp_pcre', '#function\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)->doMatchAll()->getHuMatches(1);
 	if ($m->count()) //Check for the \n
 //	echo($m->implode("\n") . ':' . $inputfile . "\n");
-	echo($m->walk(create_function('&$item', "\$item = \"\t\t'\$item'\t=> '" . RegExp_pcre::create('#^' . RegExp_pcre::quote(@$argv[2]) . '#', $inputfile)->replace() . "',\";"))->implode("\n") . "\n");
+	echo(
+		$m->walk(
+			create_function(
+				'&$item'
+				,"\$item = \"\t\t'\$item'\t=> '" . RegExp_pcre::create('#^' . RegExp_pcre::quote(@$argv[2]) . '#', $inputfile)->replace() . "',\";"
+			)
+		)
+		->filter()
+		->implode("\n") . "\n"
+	);
 ?>

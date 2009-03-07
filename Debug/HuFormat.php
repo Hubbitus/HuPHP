@@ -1,6 +1,7 @@
 <?
 /**
 * Debug and backtrace toolkit.
+*
 * @package Debug
 * @subpackage HuFormat
 * @version 2.0b
@@ -33,10 +34,11 @@ class HuFormat extends HuError{
 	/**
 	* For each present Mod we must have method with name "mod_[mod]" where [mod] is letter of mode.
 	*	Additionally, because PHP function (methods too) name are case insensitive, for upper-case letter
-	*  modifiers must used double letters.
-	* 	For example:
-	* 		Mod 'e' => mod_e
-	* 	 	Mod 'e' => mod_EE (same as mod_ee)
+	*	modifiers must used double letters.
+	*	For example:
+	*		Mod 'e' => mod_e
+	*		Mod 'E' => mod_EE (same as mod_ee)
+	*
 	* @var array
 	**/
 	static public $MODS = array(
@@ -64,18 +66,18 @@ class HuFormat extends HuError{
 	private $_resStr;				#For caching
 
 	/**
-	* @method Object(settings) sets() sets() return current settings
+	* @method Object(settings) sets() return current settings
 	**/
 
 	/**
-	* @method Object(HuFormat) cerate() Return new instance of object.
+	* @method Object(HuFormat) create() Return new instance of object.
 	**/
 
 	/**
 	* Constructor
-	* {@see ::set}
+	*
+	* {@see ::set()}
 	*	Be careful - you should explicit provide value like false (invoke as __construct(null, $t = false) for example, because 2d parameter is reference). Otherwise default value null means - using $this as value! 
-	* @return
 	**/
 	public function __construct(array $format = null, &$value = null){
 	$this->set($format, $value);
@@ -88,8 +90,9 @@ class HuFormat extends HuError{
 
 	/**
 	* Set main: format and value.
-	* @param	array|string	$format
-	* @param	&mixed	$value.	{@see ::setValue()}
+	*
+	* @param array|string	$format
+	* @param &mixed	$value.	{@see ::setValue()}
 	* @return	&$this
 	**/
 	public function &set($format = null, &$value = null){
@@ -102,7 +105,8 @@ class HuFormat extends HuError{
 
 	/**
 	* Return current value.
-	* @return	&mixed
+	*
+	* @return &mixed
 	**/
 	public function &getValue(){
 		if ($this->_realValued) return $this->_realValue;
@@ -111,9 +115,10 @@ class HuFormat extends HuError{
 
 	/**
 	* Set value
-	* @param	&mixed	$value.	Value to format.
-	* 	If === null $this->_value =& $this; $this->_realValue =& $this->_value; 	 
-	* @return	&$this
+	*
+	* @param &mixed	$value.	Value to format.
+	*	If === null $this->_value =& $this; $this->_realValue =& $this->_value; 	 
+	* @return &$this
 	**/
 	public function &setValue(&$value){
 		if(null === $value){
@@ -144,8 +149,8 @@ class HuFormat extends HuError{
 	*
 	*	3. Just simply string like 'text to add'. Leaved as is.
 	*
-	* @param	array|string $format to parse
-	* @return	&$this
+	* @param array|string	$format to parse
+	* @return &$this
 	**/
 	public function &parseInputArray($format){
 	$this->_mod = 0;
@@ -174,8 +179,9 @@ class HuFormat extends HuError{
 	/**
 	* Parses and set from given str. As separator used {@see self::mods_separator}.
 	* F.e.: 'AI:::line'. If separator not present - whole string in NAME!
-	* @param	string $str
-	* @return	&$this
+	*
+	* @param string $str
+	* @return &$this
 	**/
 	protected function &parseModsName($str){
 		if (!strstr($str, self::mods_separator)){//Whole name
@@ -187,10 +193,10 @@ class HuFormat extends HuError{
 		}
 	return $this->parseMods(true);
 	}#m parseModsName
-	
 
 	/**
 	* Construct and return string to represent provided value according given format.
+	*
 	* @return string
 	**/
 	public function getString(){
@@ -213,7 +219,8 @@ class HuFormat extends HuError{
 
 	/**
 	* Set or not?
-	* @param	integer $mod.
+	*
+	* @param integer	$mod.
 	* @return boolean
 	**/
 	public function isMod($mod){
@@ -223,12 +230,13 @@ class HuFormat extends HuError{
 
 	/**
 	* Set, or unset mods.
-	* @param	string	$mods. String to set o unset Mods like: '-I+s+n'.
+	*
+	* @param string	$mods. String to set o unset Mods like: '-I+s+n'.
 	*	If '-' - unset.
 	*	If '+' - set.
 	*	If '*' - invert.
 	*	If absent - equal to '+'
-	* @return	&$this
+	* @return &$this
 	* @Throw(VariableRangeException)
 	**/
 	public function &changeModsStr($mods){
@@ -266,7 +274,8 @@ class HuFormat extends HuError{
 
 	/**
 	* Set Modifiers from string.
-	* @param	string $modstr	String of modifiers.
+	*
+	* @param string	$modstr	String of modifiers.
 	* @return &$this
 	* @Throw(VariableRequiredException)
 	**/
@@ -278,6 +287,7 @@ class HuFormat extends HuError{
 
 	/**
 	* Get string of Modifiers.
+	*
 	* @return string
 	**/
 	public function &getModsStr(){
@@ -286,6 +296,7 @@ class HuFormat extends HuError{
 
 	/**
 	* Get Modifiers.
+	*
 	* @return integer
 	**/
 	public function &getMods(){
@@ -294,8 +305,9 @@ class HuFormat extends HuError{
 
 	/**
 	* Set Modifiers.
-	* @param	integer	$mods. Modifiers to set. 
-	* @return	&$this
+	*
+	* @param integer	$mods. Modifiers to set. 
+	* @return &$this
 	**/
 	public function &setMods($mods){
 	$this->_mod &= $mods;
@@ -304,15 +316,16 @@ class HuFormat extends HuError{
 	}#m setMods
 
 	/**##########################################################
-	* Private and Protected methods							 	*
+	* Private and Protected methods
 	##########################################################**/
 
 	/**
 	* Parse modifiers from string. 1 char on mod.
-	* @param	bolean(true)
+	*
+	* @param bolean(true)	$direction
 	*	True	- from string $this->_modStr
 	*	False	- from integer $this-_mod
-	* @return	&this
+	* @return &this
 	* @Throw(VariableRangeException)
 	**/
 	protected function &parseMods($direction = true){
@@ -349,6 +362,7 @@ class HuFormat extends HuError{
 
 	/**
 	* Treat ->_name as property-name
+	*
 	* @return void
 	**/
 	protected function mod_s(){
@@ -361,6 +375,7 @@ class HuFormat extends HuError{
 
 	/**
 	* Tread ->_name as index in ->_value
+	*
 	* @return void
 	**/
 	protected function mod_a(){
@@ -373,6 +388,7 @@ class HuFormat extends HuError{
 
 	/**
 	* Process ->_value through NON_EMPTY_STR. ->_format must have appropriate values.
+	*
 	* @return string
 	**/
 	protected function mod_n(){
@@ -382,6 +398,7 @@ class HuFormat extends HuError{
 	/**
 	* Procces ->_value through standard sprintf function. All elements self::sprintf_var (def: __vAr__) in ->_format replaced by its
 	* real value, and this array go in sprintf
+	*
 	* @return string
 	**/
 	protected function mod_p(){
@@ -394,7 +411,8 @@ class HuFormat extends HuError{
 
 	/**
 	* Evalute. Evaluted only ->_value
-	* @return	void
+	*
+	* @return void
 	**/
 	protected function mod_e(){
 		if (!$this->_realValued){
@@ -406,6 +424,7 @@ class HuFormat extends HuError{
 
 	/**
 	* Evaluete full! Evaluete all as full result.
+	*
 	* @return string
 	**/
 	protected function mod_EE(){
@@ -416,7 +435,8 @@ class HuFormat extends HuError{
 
 	/**
 	* Value instead name
-	* @return	void
+	*
+	* @return void
 	**/
 	protected function mod_v(){
 		if (!$this->_realValued){
@@ -430,7 +450,8 @@ class HuFormat extends HuError{
 
 	/**
 	* ALL. Recursive parse format
-	* @return	string
+	*
+	* @return string
 	**/
 	protected function mod_AA(){
 	$hf = new self(null, $this->_value);
@@ -444,7 +465,8 @@ class HuFormat extends HuError{
 
 	/**
 	* Iterate by ->_value or ->_realValue.
-	* @return	string
+	*
+	* @return string
 	**/
 	protected function mod_II(){
 	$hf = new self($this->_format, $t = false);

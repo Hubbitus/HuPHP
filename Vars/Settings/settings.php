@@ -6,7 +6,8 @@
 * string by provided simple format (For more complex formatting {@see
 * class HuFormat}).
 *
-* @package settings
+* @package Vars
+* @subpackage settings
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *

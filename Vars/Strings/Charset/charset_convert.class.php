@@ -2,12 +2,17 @@
 /**
 * Charset encoding suite
 *
-* @package charset_convert
+* @package Vars
+* @subpackage charset_convert
 * @version 1.0
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
+*	* 2009-03-06 16:08 ver 1.1 to 1.0
+*	* Rename file from charset_convert.php to charset_convert.class.php (it will be reflected in framework)
+*	* As it now part off Vars package move it into Vars directory (as part of /Strings directory).
+*	* Assign @package Vars and turn current charset_convert to @subpackage
 **/
 
 include_once('Exceptions/Strings/charset/charset_convert_exception.php');

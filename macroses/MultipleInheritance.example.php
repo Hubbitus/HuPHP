@@ -1,6 +1,6 @@
 <?
 include('Debug/debug.php');
-include('Debug/MultipleInheritance.php');
+include('macroses/MultipleInheritance.php');
 
 //Class names and inheritance
 class A{
@@ -46,6 +46,10 @@ $var_c->aa();
 $var_c->bb();
 $var_c->cc();
 $var_c->ab(); //A::ab !!
+
+dump::a($var_c instanceof C);//True
+dump::a($var_c instanceof B);//False
+dump::a($var_c instanceof A);//False
 
 ///////////////////////////////////
 echo "\n";

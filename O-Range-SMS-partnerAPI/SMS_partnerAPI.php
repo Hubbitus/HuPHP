@@ -1,6 +1,12 @@
 <?
+/**
+*
+*	* 2009-03-06 15:29 ver X to Y
+*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
+**/
+
 include_once('HuLOG.php');
-include_once('settings.php');
+include_once('Vars/Settings/settings.php');
 include_once('file_base.php');
 include_once('RegExp/RegExp_pcre.php');
 

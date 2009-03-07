@@ -9,7 +9,7 @@
 * @package settings
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @version 1.0.3
+* @version 1.0.4
 *
 * @changelog
 *	* 2008-05-30 16:08
@@ -21,10 +21,13 @@
 *
 *	* 2009-03-01 14:55 ver 1.0.2 to 1.0.3
 *	- Method checkNamePossible() changed from private to protected (Primarly for Config class)
+*
+*	* 2009-03-06 15:29 ver 1.0.3 to 1.0.4
+*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
 **/
 
 include_once('Exceptions/classes.php');
-include_once('Settings/settings.php');
+include_once('Vars/Settings/settings.php');
 
 /**
 * Extended variant of settings, with check possible options.

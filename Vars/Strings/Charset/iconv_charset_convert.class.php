@@ -3,15 +3,21 @@
 * Charset encoding suite
 * Iconv implementation
 *
-* @package charset_convert
-* @version 1.0
+* @package Vars
+* @subpackage charset_convert
+* @version 1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
+*	* 2009-03-06 16:08 ver 1.0 to 1.1
+*	* Rename file from iconv_charset_convert.php to iconv_charset_convert.class.php (it will be reflected in framework)
+*	* As it now part off Vars package move it into Vars directory (as part of /Strings directory).
+*	* Assign @package Vars and turn current charset_convert to @subpackage.
+*	* Modify include_once('charset_convert.php'); to include_once('Vars/Strings/Charset/charset_convert.class.php');
 **/
 
-include_once('charset_convert.php');
+include_once('Vars/Strings/Charset/charset_convert.class.php');
 
 class iconv_charset_convert extends charset_convert {
 	/**

@@ -1,23 +1,28 @@
 <?
 /**
 * Console package to parse parameters in CLI-mode
+*
 * @package Console
 * @subpackage Getopt
-* @version 0.1.2
+* @version 0.1.3
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-30 15:52 v 0.1.1 to 0.1.2
+*	* 2008-05-30 15:52 v 0.1.1 to 0.1.2
 *	- Add compatibility with PHP < 5.3.0-dev. Replace constructions ?: by macros EMPTY_VAR
+*
+*	* 2009-03-06 15:29 ver 0.1.2 to 0.1.3
+*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
+*	- Reformat and fill many PhpDocs
 **/
 
 include_once('macroses/REQUIRED_VAR.php');
 include_once('macroses/EMPTY_VAR.php');
+
 include_once('RegExp/RegExp_pcre.php');
 include_once('Vars/HuArray.php');
-
-include_once('Settings/settings_check.php');
+include_once('Vars/Settings/settings_check.php');
 
 include_once('Exceptions/variables.php');
 
@@ -51,6 +56,8 @@ class HuGetopt_option extends settings_check{
 
 	/**
 	* Add parsed option in values HuArrays (Opt, Sep, Val, =, OptT)
+	*
+	* @param Object(HuGetopt_option) $toAdd
 	* @return	&$this
 	**/
 	public function add(HuGetopt_option $toAdd){
@@ -138,6 +145,7 @@ private $_curArgv = 0;	//Current index.
 private $_curArg;		//Current arg, if needed correction on real.
 	/**
 	* Construct
+	*
 	* @param	array	$opts. Options to set. {@see ::setOpts()}
 	* @param 	Object(HuGetopt_settings)	$sets=null. Settings. If null - instanced default.
 	**/
@@ -158,6 +166,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* Where mods mean:
 	*	':' - Must have value.
 	*	'::'- May have value.
+	*
 	* @param	array	$opts. Options to set.
 	* @return	&$this
 	**/
@@ -181,6 +190,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 	/**
 	* Return Object(HuGetopt_option) by its string 'w', or 'what'
+	*
 	* @param	string	$str
 	* @param	char=a	$type. Possibles: s|l|a
 	*	s - Short
@@ -208,7 +218,8 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 	/**
 	* Main Horse!!! Doing most work.
-	* @return
+	*
+	* @return nothing
 	**/
 	public function parseArgs(){
 	$this->_nonopts->push($this->currentArg());
@@ -247,6 +258,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 	/**
 	* Move internal pointer to next arg, and return it.
+	*
 	* @return	string
 	**/
 	protected function nextArg(){
@@ -263,6 +275,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 	/**
 	* Return current argument
+	*
 	* @return	string
 	**/
 	protected function currentArg(){
@@ -276,6 +289,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 	/**
 	* Return option or not $arg.
+	*
 	* @param	string	$arg. Usaly element of $argv
 	* @return
 	**/
@@ -285,6 +299,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 	/**
 	* Check if arg is short option.
+	*
 	* @param	string	$arg. Arg-string to check
 	* @return	false|Object(HuGetopt_option). In object ->Val NOT filled. For exception see description {@see ::isLongOpt()}   
 	**/
@@ -329,6 +344,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 	*	But, BE CAREFULL ->Val wil be filled in only one case: See additional 5 in main	description of class HuGetopt
 	*	about bug in php-cli to parse --longOpt='optarg' form of long options. In this form, when value of arg in same element
 	*	of $argv - this it parsed and filled ->Val with this value, and ->= set to true. In other cases, next argument not got!
+	*
 	* @param	string	$arg. Arg-string to check
 	* @return	false|Object(HuGetopt_option).
 	**/
@@ -355,6 +371,8 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 	/**
 	* Set new array of arguments
+	*
+	* @param array	$argv
 	* @return	&$this
 	**/
 	public function &setArgv(array $argv){
@@ -364,6 +382,9 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 	/**
 	* Short alias for {@see ::getOptByStr()}
+	*
+	* @param mixed	$opt
+	* @param mixed('a')	$type
 	* @return Object(HuGetopt_option)	$this->getOptByStr()
 	**/
 	public function get($opt, $type = 'a'){
@@ -372,7 +393,8 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 	/**
 	* Object(HuArray) of NonOption arguments. all, 0 - by default is name of self script!
-	* @param integer	$from=0. Start from element. Very usfull value 1, to ignore skript-name.
+	*
+	* @param integer(0)	$from. Start from element. Very usfull value 1, to ignore skript-name.
 	* @return Object(HuArray).
 	**/
 	public function getNonOpts($from = 0){
