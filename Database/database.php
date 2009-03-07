@@ -18,7 +18,7 @@
 *	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
 **/
 
-include_once('Settings/settings.php');
+include_once('Vars/Settings/settings.php');
 include_once('Exceptions/database.php');
 include_once('macroses/EMPTY_INT.php');
 
