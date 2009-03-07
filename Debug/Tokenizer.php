@@ -214,6 +214,7 @@ private $_regexp = null;
 			)
 		)
 	);
+	return $this;
 	}#m findCallStrings
 
 	/**
