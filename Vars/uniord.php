@@ -14,7 +14,7 @@ $ud = 0;
 return $ud;
 }
 
-/* Взято из комментов http://ru.php.net/chr*/
+/* Взято из комментов http://ru.php.net/chr */
 function unichr($dec) {
 	if ($dec < 128) {
 	$utf = chr($dec);
