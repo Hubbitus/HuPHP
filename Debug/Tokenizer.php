@@ -1,6 +1,7 @@
 <?
 /**
 * Debug and backtrace toolkit.
+*
 * @package Debug
 * @version 2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
@@ -61,10 +62,11 @@ private $_regexp = null;
 
 	/**
 	* Constructor.
+	*
 	* @param array|Object(backtraceNode) $db	Array, one of is subarrays from return result by debug_backtrace();
 	* @Throws(VariableRequiredException)
 	* @return $this
-	*/
+	**/
 	public function __construct(/* array | backtraceNode */ $db = array()){
 		if (is_array($db)) $this->setFromBTN(new backtraceNode($db));
 		$this->setFromBTN($db);
@@ -72,9 +74,10 @@ private $_regexp = null;
 
 	/**
 	* Set from Object(backtraceNode).
+	*
 	* {@inheritdoc ::__construct()}
 	* @return &$this
-	*/
+	**/
 	public function &setFromBTN(backtraceNode $db){
 	$this->clear();
 	$this->_debugBacktrace = $db;
@@ -84,11 +87,16 @@ private $_regexp = null;
 	/**
 	* To allow constructions like: Tokenizer::create()->methodName()
 	* {@inheritdoc ::__construct()}
-	*/
+	**/
 	static public function create(/* array | backtraceNode */ $db){
 	return new self($db);
 	}#m create
 
+	/**
+	* Clear object
+	*
+	* @return nothing
+	**/
 	public function clear(){
 	#Fill all to defaults
 	$this->_debugBacktrace = null;
@@ -101,9 +109,9 @@ private $_regexp = null;
 	$this->_regexp = null;
 	}#m clear
 
-
 	/**
-	* @description Return string of parsed argument by it number (index from 0). Bounds not checked!
+	* Return string of parsed argument by it number (index from 0). Bounds not checked!
+	*
 	* @param integer $n - Number of interesting argument.
 	* @return string
 	**/
@@ -114,6 +122,7 @@ private $_regexp = null;
 
 	/**
 	* Set to arg new value.
+	*
 	* @param	integer	$n - Number of interesting argument. Bounds not checked!
 	* @param	mixed	$value Value to set.
 	* @return	&$this
@@ -124,26 +133,28 @@ private $_regexp = null;
 	}#m setArg
 
 	/**
-	* @description Return array of all parsed arguments.
+	* Return array of all parsed arguments.
+	*
 	* @return array
-	*/
+	**/
 	public function getArgs(){
 	return $this->_args;
 	}#m getArgs
 
 	/**
-	* @description Return count of parsed arguments.
+	* Return count of parsed arguments.
+	*
 	* @return integer
-	*/
+	**/
 	public function countArgs(){
 	return sizeof($this->_args);
 	}#m countArgs
 
 	/**
-	* @description
 	* Search full text of call in src php-file
+	*
 	* @return $this
-	*/
+	**/
 	protected function findTextCall(){
 	$this->_filePhpSrc = new file_base(REQUIRED_VAR($this->_debugBacktrace->file));
 	$this->_filePhpSrc->loadContent();
@@ -168,9 +179,9 @@ private $_regexp = null;
 	* So, in any case, I do not have chance separate calls :( , if it presents more then one in string!
 	* Found and peek first call in string, other not handled on this moment.
 	*
-	* @return $this;
-	*/
-	protected function findCallStrings(){
+	* @return &$this;
+	**/
+	protected function &findCallStrings(){
 		if (!$this->_regexp) $this->findTextCall();
 	$delta = PHP_INT_MAX;
 	$this->_callStartLine = 0;
@@ -205,7 +216,12 @@ private $_regexp = null;
 	);
 	}#m findCallStrings
 
-	public function parseTokens(){
+	/**
+	* Parse tokens
+	*
+	* @return &$this
+	**/
+	public function &parseTokens(){
 		if (!$this->_callText) $this->findCallStrings();
 	//c_dump($this->_callText, '$this->_callText');
 	#Without start and end tags not parsed properly.
@@ -213,19 +229,18 @@ private $_regexp = null;
 	return $this;
 	}#m parseTokens
 
-
 	/**
 	* Working horse!
 	* Base idea from: http://ru2.php.net/manual/ru/ref.tokenizer.php
+	*
 	* @param boolean(true) $stripWhitespace = False! Because stripped any space, not only on
 	*	start and end of arg! This is may be not wanted behavior on constructions like:
 	*	$a instance of A. Instead see option $trim in {@link ::getArg()) method.
 	* @param boolean(false) $stripComments = false
 	* @return $this
-	*/
+	**/
 	public function &parseCallArgs($stripWhitespace = false, $stripComments = false){
 		if ($this->_tokens === null) $this->parseTokens();
-	//c_dump($this->_tokens, '$this->_tokens');
 
 	$this->skipToStartCallArguments();
 	$this->addArg();
@@ -233,7 +248,6 @@ private $_regexp = null;
 	$sz = sizeof($this->_tokens);	#Speed Up
 		while ($this->_curTokPos < $sz){
 		$token =& $this->_tokens[$this->_curTokPos++];
-		//c_dump($token, '$token');
 
 			if (is_string($token)){
 				switch($token){
@@ -281,8 +295,9 @@ private $_regexp = null;
 
 	/**
 	* Move ->_curTokPos to first tokens after functionName(
+	*
 	* @return $this
-	*/
+	**/
 	private function skipToStartCallArguments(){
 	$sz = sizeof($this->_tokens);	#Speed Up
 		while ($this->_curTokPos < $sz){
@@ -295,17 +310,19 @@ private $_regexp = null;
 	}#m skipToStartCallArguments
 
 	/**
-	* @description. Add text to CURRENT arg.
+	* Add text to CURRENT arg.
+	*
 	* @return noting
-	*/
+	**/
 	private function addToArg($str){
 	$this->_args[$this->countArgs() - 1] .= $str;
 	}#m addToArg
 
 	/**
-	* @description. Add next arg to array
+	* Add next arg to array
+	*
 	* @return nothing
-	*/
+	**/
 	private function addArg(){
 	$this->_args[$this->countArgs()] = '';
 	}#m addArg
@@ -313,10 +330,11 @@ private $_regexp = null;
 	/**
 	* Strip quotes on start and end of argument.
 	* Paired
+	*
 	* @param	string	$arg	Argument to process.
 	* @param	boolean	$all If true - all trim, else (by default) - only paired (if only ended with quote, or only started - leaf it as is).
 	* @return	string
-	*/
+	**/
 	static public function trimQuotes($arg, $all = false){
 		if (!$arg) return '';
 	$len = strlen($arg);
