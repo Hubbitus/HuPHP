@@ -27,8 +27,9 @@
 *	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
 *
 *	* 2009-03-08 15:31 ver 1.1.5 to 1.2
-*	* Add method {@see ::hu()}.
-*	* Modified method __get to support construction like: $HuArrayObj->{'hu://varName'}
+*	- Add method {@see ::hu()}.
+*	- Modified method __get to support construction like: $HuArrayObj->{'hu://varName'}
+*	- Add methods ::filterByKeys() and ::filterOutByKeys().
 **/
 
 include_once('Vars/Settings/settings.php');
@@ -100,11 +101,12 @@ const huScheme = 'hu://';
 
 	/**
 	* {@see http://php.net/array_slice}
-	* @param integer	$offset
+	*
+	* @param	integer	$offset
 	*	Если параметр offset положителен, последовательность начнётся на расстоянии offset от начала array. Если offset отрицателен, последовательность начнётся на расстоянии offset от конца.
-	* @param integer	$length
+	* @param	integer	$length
 	*	Если в эту функцию передан положительный параметр length, последовательность будет включать length элементов. Если в эту функцию передан отрицательный параметр length, в последовательность войдут все элементы исходного массива, начиная с позиции offset и заканчивая позицией, отстоящей на length элементов от конца. Если этот параметр будет опущен, в последовательность войдут все элементы исходного массива, начиная с позиции offset.
-	* @param boolean	$preserve_keys
+	* @param	boolean	$preserve_keys
 	*	Обратите внимание, поумолчанию сбрасываются ключи массива. Можно переопределить это поведение, установив параметр preserve_keys в TRUE. 
 	* @return Object(HuArray)
 	**/
@@ -176,8 +178,8 @@ const huScheme = 'hu://';
 	/**
 	* Allow change value by short direct form->setttingName = 'qwerty';
 	*
-	* @param string	$name
-	* @param mixed	$value
+	* @param	string	$name
+	* @param	mixed	$value
 	**/
 	function __set($name, $value){
 		/**
@@ -196,8 +198,8 @@ const huScheme = 'hu://';
 	/**
 	* Apply callback function to each element.
 	*
-	* @param callback	$callback
-	* @return &$this
+	* @param	callback	$callback
+	* @return	&$this
 	**/
 	public function walk($callback){
 	array_walk($this->__SETS, $callback);
@@ -208,19 +210,41 @@ const huScheme = 'hu://';
 	* Filter array, using callback. If the callback function returns true, the current value from input is returned into the result
 	* array. Array keys are preserved.
 	*
-	* @param callback	$callback
-	* @return &$this
+	* @param	callback	$callback
+	* @return	&$this
 	**/
-	public function filter($callback){
+	public function &filter($callback){
 	$this->__SETS = array_filter($this->__SETS, $callback);
 	return $this;
 	}#m filter
 
 	/**
+	* Filter array by keys and leave only mentioned in $keys array
+	*
+	* @param	array	$keys
+	* @return	&$this
+	**/
+	public function &filterByKeys(array $keys){
+	$this->__SETS = array_diff_key( $this->__SETS, array_flip(  array_intersect(   array_keys($this->__SETS), $keys   )  ) );
+	return $this;
+	}#m filterByKeys
+
+	/**
+	* Filter array by keys and leave only NOT mentioned in $keys array (opposite to method {@see ::filterByKeys()})
+	*
+	* @param	array	$keys
+	* @return	&$this
+	**/
+	public function &filterOutByKeys(array $keys){
+	$this->__SETS = array_diff_key( $this->__SETS, array_flip($keys) );
+	return $this;
+	}#m filterOutByKeys
+
+	/**
 	* Implode to the string using provided delimiter.
 	*
-	* @param string	$delim
-	* @return $string
+	* @param	string	$delim
+	* @return	string
 	**/
 	public function implode($delim){
 	return implode($delim, $this->__SETS);
@@ -229,7 +253,7 @@ const huScheme = 'hu://';
 	/**
 	* Return number of elements
 	*
-	* @return int
+	* @return	int
 	**/
 	public function count(){
 	return count($this->__SETS);

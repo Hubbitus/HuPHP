@@ -684,6 +684,7 @@ dump::a(isset($str{-5}));	//Work
 #$argv[1] = '/home/pasha/NetBeansProjects/temp/web/example.php';
 #include('/var/www/_SHARED_/.tools/phpsource.extract_functions.php');
 ################################################################################################
+/*
 include_once('Vars/HuArray.php');
 $ha = new HuArray(
 	array(
@@ -697,5 +698,17 @@ dump::a($ha->arr);					// Result Array (raw, as is)!
 dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
 dump::a($ha->hu('arr')->hu(2));		// Property access. Alse as any HuArray methods like walk(), filter() and any other.
 dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternate method. Fully equivalent of line before. Just another form.
+*/
 ################################################################################################
+include_once('Vars/HuArray.php');
+$testArray = array(0, 11, 22, 777);
+$ha = new HuArray( $testArray );
+dump::a($ha, 'Original HuArray');
+
+dump::a( $ha->filterByKeys(array(0,2)) );
+
+$ha->setSettingsArray( $testArray );
+dump::a($ha, 'Renewed to original');
+
+dump::a( $ha->filterOutByKeys(array(0,2)) );
 ?>
