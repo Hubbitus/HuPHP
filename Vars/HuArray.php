@@ -3,7 +3,7 @@
 * Class to provide OOP interface to array operations.
 *
 * @package Vars
-* @version 1.1.5
+* @version 1.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -25,11 +25,17 @@
 *
 *	* 2009-03-06 15:29 ver 1.1.4 to 1.1.5
 *	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
+*
+*	* 2009-03-08 15:31 ver 1.1.5 to 1.2
+*	* Add method {@see ::hu()}.
+*	* Modified method __get to support construction like: $HuArrayObj->{'hu://varName'}
 **/
 
 include_once('Vars/Settings/settings.php');
 
 class HuArray extends settings implements Iterator{
+const huScheme = 'hu://';
+
 	/**
 	* Constructor.
 	*
@@ -131,18 +137,40 @@ class HuArray extends settings implements Iterator{
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
 		if ('_last_' == $name) return $this->last();
-	return $this->getProperty($name);
+		/*
+		* Short form of ::hu. To allow constructions like:
+		* $obj->{'hu://varName'}->{'hu://0'};
+		* instead of directly:
+		* $obj->hu('varName')->hu(0);
+		* As you like
+		**/
+		elseif( self::huScheme == substr($name, 0, strlen(self::huScheme)) ) return $this->hu( substr($name, strlen(self::huScheme)) );
+		else
+		return $this->getProperty($name);
 	}#m __get
 
 	/**
-	* Like standard {@see __get()}, but if returned value is regular array, convert it into HuArray and return refeence to it.
+	* Like standard {@see __get()}, but if returned value is regular array, convert it into HuArray and return reference to it.
+	* @example:
+	* $ha = new HuArray(
+	*	array(
+	*		'one' => 1
+	*		,'two' => 2
+	*		,'arr' => array(0, 11, 22, 777)
+	*	)
+	* );
+	* dump::a($ha->one);
+	* dump::a($ha->arr);					// Result Array (raw, as is)!
+	* dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
+	* dump::a($ha->hu('arr')->hu(2));			// Property access. Alse as any HuArray methods like walk(), filter() and any other.
+	* dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternate method ({@see ::__get()}). Fully equivalent of line before. Just another form.
 	*
 	* @param	mixed	$name
 	* @return	&mixed
 	**/
 	function &hu($name){
 		if (is_array($this->$name)) $this->$name = new HuArray($this->$name);
-	return $this->$name;
+	return $this->getProperty($name);
 	}#m hu
 
 	/**

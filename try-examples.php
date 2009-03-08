@@ -166,7 +166,7 @@ t($tt,
 ;
 */
 ################################################################################################
-
+/*
 include_once('macroses/REQUIRED_VAR.php');
 
 ////////////////
@@ -211,6 +211,7 @@ echo '2) Требуется переменная: ' . $vre->varName() . "\n" . $
 Single::def('HuLog')->toLog('Требуется переменная: ' . $vre->varName(), 'ERR', 'var', new backtrace_out($vre->bt));
 }
 exit();
+*/
 ################################################################################################
 //include_once('Tokenizer.php');
 //dump::c(Tokenizer::trimQuotes('"Test text\''), 'Test Tokenizer::trimQuotes');
@@ -688,9 +689,13 @@ $ha = new HuArray(
 	array(
 		'one' => 1
 		,'two' => 2
-		,'arr' => array(0, 1, 2, 7)
+		,'arr' => array(0, 11, 22, 777)
 	)
 );
 dump::a($ha->one);
+dump::a($ha->arr);					// Result Array (raw, as is)!
+dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
+dump::a($ha->hu('arr')->hu(2));		// Property access. Alse as any HuArray methods like walk(), filter() and any other.
+dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternate method. Fully equivalent of line before. Just another form.
 ################################################################################################
 ?>
