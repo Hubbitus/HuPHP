@@ -166,6 +166,7 @@ t($tt,
 ;
 */
 ################################################################################################
+
 include_once('macroses/REQUIRED_VAR.php');
 
 ////////////////
@@ -201,9 +202,11 @@ catch(VariableRequiredException $vre){
 #exit();
 
 //Direct output without logging and only in 1 presentation:
-echo 'Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true, null, OS::OUT_TYPE_FILE);
+echo '0) Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true, null, OS::OUT_TYPE_FILE);
 #Direct, with autoselect appropriate output type:
-echo 'Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true);
+echo '1) Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true);
+//rely on __toString magick method, which is invoke ->printout(). Be warned - implicit casting to string is required if we want pass it anywhere, if echoed - it is not needed.!
+echo '2) Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt;
 ////Single::def('HuLog')->toLog('Database error, '.$dbe->getMessage(), 'ERR', 'db', Single::def(__db)->getError());
 Single::def('HuLog')->toLog('Требуется переменная: ' . $vre->varName(), 'ERR', 'var', new backtrace_out($vre->bt));
 }
@@ -680,7 +683,6 @@ dump::a(isset($str{-5}));	//Work
 #$argv[1] = '/home/pasha/NetBeansProjects/temp/web/example.php';
 #include('/var/www/_SHARED_/.tools/phpsource.extract_functions.php');
 ################################################################################################
-/*
 include_once('Vars/HuArray.php');
 $ha = new HuArray(
 	array(
@@ -690,16 +692,5 @@ $ha = new HuArray(
 	)
 );
 dump::a($ha->one);
-*/
 ################################################################################################
-function f(){
-throw new Exception('Test exception');
-}
-
-try{
-f();
-}
-catch(Exception $e){
-echo 'Error catched: ' . $e;
-}
 ?>
