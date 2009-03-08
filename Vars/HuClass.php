@@ -4,7 +4,7 @@
 *
 * @package Vars
 * @subpackage Classes
-* @version 1.3
+* @version 1.4
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -22,10 +22,14 @@
 *	- Make parameter $directClassName mandatory in ::createWithoutLSB()
 *	- and all logic to search name moved from it into ::create()!
 *	- Fix function classCREATE, make $ClassName parameter mandatory
+*
+*	* 2009-03-08 13:33 ver 1.3 to 1.4
+*	- To break loop: Vars/Settings/settings.php:24 -> Vars/HuClass.php:28 -> macroses/REQUIRED_VAR.php:16 ->
+*		-> Exceptions/variables.php:93 -> Debug/backtrace.php:45 -> Debug/HuFormat.php:14 -> Vars/Settings/settings.php
+*		include_once('macroses/REQUIRED_VAR.php'); moved to method createWithoutLSB (it single who uses this macro)
 **/
 
 include_once('Exceptions/classes.php');
-include_once('macroses/REQUIRED_VAR.php');
 
 /**
 * To explicit indicate what value not provided, also Null NOT provided too!
@@ -67,6 +71,7 @@ abstract class HuClass{
 	* @Throw(VariableRequired)
 	**/
 	static function createWithoutLSB($directClassName /*, Other Params */){
+	include_once('macroses/REQUIRED_VAR.php');
 	$reflectionObj = new ReflectionClass(REQUIRED_VAR($directClassName));
 	$args = func_get_args();//0 argument - $directClassName
 		// use Reflection to create a new instance, using the array of args
