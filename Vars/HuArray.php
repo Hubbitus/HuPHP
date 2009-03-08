@@ -30,6 +30,7 @@
 *	- Add method {@see ::hu()}.
 *	- Modified method __get to support construction like: $HuArrayObj->{'hu://varName'}
 *	- Add methods ::filterByKeys() and ::filterOutByKeys().
+*	- Add method ::filterKeysCallback()
 **/
 
 include_once('Vars/Settings/settings.php');
@@ -241,6 +242,19 @@ const huScheme = 'hu://';
 	$this->__SETS = array_diff_key( $this->__SETS, array_flip($keys) );
 	return $this;
 	}#m filterOutByKeys
+
+	/**
+	* Similar to {@see ::filer()} except of operate by keys instead of values.
+	*
+	* @param	callback	$callback
+	* @return	&$this
+	**/
+	public function &filterKeysCallback($callback){
+	$keys = new self(array_flip( $this->__SETS ));
+	$keys->filter($callback);
+	$this->filterByKeys($keys->getArray());
+	return $this;
+	}#m filterKeysCallback
 
 	/**
 	* Implode to the string using provided delimiter.

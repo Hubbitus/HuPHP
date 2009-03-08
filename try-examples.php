@@ -711,4 +711,9 @@ $ha->setSettingsArray( $testArray );
 dump::a($ha, 'Renewed to original');
 
 dump::a( $ha->filterOutByKeys(array(0,2)) );
+
+$ha->setSettingsArray( $testArray );
+dump::a($ha, 'Renewed to original');
+
+dump::a( $ha->filterKeysCallback( create_function('&$key', 'return ( $key % 2 );') ) );
 ?>
