@@ -306,7 +306,7 @@ protected $_format;
 	*	{@see ::getNumberOfNode() fo more description}
 	* @return void
 	**/
-	public function setNode($N = null, backtraceNode $node){
+	public function setNode($N, backtraceNode $node){
 	$this->_bt[ $this->getNumberOfNode($N) ] = $node;	
 	}#m setNode
 
@@ -329,7 +329,7 @@ protected $_format;
 	* So, be carefully in loops - it may have undefined behavior.
 	*
 	* @param	integer	$N	Place of node.
-	*	{@see ::getNumberOfNode() fo more description}
+	*	{@see ::getNumberOfNode() for more details}
 	* @return void
 	* @Throw(VariableRangeException)
 	**/
