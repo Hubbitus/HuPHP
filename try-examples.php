@@ -177,36 +177,35 @@ $__CONFIG['HuLog'] = array(
 	'LOG_TO_ACS' => HuLOG_settings::LOG_TO_BOTH,
 	'LOG_TO_ERR' => HuLOG_settings::LOG_TO_BOTH,
 
-	/** In SUBarray in order not to generate extra Entity */
+	// In SUBarray in order not to generate extra Entity
 	'HuLOG_Text_settings'	=> array(
 		'EXTRA_HEADER'	=> null,	#NOT false!
 	),
 );
 ////////////////
-class bt_out extends commonOutExtraData{
-	public function strToConsole($format = nul){
-	return $this->_var->printout(true, null, OS::OUT_TYPE_CONSOLE);
-	}#m strToConsole
-
-	public function strToFile($format = null){
-	return $this->_var->printout(true, null, OS::OUT_TYPE_FILE);
-	}#m strToFile
-
-	public function strToWeb($format = null){
-	return $this->_var->printout(true, null, OS::OUT_TYPE_BROWSER);
-	}#m strToWeb
-}#c
+include_once('Debug/backtrace_out.class.php');
 
 try{
 $ttt = REQUIRED_VAR($t);
 }
 catch(VariableRequiredException $vre){
-//echo 'Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true, null, OS::OUT_TYPE_FILE);
-Single::def('HuLog')->toLog('Требуется переменная: ' . $vre->varName(), 'ERR', 'var', new bt_out($vre->bt));
-//Single::def('HuLog')->toLog('Database error, '.$dbe->getMessage(), 'ERR', 'db', Single::def(__db)->getError());
+//Direct output:
 
-//echo $vre;
-$vre->bt->printout(); //Default, colorized
+#Work:
+#dump::a($vre->varName());
+#$vre->bt->printout();
+
+#(Was!) NOT work:
+#$vre->bt->printout();
+#dump::a($vre->varName());
+#exit();
+
+//Direct output without logging and only in 1 presentation:
+echo 'Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true, null, OS::OUT_TYPE_FILE);
+#Direct, with autoselect appropriate output type:
+echo 'Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true);
+////Single::def('HuLog')->toLog('Database error, '.$dbe->getMessage(), 'ERR', 'db', Single::def(__db)->getError());
+Single::def('HuLog')->toLog('Требуется переменная: ' . $vre->varName(), 'ERR', 'var', new backtrace_out($vre->bt));
 }
 exit();
 ################################################################################################

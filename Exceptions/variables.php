@@ -8,12 +8,17 @@
 * @version 2.1
 *
 * @changelog
-* 2008-05-29 17:51 v 2.0b to 2.1
+* 	* 2008-05-29 17:51 ver 2.0b to 2.1
 *	- Fully rewritten and now contructor of VariableRequiredException takes 1st argument backtrace nor Tokenizer!
 *	- Added methods VariableRequiredException: ::varName and ::getTokenizer
-* 2008-05-30 23:19
+*
+*	* 2008-05-30 23:19
 *	- Move include of Debug/backtrace.php after declaration class VariableRequiredException to
-*	 break cycle of includes
+*		break cycle of includes
+*
+*	* 2009-03-08 11:27 ver 2.1 to 2.2
+*	- In varName method, $this->bt->current() replaced by direct $this->bt->getNode(0).
+*		In case of object used before (f.e. printout() or any else) 0 element may be not current!!
 **/
 
 include_once('Exceptions/BaseException.php');
@@ -33,7 +38,6 @@ private $tok_ = null;
 	parent::__construct($message, $code);
 	}#c
 
-
 	/**
 	* Return varname
 	*
@@ -50,7 +54,7 @@ private $tok_ = null;
 	}
 
 	/**
-	* Get Tokenizer object, suited to backtrase with instanciated exception.
+	* Get Tokenizer object, suited to backtrace with instantiated exception.
 	* Also create object if it is not exists as yet.
 	*
 	* @return Object(Tokenizer)
@@ -64,7 +68,7 @@ private $tok_ = null;
 			}
 
 			$this->tok_ = Tokenizer::create(
-				$this->bt->current()
+				$this->bt->getNode(0)
 			)->parseCallArgs();
 		}
 
