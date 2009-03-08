@@ -232,6 +232,8 @@ const huScheme = 'hu://';
 	/**
 	* Filter array by keys and leave only NOT mentioned in $keys array (opposite to method {@see ::filterByKeys()})
 	*
+	* Implementation idea taken from: http://ru.php.net/array_filter comment of niehztog
+	*
 	* @param	array	$keys
 	* @return	&$this
 	**/
