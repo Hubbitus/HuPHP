@@ -64,8 +64,8 @@ private $_regexp = null;
 	* Constructor.
 	*
 	* @param array|Object(backtraceNode) $db	Array, one of is subarrays from return result by debug_backtrace();
-	* @Throws(VariableRequiredException)
 	* @return $this
+	* @Throws(VariableRequiredException)
 	**/
 	public function __construct(/* array | backtraceNode */ $db = array()){
 		if (is_array($db)) $this->setFromBTN(new backtraceNode($db));
