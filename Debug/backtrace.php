@@ -4,32 +4,37 @@
 *
 * @package Debug
 * @subpackage Bactrace
-* @version 2.1.5.1
+* @version 2.1.6
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-30 01:20 v 2.1b to 2.1.1
+*	* 2008-05-30 01:20 v 2.1b to 2.1.1
 *	- Move Include debug.php to method ::dump, where only it may be used.
 *
-* 2008-05-30 14:19  v 2.1.1 to 2.1.2
+*	* 2008-05-30 14:19  v 2.1.1 to 2.1.2
 *	- Add capability to PHP < 5.3.0-dev:
 *		* Replace construction ($var ?: "text") to ($var ? '' : "text")
 *		* Around "new static" (which is more "correct") in eval. Oterwise php scream what it is not known "static" and get parse error!
 *		 return eval('return new static($arr, $N);');
 *
-* 2008-08-27 20:07 v 2.1.2 to 2.1.3
+*	* 2008-08-27 20:07 v 2.1.2 to 2.1.3
 *	- Modify include and check conditions in formatArgs() and printout() methods
 *
-* 2008-09-07 22:02 v 2.1.3 to 2.1.4
+*	* 2008-09-07 22:02 v 2.1.3 to 2.1.4
 *	- In methods printout() and formatArgs() add cache of $OutType. Fix errors in them with inclusion (see comment below.).
 *
-* 2008-09-14 21:48 v 2.1.4 to 2.1.5
+*	* 2008-09-14 21:48 v 2.1.4 to 2.1.5
 *	- Add class-exception BacktraceEmpty
 *	- Add check to non-empty backtrace before formatting it in printout method. Now it may throw BacktraceEmptyException  
 *
-* 2008-09-15 17:34 v 2.1.5 to 2.1.5.1
+*	* 2008-09-15 17:34 v 2.1.5 to 2.1.5.1
 *	- Delete some excessive debug comments.
+*
+*	* 2009-03-08 13:24 ver 2.1.5.1 to 2.1.6
+*	- Reformat huge PhpDocs
+*	- Method setPrintoutFormat now return &$this
+*	- Add and implement __toString() method through ::printout()
 **/
 
 include_once('macroses/ASSIGN_IF.php');
@@ -80,6 +85,7 @@ protected $_format;	/** Format to format args to string {@see setArgsFormat} **/
 
 	/**
 	* Construct object from array
+	*
 	* @param	array	$arr	Array to construct from
 	* @param	$N		Number of node, got separatly (may be already in $arr).
 	* @return	Object(backtraceNode)
@@ -94,7 +100,7 @@ protected $_format;	/** Format to format args to string {@see setArgsFormat} **/
 	* {@inheritdoc ::__construct()}
 	**/
 	static public function create(array $arr = null, $N = false){
-		/**
+		/*
 		* Require late-static-bindings future, so, it is available only in PHP version >= 5.3.0-dev
 		**/
 		if (version_compare(PHP_VERSION, '5.3.0-dev', '>=')){
@@ -106,7 +112,8 @@ protected $_format;	/** Format to format args to string {@see setArgsFormat} **/
 	}#m create
 
 	/**
-	* Return property, if it exists, Throw ClassPropertyNotExistsException
+	* Return property, if it exists, Throw ClassPropertyNotExistsException otherwise
+	*
 	* @param	string	$name	Name of required property
 	* @return	mixed	Reference on property value
 	* @Throw(ClassPropertyNotExistsException)
@@ -119,8 +126,9 @@ protected $_format;	/** Format to format args to string {@see setArgsFormat} **/
 
 	/**
 	* Check isset of requested property. See http://php.net/isset comment of "phpnotes dot 20 dot zsh at spamgourmet dot com"
+	*
 	* @param	string	$name	Name of required property
-	* @return boolean
+	* @return	boolean
 	**/
 	public function __isset($name) {
 		if (!in_array($name, backtraceNode::$properties)) throw new ClassPropertyNotExistsException('Property <'.$name.'> does NOT exist!');
@@ -130,6 +138,7 @@ protected $_format;	/** Format to format args to string {@see setArgsFormat} **/
 
 	/**
 	* Dump in appropriate(auto) form bactraceNode.
+	*
 	* @param	boolean	$return
 	* @param	string	$header('backtraceNode')
 	* @return	mixed	return dump::a(...)
@@ -168,8 +177,9 @@ protected $_format;	/** Format to format args to string {@see setArgsFormat} **/
 
 	/**
 	* Compares two nodes by fnmatch() all properties in $node1
-	* @param Object(backtraceNode)	$toCmp Node compare to
-	* @return integer. 0 if equals. Other otherwise (> or < not defined, but *may be* done later).
+	*
+	* @param	Object(backtraceNode)	$toCmp Node compare to
+	* @return	integer. 0 if equals. Other otherwise (> or < not defined, but *may be* done later).
 	**/
 	public function FnmatchCmp(backtraceNode $toCmp){
 		foreach($toCmp as $key => $prop){
@@ -182,7 +192,9 @@ protected $_format;	/** Format to format args to string {@see setArgsFormat} **/
 	* Set format to formatArgs. Array by type of out as key {@see OS::OUT_* constants}, and values as array in format,
 	*	as described in {@see class HuFormat}. {@example Debug/_HuFormat.defaults/backtrace::printout.php}
 	*	On time of set format NOT CHECKED!
-	* @return
+	*
+	* @param	array	$format
+	* @return	nothing
 	**/
 	public function setArgsFormat($format){
 	$this->_format = REQUIRED_VAR($format);
@@ -190,11 +202,12 @@ protected $_format;	/** Format to format args to string {@see setArgsFormat} **/
 
 	/**
 	* Return string of formated args
-	* @param array=null		$format
+	*
+	* @param	array(null)	$format
 	*	If null, trying from ->_format set in {@see ::setSrgsFormat()}, and finaly
 	*		get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::printout']
-	* @param integer		$OutType	If present - determine type of format from $format (passed or default). Must be index in $format.
-	* @return string
+	* @param	integer		$OutType	If present - determine type of format from $format (passed or default). Must be index in $format.
+	* @return	string
 	* @Throw(VariableArrayInconsistentException)
 	**/
 	public function formatArgs($format = null, $OutType = null){
@@ -246,12 +259,13 @@ protected $_format;
 
 	/**
 	* Constructor
+	*
 	* @param	array	$bt	Array as result debug_backtrace() or it part. If null filled by
 	*	direct debug_backtrace() call.
-	* @param	int=1	$removeSelf	If filled automaticaly, containts also this call
+	* @param	int(1)	$removeSelf	If filled automaticaly, containts also this call
 	*	(or call ::create() if appropriate). This will remove it. Number is amount of arrays
 	*	remove from stack.
-	* @return Object(backtrace)
+	* @return	Object(backtrace)
 	**/
 	public function __construct(array $bt = null, $removeSelf = 1){
 		if ($bt) $this->_bt = $bt;
@@ -262,8 +276,9 @@ protected $_format;
 
 	/**
 	* To allow constructions like: backtrace::create()->methodName()
+	*
 	* @param	array	$bt	{@link ::__construct}
-	* @param	int=2	$removeSelf	{@link ::__construct}
+	* @param	int(2)	$removeSelf	{@link ::__construct}
 	* @return	backtrace
 	**/
 	static public function create(array $bt = null, $removeSelf = 2){
@@ -273,6 +288,8 @@ protected $_format;
 	/**
 	* Dump in appropriate(auto) form bactrace.
 	*	Fast dump of current backtrase may be invoked as backtrace::create()->dump();
+	*
+	* @deprecated since 2.1.5.1
 	* @param	boolean	$return
 	* @param	string	$header('_debug_bactrace()')
 	* @return	mixed	return auto::a(...)
@@ -283,7 +300,8 @@ protected $_format;
 	}#m dump
 
 	/**
-	* Get BackTraceNode
+	* Get BackTraceNode by its number
+	*
 	* @param	integer	$N - Number of interested Node
 	* @return	Object(backtraceNode)
 	* @Throw(VariableRangeException)
@@ -302,9 +320,10 @@ protected $_format;
 
 	/**
 	* Replace (or silently add) node in place $N
+	*
 	* @param	integer	$N	Place to node. If not exists - silently create.
 	*	{@see ::getNumberOfNode() fo more description}
-	* @return void
+	* @return	nothing
 	**/
 	public function setNode($N, backtraceNode $node){
 	$this->_bt[ $this->getNumberOfNode($N) ] = $node;	
@@ -316,8 +335,8 @@ protected $_format;
 	*	If $N < 0	Negative values to to refer in backward: -2 mean: sizeof(debug_backtrace() - 2)!
 	*		Be carefull value -1 meaning LAST element, not second from end!
 	* 
-	* @param	integer	$N	
-	* @return integer	Number of requested node.
+	* @param	integer	$N
+	* @return	integer	Number of requested node.
 	**/
 	private function getNumberOfNode($N){
 	return ( (null !== $N) ? ($N >= 0 ? $N : $this->length() + $N) : $this->key() );
@@ -330,7 +349,7 @@ protected $_format;
 	*
 	* @param	integer	$N	Place of node.
 	*	{@see ::getNumberOfNode() for more details}
-	* @return void
+	* @return	nothing
 	* @Throw(VariableRangeException)
 	**/
 	public function delNode($N = null){
@@ -345,6 +364,7 @@ protected $_format;
 
 	/**
 	* Return count of BackTraceNodes.
+	*
 	* @return	integer
 	**/
 	public function length(){
@@ -354,6 +374,7 @@ protected $_format;
 	/**
 	* Find node of bactrace. To match each possible used fnmatch (http://php.net/fnmatch), 
 	* so all it patterns and syntrax allowed.
+	*
 	* @param	Object(backtraceNode)	$need	Parameters to search:
 	* 	array(
 	*		'file'	=> "*backtrace.php"
@@ -395,14 +416,14 @@ protected $_format;
 	/**
 	* Getted (and modifiyed) from http://php.rinet.ru/manual/ru/function.debug-backtrace.php
 	* comments of users
-	* @param boolean=false	$return	Return or print directly.
-	* @param array=null		$format
+	*
+	* @param	boolean(false)	$return	Return or print directly.
+	* @param	array(null)	$format
 	*	If null, trying from format set in {@see ::setPrintoutFormat()}, and finaly
 	*		get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::printout']
-	* @param integer=null	$OutType	If present - determine type of format from $format (passed or default). Must be index in $format.
+	* @param	integer(null)	$OutType	If present - determine type of format from $format (passed or default). Must be index in $format.
 	* @Throw(VariableRequiredException, BacktraceEmptyException)
 	**/
-	//Was: public static function dump::backtrace($part = null, $return = false){
 	public function printout($return = false, array $format = null, $OutType = null){
 	$OutType = ((null === $OutType) ? OS::getOutType() : $OutType); #Caching
 	$format = REQUIRED_VAR(
@@ -439,32 +460,32 @@ protected $_format;
 	* Set format to printout. Array by type of out as key {@see OS::OUT_* constants}, and values as array in format,
 	*	as described in {@see class HuFormat}. {@example Debug/_HuFormat.defaults/backtrace::printout.php}
 	*	On time of set format NOT CHECKED!
-	* @return
+	*
+	* @param	array	$format
+	* @return	&$this
 	**/
-	public function setPrintoutFormat($format){
+	public function &setPrintoutFormat($format){
 	$this->_format = REQUIRED_VAR($format);
+	return $this;
 	}#m setPrintoutFormat
 
 	/**
-	* @ToDo Implement __toString method
-	* DescrHere
-	* @param
+	* By default convert into string will ::printout();
+	*
 	* @return
 	**/
-/*
 	public function __toString(){
-//	return 'Object(BackTrace)';
-	return $this->printout(null, true);
+	return $this->printout(true);
 	}#m __toString
-*/
 
-/**#########################################################
+/**##################################################################
 * From interface Iterator
 * Use self indexing to allow delete nodes and continue loop foreach.
-##########################################################*/
+###################################################################*/
 	/**
 	* Rewind internal pointer to begin
-	* @return void
+	*
+	* @return	nothing
 	**/
 	public function rewind(){
 	$this->_curNode = 0;
@@ -472,7 +493,8 @@ protected $_format;
 
 	/**
 	* Return current backtraceNode
-	* @return Object(backtraceNode)|null
+	*
+	* @return	Object(backtraceNode)|null
 	**/
 	public function current(){
 		try{
@@ -485,7 +507,8 @@ protected $_format;
 
 	/**
 	* Return current key
-	* @return integer
+	*
+	* @return	integer
 	**/
 	public function key(){
 	return $this->_curNode;
@@ -493,7 +516,8 @@ protected $_format;
 
 	/**
 	* Return next backtraceNode
-	* @return Object(backtraceNode)|null
+	*
+	* @return	Object(backtraceNode)|null
 	**/
 	public function next(){
 		try{
@@ -506,7 +530,8 @@ protected $_format;
 
 	/**
 	* Return if Iterator valid and not end reached.
-	* @return boolean
+	*
+	* @return	boolean
 	**/
 	public function valid(){
 	return ($this->current() !== null);
@@ -515,7 +540,8 @@ protected $_format;
 	/**
 	* Return end backtraceNode and move internal pointer to it. It is NOT part Iterator interface
 	*	and added to more flexibility.
-	* @return Object(backtraceNode)
+	*
+	* @return	Object(backtraceNode)
 	**/
 	public function end(){
 	return $this->getNode( ($this->_curNode = $this->length() - 1) );
@@ -524,7 +550,8 @@ protected $_format;
 	/**
 	* Return prev backtraceNode and move internal pointer to it. It is NOT part Iterator interface
 	*	and added to more flexibility.
-	* @return Object(backtraceNode)|null
+	*
+	* @return	Object(backtraceNode)|null
 	**/
 	public function prev(){
 		if ($this->_curNode < 1) return null;
