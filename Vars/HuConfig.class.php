@@ -3,8 +3,8 @@
 * Routine tasks to made easy OOP.
 *
 * @package Vars
-* @subpackage Classes
-* @version 0.2
+* @subpackage Settings
+* @version 0.3
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -14,6 +14,10 @@
 *
 *	* 2009-03-06 15:29 ver 0.1 to 0.2
 *	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
+*
+*	* 2009-03-09 05:31 ver 0.2 to 0.3
+*	- Add optional parameter $className to CONF() function!
+*	- @subpackage changed to Settings
 **/
 
 //It used for __autoload, so, we must directly prowide dependencies here
@@ -23,7 +27,7 @@ include_once('Vars/HuArray.php');
 /**
 * Class to provide easy access to $GLOBALS['__CONFIG'] variables.
 * Intended use with Singleton class as:
-* @example single::def('HuConfig')->config_value
+* @example Single::def('HuConfig')->config_value
 **/
 class HuConfig extends settings_check{
 	function __construct() {
@@ -73,10 +77,20 @@ class HuConfig extends settings_check{
 * We can do that as variable like $CONF, but meantime it is not convenient in functions/methods:
 * we must use global $CONF; first, or also very long $GLOBALS['CONF']
 *
-* So, choose function aliasing. Now we can invoke it instead of
+* So, choose function aliasing. Now we can invoke it instead of Single::def('HuConfig')->config_value
+* or even $GLOBALS['CONF']->someSetting but just:
+* CONF()->config_value
+*
+* Furthermore most often use of that will: Single::def('HuConfig')->className->setting.
+* So, class name put to optioal parameter to allow like:
+* CONF('className')->desiredClassOption
+*
+* @param	string(null)	$className Optional class name
+* @return Single_Object(HuConfig)|Object(HuArray). If className present - Object(HuArray) returned, Single_Object(HuConfig) otherwise to next query.
 **/
-function &CONF(){
-return Single::def('HuConfig');
+function &CONF($className = null){
+	if ($className) return Single::def('HuConfig')->$className;
+	else return Single::def('HuConfig');
 }
 
 /**
