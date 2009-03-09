@@ -4,6 +4,14 @@ include_once('Debug/debug.php');
 include_once('RegExp/RegExp_pcre.php');
 #sed#include_once('Vars/HuArray.php');
 
+$_skip_functions = array(
+	'myErrorHandler'		# In mssql_database to catch errors. Hack
+	,'backtrace__printout_WEB_helper'
+	,'file_get_contents'	# In template old backward capability.
+);
+
+###############################################################################################
+
 //Base example from: http://ru.php.net/manual/ru/tokenizer.examples.php
 /*
 * T_ML_COMMENT does not exist in PHP 5.
@@ -30,6 +38,9 @@ $curly_open = 0;
 
 $res = '';
 
+/**
+* We want cut off all Classes, and comments
+**/
 foreach ($tokens as $token){
 //	if (is_array($token)){
 //	$token['const_mame'] = array_keys(consts::getNameByValue($token[0], '', '/^T_/', false));
@@ -66,6 +77,7 @@ foreach ($tokens as $token){
 		break;
 
 		case T_CLASS:
+		case T_INTERFACE: #Do not distinguish for our purpose
 		$class_started = true;
 		break;
 
@@ -89,17 +101,19 @@ foreach ($tokens as $token){
 //Echo only function names. one per line
 //RegExp for function name got from (in Russian is absent): http://ru.php.net/manual/en/functions.user-defined.php
 //dump::a(classCreate('RegExp_pcre', '#function\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)->doMatchAll()->getHuMatches(1));
-$m = classCreate('RegExp_pcre', '#function\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)->doMatchAll()->getHuMatches(1);
+$m = classCreate('RegExp_pcre', '#function\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)
+		->doMatchAll()
+		->getHuMatches(1)
+		->filter(create_function('&$func', 'global $_skip_functions; return ! in_array($func, $_skip_functions);'));
 	if ($m->count()) //Check for the \n
-//	echo($m->implode("\n") . ':' . $inputfile . "\n");
 	echo(
-		$m->walk(
+		$m
+		->walk(
 			create_function(
 				'&$item'
 				,"\$item = \"\t\t'\$item'\t=> '" . RegExp_pcre::create('#^' . RegExp_pcre::quote(@$argv[2]) . '#', $inputfile)->replace() . "',\";"
 			)
 		)
-		->filter()
 		->implode("\n") . "\n"
 	);
 ?>

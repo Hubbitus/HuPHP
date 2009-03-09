@@ -25,7 +25,7 @@ function __autoload($classname){
 	return true;
 	}
 	else{
-		if (!is_set('__autoload_map', $GLOBALS['__CONFIG'])){
+		if (!is_set('__autoload_map', @$GLOBALS['__CONFIG'])){
 		include_once('System/OS.php');
 			if( OS::is_includeable(AUTOINCLUDE_FILE) ){
 			require_once(AUTOINCLUDE_FILE);//Standard

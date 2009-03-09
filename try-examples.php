@@ -1,4 +1,6 @@
 <?
+include('autoload.php');
+
 /*
 <html>
 <head>
@@ -700,7 +702,7 @@ dump::a($ha->hu('arr')->hu(2));		// Property access. Alse as any HuArray methods
 dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternate method. Fully equivalent of line before. Just another form.
 */
 ################################################################################################
-include_once('Vars/HuArray.php');
+//include_once('Vars/HuArray.php');
 $testArray = array(0, 11, 22, 777);
 $ha = new HuArray( $testArray );
 dump::a($ha, 'Original HuArray');
