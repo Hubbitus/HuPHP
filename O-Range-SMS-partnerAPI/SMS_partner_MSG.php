@@ -1,4 +1,15 @@
 <?
+/**
+* Orange SMS-API ( http://api.o-range.ru/DOCS/ )
+*
+* @package Orange SMS-API
+* @version 1.0.1
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
+*
+* @changelog
+**/
+
 class SMS_partner_MSG extends settings{
 protected $__SETS = array(
 	'CMD_SEND_FORMAT'	=> array(
