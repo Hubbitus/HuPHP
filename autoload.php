@@ -70,12 +70,16 @@ return false;
 * supported in previous versions.
 *
 * Eval used to hide from current version of PHP and avoid errors/warnings.
+*
+* WARNING:
+* Warning: Parameter 1 to REQUIRED_VAR() expected to be a reference, value given in /var/www/_SHARED_/autoload.php(89) : eval()'d code on line 9
+* So, safely useed it may only with functions who not use references in parameters!!!
+* And even overloading not supported to provide few variants :(
 **/
 	if (version_compare(PHP_VERSION, '5.3.0-dev', '>=')){
 	eval('
 		class m{
-			public function __construct(){
-			}
+			public function __construct(){} //PHP Fatal error:  Uncaught exception "ReflectionException" with message "Class m does not have a constructor, so you cannot pass any constructor arguments" in /var/www/_SHARED_/Vars/Singleton.php:72
 			public static function __callStatic($name, $arguments){
 			//echo \'called __callStatic($name, $arguments):\' . "__callStatic($name, $arguments)\n";
 				if (!function_exists($name)){
@@ -92,11 +96,9 @@ return false;
 	else{
 	eval('
 		class m{
-			public function __construct(){
-			}
+			public function __construct(){}
 			// __callStatic not present yet :(
-			public static function __call($name, $arguments) {
-			//echo \'called __callStatic($name, $arguments):\' . "__callStatic($name, $arguments)\n";
+			public static function __call($name, &$arguments) {
 				if (!function_exists($name)){
 				__autoload($name);
 				}
