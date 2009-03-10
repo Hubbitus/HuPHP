@@ -46,10 +46,11 @@ private $_include_tryed = array();
 	* Bee careful - after standard call (not raw) original Array value was replaced by HuArray!
 	*
 	* @param string	$varname
+	* @param boolean(false)	$nothrow If true - silently not thrown any exception.
 	* @return &mixed
 	**/
-	public function &getRaw($varname){
-	return $this->getProperty($varname);
+	public function &getRaw($varname, $nothrow = false){
+	return $this->getProperty($varname, $nothrow);
 	}#m getRaw
 
 	/**
@@ -72,8 +73,9 @@ private $_include_tryed = array();
 	* Reimplement as initial, only return value by reference
 	* Also try include file 'includes/configs/' . $name . '.config.php' if it exist to find needed settings.
 	* @inheritdoc
+	* @param	boolean(false)	$nothrow If true - silently not thrown any exception.
 	**/
-	public function &getProperty($name){	
+	public function &getProperty($name, $nothrow = false){
 		try{
 		return $this->__SETS[$this->checkNamePossible(REQUIRED_NOT_NULL($name), __METHOD__)];
 		}
@@ -81,8 +83,9 @@ private $_include_tryed = array();
 			//Try include appropriate file:
 			if (!in_array($name, $this->_include_tryed)){
 			$this->_include_tryed[] = $name; //In any case to do not check again next time
-				if(OS::is_includeable(($path = 'includes/configs/' . $name . '.config.php'))){
-//				dump::a($path);
+			$path = 'includes/configs/' . $name . '.config.php';
+//			dump::a($path);dump::a(OS::is_includeable($path));
+				if(OS::is_includeable($path)){
 				include($path);
 					if(m()->is_set($name, $GLOBALS['__CONFIG'])){//New key
 					$this->addSetting($name, $GLOBALS['__CONFIG'][$name]);
@@ -92,7 +95,13 @@ private $_include_tryed = array();
 				//return $this->__SETS[$this->checkNamePossible(REQUIRED_NOT_NULL($name), __METHOD__)];
 				}
 			}
-		throw $cpne; //If include and fine failed throw outside;
+			//Silent if required.
+			if (!$nothrow) throw $cpne; //If include and fine failed throw outside;
+			else{
+			// Avoid: Notice: Only variable references should be returned by reference in /var/www/_SHARED_/Vars/HuConfig.class.php on line 101
+			$t = null;
+			return $t;
+			}
 		}
 	}#m getProperty
 }#c
@@ -113,9 +122,10 @@ private $_include_tryed = array();
 * CONF('className')->desiredClassOption
 *
 * @param	string(null)	$className Optional class name
+* @param	boolean(false)	$nothrow If true - silently not thrown any exception.
 * @return Single_Object(HuConfig)|Object(HuArray). If className present - Object(HuArray) returned, Single_Object(HuConfig) otherwise to next query.
 **/
-function &CONF($className = null){
+function &CONF($className = null, $nothrow = false){
 	/*
 	* Strange, but if we direct return:
 	* if ($className) return Single::def('HuConfig')->$className;
@@ -124,8 +134,14 @@ function &CONF($className = null){
 	* implicit call to __get solve problem. Is it bug?
 	* @todo Fill bug
 	**/
-	if ($className) return Single::def('HuConfig')->__get($className);
+	/*
+	* We want use HuConfig in singleton::def. It is produce cycle dependency.
+	* So, rely on HuConfig do not take any settings in constructor, we may sefely call Single::singleton directly
+ 	if ($className) return Single::def('HuConfig')->__get($className);
 	else return Single::def('HuConfig');
+	**/
+	if ($className) return Single::singleton('HuConfig')->__get($className);
+	else return Single::singleton('HuConfig');
 }#f CONF
 
 /**

@@ -4,7 +4,7 @@
 *
 * @package Vars
 * @subpackage Classes
-* @version 1.1.2
+* @version 1.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -23,10 +23,16 @@
 *
 *	* 2009-03-05 13:39 ver 1.1.1 to 1.1.2
 *	* Adjust include, since OS::is_includeable now only return boolean, do not tryed include anything.
+
+*	* 2009-03-10 06:19 ver 1.1.2 to 1.2
+*	- Method ::def() now used CONF()->getRaw($className) instead of direct accessing to @$GLOBALS['__CONFIG'][$className]
+*		with all futures what it does such as settings autoload.
+*	- include_once('Vars/HuConfig.class.php') added additional dependency.
 **/
 
 include_once('Exceptions/classes.php');
 include_once('System/OS.php');# For OS::is_includeable()
+include_once('Vars/HuConfig.class.php');
 
 /**
 * Example from http://ru2.php.net/manual/ru/language.oop5.patterns.php
@@ -75,7 +81,8 @@ private static $instance = array();
 	* @return &Object($classname)
 	**/
 	public static function &def($className){
-	return self::singleton($className, @$GLOBALS['__CONFIG'][$className]);
+	//return self::singleton($className, @$GLOBALS['__CONFIG'][$className]);
+	return self::singleton($className, CONF()->getRaw($className, true));
 	}#m def
 
 	/**

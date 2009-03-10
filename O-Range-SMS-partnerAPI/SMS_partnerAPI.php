@@ -37,6 +37,8 @@ protected $__SETS = array(
 	'URL'		=> 'http://api.o-range.ru/?',
 	'authTime'	=> '20',	#minutes
 
+	'in_pass'		=> 'SuperPuperPass',
+
 	'login'		=> 'conf',
 	'password'	=> '1234',
 
@@ -56,7 +58,7 @@ private $authID;
 
 private /* SMS_partner_MSG */ $MSG;
 
-	public function __construct(SMS_partner_settings &$sets, &$db, &$log){
+	public function __construct(SMS_partner_settings &$sets, database &$db, HuLOG &$log){
 	@session_start();
 	$this->_sets =& $sets;
 	$this->MSG = new SMS_partner_MSG();
@@ -99,18 +101,12 @@ private /* SMS_partner_MSG */ $MSG;
 	return $this->authID;
 	}#m getAuthID
 
-	public function parseInMSG($rawString = null){
+	public function parseInMSG($rawString){
 	#http://ourSMSgate.tld/gate.cgi?pass=d41d8cd98f00b204e9800998ecf8427e&ShortNbr=2300&msgInID=12452&UserPhone=79111234567&text=8uXx8u7i7uUg8e7u4fnl7ejl
-	parse_str(EMPTY_STR($rawString, @$_SERVER['QUERY_STRING']), $msg);
+	parse_str($rawString, $msg);
 	$this->MSG->setSettingsArray($msg);
-	$this->MSG->setProperty('base64_text', $this->MSG->text);
-	$this->MSG->setProperty('text', base64_decode(str_replace(' ', '+', $this->MSG->base64_text)));
-	#prepare for answer. Inverse (copy) few fields by default.
-	$this->MSG->setProperty('answerto', $this->MSG->msgInID);
-	$this->MSG->setProperty('to', $this->MSG->UserPhone);
-
 		#do NOT use empty() because it works ONLY with variables!!!
-		if (!@$this->MSG->msgInID or !@$this->MSG->ShortNbr or !@$this->MSG->UserPhone or !@$this->MSG->pass){
+		if (!@$this->MSG->msgInID or !@$this->MSG->ShortNbr or !@$this->MSG->UserPhone or !@$this->MSG->pass or !@$this->MSG->text){
 		$what = 'Empty field(s):';
 			if (!@$this->MSG->msgInID)	$what .= ' [msgInID]';
 			if (!@$this->MSG->ShortNbr)	$what .= ' [ShortNbr]';
@@ -118,6 +114,15 @@ private /* SMS_partner_MSG */ $MSG;
 			if (!@$this->MSG->pass)		$what .= ' [pass]';
 		throw new MSG_InParseErrorException('Error parsing Incoming message. '.$what."\nQUERY_STRING:".EMPTY_STR($rawString, @$_SERVER['QUERY_STRING']));
 		}
+
+	$this->in_auth();
+
+	$this->MSG->setSetting('base64_text', $this->MSG->text);
+	$this->MSG->setSetting('text', base64_decode(str_replace(' ', '+', @$this->MSG->base64_text)));
+	#prepare for answer. Inverse (copy) few fields by default.
+	$this->MSG->setSetting('answerto', $this->MSG->msgInID);
+	$this->MSG->setSetting('to', $this->MSG->UserPhone);
+
 	$this->_log->toLog('MSG in', 'ACS', 'msg', $this->MSG->getString($this->MSG->LOG_FORMAT));
 	echo 'OK';	#Answer to Server
 	}#m parseInMSG
@@ -133,7 +138,7 @@ private /* SMS_partner_MSG */ $MSG;
 	public function sendMSG(){
 	#http://api.o-range.ru/?authID=fc6XJgmaNpF8ZRMQ0lVXU1&cmd=send&answerto=26260&to=79052084523&text=8uXx8iDw8/Hx6u7j7iD/5/vq4CDiIHNtc19hcGk=
 		try{
-		$this->MSG->setProperty('base64_text', base64_encode($this->MSG->text));
+		$this->MSG->setSetting('base64_text', base64_encode($this->MSG->text));
 		$this->transport->setName($this->settings->URL.'authID='.$this->getAuthID().$this->MSG->getString($this->MSG->CMD_SEND_FORMAT));
 		$this->transport->getContents();
 		$this->MSG->setSetting('msgOutID', $this->_result = $this->parseServerAnswer('msgOutID'));
@@ -157,5 +162,13 @@ private /* SMS_partner_MSG */ $MSG;
 	return ($this->_result = $reg->match(1));
 	}#m parseServerAnswer
 
+	/**
+	* Authentificate incoming message.
+	*
+	* @return	boolean
+	**/
+	function in_auth() {
+	return ($this->MSG->pass == $this->settings->in_pass);
+	}#m in_auth
 }#c SMS_partnerAPI
 ?>
