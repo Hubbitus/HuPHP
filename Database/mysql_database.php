@@ -116,8 +116,8 @@ public $db_type = 'mysql';
 			'server_message'	=> $server_message,
 			'server_messageS'	=> $server_messageS,
 			'Query' 	=> $this->Query,
-			'call_from_file' => $d_backtrace[1]['file'],
-			'call_from_line' => $d_backtrace[1]['line'],
+			'call_from_file' => @$d_backtrace[1]['file'],
+			'call_from_line' => @$d_backtrace[1]['line'],
 //			'bt'	=> new backtrace(null, 2)//Self collectDebugInfo no needed.
 			'bt' => new backtrace($d_backtrace, 0)
 		)
