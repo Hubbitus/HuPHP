@@ -9,10 +9,14 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-31 2:00
-* - In method CollectDebugInfo do not create new backtrace, to pass further the argument which was gotten.
-		//	'bt'	=> new backtrace(null, 2)//Self collectDebugInfo no needed.
-			'bt' => new backtrace($d_backtrace)
+*	* 2008-05-31 2:00
+*	- In method CollectDebugInfo do not create new backtrace, to pass further the argument which was gotten.
+*	//	'bt'	=> new backtrace(null, 2)//Self collectDebugInfo no needed.
+*		'bt' => new backtrace($d_backtrace)
+*
+*	* 2009-03-10 07:50 ver 2.0 to 2.0.1
+*	- db_connect often called from constructor. So, object is not istantiated to future cal to it getError()
+*		Now we provide property DBError in it itself as ref to db->Error.
 **/
 
 include_once('Database/database.php');
@@ -44,7 +48,10 @@ public $db_type = 'mysql';
 					debug_backtrace()
 				);
 
-			throw new ConnectErrorDBException ($this->Error->settings->TXT_cantConnect);
+			// It often called from constructor. So, object is not istantiated to future cal to it getError()
+			$cedbe = new ConnectErrorDBException ($this->Error->settings->TXT_cantConnect);
+			$cedbe->DBError =& $this->Error;
+			throw $cedbe;
 			}
 		}
 	}#m db_connect

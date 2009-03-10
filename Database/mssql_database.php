@@ -4,13 +4,17 @@
 * Driver for MSSQL database server
 *
 * @package Database
-* @version 2.1
+* @version 2.1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
-* 2008-05-31 1:14 v 2.0b to 2.1
+*	* 2008-05-31 1:14 v 2.0b to 2.1
 *	- Totally rewritten
+*
+*	* 2009-03-10 07:50 ver 2.1 to 2.1.1
+*	- db_connect often called from constructor. So, object is not istantiated to future cal to it getError()
+*		Now we provide property DBError in it itself as ref to db->Error.
 **/
 
 include_once('Database/database.php');
@@ -53,7 +57,10 @@ public $db_type = 'mssql';
 					debug_backtrace()
 				);
 
-			throw new ConnectErrorDBException ($this->Error->settings->TXT_cantConnect);
+			// It often called from constructor. So, object is not istantiated to future cal to it getError()
+			$cedbe = new ConnectErrorDBException ($this->Error->settings->TXT_cantConnect);
+			$cedbe->DBError =& $this->Error;
+			throw $cedbe;
 			}
 
 		mssql_min_error_severity(1);
