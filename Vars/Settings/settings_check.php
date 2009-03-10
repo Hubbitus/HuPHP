@@ -24,6 +24,9 @@
 *
 *	* 2009-03-06 15:29 ver 1.0.3 to 1.0.4
 *	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
+*
+*	* 2009-03-10 04:24 ver 1.0.4 to 1.0.5
+*	- Add method ::addSetting()
 **/
 
 include_once('Exceptions/classes.php');
@@ -53,6 +56,18 @@ static public $properties = array();
 	public function getProperty($name){
 	return parent::getProperty($this->checkNamePossible($name, __METHOD__));
 	}#m getProperty
+
+	/**
+	* Add setting vith value in possible settings.
+	* 
+	* @param	string	$name
+	* @param	mixed	$value 
+	* @return	nothing
+	**/
+	public function addSetting($name, $value){
+	self::$properties[] = $name;
+	parent::setSetting($name, $value);
+	}#m addSetting
 
 	/**
 	* ПЕРЕЗАПИСЫВАЕТ ВСЕ настройки. Для изменения отдельных - setSetting
