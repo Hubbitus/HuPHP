@@ -3,7 +3,7 @@
 * Class to provide OOP interface to array operations.
 *
 * @package Vars
-* @version 1.2
+* @version 1.2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -31,6 +31,9 @@
 *	- Modified method __get to support construction like: $HuArrayObj->{'hu://varName'}
 *	- Add methods ::filterByKeys() and ::filterOutByKeys().
 *	- Add method ::filterKeysCallback()
+*
+*	* 2009-03-10 10:33 ver 1.2 to 1.2.1
+*	- In method push implementation add backward compatability with php <= 5.2.9.
 **/
 
 include_once('Vars/Settings/settings.php');
@@ -55,7 +58,11 @@ const huScheme = 'hu://';
 	* @return	&$this
 	**/
 	public function &push($var){
-	call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), func_get_args()));
+	//On old PHP got errro: PHP Fatal error:  func_get_args(): Can't be used as a function parameter in /home/_SHARED_/Vars/HuArray.php on line 58
+	//call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), func_get_args()));
+	//Do the same with temp var:
+	$args = func_get_args();
+	call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $args));
 	return $this;
 	}#m push
 
