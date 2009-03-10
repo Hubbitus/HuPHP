@@ -1,3 +1,4 @@
+<?
 /**
 * Database exceptions
 *
@@ -10,7 +11,6 @@
 *	* 2009-03-10 07:55 ver 1.0 to 1.1
 *	- Add public $DBError property into ConnectErrorDBException exception
 **/
-<?
 include_once('Exceptions/BaseException.php');
 
 class DBException extends BaseException{}
