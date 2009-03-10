@@ -84,7 +84,7 @@ return false;
 			return call_user_func_array($name, $arguments);
 			}
 			public function __call($name, $arguments){
-			self::__callStatic($name, $arguments);
+			return self::__callStatic($name, $arguments);
 			}
 		}#c
 	');
