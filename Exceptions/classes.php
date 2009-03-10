@@ -8,7 +8,7 @@
 * @version 1.1
 *
 * @changelog
-* 2008-05-31 5:26 v 1.0 to 1.1
+*	* 2008-05-31 5:26 v 1.0 to 1.1
 *	- Add ClassUnknownException
 **/
 
