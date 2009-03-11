@@ -5,9 +5,9 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.2.1
 *
-* @CHANGELOG
+* @changelog
 *	* 2008-08-27 ver 1.0 to 1.1
-*	Added: clearPendingWrite(), __destructor(), appendString()
+*	- Added methods: clearPendingWrite(), __destructor(), appendString()
 *
 *	* 2009-01-25 00:00 ver 1.1 to 1.2
 *	- Modify setPath() to set full path into ->filename. ->rawFilename filled also.
@@ -46,7 +46,7 @@ public function __construct($filename = ''){
 #Write all pendings write
 public function __destruct(){
 	if ($this->_writePending) $this->writeContents();
-}
+}#__d
 
 /**
 * Set new path. For example to writing new file.
@@ -167,8 +167,8 @@ public function getDir(){return dirname($this->path());}
 *
 * @param array $lines. If empty array - whole array of lines. Else Array(int $offset  [, int $length  [, bool $preserve_keys  ]] ). See http://php.net/array_slice
 * @param boolean(true) $updateLineSep. See explanation in ->explodeLines() method.
-* @Throw(VariableEmptyException)
 * @return array Array of lines
+* @Throw(VariableEmptyException)
 **/
 public function getLines(array $lines = array(), $updateLineSep = true){
 $this->checkLoad();
@@ -258,11 +258,11 @@ return $this->setContentFromString($this->content . REQUIRED_VAR($string));
 /**
 * Writes whole contents to file (filename may be set via ->setPath('NewFileName'))
 *
-* @param integer	flags See http://php.net/file_put_contents
-* @param resource	$resource_context See http://php.net/file_put_contents
-* @param string	$implodeWith See descr ->implodeLines()
-* @param boolean	$updateLineSep See descr ->implodeLines()
-* @return integer	Count of written bytes
+* @param	integer	flags See http://php.net/file_put_contents
+* @param	resource	$resource_context See http://php.net/file_put_contents
+* @param	string	$implodeWith See descr ->implodeLines()
+* @param	boolean	$updateLineSep See descr ->implodeLines()
+* @return	integer	Count of written bytes
 **/
 public function writeContents($flags = null, $resource_context = null, $implodeWith = null, $updateLineSep = true){
 $this->checkOpenError(
