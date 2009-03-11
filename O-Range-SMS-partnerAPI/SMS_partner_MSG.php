@@ -35,7 +35,7 @@ protected $__SETS = array(
 protected $static_settings = array('CMD_SEND_FORMAT', 'LOG_FORMAT');
 
 	/**
-	* Clear all but uncleared items.
+	* Clear all except uncleared items.
 	**/
 	public function clear(){
 		foreach ($this->__SETS as $key => $sets){

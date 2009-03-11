@@ -3,7 +3,7 @@
 * Orange SMS-API ( http://api.o-range.ru/DOCS/ )
 *
 * @package Orange SMS-API
-* @version 1.1
+* @version 1.1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -15,6 +15,9 @@
 *	* 2009-03-09 20:32 ver 1.0.1 to 1.1
 *	- Adjust all pathes
 *	- In constructor drop any options, all reffs must be present. All magick must be outside this object
+*
+*	* 2009-03-10 08:23 ver 1.1 to 1.1.1
+*	- Compleatly delete property _db, it is unneded.
 **/
 
 include_once('Debug/HuLOG.php');
@@ -49,7 +52,6 @@ protected $__SETS = array(
 }
 
 class SMS_partnerAPI extends get_settings{
-protected $_db;
 protected $_log;
 
 protected $_transport = null;	#Making on fly
@@ -58,12 +60,11 @@ private $authID;
 
 private /* SMS_partner_MSG */ $MSG;
 
-	public function __construct(SMS_partner_settings &$sets, database &$db, HuLOG &$log){
+	public function __construct(SMS_partner_settings &$sets, HuLOG &$log){
 	@session_start();
 	$this->_sets =& $sets;
 	$this->MSG = new SMS_partner_MSG();
 	$this->_log =& $log;
-	$this->_db =& $db;
 	}#__c
 
 	function __get($name){
@@ -79,8 +80,8 @@ private /* SMS_partner_MSG */ $MSG;
 	public function auth(){
 	ini_set('session.cache_expire', $this->settings->authTime);
 		try{
-		$this->transport->setName($this->settings->URL . 'cmd=auth&login=' . $this->settings->login . '&pass=' . $this->settings->password);
-		$this->transport->getContents();
+		$this->transport->setPath($this->settings->URL . 'cmd=auth&login=' . $this->settings->login . '&pass=' . $this->settings->password);
+		$this->transport->loadContent();
 		$_SESSION['authID'] = $this->authID = $this->parseServerAnswer('authID');
 			if (!$this->authID) throw new MSG_AuthErrorException("Auth error!\nServer response: ".$this->transport->getBLOB()."\nOn query:".$this->settings->URL.'cmd=auth&login='.$this->settings->login.'&pass='.$this->settings->password);
 		}
@@ -139,8 +140,8 @@ private /* SMS_partner_MSG */ $MSG;
 	#http://api.o-range.ru/?authID=fc6XJgmaNpF8ZRMQ0lVXU1&cmd=send&answerto=26260&to=79052084523&text=8uXx8iDw8/Hx6u7j7iD/5/vq4CDiIHNtc19hcGk=
 		try{
 		$this->MSG->setSetting('base64_text', base64_encode($this->MSG->text));
-		$this->transport->setName($this->settings->URL.'authID='.$this->getAuthID().$this->MSG->getString($this->MSG->CMD_SEND_FORMAT));
-		$this->transport->getContents();
+		$this->transport->setPath($this->settings->URL.'authID='.$this->getAuthID().$this->MSG->getString($this->MSG->CMD_SEND_FORMAT));
+		$this->transport->loadContent();
 		$this->MSG->setSetting('msgOutID', $this->_result = $this->parseServerAnswer('msgOutID'));
 			if (!intval($this->MSG->msgOutID)) throw new MSG_SendFailException("Message sent error!\nServer response: ".$this->transport->getBLOB()."\nOn query:".$this->settings->URL.'authID='.$this->getAuthID().$this->MSG->getString($this->MSG->CMD_SEND_FORMAT));
 		$this->_log->toLog('MSG out', 'ACS', 'msg', $this->MSG->getString($this->MSG->LOG_FORMAT));
