@@ -98,7 +98,7 @@ return false;
 		class m{
 			public function __construct(){}
 			// __callStatic not present yet :(
-			public static function __call($name, &$arguments) {
+			public static function __call($name, $arguments) {
 				if (!function_exists($name)){
 				__autoload($name);
 				}
