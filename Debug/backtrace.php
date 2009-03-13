@@ -472,7 +472,7 @@ protected $_format;
 	/**
 	* By default convert into string will ::printout();
 	*
-	* @return
+	* @return string
 	**/
 	public function __toString(){
 	return $this->printout(true);

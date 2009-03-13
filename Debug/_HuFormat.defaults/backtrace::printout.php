@@ -16,10 +16,11 @@
 /**
 * Helper to more flexibility show large amount of data (long strings, dump of arrays etc.)
 *
-* @param string	$shortVar
-* @param string	$longVar
-* @return string
-*
+* @param	string	$shortVar
+* @param	string	$longVar
+* @param	string('<textarea')	$innerTagStart
+* @param	string('</textarea>')	$innerTagEnd
+* @return	string
 **/
 function backtrace__printout_WEB_helper($shortVar, $longVar, $innerTagStart = '<textarea', $innerTagEnd='</textarea>'){
 return '\'<span title="'.$longVar.'"
