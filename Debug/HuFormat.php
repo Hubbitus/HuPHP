@@ -4,9 +4,13 @@
 *
 * @package Debug
 * @subpackage HuFormat
-* @version 2.0b
+* @version 2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+*
+* @changelog
+*	* 2009-03-13 19:01 ver 2.0b to 2.1
+*	- Add mod_k (k modifier) and support infrastrukture for it, such as save it acsorr mod_A and mod_I.
 **/
 
 include_once('Exceptions/variables.php');
@@ -42,16 +46,16 @@ class HuFormat extends HuError{
 	* @var array
 	**/
 	static public $MODS = array(
-	'A'	=> 1,	#ALL. Exclusive, all other modifiers not processed. Each process as HuFormat.
-	's'	=> 2,	#Setting
-	'a'	=> 4,	#Array
-	'n'	=> 8,	#Non_empty_str
-	'p'	=> 16,	#sPrintf. {@link http://php.net/sprintf}
-	'e'	=> 32,	#Evaluate. Evaluated only ->_name !!!
-	'E'	=> 64,	#Evaluate full! Evaluate all as full result.
-	'v'	=> 128,	#Value,
-	'I'	=> 256,	#Iterate ->_value (or ->_realValue) and each format as ->_format
-//	'm'	=> 256,	#Method. Invoke method of ->_value (or ->_realValue)
+		'A'	=> 1,	#ALL. Exclusive, all other modifiers not processed. Each process as HuFormat.
+		's'	=> 2,	#Setting
+		'a'	=> 4,	#Array
+		'n'	=> 8,	#Non_empty_str
+		'p'	=> 16,	#sPrintf. {@link http://php.net/sprintf}
+		'e'	=> 32,	#Evaluate. Evaluated only ->_name !!!
+		'E'	=> 64,	#Evaluate full! Evaluate all as full result.
+		'v'	=> 128,	#Value,
+		'I'	=> 256,	#Iterate ->_value (or ->_realValue) and each format as ->_format
+		'k'	=> 512,	#Key. Get key of current iteration of I:::.
 	);
 
 	private $_format;				#Array of format.
@@ -60,8 +64,9 @@ class HuFormat extends HuError{
 	private $_modArr = array();		#Array of present mods
 	private $_value;				#Value, what processed in this formating.
 	private $_realValue;			#If modified (part) in mod_s, mod_a
-	private $_realValued = false;	#Flag, to allow pipe through several mods (like as s. a, e)
+	private $_realValued = false;		#Flag, to allow pipe through several mods (like as s. a, e)
 	private $_name;
+	private $_key;					#Key from mod_I itaration for the mod_k
 
 	private $_resStr;				#For caching
 
@@ -79,8 +84,8 @@ class HuFormat extends HuError{
 	* {@see ::set()}
 	*	Be careful - you should explicit provide value like false (invoke as __construct(null, $t = false) for example, because 2d parameter is reference). Otherwise default value null means - using $this as value! 
 	**/
-	public function __construct(array $format = null, &$value = null){
-	$this->set($format, $value);
+	public function __construct(array $format = null, &$value = null, $key = null){
+	$this->set($format, $value, $key);
 /*
 	//Unfortunately a can not Use multiple inheritance. Inherit get_settings is more graceful way.
 	runkit_method_copy(__CLASS__, 'sets', 'get_settings', 'sets');
@@ -95,11 +100,11 @@ class HuFormat extends HuError{
 	* @param &mixed	$value.	{@see ::setValue()}
 	* @return	&$this
 	**/
-	public function &set($format = null, &$value = null){
+	public function &set($format = null, &$value = null, $key = null){
 	$this->setValue($value);
 
 		if (null !== $format) $this->parseInputArray($format);
-
+	$this->_key = $key;
 	return $this;
 	}#m set
 
@@ -384,7 +389,7 @@ class HuFormat extends HuError{
 		$this->_realValued = true;
 		}
 		else $this->_realValue = $this->_value[$this->_realValue];
-	}#m mod_s
+	}#m mod_a
 
 	/**
 	* Process ->_value through NON_EMPTY_STR. ->_format must have appropriate values.
@@ -454,7 +459,7 @@ class HuFormat extends HuError{
 	* @return string
 	**/
 	protected function mod_AA(){
-	$hf = new self(null, $this->_value);
+	$hf = new self(null, $this->_value, $this->_key);
 	$ret = '';
 		foreach ($this->_format as $f){
 		$hf->parseInputArray($f);
@@ -469,14 +474,25 @@ class HuFormat extends HuError{
 	* @return string
 	**/
 	protected function mod_II(){
-	$hf = new self($this->_format, $t = false);
+	$hf = new self($this->_format, $t = false, $this->_key);
 	$ret = '';
 
-		foreach ($this->getValue() as $v){
+		foreach ($this->getValue() as $key => $v){
 		$hf->setValue($v);
+		$hf->_key = $key; //Only for I usefull
 		$ret .= $hf->getString();
 		}
 	return $ret;
 	}#m mod_II
+
+	/**
+	* Get Key of cunrrent iteration of I:::.
+	*
+	* @return string
+	**/
+	protected function mod_k(){
+	$this->_realValue = $this->_key;
+	$this->_realValued = true;
+	}#m mod_k
 };#c HuFormat
 ?>
