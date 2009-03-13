@@ -55,10 +55,14 @@ $str = null;
 					(
 					# Assign in condition and explicitly return true, because '' is false as empty string
 					$str = ''
+					or
+					true
 					)
 			)
 			or
 			0 === $str		# Integer 0 is string "0" but evaluated in empty by previous check
+			or
+			$str	//Last generick check after all special cases!
 		)
 		and
 		$i < $numargs //In do-wile it must be last
@@ -84,16 +88,4 @@ function NON_EMPTY_STR(&$str, $prefix='', $suffix='', $defValue=''){
 // strlen because '0'? treated as false anddefault value returned
 return ( strlen(($str = EMPTY_STR($str))) > 0 ? $prefix.$str.$suffix : $defValue);
 }#f NON_EMPTY_STR
-
-function test_EMPTY_NONEMPTY_STR(&$var){
-dump::a($var, 'Original value');
-//dump::a(EMPTY_STR('', $var, 'DEFAULT'));
-//dump::a(EMPTY_STR('', 0, $var, 'DEFAULT'));
-
-//dump::a(EMPTY_STR($var, 'DEFAULT ($var is empty)'));
-dump::a(EMPTY_STR($var));
-dump::a(NON_EMPTY_STR($var, '<', '>'));
-
-dump::a('===================================');
-}#f test_EMPTY_NONEMPTY_STR
 ?>
