@@ -428,7 +428,7 @@ class HuFormat extends HuError{
 	}#m mod_e
 
 	/**
-	* Evaluete full! Evaluete all as full result.
+	* Evaluate full! Evaluate all as full result.
 	*
 	* @return string
 	**/
