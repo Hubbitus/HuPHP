@@ -10,6 +10,8 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
+include_once('autoload.php');
+
 function test_EMPTY_NONEMPTY_STR(&$var){
 dump::a($var, 'Original value');
 //dump::a(EMPTY_STR('', $var, 'DEFAULT'));
@@ -21,7 +23,6 @@ dump::a(NON_EMPTY_STR($var, '<', '>'));
 
 dump::a('===================================');
 }#f test_EMPTY_NONEMPTY_STR
-
 
 $t = true;
 test_EMPTY_NONEMPTY_STR($t);	# ''; ''
