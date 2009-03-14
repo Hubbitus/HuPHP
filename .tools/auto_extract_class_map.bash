@@ -10,10 +10,12 @@ echo "<?
 
 # RegExp_base.php contains Function definition in Eval as hack. so, explicit exclude it.
 # try-examples.php - only examples and classes like A, B, AA....
+# template/template_class_NEW2.php - is old, deprecated must be excluded to use template_class_2.1.php instead (who need old, always may preinclude them explicity).
 # autoload.php has class define in eval as hack, and from functions only define __autoload, which is not requre any futher magick :)
 find .. -type f -iname '*.php' \
-	-not -wholename "${DIR}Debug/Phar/*" -not -name 'exec.php' -not -name $( basename "$OUT_FILE" ) -not -name 'example.php' \
+	-not -wholename "${DIR}Debug/Phar/*" -not -name 'exec.php' -not -name $( basename "$OUT_FILE" ) \
 	-not -name RegExp_base.php -not -name try-examples.php -not -name '*.example.php' -not -name autoload.php \
+	-not -name template_class_NEW2.php \
 	-exec egrep -iH '^\s*class|function.*{' {} \; | \
 	while read line; do
 	echo $line;
