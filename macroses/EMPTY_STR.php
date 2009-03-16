@@ -62,7 +62,7 @@ $str = null;
 			or
 			0 === $str		# Integer 0 is string "0" but evaluated in empty by previous check
 			or
-			$str	//Last generick check after all special cases!
+			$str				# Last generick check after all special cases!
 		)
 		and
 		$i < $numargs //In do-wile it must be last
@@ -85,7 +85,7 @@ return (string)$str;
 * @return	string
 **/
 function NON_EMPTY_STR(&$str, $prefix='', $suffix='', $defValue=''){
-// strlen because '0'? treated as false anddefault value returned
+// strlen because '0'? treated as false and default value returned
 return ( strlen(($str = EMPTY_STR($str))) > 0 ? $prefix.$str.$suffix : $defValue);
 }#f NON_EMPTY_STR
 ?>
