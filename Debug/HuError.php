@@ -42,7 +42,7 @@ class HuError_settings extends settings{
 protected $__SETS = array(
 	/**
 	* @example HuLOG.php
-	*/
+	**/
 	'FORMAT_WEB'		=> array(),	/** For strToWeb().		If empty (by default): dump::w */
 	'FORMAT_CONSOLE'	=> array(),	/** For strToConsole().	If empty (by default): dump::c */
 	'FORMAT_FILE'		=> array(),	/** For strToFile().	If empty (by default): dump::log */
@@ -97,7 +97,7 @@ public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide form
 	}#m __construct
 
 	/**
-	* Due to absent mutiple inheritance in PHP, just copy/pasted from class get_settings.
+	* Due to absent mutiple inheritance in PHP, just copy/paste from class get_settings.
 	* Overloading to provide ref on settings without change possibility.
 	* In this case change settings is allowed, but change full settings object - not!
 	*
