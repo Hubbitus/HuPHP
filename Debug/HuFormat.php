@@ -4,13 +4,19 @@
 *
 * @package Debug
 * @subpackage HuFormat
-* @version 2.1
+* @version 2.1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
 *	* 2009-03-13 19:01 ver 2.0b to 2.1
 *	- Add mod_k (k modifier) and support infrastrukture for it, such as save it acsorr mod_A and mod_I.
+*
+*	* 2009-03-16 17:28 ver 2.1 to 2.1.1
+*	- Method ::parseInputArray() renamed to ::setFormat()
+*	- As we averload getString() without arguments, implementation methods
+*		strToFile, strToWeb, strToConsole, strToPrint, strByOutType from HuError
+*		is not suitable. So, overload it as and thown exception (class by autoload) to avoid accidentally usages.
 **/
 
 include_once('Exceptions/variables.php');
@@ -96,14 +102,16 @@ class HuFormat extends HuError{
 	/**
 	* Set main: format and value.
 	*
-	* @param array|string	$format
-	* @param &mixed	$value.	{@see ::setValue()}
+	* @param	array|string	$format. If === null, skipped to allow set other
+	*	parts. To clear you may use false/true or any else such as empty string.
+	* @param	&mixed	$value.	{@see ::setValue()} Skiped if === null. You
+	*	may call {@see ::setValue()} to do that
+	* @param	mixed	$key	Key of iteration in mod_I and/or mod_A.
 	* @return	&$this
 	**/
 	public function &set($format = null, &$value = null, $key = null){
-	$this->setValue($value);
-
-		if (null !== $format) $this->parseInputArray($format);
+		if (null !== $value) $this->setValue($value);
+		if (null !== $format) $this->setFormat($format);
 	$this->_key = $key;
 	return $this;
 	}#m set
@@ -121,7 +129,7 @@ class HuFormat extends HuError{
 	/**
 	* Set value
 	*
-	* @param &mixed	$value.	Value to format.
+	* @param	&mixed	$value.	Value to format.
 	*	If === null $this->_value =& $this; $this->_realValue =& $this->_value; 	 
 	* @return &$this
 	**/
@@ -157,7 +165,7 @@ class HuFormat extends HuError{
 	* @param array|string	$format to parse
 	* @return &$this
 	**/
-	public function &parseInputArray($format){
+	public function &setFormat($format){
 	$this->_mod = 0;
 	$this->_modStr = $this->_name = $this->_resStr = $this->_realValue = null;
 	$this->_modArr = array();
@@ -179,7 +187,7 @@ class HuFormat extends HuError{
 		}
 
 	return $this;
-	}#m parseInputArray
+	}#m setFormat
 
 	/**
 	* Parses and set from given str. As separator used {@see self::mods_separator}.
@@ -215,7 +223,7 @@ class HuFormat extends HuError{
 				else $this->_resStr .= call_user_func(array($this, 'mod_'.$mod));
 			}
 
-			//If all mod_* are only evalute value and not produce out.
+			//If all mod_* are only evaluate value and not produce out.
 			if (!$this->_resStr) return $this->getValue();
 		}
 
@@ -462,7 +470,7 @@ class HuFormat extends HuError{
 	$hf = new self(null, $this->_value, $this->_key);
 	$ret = '';
 		foreach ($this->_format as $f){
-		$hf->parseInputArray($f);
+		$hf->setFormat($f);
 		$ret .= $hf->getString();
 		}
 	return $ret;
@@ -494,5 +502,16 @@ class HuFormat extends HuError{
 	$this->_realValue = $this->_key;
 	$this->_realValued = true;
 	}#m mod_k
+
+	/**
+	* As we averload getString() without arguments, implementation from HuError
+	* is not suitable. So, overload it as and thown exception (class by autoload) to avoid accidentally usages.
+	* @TODO It is very usefull methods. Consider implementation in the future.
+	**/
+	public function strToFile($format = null){ throw new ClassMethodExistsException('Method strToFile is not exists yet'); }
+	public function strToWeb($format = null){ throw new ClassMethodExistsException('Method strToWeb is not exists yet'); }
+	public function strToConsole($format = null){ throw new ClassMethodExistsException('Method strToConsole is not exists yet'); }
+	public function strToPrint($format = null){ throw new ClassMethodExistsException('Method strToPrint is not exists yet'); }
+	public function strByOutType($type, $format = null){ throw new ClassMethodExistsException('Method strByOutType is not exists yet'); }
 };#c HuFormat
 ?>
