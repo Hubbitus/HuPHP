@@ -28,48 +28,83 @@ protected $__SETS = array();#Сами настройки, массив
 
 	/**
 	* Constructor.
+	*
 	* @param array=null $array
 	**/
 	function __construct(array $array = null){
 		if ($array) $this->mergeSettingsArray($array);
-	}#constructor
+	}#__c
 
+	/**
+	* Set setting by its name.
+	*
+	* @param	string	$name
+	* @param	mixed	$value
+	**/
 	public function setSetting($name, $value){
 	$this->__SETS[$name] = $value;
-	}
+	}#m setSetting
 
-	#ПЕРЕЗАПИСЫВАЕТ ВСЕ настройки. Для изменения отдельных - setSetting
-	#Хорошо было бы это все в setSettings запихать, но перегрузка не поддерживается :(. Что ж, будут разные именаю
+	/**
+	* Rewrite ALL settings. To change only needed - use {@see ::setSetting()} method
+	*
+	* It will be gracefully if we can turn it into {@see ::setSettings()}, but overloading is not supported in PHP :(
+	*
+	* @param	array	$setArr
+	* @return	nothing
+	**/
 	public function setSettingsArray(array $setArr){
 	$this->__SETS = REQUIRED_VAR($setArr);
-	}
+	}#m setSettingsArray
 
-	#ПЕРЕЗАПИСЫВАЕТ УКАЗАННЫЕ настройки. Для изменения отдельных - setSetting
-	#Хорошо было бы это все в setSettings запихать, но перегрузка не поддерживается :(. Что ж, будут разные именаю
+	/**
+	* Rewrite provided settings by its values. To change single setting you may use {@see ::setSetting()}
+	*
+	* It will be gracefully if we can turn it into {@see ::setSettings()}, but overloading is not supported in PHP :(
+	*
+	* @param	array	$setArr
+	**/
 	public function mergeSettingsArray(array $setArr){
 	$this->__SETS = array_merge((array)$this->__SETS, REQUIRED_VAR($setArr));
-	}
+	}#m mergeSettingsArray
 
+	/**
+	* Return requested property by name. For more usefull access see {@see ::__get()} method.
+	*
+	* @param	string	$name
+	* @return	mixed
+	**/
 	public function getProperty($name){
 	return ($this->__SETS[REQUIRED_NOT_NULL($name)]);
-	}
+	}#m getProperty
 
+	/**
+	* Usefull alias of {@see ::getProperty()} to provide easy access in style of $obj->PropertyName
+	*
+	* @param	string	$name
+	* @return	mixed
+	**/
 	function __get($name){
 	return $this->getProperty($name);
-	}
+	}#m __get
 
 	/**
 	* Check isset of requested property. See http://php.net/isset comment of "phpnotes dot 20 dot zsh at spamgourmet dot com"
-	* @param	string	$name	Name of required property
-	* @return boolean
-	*/
+	*
+	* @param	string	$name	Name of requested property
+	* @return	boolean
+	**/
 	public function __isset($name) {
 	return isset($this->__SETS[REQUIRED_NOT_NULL($name)]);
 	}#m __isset
 
 	/**
-	* Возвращает строку, в которую объединены требуемые (по представленному порядку) настройки.
-	* Descriptiopn of elements $fields {@see ::formatField}
+	* Rreturn string in what merget settings by provided format.
+	*
+	* Descriptiopn of elements $fields {@see ::formatField()} method
+	*
+	* @param	array	$fields
+	* @return	string
 	**/
 	public function getString(array $fields){
 	$str = '';
@@ -96,6 +131,8 @@ protected $__SETS = array();#Сами настройки, массив
 	*		а просто, коротко и красиво
 	*		array('tag', '<', '>', '<unknown>'),
 	*		Передаются в макрос NON_EMPTY_STR, см. его для подробностей
+	*
+	* @param	array|string	$field
 	* @return string
 	**/
 	public function formatField($field){
@@ -110,20 +147,22 @@ protected $__SETS = array();#Сами настройки, массив
 
 	/**
 	* Clear all settings
-	* @return $this
-	*/
-	public function clear(){
+	*
+	* @return &$this
+	**/
+	public function &clear(){
 	$this->__SETS = array();
+	return $this;
 	}#m clear
 
 	/**
-	* Number of settings.
+	* Return amount of settings.
+	*
 	* @return integer
 	**/
 	public function length(){
 	return sizeof($this->__SETS);
 	}#m length
-	
 }#c settings
 
 /**
@@ -133,19 +172,29 @@ include_once('macroses/REQUIRED_VAR.php');
 include_once('macroses/REQUIRED_NOT_NULL.php');
 
 #Для удобного наследования
+/**
+* Parent class for more usefull using in parents who want be "customizable"
+**/
 class get_settings{
-//НЕ забыть его где-то инициализировать!!!
+/** WARNING! Must be inicialised in parents! **/
 protected /* settings */ $_sets = null;
 
-	public function &__get ($name){#Переопределяем, чтобы сделать ссылку на настройки не изменяемой!
-	#таким образом настройки менять можно будет, а сменить объект настроек - нет
+	/**
+	* Overload to provide ref on settings object. So, settings will be changable,
+	* but can't be replaced settings object!
+	*
+	* @param <type> $name
+	* @return	mixed
+	**/
+	public function &__get ($name){
 		if ('settings' == $name) return $this->_sets;
-	}#__get
+	}#m __get
 
 	/**
-	* Return settings
+	* Return settings object
+	*
 	* @return	&Object(settings)
-	*/
+	**/
 	public function &sets(){
 	return $this->_sets;
 	}#m sets
