@@ -24,7 +24,7 @@ protected $_var = null;
 	$this->_var =& $var;
 	}
 
-	public function strToConsole($format = nul){
+	public function strToConsole($format = null){
 	return dump::c($this->_var, null, true);
 	}#m strToConsole
 
