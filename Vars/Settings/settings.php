@@ -99,7 +99,7 @@ protected $__SETS = array();#Сами настройки, массив
 	}#m __isset
 
 	/**
-	* Rreturn string in what merget settings by provided format.
+	* Rreturn string in what merged settings by provided format.
 	*
 	* Descriptiopn of elements $fields {@see ::formatField()} method
 	*
