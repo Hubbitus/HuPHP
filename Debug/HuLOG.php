@@ -66,10 +66,11 @@ protected $__SETS = array(
 class HuLOG_text extends HuError{
 	/**
 	* Constructor.
+	*
 	* @param Object(HuLOG_text_settings)|array	$sets	Initial settings.
 	*	If HuLOG_text_settings assigned AS IS, if array MERGED with defaults and overwrite
 	*	presented settings!
-	*/
+	**/
 	public function __construct( /* HuLOG_text_settings | array */ $sets){
 		if (is_array($sets) and !empty($sets)){ #MERGE, NOT overwrite!
 		$this->_sets = new HuLOG_text_settings();
