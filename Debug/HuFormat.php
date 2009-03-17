@@ -17,6 +17,9 @@
 *	- As we averload getString() without arguments, implementation methods
 *		strToFile, strToWeb, strToConsole, strToPrint, strByOutType from HuError
 *		is not suitable. So, overload it as and thown exception (class by autoload) to avoid accidentally usages.
+*
+*	* 2009-03-17 12:56 ver 2.1.1
+*	- Add @example HuFormat.example.php
 **/
 
 include_once('Exceptions/variables.php');
@@ -32,6 +35,10 @@ include_once('System/OS.php');
 
 class HuFormatException extends VariableException{}
 
+/**
+* Class to format different structures.
+* @example HuFormat.example.php
+**/
 class HuFormat extends HuError{
 	/** Replace this in ->_format on real value of _value (after process mod_s) **/
 	const sprintf_var = '__vAr__';
