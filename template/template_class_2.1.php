@@ -1,6 +1,6 @@
 <?
 /**
-* Класс шаблонизатора. Версия 2.1.1
+* Класс шаблонизатора. Версия 2.1.2
 *
 * @Changelog
 *	* Fri Aug 24 2007 Pavel Alexeev <Pahan [ at ] Hubbitus [ DOT ] info>
@@ -8,7 +8,7 @@
 *	- changed defaults for TEMPLATE_TEMPLATES_DIR and TEMPLATE_DEFAULT_SCHEME_DIR
 *
 *	* Птн 27 Апр 2007 15:25:38
-*	В find_path добавил поиск пути в той же директори что и шаблон (а не только класс шаблона)
+*	- В find_path добавил поиск пути в той же директори что и шаблон (а не только класс шаблона)
 *
 *
 *	* Вск 22 Апр 2007 11:24:12
@@ -16,6 +16,9 @@
 *
 *	* 2008-11-04 19:28 ver 2.1 to 2.1.1
 *	- Add method assignFromArray()
+*
+*	* 2009-03-18 08:18 ver 2.1.1 to 2.1.2
+*	- In method ::scheme() fix provide root assigments.
 **/
 
 error_reporting(E_ALL);
@@ -609,6 +612,8 @@ $rega = "#{
 	$this->parse(false);
 
 	$ccl = new template($schemeDir.'/'.$scheme, $this, $this->_top);	#Проверки пути есть в конструкторе
+	//Provide assigments
+	@$schm->assigned[$schm->filename] = (array)$this->assigned[$this->filename];
 	$ccl->replace('<!--<<'.basename($scheme, '.scheme').'>>-->', $this->content_file);
 	$ccl->parse(false);
 
