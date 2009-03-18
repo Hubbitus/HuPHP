@@ -2,11 +2,6 @@
 /**
 * Debug and backtrace toolkit.
 *
-* @package Debug
-* @version 2.1
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-*
 * In call function funcName($currentValue); in any place, in function by other methods available only
 * value of variable $currentValue but name call-time (in this example '$currentValue') - NOT.
 *
@@ -14,7 +9,6 @@
 * Implementation is UGLY - view in source PHP files and parse it, but I NOT known other way!!!
 *
 * In number of array in debug_backtrace().
-*
 *
 *, like this:
 *Array(
@@ -37,6 +31,15 @@
 * 
 * $db[$N]['line'] refer to string with closing call ')' :(.
 * Now search open string number. And then from it string, by function name tokenize all what me need.
+*
+* @package Debug
+* @version 2.1.1
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+*
+* @changelog
+*	* 2009-03-18 17:44 ver 2.1 to 2.1.1
+*	- Make direct call to $this->_regexp->convertOffsetToChars();. It is not called any time cince RegExp_pcre ver 2.2
 **/
 
 	if (!defined('T_ML_COMMENT')) {
@@ -168,7 +171,7 @@ private $_regexp = null;
 
 	$this->_regexp = new RegExp_pcre($rega, $this->_filePhpSrc->getBLOB());
 	$this->_regexp->doMatchAll(PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
-	//c_dump($regexp->getMatches(), 'ALL_matches');
+	$this->_regexp->convertOffsetToChars(PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
 	return $this;
 	}#m findTextCall
 
