@@ -611,13 +611,13 @@ $rega = "#{
 	#Сначала сам распарсим, а потом уже заменим (быстрее по частям поидее)
 	$this->parse(false);
 
-	$ccl = new template($schemeDir.'/'.$scheme, $this, $this->_top);	#Проверки пути есть в конструкторе
+	$schm = new template($schemeDir.'/'.$scheme, $this, $this->_top);	#Проверки пути есть в конструкторе
 	//Provide assigments
 	@$schm->assigned[$schm->filename] = (array)$this->assigned[$this->filename];
-	$ccl->replace('<!--<<'.basename($scheme, '.scheme').'>>-->', $this->content_file);
-	$ccl->parse(false);
+	$schm->replace('<!--<<'.basename($scheme, '.scheme').'>>-->', $this->content_file);
+	$schm->parse(false);
 
-	$this->content_file =& $ccl->content_file;
+	$this->content_file =& $schm->content_file;
 	unset($ccl);
 
 		if (TEMPLATE_GENTIMECALC) $this->gentime = $this->_gentime->stop();
