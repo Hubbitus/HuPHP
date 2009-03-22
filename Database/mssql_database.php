@@ -4,7 +4,7 @@
 * Driver for MSSQL database server
 *
 * @package Database
-* @version 2.1.1
+* @version 2.1.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -15,6 +15,9 @@
 *	* 2009-03-10 07:50 ver 2.1 to 2.1.1
 *	- db_connect often called from constructor. So, object is not istantiated to future cal to it getError()
 *		Now we provide property DBError in it itself as ref to db->Error.
+*
+*	* 2009-03-22 16:13 ver 2.1.1 to 2.1.2
+*	- Add missing global $__MSSQL_Error; in error handling in methods.
 **/
 
 include_once('Database/database.php');
@@ -49,13 +52,15 @@ public $db_type = 'mssql';
 		if (!is_resource($this->db_link)){//Establish connection
 			if (!($this->db_link = @call_user_func($this->db_type.'_'.($this->settings->persistent ? 'p' : '') .'connect', $this->settings->hostname, $this->settings->username, $this->settings->password))){
 			$this->Query = '[' . $this->db_type.'_'.($this->settings->persistent ? 'p' : '') .'connect' . ']';
-				if ($this->settings->DEBUG)
+				if ($this->settings->DEBUG){
+				global $__MSSQL_Error;
 				$this->collectDebugInfo(
 					-1,
 					mssql_get_last_message(),
 					$__MSSQL_Error,
 					debug_backtrace()
 				);
+				}
 
 			// It often called from constructor. So, object is not istantiated to future cal to it getError()
 			$cedbe = new ConnectErrorDBException ($this->Error->settings->TXT_cantConnect);
@@ -88,13 +93,15 @@ public $db_type = 'mssql';
 		}
 		
 		if (!($res=mssql_query($query.($last_id ? ' ; SELECT @@IDENTITY as last_id' : ''), $this->db_link))){
-			if ($this->settings->DEBUG)
+			if ($this->settings->DEBUG){
+			global $__MSSQL_Error;
 			$this->collectDebugInfo(
 				-1,
 				mssql_get_last_message(),
 				$__MSSQL_Error,
 				debug_backtrace()
 			);
+			}
 		throw new QueryFailedDBException($this->Error->settings->TXT_queryFailed);
 		}
 
