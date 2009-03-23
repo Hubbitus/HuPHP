@@ -3,7 +3,7 @@
 * Base file operations.
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @version 1.2.1
+* @version 1.2.2
 *
 * @changelog
 *	* 2008-08-27 ver 1.0 to 1.1
@@ -17,6 +17,9 @@
 *	* 2009-02-26 15:59 ver 1.2 to 1.2.1
 *	- Add in setPath initial initialization of $this->filename in any case! In case if path is relative it will expanded. If not - old
 *	  behaviour it is not initialised!
+*
+*	* 2009-03-23 16:44 ver 1.2.1 to 1.2.2
+*	- Method ::loadContent() changed to @return	&$this;. Full PhpDoc writed.
 **/
 
 include_once('macroses/REQUIRED_VAR.php');
@@ -139,7 +142,19 @@ $this->_linesOffsets = array();
 */
 }#m loadByLines
 
-public function loadContent($use_include_path = false, $resource_context = null, $offset = null, $maxlen = null){
+/**
+* Load full content of file into memmory.
+*
+* If file very big consider read it for example by lines, if task allow it.
+* @todo Split 2 such approach into child classes
+*
+* @param	boolean	$use_include_path
+* @param	resource	$resource_context
+* @param	integer	$offset
+* @param	integer	$maxlen
+* @return	&$this;
+**/
+public function &loadContent($use_include_path = false, $resource_context = null, $offset = null, $maxlen = null){
 $this->checkOpenError(
 	(bool)
 		($maxlen
@@ -151,6 +166,7 @@ $this->checkOpenError(
 );
 $this->lineContent = array();
 $this->_linesOffsets = array();
+return $this;
 }#m loadContent
 
 public function isExists(){
