@@ -10,6 +10,7 @@
 * @changelog
 *	* 2009-03-25 13:51 ver 2.0b
 *	- Initial SPLITTED version. See changelog of file_base.php
+*	- Add method ::lineNo()
 **/
 
 include_once('file_base.php');
@@ -17,6 +18,9 @@ include_once('Vars/VariableStream.php');
 
 class file_read extends file_base{
 private $fd = null;
+
+protected $_line_no = 0; //Current line number. Read only. For getline() access.
+
 	/**
 	* If file opened befor, content will be written in current position of file.
 	* If it wasn't opened - open occured.
@@ -81,8 +85,21 @@ private $fd = null;
 	* @return	string
 	**/
 	public function getline($length = null){
+	++$this->_line_no;
 	return $length ? fgets(REQUIRED_VAR($this->fd), $length) : fgets(REQUIRED_VAR($this->fd));
 	}#m getline
+
+	/**
+	* Return current line number in getline() mode access.
+	*
+	* WARNING! Please keep in mind, it is not provide reliable interface to calculate real lines.
+	* In current implementation by the fact it reflect count of invokes method ::getline() only!!! 
+	*
+	* @return	integer
+	**/
+	function lineNo(){
+	return $this->_line_no;;
+	}#m lineNo
 
 	/**
 	* Return tail of stream as string.
