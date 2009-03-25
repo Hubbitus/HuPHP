@@ -33,13 +33,16 @@
 * Now search open string number. And then from it string, by function name tokenize all what me need.
 *
 * @package Debug
-* @version 2.1.1
+* @version 2.1.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
 *	* 2009-03-18 17:44 ver 2.1 to 2.1.1
 *	- Make direct call to $this->_regexp->convertOffsetToChars();. It is not called any time cince RegExp_pcre ver 2.2
+*
+*	* 2009-03-25 15:03 ver 2.1.1 to 2.1.2
+*	- After split file_base to 2 childs switch there use file_inmem.
 **/
 
 	if (!defined('T_ML_COMMENT')) {
@@ -50,7 +53,7 @@
 
 include_once('Debug/backtrace.php');
 include_once('RegExp/RegExp_pcre.php');
-include_once('Filesystem/file_base.php');
+include_once('Filesystem/file_inmem.php');
 
 class Tokenizer{
 private /* backtraceNode */ $_debugBacktrace = null;
@@ -159,7 +162,7 @@ private $_regexp = null;
 	* @return $this
 	**/
 	protected function findTextCall(){
-	$this->_filePhpSrc = new file_base(REQUIRED_VAR($this->_debugBacktrace->file));
+	$this->_filePhpSrc = new file_inmem(REQUIRED_VAR($this->_debugBacktrace->file));
 	$this->_filePhpSrc->loadContent();
 
 	$rega = '/'

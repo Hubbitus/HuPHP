@@ -22,7 +22,7 @@
 
 include_once('Debug/HuLOG.php');
 include_once('Vars/Settings/settings.php');
-include_once('Filesystem/file_base.php');
+include_once('Filesystem/file_inmem.php');
 include_once('RegExp/RegExp_pcre.php');
 
 include_once('macroses/EMPTY_STR.php');
@@ -45,7 +45,7 @@ protected $__SETS = array(
 	'login'		=> 'conf',
 	'password'	=> '1234',
 
-	'net_transport'=> 'file_base',	#classname
+	'net_transport'=> 'file_inmem',	#classname
 	'user_answer'	=> 'Spasibo, Vasha anketa podniata. Ne zabud\'te obnovit\' stranicu chtobi ubeditsia v etom'
 );
 */
