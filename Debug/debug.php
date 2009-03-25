@@ -1,6 +1,7 @@
 <?
 /**
 * Debug and backtrace toolkit.
+*
 * @package Debug
 * @subpackage Debug
 * @version 2.3.5
