@@ -12,7 +12,7 @@
 *	- Initial SPLITTED version. See changelog of file_base.php
 **/
 
-include('file_base.php');
+include_once('file_base.php');
 include_once('Vars/VariableStream.php');
 
 class file_read extends file_base{

@@ -14,7 +14,7 @@
 *	- Change methods ::setLineSep() and ::checkLoad() to return &$this
 **/
 
-include('file_base.php');
+include_once('file_base.php');
 
 class file_inmem extends file_base{
 private $lineContent = null;
