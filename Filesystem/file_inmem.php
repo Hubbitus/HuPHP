@@ -5,13 +5,16 @@
 * @package Filesystem
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-* @version 2.0b
+* @version 2.0.1b
 *
 * @changelog
 *	* 2009-03-25 13:51 ver 2.0b
 *	- Initial SPLITTED version. See changelog of file_base.php
 *	- Fix few minor bugs (in ::implodeLines(), ::getBLOB())...
 *	- Change methods ::setLineSep() and ::checkLoad() to return &$this
+*
+*	* 2009-03-31 18:14 ver 2.0b to 2.0.1b
+*	- Explicit check "false !==" instead of just casting to bool. So, read zero-length file is also positive result.
 **/
 
 include_once('file_base.php');
@@ -37,7 +40,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	**/
 	public function &loadContent($use_include_path = false, $resource_context = null, $offset = null, $maxlen = null){
 	$this->checkOpenError(
-		(bool)
+		false !==
 			($maxlen
 			?
 			($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset, $maxlen))
