@@ -3,7 +3,7 @@
 * Class to provide OOP interface to array operations.
 *
 * @package Vars
-* @version 1.2.1
+* @version 1.2.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -34,6 +34,9 @@
 *
 *	* 2009-03-10 10:33 ver 1.2 to 1.2.1
 *	- In method push implementation add backward compatability with php <= 5.2.9.
+*
+*	* 2009-04-24 19:57 ver 1.2. to 1.2.2
+*	- Add method ::reduce()
 **/
 
 include_once('Vars/Settings/settings.php');
@@ -281,6 +284,18 @@ const huScheme = 'hu://';
 	public function count(){
 	return count($this->__SETS);
 	}#m count
+
+	/**
+	* Iteratively reduce the array to a single value using a callback function.
+	* @link http://ru.php.net/array_reduce
+	*
+	* @param	callback	$callback
+	* @param	integer	$initial
+	* @return	mixed
+	**/
+	public function reduce($callback, $initial =  0){
+	return array_reduce($this->__SETS, $callback, $initial);
+	}#m reduce
 
 /*##########################################################
 ## From interface Iterator
