@@ -10,6 +10,7 @@
 * @subpackage settings
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @version 1.0.5
 *
 * @changelog
 *	* 2008-05-30 23:19
@@ -18,6 +19,9 @@
 *
 *	* 2009-01-18 14:57 (No version bump)
 *	- Reflect renaming Class.php to HuClass.php
+*
+*	* 2009-05-08 10:37 ver 1.0.4 to 1.0.5
+*	- Add magick ::__set() method
 **/
 
 include_once('macroses/EMPTY_STR.php');
@@ -40,8 +44,9 @@ protected $__SETS = array();#Сами настройки, массив
 	*
 	* @param	string	$name
 	* @param	mixed	$value
+	* @return	&$this
 	**/
-	public function setSetting($name, $value){
+	public function &setSetting($name, $value){
 	$this->__SETS[$name] = $value;
 	}#m setSetting
 
@@ -79,12 +84,23 @@ protected $__SETS = array();#Сами настройки, массив
 	}#m getProperty
 
 	/**
+	* Usefull alias of {@see ::setSetting()} to provide easy access in style of $obj->PropertyName = 'Some new value';
+	*
+	* @param	string	$name
+	* @param	mixed	$value
+	* @return	&$this
+	**/
+	public function &__set($name, $value){
+	return $this->setSetting($name, $value);
+	}#m __set
+
+	/**
 	* Usefull alias of {@see ::getProperty()} to provide easy access in style of $obj->PropertyName
 	*
 	* @param	string	$name
 	* @return	mixed
 	**/
-	function __get($name){
+	public function __get($name){
 	return $this->getProperty($name);
 	}#m __get
 
