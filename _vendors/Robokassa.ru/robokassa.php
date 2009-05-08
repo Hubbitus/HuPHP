@@ -274,7 +274,7 @@ private /* robokassa_sph */ $sph;
 $r = new robokassa(
 	array(
 		'MrchLogin' => 'korda'
-		,'MrchPass1'	=> '5Q/6UwDUd6vAJg'
+		,'MrchPass1'	=> 'my_super_pass'
 		,'OutSum'	=> '777'
 		,'InvId'	=> '123'
 //		,'Desc'		=> 'Super puper order'
@@ -294,5 +294,6 @@ $r = new robokassa(
 
 //$r->testMode();
 //dump::a($r);
-//echo ($r->getPayURL());
+//echo($r->getPayURL());
+//header('Location:' . $r->getPayURL());
 ?>
