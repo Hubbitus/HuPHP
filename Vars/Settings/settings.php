@@ -22,6 +22,7 @@
 *
 *	* 2009-05-08 10:37 ver 1.0.4 to 1.0.5
 *	- Add magick ::__set() method
+*	- return &$this; in ::setSetting() and ::__set() methods now.
 **/
 
 include_once('macroses/EMPTY_STR.php');
@@ -48,6 +49,7 @@ protected $__SETS = array();#Сами настройки, массив
 	**/
 	public function &setSetting($name, $value){
 	$this->__SETS[$name] = $value;
+	return $this;
 	}#m setSetting
 
 	/**
@@ -91,7 +93,8 @@ protected $__SETS = array();#Сами настройки, массив
 	* @return	&$this
 	**/
 	public function &__set($name, $value){
-	return $this->setSetting($name, $value);
+	$this->setSetting($name, $value);
+	return $this;
 	}#m __set
 
 	/**
