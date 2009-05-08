@@ -223,7 +223,13 @@ private /* robokassa_sph */ $sph;
 	parent::setSetting($this->checkNamePossible($name, __METHOD__), $value);
 		switch ($name){
 			case 'Desc':
-			if (strlen($this->$name) > 100) throw new VariableRangeException('Max possible length of "Desc" field can not be greater than 100');
+				if (strlen($this->$name) > 100) throw new VariableRangeException('Max possible length of "Desc" field can not be greater than 100');
+			break;//Desc
+
+			case 'OutSum':
+			//All checks, passes was be done, only direct format value.
+			$this->__SETS[$name] = number_format($value, 2, '.', '');
+			break;//OutSum
 		}
 	}#m setSetting
 
