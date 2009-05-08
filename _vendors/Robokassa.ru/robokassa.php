@@ -266,7 +266,6 @@ private /* robokassa_sph */ $sph;
 	* @return	string
 	**/
 	public function getSignature(){
-	dump::a($this->getString($this->SIGNATURE_FORMAT));
 	return md5( $this->getString($this->SIGNATURE_FORMAT) );
 	}#m getSignature
 }#c robokassa
