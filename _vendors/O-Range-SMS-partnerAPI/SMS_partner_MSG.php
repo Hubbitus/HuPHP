@@ -3,11 +3,13 @@
 * Orange SMS-API ( http://api.o-range.ru/DOCS/ )
 *
 * @package Orange SMS-API
-* @version 1.0.1
+* @version 1.0.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
+*	* 2009-05-17 14:16 ver 1.0.1 to 1.0.2
+*	- Move into _vendors subdir
 **/
 
 class SMS_partner_MSG extends settings{

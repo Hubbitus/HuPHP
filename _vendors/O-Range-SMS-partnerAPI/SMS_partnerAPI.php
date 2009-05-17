@@ -3,7 +3,7 @@
 * Orange SMS-API ( http://api.o-range.ru/DOCS/ )
 *
 * @package Orange SMS-API
-* @version 1.1.1
+* @version 1.1.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -18,6 +18,9 @@
 *
 *	* 2009-03-10 08:23 ver 1.1 to 1.1.1
 *	- Compleatly delete property _db, it is unneded.
+*
+*	* 2009-05-17 14:16 ver 1.1.1 to 1.1.2
+*	- Move into _vendors subdir
 **/
 
 include_once('Debug/HuLOG.php');
@@ -27,7 +30,7 @@ include_once('RegExp/RegExp_pcre.php');
 
 include_once('macroses/EMPTY_STR.php');
 
-include_once('O-Range-SMS-partnerAPI/SMS_partner_MSG.php');
+include_once('_vendors/O-Range-SMS-partnerAPI/SMS_partner_MSG.php');
 include_once('Exceptions/SMS_partnerAPI.php');
 
 /**
