@@ -7,6 +7,7 @@
 	if ( !defined('AUTOINCLUDE_FILE') ) define('AUTOINCLUDE_FILE', '__autoload.map.php');
 	if ( !defined('AUTOLOAD_DEBUG') ) define('AUTOLOAD_DEBUG', false);
 include_once('macroses/IS_SET.php'); //It must be explicit yet
+include_once('System/OS.php');
 /**
 * Magick class autoload function.
 *
@@ -15,6 +16,7 @@ include_once('macroses/IS_SET.php'); //It must be explicit yet
 **/
 //function __load_class($classname){
 function __autoload($classname){
+include_once('System/OS.php');//It must be explicit yet
 	if (
 		is_set('class_file', (array)@$GLOBALS['__CONFIG'][$classname])
 		and
@@ -26,7 +28,6 @@ function __autoload($classname){
 	}
 	else{
 		if (!is_set('__autoload_map', @$GLOBALS['__CONFIG'])){
-		include_once('System/OS.php');
 			if( OS::is_includeable(AUTOINCLUDE_FILE) ){
 			require_once(AUTOINCLUDE_FILE);//Standard
 				if ( AUTOLOAD_DEBUG ) fprintf(STDERR, 'include(AUTOINCLUDE_FILE) [%s]' . "\n", AUTOINCLUDE_FILE);
