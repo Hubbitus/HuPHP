@@ -99,7 +99,7 @@ static public $properties = array(
 	'MrchLogin', 'MrchPass1', 'MrchPass2',  'OutSum', 'InvId', 'Desc', 'SignatureValue', 'IncCurrLabel', 'Culture', 'Encoding', 'Email'
 	,'sph'
 	// auxiliary data
-	,'URL_FORMAT', 'SIGNATURE_FORMAT', 'BASE_URL'
+	,'URL_FORMAT', 'SIGNATURE_FORMAT', 'SIGNATURE_IN_success_FORMAT', 'SIGNATURE_IN_result_FORMAT', 'BASE_URL'
 );
 
 protected $__SETS = array(
@@ -129,7 +129,7 @@ protected $__SETS = array(
 	,'URL_FORMAT'	=> array(
 		'BASE_URL'
 		,array('MrchLogin', 'MrchLogin=')
-		,array('OutSum', '&OutSum=')
+		,array('OutSum_F', '&OutSum=')
 		,array('InvId', '&InvId=')
 		,array('Desc', '&Desc=')
 		,array('SignatureValue', '&SignatureValue=')
@@ -146,6 +146,18 @@ protected $__SETS = array(
 		,array('InvId', '', ':')
 //		,array('Desc', '', ':') By Specification it is not marked as Optional, but in example it is not present!
 		,'MrchPass1'
+		,array('sph:', ':', '', '')
+	)
+	,'SIGNATURE_IN_success_FORMAT'	=> array( //IN signature, to check
+		array('OutSum', '', ':')
+		,array('InvId', '', ':')
+		,'MrchPass1'
+		,array('sph:', ':', '', '')
+	)
+	,'SIGNATURE_IN_result_FORMAT'	=> array( //IN signature, to check
+		array('OutSum', '', ':')
+		,array('InvId', '', ':')
+		,'MrchPass2'
 		,array('sph:', ':', '', '')
 	)
 );
@@ -210,6 +222,10 @@ private /* robokassa_sph */ $sph;
 			return preg_replace('^&', ':', $this->sph);
 			break;
 
+			case 'OutSum_F': //Formated by specification.
+			return number_format($this->__SETS['OutSum'], 2, '.', '');
+			break;//OutSum
+
 			default:
 			return parent::getProperty($name);
 		}
@@ -225,11 +241,6 @@ private /* robokassa_sph */ $sph;
 			case 'Desc':
 				if (strlen($this->$name) > 100) throw new VariableRangeException('Max possible length of "Desc" field can not be greater than 100');
 			break;//Desc
-
-			case 'OutSum':
-			//All checks, passes was be done, only direct format value.
-			$this->__SETS[$name] = number_format($value, 2, '.', '');
-			break;//OutSum
 		}
 	}#m setSetting
 
@@ -241,7 +252,7 @@ private /* robokassa_sph */ $sph;
 	$this->__SETS = array();
 	/**
 	* @internal
-	* For our realisation just foreach all, now we can simple invoke mergeSettingsArray()
+	* For our realization just foreach all, now we can simple invoke mergeSettingsArray()
 	**/
 	$this->mergeSettingsArray($setArr);
 	}#m setSettingsArray
@@ -274,32 +285,50 @@ private /* robokassa_sph */ $sph;
 	public function getSignature(){
 	return md5( $this->getString($this->SIGNATURE_FORMAT) );
 	}#m getSignature
+
+	/**
+	* Calculate IN signature to check in Success request.
+	*
+	* @return	string
+	**/
+	public function getSignatureInSuccess(){
+	return md5( $this->getString($this->SIGNATURE_IN_success_FORMAT) );
+	}#m getSignatureInSuccess
+
+	/**
+	* Calculate IN signature to check in Result request.
+	*
+	* @return	string
+	**/
+	public function getSignatureInResult(){
+	return md5( $this->getString($this->SIGNATURE_IN_result_FORMAT) );
+	}#m getSignatureInResult
 }#c robokassa
 
 /** @example:
-$r = new robokassa(
-	array(
-		'MrchLogin' => 'korda'
-		,'MrchPass1'	=> 'my_super_pass'
-		,'OutSum'	=> '777'
-		,'InvId'	=> '123'
-//		,'Desc'		=> 'Super puper order'
-		,'Desc'		=> 'Description'
-
-		,'IncCurrLabel'	=> 'PCR'	// Yandex-money
-		,'Culture'	=> 'ru'	// Non needed, 'ru' is default value
-		,'Email'	=> 'pupkin@user.ru'
-
-		,'sph'		=> array(
-			'Test1' => 'Test1Value'
-			,'Test2' => 'Test2Value'
-		)
-	)
-);
+* $r = new robokassa(
+*	array(
+*		'MrchLogin' => 'korda'
+*		,'MrchPass1'	=> 'my_super_pass'
+*		,'OutSum'	=> '777'
+*		,'InvId'	=> '123'
+*#		,'Desc'		=> 'Super puper order'
+*		,'Desc'		=> 'Description'
+*
+*		,'IncCurrLabel'	=> 'PCR'	// Yandex-money
+*		,'Culture'	=> 'ru'	// Non needed, 'ru' is default value
+*		,'Email'	=> 'pupkin@user.ru'
+*
+*		,'sph'		=> array(
+*			'Test1' => 'Test1Value'
+*			,'Test2' => 'Test2Value'
+*		)
+*	)
+*);
+*
+*$r->testMode();
+*dump::a($r);
+*echo($r->getPayURL());
+*header('Location:' . $r->getPayURL());
 **/
-
-//$r->testMode();
-//dump::a($r);
-//echo($r->getPayURL());
-//header('Location:' . $r->getPayURL());
 ?>
