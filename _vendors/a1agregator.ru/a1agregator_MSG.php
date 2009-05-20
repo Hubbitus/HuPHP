@@ -12,7 +12,7 @@
 *	- Initial version
 **/
 
-include('macroses/REQUIRED_VAR.php');
+//include('macroses/REQUIRED_VAR.php');
 
 /**
 * @uses BaseException
@@ -37,15 +37,11 @@ protected $__SETS = array(
 	'atatus'	=> 'reply',
 
 	'ANSWER_FORMAT'	=> array(
-	'date', 'msg_trans', 'operator_id', 'user_id', 'smsid', 'cost_rur', 'ran', 'test', 'num', 'country_id', 'skey'
+	
 	),
 );
 
-	/**
-	* @param	array	$array Settings.
-	**/
-	function __construct(array $array){
-	parent::__construct(self::$properties, $array);
+	function __construct(){
 	}#m __c
 }#c a1agregator_MSG_answer
 
@@ -60,8 +56,8 @@ class a1agregator_MSG extends settings_check{
 * @var $operator_id	– числовой идентификатор оператора, в примере 120 (Билайн)
 * @var $user_id	– телефон абонента, отправившего смс, в примере 7909908037
 * @var $smsid		– идентификатор сообщения в системе а1агрегатор, в примере 5094
-* @var $сost_rur	- сумма, которая зачисляется на счет партнера в рублях, в примере 0.54
-* @var $сost		- параметр, определяющий сумму, которая зачисляется на счет партнера в usd, переведенная по курсу последней выплаты, в примере 0.015. Этот параметр носит только информативный характер. Сумма за эту смс при выплате в WMZ будет скорректирована по курсу WM на день выплаты.
+* @var $cost_rur	- сумма, которая зачисляется на счет партнера в рублях, в примере 0.54
+* @var $cost		- параметр, определяющий сумму, которая зачисляется на счет партнера в usd, переведенная по курсу последней выплаты, в примере 0.015. Этот параметр носит только информативный характер. Сумма за эту смс при выплате в WMZ будет скорректирована по курсу WM на день выплаты.
 * @var $test		– необязательный параметр, приходит только при тестовой смс. Если он равен единице значит смс тестовая.
 * @var $num		– короткий номер, на который абонент отправлял запрос, в примере 1121
 * @var $retry		– параметр повтора смс, если равен единице значит смс повторная. При повторной смс все другие параметры дублируют первую непрошедшую смс.
@@ -71,10 +67,12 @@ class a1agregator_MSG extends settings_check{
 * @var $sign		– это последовательность символов, которая кодируется по алгоритму MD5, передается всегда. Последовательность получается путем последовательного соединения параметров:
 *	date, msg_trans, operator_id, user_id, smsid, cost_rur, ran, test, num, country_id, skey
 *	Применяется в целях повышения безопасности.  
+* @var $operator	– Absent in documentation, but present in tests
+* @var $country_id	– Absent in documentation, but present in tests
 **/
 
 static public $properties = array(
-	'date', 'msg', 'msg_trans', 'operator_id', 'user_id', 'smsid', 'сost_rur', 'сost', 'test', 'num', 'retry', 'try', 'ran', 'skey', 'sign'
+	'date', 'msg', 'msg_trans', 'operator_id', 'operator', 'user_id', 'smsid', 'cost_rur', 'cost', 'test', 'num', 'retry', 'try', 'ran', 'skey', 'sign', 'country_id'
 	//auxiliary data
 	,'SIGNATURE_FORMAT'
 );
@@ -85,7 +83,13 @@ protected $__SETS = array(
 	),
 );
 
+/**
+* @var	Object(a1agregator_MSG_answer).
+**/
 private $Answer = null;
+/**
+* @var	string	Right Skey to check
+**/
 private $Skey = null;
 
 #This settings do not clear on call clear() and do not rewrited by setSettingsArray()
@@ -97,7 +101,7 @@ protected $static_settings = array('SIGNATURE_FORMAT');
 	**/
 	function __construct(array $array, $skey){
 	$this->Skey = $skey;
-	parent::__construct(self::$properties, $array);
+	$this->setFromArray($array);
 	}#m __c
 
 	/**
