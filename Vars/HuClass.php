@@ -29,7 +29,14 @@
 *		include_once('macroses/REQUIRED_VAR.php'); moved to method createWithoutLSB (it single who uses this macro)
 **/
 
+/*-inc
 include_once('Exceptions/classes.php');
+*/
+/**
+* @uses REQUIRED_VAR()
+* @uses VariableRequiredException
+* @uses ClassUnknownException
+**/
 
 /**
 * To explicit indicate what value not provided, also Null NOT provided too!
@@ -68,7 +75,7 @@ abstract class HuClass{
 	* @param $directClassName = null - The directy provided class name to instantiate.
 	* @params variable parameters according to class.
 	* @return instance of the reguired new class.
-	* @Throw(VariableRequired)
+	* @Throws(VariableRequiredException)
 	**/
 	static function createWithoutLSB($directClassName /*, Other Params */){
 	include_once('macroses/REQUIRED_VAR.php');

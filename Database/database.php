@@ -18,11 +18,17 @@
 *	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
 **/
 
+/*-inc
 include_once('Vars/Settings/settings.php');
 include_once('Exceptions/database.php');
 include_once('macroses/EMPTY_INT.php');
 
 include_once('Database/DBError.php');
+*/
+/**
+* @uses settings
+* @uses get_settings
+**/
 
 class DB_settings extends settings {
 

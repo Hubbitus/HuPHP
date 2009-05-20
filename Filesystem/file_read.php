@@ -13,8 +13,17 @@
 *	- Add method ::lineNo()
 **/
 
+/*-inc
 include_once('file_base.php');
 include_once('Vars/VariableStream.php');
+*/
+include_once('macroses/REQUIRED_VAR.php');
+/**
+* @uses REQUIRED_VAR()
+* @uses VariableRequiredException
+* @uses file_base
+* @uses VariableStream
+**/
 
 class file_read extends file_base{
 private $fd = null;
@@ -83,6 +92,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	*
 	* @param	integer $length. Optional - maximum length of string. If null - all string returned (by default).
 	* @return	string
+	* @Throws(VariableRequiredException)
 	**/
 	public function getline($length = null){
 	++$this->_line_no;
@@ -93,7 +103,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	* Return current line number in getline() mode access.
 	*
 	* WARNING! Please keep in mind, it is not provide reliable interface to calculate real lines.
-	* In current implementation by the fact it reflect count of invokes method ::getline() only!!! 
+	* In current implementation by the fact it reflect count of invokes method ::getline() only!!!
 	*
 	* @return	integer
 	**/

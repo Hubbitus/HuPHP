@@ -31,7 +31,7 @@ const OUT_TYPE_WAP = 16;
 #const OUT_TYPE_ = 16;
 
 /**
-* Possible return-values of 
+* Possible return-values of
 * http://ru2.php.net/php_sapi_name comment from "cheezy at lumumba dot luc dot ac dot be"
 **/
 static $SAPIs = array(
@@ -91,7 +91,7 @@ static $SAPIs = array(
 	*	Result of check may be also applyable to require()
 	*
 	* @param	string $filenam As it can be passed to include or require.
-	* @return
+	* @return	boolean
 	**/
 	static public function is_includeable($filename){
 		/** is_file, is_readable not suitable, because include_path do not take effect.

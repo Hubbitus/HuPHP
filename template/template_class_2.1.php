@@ -21,6 +21,10 @@
 *	- In method ::scheme() fix provide root assigments.
 **/
 
+/**
+* @uses gentime
+**/
+
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 ini_set('html_errors', true);
@@ -77,7 +81,9 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 
 		#Для времени парсинга
 		if ('TEMPLATE_GENTIMECALC'){
+		/*-inc
 		include_once('Debug/gentime_class.php');
+		*/
 		$this->_gentime = new gentime;
 		$this->_gentime->start();
 		}
@@ -90,7 +96,7 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 				# 2 - Найден, с изменением пути
 				# 4 - НЕ найден вообще, даже с изменением пути
 	$realfile = '';
-				
+
 	#+? Возможно этот поиск везде-везде избыточен, может убрать его для скорости?
 		if (!(is_file($realfile = $subdir.$filename) and is_readable($realfile)))
 			if (is_file($realfile = TEMPLATE_TEMPLATES_DIR.'/'.$subdir.$filename) and is_readable($realfile))
@@ -253,7 +259,7 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 			}
 			else $this->error[] = "WARNING: {$match[3][0]} не является массивом, по элементам которого можно пройти циклом!";
 		break;//foreach
-	
+
 		case 'sql':
 			while ($cvar = $this->assigned[$this->filename][$match[3][0]]->sql_fetch_assoc()){
 			$ccl = new template(false, $this, $this->_top);
@@ -299,7 +305,7 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 				}
 			}
 		break;//for
-	
+
 		case 'distrib':
 			if ($match[4][0] == 'sql'){//Преобразуем в обычный массив
 			$arr = array();//Временный массив
@@ -347,8 +353,8 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 			unset($ccl);
 			}
 		break;//distrib
-		}//switch 
-	
+		}//switch
+
 	$this->result($match[0], $cont_cycle);//Замена собственно на содержимое
 	}#m cycle
 
@@ -380,7 +386,7 @@ $reg = '/
 		if (!$match[3][0]){
 		$match[2][0] = $this->varrrs($this->filename, $match[2][0], true);
 		}
-		
+
 	#Разделяем поэлементно по {when...}
 	$elements = preg_split('/(?:{\/?alt.*?}\s*)|(?:\s*{(when\+?) (.+?)})|(?:\s*({dflt}))/i', $match[0][0], -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
 		#Теперь проходим по всем и ищем нужный элемент
@@ -424,11 +430,11 @@ $reg = '/
 		case 'bool'://Выполнение с приведением к типу BOOL
 		@eval("\$evalute_result = (bool)(".$what.");");
 		break;
-	
+
 		case 'string':
 		eval('$evalute_result = "'.$what.'";');
 		break;
-	
+
 		default:
 		$track_errors = ini_set('track_errors', 1);  #Сохраняем старое, включаем отслеживание
 		$php_errormsg = '';

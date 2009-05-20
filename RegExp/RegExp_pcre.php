@@ -26,7 +26,12 @@
 *		o Make default value for flag parameter ($flags = PREG_OFFSET_CAPTURE), as we have 1 implementation and only this flag have sence
 **/
 
+/*-inc
 include_once('RegExp/RegExp_base.php');
+*/
+/**
+* @uses RegExp_base
+**/
 
 class RegExp_pcre extends RegExp_base {
 const className = 'RegExp_pcre';
@@ -85,8 +90,8 @@ Now automaticaly copy them from Single::create in base constructor
 
 /**
 * Conversion bytes offsets to characters.
-* 
-* Whith PREG_OFFSET_CAPTURE preg_match* returns bytes offset!!!! nor chars!!!! 
+*
+* Whith PREG_OFFSET_CAPTURE preg_match* returns bytes offset!!!! nor chars!!!!
 * So, recalculate it in chars is several methods:
 * 1) Using utf8_decode. See http://ru2.php.net/manual/ru/function.strlen.php
 *	comment "chernyshevsky at hotmail dot com"
@@ -129,7 +134,7 @@ public final function convertOffsetToChars($flags = PREG_OFFSET_CAPTURE){
 * Description see {@link http://php.net/preg_replace}
 * Results cached, so fill free invoke it several times without overhead of replace.
 *
-* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL. 
+* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
 * @return array Results of replace. Cached.
 **/
 public function replace($limit = -1){

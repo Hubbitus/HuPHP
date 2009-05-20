@@ -30,12 +30,23 @@
 *	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
 **/
 
+/*-inc
 include_once('Vars/Settings/settings.php');
-include_once('macroses/EMPTY_VAR.php');
 include_once('Debug/debug.php');
 include_once('System/OS.php');
 include_once('Exceptions/variables.php');
 include_once('Vars/outExtraData.interface.php');
+*/
+include_once('macroses/EMPTY_VAR.php');
+/**
+* @uses EMPTY_VAR()
+* @uses NON_EMPTY_STR()
+* @uses settings
+* @uses debug
+* @uses OS
+* @uses VariableRangeException
+* @uses outExtraData.interface
+**/
 
 class HuError_settings extends settings{
 #Defaults
@@ -281,7 +292,7 @@ public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide form
 			 if(!isset($field[0])) $field = array_values($field);
 		$fieldValue = @$this->{$field[0]};
 		}
-		else{ 
+		else{
 		$field = (array)$field;
 		$fieldValue = EMPTY_VAR(@$this->{$field[0]}, $field[0]); //Setting by name, or it is just text
 		}

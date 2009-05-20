@@ -1,5 +1,10 @@
 <?
+/*-inc
 include_once('Debug/HuLOG.php');#Там константы определены
+*/
+/**
+* @uses HuLOG
+**/
 
 $GLOBALS['__CONFIG']['HuLOG'] = array(
 #	'FILE_PREFIX'		=> 'log_',

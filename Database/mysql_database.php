@@ -19,7 +19,12 @@
 *		Now we provide property DBError in it itself as ref to db->Error.
 **/
 
+/*-inc
 include_once('Database/database.php');
+*/
+/**
+* @uses database
+**/
 
 class mysql_database_settings extends DB_settings {
 
@@ -64,7 +69,7 @@ public $db_type = 'mysql';
 	$this->iconv_query();
 
 		if ($print_query) echo $query.'<br>';
-		
+
 		if (!($res = mysql_query($query, $this->db_link))){
 			if ($this->settings->DEBUG)
 			$this->collectDebugInfo(

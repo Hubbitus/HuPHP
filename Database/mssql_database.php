@@ -20,7 +20,12 @@
 *	- Add missing global $__MSSQL_Error; in error handling in methods.
 **/
 
+/*-inc
 include_once('Database/database.php');
+*/
+/**
+* @uses database
+**/
 
 $__MSSQL_Error = '';#Global variable. I don't known other way :(
 function myErrorHandler($errno, $errstr, $errfile, $errline /*, $errcontext */ ){
@@ -85,13 +90,13 @@ public $db_type = 'mssql';
 		#I don't known other way handle this errors because mssql_get_last_message()
 		#return only last string of error. To other I parse SDERR
 		if ($this->settings->DEBUG){
-			if (! @$this->old_error_handler) 
+			if (! @$this->old_error_handler)
 			$this->old_error_handler = set_error_handler("myErrorHandler");
 			/*ob_start �� �������� � ������, ���� ������ stdout � stderr! */
 		global $__MSSQL_Error;
 		$__MSSQL_Error = '';
 		}
-		
+
 		if (!($res=mssql_query($query.($last_id ? ' ; SELECT @@IDENTITY as last_id' : ''), $this->db_link))){
 			if ($this->settings->DEBUG){
 			global $__MSSQL_Error;

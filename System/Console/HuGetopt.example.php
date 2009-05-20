@@ -1,7 +1,12 @@
 <?
-
+/*-inc
 include_once('Debug/debug.php');
 include ('HuGetopt.php');
+*/
+/**
+* @uses dump
+* @uses HuGetopt
+**/
 
 $argv = array(
   0 => "HuGetopt.php",

@@ -19,14 +19,19 @@
 
 include_once('macroses/REQUIRED_VAR.php');
 include_once('macroses/EMPTY_VAR.php');
-
+/*-inc
 include_once('RegExp/RegExp_pcre.php');
 include_once('Vars/HuArray.php');
 include_once('Vars/Settings/settings_check.php');
 
 include_once('Exceptions/variables.php');
+*/
+/**
+* @uses REQUIRED_VAR()
+* @uses VariableRequiredException
+**/
 
-class HuGetoptArgumentRequiredException extends VariableRequiredException{} 
+class HuGetoptArgumentRequiredException extends VariableRequiredException{}
 
 class HuGetopt_option extends settings_check{
 /**
@@ -50,9 +55,9 @@ class HuGetopt_option extends settings_check{
 	public function __construct(array $possibles, array $array = null){
 	parent::__construct($possibles, $array);
 		foreach (array('Opt', 'Sep', 'Val', '=', 'OptT') as $k){
-			if ( !isset($this->{$k}) ) $this->setSetting($k, new HuArray); 
+			if ( !isset($this->{$k}) ) $this->setSetting($k, new HuArray);
 		}
-	}#m __construct	
+	}#m __construct
 
 	/**
 	* Add parsed option in values HuArrays (Opt, Sep, Val, =, OptT)
@@ -66,7 +71,7 @@ class HuGetopt_option extends settings_check{
 		}
 	return $this;
 	}#m add
-	
+
 }#c HuGetopt_option
 
 /**
@@ -98,7 +103,7 @@ protected $__SETS = array(
 * Adjust PEAR Console_getopt is very difficult, so, write self version.
 *
 * In most casese behaviour this class is same as described in GNU "man 3 getopt", with several exceptions-additionals:
-*	1) Format of incoming options (optstring by GNU man) is different, more flexible allow associate short option with long! 
+*	1) Format of incoming options (optstring by GNU man) is different, more flexible allow associate short option with long!
 *	2) Don't support GNU extension -W
 *	3) Enviroment variable POSIXLY_CORRECT not handled, and behaviour always same as GNU default (first +/- in optstring modes too not handled!!!)
 *	4) Additionly in settings moved 'long_start' ('--') and 'short_start' ('-') and may be changed if you want.
@@ -169,6 +174,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 	*
 	* @param	array	$opts. Options to set.
 	* @return	&$this
+	* @Throws(VariableRequiredException)
 	**/
 	public function &setOpts(array $opts){
 	$this->_optsS = $this->_optsL = $this->_opts = array();
@@ -220,6 +226,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* Main Horse!!! Doing most work.
 	*
 	* @return nothing
+	* @Throws(HuGetoptArgumentRequiredException)
 	**/
 	public function parseArgs(){
 	$this->_nonopts->push($this->currentArg());
@@ -244,7 +251,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 				if (
 					!($o->{'='}->_last_ and ($optarg = $o->Val->_last_) )	//If NOT long option '=' form
 					 and
-					( ( false !== ($optarg = $this->nextArg())) and false === $this->isOpt($optarg) ) //And next NOT arg of current option   
+					( ( false !== ($optarg = $this->nextArg())) and false === $this->isOpt($optarg) ) //And next NOT arg of current option
 					){
 
 					if('::' == $o->Mod){//Mandatory argument for option
@@ -301,14 +308,14 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* Check if arg is short option.
 	*
 	* @param	string	$arg. Arg-string to check
-	* @return	false|Object(HuGetopt_option). In object ->Val NOT filled. For exception see description {@see ::isLongOpt()}   
+	* @return	false|Object(HuGetopt_option). In object ->Val NOT filled. For exception see description {@see ::isLongOpt()}
 	**/
 	public function isShortOpt($arg){
 	$re = new RegExp_pcre(
 		( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->start_short)).')('.implode('|', array_keys($this->_optsS)).')(.*)/s' ),
 		$arg);
 	$re->doMatch();
-	
+
 		if ($re->matchCount()){
 			//Handle sequence of short options without optarguments -otfs.
 			if ($o = $this->getOptByStr($re->match(2), 's') and ':' == $o->Mod ){//Have optarg

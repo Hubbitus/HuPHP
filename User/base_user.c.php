@@ -15,12 +15,19 @@
 *	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
 **/
 
+/*-inc
 include_once('Vars/Settings/settings.php');
-include_once('macroses/EMPTY_VAR.php');
 
 include_once('Database/database_where.php');
-
+*/
+include_once('macroses/EMPTY_VAR.php');
 include_once('template/template_class_2.1.php');
+/**
+* @uses EMPTY_VAR()
+* @uses template
+* @uses database_where
+* @uses settings
+**/
 
 class user_settings extends settings{}
 
@@ -64,7 +71,7 @@ protected $_authorizated = false;
 		exit($tmpl->scheme());
 		}
 		else{//Process authorization
-		
+
 			if (!($autentificate = self::autentificate($data))) throw new UserAuthentificateException('User authentification failed! Wrong Login or Password.');
 		$retUser = new self($sets);
 		$retUser->authorizitaion($autentificate);
@@ -105,7 +112,7 @@ protected $_authorizated = false;
 
 	/**
 	* User logout
-	* 
+	*
 	* @return
 	**/
 	public static function logout(){
@@ -124,7 +131,7 @@ protected $_authorizated = false;
 	public function getLogin(){
 	return $this->_login;
 	}#m getLogin
-	
+
 	public function getLogoBlob(){
 		if (!$this->_foto) $this->_foto = current(Single::def(__db)->query('SELECT Logo FROM Companies WHERE ID = '.$this->getID()));
 	return $this->_foto;

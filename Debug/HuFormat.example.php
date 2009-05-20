@@ -14,8 +14,14 @@
 **/
 
 include('autoload.php');
-include_once('macroses/EMPTY_INT.php');
+/*-inc
 include_once('Vars/huFormatOutExtraData.php');
+*/
+include_once('macroses/EMPTY_INT.php');
+/**
+* @uses EMPTY_INT()
+* @uses huFormatOutExtraData
+**/
 
 $format = array(
 	'FORMAT_CONSOLE'	=> array(

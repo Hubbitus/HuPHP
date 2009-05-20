@@ -17,8 +17,14 @@
 *	- After split file_base to 2 childs switch there use file_inmem.
 **/
 
+include('autoload.php');
+/*-inc
 include_once('../debug.php');
 include_once('Filesystem/file_inmem.php');
+*/
+/**
+* @uses file_inmem
+**/
 
 define('BASE_DIR', '/var/www/_SHARED_/');
 
@@ -35,12 +41,8 @@ $res->appendString('<?
 /** This is automaticaly generated file. Please, do not edit it! **/
 ?>');
 
-//dump::a($includes); dump::a(count($includes)); exit();
-
 	#Backward each
 	for ($i=count($includes); $i>=1 and $inc = $includes[$i]; $i--){
-dump::a($inc);
-// continue;
 		if (!in_array($inc, $filesIncluded)){
 		//Replace all includes and requires on Phar!
 		$file = new file_inmem($inc);

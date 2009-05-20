@@ -13,7 +13,13 @@
 *	less overhead and debag/nodebug handled in one place (in exception class)
 **/
 
+/*-inc
 include_once('Exceptions/variables.php');
+*/
+/**
+* @uses VariableRequiredException
+* @uses backtrace
+**/
 
 /**
 * Thows {@see VariableRequiredException) if !$var ({@link http://ru2.php.net/manual/ru/types.comparisons.php}).
@@ -25,7 +31,7 @@ include_once('Exceptions/variables.php');
 * @param	&mixed	$var	Variable to test.
 * @param	string	$varname	If present, initialise them arg of Tokenizer, else real parse.
 * @return &mixed
-* @Throw(VariableRequiredException)
+* @Throws(VariableRequiredException)
 **/
 function &REQUIRED_VAR(&$var, $varname = null){
 	if (!$var){

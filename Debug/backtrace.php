@@ -26,7 +26,7 @@
 *
 *	* 2008-09-14 21:48 v 2.1.4 to 2.1.5
 *	- Add class-exception BacktraceEmpty
-*	- Add check to non-empty backtrace before formatting it in printout method. Now it may throw BacktraceEmptyException  
+*	- Add check to non-empty backtrace before formatting it in printout method. Now it may throw BacktraceEmptyException
 *
 *	* 2008-09-15 17:34 v 2.1.5 to 2.1.5.1
 *	- Delete some excessive debug comments.
@@ -37,12 +37,26 @@
 *	- Add and implement __toString() method through ::printout()
 **/
 
-include_once('macroses/ASSIGN_IF.php');
-include_once('macroses/EMPTY_VAR.php');
-include_once('macroses/REQUIRED_VAR.php');
+/*-inc
 include_once('Exceptions/classes.php');
 include_once('Exceptions/variables.php');
 include_once('Debug/HuFormat.php');
+*/
+include_once('macroses/ASSIGN_IF.php');
+include_once('macroses/EMPTY_VAR.php');
+include_once('macroses/REQUIRED_VAR.php');
+/**
+* @uses ASSIGN_IF()
+* @uses EMPTY_VAR()
+* @uses REQUIRED_VAR()
+* @uses VariableEmptyException
+* @uses VariableArrayInconsistentException
+* @uses VariableRangeException
+* @uses VariableRequiredException
+* @uses BacktraceEmptyException
+* @uses ClassPropertyNotExistsException
+* @uses HuFormat
+**/
 
 class BacktraceEmptyException extends VariableEmptyException{}
 
@@ -195,6 +209,7 @@ protected $_format;	/** Format to format args to string {@see setArgsFormat} **/
 	*
 	* @param	array	$format
 	* @return	nothing
+	* @Throws(VariableRequiredException)
 	**/
 	public function setArgsFormat($format){
 	$this->_format = REQUIRED_VAR($format);
@@ -208,7 +223,7 @@ protected $_format;	/** Format to format args to string {@see setArgsFormat} **/
 	*		get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::printout']
 	* @param	integer		$OutType	If present - determine type of format from $format (passed or default). Must be index in $format.
 	* @return	string
-	* @Throw(VariableArrayInconsistentException)
+	* @Throws(VariableArrayInconsistentException, VariableRequiredException)
 	**/
 	public function formatArgs($format = null, $OutType = null){
 	$OutType = ((null === $OutType) ? OS::getOutType() : $OutType); #Caching
@@ -295,7 +310,12 @@ protected $_format;
 	* @return	mixed	return auto::a(...)
 	**/
 	public function dump($return = false, $header = '_debug_bactrace()'){
+	/*-inc
 	include_once('Debug/debug.php');
+	*/
+	/**
+	* @uses dump
+	**/
 	return dump::a($this->_bt, $header, $return);
 	}#m dump
 
@@ -326,7 +346,7 @@ protected $_format;
 	* @return	nothing
 	**/
 	public function setNode($N, backtraceNode $node){
-	$this->_bt[ $this->getNumberOfNode($N) ] = $node;	
+	$this->_bt[ $this->getNumberOfNode($N) ] = $node;
 	}#m setNode
 
 	/**
@@ -334,7 +354,7 @@ protected $_format;
  	*	If $N === null set on current node ({@see ::current()}).
 	*	If $N < 0	Negative values to to refer in backward: -2 mean: sizeof(debug_backtrace() - 2)!
 	*		Be carefull value -1 meaning LAST element, not second from end!
-	* 
+	*
 	* @param	integer	$N
 	* @return	integer	Number of requested node.
 	**/
@@ -372,7 +392,7 @@ protected $_format;
 	}#m length
 
 	/**
-	* Find node of bactrace. To match each possible used fnmatch (http://php.net/fnmatch), 
+	* Find node of bactrace. To match each possible used fnmatch (http://php.net/fnmatch),
 	* so all it patterns and syntrax allowed.
 	*
 	* @param	Object(backtraceNode)	$need	Parameters to search:
@@ -391,7 +411,7 @@ protected $_format;
 	**/
 	public function find(backtraceNode $need){
 	$ret = clone $this;
-	
+
 	//Foreach is dangerous, because we delete elements.
 	$ret->rewind();
 		while ($node = $ret->current()){
@@ -422,7 +442,7 @@ protected $_format;
 	*	If null, trying from format set in {@see ::setPrintoutFormat()}, and finaly
 	*		get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::printout']
 	* @param	integer(null)	$OutType	If present - determine type of format from $format (passed or default). Must be index in $format.
-	* @Throw(VariableRequiredException, BacktraceEmptyException)
+	* @Throws(VariableRequiredException, BacktraceEmptyException)
 	**/
 	public function printout($return = false, array $format = null, $OutType = null){
 	$OutType = ((null === $OutType) ? OS::getOutType() : $OutType); #Caching
@@ -463,6 +483,7 @@ protected $_format;
 	*
 	* @param	array	$format
 	* @return	&$this
+	* @Throws(VariableRequiredException)
 	**/
 	public function &setPrintoutFormat($format){
 	$this->_format = REQUIRED_VAR($format);

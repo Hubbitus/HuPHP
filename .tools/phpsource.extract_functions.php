@@ -1,8 +1,17 @@
 #!/usr/bin/php
 <?
+include('autoload.php');
+
+/*-inc
 include_once('Debug/debug.php');
 include_once('RegExp/RegExp_pcre.php');
 #sed#include_once('Vars/HuArray.php');
+*/
+/**
+* @uses HuClass
+* @uses RegExp_pcre
+* @uses HuArray
+**/
 
 $_skip_functions = array(
 	'myErrorHandler'		# In mssql_database to catch errors. Hack
@@ -31,8 +40,6 @@ $_skip_functions = array(
 $source = file_get_contents(($inputfile = isset($argv[1]) ? $argv[1] : 'php://stdin')); #$argv[2] optionnaly part of DIRm which must be stripped
 $tokens = token_get_all($source);
 
-//dump::a($source, 'Original:');
-
 $class_started = false;
 $curly_open = 0;
 
@@ -46,7 +53,6 @@ foreach ($tokens as $token){
 //	$token['const_mame'] = array_keys(consts::getNameByValue($token[0], '', '/^T_/', false));
 ////	$token['const_mame'] = token_name($token[0]);
 //	}
-//dump::a($token);
 
 	if (is_string($token)){// simple 1-character token
 		if ( '{' == $token ){ #All in code
@@ -97,10 +103,8 @@ foreach ($tokens as $token){
 		}
 	}
 }
-//dump::a($res);exit();
 //Echo only function names. one per line
 //RegExp for function name got from (in Russian is absent): http://ru.php.net/manual/en/functions.user-defined.php
-//dump::a(classCreate('RegExp_pcre', '#function\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)->doMatchAll()->getHuMatches(1));
 $m = classCreate('RegExp_pcre', '#function\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)
 		->doMatchAll()
 		->getHuMatches(1)

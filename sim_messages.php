@@ -7,10 +7,18 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
+/*-inc
 include_once('Debug/debug.php');
 include_once('Vars/VariableStream.php');
 include_once('macroses/EMPTY_STR.php');
 include_once('System/Process.php');
+*/
+/**
+* @uses debug
+* @uses VariableStream
+* @uses NON_EMPTY_STR()
+* @uses Process
+**/
 
 class sim_message {
 private $type;

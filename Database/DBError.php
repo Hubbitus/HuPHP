@@ -9,7 +9,12 @@
  * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
  */
 
+/*-inc
 include_once('Debug/HuError.php');
+*/
+/**
+* @uses HuError
+**/
 
 class DBError extends HuError{
 	/**

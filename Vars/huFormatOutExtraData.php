@@ -15,8 +15,14 @@
 *	- Initial version.
 **/
 
+/*-inc
 include_once('Debug/HuFormat.php');
 include_once('Vars/commonOutExtraData.php');
+*/
+/**
+* @uses HuFormat
+* @uses commonOutExtraData
+**/
 
 /**
 * Class to provide easy wrapper aroun HuFormat for anywhere usage.

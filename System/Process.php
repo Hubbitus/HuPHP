@@ -1,6 +1,7 @@
 <?
 /**
 * Manipulate processes on *NIX-like systems.
+*
 * @package Process
 * @version 2.0b
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
@@ -8,10 +9,14 @@
 * Base idea got from http://www.php.net/manual/ru/function.proc-open.php
 **/
 
-include_once('Debug/log_dump.php');
+include_once('Debug/log_dump.php'); //Function used. Must be included explicit.
 
-//class ProcessException extends Exception{};
+/*-inc
 include_once('Exceptions/process.php');
+*/
+/**
+* @uses ProcessException
+**/
 
 /* Aka struct of data */
 class Process_state{

@@ -17,18 +17,28 @@
 *	* Modify include_once('charset_convert.php'); to include_once('Vars/Strings/Charset/charset_convert.class.php');
 **/
 
+/*-inc
 include_once('Vars/Strings/Charset/charset_convert.class.php');
+*/
+/**
+* @uses REQUIRED_VAR()
+* @uses VariableRequiredException
+* @uses charset_convert
+* @uses charset_convert_exception
+**/
+include_once('macroses/REQUIRED_VAR.php');
 
-class iconv_charset_convert extends charset_convert {
+class iconv_charset_convert extends charset_convert{
 	/**
 	* Constructor. All as parent
 	**/
 	public function __construct($text, $inEnc = null, $outEnc = 'UTF-8'){
 	parent::__construct($text, $inEnc, $outEnc);
 	}#m __construct()
-	
+
 	/**
-	* @inherit
+	* @inheritdoc
+	* @Throws(charset_convert_exception, VariableRequiredException)
 	**/
 	public function convert(){
 	REQUIRED_VAR($this->_in, 'InEncoding');
@@ -47,7 +57,7 @@ class iconv_charset_convert extends charset_convert {
 		if ($oldErrorHandler) set_error_handler( $oldErrorHandler );
 		elseif (is_null($oldErrorHandler)) restore_error_handler();
 
-		//Processing	
+		//Processing
 		if ($this->_charset_convert_Errors){
 //		dump::a($this->_charset_convert_Errors);
 		$ttt = $this->_charset_convert_Errors; //Local buffer

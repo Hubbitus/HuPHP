@@ -12,7 +12,12 @@
 *	- Add ClassUnknownException
 **/
 
-include_once('Exceptions/BaseException.php');
+/*-inc
+require_once('Exceptions/BaseException.php');
+*/
+/**
+* @uses BaseException
+**/
 
 class ClassException extends BaseException{}
 

@@ -30,9 +30,16 @@
 *	- include_once('Vars/HuConfig.class.php') added additional dependency.
 **/
 
+/*-inc
 include_once('Exceptions/classes.php');
 include_once('System/OS.php');# For OS::is_includeable()
 include_once('Vars/HuConfig.class.php');
+*/
+/**
+* @uses OS
+* @uses HuConfig
+* @uses ClassNotExistsException
+**/
 
 /**
 * Example from http://ru2.php.net/manual/ru/language.oop5.patterns.php
@@ -86,7 +93,7 @@ private static $instance = array();
 	}#m def
 
 	/**
-	* Try include 
+	* Try include
 	* @deprecated Use autoload instead.
 	*
 	*

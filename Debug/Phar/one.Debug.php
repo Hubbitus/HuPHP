@@ -127,7 +127,7 @@ $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']['argtypes']['array']
 	= array('E:::', '\'Array(\'.count($var).\')\'');
 
 $GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_BROWSER]		=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB'];
-$GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_CONSOLE]		=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']; 
+$GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_CONSOLE]		=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE'];
 $GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_FILE]			=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE'];
 ?><?
 /**
@@ -711,7 +711,7 @@ public $paireddelimeters = array(
 
 	/**
 	* Aka __construct, but for static call.
-	* 
+	*
 	* Primarly needed to create object of future defined class in base (see getMatch method)
 	* Derived from HuClass::create
 	*
@@ -755,6 +755,7 @@ public $paireddelimeters = array(
 	*
 	* @param string|array	$regexp
 	* @return &$this
+	* @Throws(VariableIsNullException)
 	**/
 	public function &setRegExp($regexp){
 	$this->RegExp = REQUIRED_NOT_NULL($regexp);
@@ -905,7 +906,7 @@ public $paireddelimeters = array(
 	/**
 	* Description see {@link http://php.net/preg_replace}
 	*
-	* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL. 
+	* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
 	* @return mixed	Replaced value.
 	**/
 	abstract public function replace($limit = -1);
@@ -914,7 +915,7 @@ public $paireddelimeters = array(
 	* Split by regexp. Results as usual in matches.
 	*
 	* @since Version 2.1.1
-	* 
+	*
 	* @param int(-1)	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
 	* @param int(null)	$flags Flags for the operation.
 	* @return &$this
@@ -948,7 +949,7 @@ public $paireddelimeters = array(
 	* @return Object(HuArray) of last matches.
 	**/
 	public function getHuMatches($n = null){
-	
+
 	return new HuArray($this->getMatches($n));
 	}#m getHuMatches
 }#c RegExp_base_base
@@ -1078,8 +1079,8 @@ Now automaticaly copy them from Single::create in base constructor
 
 /**
 * Conversion bytes offsets to characters.
-* 
-* Whith PREG_OFFSET_CAPTURE preg_match* returns bytes offset!!!! nor chars!!!! 
+*
+* Whith PREG_OFFSET_CAPTURE preg_match* returns bytes offset!!!! nor chars!!!!
 * So, recalculate it in chars is several methods:
 * 1) Using utf8_decode. See http://ru2.php.net/manual/ru/function.strlen.php
 *	comment "chernyshevsky at hotmail dot com"
@@ -1122,7 +1123,7 @@ public final function convertOffsetToChars($flags = PREG_OFFSET_CAPTURE){
 * Description see {@link http://php.net/preg_replace}
 * Results cached, so fill free invoke it several times without overhead of replace.
 *
-* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL. 
+* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
 * @return array Results of replace. Cached.
 **/
 public function replace($limit = -1){
@@ -1161,7 +1162,7 @@ return $this;
 * @changelog
 *	* 2008-09-22 17:55 ver 1.1 to 1.1.1
 *	* Add majority this phpdoc header.
-*	- Change 
+*	- Change
 *
 *	* 2009-02-27 15:08 ver 1.1.1 to 1.1.2
 *	- Some minor fixes in comments.
@@ -1175,7 +1176,7 @@ return $this;
 *	- Add metchod ::count()
 *
 *	* 2009-03-06 15:29 ver 1.1.4 to 1.1.5
-*	- Change 
+*	- Change
 *
 *	* 2009-03-08 15:31 ver 1.1.5 to 1.2
 *	- Add method {@see ::hu()}.
@@ -1266,7 +1267,7 @@ const huScheme = 'hu://';
 	* @param	integer	$length
 	*	Если в эту функцию передан положительный параметр length, последовательность будет включать length элементов. Если в эту функцию передан отрицательный параметр length, в последовательность войдут все элементы исходного массива, начиная с позиции offset и заканчивая позицией, отстоящей на length элементов от конца. Если этот параметр будет опущен, в последовательность войдут все элементы исходного массива, начиная с позиции offset.
 	* @param	boolean	$preserve_keys
-	*	Обратите внимание, поумолчанию сбрасываются ключи массива. Можно переопределить это поведение, установив параметр preserve_keys в TRUE. 
+	*	Обратите внимание, поумолчанию сбрасываются ключи массива. Можно переопределить это поведение, установив параметр preserve_keys в TRUE.
 	* @return Object(HuArray)
 	**/
 	public function getSlice($offset, $length = null, $preserve_keys = false){
@@ -1294,7 +1295,7 @@ const huScheme = 'hu://';
 	**/
 	function &__get($name){
 		/**
-		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference: 
+		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
 		if ('_last_' == $name) return $this->last();
@@ -1342,7 +1343,7 @@ const huScheme = 'hu://';
 	**/
 	function __set($name, $value){
 		/**
-		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference: 
+		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
 		if ('_last_' == $name){
@@ -1475,13 +1476,13 @@ const huScheme = 'hu://';
 *	 in case when it defined and used in one class is it correct.
 *
 *	* 2008-09-22 17:44 ver 1.0.1 to 1.0.2
-*	- Change 
+*	- Change
 *
 *	* 2009-03-01 14:55 ver 1.0.2 to 1.0.3
 *	- Method checkNamePossible() changed from private to protected (Primarly for Config class)
 *
 *	* 2009-03-06 15:29 ver 1.0.3 to 1.0.4
-*	- Change 
+*	- Change
 *
 *	* 2009-03-10 04:24 ver 1.0.4 to 1.0.5
 *	- Add method ::addSetting()
@@ -1517,9 +1518,9 @@ static public $properties = array();
 
 	/**
 	* Add setting vith value in possible settings.
-	* 
+	*
 	* @param	string	$name
-	* @param	mixed	$value 
+	* @param	mixed	$value
 	* @return	nothing
 	**/
 	public function addSetting($name, $value){
@@ -1553,7 +1554,7 @@ static public $properties = array();
 	array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
 	parent::mergeSettingsArray($setArr);
 	}#m mergeSettingsArray
-	
+
 	/**
 	* Check if name is possible, and Throw(ClassPropertyNotExistsException) if not.
 	* @param	string	$name. Name to check.
@@ -1582,7 +1583,7 @@ static public $properties = array();
 *	- Initial version
 *
 *	* 2009-03-06 15:29 ver 0.1 to 0.2
-*	- Change 
+*	- Change
 *
 *	* 2009-03-09 05:31 ver 0.2 to 0.3
 *	- Add optional parameter $className to CONF() function!
@@ -1812,7 +1813,7 @@ private static $instance = array();
 	}#m def
 
 	/**
-	* Try include 
+	* Try include
 	* @deprecated Use autoload instead.
 	*
 	*
@@ -1976,7 +1977,7 @@ const OUT_TYPE_WAP = 16;
 #const OUT_TYPE_ = 16;
 
 /**
-* Possible return-values of 
+* Possible return-values of
 * http://ru2.php.net/php_sapi_name comment from "cheezy at lumumba dot luc dot ac dot be"
 **/
 static $SAPIs = array(
@@ -2180,7 +2181,7 @@ abstract class HuClass{
 	* @Throw(VariableRequired)
 	**/
 	static function createWithoutLSB($directClassName /*, Other Params */){
-	
+
 	$reflectionObj = new ReflectionClass(REQUIRED_VAR($directClassName));
 	$args = func_get_args();//0 argument - $directClassName
 		// use Reflection to create a new instance, using the array of args
@@ -2533,7 +2534,7 @@ protected /* settings */ $_sets = null;
 *		* Replace construction ($var ?: "text") with macros EMPTY_STR
 *
 *	* 2008-05-25 17:26
-*	- Change 
+*	- Change
 *
 *	* 2009-03-05 10:32 ver 2.0b to 2.0
 *	- Reformat all PHPdocs
@@ -2546,7 +2547,7 @@ protected /* settings */ $_sets = null;
 *	- Delete now unused ExtraData class. Instead it implemented (in separate file) commonOutExtraData.
 *
 *	* 2009-03-06 15:29 ver 2.1.2 to 2.1.3
-*	- Change 
+*	- Change
 **/
 
 
@@ -2800,7 +2801,7 @@ public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide form
 			 if(!isset($field[0])) $field = array_values($field);
 		$fieldValue = @$this->{$field[0]};
 		}
-		else{ 
+		else{
 		$field = (array)$field;
 		$fieldValue = EMPTY_VAR(@$this->{$field[0]}, $field[0]); //Setting by name, or it is just text
 		}
@@ -2911,7 +2912,7 @@ class HuFormat extends HuError{
 	* Constructor
 	*
 	* {@see ::set()}
-	*	Be careful - you should explicit provide value like false (invoke as __construct(null, $t = false) for example, because 2d parameter is reference). Otherwise default value null means - using $this as value! 
+	*	Be careful - you should explicit provide value like false (invoke as __construct(null, $t = false) for example, because 2d parameter is reference). Otherwise default value null means - using $this as value!
 	**/
 	public function __construct(array $format = null, &$value = null, $key = null){
 	$this->set($format, $value, $key);
@@ -2953,7 +2954,7 @@ class HuFormat extends HuError{
 	* Set value
 	*
 	* @param	&mixed	$value.	Value to format.
-	*	If === null $this->_value =& $this; $this->_realValue =& $this->_value; 	 
+	*	If === null $this->_value =& $this; $this->_realValue =& $this->_value;
 	* @return &$this
 	**/
 	public function &setValue(&$value){
@@ -3142,7 +3143,7 @@ class HuFormat extends HuError{
 	/**
 	* Set Modifiers.
 	*
-	* @param integer	$mods. Modifiers to set. 
+	* @param integer	$mods. Modifiers to set.
 	* @return &$this
 	**/
 	public function &setMods($mods){
@@ -3440,7 +3441,7 @@ private $tok_ = null;
 		if (!$this->tok_){
 			if (!class_exists('Tokenizer')){
 				if(@$__CONFIG['debug']['parseCallParam'] or !@NO_DEBUG){
-				
+
 				}
 			}
 
@@ -3495,7 +3496,7 @@ class VariableArrayInconsistentException extends VariableException{}
 * @param	&mixed	$var	Variable to test.
 * @param	string	$varname	If present, initialise them arg of Tokenizer, else real parse.
 * @return &mixed
-* @Throw(VariableRequiredException)
+* @Throws(VariableRequiredException)
 **/
 function &REQUIRED_VAR(&$var, $varname = null){
 	if (!$var){
@@ -3579,7 +3580,7 @@ function ASSIGN_IF(&$var, &$value){
 *
 *	* 2008-09-14 21:48 v 2.1.4 to 2.1.5
 *	- Add class-exception BacktraceEmpty
-*	- Add check to non-empty backtrace before formatting it in printout method. Now it may throw BacktraceEmptyException  
+*	- Add check to non-empty backtrace before formatting it in printout method. Now it may throw BacktraceEmptyException
 *
 *	* 2008-09-15 17:34 v 2.1.5 to 2.1.5.1
 *	- Delete some excessive debug comments.
@@ -3848,7 +3849,7 @@ protected $_format;
 	* @return	mixed	return auto::a(...)
 	**/
 	public function dump($return = false, $header = '_debug_bactrace()'){
-	
+
 	return dump::a($this->_bt, $header, $return);
 	}#m dump
 
@@ -3879,7 +3880,7 @@ protected $_format;
 	* @return	nothing
 	**/
 	public function setNode($N, backtraceNode $node){
-	$this->_bt[ $this->getNumberOfNode($N) ] = $node;	
+	$this->_bt[ $this->getNumberOfNode($N) ] = $node;
 	}#m setNode
 
 	/**
@@ -3887,7 +3888,7 @@ protected $_format;
  	*	If $N === null set on current node ({@see ::current()}).
 	*	If $N < 0	Negative values to to refer in backward: -2 mean: sizeof(debug_backtrace() - 2)!
 	*		Be carefull value -1 meaning LAST element, not second from end!
-	* 
+	*
 	* @param	integer	$N
 	* @return	integer	Number of requested node.
 	**/
@@ -3925,7 +3926,7 @@ protected $_format;
 	}#m length
 
 	/**
-	* Find node of bactrace. To match each possible used fnmatch (http://php.net/fnmatch), 
+	* Find node of bactrace. To match each possible used fnmatch (http://php.net/fnmatch),
 	* so all it patterns and syntrax allowed.
 	*
 	* @param	Object(backtraceNode)	$need	Parameters to search:
@@ -3944,7 +3945,7 @@ protected $_format;
 	**/
 	public function find(backtraceNode $need){
 	$ret = clone $this;
-	
+
 	//Foreach is dangerous, because we delete elements.
 	$ret->rewind();
 		while ($node = $ret->current()){
@@ -4130,7 +4131,7 @@ protected $_format;
 *	[line] => 22
 *	[function] => REQUIRED_VAR
 *	[args] => Array(
-*		[0] => 
+*		[0] =>
 *		)
 *)
 *
@@ -4139,10 +4140,10 @@ protected $_format;
 * 	$ttt[0]
 * 	,$ttt['qaz']
 * 				,tttt(),
-*				
+*
 *				"exampleFunc() call")
 * ;
-* 
+*
 * $db[$N]['line'] refer to string with closing call ')' :(.
 * Now search open string number. And then from it string, by function name tokenize all what me need.
 *
@@ -4396,7 +4397,7 @@ private $_regexp = null;
 			else{
 			//c_dump(token_name($token[0]));
 				switch($token[0]){
-				case T_COMMENT: 
+				case T_COMMENT:
 				case T_ML_COMMENT:	// we've defined this
 				case T_DOC_COMMENT:	// and this
 					if (!$stripComments) $this->addToArg($token[1]);
@@ -4619,7 +4620,7 @@ class dump_utils{
 *	- Add bacward-capability function implementation of function spl_object_hash() if it is not exists.
 *
 *	* 2009-01-30 15:10 ver 2.3.4 to 2.3.5
-*	- Add 
+*	- Add
 *	- All checks to $__CONFIG values replaced by call call to macros {@see ISSET_VAR}.
 *		Full explanation reason of it see in description of macros {@see ISSET_VAR}
 **/
@@ -4670,8 +4671,8 @@ define ('NO_DEBUG', false);
 	}
 
 	if (ISSET_VAR($GLOBALS['__CONFIG']['debug']['parseCallParam'])){
-	
-	
+
+
 	}
 
 /**
@@ -4764,7 +4765,7 @@ class dump extends dump_utils{
 	* @return string|void	Depend of parameter $return
 	**/
 	static public function log($var, $header = false, $return = true){
-	
+
 	return log_dump($var, $header, $return);
 	}#m log
 
@@ -4882,7 +4883,7 @@ class dump extends dump_utils{
 	* @Throw(VariableRangeException)
 	**/
 	public static function byOutType($type, $var, $header = false, $return = false){
-	
+
 		switch ($type){
 		case OS::OUT_TYPE_BROWSER:
 		return self::w($var, $header, $return);
@@ -4906,7 +4907,7 @@ class dump extends dump_utils{
 		break;
 
 		default:
-		
+
 		throw new VariableRangeException('$type MUST be one of: OS::OUT_TYPE_BROWSER, OS::OUT_TYPE_CONSOLE, OS::OUT_TYPE_FILE or OS::OUT_TYPE_PRINT!');
 		}
 	}#m byOutType

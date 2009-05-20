@@ -1,6 +1,13 @@
 <?
+/*-inc
 include('Debug/debug.php');
 include('macroses/MultipleInheritance.php');
+*/
+include('autoload.php');
+/**
+* @uses inherits_from()
+* @uses dump
+**/
 
 //Class names and inheritance
 class A{

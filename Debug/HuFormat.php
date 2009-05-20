@@ -22,16 +22,29 @@
 *	- Add @example HuFormat.example.php
 **/
 
+/*-inc
 include_once('Exceptions/variables.php');
 
 include_once('Debug/HuError.php');
+include_once('Vars/Singleton.php');
+include_once('System/OS.php');
+*/
 include_once('macroses/EMPTY_STR.php');
 include_once('macroses/ASSIGN_IF.php');
 include_once('macroses/REQUIRED_VAR.php');
-
-include_once('Vars/Singleton.php');
-
-include_once('System/OS.php');
+/**
+* @uses EMPTY_STR()
+* @uses ASSIGN_IF()
+* @uses REQUIRED_VAR()
+*
+* @uses VariableException
+* @uses VariableRangeException
+* @uses VariableRequiredException
+*
+* @uses HuError
+* @uses Single
+* @uses OS
+**/
 
 class HuFormatException extends VariableException{}
 
@@ -95,7 +108,7 @@ class HuFormat extends HuError{
 	* Constructor
 	*
 	* {@see ::set()}
-	*	Be careful - you should explicit provide value like false (invoke as __construct(null, $t = false) for example, because 2d parameter is reference). Otherwise default value null means - using $this as value! 
+	*	Be careful - you should explicit provide value like false (invoke as __construct(null, $t = false) for example, because 2d parameter is reference). Otherwise default value null means - using $this as value!
 	**/
 	public function __construct(array $format = null, &$value = null, $key = null){
 	$this->set($format, $value, $key);
@@ -137,7 +150,7 @@ class HuFormat extends HuError{
 	* Set value
 	*
 	* @param	&mixed	$value.	Value to format.
-	*	If === null $this->_value =& $this; $this->_realValue =& $this->_value; 	 
+	*	If === null $this->_value =& $this; $this->_realValue =& $this->_value;
 	* @return &$this
 	**/
 	public function &setValue(&$value){
@@ -297,7 +310,7 @@ class HuFormat extends HuError{
 	*
 	* @param string	$modstr	String of modifiers.
 	* @return &$this
-	* @Throw(VariableRequiredException)
+	* @Throws(VariableRequiredException)
 	**/
 	protected function &setModsStr($modstr){
 	$this->_modStr = REQUIRED_VAR($modstr);
@@ -326,7 +339,7 @@ class HuFormat extends HuError{
 	/**
 	* Set Modifiers.
 	*
-	* @param integer	$mods. Modifiers to set. 
+	* @param integer	$mods. Modifiers to set.
 	* @return &$this
 	**/
 	public function &setMods($mods){

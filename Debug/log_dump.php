@@ -10,7 +10,11 @@
 * @created 2008-05-29 17:35
 **/
 
-include_once('Debug/dump_utils.php');
+include_once('Debug/dump_utils.php'); //Function used. Must be included explicit.
+/**
+* @uses log_dump()
+**/
+
 /**
 * Log dump. Useful to return string for file-write.
 *
@@ -30,7 +34,7 @@ $ret .= dump_utils::transformCorrect_print_r(print_r($var, true))."\n";
 
 	if (
 		!class_exists('dump')
-		or 
+		or
 			(
 			!defined('DUMP_DO_NOT_DEFINE_STUMP_DUMP')
 			and DUMP_DO_NOT_DEFINE_STUMP_DUMP

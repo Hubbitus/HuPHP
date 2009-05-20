@@ -15,8 +15,14 @@
 *	* Assign @package Vars and turn current charset_convert to @subpackage
 **/
 
+/*-inc
 include_once('Exceptions/Strings/charset/charset_convert_exception.php');
+*/
 include_once('macroses/REQUIRED_VAR.php');
+/**
+* @uses REQUIRED_VAR()
+* @uses VariableRequiredException
+**/
 
 abstract class charset_convert{
 protected $_in = null;
@@ -30,6 +36,7 @@ protected $_resText = null;
 	* @param string $text
 	* @param string $inEnc
 	* @param string $outEnc='UTF-8'
+	* @Throws(VariableRequiredException)
 	**/
 	public function __construct($text, $inEnc = null, $outEnc = 'UTF-8'){
 	$this->setInEnc($inEnc);

@@ -1,7 +1,14 @@
 <?
+/*-inc
 //include ('../includes/db.php');
 include_once('debug_NEW.php');
 include_once('Exceptions/filesystem.php');
+*/
+/**
+* @uses dump
+* @uses BaseException
+* @uses FilesystemException
+**/
 
 //Собственный класс для исключений
 class ImageException extends BaseException{
@@ -100,7 +107,7 @@ public $UPLcheck = array(
 	$this->resize($this,0,0,0,0,$dst_width,$dst_height);
 	}#m preview
 
-	#Будем разбирать заданный цвет для данного изображения, его 
+	#Будем разбирать заданный цвет для данного изображения, его
 	#НЕОБХОДИМО получать для конкретного изображения:
 	#imagecolorallocate() must be called to create each color that is to be used in the image represented by image
 	#Входить может так: AABBCC, #aabbcc, #AABBCC, aabbcc если в HEX
@@ -112,7 +119,7 @@ public $UPLcheck = array(
 		switch (strlen($color)){
 		case 7:
 		$color = substr($color, 1, 6);
-		
+
 		case 6:
 		$col = str_split($color, 2);
 		$col[0] = hexdec($col[0]);

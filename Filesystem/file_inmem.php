@@ -17,7 +17,14 @@
 *	- Explicit check "false !==" instead of just casting to bool. So, read zero-length file is also positive result.
 **/
 
+/*
 include_once('file_base.php');
+*/
+/**
+* @uses REQUIRED_VAR
+* @uses VariableRequiredException
+* @uses file_base
+**/
 
 class file_inmem extends file_base{
 private $lineContent = null;
@@ -65,6 +72,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	/**
 	* Partial write not supported, reset full string to resplit by lines it in future.
 	* @inheritdoc
+	* @Throws(VariableRequiredException)
 	**/
 	public function &appendString($string){
 	return $this->setContentFromString($this->content . REQUIRED_VAR($string));

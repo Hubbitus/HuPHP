@@ -34,10 +34,17 @@
 *	- Fix setTextRef, to set ref, not copy :)
 **/
 
+/*-inc
+include_once('Vars/HuClass.php');	#For method "create"
+*/
 include_once('macroses/EMPTY_STR.php');
 include_once('macroses/REQUIRED_NOT_NULL.php');
-
-include_once('Vars/HuClass.php');	#To method "create"
+/**
+* @uses REQUIRED_NOT_NULL()
+* @uses VariableIsNullException
+* @uses HuClass
+* @uses HuArray
+**/
 
 abstract class RegExp_base_base extends HuClass{
 #MUST be defined properly in childs
@@ -64,7 +71,7 @@ public $paireddelimeters = array(
 
 	/**
 	* Aka __construct, but for static call.
-	* 
+	*
 	* Primarly needed to create object of future defined class in base (see getMatch method)
 	* Derived from HuClass::create
 	*
@@ -108,6 +115,7 @@ public $paireddelimeters = array(
 	*
 	* @param string|array	$regexp
 	* @return &$this
+	* @Throws(VariableIsNullException)
 	**/
 	public function &setRegExp($regexp){
 	$this->RegExp = REQUIRED_NOT_NULL($regexp);
@@ -129,6 +137,7 @@ public $paireddelimeters = array(
 	*
 	* @param string	$text
 	* @return &$this
+	* @Throws(VariableIsNullException)
 	**/
 	public function &setText($text){
 	$this->sourceText = REQUIRED_NOT_NULL($text);
@@ -153,6 +162,7 @@ public $paireddelimeters = array(
 	*
 	* @param string|array	$text
 	* @return &$this
+	* @Throws(VariableIsNullException)
 	**/
 	public function &setReplaceTo($text){
 	$this->replaceTo = REQUIRED_NOT_NULL($text);
@@ -180,7 +190,6 @@ public $paireddelimeters = array(
 	* @return	&$this
 	**/
 	public function &set($RegExp = null, $Text = null, $replaceTo = null){
-//	$this->setRegExp(EMPTY_VAR($regexp, ''))->setText(EMPTY_STR($text, ''))->setReplaceTo(EMPTY_VAR($replaceTo, ''));
 		foreach (array('RegExp', 'Text', 'replaceTo') as $v){
 			if ($$v) $this->{"set$v"} ($$v);
 		}
@@ -258,7 +267,7 @@ public $paireddelimeters = array(
 	/**
 	* Description see {@link http://php.net/preg_replace}
 	*
-	* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL. 
+	* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
 	* @return mixed	Replaced value.
 	**/
 	abstract public function replace($limit = -1);
@@ -267,7 +276,7 @@ public $paireddelimeters = array(
 	* Split by regexp. Results as usual in matches.
 	*
 	* @since Version 2.1.1
-	* 
+	*
 	* @param int(-1)	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
 	* @param int(null)	$flags Flags for the operation.
 	* @return &$this
@@ -301,7 +310,9 @@ public $paireddelimeters = array(
 	* @return Object(HuArray) of last matches.
 	**/
 	public function getHuMatches($n = null){
+	/*-inc
 	include_once('Vars/HuArray.php');
+	*/
 	return new HuArray($this->getMatches($n));
 	}#m getHuMatches
 }#c RegExp_base_base

@@ -1,6 +1,13 @@
 <?
-include_once('macroses/EMPTY_STR.php');
+/*-inc
 include_once('Database/database_operators.php');
+*/
+include_once('macroses/EMPTY_STR.php');
+/**
+* @uses EMPTY_STR()
+* @uses NON_EMPTY_STR()
+* @uses database_operators
+**/
 
 class database_where{
 private $_whereArr = array();
@@ -120,7 +127,7 @@ const default_operator = '=';
 	* 3	array('ID' => array (2, 'BETWEEN', 15))	-> ID BETWEEN 1 AND 15
 	* 4	array('ID', array (2, '<='))			-> ID <= 2			# As <2>, but 2 argument - array. Warning - Operator is SECOND argument of secod array. [Operator:=]
 	* 5	array('ID', '1', 'q:>=')				-> ID>='1'			# Operator given explicit, owervise '='. One dimension array. Arrange: FieldName, FieldValue, [Operator:=]
-	* 6	array('ID', '1', 'BETWEEN', 10)		-> ID BETWEEN 1 AND 10	# Special case, ternary operator. 
+	* 6	array('ID', '1', 'BETWEEN', 10)		-> ID BETWEEN 1 AND 10	# Special case, ternary operator.
 	* 7	(string)""
 	*	7.1 If string is operator from database_operators::$operators3 (such as AND, OR, XOR, && etc) - change logic (default is 'and'), and group other in (). F.e.:
 	*		$this->_whereArr = array(
@@ -131,7 +138,7 @@ const default_operator = '=';
 	*		array('ID', '1', '>=')
 	*		)
 	*			MUST produce: "(ID=1 and ID <=2) or (ID <= 2 or ID >= 1)"
-	*		
+	*
 	*	7.2 Else - append string as normal SQL
 	*
 	* ADDITIONALY has second sintax LIKE:

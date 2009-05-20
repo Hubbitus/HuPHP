@@ -28,18 +28,25 @@
 *	- Rearrange order of includes. And delete (Debug/debug.php) what is excessive.
 **/
 
-include_once('macroses/REQUIRED_VAR.php');
-include_once('macroses/EMPTY_STR.php');
+/*-inc
 
 include_once('Vars/Settings/settings.php');
 include_once('Vars/HuClass.php');		#NullClass
 include_once('Vars/commonOutExtraData.php');
 
 include_once('Debug/HuError.php');
-//include_once('Debug/debug.php');		#dump::log
 
 include_once('System/OS.php');		#constants OS::OUT_TYPE_*
-
+*/
+include_once('macroses/REQUIRED_VAR.php');
+include_once('macroses/EMPTY_STR.php');
+/**
+* @uses settings
+* @uses NullClass
+* @uses commonOutExtraData
+* @uses HuError
+* @uses OS
+**/
 
 class HuLOG_settings extends settings{
 const LOG_TO_FILE	= OS::OUT_TYPE_FILE;	#To file
@@ -127,7 +134,7 @@ public $_level = 0;#Для установки уровней вложеннос�
 protected $lastLogText /*HuLOG_text*/= null;
 protected $lastLogTime = null;
 
-protected $_sets = null; 
+protected $_sets = null;
 
 	function __construct (/* HuLOG_settings OR array*/ $sets = null){
 		if (is_array($sets)) $this->_sets = new HuLOG_settings((array)$sets);
@@ -152,7 +159,7 @@ protected $_sets = null;
 	protected function makeLogString($log_string, $file, $type, $extra){
 	$this->lastLogTime = time();
 	$this->lastLogText->setSettingsArray(
-		($extra instanceof NullClass) /* EXPLICIT check what $extra was provided! Null also possible value, what must be dumped, if it peovided, I can't ignore it, also as any other predefined value! **/ 
+		($extra instanceof NullClass) /* EXPLICIT check what $extra was provided! Null also possible value, what must be dumped, if it peovided, I can't ignore it, also as any other predefined value! **/
 		?
 		array(
 			'level'	=> sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	#Отступ

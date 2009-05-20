@@ -1,6 +1,11 @@
 <?
 include_once('include/config.php');
+/*-inc
 include_once('images/GDimage_class.php');
+*/
+/**
+* @uses GDimage
+**/
 
 class logo extends GDimage{
 public $DEBUG = false;

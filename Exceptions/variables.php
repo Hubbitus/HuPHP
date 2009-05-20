@@ -21,9 +21,20 @@
 *		In case of object used before (f.e. printout() or any else) 0 element may be not current!!
 **/
 
-include_once('Exceptions/BaseException.php');
+/*-inc
+require_once('Exceptions/BaseException.php');
+*/
+/**
+* @uses BaseException
+* @uses backtrace
+**/
+
 class VariableException extends BaseException{};
 
+/**
+* @TODO Rewrite to use internal Exception backtrace
+* @author pasha
+**/
 class VariableRequiredException extends VariableException{
 public $bt = null;
 private $var = null;
@@ -61,11 +72,13 @@ private $tok_ = null;
 	**/
 	public function &getTokenizer(){
 		if (!$this->tok_){
+			/*-inc
 			if (!class_exists('Tokenizer')){
 				if(@$__CONFIG['debug']['parseCallParam'] or !@NO_DEBUG){
 				include_once('Debug/Tokenizer.php');
 				}
 			}
+			*/
 
 			$this->tok_ = Tokenizer::create(
 				$this->bt->getNode(0)
@@ -90,5 +103,7 @@ class VariableArrayInconsistentException extends VariableException{}
 /**
 * It's Before declaration of VariableRequiredException may produce cycle of includes...
 **/
+/*-inc
 include_once('Debug/backtrace.php');
+*/
 ?>

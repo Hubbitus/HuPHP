@@ -36,10 +36,19 @@
 *	- Acces type of method ::checkOpenError() changed from private to protected.
 **/
 
-include_once('macroses/REQUIRED_VAR.php');
+/*-inc
 include_once('Exceptions/filesystem.php');
 
 include_once('System/OS.php');
+*/
+include_once('macroses/REQUIRED_VAR.php');
+/**
+* @uses REQUIRED_VAR()
+* @uses VariableRequiredException
+* @uses FileNotExistsException
+* @uses FileNotReadableException
+* @uses OS
+**/
 
 /**
 * Base class for most file-related operations.
@@ -158,7 +167,7 @@ protected	$content;
 	*
 	* @param string	$string. String to set from.
 	* @return &$this
-	* @Throw(VariableRequiredException)
+	* @Throws(VariableRequiredException)
 	**/
 	public function &setContentFromString($string){
 	$this->content = REQUIRED_VAR($string);

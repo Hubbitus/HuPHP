@@ -14,7 +14,12 @@
 *	- Initial add.
 **/
 
+/*-inc
 include_once('Vars/commonOutExtraData.php');
+*/
+/**
+* @uses commonOutExtraData
+**/
 
 class backtrace_out extends commonOutExtraData{
 	public function strToConsole($format = nul){

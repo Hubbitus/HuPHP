@@ -13,10 +13,15 @@
 *	less overhead and debag/nodebug handled in one place (in exception class)
 **/
 
+/*-inc
 include_once('Exceptions/variables.php');
+*/
+/**
+* @uses VariableIsNullException
+**/
 
 /**
-* Thows {@see VariableRequiredException) if is_null($var)
+* Thows {@see VariableIsNullException) if is_null($var)
 * In constructor of VariableIsNullException passed object(backtrace).
 * Otherwise return ref to var (&ref).
 * This is usefull in direct operations like assigment, or other. F.e:
@@ -25,7 +30,7 @@ include_once('Exceptions/variables.php');
 * @param	&mixed	$var	Variable to test.
 * @param	string	$varname	If present, initialise them arg of Tokenizer, else real parse.
 * @return &mixed
-* @Throw(VariableIsNullException)
+* @Throws(VariableIsNullException)
 **/
 function &REQUIRED_NOT_NULL(&$var, $varname = null){
 	if (is_null($var)){

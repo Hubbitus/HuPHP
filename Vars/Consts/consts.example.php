@@ -1,6 +1,6 @@
 <?
 /**
-* 
+*
 * @package Vars
 * @subpackage Consts
 * @version 1.0b
@@ -8,8 +8,15 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
+/*-inc
 include('Vars/Consts/consts.php');
 include_once('Debug/debug.php');
+*/
+include('autoload.php');
+/**
+* @uses consts
+* @uses dump
+**/
 
 /*
 $constants = get_defined_constants(true);

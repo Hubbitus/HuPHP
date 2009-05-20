@@ -12,7 +12,12 @@
 *	- Initial import into Hubbitus repository
 **/
 
-include_once('Exceptions/BaseException.php');
+/*-inc
+require_once('Exceptions/BaseException.php');
+*/
+/**
+* @uses BaseException
+**/
 
 class MSG_partnerAPIException extends BaseException{}
 

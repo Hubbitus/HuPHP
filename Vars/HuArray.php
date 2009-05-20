@@ -39,7 +39,15 @@
 *	- Add method ::reduce()
 **/
 
+/*-inc
 include_once('Vars/Settings/settings.php');
+*/
+include_once('macroses/REQUIRED_VAR.php');
+/**
+* @uses REQUIRED_NOT_NULL()
+* @uses VariableIsNullException
+* @uses settings
+**/
 
 class HuArray extends settings implements Iterator{
 const huScheme = 'hu://';
@@ -118,7 +126,7 @@ const huScheme = 'hu://';
 	* @param	integer	$length
 	*	Если в эту функцию передан положительный параметр length, последовательность будет включать length элементов. Если в эту функцию передан отрицательный параметр length, в последовательность войдут все элементы исходного массива, начиная с позиции offset и заканчивая позицией, отстоящей на length элементов от конца. Если этот параметр будет опущен, в последовательность войдут все элементы исходного массива, начиная с позиции offset.
 	* @param	boolean	$preserve_keys
-	*	Обратите внимание, поумолчанию сбрасываются ключи массива. Можно переопределить это поведение, установив параметр preserve_keys в TRUE. 
+	*	Обратите внимание, поумолчанию сбрасываются ключи массива. Можно переопределить это поведение, установив параметр preserve_keys в TRUE.
 	* @return Object(HuArray)
 	**/
 	public function getSlice($offset, $length = null, $preserve_keys = false){
@@ -130,6 +138,7 @@ const huScheme = 'hu://';
 	*
 	* @param	mixed	$name
 	* @return	&mixed
+	* @Throws(VariableIsNullException)
 	**/
 	public function &getProperty($name){
 	return $this->__SETS[REQUIRED_NOT_NULL($name)];
@@ -146,7 +155,7 @@ const huScheme = 'hu://';
 	**/
 	function &__get($name){
 		/**
-		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference: 
+		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
 		if ('_last_' == $name) return $this->last();
@@ -194,7 +203,7 @@ const huScheme = 'hu://';
 	**/
 	function __set($name, $value){
 		/**
-		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference: 
+		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
 		if ('_last_' == $name){

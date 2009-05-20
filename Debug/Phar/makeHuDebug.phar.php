@@ -16,8 +16,14 @@
 *	- After split file_base to 2 childs switch there use file_inmem.
 **/
 
+include('autoload.php');
+/*-inc
 include_once('../debug.php');
 include_once('Filesystem/file_inmem.php');
+*/
+/**
+* @uses file_inmem
+**/
 
 define('BASE_DIR', '/var/www/_SHARED_/');
 

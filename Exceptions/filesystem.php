@@ -6,7 +6,12 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
-include_once('Exceptions/BaseException.php');
+/*-inc
+require_once('Exceptions/BaseException.php');
+*/
+/**
+* @uses BaseException
+**/
 
 class FilesystemException extends BaseException{
 protected $fullPath = '';

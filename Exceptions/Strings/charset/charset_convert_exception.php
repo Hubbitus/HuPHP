@@ -10,7 +10,12 @@
 * @changelog
 **/
 
+/*-inc
 require_once('Exceptions/BaseException.php');
+*/
+/**
+* @uses BaseException
+**/
 
 class charset_convert_exception extends BaseException{}
 //class charset_convert_InEncodingIncorrect_exception extends charset_convert_exception{}

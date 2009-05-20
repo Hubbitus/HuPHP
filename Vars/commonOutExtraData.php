@@ -10,8 +10,15 @@
 *
 * @changelog
 **/
+
+/*-inc
 include_once('Vars/outExtraData.interface.php');
 include_once('Debug/debug.php');
+*/
+/**
+* @uses dump
+* @uses outExtraData.interface
+**/
 
 /**
 * Common realisation suitable for the most types. Primarly intended to logs, like:

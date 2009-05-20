@@ -16,7 +16,7 @@
 *	[line] => 22
 *	[function] => REQUIRED_VAR
 *	[args] => Array(
-*		[0] => 
+*		[0] =>
 *		)
 *)
 *
@@ -25,10 +25,10 @@
 * 	$ttt[0]
 * 	,$ttt['qaz']
 * 				,tttt(),
-*				
+*
 *				"exampleFunc() call")
 * ;
-* 
+*
 * $db[$N]['line'] refer to string with closing call ')' :(.
 * Now search open string number. And then from it string, by function name tokenize all what me need.
 *
@@ -51,9 +51,19 @@
 	define('T_DOC_COMMENT', T_ML_COMMENT);
 	}
 
+/*-inc
 include_once('Debug/backtrace.php');
 include_once('RegExp/RegExp_pcre.php');
 include_once('Filesystem/file_inmem.php');
+*/
+include_once('macroses/REQUIRED_VAR.php');
+/**
+* @uses REQUIRED_VAR()
+* @uses VariableRequiredException
+* @uses backtrace
+* @uses RegExp_pcre
+* @uses file_inmem
+**/
 
 class Tokenizer{
 private /* backtraceNode */ $_debugBacktrace = null;
@@ -71,7 +81,6 @@ private $_regexp = null;
 	*
 	* @param array|Object(backtraceNode) $db	Array, one of is subarrays from return result by debug_backtrace();
 	* @return $this
-	* @Throws(VariableRequiredException)
 	**/
 	public function __construct(/* array | backtraceNode */ $db = array()){
 		if (is_array($db)) $this->setFromBTN(new backtraceNode($db));
@@ -160,6 +169,7 @@ private $_regexp = null;
 	* Search full text of call in src php-file
 	*
 	* @return $this
+ 	* @Throws(VariableRequiredException)
 	**/
 	protected function findTextCall(){
 	$this->_filePhpSrc = new file_inmem(REQUIRED_VAR($this->_debugBacktrace->file));
@@ -282,7 +292,7 @@ private $_regexp = null;
 			else{
 			//c_dump(token_name($token[0]));
 				switch($token[0]){
-				case T_COMMENT: 
+				case T_COMMENT:
 				case T_ML_COMMENT:	// we've defined this
 				case T_DOC_COMMENT:	// and this
 					if (!$stripComments) $this->addToArg($token[1]);
