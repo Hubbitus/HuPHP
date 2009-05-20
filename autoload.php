@@ -7,7 +7,6 @@
 	if ( !defined('AUTOINCLUDE_FILE') ) define('AUTOINCLUDE_FILE', '__autoload.map.php');
 	if ( !defined('AUTOLOAD_DEBUG') ) define('AUTOLOAD_DEBUG', false);
 include_once('macroses/IS_SET.php'); //It must be explicit yet
-include_once('System/OS.php');
 /**
 * Magick class autoload function.
 *
