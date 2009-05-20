@@ -23,7 +23,7 @@
 *	- Add try to autoinclude config: 'includes/configs/' . $name . '.config.php' if it is untill not present in $GLOBALS['__CONFIG']
 **/
 
-//It used for __autoload, so, we must directly prowide dependencies here
+//It used for __autoload, so, we must directly provide dependencies here
 include_once('Vars/Settings/settings_check.php');
 include_once('Vars/HuArray.php');
 include_once('System/OS.php'); // OS::is_includable

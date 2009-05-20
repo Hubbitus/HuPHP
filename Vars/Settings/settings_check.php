@@ -41,6 +41,7 @@ static public $properties = array();
 
 	/**
 	* Constructor.
+	*
 	* @param	array	$possibles. Array of string - possibe names of propertys.
 	* @param	array=null $array
 	**/
