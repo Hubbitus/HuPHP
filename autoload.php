@@ -10,8 +10,8 @@ include_once('macroses/IS_SET.php'); //It must be explicit yet
 /**
 * Magick class autoload function.
 *
-* @param string $classname
-* @return boolean
+* @param	string	$classname
+* @return	boolean
 **/
 //function __load_class($classname){
 function __autoload($classname){
@@ -108,7 +108,9 @@ return false;
 	');
 	}
 function &m(){
-#use#include_once('Vars/Singleton.php');
+/**
+* @uses Singleton.php
+**/
 return Single::def('m');
 }
 ?>
