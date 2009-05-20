@@ -149,7 +149,7 @@ class dump extends dump_utils{
 		if ($header = self::getHeader($header, $var)) $ret .= "\033[1m".$header."\033[0m: ";
 
 	ob_start();
-		//This may happens. F.e. it presentin int template class
+		//This may happens. F.e. it present in template class
 		if ($return_html_errors = ini_get('html_errors')){
 		ini_set('html_errors', false);
 		}
