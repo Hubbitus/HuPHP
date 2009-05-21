@@ -26,9 +26,7 @@
 *		o Make default value for flag parameter ($flags = PREG_OFFSET_CAPTURE), as we have 1 implementation and only this flag have sence
 **/
 
-/*-inc
-include_once('RegExp/RegExp_base.php');
-*/
+include_once('RegExp/RegExp_base.php'); //Must be explicit, because there used eval-hack to define some subclas and it excluded from autoload
 /**
 * @uses RegExp_base
 **/
