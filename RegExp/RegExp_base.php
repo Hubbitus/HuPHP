@@ -1,6 +1,7 @@
 <?
 /**
 * RegExp manupulation.
+*
 * @package RegExp
 * @version 2.1.2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
