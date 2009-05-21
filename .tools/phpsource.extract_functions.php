@@ -1,16 +1,25 @@
 #!/usr/bin/php
 <?
-include('autoload.php');
+//define('AUTOLOAD_DEBUG', true);
+//include('autoload.php');
 
-/*-inc
+/*
+* Map regeneration in progrees by this script, so, we must include all explicit!
+* Futhermore - we must do it with al descending includes in reverted mode (leaf first)!
+* this all to do not use autoinclde mechanisms!
+**/
+include_once('Exceptions/BaseException.php');
+include_once('Exceptions/variables.php');
+include_once('Vars/HuClass.php');
 include_once('Debug/debug.php');
+
+include_once('Vars/Settings/settings.php');
+include_once('Vars/HuArray.php');
+include_once('RegExp/RegExp_base.php');
 include_once('RegExp/RegExp_pcre.php');
-#sed#include_once('Vars/HuArray.php');
-*/
 /**
-* @uses HuClass
+* @uses classCreate()
 * @uses RegExp_pcre
-* @uses HuArray
 **/
 
 $_skip_functions = array(
@@ -37,7 +46,7 @@ $_skip_functions = array(
 	}
 
 //$source = file_get_contents('example.php');
-$source = file_get_contents(($inputfile = isset($argv[1]) ? $argv[1] : 'php://stdin')); #$argv[2] optionnaly part of DIRm which must be stripped
+$source = file_get_contents(($inputfile = isset($argv[1]) ? $argv[1] : 'php://stdin')); #$argv[2] optionnaly part of DIR, which must be stripped
 $tokens = token_get_all($source);
 
 $class_started = false;
