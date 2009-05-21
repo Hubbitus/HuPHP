@@ -9,7 +9,7 @@
 * @package settings
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @version 1.0.4
+* @version 1.0.6
 *
 * @changelog
 *	* 2008-05-30 16:08
@@ -27,6 +27,9 @@
 *
 *	* 2009-03-10 04:24 ver 1.0.4 to 1.0.5
 *	- Add method ::addSetting()
+*
+*	* 2009-05-21 22:46 ver 1.0.5 to 1.0.6
+*	* Make $properties non-static! This prevent mesh properies in 2 child of this class.
 **/
 
 include_once('Exceptions/classes.php');
@@ -37,7 +40,7 @@ include_once('Vars/Settings/settings.php');
 * Slowly, but safely.
 **/
 class settings_check extends settings{
-static public $properties = array();
+public $properties = array();
 
 	/**
 	* Constructor.
@@ -46,7 +49,7 @@ static public $properties = array();
 	* @param	array=null $array
 	**/
 	function __construct(array $possibles, array $array = null){
-	self::$properties = $possibles;
+	$this->properties = $possibles;
 		if ($array) $this->mergeSettingsArray($array);
 	}#constructor
 
@@ -60,13 +63,13 @@ static public $properties = array();
 
 	/**
 	* Add setting vith value in possible settings.
-	* 
+	*
 	* @param	string	$name
-	* @param	mixed	$value 
+	* @param	mixed	$value
 	* @return	nothing
 	**/
 	public function addSetting($name, $value){
-	self::$properties[] = $name;
+	$this->properties[] = $name;
 	parent::setSetting($name, $value);
 	}#m addSetting
 
@@ -96,7 +99,7 @@ static public $properties = array();
 	array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
 	parent::mergeSettingsArray($setArr);
 	}#m mergeSettingsArray
-	
+
 	/**
 	* Check if name is possible, and Throw(ClassPropertyNotExistsException) if not.
 	* @param	string	$name. Name to check.
@@ -106,7 +109,7 @@ static public $properties = array();
 	* @Throw(ClassPropertyNotExistsException)
 	**/
 	protected function checkNamePossible($name, $method, $walkmethod = null){
-		if (!in_array($name, self::$properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist!');
+		if (!in_array($name, $this->properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist!');
 	return	$name;
 	}#m checkNamePossible
 }#c settings_check

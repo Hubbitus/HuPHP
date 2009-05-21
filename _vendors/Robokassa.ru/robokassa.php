@@ -95,7 +95,7 @@ class robokassa extends settings_check{
 const BASE_url_production = 'https://merchant.roboxchange.com/Index.aspx?';
 const BASE_url_test = 'http://test.robokassa.ru/Index.aspx?';
 
-static public $properties = array(
+public $properties = array(
 	'MrchLogin', 'MrchPass1', 'MrchPass2',  'OutSum', 'InvId', 'Desc', 'SignatureValue', 'IncCurrLabel', 'Culture', 'Encoding', 'Email'
 	,'sph'
 	// auxiliary data
@@ -170,7 +170,7 @@ private /* robokassa_sph */ $sph;
 	**/
 	function __construct(array $array){
 	$this->sph = new robokassa_sph(@$array['sph']);
-	parent::__construct(self::$properties, $array);
+	parent::__construct($this->properties, $array);
 	}#m __construct
 
 	/**

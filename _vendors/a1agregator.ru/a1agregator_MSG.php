@@ -26,7 +26,7 @@ class a1agregatorMSGSignatureException extends a1agregatorMSGParseException{}
 * @uses settins_check
 **/
 class a1agregator_MSG_answer extends settings_check{
-static public $properties = array(
+public $properties = array(
 	'smsid', 'status', 'answer'
 	//auxiliary data
 	,'ANSWER_FORMAT'
@@ -37,7 +37,7 @@ protected $__SETS = array(
 	'atatus'	=> 'reply',
 
 	'ANSWER_FORMAT'	=> array(
-	
+
 	),
 );
 
@@ -66,12 +66,12 @@ class a1agregator_MSG extends settings_check{
 * @var $skey		– это последовательность символов, которая кодируется по алгоритму MD5, передается в случаи использования параметра  “Секретный ключ”, в примере передается слово test. Применяется в целях дополнительной безопасности. Указывать секретный ключ необязательно.
 * @var $sign		– это последовательность символов, которая кодируется по алгоритму MD5, передается всегда. Последовательность получается путем последовательного соединения параметров:
 *	date, msg_trans, operator_id, user_id, smsid, cost_rur, ran, test, num, country_id, skey
-*	Применяется в целях повышения безопасности.  
+*	Применяется в целях повышения безопасности.
 * @var $operator	– Absent in documentation, but present in tests
 * @var $country_id	– Absent in documentation, but present in tests
 **/
 
-static public $properties = array(
+public $properties = array(
 	'date', 'msg', 'msg_trans', 'operator_id', 'operator', 'user_id', 'smsid', 'cost_rur', 'cost', 'test', 'num', 'retry', 'try', 'ran', 'skey', 'sign', 'country_id'
 	//auxiliary data
 	,'SIGNATURE_FORMAT'
@@ -99,7 +99,7 @@ protected $static_settings = array('SIGNATURE_FORMAT');
 	* @param	array	$array Settings.
 	* @param	string	$skey Current Skey to check
 	**/
-	function __construct(array $array, $skey){
+	public function __construct(array $array, $skey){
 	$this->Skey = $skey;
 	$this->setFromArray($array);
 	}#m __c
