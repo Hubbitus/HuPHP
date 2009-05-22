@@ -69,17 +69,21 @@ class a1agregator_MSG extends settings_check{
 *	Применяется в целях повышения безопасности.
 * @var $operator	– Absent in documentation, but present in tests
 * @var $country_id	– Absent in documentation, but present in tests
+*
+* // Additional My:
+* @var	$PlainSkey - Right Skey to check
 **/
 
 public $properties = array(
 	'date', 'msg', 'msg_trans', 'operator_id', 'operator', 'user_id', 'smsid', 'cost_rur', 'cost', 'test', 'num', 'retry', 'try', 'ran', 'skey', 'sign', 'country_id'
 	//auxiliary data
 	,'SIGNATURE_FORMAT'
+	,'PlainSkey'
 );
 
 protected $__SETS = array(
 	'SIGNATURE_FORMAT'	=> array(
-	'date', 'msg_trans', 'operator_id', 'user_id', 'smsid', 'cost_rur', 'ran', 'test', 'num', 'country_id', 'skey'
+		'date', 'msg_trans', 'operator_id', 'user_id', 'smsid', 'cost_rur', 'ran', 'test', 'num', 'country_id', 'PlainSkey'
 	),
 );
 
@@ -87,21 +91,16 @@ protected $__SETS = array(
 * @var	Object(a1agregator_MSG_answer).
 **/
 private $Answer = null;
-/**
-* @var	string	Right Skey to check
-**/
-private $Skey = null;
 
 #This settings do not clear on call clear() and do not rewrited by setSettingsArray()
 protected $static_settings = array('SIGNATURE_FORMAT');
 
 	/**
 	* @param	array	$array Settings.
-	* @param	string	$skey Current Skey to check
+	* @param	string	$skey Current (plain!) Skey to check
 	**/
 	public function __construct(array $array, $skey){
-	$this->Skey = $skey;
-	$this->setFromArray($array);
+	$this->set($array, $skey);
 	}#m __c
 
 	/**
@@ -151,12 +150,13 @@ protected $static_settings = array('SIGNATURE_FORMAT');
 	*
 	* All checks performed.
 	* @param	array	$arr
+	* @param	string	$skey Current (plain!) Skey to check
 	* @return &$this
 	* @Throw(a1agregatorMSGParseException, a1agregatorMSGSignatureException, a1agregatorMSGSkeyMismatchException)
 	**/
-	function &setFromArray(array $arr){
-	$this->Answer = new a1agregator_MSG_answer();
+	function &set(array $arr, $skey){
 	$this->setSettingsArray($arr);
+	$this->setSetting('PlainSkey', $skey);
 		#do NOT use empty() because it works ONLY with variables!!!
 		if (!@$this->msg or !@$this->operator_id or !@$this->user_id or !@$this->smsid or !@$this->cost_rur or !@$this->test or !@$this->try or !@$this->sign){
 		$what = 'Empty required field(s):';
@@ -173,14 +173,15 @@ protected $static_settings = array('SIGNATURE_FORMAT');
 			if (!@$this->sign)			$what .= ' [sign]';
 		throw new a1agregatorMSGParseException('Error parsing Incoming message. '.$what."\nQUERY_STRING:".EMPTY_STR($rawString, @$_SERVER['QUERY_STRING']));
 		}
+		if ($this->skey and md5($this->PlainSkey) != $this->skey){
+		throw new a1agregatorMSGSkeyMismatchException('Skey mismatch');
+		}
 		if ($this->sign and $this->sign != $this->calcSignature()){
 		throw new a1agregatorMSGSignatureException('Signature incorrect!');
 		}
-		if ($this->skey and md5($this->Skey) != $this->skey){
-		throw new a1agregatorMSGSkeyMismatchException('Skey mismatch');
-		}
+	$this->Answer = new a1agregator_MSG_answer();
 	return $this;
-	}#m setFromArray
+	}#m set
 
 	/**
 	* Set text of answer to server.
