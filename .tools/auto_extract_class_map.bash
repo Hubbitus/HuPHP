@@ -12,6 +12,7 @@ echo "<? //This is automatically generated file! Please, do not edit it manual!!
 # try-examples.php - only examples and classes like A, B, AA....
 # template/template_class_NEW2.php - is old, deprecated must be excluded to use template_class_2.1.php instead (who need old, always may preinclude them explicity).
 # autoload.php has class define in eval as hack, and from functions only define __autoload, which is not requre any futher magick :)
+# Filter out Debug/log_dump.php in class processing, because in has incomlete class dump!
 find .. -type f -iname '*.php' \
 	-not -wholename "${DIR}Debug/Phar/*" -not -name 'exec.php' -not -name $( basename "$OUT_FILE" ) \
 	-not -name RegExp_base.php -not -name try-examples.php -not -name '*.example.php' -not -name autoload.php \
@@ -22,7 +23,7 @@ find .. -type f -iname '*.php' \
 		#echo ========
 
 		echo "$line" | sed -nr "/function/d;/class/s@${DIR}(.*?\\.php):\s*(abstract\s+)?class\s+([^[:space:]{]+)(\s+extends\s+[^[:space:]{]+)?(\s+implements\s+[^[:space:]{]+)*\s*\{?\}?\s*(\$|(//|#).*|;)\$@\t'\3'\t=> '\1',@g;/interface/s@${DIR}(.*?\\.php):\s*interface\s+([^\s{]+)\s*\{@\t'\2'\t=> '\1', #interface@g;p" \
-			>> "$OUT_FILE"
+			| grep -v 'Debug/log_dump.php' >> "$OUT_FILE"
 		done \
 			| sed -nr "s@(${DIR}.*\\.php):.*?@\1@g;p" | sort | uniq | xargs -r -I{} ./phpsource.extract_functions.php "{}" "$DIR" \
 				>> "$OUT_FILE"
