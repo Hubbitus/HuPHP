@@ -37,7 +37,10 @@ protected $__SETS = array(
 	'atatus'	=> 'reply',
 
 	'ANSWER_FORMAT'	=> array(
-
+		array('smsid', 'smsid:', "\n")
+		,array('status', 'status:', "\n")
+		,"\n"
+		,'answer'
 	),
 );
 
@@ -71,7 +74,9 @@ class a1agregator_MSG extends settings_check{
 * @var $country_id	– Absent in documentation, but present in tests
 *
 * // Additional My:
-* @var	$PlainSkey - Right Skey to check
+* @var $PlainSkey - Right Skey to check
+* @var $operator	– Absent in documentation, but present in tests
+* @var $country_id	– Absent in documentation, but present in tests
 **/
 
 public $properties = array(
