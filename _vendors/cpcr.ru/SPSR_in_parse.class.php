@@ -245,11 +245,11 @@ protected $_compiled = false;
 	/**
 	* Helper (temp?) function to output Object(DOMElement) as XML
 	*
-	* @param	Object(DOMElement)	$elem
+	* @param	Object(DOMNode)	$elem
 	* @param	string	$header
 	* @return	nothing
 	**/
-	public static function dumpDOMnode(DOMElement $elem, $header = 'DOMElement'){
+	public static function dumpDOMnode(DOMNode $elem, $header = 'DOMElement'){
 	$o = new DOMnodeOutExtraData($elem);
 	dump::a(trim($o->strToPrint()), $header);
 	}#m dumpDOMnode

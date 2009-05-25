@@ -29,12 +29,12 @@ protected /* DOMDocument */ $_var;
 	/**
 	* Constructor.
 	*
-	* @param	mixed	$var Var to output with provided format.
-	* @param	array	$format	Format how output $vavr. Must contain 3 elements:
+	* @param	Object(DOMNode)	$var Var to output with provided format.
+	* @param	string='utf-8'	$format	Format how output $vavr. Must contain 3 elements:
 	*	'FORMAT_CONSOLE', 'FORMAT_WEB', 'FORMAT_FILE' each represent according
 	*	format (See class {@see HuFormat} for more details).
 	**/
-	function  __construct(DOMElement $var, $encoding = 'utf-8'){
+	function  __construct(DOMNode $var, $encoding = 'utf-8'){
 	$this->_var = new DOMDocument('1.0', $encoding); // DOMDocument NEEDED ot import into it nodes, it also NEEDED to export result asXML...
 	$this->_var->appendChild($this->_var->importNode($var, true));
 	$this->_var->preserveWhiteSpace = false;
