@@ -34,18 +34,35 @@ public $properties = array(
 
 //defaults
 protected $__SETS = array(
-	'atatus'	=> 'reply',
+	'status'	=> 'reply',
 
 	'ANSWER_FORMAT'	=> array(
 		array('smsid', 'smsid:', "\n")
-		,array('status', 'status:', "\n")
-		,"\n"
-		,'answer'
+		,array('status', 'status:', "\n\n")
+		,array('answer', '', "\n")
 	),
 );
 
-	function __construct(){
+	public function __construct(){
 	}#m __c
+
+	/**
+	* Reimplement without in parameter.
+	*
+	* @return	string
+	**/
+	public function getString(){
+	return parent::getString($this->ANSWER_FORMAT);
+	}#m getString
+
+	/**
+	* Conversion to string uses {@see getString()} method
+	*
+	* @return	string
+	**/
+	function __toString(){
+	return $this->getString();
+	}#m __toString
 }#c a1agregator_MSG_answer
 
 /**
@@ -95,7 +112,7 @@ protected $__SETS = array(
 /**
 * @var	Object(a1agregator_MSG_answer).
 **/
-private $Answer = null;
+public $Answer = null;
 
 #This settings do not clear on call clear() and do not rewrited by setSettingsArray()
 protected $static_settings = array('SIGNATURE_FORMAT');
@@ -163,7 +180,7 @@ protected $static_settings = array('SIGNATURE_FORMAT');
 	$this->setSettingsArray($arr);
 	$this->setSetting('PlainSkey', $skey);
 		#do NOT use empty() because it works ONLY with variables!!!
-		if (!@$this->msg or !@$this->operator_id or !@$this->user_id or !@$this->smsid or !@$this->cost_rur or !@$this->test or !@$this->try or !@$this->sign){
+		if (!isset($this->msg) or !isset($this->operator_id) or !isset($this->user_id) or !isset($this->smsid) or !isset($this->cost_rur) or !isset($this->test) or !isset($this->try) or !isset($this->sign)){
 		$what = 'Empty required field(s):';
 			/**
 			 * Warning! In Specification required fields is not marked! It is minimum on my think!
@@ -182,6 +199,9 @@ protected $static_settings = array('SIGNATURE_FORMAT');
 		throw new a1agregatorMSGSkeyMismatchException('Skey mismatch');
 		}
 		if ($this->sign and $this->sign != $this->calcSignature()){
+		dump::a($this->sign);
+		dump::a($this->calcSignature());
+		dump::a($this->getString($this->SIGNATURE_FORMAT));
 		throw new a1agregatorMSGSignatureException('Signature incorrect!');
 		}
 	$this->Answer = new a1agregator_MSG_answer();
@@ -189,15 +209,18 @@ protected $static_settings = array('SIGNATURE_FORMAT');
 	}#m set
 
 	/**
-	* Set text of answer to server.
+	* Reimplement. NON-string detect fields needed. Use isset instead!
 	*
-	* @param	string	$text
-	* @return	&$this
-	* @Throw(VariableRequiredException)
+	* @inheritdoc
 	**/
-	function &setAnswer($text){
-	$this->Answer->answer = REQUIRED_VAR($text);
-	return $this;
-	}#m setAnswer
+	public function formatField($field){
+		if (is_array($field)){
+			if (!isset($field[0])) $field = array_values($field);
+		return (isset($this->{$field[0]}) ? @$field[1] . $this->{$field[0]} . @$field[2] : @$field[3]);
+		}
+		else{
+		return (isset($this->{$field}) ? $this->{$field} : $field);#Или по имени настройку, если это просто текст;
+		}
+	}#m formatField
 };#c a1agregator_MSG
 ?>
