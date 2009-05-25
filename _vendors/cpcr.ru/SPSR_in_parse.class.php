@@ -28,20 +28,27 @@
 *
 * We want on out unified structure, but in fact have ABSOLUTELY different
 * scheme on in:
-* 	In the Russia(Россия) there defined regions: Region XML elements in the same file, where Countries defined:
+* 1) In the Russia(Россия) there defined regions: Region XML elements in the same file, where Countries defined:
 *		http://www.cpcr.ru/cgi-bin/postxml.pl?Regions
-*	But regions is NOT defined for other Countries. So, for unified approach will use '---' single region.
-*	The next (end??) exception is Belarus (Белоруссия). In SPSR notation it is Region of Russia! (<Regions Id="55" Owner_Id="2" RegionName="Белоруссия"/>)
+* 2) But regions is NOT defined for other Countries. So, for unified approach we will use self::$no_region_name (by def: '---') single region.
+* 3) The next exception is Belarus (Белоруссия). In SPSR notation it is Region of Russia! (<Regions Id="55" Owner_Id="2" RegionName="Белоруссия"/>)
 *		and its cities located in Russian xml file by region!
-*		Additional to it, Белоруссия country have Белоруссия region! I rename it in self::no_region_name.
+* 4) Belarus have region with same name as country! It renamed to self::no_region_name.
+* 5) The next step is Cities.
+*	5.1) For the Russia it is localted in file http://www.cpcr.ru/components/xml/cities.xml
+*	5.2) For all other countries in - http://www.cpcr.ru/components/xml/citiesc.xml
+*	And what is more bad - files have different structures! So, we must handle its separately.
+* 6) Some incorrect and strange items filtered by Regexp in SPSR_in_parse::filterOut
+* 7) Some regions (Russia) have cities with the same name it own.
+*	7.1) Such cities filtered out.
+*	7.2) If after all filters Region has not any Cities, add one "meta" with name self::$all_cities_name and
+*		other attributes from city filtered in 7.1 or just create new one with name self::$all_cities_name and
+*		copied attributes: "Owner_Id" => "Region_Owner_ID", "Id" => "Region_ID" from region.
 *
-* The next step is Cities.
-*	For the Russia it is localted in file http://www.cpcr.ru/components/xml/cities.xml
-*	For all other countries in - http://www.cpcr.ru/components/xml/citiesc.xml
-*	And what is more bad - filees have different structures! So, we must handle its separately.
 **/
 class SPSR_in_parse{
 static $no_region_name = '---';
+static $all_cities_name = 'Все';
 
 private $_regionsfile;
 private $_citiesfile;
@@ -110,25 +117,42 @@ public $filterOut = array(
 	$doc->preserveWhiteSpace = false;
 	$doc->formatOutput = true;
 
-		if (isset($this->filterOut['countries']) and preg_match($this->filterOut['countries'], $country->getAttribute('Country_Name'))) continue;
+		if (isset($this->filterOut['countries']) and preg_match($this->filterOut['countries'], $country->getAttribute('Country_Name'))) continue; //6
 		/*
 		* For understanding this magick, see description of class itself.
 		*/
 		if ( 'Россия' == $country->getAttribute('Country_Name') or 'Белоруссия' == $country->getAttribute('Country_Name')){
 		$this->loadCities();
 			foreach ($this->_xpath->query('//Regions[@Owner_Id="' . $country->getAttribute('Owner_Id') . '"]') as $region){
-				if (isset($this->filterOut['regions']) and preg_match($this->filterOut['regions'], $region->getAttribute('RegionName'))) continue;
+				if (isset($this->filterOut['regions']) and preg_match($this->filterOut['regions'], $region->getAttribute('RegionName'))) continue; //6
 			//http://ru2.php.net/manual/ru/domdocument.importnode.php
 			$reg = $doc->firstChild->appendChild($doc->importNode($region, true));
-				foreach ($this->parseCitiesRussian($region) as $city){
-					if (isset($this->filterOut['cities']) and preg_match($this->filterOut['cities'], $city->getAttribute('CityName'))) continue;
+				foreach ($this->parseCitiesRussian($reg) as $city){
+				$meta_city = null;
+					if (isset($this->filterOut['cities']) and preg_match($this->filterOut['cities'], $city->getAttribute('CityName'))) continue; //6
+					if ($city->getAttribute('CityName') == $reg->getAttribute('RegionName')){
+					$meta_city = $city; //In buffer
+					continue; //7.1
+					}
 				$reg->appendChild($doc->importNode($city, true));
+				}
+				if (0 == $reg->childNodes->length){// 7.2 No cities
+					if ($meta_city){
+					$meta_city = $reg->appendChild($doc->importNode($meta_city, true));
+					$meta_city->setAttribute('CityName', self::$all_cities_name);
+					}
+					else{
+					$meta_city = $reg->appendChild(new DOMElement('c'));
+					$meta_city->setAttribute('CityName', self::$all_cities_name);
+					$meta_city->setAttribute('Region_Owner_ID', $reg->getAttribute('Owner_Id'));
+					$meta_city->setAttribute('Region_ID', $reg->getAttribute('Id'));
+					}
 				}
 			}
 
 			if('Белоруссия' == $country->getAttribute('Country_Name')){
 			$xpath = new DOMXPath($doc);
-			$xpath->query('//Regions[@RegionName="Белоруссия"]')->item(0)->setAttribute('RegionName', self::$no_region_name);
+			$xpath->query('//Regions[@RegionName="Белоруссия"]')->item(0)->setAttribute('RegionName', self::$no_region_name); // 4
 			}
 		}
 		else{
@@ -139,7 +163,7 @@ public $filterOut = array(
 		$reg->setAttribute('Owner_Id', 0);
 		$reg->setAttribute('RegionName', self::$no_region_name);
 			foreach ($this->parseCitiesForeign($country) as $city){
-				if (isset($this->filterOut['cities']) and preg_match($this->filterOut['cities'], $city->getAttribute('CityName'))) continue;
+				if (isset($this->filterOut['cities']) and preg_match($this->filterOut['cities'], $city->getAttribute('CityName'))) continue; //6
 			$city = $reg->appendChild($doc->importNode($city, true));
 			//Rename Attributes to follow single naming scheme
 			$city->setAttribute('Id', $city->getAttribute('id'));
