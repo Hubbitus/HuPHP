@@ -3,7 +3,7 @@
 * SPSR infrastructure support to online shipping rates calculation support ( http://www.cpcr.ru/calculator.html )
 *
 * @package SPSR
-* @version 1.0
+* @version 1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -12,6 +12,9 @@
 * @changelog
 *	* 2009-05-25 11:56 ver 1.0
 *	- Initial version.
+*
+*	* 2009-05-25 15:30 ver 1.0 to 1.1
+*	- Add filtering support.
 **/
 
 /**
@@ -50,6 +53,16 @@ private /* DOMDocument */ $_citiescXML;
 protected $_mainXML;
 protected $_xpath;
 protected $_compiled = false;
+
+/**
+* Filter some strange and incorrect items like "Дальнее зарубежье" region of Russia!. Regexp.
+* @var	array $filterOut
+**/
+public $filterOut = array(
+//	'countries'
+	'regions'	=> '/Дальнее зарубежье/'
+//	'cities'
+);
 
 	public function __construct(
 		//$regionsfile = 'Regions.xml', $citiesfile = 'cities.xml', $citiescfile = 'citiesc.xml'
@@ -95,15 +108,18 @@ protected $_compiled = false;
 	$doc->preserveWhiteSpace = false;
 	$doc->formatOutput = true;
 
+		if (isset($this->filterOut['countries']) and preg_match($this->filterOut['countries'], $country->getAttribute('Country_Name'))) continue;
 		/*
 		* For understanding this magick, see description of class itself.
 		*/
 		if ( 'Россия' == $country->getAttribute('Country_Name') or 'Белоруссия' == $country->getAttribute('Country_Name')){
 		$this->loadCities();
 			foreach ($this->_xpath->query('//Regions[@Owner_Id="' . $country->getAttribute('Owner_Id') . '"]') as $region){
+				if (isset($this->filterOut['regions']) and preg_match($this->filterOut['regions'], $region->getAttribute('RegionName'))) continue;
 			//http://ru2.php.net/manual/ru/domdocument.importnode.php
 			$reg = $doc->firstChild->appendChild($doc->importNode($region, true));
 				foreach ($this->parseCitiesRussian($region) as $city){
+					if (isset($this->filterOut['cities']) and preg_match($this->filterOut['cities'], $city->getAttribute('CityName'))) continue;
 				$reg->appendChild($doc->importNode($city, true));
 				}
 			}
@@ -121,6 +137,7 @@ protected $_compiled = false;
 		$reg->setAttribute('Owner_Id', 0);
 		$reg->setAttribute('RegionName', self::$no_region_name);
 			foreach ($this->parseCitiesForeign($country) as $city){
+				if (isset($this->filterOut['cities']) and preg_match($this->filterOut['cities'], $city->getAttribute('CityName'))) continue;
 			$city = $reg->appendChild($doc->importNode($city, true));
 			//Rename Attributes to follow single naming scheme
 			$city->setAttribute('Id', $city->getAttribute('id'));
