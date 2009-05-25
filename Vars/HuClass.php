@@ -58,7 +58,7 @@ abstract class HuClass{
 	#http://blog.felho.hu/what-is-new-in-php-53-part-2-late-static-binding.html
 		if (function_exists('get_called_class')) $className = get_called_class(); # Most reliable if available
 //??Possible??		elseif(isset(self::_CLASS_)) $className = self::_CLASS_; # Fallback to emulate if present
-		else throw new ClassUnknownException('Can\'t determinate class name for eho is called ::create() (LSB is not accesible [present start from PHP 5.3.0-dev]). You can use ::createWithoutLSB method or classCREATE() free function with explicit name of needed class!');
+		else throw new ClassUnknownException('Can\'t determinate class name for who was called ::create() (LSB is not accesible [present start from PHP 5.3.0-dev]). You can use ::createWithoutLSB method or classCREATE() free function with explicit name of needed class!');
 	$reflectionObj = new ReflectionClass($className);
 
 		// use Reflection to create a new instance, using the array of args
