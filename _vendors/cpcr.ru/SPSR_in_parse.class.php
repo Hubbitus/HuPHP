@@ -15,6 +15,7 @@
 *
 *	* 2009-05-25 15:30 ver 1.0 to 1.1
 *	- Add filtering support.
+*	- Add Root element as main parent to pass xmllint validations.
 **/
 
 /**
@@ -79,6 +80,7 @@ public $filterOut = array(
 	$this->_regionsXML->load($this->_regionsfile);
 
 	$this->_mainXML = new DOMDocument('1.0', $outencoding);
+	$root = $this->_mainXML->appendChild(new DOMElement('Root'));
 	$this->_xpath = new DOMXPath($this->_regionsXML);
 	}#__c
 
@@ -148,7 +150,7 @@ public $filterOut = array(
 			}
 		}
 
-	$this->_mainXML->appendChild($this->_mainXML->importNode($doc->firstChild, true));
+	$this->_mainXML->firstChild->appendChild($this->_mainXML->importNode($doc->firstChild, true));
 	return $this;
 	}#m compileCountry
 
