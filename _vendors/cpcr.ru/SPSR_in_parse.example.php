@@ -1,4 +1,18 @@
 <?
+/**
+* SPSR infrastructure support to online shipping rates calculation support ( http://www.cpcr.ru/calculator.html )
+* This is example of usage.
+*
+* @package SPSR
+* @version 1.0
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
+*
+* @changelog
+*	* 2009-05-25 11:56 ver 1.0
+*	- Initial version.
+**/
+
 include('autoload.php');
 
 // Locale files

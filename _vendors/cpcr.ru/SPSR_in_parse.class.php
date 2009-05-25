@@ -1,5 +1,20 @@
 <?
 /**
+* SPSR infrastructure support to online shipping rates calculation support ( http://www.cpcr.ru/calculator.html )
+*
+* @package SPSR
+* @version 1.0
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
+*
+* @example SPSR_in_parse.example.php
+*
+* @changelog
+*	* 2009-05-25 11:56 ver 1.0
+*	- Initial version.
+**/
+
+/**
 * Class to parse and manipulate very different cpcr.ru data for online tariff calculation.
 *
 * SPSR have many files wit different structure and organazed through arse!
