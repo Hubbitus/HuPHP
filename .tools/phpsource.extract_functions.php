@@ -10,6 +10,7 @@
 **/
 include_once('Exceptions/BaseException.php');
 include_once('Exceptions/variables.php');
+include_once('Exceptions/classes.php');
 include_once('Vars/HuClass.php');
 include_once('Debug/debug.php');
 
@@ -124,7 +125,7 @@ $m = classCreate('RegExp_pcre', '#function\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-
 		->walk(
 			create_function(
 				'&$item'
-				,"\$item = \"\t\t'\$item'\t=> '" . RegExp_pcre::create('#^' . RegExp_pcre::quote(@$argv[2]) . '#', $inputfile)->replace() . "',\";"
+				,"\$item = \"\t\t'\$item'\t=> '" . classCreate('RegExp_pcre', '#^' . RegExp_pcre::quote(@$argv[2]) . '#', $inputfile)->replace() . "',\";"
 			)
 		)
 		->implode("\n") . "\n"
