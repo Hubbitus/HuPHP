@@ -4,7 +4,7 @@
 *
 * @package Vars
 * @subpackage Classes
-* @version 1.2
+* @version 1.2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -28,13 +28,16 @@
 *	- Method ::def() now used CONF()->getRaw($className) instead of direct accessing to @$GLOBALS['__CONFIG'][$className]
 *		with all futures what it does such as settings autoload.
 *	- include_once('Vars/HuConfig.class.php') added additional dependency.
+*
+*	* 2009-05-29 18:32 ver 1.2 to 1.2.1
+*	- include_once('Vars/HuConfig.class.php'); //Must be implisit, to break dependency circle. Free &CONF() function used.
 **/
 
 /*-inc
 include_once('Exceptions/classes.php');
 include_once('System/OS.php');# For OS::is_includeable()
-include_once('Vars/HuConfig.class.php');
 */
+include_once('Vars/HuConfig.class.php'); //Must be implisit, to break dependency circle. Free &CONF() function used.
 /**
 * @uses OS
 * @uses HuConfig
