@@ -115,10 +115,10 @@ foreach ($tokens as $token){
 }
 //Echo only function names. one per line
 //RegExp for function name got from (in Russian is absent): http://ru.php.net/manual/en/functions.user-defined.php
-$m = classCreate('RegExp_pcre', '#function\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)
+$m = classCreate('RegExp_pcre', '#function\s+\&?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)
 		->doMatchAll()
-		->getHuMatches(1)
-		->filter(create_function('&$func', 'global $_skip_functions; return ! in_array($func, $_skip_functions);'));
+			->getHuMatches(1)
+				->filter(create_function('&$func', 'global $_skip_functions; return ! in_array($func, $_skip_functions);'));
 	if ($m->count()) //Check for the \n
 	echo(
 		$m

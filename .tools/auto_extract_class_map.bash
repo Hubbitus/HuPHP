@@ -17,7 +17,7 @@ find .. -type f -iname '*.php' \
 	-not -wholename "${DIR}Debug/Phar/*" -not -name 'exec.php' -not -name $( basename "$OUT_FILE" ) \
 	-not -name RegExp_base.php -not -name try-examples.php -not -name '*.example.php' -not -name autoload.php \
 	-not -name template_class_NEW2.php -not -name 'phpsource.extract_functions.php' \
-	-exec egrep -iH '^\s*((abstract)?\s*class.+{|interface.+{)|function.+\(' {} \; | \
+	-exec egrep -iH '^\s*((abstract)?\s*class.+{|interface.+{)|&?function.+\(' {} \; | \
 		while read line; do
 		echo "$line"; # This will be processed after whole cycle, to filter dupes and do it only once
 		#echo ========
