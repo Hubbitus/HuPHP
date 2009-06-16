@@ -78,7 +78,7 @@ include_once('Debug/dump_utils.php');
 	error_reporting($GLOBALS['__CONFIG']['debug']['errorReporting']);
 	}
 
-	if (!array_key_exists($GLOBALS['__CONFIG']['debug']['display_errors'])){
+	if (!array_key_exists('display_errors', $GLOBALS['__CONFIG']['debug'])){
 	/**
 	* Enable or disable global errors reporting.
 	* @global	integer	$GLOBALS['__CONFIG']['debug']['display_errors']
