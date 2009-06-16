@@ -4,7 +4,7 @@
 *
 * @package Debug
 * @subpackage Debug
-* @version 2.3.5
+* @version 2.4
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -14,7 +14,7 @@
 *	- Move methods transformCorrect_print_r and transformCorrect_var_dump to separate class dump_utils (dump_utils.php)
 *	- Move dump::log into log_dump.php in separate function log_dump.
 *		dump::log ReRealise with it.
-* 	It is isfull fo not only debug purpose, and very bad what it depends from much debug-tools (classes, functions, files)
+*		It is isfull fo not only debug purpose, and very bad what it depends from much debug-tools (classes, functions, files)
 *
 *	* 2008-06-06 16:40 Ver 2.3 to 2.3.1
 *	- Include Debug/log_dump.php (in dump::log) and realize dump::log through log_dump free function.
@@ -33,54 +33,63 @@
 *	- Add include_once('macroses/ISSET_VAR.php');
 *	- All checks to $__CONFIG values replaced by call call to macros {@see ISSET_VAR}.
 *		Full explanation reason of it see in description of macros {@see ISSET_VAR}
+*
+*	* 2009-06-16 13:11 ver 2.3.5 to 2.4
+*	- Separate set $GLOBALS['__CONFIG']['debug'][*] options default values.
+*	- Remove unused $GLOBALS['__CONFIG']['debug']['whithout_Tokenizer'] option.
+*	- ISSET_VAR() check replaced by array_key_exists() (see internal comment below).
+*	- As now all $GLOBALS['__CONFIG']['debug'][*] settings all has default values, we may direct check its. It faster and reliable.
+*		So, exclude all ISSET_VAR call and inclusion such macros.
+*	- Remove define ('NO_DEBUG', false); this constant was unused.
 **/
 
 define ('DUMP_DO_NOT_DEFINE_STUMP_DUMP', true);
 include_once('Debug/dump_utils.php');
-include_once('macroses/ISSET_VAR.php');
 
-define ('NO_DEBUG', false);
-
-	#Even here, used directly $GLOBALS, because it may be included in other scope (e.g. from function)
-	if (!isset($GLOBALS['__CONFIG']['debug'])){
-	$GLOBALS['__CONFIG']['debug'] = array(
-		/**
-		* Parsing what parameters present at call time.
-		* For example:
-		* dump::c($ttt)
-		* is equivalent to
-		* dump::c($ttt, '$ttt')
-		* This future is very usefull, but require Tokenizer class and got time overhead.
-		**/
-		'parseCallParam'	=> true,
-		/**
-		* Set error_reporting to this value.
-		* Null has special means - no change!
-		**/
-		'errorReporting'	=> E_ALL,
-
-		/**
-		* Enable or disable global errors reporting.
-		**/
-		'display_errors'	=> 1,
-
-		/**
-		* Provide capability to disable Tokenizer
-		* Warning: parseCallParam=true also disable Tokenizer and backtrace
-		**/
-		'whithout_Tokenizer'=> false
-	);
+	/**
+	* @internal
+	* Even here, used directly $GLOBALS, because it may be included in other scope (e.g. from function)
+	*
+	* We MUST use direct array_key_exists instead if isset (or even is_set) check because, according
+	*	to MAN: "isset() will return FALSE if testing a variable that has been set to NULL", but we really want known fact of presence.
+	**/
+	if (!array_key_exists('parseCallParam', $GLOBALS['__CONFIG']['debug'])){
+	/**
+	* Parsing what parameters present at call time.
+	* For example:
+	* dump::c($ttt)
+	* is equivalent to
+	* dump::c($ttt, '$ttt')
+	* This future is very usefull, but require Tokenizer class and got time overhead.
+	* @global	integer	$GLOBALS['__CONFIG']['debug']['parseCallParam']
+	**/
+	$GLOBALS['__CONFIG']['debug']['parseCallParam'] = true;
 	}
 
-	if (null !== ISSET_VAR($GLOBALS['__CONFIG']['debug']['errorReporting'])){
+	if (!array_key_exists('errorReporting', $GLOBALS['__CONFIG']['debug'])){
+	/**
+	* Set error_reporting to this value.
+	* Null has special means - no change!
+	* @global	integer	$GLOBALS['__CONFIG']['debug']['errorReporting']
+	**/
+	$GLOBALS['__CONFIG']['debug']['errorReporting'] = E_ALL;
+	}
+	if (null !== $GLOBALS['__CONFIG']['debug']['errorReporting']){
 	error_reporting($GLOBALS['__CONFIG']['debug']['errorReporting']);
 	}
 
-	if (null !== ISSET_VAR($GLOBALS['__CONFIG']['debug']['display_errors'])){
+	if (!array_key_exists($GLOBALS['__CONFIG']['debug']['display_errors'])){
+	/**
+	* Enable or disable global errors reporting.
+	* @global	integer	$GLOBALS['__CONFIG']['debug']['display_errors']
+	**/
+	$GLOBALS['__CONFIG']['debug']['display_errors'] = 1;
+	}
+	if (null !== $GLOBALS['__CONFIG']['debug']['display_errors']){
 	ini_set('display_errors', $GLOBALS['__CONFIG']['debug']['display_errors']);
 	}
 
-	if (ISSET_VAR($GLOBALS['__CONFIG']['debug']['parseCallParam'])){
+	if ($GLOBALS['__CONFIG']['debug']['parseCallParam']){
 	include_once('Debug/Tokenizer.php');
 	include_once('Debug/backtrace.php');
 	}
@@ -107,7 +116,7 @@ class dump extends dump_utils{
 			//Be careful! Null, NOT false by default in dump::*()! It allows distinguish what it is
 			//not passed by default or it is not needed!!
 			$header !== null
-			and ISSET_VAR($GLOBALS['__CONFIG']['debug']['parseCallParam'])
+			and $GLOBALS['__CONFIG']['debug']['parseCallParam']
 			and
 			(
 				$cp = Tokenizer::trimQuotes(
