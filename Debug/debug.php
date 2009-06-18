@@ -4,7 +4,7 @@
 *
 * @package Debug
 * @subpackage Debug
-* @version 2.4
+* @version 2.4.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -41,10 +41,16 @@
 *	- As now all $GLOBALS['__CONFIG']['debug'][*] settings all has default values, we may direct check its. It faster and reliable.
 *		So, exclude all ISSET_VAR call and inclusion such macros.
 *	- Remove define ('NO_DEBUG', false); this constant was unused.
+*
+*	* 2009-06-18 15:21 ver 2.4 to 2.4.1
+*	- Inicialize $GLOBALS['__CONFIG']['debug'] as empty array if it is not defined yet to avoid futher warnings
 **/
 
 define ('DUMP_DO_NOT_DEFINE_STUMP_DUMP', true);
 include_once('Debug/dump_utils.php');
+
+	//Avoid warning
+	if (!array_key_exists('__CONFIG', $GLOBALS) or !array_key_exists('debug', $GLOBALS['__CONFIG'])) $GLOBALS['__CONFIG']['debug'] = array();
 
 	/**
 	* @internal
