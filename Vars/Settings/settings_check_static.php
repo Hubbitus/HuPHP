@@ -14,7 +14,7 @@
 * Extended variant of settings_check to handle "uncleared" fields.
 **/
 class settings_check_static extends settings_check{
-protected $static_settings = array('SIGNATURE_FORMAT');
+protected $static_settings = array();
 	/**
 	* Clear all except uncleared items.
 	**/
