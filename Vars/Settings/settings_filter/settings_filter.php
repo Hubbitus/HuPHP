@@ -32,7 +32,7 @@
 *
 * @example settings_filter.example.php
 **/
-class settings_filter extends settings_check{
+class settings_filter extends settings_check_static{
 protected $__filt_set = array();
 protected $__filt_get = array();
 	/**
