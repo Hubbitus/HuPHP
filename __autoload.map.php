@@ -85,6 +85,7 @@ $GLOBALS['__CONFIG']['__autoload_map'] = array(
 	'settings_filter'	=> 'Vars/Settings/settings_filter/settings_filter.php',
 	'settings_filter_base'	=> 'Vars/Settings/settings_filter/settings_filter_filter.php',
 	'settings_filter_null'	=> 'Vars/Settings/settings_filter/settings_filter_filter.php',
+	'settings_check_static'	=> 'Vars/Settings/settings_check_static.php',
 	'settings'	=> 'Vars/Settings/settings.php',
 	'get_settings'	=> 'Vars/Settings/settings.php',
 	'commonOutExtraData'	=> 'Vars/commonOutExtraData.php',

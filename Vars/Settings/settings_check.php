@@ -53,10 +53,18 @@ public $properties = array();
 		if ($array) $this->mergeSettingsArray($array);
 	}#constructor
 
+	/**
+	* Reimplement extended variant to chect setting name possibility.
+	* @inheritdoc
+	**/
 	public function setSetting($name, $value){
 	parent::setSetting($this->checkNamePossible($name, __METHOD__), $value);
 	}#m setSetting
 
+	/**
+	* Reimplement extended variant to chect setting name possibility.
+	* @inheritdoc
+	**/
 	public function getProperty($name){
 	return parent::getProperty($this->checkNamePossible($name, __METHOD__));
 	}#m getProperty
@@ -74,8 +82,8 @@ public $properties = array();
 	}#m addSetting
 
 	/**
-	* ПЕРЕЗАПИСЫВАЕТ ВСЕ настройки. Для изменения отдельных - setSetting
-	* Хорошо было бы это все в setSettings запихать, но перегрузка не поддерживается :(. Что ж, будут разные имена.
+	* Reimplement extended variant to chect setting name possibility.
+	* @inheritdoc
 	**/
 	public function setSettingsArray(array $setArr){
 	array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
@@ -84,16 +92,17 @@ public $properties = array();
 
 	/**
 	* Check isset of requested property. See http://php.net/isset comment of "phpnotes dot 20 dot zsh at spamgourmet dot com"
+	*
 	* @param	string	$name	Name of required property
-	* @return boolean
-	*/
+	* @return	boolean
+	**/
 	public function __isset($name) {
 	return parent::__isset($this->checkNamePossible($name, __METHOD__));
 	}#m __isset
 
 	/**
-	* ПЕРЕЗАПИСЫВАЕТ УКАЗАННЫЕ настройки. Для изменения отдельных - setSetting
-	* Хорошо было бы это все в setSettings запихать, но перегрузка не поддерживается :(. Что ж, будут разные именаю
+	* Reimplement extended variant to chect setting name possibility.
+	* @inheritdoc
 	**/
 	public function mergeSettingsArray(array $setArr){
 	array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
@@ -102,11 +111,12 @@ public $properties = array();
 
 	/**
 	* Check if name is possible, and Throw(ClassPropertyNotExistsException) if not.
+	*
 	* @param	string	$name. Name to check.
 	* @param	string	$method. To Exception - caller method name.
 	* @param	string	$walkmethod. Only for array_walk compatibility - it is must be 3d parameter.
 	* @return	string	$name
-	* @Throw(ClassPropertyNotExistsException)
+	* @Throws	(ClassPropertyNotExistsException)
 	**/
 	protected function checkNamePossible($name, $method, $walkmethod = null){
 		if (!in_array($name, $this->properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist!');
