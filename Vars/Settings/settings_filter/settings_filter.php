@@ -50,8 +50,8 @@ protected $__filt_get = array();
 	* Result not chached!
 	* @inheritdoc
 	**/
-	public function getProperty($name){
-	$val = parent::getProperty($name);
+	public function &getProperty($name){
+	$val =& parent::getProperty($name);
 		foreach ($this->getFilterGet($name) as $filt){
 		$val = $filt->apply($name, $val);
 		}

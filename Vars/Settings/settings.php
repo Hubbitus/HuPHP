@@ -81,8 +81,8 @@ protected $__SETS = array();#Сами настройки, массив
 	* @param	string	$name
 	* @return	mixed
 	**/
-	public function getProperty($name){
-	return ($this->__SETS[REQUIRED_NOT_NULL($name)]);
+	public function &getProperty($name){
+	return $this->__SETS[REQUIRED_NOT_NULL($name)];
 	}#m getProperty
 
 	/**
@@ -103,7 +103,7 @@ protected $__SETS = array();#Сами настройки, массив
 	* @param	string	$name
 	* @return	mixed
 	**/
-	public function __get($name){
+	public function &__get($name){
 	return $this->getProperty($name);
 	}#m __get
 

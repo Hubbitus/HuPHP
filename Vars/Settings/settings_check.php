@@ -68,7 +68,7 @@ public $properties = array();
 	* Reimplement extended variant to chect setting name possibility.
 	* @inheritdoc
 	**/
-	public function getProperty($name){
+	public function &getProperty($name){
 	return parent::getProperty($this->checkNamePossible($name, __METHOD__));
 	}#m getProperty
 
