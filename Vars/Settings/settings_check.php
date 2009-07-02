@@ -9,7 +9,7 @@
 * @package settings
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @version 1.0.6
+* @version 1.0.7
 *
 * @changelog
 *	* 2008-05-30 16:08
@@ -30,6 +30,9 @@
 *
 *	* 2009-05-21 22:46 ver 1.0.5 to 1.0.6
 *	* Make $properties non-static! This prevent mesh properies in 2 child of this class.
+*
+*	* 2009-07-02 13:32 ver 1.0.6 to 1.0.7
+*	- Add method ::nesting()
 **/
 
 include_once('Exceptions/classes.php');
@@ -46,7 +49,7 @@ public $properties = array();
 	* Constructor.
 	*
 	* @param	array	$possibles. Array of string - possibe names of propertys.
-	* @param	array=null $array
+	* @param	array=null	$array
 	**/
 	function __construct(array $possibles, array $array = null){
 	$this->properties = $possibles;
@@ -122,5 +125,22 @@ public $properties = array();
 		if (!in_array($name, $this->properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist!');
 	return	$name;
 	}#m checkNamePossible
+
+	/*
+	* Emulate nesting.
+	*
+	* As we reimplement object to do not have properties itself, instead
+	*	define it in $this->properties we should  provide mechanism to emulate
+	*	nestiong, to do not mention each time again presented properties.
+	* So, with this method we can define in childs new propery
+	*	$this->properties_addon and than call this method (in constructor f.e.)
+	*	to add new props.
+	*
+	* So, method MUST be called explicitly. No any magic here!!!
+	**/
+	public function nesting(){
+		//We can't use here nor operatorr + (union), nor array_merge function. We need ADD elements.
+		foreach($this->properties_addon as $item) $this->properties[] = $item;;
+	}#m nesting
 }#c settings_check
 ?>
