@@ -29,7 +29,7 @@ protected $static_settings = array();
 	*
 	* @return	array
 	**/
-	private function getRegularKeys(){
+	public function getRegularKeys(){
 	return array_diff(array_keys($this->__SETS), $this->static_settings);
 	}#m getRegularKeys
 }#c settings_check_static
