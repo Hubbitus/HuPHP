@@ -126,7 +126,7 @@ public $properties = array();
 	return	$name;
 	}#m checkNamePossible
 
-	/*
+	/**
 	* Emulate nesting.
 	*
 	* As we reimplement object to do not have properties itself, instead
@@ -139,8 +139,8 @@ public $properties = array();
 	* So, method MUST be called explicitly. No any magic here!!!
 	**/
 	public function nesting(){
-		//We can't use here nor operatorr + (union), nor array_merge function. We need ADD elements.
-		foreach($this->properties_addon as $item) $this->properties[] = $item;;
+	//We can't use here nor operatorr + (union), nor array_merge function. We need ADD elements.
+	array_splice($this->properties, count($this->properties), 1, $this->properties_addon);
 	}#m nesting
 }#c settings_check
 ?>
