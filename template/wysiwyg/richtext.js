@@ -16,18 +16,27 @@ var imagesPath;
 var includesPath;
 var cssFile;
 
+function getRTE(name){
+	//contributed by Bob Hutzel (thanks Bob!)
+	if (document.all) {
+		return frames[rte].document;
+	} else {
+		return document.getElementById(rte).contentWindow.document;
+	}
+}
+
 function initRTE(imgPath, incPath, css) {
 	//set browser vars
 	var ua = navigator.userAgent.toLowerCase();
 	isIE = ((ua.indexOf("msie") != -1) && (ua.indexOf("opera") == -1) && (ua.indexOf("webtv") == -1)); 
 	isGecko = (ua.indexOf("gecko") != -1);
 	isSafari = (ua.indexOf("safari") != -1);
-	
+
 	//check to see if designMode mode is available
 	if (document.getElementById && document.designMode && !isSafari) {
 		isRichText = true;
 	}
-	
+
 	//set paths vars
 	imagesPath = imgPath;
 	includesPath = incPath;
@@ -165,16 +174,17 @@ function enableDesignMode(rte, html, readOnly) {
 	frameHtml += html + "\n";
 	frameHtml += "</body>\n";
 	frameHtml += "</html>";
-	
+
 	if (document.all) {
 		var oRTE = frames[rte].document;
 		oRTE.open();
 		oRTE.write(frameHtml);
 		oRTE.close();
+		oRTE.onpaste = onPasteCleanWordMesh;
 		if (!readOnly) oRTE.designMode = "On";
 	} else {
 		try {
-			if (!readOnly) setTimeout("document.getElementById('" + rte + "').contentDocument.designMode = 'on';", 10000);
+			if (!readOnly) setTimeout("document.getElementById('" + rte + "').contentDocument.designMode = 'on';", 1000);
 			try {
 				var oRTE = document.getElementById(rte).contentWindow.document;
 				oRTE.open();
@@ -184,6 +194,7 @@ function enableDesignMode(rte, html, readOnly) {
 				if (isGecko && !readOnly) {
 					//attach a keyboard handler for gecko browsers to make keyboard shortcuts work
 					oRTE.addEventListener("keypress", kb_handler, true);
+					oRTE.addEventListener("paste", onPasteCleanWordMesh, true);
 				}
 			} catch (e) {
 				alert("Error preloading content.");
@@ -212,21 +223,21 @@ function updateRTE(rte) {
 	var oHdnMessage = document.getElementById('hdn' + rte);
 	var oRTE = document.getElementById(rte);
 	var readOnly = false;
-	
+
 	//check for readOnly mode
 	if (document.all) {
 		if (frames[rte].document.designMode != "On") readOnly = true;
 	} else {
 		if (document.getElementById(rte).contentDocument.designMode != "on") readOnly = true;
 	}
-	
+
 	if (isRichText && !readOnly) {
 		//if viewing source, switch back to design view
 		if (document.getElementById("chkSrc" + rte).checked) {
 			document.getElementById("chkSrc" + rte).checked = false;
 			toggleHTMLSrc(rte);
 		}
-		
+
 		if (oHdnMessage.value == null) oHdnMessage.value = "";
 		if (document.all) {
 			oHdnMessage.value = finalHTML(frames[rte].document.body.innerHTML);
@@ -237,49 +248,40 @@ function updateRTE(rte) {
 }
 
 function toggleHTMLSrc(rte) {
-	//contributed by Bob Hutzel (thanks Bob!)
-	var oRTE;
-	if (document.all) {
-		oRTE = frames[rte].document;
-	} else {
-		oRTE = document.getElementById(rte).contentWindow.document;
-	}
-	
-	if (document.getElementById("chkSrc" + rte).checked) {//В Source
+	var oRTE = getRTE(rte);
+
+	if (document.getElementById("chkSrc" + rte).checked) {//Р’ Source
 		document.getElementById("Buttons1_" + rte).style.visibility = "hidden";
 		document.getElementById("Buttons2_" + rte).style.visibility = "hidden";
 		if (document.all) {
 			oRTE.body.innerText = oRTE.body.innerHTML;
-			oRTE.body.innerHTML = toSource(oRTE.body.innerHTML);//Конвертяем
+			oRTE.body.innerHTML = toSource(oRTE.body.innerHTML);//РљРѕРЅРІРµСЂС‚СЏРµРј
 		} else {
 			oRTE.body.textContent = oRTE.body.innerHTML;
-			oRTE.body.innerHTML = toSource(oRTE.body.innerHTML);//Конвертяем
+			oRTE.body.innerHTML = toSource(oRTE.body.innerHTML);//РљРѕРЅРІРµСЂС‚СЏРµРј
 		}
-	} else {// в HTML
+	} else {// РІ HTML
 		document.getElementById("Buttons1_" + rte).style.visibility = "visible";
 		document.getElementById("Buttons2_" + rte).style.visibility = "visible";
-		if (document.all) {
-			oRTE.body.innerHTML = toHTML(oRTE.body.innerHTML);
-		} else {
-			oRTE.body.innerHTML = toHTML(oRTE.body.innerHTML);//Конвертяем
-		}
+		oRTE.body.innerHTML = toHTML(oRTE.body.innerHTML);
 	}
 }
 
-//Функция для конвертации и сохранения форматирования исходников
+//Р¤СѓРЅРєС†РёСЏ РґР»СЏ РєРѕРЅРІРµСЂС‚Р°С†РёРё Рё СЃРѕС…СЂР°РЅРµРЅРёСЏ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёСЏ РёСЃС…РѕРґРЅРёРєРѕРІ
 function toSource(src){
 //alert(src);
 src = src.replace(/&lt;nn&gt;/gmi, "<br n>");
-////Пробелы
-src = src.replace(/&lt;sps\sn=["]*(\d+)["]*&gt;&lt;\/sps&gt;\s?/gmi,	function (spaces, amount){
-									var str = '';
-									    while (str.length < amount*6) str = '&nbsp;' + str;
-									return '<sps n=' + amount + '>' + str + '</sps>';
-									}
+////РџСЂРѕР±РµР»С‹
+src = src.replace(/&lt;sps\sn=["]*(\d+)["]*&gt;&lt;\/sps&gt;\s?/gmi
+	,function (spaces, amount){
+	var str = '';
+		while (str.length < amount*6) str = '&nbsp;' + str;
+	return '<sps n=' + amount + '>' + str + '</sps>';
+	}
 );
-src = src.replace(/&amp;#39;/gmi, String.fromCharCode(39));//Это коррекция одинарных кавычек. Функцией для сжатия.
-src = src.replace(/\&lt\;\/nn\&gt\;/gmi, '');//Мусор в виде </nn>, вставляемый браузером автоматически - удаляем
-//Непонятно откуда взявшиеся <br> тоже чистим
+src = src.replace(/&amp;#39;/gmi, String.fromCharCode(39));//Р­С‚Рѕ РєРѕСЂСЂРµРєС†РёСЏ РѕРґРёРЅР°СЂРЅС‹С… РєР°РІС‹С‡РµРє. Р¤СѓРЅРєС†РёРµР№ РґР»СЏ СЃР¶Р°С‚РёСЏ.
+src = src.replace(/\&lt\;\/nn\&gt\;/gmi, '');//РњСѓСЃРѕСЂ РІ РІРёРґРµ </nn>, РІСЃС‚Р°РІР»СЏРµРјС‹Р№ Р±СЂР°СѓР·РµСЂРѕРј Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё - СѓРґР°Р»СЏРµРј
+//РќРµРїРѕРЅСЏС‚РЅРѕ РѕС‚РєСѓРґР° РІР·СЏРІС€РёРµСЃСЏ <br> С‚РѕР¶Рµ С‡РёСЃС‚РёРј
 src = src.replace(/<br>/gmi, '');
 //alert(src);
 return src;
@@ -287,56 +289,58 @@ return src;
 
 function toHTML(src){
 //alert(src);
-////Заменяем "началы строк"
-src = src.replace(/<br>\n?/gmi, '<nn>');//Заменяем новые "началы строк"
-    if (isIE){
-    //Заменяем пустые строки
-    src = src.replace(/<\/P>\r\n<P>&nbsp;<\/P>/gmi, '<nn>');
-    src = src.replace(/<P>&nbsp;<\/P>\r\n<P>/gmi, '<nn>');
+////Р—Р°РјРµРЅСЏРµРј "РЅР°С‡Р°Р»С‹ СЃС‚СЂРѕРє"
+src = src.replace(/<br>\n?/gmi, '<nn>');//Р—Р°РјРµРЅСЏРµРј РЅРѕРІС‹Рµ "РЅР°С‡Р°Р»С‹ СЃС‚СЂРѕРє"
+	if (isIE){
+	//Р—Р°РјРµРЅСЏРµРј РїСѓСЃС‚С‹Рµ СЃС‚СЂРѕРєРё
+	src = src.replace(/<\/P>\r\n<P>&nbsp;<\/P>/gmi, '<nn>');
+	src = src.replace(/<P>&nbsp;<\/P>\r\n<P>/gmi, '<nn>');
 
-    src = src.replace(/<\/p>[\r\n]+<p>/gmi, '<nn>');//Заменяем новые "началы строк"
+	src = src.replace(/<\/p>[\r\n]+<p>/gmi, '<nn>');//Р—Р°РјРµРЅСЏРµРј РЅРѕРІС‹Рµ "РЅР°С‡Р°Р»С‹ СЃС‚СЂРѕРє"
 
-    src = src.replace(/<p>/gmi, '');//Автомусор <p>
-    src = src.replace(/<\/p>/gmi, '');//и </p>
-    }
-src = src.replace(/\r?\n/gmi, ' ');//Мусор
-src = src.replace(/\<br\sn[=""]*>/gmi, '<nn>'); // Заменяем старые ("" вместо " только для подсветки синтаксиса правильного)
-////Заменяем пробелы
-src = src.replace(/\&nbsp;/gmi, ' ');//Сначала заменим все &nbsp; на пробелы чтобы привести к общему виду строку "&nbsp;&nbsp; "
-src = src.replace(/<sps.*?>/gmi, '');//Теперь удаляем все уже существующие
-src = src.replace(/<\/sps>/gmi, '');// теги <sps n=\d> </sps>
-// **1** Ниже именно new RegExp, пробел должен быть в кавычках!!! ИЗ-ЗА сжатия скрипта проблема эта!
-src = src.replace(new RegExp(' {2,}', 'gmi'),	function (spaces){ //теперь общая замена...
-						return '<sps n=' + spaces.length + '></sps> ';
-						}
+	src = src.replace(/<p>/gmi, '');//РђРІС‚РѕРјСѓСЃРѕСЂ <p>
+	src = src.replace(/<\/p>/gmi, '');//Рё </p>
+	}
+src = src.replace(/\r?\n/gmi, ' ');//РњСѓСЃРѕСЂ
+src = src.replace(/\<br\sn[=""]*>/gmi, '<nn>'); // Р—Р°РјРµРЅСЏРµРј СЃС‚Р°СЂС‹Рµ ("" РІРјРµСЃС‚Рѕ " С‚РѕР»СЊРєРѕ РґР»СЏ РїРѕРґСЃРІРµС‚РєРё СЃРёРЅС‚Р°РєСЃРёСЃР° РїСЂР°РІРёР»СЊРЅРѕРіРѕ)
+////Р—Р°РјРµРЅСЏРµРј РїСЂРѕР±РµР»С‹
+src = src.replace(/\&nbsp;/gmi, ' ');//РЎРЅР°С‡Р°Р»Р° Р·Р°РјРµРЅРёРј РІСЃРµ &nbsp; РЅР° РїСЂРѕР±РµР»С‹ С‡С‚РѕР±С‹ РїСЂРёРІРµСЃС‚Рё Рє РѕР±С‰РµРјСѓ РІРёРґСѓ СЃС‚СЂРѕРєСѓ "&nbsp;&nbsp; "
+src = src.replace(/<sps.*?>/gmi, '');//РўРµРїРµСЂСЊ СѓРґР°Р»СЏРµРј РІСЃРµ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёРµ
+src = src.replace(/<\/sps>/gmi, '');// С‚РµРіРё <sps n=\d> </sps>
+// **1** РќРёР¶Рµ РёРјРµРЅРЅРѕ new RegExp, РїСЂРѕР±РµР» РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІ РєР°РІС‹С‡РєР°С…!!! РР—-Р—Рђ СЃР¶Р°С‚РёСЏ СЃРєСЂРёРїС‚Р° РїСЂРѕР±Р»РµРјР° СЌС‚Р°!
+src = src.replace(new RegExp(' {2,}', 'gmi')
+	,function (spaces){ //С‚РµРїРµСЂСЊ РѕР±С‰Р°СЏ Р·Р°РјРµРЅР°...
+	return '<sps n=' + spaces.length + '></sps> ';
+	}
 );
-// **1** См. выше
-src = src.replace(new RegExp('<nn> ', 'gmi'), '<nn><sps n=1></sps> ');//Пробел в начале строки почему-то игнорируется, заменяем отдельно
-src = src.replace(/<(?!(nn)|(br)|(\/?sps)).*?>/gmi, ''); //BUG BUG BUG IE по автоматической конвертации ссылок, и вообще все автоматические теги НАФИГ
-////Ну и приводим HTML в соответствие
+// **1** РЎРј. РІС‹С€Рµ
+src = src.replace(new RegExp('<nn> ', 'gmi'), '<nn><sps n=1></sps> ');//РџСЂРѕР±РµР» РІ РЅР°С‡Р°Р»Рµ СЃС‚СЂРѕРєРё РїРѕС‡РµРјСѓ-С‚Рѕ РёРіРЅРѕСЂРёСЂСѓРµС‚СЃСЏ, Р·Р°РјРµРЅСЏРµРј РѕС‚РґРµР»СЊРЅРѕ
+src = src.replace(/<(?!(nn)|(br)|(\/?sps)).*?>/gmi, ''); //BUG BUG BUG IE РїРѕ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕР№ РєРѕРЅРІРµСЂС‚Р°С†РёРё СЃСЃС‹Р»РѕРє, Рё РІРѕРѕР±С‰Рµ РІСЃРµ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРёРµ С‚РµРіРё РќРђР¤РР“
+////РќСѓ Рё РїСЂРёРІРѕРґРёРј HTML РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ
 src = src.replace(/\&lt\;/gmi, '<');
 src = src.replace(/\&gt\;/gmi, '>');
 src = src.replace(/\&amp\;/gmi, '&');
 
-    if (isIE){//Если <script...> первый он в ИЕ исчезает
-    src = src.replace(/(&nbsp;)*<script/gmi, '&nbsp;<script');
-    }
+	if (isIE){//Р•СЃР»Рё <script...> РїРµСЂРІС‹Р№ РѕРЅ РІ РР• РёСЃС‡РµР·Р°РµС‚
+	src = src.replace(/(&nbsp;)*<script/gmi, '&nbsp;<script');
+	}
 //alert(src);
 return src;
 }//f toHTML
 
-//Конечная обработка для отправки, все подчищаем
+//РљРѕРЅРµС‡РЅР°СЏ РѕР±СЂР°Р±РѕС‚РєР° РґР»СЏ РѕС‚РїСЂР°РІРєРё, РІСЃРµ РїРѕРґС‡РёС‰Р°РµРј
 function finalHTML(src){
 //alert(src);
-src = src.replace(/\r?\n/gmi, ' ');//Это для ИЕ нужно, от некоторых "косяков" неучтенных
+src = src.replace(/\r?\n/gmi, ' ');//Р­С‚Рѕ РґР»СЏ РР• РЅСѓР¶РЅРѕ, РѕС‚ РЅРµРєРѕС‚РѕСЂС‹С… "РєРѕСЃСЏРєРѕРІ" РЅРµСѓС‡С‚РµРЅРЅС‹С…
 src = src.replace(/<nn>/gmi, '\n');
 src = src.replace(/<\/nn>/gmi, '');
-////Пробелы
-src = src.replace(/<sps\sn=["]*(\d+)["]*><\/sps>/gmi,	function (spaces, amount){
-							var str = '';
-							    while (str.length < amount-1) str = ' ' + str;
-							return str;
-							}
+////РџСЂРѕР±РµР»С‹
+src = src.replace(/<sps\sn=["]*(\d+)["]*><\/sps>/gmi
+	,function (spaces, amount){
+	var str = '';
+		while (str.length < amount-1) str = ' ' + str;
+	return str;
+	}
 );
 //alert(src);
 return src;
@@ -344,10 +348,11 @@ return src;
 
 //Function to format text in the text box
 function FormatText(rte, command, option) {
+//alert('FormatText()');
 	var oRTE;
 	if (document.all) {
 		oRTE = frames[rte];
-		
+
 		//get current selected range
 		var selection = oRTE.document.selection; 
 		if (selection != null) {
@@ -355,18 +360,18 @@ function FormatText(rte, command, option) {
 		}
 	} else {
 		oRTE = document.getElementById(rte).contentWindow;
-		
+
 		//get currently selected range
 		var selection = oRTE.getSelection();
 		rng = selection.getRangeAt(selection.rangeCount - 1).cloneRange();
 	}
-	
+
 	try {
 		if ((command == "forecolor") || (command == "hilitecolor")) {
 			//save current values
 			parent.command = command;
 			currentRTE = rte;
-			
+
 			//position and show color palette
 			buttonElement = document.getElementById(command + '_' + rte);
 			document.getElementById('cp' + rte).style.left = getOffsetLeft(buttonElement) + "px";
@@ -389,7 +394,7 @@ function FormatText(rte, command, option) {
 			}
 		} else {
 			oRTE.focus();
-		  	oRTE.document.execCommand(command, false, option);
+			oRTE.document.execCommand(command, false, option);
 			oRTE.focus();
 		}
 	} catch (e) {
@@ -406,7 +411,7 @@ function setColor(color) {
 	} else {
 		oRTE = document.getElementById(rte).contentWindow;
 	}
-	
+
 	var parentCommand = parent.command;
 	if (document.all) {
 		//retrieve selected range
@@ -431,7 +436,7 @@ function AddImage(rte) {
 	var oRTE;
 	if (document.all) {
 		oRTE = frames[rte];
-		
+
 		//get current selected range
 		var selection = oRTE.document.selection; 
 		if (selection != null) {
@@ -439,13 +444,13 @@ function AddImage(rte) {
 		}
 	} else {
 		oRTE = document.getElementById(rte).contentWindow;
-		
+
 		//get currently selected range
 		var selection = oRTE.getSelection();
 		rng = selection.getRangeAt(selection.rangeCount - 1).cloneRange();
 	}
-	
-	imagePath = prompt('Enter Image URL:', 'http://');				
+
+	imagePath = prompt('Enter Image URL:', 'http://');
 	if ((imagePath != null) && (imagePath != "")) {
 		//oRTE.focus();
 		oRTE.document.execCommand('InsertImage', false, imagePath);
@@ -472,24 +477,24 @@ function checkspell() {
 function getOffsetTop(elm) {
 	var mOffsetTop = elm.offsetTop;
 	var mOffsetParent = elm.offsetParent;
-	
+
 	while(mOffsetParent){
 		mOffsetTop += mOffsetParent.offsetTop;
 		mOffsetParent = mOffsetParent.offsetParent;
 	}
-	
+
 	return mOffsetTop;
 }
 
 function getOffsetLeft(elm) {
 	var mOffsetLeft = elm.offsetLeft;
 	var mOffsetParent = elm.offsetParent;
-	
+
 	while(mOffsetParent) {
 		mOffsetLeft += mOffsetParent.offsetLeft;
 		mOffsetParent = mOffsetParent.offsetParent;
 	}
-	
+
 	return mOffsetLeft;
 }
 
@@ -497,7 +502,7 @@ function Select(rte, selectname) {
 	var oRTE;
 	if (document.all) {
 		oRTE = frames[rte];
-		
+
 		//get current selected range
 		var selection = oRTE.document.selection; 
 		if (selection != null) {
@@ -505,7 +510,7 @@ function Select(rte, selectname) {
 		}
 	} else {
 		oRTE = document.getElementById(rte).contentWindow;
-		
+
 		//get currently selected range
 		var selection = oRTE.getSelection();
 		rng = selection.getRangeAt(selection.rangeCount - 1).cloneRange();
@@ -545,6 +550,104 @@ function kb_handler(evt) {
  	}
 }
 
-function docChanged (evt) {
-	alert('changed');
+/**
+* Strip most ugly word mesh.
+* Base implementation got from MCE editor
+*
+* @author Pavel Alexeev aka Pahan-Hubbitus
+* @copyright 2009
+* @license GPLv2+
+**/
+function msWordNastyClean(h){
+//alert('msWordNastyClean()');
+	each = function(o, cb, s){
+	var n, l;
+
+		if (!o){return 0;}
+
+		s = s || o;
+
+		if (typeof(o.length) != 'undefined') {
+			// Indexed arrays, needed for Safari
+			for (n=0, l = o.length; n<l; n++) {
+				if (cb.call(s, o[n], n, o) === false){return 0;}
+			}
+		} else {
+			// Hashtables
+			for (n in o) {
+				if (o.hasOwnProperty(n)) {
+					if (cb.call(s, o[n], n, o) === false){return 0;}
+				}
+			}
+		}
+
+		return 1;
+	}//f each
+
+	function process(items){
+		each(items, function(v) {
+			// Remove or replace
+			if (v.constructor == RegExp){h = h.replace(v, '');}
+			else{h = h.replace(v[0], v[1]);}
+		});
+	}
+
+	// Process away some basic content
+	process([
+		/^\s*(&nbsp;)+/g,			// nbsp entities at the start of contents
+		/(&nbsp;|<br[^>]*>)+\s*$/g,	// nbsp entities at the end of contents
+
+		[/<!--\[if !supportLists\]-->/gi, '$&__MCE_ITEM__'],		// Convert supportLists to a list item marker
+		[/(<span[^>]+:\s*symbol[^>]+>)/gi, '$1__MCE_ITEM__'],		// Convert symbol spans to list items
+		[/(<span[^>]+mso-list:[^>]+>)/gi, '$1__MCE_ITEM__'],		// Convert mso-list to item marker
+
+		/<!--[\s\S]+?-->/gi,								// Word comments
+		/<\/?(img|font|meta|link|style|div|v:\w+)[^>]*>/gi,		// Remove some tags including VML content
+		/<\\?\?xml[^>]*>/gi,								// XML namespace declarations
+		/<\/?o:[^>]*>/gi,									// MS namespaced elements <o:tag>
+		/ (id|name|language|type|on\w+|v:\w+)=\"([^\"]*)\"/gi,		// on.., class, style and language attributes with quotes
+		/ (id|name|language|type|on\w+|v:\w+)=(\w+)/gi,			// on.., class, style and language attributes without quotes (IE)
+		[/<(\/?)s>/gi, '<$1strike>'],							// Convert <s> into <strike> for line-though
+		/<script[^>]+>[\s\S]*?<\/script>/gi,					// All scripts elements for msoShowComment for example
+		[/&nbsp;/g, '\u00a0'],								// Replace nsbp entites to char since it's easier to handle
+	// Strip class-attributes
+		/ class=\"([^\"]*)\"/gi,								// class attributes with quotes
+		/ class=(\w+)/gi,									// class attributes without quotes (IE)
+
+		/<\S+:\S+( .+?>|>)/gi,								// All tags with namespaces, like: <st1:metricconverter productid="98 Рі" w:st="on">
+		/ style=""/gi,										// Empty styles:
+		/<([^>\/]+)[^>]*?>\s*?<\/$1>/gi						// Any empty tags like: <span> </span>
+	]);
+
+//	process([
+//		/<\/?(span)[^>]*>/gi
+//	]);
+
+//	// Remove named anchors or TOC links
+//	each(dom.select('a', o.node), function(a) {
+//		if (!a.href || a.href.indexOf('#_Toc') != -1)
+//			dom.remove(a, 1);
+//	});
+
+return h;
+}
+
+/**
+* onAfterPaste ewent would be more desirablem but it is not still awailable in FireFox.
+* So, in implementation we use hack ( http://www.thefutureoftheweb.com/blog/onafterpaste ) - dealyng all changes after 1 millisecond, after content arrived.
+**/
+function onPasteCleanWordMesh(evnt){
+//alert('onPasteCleanWordMesh()');
+	if (evnt) { var event = evnt; } // In IE window.event
+
+setTimeout(
+	function(){
+//	alert('real processing:' + event);
+	event.target.ownerDocument.body.innerHTML = msWordNastyClean(event.target.ownerDocument.body.innerHTML);
+	}
+	,1000 // 10 not anought, so 1000 for enshurance
+);
+
+event.returnValue=true;
+return true;
 }

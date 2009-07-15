@@ -1,0 +1,6 @@
+http://web.archive.org/web/20060515001353/http://hometown.aol.de/_ht_a/memtronic/
+Break code if in it appeared plain regular expression with spaces, like: "/ <p>/gi", so full form like "new RegExp('/ <p>/gi')" is available...
+But, for what now whe need save 20Kb?
+I thin it is not realy needed. So, I make desicion provide richtext_compressed.js as symlink to richtext.js for bakward capability only.
+
+In futher releases it will be removed.
