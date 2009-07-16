@@ -122,7 +122,7 @@ public $properties = array();
 	* @Throws	(ClassPropertyNotExistsException)
 	**/
 	protected function checkNamePossible($name, $method, $walkmethod = null){
-		if (!in_array($name, $this->properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist!');
+		if (!in_array($name, $this->properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist in ' . get_class($this) . '!');
 	return	$name;
 	}#m checkNamePossible
 
