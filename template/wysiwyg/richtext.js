@@ -19,9 +19,9 @@ var cssFile;
 function getRTE(name){
 	//contributed by Bob Hutzel (thanks Bob!)
 	if (document.all) {
-		return frames[rte].document;
+		return frames[name].document;
 	} else {
-		return document.getElementById(rte).contentWindow.document;
+		return document.getElementById(name).contentWindow.document;
 	}
 }
 
