@@ -138,14 +138,16 @@ $yml->addOffer(
 	new YML_offer_vendormodel(
 		array(
 			'url'	=> 'http://stroydostavka.com/product.php?productid=16227&cat=121&page=1'
-			,'price'	=> 123.456
+			,'price'		=> 123.456
 			,'currencyId'	=> 'RUR'
 			,'categoryId'	=> 1
 //			,'typePrefix'	=> 'Радиатор'
 			,'typePrefix'	=> 'Радиатор стальной "KERMI"'
-			,'picture'	=> 'http://stroydostavka.com/images/P/FK01003041.jpg'
-//			,'name'		=> 'Радиатор стальной "KERMI"'
-			,'vendorCode'	=> 'FKV220504'
+			,'picture'		=> 'http://stroydostavka.com/images/P/FK01003041.jpg'
+//			,'name'			=> 'Радиатор стальной "KERMI"'
+			,'vendor'		=> 'Kermi'
+//			,'vendorCode'	=> 'FKV220504'
+			,'model'		=> 'FKV220504'
 			,'description'	=> 'ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ:
 # Высота: 500 мм
 # Длина: 400 мм
@@ -165,5 +167,5 @@ $yml->addOffer(
 		,$yml->getCategories()
 	)
 );
-echo $yml->saveXML();
+echo trim($yml->saveXML());
 ?>

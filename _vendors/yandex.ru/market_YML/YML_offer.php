@@ -158,7 +158,8 @@ protected $static_settings = array('__props', '__currencies', '__categories', '_
 		foreach(array('bid', 'cbid', 'available', 'type') as $item)		//Optional attributes
 			if ($this->__props->$item) $offer->setAttribute($item, $this->__props->$item);
 		foreach($this->getRegularKeys() as $itemKey)	//All defined subelements
-		$offer->appendChild($res->createElement($itemKey, htmlentities($this->{$itemKey}, ENT_COMPAT, 'UTF-8', false)));
+			if ($this->{$itemKey})
+			$offer->appendChild($res->createElement($itemKey, htmlentities($this->{$itemKey}, ENT_COMPAT, 'UTF-8', false)));
 	return $offer;
 	}#m saveXML
 
@@ -207,7 +208,9 @@ protected $static_settings = array('__props', '__currencies', '__categories', '_
 	*
 	* @return	array Array of keys-properties in proper order.
 	**/
-//	abstract public function getRegularKeys();
+	public function getRegularKeys(){
+	return array_diff($this->properties, $this->static_settings);
+	}#m getRegularKeys
 
 	/**
 	* Emulate nesting.
