@@ -111,21 +111,49 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	*		'value'	=> 'Боевики'
 	*		,'parentId'	=> '1'
 	* )
+	*
 	* @return	&$this
 	**/
 	public function &addCategories(array $cats){
+		foreach (REQUIRED_VAR($cats) as $id => $cat){
+		$this->addCategory( $cat + array('id' => $id) );
+		}
+	return $this;
+	}#m addCategories
+
+	/**
+	* Add categories into document
+	*
+	* @param	array	$cat Array which represent category to add.
+	*  example:
+	*	// If no 'parentId' - root category
+	*	array(
+	*		'id'			=> 3
+	*		'value'		=> 'Детективы'
+	*		,'parentId'	=> '1'
+	*	)
+	*
+	* @return	&$this
+	**/
+	public function &addCategory(array $cat){
 	$shop = $this->xpath_->query('//shop');
 		if($shop->length != 1){
 		throw new YML_exception_absentElement('You must add element "shop" first!');
 		}
-	$categories = $shop->item(0)->appendChild($this->dom_->createElement('categories'));
-		foreach (REQUIRED_VAR($cats) as $id => $cat){
-		$category = $categories->appendChild($this->dom_->createElement('category', $cat['value']));
-		$category->setAttribute('id', $id);
-			if (!empty($cat['parentId'])) $category->setAttribute('parentId', $cat['parentId']);
+
+	$categories = $this->xpath_->query('//');
+		if($categories->length != 1){ //Create on demand
+		$categories = $shop->item(0)->appendChild($this->dom_->createElement('categories'));
 		}
+		else{
+		$categories = $categories->item(0);
+		}
+	
+	$category = $categories->appendChild($this->dom_->createElement('category', $cat['value']));
+	$category->setAttribute('id', $cat['id']);
+		if (!empty($cat['parentId'])) $category->setAttribute('parentId', $cat['parentId']);
 	return $this;
-	}#m addCategories
+	}#m addCategory
 
 	/**
 	* Add offer to shop offers. <offers> element will be created automatically -
