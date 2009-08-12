@@ -110,10 +110,10 @@ protected $__filt_get = array();
 	*	say by part of name, by start, pattern or even by regular expression!
 	*
 	* @param	string	$name Name ofproperty for what filter search.
-	* @return	&Object(SplDoublyLinkedList ) Queue of required filters (may be empty).
+	* @return	&Object(SplDoublyLinkedList) Queue of required filters (may be empty).
 	**/
 	protected function &getFilterGet($name){
-		if (!isset($this->__filt_get[$name])) $this->__filt_get[$name] = new SplDoublyLinkedList ();
+		if (!isset($this->__filt_get[$name])) $this->__filt_get[$name] = new SplDoublyLinkedList();
 	return $this->__filt_get[$name];
 	}#m getFilterGet
 
@@ -123,7 +123,7 @@ protected $__filt_get = array();
 	*	say by part of name, by start, pattern or even by regular expression!
 	*
 	* @param	string	$name Name of property for what filter search.
-	* @return	&Object(SplDoublyLinkedList ) Queue of required filters (may be empty).
+	* @return	&Object(SplDoublyLinkedList) Queue of required filters (may be empty).
 	**/
 	protected function &getFilterSet($name){
 		if (!isset($this->__filt_set[$name])) $this->__filt_set[$name] = new SplDoublyLinkedList();
