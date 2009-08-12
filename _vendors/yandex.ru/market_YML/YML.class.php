@@ -141,7 +141,7 @@ private $xpath_;	// DOMXpath object to perfom any queries
 		throw new YML_exception_absentElement('You must add element "shop" first!');
 		}
 
-	$categories = $this->xpath_->query('//');
+	$categories = $this->xpath_->query('//categories');
 		if($categories->length != 1){ //Create on demand
 		$categories = $shop->item(0)->appendChild($this->dom_->createElement('categories'));
 		}
