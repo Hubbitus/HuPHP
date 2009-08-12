@@ -51,4 +51,3 @@ public $properties_addon = array(
 	}#__c
 }#c YML_offer_vendormodel
 ?>
-
