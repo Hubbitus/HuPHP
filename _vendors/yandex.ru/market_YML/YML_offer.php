@@ -159,7 +159,8 @@ protected $static_settings = array('__props', '__currencies', '__categories', '_
 			if ($this->__props->$item) $offer->setAttribute($item, $this->__props->$item);
 		foreach($this->getRegularKeys() as $itemKey)	//All defined subelements
 			if ($this->{$itemKey})
-			$offer->appendChild($res->createElement($itemKey, htmlentities($this->{$itemKey}, ENT_COMPAT, 'UTF-8', false)));
+			//$offer->appendChild($res->createElement($itemKey, htmlentities($this->{$itemKey}, ENT_COMPAT, 'UTF-8', false)));
+			$offer->appendChild($res->createElement($itemKey, $this->{$itemKey}));
 	return $offer;
 	}#m saveXML
 
