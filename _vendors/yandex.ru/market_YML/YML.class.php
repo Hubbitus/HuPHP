@@ -148,8 +148,16 @@ private $xpath_;	// DOMXpath object to perfom any queries
 		else{
 		$categories = $categories->item(0);
 		}
-	
-	$category = $categories->appendChild($this->dom_->createElement('category', $cat['value']));
+
+	//$category = $categories->appendChild($this->dom_->createElement('category', $cat['value']));
+	/**
+	* @internal
+	* Due to the Bugs: http://bugs.php.net/bug.php?id=31191, http://bugs.php.net/bug.php?id=48109, http://bugs.php.net/bug.php?id=40105
+	* we can't use short form $res->createElement($tag, $tagValue);
+	**/
+	$category = $categories->appendChild($this->dom_->createElement('category'));
+	$category->appendChild($this->dom_->createTextNode($cat['value']));
+
 	$category->setAttribute('id', $cat['id']);
 		if (!empty($cat['parentId'])) $category->setAttribute('parentId', $cat['parentId']);
 	return $this;

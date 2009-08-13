@@ -160,7 +160,13 @@ protected $static_settings = array('__props', '__currencies', '__categories', '_
 		foreach($this->getRegularKeys() as $itemKey)	//All defined subelements
 			if ($this->{$itemKey})
 			//$offer->appendChild($res->createElement($itemKey, htmlentities($this->{$itemKey}, ENT_COMPAT, 'UTF-8', false)));
-			$offer->appendChild($res->createElement($itemKey, $this->{$itemKey}));
+			//$offer->appendChild($res->createElement($itemKey, $this->{$itemKey}));
+			/**
+			* @internal
+			* Due to the Bugs: http://bugs.php.net/bug.php?id=31191, http://bugs.php.net/bug.php?id=48109, http://bugs.php.net/bug.php?id=40105
+			* we can't use short form $res->createElement($tag, $tagValue);
+			**/
+			$offer->appendChild($res->createElement($itemKey))->appendChild($res->createTextNode($this->{$itemKey}));
 	return $offer;
 	}#m saveXML
 
