@@ -132,10 +132,6 @@ protected $static_settings = array('__props', '__currencies', '__categories', '_
 	//	(How I can automatically check what image is not image with "No foto" text only?).
 	$this->addFilterSet(new settings_filter_base('picture', array($this, 'filter_set__check_picture')));
 
-	// Price must be with decimal comma:
-	// Ошибка: Некорректная цена предложения: цена должна быть положительным числом (строка 882, столбец 15)
-	$this->addFilterGet(new settings_filter_base('price', array($this, 'filter_get__decimal_comma')));
-
 	$this->__currencies = $currencies; // To check constraints
 	$this->__categories = $categories;
 	$this->__xpath = new DOMXPath($this->__currencies->ownerDocument);
@@ -173,17 +169,6 @@ protected $static_settings = array('__props', '__currencies', '__categories', '_
 			$offer->appendChild($res->createElement($itemKey))->appendChild($res->createTextNode($this->{$itemKey}));
 	return $offer;
 	}#m saveXML
-
-	/**
-	* Filter: Replace on get '.' to ',' as it required.
-	*
-	* @param	string	$name
-	* @param	boolean	$value
-	* @return string
-	**/
-	public function filter_get__decimal_comma($name, $value){
-	return str_replace('.', ',', (string)$value);
-	}#m filter_get__decimal_comma
 
 	/**
 	* Filter: Check on set what currencyId in allowed currencies
