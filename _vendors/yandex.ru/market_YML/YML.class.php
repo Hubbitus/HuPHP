@@ -129,7 +129,7 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	*	// If no 'parentId' - root category
 	*	array(
 	*		'id'			=> 3
-	*		'value'		=> 'Детективы'
+	*		,'value'		=> 'Детективы'
 	*		,'parentId'	=> '1'
 	*	)
 	*
