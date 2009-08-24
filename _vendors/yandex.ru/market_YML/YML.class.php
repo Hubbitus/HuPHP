@@ -122,7 +122,7 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	}#m addCategories
 
 	/**
-	* Add categories into document
+	* Add category into document
 	*
 	* @param	array	$cat Array which represent category to add.
 	*  example:
