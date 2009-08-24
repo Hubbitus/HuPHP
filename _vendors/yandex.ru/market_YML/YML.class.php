@@ -111,12 +111,13 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	*		'value'	=> 'Боевики'
 	*		,'parentId'	=> '1'
 	* )
+	* @param	string=YML_category $class What class create.
 	*
 	* @return	&$this
 	**/
-	public function &addCategories(array $cats){
+	public function &addCategories(array $cats, $class = 'YML_category'){
 		foreach (REQUIRED_VAR($cats) as $id => $cat){
-		$this->addCategory( $cat + array('id' => $id) );
+		$this->addCategory(  new $class( $cat + array('id' => $id) )  );
 		}
 	return $this;
 	}#m addCategories
@@ -124,18 +125,11 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	/**
 	* Add category into document
 	*
-	* @param	array	$cat Array which represent category to add.
-	*  example:
-	*	// If no 'parentId' - root category
-	*	array(
-	*		'id'			=> 3
-	*		,'value'		=> 'Детективы'
-	*		,'parentId'	=> '1'
-	*	)
+	* @param	Object(YML_category)	$cat Category to add.
 	*
 	* @return	&$this
 	**/
-	public function &addCategory(array $cat){
+	public function &addCategory(YML_category $cat){
 	$shop = $this->xpath_->query('//shop');
 		if($shop->length != 1){
 		throw new YML_exception_absentElement('You must add element "shop" first!');
@@ -149,17 +143,7 @@ private $xpath_;	// DOMXpath object to perfom any queries
 		$categories = $categories->item(0);
 		}
 
-	//$category = $categories->appendChild($this->dom_->createElement('category', $cat['value']));
-	/**
-	* @internal
-	* Due to the Bugs: http://bugs.php.net/bug.php?id=31191, http://bugs.php.net/bug.php?id=48109, http://bugs.php.net/bug.php?id=40105
-	* we can't use short form $res->createElement($tag, $tagValue);
-	**/
-	$category = $categories->appendChild($this->dom_->createElement('category'));
-	$category->appendChild($this->dom_->createTextNode($cat['value']));
-
-	$category->setAttribute('id', $cat['id']);
-		if (!empty($cat['parentId'])) $category->setAttribute('parentId', $cat['parentId']);
+	$categories->appendChild($cat->getXML($this->dom_));
 	return $this;
 	}#m addCategory
 

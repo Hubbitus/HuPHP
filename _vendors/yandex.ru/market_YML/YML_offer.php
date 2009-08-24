@@ -87,7 +87,7 @@ protected $__SETS = array(
 * This is base (type vendor.model) offer.
 **/
 abstract class YML_offer extends settings_filter{
-const NESTING_PLACEHOLDER = '<<==NESTINT==>>';
+const NESTING_PLACEHOLDER = '<<==NESTING==>>';
 
 public $properties = array(
 	// Common fields
