@@ -201,7 +201,7 @@ protected	$rowsTotal;
 	#Перекодировка ЗАПРОСА, тоесть В БД
 	protected function iconv_query(){
 		if (@$this->settings->CHARSET_RECODE){
-		iconv($this->settings->CHARSET_RECODE['FROM'], $this->settings->CHARSET_RECODE['TO'], $this->Query);
+		$this->Query = iconv($this->settings->CHARSET_RECODE['FROM'], $this->settings->CHARSET_RECODE['TO'], $this->Query);
 		}
 	}#m iconv_query
 
