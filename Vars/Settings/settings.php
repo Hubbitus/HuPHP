@@ -72,7 +72,9 @@ protected $__SETS = array();#Сами настройки, массив
 	* @param	array	$setArr
 	**/
 	public function mergeSettingsArray(array $setArr){
-	$this->__SETS = array_merge((array)$this->__SETS, REQUIRED_VAR($setArr));
+	// We don't use array_merge there because want preserv keys, even numerical:
+	// http://ru2.php.net/manual/en/function.array-merge.php#92602
+	$this->__SETS = (array)$this->__SETS + REQUIRED_VAR($setArr);
 	}#m mergeSettingsArray
 
 	/**
