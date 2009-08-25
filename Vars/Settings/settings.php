@@ -72,9 +72,16 @@ protected $__SETS = array();#Сами настройки, массив
 	* @param	array	$setArr
 	**/
 	public function mergeSettingsArray(array $setArr){
-	// We don't use array_merge there because want preserv keys, even numerical:
-	// http://ru2.php.net/manual/en/function.array-merge.php#92602
-	$this->__SETS = (array)$this->__SETS + REQUIRED_VAR($setArr);
+	/**
+	* @internal
+	* We don't use array_merge there because want preserv keys, even numerical:
+	* http://ru2.php.net/manual/en/function.array-merge.php#92602
+	* We also can't use simple array concatenation because want overwrite old values by new one...
+	* So, doing all manually!
+	**/
+		foreach (REQUIRED_VAR($setArr) as $key => $val){
+		$this->__SETS[$key] = $val;
+		}
 	}#m mergeSettingsArray
 
 	/**
