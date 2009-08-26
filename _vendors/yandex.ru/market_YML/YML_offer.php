@@ -157,8 +157,8 @@ protected $static_settings = array('__props', '__currencies', '__categories', '_
 		// Please note, type also optional. {@see YML_offer_generic}
 		foreach(array('bid', 'cbid', 'available', 'type') as $item)		//Optional attributes
 			if ($this->__props->$item) $offer->setAttribute($item, $this->__props->$item);
-		foreach($this->getRegularKeys() as $itemKey)	//All defined subelements
-			if ($this->{$itemKey})
+		foreach($this->getRegularKeys() as $itemKey){	//All defined subelements
+			if ($this->{$itemKey}){
 			//$offer->appendChild($res->createElement($itemKey, htmlentities($this->{$itemKey}, ENT_COMPAT, 'UTF-8', false)));
 			//$offer->appendChild($res->createElement($itemKey, $this->{$itemKey}));
 			/**
@@ -167,6 +167,8 @@ protected $static_settings = array('__props', '__currencies', '__categories', '_
 			* we can't use short form $res->createElement($tag, $tagValue);
 			**/
 			$offer->appendChild($res->createElement($itemKey))->appendChild($res->createTextNode($this->{$itemKey}));
+			}
+		}
 	return $offer;
 	}#m saveXML
 
