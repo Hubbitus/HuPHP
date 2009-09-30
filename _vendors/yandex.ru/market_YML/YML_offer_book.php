@@ -41,7 +41,7 @@ public $properties_addon = array(
 	,'table_of_contents'	#? Оглавление. Выводится информация о наименованиях произведений, если это сборник рассказов или стихов.
 );
 
-	public function __construct(array $array, YML_offer_attributes_book $props, DOMNode $currencies, DOMNode $categories){
+	public function __construct(array $array, YML_offer_attributes_book $props, DOMNode $currencies, DOMNode $categories = null){
 	$this->nesting();
 
 	$this->addFilterSet(new settings_filter_base('page_extent', array($this, 'filter_set__check_page_extent')));

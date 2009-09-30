@@ -11,6 +11,10 @@
 * @changelog
 *	* 2009-06-30 17:21 ver 1.0
 *	- Initial version.
+*
+*	* 2009-09-29 10:38 ver 1.0 to 1.1
+*	- Add isValid() method
+*	- Make Categories check is optional.
 **/
 include_once('macroses/REQUIRED_VAR.php');
 
@@ -119,7 +123,15 @@ public $properties = array(
 );
 protected $static_settings = array('__props', '__currencies', '__categories', '__xpath');
 
-	public function __construct(array $array, YML_offer_attributes $props, DOMNode $currencies, DOMNode $categories){
+	/**
+	* Constructor YML_offer
+	*
+	* @param	array	$array	Data to construct from.
+	* @param	Object(YML_offer_attributes)	Attributes of constructed object.
+	* @param	Object(DOMNode)	$currencies	Mandatory. To check constraints.
+	* @param	Object(DOMNode)|null	$categories	Optional. If present, constraints will be checked.
+	**/
+	public function __construct(array $array, YML_offer_attributes $props, DOMNode $currencies, DOMNode $categories = null){
 	$this->__props = $props;
 
 	// SetUp filters which represents common checks:
@@ -194,7 +206,7 @@ protected $static_settings = array('__props', '__currencies', '__categories', '_
 	* @Throws(YML_offer_exception_constraint)
 	**/
 	public function filter_set__check_categoryId($name, $val){
-		if ($this->__xpath->query('category[@id="' . $val . '"]', $this->__categories)->length < 1) throw new YML_offer_exception_constraint("$val category is not allowed in current configuration");
+		if ( $this->__categories and $this->__xpath->query('category[@id="' . $val . '"]', $this->__categories)->length < 1 ) throw new YML_offer_exception_constraint("$val category is not allowed in current configuration");
 	return $val;
 	}#m filter_check_categoryId
 
@@ -234,5 +246,17 @@ protected $static_settings = array('__props', '__currencies', '__categories', '_
 	public function nesting(){
 	array_splice($this->properties, array_search(self::NESTING_PLACEHOLDER, $this->properties), 1, $this->properties_addon);
 	}#m nesting
+
+	/**
+	* Common check of "Welness". Child may reimplement its base checks (f.e. to allow Categories filtering)
+	*
+	* @return	boolean
+	**/
+	public function isValid(){
+		if ($this->price <= 0) return false; //Only real products
+		if ('/default_image.gif' == $this->picture) return false; //Only with images
+		if (!$this->vendor) return false;
+	return true;
+	}#m isValid
 }#c YML_offer
 ?>

@@ -38,7 +38,7 @@ public $properties_addon = array(
 	,'country'	#? Страна
 );
 
-	public function __construct(array $array, YML_offer_attributes_artisttitle $props, DOMNode $currencies, DOMNode $categories){
+	public function __construct(array $array, YML_offer_attributes_artisttitle $props, DOMNode $currencies, DOMNode $categories = null){
 	$this->nesting();
 
 	parent::__construct($array, $props, $currencies, $categories);

@@ -44,7 +44,7 @@ public $properties_addon = array(
  */
 );
 
-	public function __construct(array $array, YML_offer_attributes_vendormodel $props, DOMNode $currencies, DOMNode $categories){
+	public function __construct(array $array, YML_offer_attributes_vendormodel $props, DOMNode $currencies, DOMNode $categories = null){
 	$this->nesting();
 
 	parent::__construct($array, $props, $currencies, $categories);

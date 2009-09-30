@@ -52,7 +52,7 @@ public $properties_addon = array(
 	,'recording_lenght'	#? Время звучания задается в формате mm.ss (минуты.секунды).
 );
 
-	public function __construct(array $array, YML_offer_attributes_audiobook $props, DOMNode $currencies, DOMNode $categories){
+	public function __construct(array $array, YML_offer_attributes_audiobook $props, DOMNode $currencies, DOMNode $categories = null){
 	$this->nesting();
 
 	$this->addFilterSet(new settings_filter_base('recording_length', array($this, 'filter_set__check_recording_length')));

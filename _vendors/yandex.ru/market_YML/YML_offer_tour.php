@@ -46,7 +46,7 @@ public $properties_addon = array(
 //In parent:	,'description'	# Описание тура
 );
 
-	public function __construct(array $array, YML_offer_attributes_tour $props, DOMNode $currencies, DOMNode $categories){
+	public function __construct(array $array, YML_offer_attributes_tour $props, DOMNode $currencies, DOMNode $categories = null){
 	$this->nesting();
 
 	parent::__construct($array, $props, $currencies, $categories);
