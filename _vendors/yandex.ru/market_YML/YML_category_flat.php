@@ -18,7 +18,7 @@
 **/
 class YML_category_flat extends YML_category{
 	public function __construct(array $arr){
-	$this->addFilterSet(new settings_filter_base('parentId', create_function('$a,$b', 'return null;') ));// Just ignore
+	$this->addFilterSet(new settings_filter_ignore('parentId'));// Just ignore
 
 	parent::__construct($arr);
 	}#__c
