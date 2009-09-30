@@ -40,7 +40,7 @@ protected $__filt_get = array();
 	**/
 	public function setSetting($name, $value){
 		foreach ($this->getFilterSet($name) as $filt){
-		$value = $filt->apply($name, $value);
+		$filt->apply($name, $value);
 		}
 	parent::setSetting($name, $value);
 	}#m setSetting
@@ -53,7 +53,7 @@ protected $__filt_get = array();
 	public function &getProperty($name){
 	$val =& parent::getProperty($name);
 		foreach ($this->getFilterGet($name) as $filt){
-		$val = $filt->apply($name, $val);
+		$filt->apply($name, $val);
 		}
 	return $val;
 	}#m getProperty
