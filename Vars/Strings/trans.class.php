@@ -26,6 +26,6 @@ class trans{
 	'a','b','v','g','d','e','jo','zh','z','i','j','k','l','m','n','o','p','r','s','t','u','f','h','c','ch','sh','sch',"",'y','','je','ju','ja'
 	);
 	return preg_replace($rusTable, $engTable, $rus_str);
-	}#m trans
+	}#m translit
 }#c trans
 ?>
