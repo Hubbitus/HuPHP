@@ -1,0 +1,20 @@
+There are couple of PDF-related methods like:
+- Cool FPDF library - http://www.fpdf.org/, unfortunately this is not handle
+	Unicode properly and can't load exists pdf
+- fpdi (fpdf based) - http://www.setasign.de/products/pdf-php-solutions/fpdi/
+	can load existing PDF, but do not work with Unicode
+- UFPDF (fpdf based) - handle unicode, but do not load template pdf.
+- Solutions like html2pdf (http://html2fpdf.sourceforge.net/) and mPDF
+	(http://mpdf1.com/manual/index.php?tid=77) which try convert HTML to pdf,
+	but after test quolity is not best, and additional markup required.
+
+So after all this tryes, I make desicion crossbreeding FPDI and UFPDF!!!
+
+We extend UFPDF instead of base FPDF. Senceraly PHP have not multiple inheritance and I
+have not any chance do that whithout modification of base libraries. So, I change fpdf_tpl.php
+to extend UFPDF instead of FPDF.
+
+Symlynk used to do not mangle pathes. Just include_once('lib/ufpdf/ufpdf.php'); do not worked.
+
+
+Directory fonts go outside libs and one font converted. Example of usage also provided.
