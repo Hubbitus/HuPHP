@@ -1168,7 +1168,8 @@ function _putfonts()
 		$this->FontFiles[$file]['n']=$this->n;
 		if(defined('FPDF_FONTPATH'))
 			$file=FPDF_FONTPATH.$file;
-		$size=filesize($file);
+		$fcont=file_get_contents($file, FILE_USE_INCLUDE_PATH);
+		$size = strlen($fcont);
 		if(!$size)
 			$this->Error('Font file not found');
 		$this->_out('<</Length '.$size);
@@ -1178,9 +1179,7 @@ function _putfonts()
 		if(isset($info['length2']))
 			$this->_out('/Length2 '.$info['length2'].' /Length3 0');
 		$this->_out('>>');
-		$f=fopen($file,'rb');
-		$this->_putstream(fread($f,$size));
-		fclose($f);
+		$this->_putstream($fcont);
 		$this->_out('endobj');
 	}
 	set_magic_quotes_runtime($mqr);

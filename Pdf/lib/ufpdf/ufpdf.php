@@ -221,16 +221,15 @@ function _puttruetypeunicode($font) {
     $file=FPDF_FONTPATH.$font['ctg'];
   else
     $file=$font['ctg'];
-  $size=filesize($file);
+  $fcont = file_get_contents($file, FILE_USE_INCLUDE_PATH);
+  $size = strlen($fcont);
   if(!$size)
     $this->Error('Font file not found');
   $this->_out('<</Length '.$size);
 	if(substr($file,-2) == '.z')
     $this->_out('/Filter /FlateDecode');
   $this->_out('>>');
-  $f = fopen($file,'rb');
-  $this->_putstream(fread($f,$size));
-  fclose($f);
+  $this->_putstream($fcont);
   $this->_out('endobj');
 }
 
