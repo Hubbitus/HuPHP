@@ -378,7 +378,7 @@ class fpdi_pdf_parser extends pdf_parser {
      */
     function getPDFVersion() {
         parent::getPDFVersion();
-        $this->fpdi->PDFVersion = max($this->fpdi->PDFVersion, $this->pdfVersion);
+        $this->fpdi->PDFVersion = max(@$this->fpdi->PDFVersion, $this->pdfVersion);
     }
     
 }
