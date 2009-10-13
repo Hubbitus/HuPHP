@@ -13,11 +13,14 @@ echo "<? //This is automatically generated file! Please, do not edit it manual!!
 # template/template_class_NEW2.php - is old, deprecated must be excluded to use template_class_2.1.php instead (who need old, always may preinclude them explicity).
 # autoload.php has class define in eval as hack, and from functions only define __autoload, which is not requre any futher magick :)
 # Filter out Debug/log_dump.php in class processing, because in has incomlete class dump!
+#
+# Filterout fpdi2tcpdf_bridge.php to do not mangle FPDF real class path.
 find .. -type f -iname '*.php' \
 	-not -wholename "${DIR}.tools/*" -not -name 'exec.php' -not -name $( basename "$OUT_FILE" ) \
 	-not -name RegExp_base.php -not -name try-examples.php -not -name '*.example.php' -not -name autoload.php \
 	-not -name template_class_NEW2.php -not -name 'phpsource.extract_functions.php' \
-	-exec egrep -iH '^[[:space:]]*((abstract[[:space:]]*)?class.+{|interface.+{)|&?function.+\(' {} \; | \
+	-not -name fpdi2tcpdf_bridge.php \
+	-exec egrep -iH '^[[:space:]]*(((abstract[[:space:]]*)?class.+?|interface.+?)({|\n))|&?function.+\(' {} \; | \
 		while read line; do
 		echo "$line"; # This will be processed after whole cycle, to filter dupes and do it only once
 		#echo ========
