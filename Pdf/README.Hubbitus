@@ -10,11 +10,18 @@ There are couple of PDF-related methods like:
 
 So after all this tryes, I make desicion crossbreeding FPDI and UFPDF!!!
 
-We extend UFPDF instead of base FPDF. Senceraly PHP have not multiple inheritance and I
-have not any chance do that whithout modification of base libraries. So, I change fpdf_tpl.php
-to extend UFPDF instead of FPDF.
+1) We extend UFPDF instead of base FPDF. Senceraly PHP have not multiple inheritance and I
+	have not any chance do that whithout modification of base libraries. So, I change fpdf_tpl.php
+	to extend UFPDF instead of FPDF.
 
-Symlynk used to do not mangle pathes. Just include_once('lib/ufpdf/ufpdf.php'); do not worked.
+UFPDF included without directories: "ttf2ufm-src", "tools", "lsansuni" and "font"
 
+2) Symlynk used to do not mangle pathes. Just include_once('lib/ufpdf/ufpdf.php'); do not worked.
+
+3) Fpdf library v1.6 included without directories "doc", "tutorial" and "font" (in any case 1 byte
+	encodings is not solution in novadays).
+
+4) In UFPDF bundled version of FPDF replaced (trough symlink) to actual FPDF 1.6 version because FPDI
+	requires at least 1.6 version too vork.
 
 Directory fonts go outside libs and one font converted. Example of usage also provided.
