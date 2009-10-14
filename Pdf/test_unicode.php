@@ -1,5 +1,6 @@
 <?
 /**
+* Test suite to demonstrate fusion of FPDF + FPDI + UFPDF libraries.
 *
 * @package Pdf
 * @version 1.0
@@ -11,10 +12,9 @@
 *	- Initial version.
 **/
 
-require_once('lib/fpdi/fpdf.php');
-require_once('lib/fpdi/fpdi.php');
+include('autoload.php');
 
-define('FPDF_FONTPATH', 'fonts/');
+define('FPDF_FONTPATH', 'Pdf/fonts/');
 
 $pdf = new FPDI();
 
@@ -29,5 +29,5 @@ $pdf->AddFont('DejaVuSansMono', '', 'DejaVuSansMono.php');
 $pdf->SetFont('DejaVuSansMono', '', 12);
 $pdf->Text(20, 20, 'Test - Тест');
 
-$pdf->Output();
+$pdf->Output('res.pdf', 'F');
 ?>
