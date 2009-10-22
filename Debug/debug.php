@@ -134,7 +134,7 @@ class dump extends dump_utils{
 							backtraceNode::create(
 								array(
 									'class'	=> 'dump',
-									'function'=> '[awc]',
+									'function'=> '[awce]',
 									'type'	=> '::'
 								)
 							)
