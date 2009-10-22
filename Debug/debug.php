@@ -4,7 +4,7 @@
 *
 * @package Debug
 * @subpackage Debug
-* @version 2.4.1
+* @version 2.4.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -44,6 +44,9 @@
 *
 *	* 2009-06-18 15:21 ver 2.4 to 2.4.1
 *	- Inicialize $GLOBALS['__CONFIG']['debug'] as empty array if it is not defined yet to avoid futher warnings
+*
+*	* 2009-10-22 16:20 ver 2.4.1 to 2.4.2
+*	- Add method ::e()
 **/
 
 define ('DUMP_DO_NOT_DEFINE_STUMP_DUMP', true);
@@ -300,6 +303,15 @@ class dump extends dump_utils{
 	static public function a($var, $header = false, $return = false){
 	return self::auto($var, $header, $return);
 	}#m a
+
+	/**
+	* As {@link ::a()} but print to STDERR!
+	*
+	* @return	nothing
+	**/
+	static public function e($var, $header = false){
+	file_put_contents('php://stderr', self::auto($var, $header, true));
+	}#m e
 
 	/**
 	* One name to invoke dependently by out type.
