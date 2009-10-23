@@ -24,8 +24,13 @@
 * @return	string
 **/
 function unicode_wordwrap($str, $len = 75, $break = "\n", $cut = false){
-	if($cut) $reg = $reg = "#((.{$len}))#u";
-	else $reg = "#((.{0,$len})[^\pL])#u";
-return preg_replace($reg, "\\2$break", $str);
+	/*
+	* {{ - one treated by PHP
+	* "|.{1,$len}$" part to add $break also to end of string, because another regexp always do that and we just will cut it
+	**/
+	if($cut) $reg = $reg = "#(.{{$len}}|.{1,$len}$)#us";
+	// "|$" part needed because if it is absent tail processed incorrectly (last word is not counted)
+	else $reg = "#(.{1,$len})(?:[^\pL]|$)#us";
+return substr(preg_replace($reg, "\\1$break", $str), 0, -strlen($break));// Cut off last $break. In both cases it is always must be present.
 }#f unicode_wordwrap
 ?>
