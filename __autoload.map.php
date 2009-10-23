@@ -178,6 +178,7 @@ $GLOBALS['__CONFIG']['__autoload_map'] = array(
 		'REQUIRED_NOT_NULL'	=> 'macroses/REQUIRED_NOT_NULL.php',
 		'REQUIRED_VAR'	=> 'macroses/REQUIRED_VAR.php',
 		'SWAP'	=> 'macroses/SWAP.php',
+		'unicode_ucfirst'	=> 'macroses/unicode_ucfirst.php',
 		'unicode_wordwrap'	=> 'macroses/unicode_wordwrap.php',
 		'classCREATE'	=> 'Vars/HuClass.php',
 		'CONF'	=> 'Vars/HuConfig.class.php',
