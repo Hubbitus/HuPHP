@@ -84,16 +84,13 @@ private $_include_tryed = array();
 			if (!in_array($name, $this->_include_tryed)){
 			$this->_include_tryed[] = $name; //In any case to do not check again next time
 			$path = 'includes/configs/' . $name . '.config.php';
-//			dump::a($path);dump::a(OS::is_includeable($path));
 				if(OS::is_includeable($path)){
 				include($path);
-					if(m()->is_set($name, $GLOBALS['__CONFIG'])){//New key
-					$this->addSetting($name, $GLOBALS['__CONFIG'][$name]);
-					}
-				//return $this->getProperty($name); //Again
-				return $this->__SETS[$name];
-				//return $this->__SETS[$this->checkNamePossible(REQUIRED_NOT_NULL($name), __METHOD__)];
 				}
+				if(m()->is_set($name, $GLOBALS['__CONFIG'])){//New key
+				$this->addSetting($name, $GLOBALS['__CONFIG'][$name]);
+				}
+			return $this->__SETS[$name];
 			}
 			//Silent if required.
 			if (!$nothrow) throw $cpne; //If include and fine failed throw outside;
