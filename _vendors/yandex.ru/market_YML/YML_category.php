@@ -43,7 +43,7 @@ public $properties = array(
 	$category->appendChild($dom->createTextNode($this->_value_));
 
 		foreach($this->getRegularKeys() as $itemKey){//All defined subelements
-			if (!empty($this->$itemKey) and '_value_' != $itemKey) $category->setAttribute($itemKey, $this->$itemKey);
+			if (isset($this->$itemKey) and '_value_' != $itemKey) $category->setAttribute($itemKey, $this->$itemKey);
 		}
 	return $category;
 	}#m getXML
