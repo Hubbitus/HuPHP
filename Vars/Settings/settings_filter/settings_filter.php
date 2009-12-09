@@ -47,7 +47,7 @@ protected $__filt_get = array();
 
 	/**
 	* Apply all desired filters and return value.
-	* Result not chached!
+	* Result not cached!
 	* @inheritdoc
 	**/
 	public function &getProperty($name){
