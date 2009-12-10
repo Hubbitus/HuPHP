@@ -58,7 +58,7 @@ protected $matchCount;
 protected $matches;
 protected $matchesValid = false;
 
-protected	$replaceTo;
+protected $replaceTo;
 protected $replaceRes;
 protected $replaceValid;
 
