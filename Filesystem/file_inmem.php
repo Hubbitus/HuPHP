@@ -15,6 +15,9 @@
 *
 *	* 2009-03-31 18:14 ver 2.0b to 2.0.1b
 *	- Explicit check "false !==" instead of just casting to bool. So, read zero-length file is also positive result.
+*
+*	* 2009-12-14 11:47 ver 2.0.1b to 2.0.2
+*	- Add methods ::iconv(), ::enconv()
 **/
 
 /*
@@ -43,7 +46,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	* @param	resource	$resource_context
 	* @param	integer	$offset
 	* @param	integer	$maxlen
-	* @return	&$this;
+	* @return	&$this
 	**/
 	public function &loadContent($use_include_path = false, $resource_context = null, $offset = null, $maxlen = null){
 	$this->checkOpenError(
@@ -286,5 +289,32 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 			( $offset += strlen(utf8_decode($lines[$i])) + strlen(utf8_decode($this->getLineSep())) )  );
 		}
 	}#m makeCacheLineOffsets
+
+	/**
+	* Iconv content from one charset to enother. If in charset is not known consider use method {@see ::enconv()}
+	*
+	* @uses iconv
+	* @param	string	$fromEnc
+	* @param	string=UTF-8	$toEnc
+	* @return	&$this
+	**/
+	public function &iconv($fromEnc, $toEnc = 'UTF-8'){
+	$this->setContentFromString(iconv($fromEnc, $toEnc, $this->getBLOB()));
+	return $this;
+	}#m iconv
+
+	/**
+	* Uses shell execute enconv to guess encoding and convert it to desired
+	*
+	* @uses Process
+	* @uses shell enconv
+	* @param	string=russian	$lang
+	* @param	string=UTF-8	$toEnc
+	* @return	&$this;
+	**/
+	public function &enconv($lang = 'russian', $toEnc = 'UTF-8'){
+	$this->setContentFromString(Process::exec("enconv -L $lang -x $toEnc", null, null, $this->getBLOB()));
+	return $this;
+	}#m enconv
 }#c file_inmem
 ?>
