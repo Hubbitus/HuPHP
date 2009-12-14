@@ -37,6 +37,9 @@
 *
 *	* 2009-04-24 19:57 ver 1.2. to 1.2.2
 *	- Add method ::reduce()
+*
+*	* 2009-12-14 13:36 ver 1.2.2 to 1.2.3
+*	- Set default value to '' for $delim in method ::implode()
 **/
 
 /*-inc
@@ -278,10 +281,10 @@ const huScheme = 'hu://';
 	/**
 	* Implode to the string using provided delimiter.
 	*
-	* @param	string	$delim
+	* @param	string=''	$delim
 	* @return	string
 	**/
-	public function implode($delim){
+	public function implode($delim = ''){
 	return implode($delim, $this->__SETS);
 	}#m implode
 
