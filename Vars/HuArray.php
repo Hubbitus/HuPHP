@@ -3,7 +3,7 @@
 * Class to provide OOP interface to array operations.
 *
 * @package Vars
-* @version 1.2.2
+* @version 1.2.4
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -40,6 +40,9 @@
 *
 *	* 2009-12-14 13:36 ver 1.2.2 to 1.2.3
 *	- Set default value to '' for $delim in method ::implode()
+*
+*	* 2009-12-17 03:06 ver 1.2.3 to 1.2.4
+*	- Make 'hu://' scheme wrateable.
 **/
 
 /*-inc
@@ -188,7 +191,9 @@ const huScheme = 'hu://';
 	* dump::a($ha->arr);					// Result Array (raw, as is)!
 	* dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
 	* dump::a($ha->hu('arr')->hu(2));			// Property access. Alse as any HuArray methods like walk(), filter() and any other.
-	* dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternate method ({@see ::__get()}). Fully equivalent of line before. Just another form.
+	* dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternative method ({@see ::__get()}). Another, form.
+	* Also this form is allow writing:
+	* $ha->{'hu://arr'} = 'Qwerty';
 	*
 	* @param	mixed	$name
 	* @return	&mixed
@@ -212,6 +217,7 @@ const huScheme = 'hu://';
 		if ('_last_' == $name){
 		$ref =& $this->last();
 		}
+		elseif( self::huScheme == substr($name, 0, strlen(self::huScheme)) ) $ref =& $this->hu( substr($name, strlen(self::huScheme)) );
 		else{
 		$ref =& $this->getProperty($name);
 		}
