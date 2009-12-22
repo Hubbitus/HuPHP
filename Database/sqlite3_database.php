@@ -39,6 +39,7 @@ public $db_type = 'sqlite3';
 		if (!is_resource($this->db_link)){//Establish connection
 			try{
 			$this->db_link = new PDO('sqlite:' . $this->settings->db_file);
+			$this->db_link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			}
 			catch (PDOException $e){
 			$this->Query = '[' . $this->db_type .' connect' . ']';
