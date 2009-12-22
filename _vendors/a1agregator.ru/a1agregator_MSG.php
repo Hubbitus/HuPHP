@@ -193,7 +193,7 @@ protected $static_settings = array('SIGNATURE_FORMAT');
 			if (!@$this->test)			$what .= ' [test]';
 			if (!@$this->try)			$what .= ' [try]';
 			if (!@$this->sign)			$what .= ' [sign]';
-		throw new a1agregatorMSGParseException('Error parsing Incoming message. '.$what."\nQUERY_STRING:".EMPTY_STR($rawString, @$_SERVER['QUERY_STRING']));
+		throw new a1agregatorMSGParseException('Error parsing Incoming message. '.$what);
 		}
 		if ($this->skey and md5($this->PlainSkey) != $this->skey){
 		throw new a1agregatorMSGSkeyMismatchException('Skey mismatch');
