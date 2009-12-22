@@ -157,16 +157,16 @@ protected	$rowsTotal;
 	#Перекодировка, если надо
 	$this->iconv_result();
 	return $this->RES;
-	}#m sql_fetch_array
+	}#m sql_fetch_object
 
 	public function sql_free_result(){
 	call_user_func($this->db_type.'_free_result', $this->result);
 	return true;
 	}#m sql_free_result
 
-	final public function sql_num_rows(){
+	public function sql_num_rows(){
 	return call_user_func($this->db_type.'_num_rows', $this->result);
-	}#m sql_free_result
+	}#m sql_num_rows
 
 	#TOTAL rows for query, whithout LIMIT effect
 	public function rowsTotal(){
