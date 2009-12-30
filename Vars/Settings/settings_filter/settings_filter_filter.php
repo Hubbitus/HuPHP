@@ -78,7 +78,7 @@ class settings_filter_ignore extends settings_filter_base{
 	}#__c
 
 	public function apply(&$name, &$value){
-	$name &= null;
+	$name = null;
 	return null;
 	}#m apply
 }#c settings_filter_ignore

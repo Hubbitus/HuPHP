@@ -42,7 +42,7 @@ protected $__filt_get = array();
 		foreach ($this->getFilterSet($name) as $filt){
 		$filt->apply($name, $value);
 		}
-	parent::setSetting($name, $value);
+		if (!is_null($name)) parent::setSetting($name, $value);
 	}#m setSetting
 
 	/**
