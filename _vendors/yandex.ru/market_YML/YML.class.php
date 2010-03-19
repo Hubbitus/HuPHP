@@ -31,7 +31,7 @@ private $xpath_;	// DOMXpath object to perfom any queries
 
 	public function __construct(){
 	// DTD. http://www.php.net/manual/en/book.dom.php#78929
-	$this->dom_ = DOMImplementation::createDocument('', '', DOMImplementation::createDocumentType('yml_catalog', '', 'shop.dtd'));
+	$this->dom_ = DOMImplementation::createDocument('', '', DOMImplementation::createDocumentType('yml_catalog', '', 'shops.dtd'));
 	$this->dom_->encoding = 'UTF-8';
 	$this->dom_->validateOnParse = true;
 	$this->xpath_ = new DOMXPath($this->dom_);
