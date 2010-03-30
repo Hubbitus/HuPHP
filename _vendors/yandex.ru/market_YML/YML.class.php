@@ -6,6 +6,7 @@
 * @package YML
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
+* @example YML.example.php
 * @version 1.0
 *
 * @changelog
@@ -18,8 +19,7 @@ class YML_exception extends BaseException{};
 class YML_exception_absentElement extends YML_exception{};
 
 /**
-* Yandex-market class realisation. http://partner.market.yandex.ru/legal/tt/
-* Example of usage see below.
+* Yandex-market class implementation. http://partner.market.yandex.ru/legal/tt/
 *
 * @author pasha
 * @created 2009-06-23

@@ -1,7 +1,6 @@
 <?
 /**
-* Yandex-market YML class implementation. http://partner.market.yandex.ru/legal/tt/
-* Example of usage see below.
+* Yandex-market YML usage example file.
 *
 * @package YML
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
@@ -43,20 +42,20 @@ $yml->addShop(
 	array(
 		// id="1". If no 'parentId' - root category
 		1 => array(
-			'value'	=> 'Книги'
+			'_value_'	=> 'Книги'
 		)
 		, //id="2"
 		2 => array(
-			'value'	=> 'Видео'
+			'_value_'	=> 'Видео'
 		)
 		,
 		3 => array(
-			'value'	=> 'Детективы'
+			'_value_'	=> 'Детективы'
 			,'parentId'	=> '1'
 		)
 		,
 		4 => array(
-			'value'	=> 'Боевики'
+			'_value_'	=> 'Боевики'
 			,'parentId'	=> '1'
 		)
 	)
@@ -116,20 +115,20 @@ $yml->addCategories(
 	array(
 		// id="1". If no 'parentId' - root category
 		1 => array(
-			'value'	=> 'Книги'
+			'_value_'	=> 'Книги'
 		)
 		, //id="2"
 		2 => array(
-			'value'	=> 'Видео'
+			'_value_'	=> 'Видео'
 		)
 		,
 		3 => array(
-			'value'	=> 'Детективы'
+			'_value_'	=> 'Детективы'
 			,'parentId'	=> '1'
 		)
 		,
 		4 => array(
-			'value'	=> 'Боевики'
+			'_value_'	=> 'Боевики'
 			,'parentId'	=> '1'
 		)
 	)
