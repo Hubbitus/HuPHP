@@ -70,7 +70,7 @@ const huScheme = 'hu://';
 	/**
 	* Push values.
 	*
-	* @param 	mixed	$var.
+	* @param	mixed	$var.
 	* @params	mixed	any amount of vars (First explicity to make mandatory one at once)
 	* @return	&$this
 	**/

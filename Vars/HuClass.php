@@ -72,9 +72,9 @@ abstract class HuClass{
 	* It is DEPRECATED immediately after creation! But now, realy, it is stil neded :(
 	*
 	* @deprecated
-	* @param $directClassName = null - The directy provided class name to instantiate.
-	* @params variable parameters according to class.
-	* @return instance of the reguired new class.
+	* @param	$directClassName = null - The directy provided class name to instantiate.
+	* @params	variable parameters according to class.
+	* @return	instance of the reguired new class.
 	* @Throws(VariableRequiredException)
 	**/
 	static function createWithoutLSB($directClassName /*, Other Params */){

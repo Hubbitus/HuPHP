@@ -64,7 +64,7 @@ private static $instance = array();
 	* All call must be: Single::singleton('ClassName'). Or by its short alias: Single::def('ClassName')
 	*
 	* @param	string	$className Class name to provide Singleton instance for it.
-	* @params variable number of parameters. Any other parameters directly passed to instantiated class-constructor.
+	* @params	variable number of parameters. Any other parameters directly passed to instantiated class-constructor.
 	**/
 	public static function &singleton($className){
 		if (!isset(self::$instance[$className])){// @TODO: provide hashing class name and args, and index by hash.
