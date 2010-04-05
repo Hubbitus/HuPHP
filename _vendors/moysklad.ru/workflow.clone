@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Clone workflow file
+
+: ${1?"Порядок использования: `basename $0` target-name"}
+
+sed "s/workflow/$1/g" moysklad_workflow.class.php > moysklad_$1.class.php

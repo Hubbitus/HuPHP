@@ -1,0 +1,1547 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="exchange" type="exchangeContainer"/>
+
+  <xs:complexType name="exchangeContainer">
+    <xs:sequence>
+      <xs:element name="workflow" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="workflow" type="workflow" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="shareModes" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="shareMode" type="skladShareMode" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="scripts" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="script" type="script" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="messages" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="message" type="message" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="customEntityMetadata" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="customEntityMetadata" type="customEntityMetadata" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="embeddedEntityMetadata" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="embeddedEntityMetadata" type="embeddedEntityMetadata" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="entityTemplatesMetadata" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="entityTemplatesMetadata" type="entityTemplatesMetadata" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="reportTemplatesMetadata" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="reportTemplatesMetadata" type="reportTemplatesMetadata" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="customEntity" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="customEntity" type="customEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="reason" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="lossReason" type="lossReason"/>
+              <xs:element name="enterReason" type="enterReason"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="currencies" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="currency" type="currency" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="country" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="country" type="country" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="gtd" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="gtd" type="gtd" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="uoms" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="uom" type="uom" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="goodFolders" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="goodFolder" type="goodFolder" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="goods" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="good" type="good" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="service" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="service" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="things" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="thing" type="thing" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="myCompany" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="myCompany" type="myCompany" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="agents" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="agent" type="agent" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="companies" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="company" type="company" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="persons" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="person" type="person" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="places" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="place" type="place" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="warehouses" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="warehouse" type="warehouse" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="project" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="project" type="project" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="contract" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="contract" type="contract" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="processingPlans" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="processingPlan" type="processingPlan" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="consignments" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="consignment" type="consignment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="priceLists" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="priceList" type="priceList" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deliveries-demand" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="demand" type="demand" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deliveries-supply" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="supply" type="supply" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="inventories" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="inventory" type="inventory" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="moves" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="move" type="move" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="losses" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="loss" type="loss" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="enters" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="enter" type="enter" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="invoicesIn" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="invoiceIn" type="invoiceIn" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="invoicesOut" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="invoiceOut" type="invoiceOut" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="processings" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="processing" type="processing" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="customerOrders" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="customerOrder" type="customerOrder" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="purchaseOrders" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="purchaseOrder" type="purchaseOrder" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="connectors" nillable="true" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="connector" type="amiroConnectorSettings" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="workflow">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="state" type="state" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="legendEntity">
+    <xs:complexContent>
+      <xs:extension base="infoEntity">
+        <xs:all>
+          <xs:element name="description" type="xs:string" minOccurs="0"/>
+          <xs:element name="code" type="xs:string" minOccurs="0"/>
+        </xs:all>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="infoEntity">
+    <xs:complexContent>
+      <xs:extension base="entity">
+        <xs:all/>
+        <xs:attribute name="updated" type="xs:dateTime"/>
+        <xs:attribute name="updatedBy" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="entity">
+    <xs:all>
+      <xs:element name="company" type="xs:string" minOccurs="0"/>
+      <xs:element name="version" type="xs:long"/>
+      <xs:element name="id" type="xs:ID" minOccurs="0"/>
+    </xs:all>
+    <xs:attribute name="readMode" type="accessMode"/>
+    <xs:attribute name="changeMode" type="accessMode"/>
+  </xs:complexType>
+
+  <xs:complexType name="state">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="skladShareMode">
+    <xs:complexContent>
+      <xs:extension base="shareMode">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="shareMode">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="script">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="script" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typeEntity" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="message">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+        <xs:attribute name="message" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="customEntityMetadata">
+    <xs:complexContent>
+      <xs:extension base="entityMetadata">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="entityMetadata">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="attributeMetadata" type="attributeMetadata" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="uniqueCode" type="xs:boolean" use="required"/>
+        <xs:attribute name="codeValueType" type="xs:int" use="required"/>
+        <xs:attribute name="independentNameGenerator" type="xs:boolean" use="required"/>
+        <xs:attribute name="editablePeriod" type="editablePeriodType"/>
+        <xs:attribute name="editableCalendarDays" type="xs:int" use="required"/>
+        <xs:attribute name="editableWorkDays" type="xs:int" use="required"/>
+        <xs:attribute name="editableFromDate" type="xs:dateTime"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="attributeMetadata">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+        <xs:attribute name="attrType" type="attributeType"/>
+        <xs:attribute name="entityMetadataId" type="xs:IDREF" use="required"/>
+        <xs:attribute name="dictionaryMetadataId" type="xs:IDREF"/>
+        <xs:attribute name="required" type="xs:boolean" use="required"/>
+        <xs:attribute name="position" type="xs:int" use="required"/>
+        <xs:attribute name="cssStyle" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="embeddedEntityMetadata">
+    <xs:complexContent>
+      <xs:extension base="entityMetadata">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="entityTemplatesMetadata">
+    <xs:complexContent>
+      <xs:extension base="templatesMetadata">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="templatesMetadata" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="template" type="template" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="template">
+    <xs:complexContent>
+      <xs:extension base="document">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="document">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="contents" type="xs:base64Binary"/>
+        </xs:sequence>
+        <xs:attribute name="filename" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportTemplatesMetadata">
+    <xs:complexContent>
+      <xs:extension base="templatesMetadata">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="customEntity">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="attribute" type="customEntityAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="entityMetadataId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="customEntityAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="customEntityId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="attributeValue" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="infoEntity">
+        <xs:sequence>
+          <xs:element name="file" type="document" nillable="true" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="metadataId" type="xs:IDREF" use="required"/>
+        <xs:attribute name="valueText" type="xs:string"/>
+        <xs:attribute name="valueString" type="xs:string"/>
+        <xs:attribute name="doubleValue" type="xs:double"/>
+        <xs:attribute name="longValue" type="xs:long"/>
+        <xs:attribute name="booleanValue" type="xs:boolean"/>
+        <xs:attribute name="timeValue" type="xs:dateTime"/>
+        <xs:attribute name="entityValueId" type="xs:IDREF"/>
+        <xs:attribute name="agentValueId" type="xs:IDREF"/>
+        <xs:attribute name="goodValueId" type="xs:IDREF"/>
+        <xs:attribute name="placeValueId" type="xs:IDREF"/>
+        <xs:attribute name="consignmentValueId" type="xs:IDREF"/>
+        <xs:attribute name="contractValueId" type="xs:IDREF"/>
+        <xs:attribute name="projectValueId" type="xs:IDREF"/>
+        <xs:attribute name="employeeValueId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="agent">
+    <xs:complexContent>
+      <xs:extension base="classifier">
+        <xs:all>
+          <xs:element name="attribute" type="agentAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="contact" type="contact" minOccurs="0"/>
+          <xs:element name="requisite" type="requisite" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:all>
+        <xs:attribute name="parentId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="classifier" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="agentAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="agentId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="contact">
+    <xs:sequence/>
+    <xs:attribute name="address" type="xs:string"/>
+    <xs:attribute name="email" type="xs:string" use="required"/>
+    <xs:attribute name="faxes" type="xs:string"/>
+    <xs:attribute name="mobiles" type="xs:string"/>
+    <xs:attribute name="phones" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="requisite">
+    <xs:complexContent>
+      <xs:extension base="infoEntity">
+        <xs:sequence>
+          <xs:element name="bankAccount" type="bankAccount" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="agentId" type="xs:IDREF"/>
+        <xs:attribute name="legalTitle" type="xs:string"/>
+        <xs:attribute name="legalAddress" type="xs:string"/>
+        <xs:attribute name="actualAddress" type="xs:string"/>
+        <xs:attribute name="inn" type="xs:string"/>
+        <xs:attribute name="kpp" type="xs:string"/>
+        <xs:attribute name="okpo" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="bankAccount">
+    <xs:complexContent>
+      <xs:extension base="entity">
+        <xs:sequence/>
+        <xs:attribute name="bic" type="xs:string"/>
+        <xs:attribute name="accountNumber" type="xs:string"/>
+        <xs:attribute name="bankLocation" type="xs:string"/>
+        <xs:attribute name="bankName" type="xs:string"/>
+        <xs:attribute name="correspondentAccount" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="good">
+    <xs:complexContent>
+      <xs:extension base="abstractGood">
+        <xs:all>
+          <xs:element name="pack" type="goodPack" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="barcode" type="barcode" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="slot" type="slot" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:all>
+        <xs:attribute name="isSerialTrackable" type="xs:boolean" use="required"/>
+        <xs:attribute name="buyPrice" type="xs:double"/>
+        <xs:attribute name="countryId" type="xs:IDREF"/>
+        <xs:attribute name="minimumBalance" type="xs:double"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="abstractGood" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="goodFolder">
+        <xs:sequence>
+          <xs:element name="attribute" type="goodAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="uomId" type="xs:IDREF"/>
+        <xs:attribute name="salePrice" type="xs:double"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="goodFolder">
+    <xs:complexContent>
+      <xs:extension base="classifier">
+        <xs:all/>
+        <xs:attribute name="parentId" type="xs:IDREF"/>
+        <xs:attribute name="vat" type="xs:long"/>
+        <xs:attribute name="productCode" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="goodPack">
+    <xs:complexContent>
+      <xs:extension base="entity">
+        <xs:all/>
+        <xs:attribute name="uomId" type="xs:IDREF"/>
+        <xs:attribute name="quantity" type="xs:double" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="uom">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+        <xs:attribute name="type" type="uomType"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="barcode">
+    <xs:complexContent>
+      <xs:extension base="entity">
+        <xs:all/>
+        <xs:attribute name="barcode" type="xs:string"/>
+        <xs:attribute name="barcodeType" type="barcodeType"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="country">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="slot">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="goodAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="goodId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="place">
+    <xs:complexContent>
+      <xs:extension base="classifier">
+        <xs:all>
+          <xs:element name="contact" type="contact" minOccurs="0"/>
+          <xs:element name="attribute" type="placeAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:all>
+        <xs:attribute name="parentId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="placeAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="placeId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="consignment">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="attribute" type="consignmentAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="goodId" type="xs:IDREF"/>
+        <xs:attribute name="isDefault" type="xs:boolean" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="consignmentAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="consignmentId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="contract">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all>
+          <xs:element name="sum" type="moneyAmount" minOccurs="0"/>
+          <xs:element name="document" type="contractDocument" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="attribute" type="contractAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:all>
+        <xs:attribute name="ownCompanyId" type="xs:IDREF"/>
+        <xs:attribute name="agentId" type="xs:IDREF"/>
+        <xs:attribute name="moment" type="xs:dateTime"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="moneyAmount">
+    <xs:sequence/>
+    <xs:attribute name="sum" type="xs:double"/>
+  </xs:complexType>
+
+  <xs:complexType name="contractDocument">
+    <xs:complexContent>
+      <xs:extension base="attachedDocument">
+        <xs:all/>
+        <xs:attribute name="contractId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="attachedDocument" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="document">
+        <xs:all/>
+        <xs:attribute name="publicId" type="xs:string"/>
+        <xs:attribute name="emailedDate" type="xs:dateTime"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="contractAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="contractId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="project">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="attribute" type="projectAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="projectAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="projectId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="employee">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="attribute" type="employeeAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="employeeAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="employeeId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="lossReason">
+    <xs:complexContent>
+      <xs:extension base="reason">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reason">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="enterReason">
+    <xs:complexContent>
+      <xs:extension base="reason">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="currency">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+        <xs:attribute name="rate" type="xs:double" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="gtd">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="attribute" type="gtdAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="gtdAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="gtdId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="service">
+    <xs:complexContent>
+      <xs:extension base="abstractGood">
+        <xs:all/>
+        <xs:attribute name="isAccumulative" type="xs:boolean" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="thing">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="attribute" type="thingAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="goodId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="thingAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="thingId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="myCompany">
+    <xs:complexContent>
+      <xs:extension base="company">
+        <xs:sequence>
+          <xs:element name="settings" type="companySettings" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="company">
+    <xs:complexContent>
+      <xs:extension base="agent">
+        <xs:all/>
+        <xs:attribute name="director" type="xs:string"/>
+        <xs:attribute name="chiefAccountant" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="companySettings">
+    <xs:sequence>
+      <xs:element name="file" type="document" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="calcMode" type="calcMode"/>
+    <xs:attribute name="checkShippingStock" type="xs:boolean" use="required"/>
+    <xs:attribute name="companyAddress" type="xs:string"/>
+    <xs:attribute name="globalOperationNumbering" type="xs:boolean" use="required"/>
+    <xs:attribute name="useCompanyAddress" type="xs:boolean" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="person">
+    <xs:complexContent>
+      <xs:extension base="agent">
+        <xs:all/>
+        <xs:attribute name="firstName" type="xs:string"/>
+        <xs:attribute name="middleName" type="xs:string"/>
+        <xs:attribute name="lastName" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="warehouse">
+    <xs:complexContent>
+      <xs:extension base="place">
+        <xs:all/>
+        <xs:attribute name="agentId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="processingPlan">
+    <xs:complexContent>
+      <xs:extension base="processingPlanFolder">
+        <xs:all>
+          <xs:element name="material" type="processingPlanMaterial" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="product" type="processingPlanResult" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="price" type="moneyAmount" minOccurs="0"/>
+        </xs:all>
+        <xs:attribute name="parentId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="processingPlanFolder">
+    <xs:complexContent>
+      <xs:extension base="classifier">
+        <xs:all/>
+        <xs:attribute name="parentId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="processingPlanMaterial">
+    <xs:complexContent>
+      <xs:extension base="processingPlanItem">
+        <xs:all/>
+        <xs:attribute name="isOptional" type="xs:boolean"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="processingPlanItem" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="entity">
+        <xs:all/>
+        <xs:attribute name="planId" type="xs:IDREF"/>
+        <xs:attribute name="goodId" type="xs:IDREF"/>
+        <xs:attribute name="quantity" type="xs:double" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="processingPlanResult">
+    <xs:complexContent>
+      <xs:extension base="processingPlanItem">
+        <xs:all/>
+        <xs:attribute name="isWaste" type="xs:boolean"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="priceList">
+    <xs:complexContent>
+      <xs:extension base="goodOperation">
+        <xs:sequence>
+          <xs:element name="metadata" type="priceListMetadata" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="goodOperation" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="operation">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="invoicePosition" type="invoicePosition"/>
+            <xs:element name="purchaseOrderPosition" type="purchaseOrderPosition"/>
+            <xs:element name="customerOrderPosition" type="customerOrderPosition"/>
+            <xs:element name="priceListRow" type="priceListRow"/>
+            <xs:element name="shipmentIn" type="shipmentIn"/>
+            <xs:element name="shipmentOut" type="shipmentOut"/>
+            <xs:element name="inventoryPosition" type="inventoryPosition"/>
+            <xs:element name="lossPosition" type="lossPosition"/>
+            <xs:element name="enterPosition" type="enterPosition"/>
+            <xs:element name="movePosition" type="movePosition"/>
+            <xs:element name="material" type="processingPositionMaterial"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operation" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all>
+          <xs:element name="document" type="operationDocument" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="sum" type="moneyAmount" minOccurs="0"/>
+          <xs:element name="attribute" type="operationAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:all>
+        <xs:attribute name="moment" type="xs:dateTime"/>
+        <xs:attribute name="stateId" type="xs:IDREF"/>
+        <xs:attribute name="targetRequisiteId" type="xs:IDREF"/>
+        <xs:attribute name="targetStoreId" type="xs:IDREF"/>
+        <xs:attribute name="sourceRequisiteId" type="xs:IDREF"/>
+        <xs:attribute name="sourceStoreId" type="xs:IDREF"/>
+        <xs:attribute name="applicable" type="xs:boolean" use="required"/>
+        <xs:attribute name="projectId" type="xs:IDREF"/>
+        <xs:attribute name="contractId" type="xs:IDREF"/>
+        <xs:attribute name="vatIncluded" type="xs:boolean" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="priceListMetadata">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="column" type="priceListMetadataColumn" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="priceListMetadataColumn">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:all/>
+        <xs:attribute name="metadataId" type="xs:IDREF"/>
+        <xs:attribute name="percentageDiscount" type="xs:int"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="invoicePosition">
+    <xs:complexContent>
+      <xs:extension base="motion">
+        <xs:sequence>
+          <xs:element name="vat" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="motion" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="infoEntity">
+        <xs:all>
+          <xs:element name="basePrice" type="moneyAmount" minOccurs="0"/>
+          <xs:element name="price" type="moneyAmount" minOccurs="0"/>
+          <xs:element name="things" nillable="true" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="thingRef" type="thing" minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:all>
+        <xs:attribute name="operationId" type="xs:IDREF"/>
+        <xs:attribute name="vatIncluded" type="xs:boolean" use="required"/>
+        <xs:attribute name="discount" type="xs:double" use="required"/>
+        <xs:attribute name="quantity" type="xs:double" use="required"/>
+        <xs:attribute name="goodPackId" type="xs:IDREF"/>
+        <xs:attribute name="goodId" type="xs:IDREF"/>
+        <xs:attribute name="slotId" type="xs:IDREF"/>
+        <xs:attribute name="consignmentId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operationDocument">
+    <xs:complexContent>
+      <xs:extension base="attachedDocument">
+        <xs:all/>
+        <xs:attribute name="operationId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operationAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="attributeValue">
+        <xs:all/>
+        <xs:attribute name="operationId" type="xs:IDREF" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="purchaseOrderPosition">
+    <xs:complexContent>
+      <xs:extension base="orderPosition">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="orderPosition" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="motion">
+        <xs:all>
+          <xs:element name="reserve" type="xs:double"/>
+          <xs:element name="vat" type="xs:long"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="customerOrderPosition">
+    <xs:complexContent>
+      <xs:extension base="orderPosition">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="priceListRow">
+    <xs:complexContent>
+      <xs:extension base="motion">
+        <xs:sequence>
+          <xs:element name="cells" type="priceListCellArray" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="priceListCell">
+    <xs:complexContent>
+      <xs:extension base="entity">
+        <xs:sequence>
+          <xs:element name="sum" type="moneyAmount" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="rowId" type="xs:IDREF"/>
+        <xs:attribute name="metadataColumnId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="shipmentIn">
+    <xs:complexContent>
+      <xs:extension base="comingIn">
+        <xs:all/>
+        <xs:attribute name="vat" type="xs:long" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="comingIn">
+    <xs:complexContent>
+      <xs:extension base="motion">
+        <xs:all/>
+        <xs:attribute name="gtdId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="shipmentOut">
+    <xs:complexContent>
+      <xs:extension base="comingOut">
+        <xs:sequence>
+          <xs:element name="vat" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="comingOut">
+    <xs:complexContent>
+      <xs:extension base="motion">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="inventoryPosition">
+    <xs:complexContent>
+      <xs:extension base="motion">
+        <xs:all/>
+        <xs:attribute name="correctionAmount" type="xs:double" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="lossPosition">
+    <xs:complexContent>
+      <xs:extension base="comingOut">
+        <xs:all/>
+        <xs:attribute name="lossReasonId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="enterPosition">
+    <xs:complexContent>
+      <xs:extension base="comingIn">
+        <xs:all/>
+        <xs:attribute name="enterReasonId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="movePosition">
+    <xs:complexContent>
+      <xs:extension base="motion">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="processingPositionMaterial">
+    <xs:complexContent>
+      <xs:extension base="comingOut">
+        <xs:all/>
+        <xs:attribute name="planMaterialId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="demand">
+    <xs:complexContent>
+      <xs:extension base="comingOutOperation">
+        <xs:all/>
+        <xs:attribute name="factureId" type="xs:IDREF"/>
+        <xs:attribute name="customerOrderId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="comingOutOperation">
+    <xs:complexContent>
+      <xs:extension base="goodOperation">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="factureOut">
+    <xs:complexContent>
+      <xs:extension base="facture">
+        <xs:all/>
+        <xs:attribute name="paymentNumber" type="xs:string"/>
+        <xs:attribute name="paymentDate" type="xs:dateTime"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="facture" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="comingOutOperation">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="customerOrder">
+    <xs:complexContent>
+      <xs:extension base="order">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="order" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="goodOperation">
+        <xs:all/>
+        <xs:attribute name="deliveryPlannedMoment" type="xs:dateTime"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="supply">
+    <xs:complexContent>
+      <xs:extension base="comingInOperation">
+        <xs:all/>
+        <xs:attribute name="incomingNumber" type="xs:string"/>
+        <xs:attribute name="incomingDate" type="xs:dateTime"/>
+        <xs:attribute name="factureInId" type="xs:IDREF"/>
+        <xs:attribute name="purchaseOrderId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="comingInOperation">
+    <xs:complexContent>
+      <xs:extension base="goodOperation">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="factureIn">
+    <xs:complexContent>
+      <xs:extension base="facture">
+        <xs:all/>
+        <xs:attribute name="incomingNumber" type="xs:string"/>
+        <xs:attribute name="incomingDate" type="xs:dateTime"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="purchaseOrder">
+    <xs:complexContent>
+      <xs:extension base="order">
+        <xs:all/>
+        <xs:attribute name="customerOrderId" type="xs:IDREF"/>
+        <xs:attribute name="internalOrderId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="internalOrder">
+    <xs:complexContent>
+      <xs:extension base="order">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="inventory">
+    <xs:complexContent>
+      <xs:extension base="goodOperation">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="move">
+    <xs:complexContent>
+      <xs:extension base="goodOperation">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="loss">
+    <xs:complexContent>
+      <xs:extension base="comingOutOperation">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="enter">
+    <xs:complexContent>
+      <xs:extension base="comingInOperation">
+        <xs:all/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="invoiceIn">
+    <xs:complexContent>
+      <xs:extension base="invoice">
+        <xs:all/>
+        <xs:attribute name="incomingNumber" type="xs:string"/>
+        <xs:attribute name="incomingDate" type="xs:dateTime"/>
+        <xs:attribute name="purchaseOrderId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="invoice" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="goodOperation">
+        <xs:all/>
+        <xs:attribute name="paymentPlannedMoment" type="xs:dateTime"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="invoiceOut">
+    <xs:complexContent>
+      <xs:extension base="invoice">
+        <xs:all/>
+        <xs:attribute name="customerOrderId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="processing">
+    <xs:complexContent>
+      <xs:extension base="goodOperation">
+        <xs:all/>
+        <xs:attribute name="planId" type="xs:IDREF"/>
+        <xs:attribute name="quantity" type="xs:double" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="amiroConnectorSettings">
+    <xs:complexContent>
+      <xs:extension base="legendEntity">
+        <xs:sequence>
+          <xs:element name="customAttribute" type="amiroCustomAttributeInfo" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="useShopOperationName" type="xs:boolean" use="required"/>
+        <xs:attribute name="prefixForOperation" type="xs:boolean" use="required"/>
+        <xs:attribute name="prefixForAgent" type="xs:boolean" use="required"/>
+        <xs:attribute name="prefixForGood" type="xs:boolean" use="required"/>
+        <xs:attribute name="active" type="xs:boolean" use="required"/>
+        <xs:attribute name="runAs" type="xs:string"/>
+        <xs:attribute name="adminDomain" type="xs:string"/>
+        <xs:attribute name="shopDomain" type="xs:string"/>
+        <xs:attribute name="login" type="xs:string"/>
+        <xs:attribute name="password" type="xs:string"/>
+        <xs:attribute name="pollPeriod" type="xs:int" use="required"/>
+        <xs:attribute name="orderIdColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="stateColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="orderDateColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="shippingAmountColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="customerFirstNameColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="customerLastNameColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="customerEmailColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="customerNickColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="customerCodeColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="customerAddressColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="customerPhoneColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="commentsColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="goodIdColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="goodNameColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="taxColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="priceColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="quantityColumnNum" type="xs:int" use="required"/>
+        <xs:attribute name="placeId" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="amiroCustomAttributeInfo">
+    <xs:complexContent>
+      <xs:extension base="entity">
+        <xs:all/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="columnNumber" type="xs:int" use="required"/>
+        <xs:attribute name="settingsId" type="xs:IDREF"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="accessMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="SELF"/>
+      <xs:enumeration value="PARENT"/>
+      <xs:enumeration value="NEIGHBOUR"/>
+      <xs:enumeration value="ALL"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="editablePeriodType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ALL"/>
+      <xs:enumeration value="CALENDAR_DAYS"/>
+      <xs:enumeration value="WORK_DAYS"/>
+      <xs:enumeration value="DATE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="attributeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="STRING"/>
+      <xs:enumeration value="LONG"/>
+      <xs:enumeration value="TIME"/>
+      <xs:enumeration value="ID_CUSTOM"/>
+      <xs:enumeration value="FILE"/>
+      <xs:enumeration value="DOUBLE"/>
+      <xs:enumeration value="BOOLEAN"/>
+      <xs:enumeration value="ID_EMBEDDED"/>
+      <xs:enumeration value="TEXT"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="uomType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="mass"/>
+      <xs:enumeration value="volume"/>
+      <xs:enumeration value="piece"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="barcodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EAN8"/>
+      <xs:enumeration value="EAN13"/>
+      <xs:enumeration value="EAN128"/>
+      <xs:enumeration value="Codabar"/>
+      <xs:enumeration value="Code39"/>
+      <xs:enumeration value="Code128"/>
+      <xs:enumeration value="DataMatrix"/>
+      <xs:enumeration value="Int2of5"/>
+      <xs:enumeration value="PDF417"/>
+      <xs:enumeration value="PostNet"/>
+      <xs:enumeration value="UPCE"/>
+      <xs:enumeration value="UPCA"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="calcMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FIFO"/>
+      <xs:enumeration value="AVG"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="priceListCellArray" final="#all">
+    <xs:sequence>
+      <xs:element name="item" type="priceListCell" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
