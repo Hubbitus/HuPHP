@@ -11,6 +11,9 @@
 * @changelog
 *	* 2009-08-24 16:06 ver 1.0
 *	- Initial version.
+*
+*	* 2010-08-10 13:14 ver 1.0 to 1.1
+*	- Make _value_ and id mandatory and check in getXML method.
 **/
 
 include_once('macroses/REQUIRED_VAR.php');
@@ -34,6 +37,8 @@ public $properties = array(
 	* @param
 	**/
 	public function getXML(DOMDocument &$dom){
+	REQUIRED_VAR($this->_value_, '_value_');
+	REQUIRED_VAR($this->id, 'id');
 	$category = $dom->createElement('category');
 	/**
 	* @internal
@@ -41,7 +46,6 @@ public $properties = array(
 	* we can't use short form $res->createElement($tag, $tagValue);
 	**/
 	$category->appendChild($dom->createTextNode($this->_value_));
-
 		foreach($this->getRegularKeys() as $itemKey){//All defined subelements
 			if (isset($this->$itemKey) and '_value_' != $itemKey) $category->setAttribute($itemKey, $this->$itemKey);
 		}
