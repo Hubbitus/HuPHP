@@ -7,11 +7,14 @@
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @example YML.example.php
-* @version 1.0
+* @version 1.1
 *
 * @changelog
 *	* 2009-06-30 17:21 ver 1.0
 *	- Initial version.
+*
+*	* 2010-08-11 11:57 ver 1.0 to 1.1
+*	- Add caching of objects to do not do very slow XPAth queries each time.
 **/
 include_once('macroses/REQUIRED_VAR.php');
 
@@ -29,15 +32,24 @@ class YML{
 private $dom_;		// Main DOMDocument
 private $xpath_;	// DOMXpath object to perfom any queries
 
+// Cache presents of elements in document to do not do amny times slo Xpath queries.
+protected $cache_ = array(
+	'yml_catalog'	=> null,
+	'shop'		=> null,
+	'currencies'	=> null,
+	'categories'	=> null,
+	'offers'	=> null,
+);
+
 	public function __construct(){
-	// DTD. http://www.php.net/manual/en/book.dom.php#78929
+	# DTD. http://www.php.net/manual/en/book.dom.php#78929
 	$this->dom_ = DOMImplementation::createDocument('', '', DOMImplementation::createDocumentType('yml_catalog', '', 'shops.dtd'));
 	$this->dom_->encoding = 'UTF-8';
 	$this->dom_->validateOnParse = true;
 	$this->xpath_ = new DOMXPath($this->dom_);
 
-	$yml_catalog = $this->dom_->appendChild($this->dom_->createElement('yml_catalog'));
-	$yml_catalog->setAttribute('date', date('Y-m-d H:i'));
+	$this->cache_['yml_catalog'] = $this->dom_->appendChild($this->dom_->createElement('yml_catalog'));
+	$this->cache_['yml_catalog']->setAttribute('date', date('Y-m-d H:i'));
 	}#m __construct
 
 	/**
@@ -48,9 +60,9 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	* @Throws(VariableRequired)
 	**/
 	public function &addShop(array $shop){
-	$sh = $this->getYml_catalog()->appendChild($this->dom_->createElement('shop'));
+	$this->cache_['shop'] = $this->getYml_catalog()->appendChild($this->dom_->createElement('shop'));
 		foreach (array('name', 'company', 'url') as $item){
-		$sh->appendChild($this->dom_->createElement($item, REQUIRED_VAR($shop[$item])));
+		$this->cache_['shop']->appendChild($this->dom_->createElement($item, REQUIRED_VAR($shop[$item])));
 		}
 	return $this;
 	}#m addShop
@@ -74,13 +86,9 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	* @return	&$this
 	**/
 	public function &addCurrencies(array $curs){
-	$shop = $this->xpath_->query('//shop');
-		if($shop->length != 1){
-		throw new YML_exception_absentElement('You must add element "shop" first!');
-		}
-	$currencies = $shop->item(0)->appendChild($this->dom_->createElement('currencies'));
+	$this->cache_['currencies'] = $this->checkElementPresents('shop')->appendChild($this->dom_->createElement('currencies'));
 		foreach (REQUIRED_VAR($curs) as $id => $cur){
-		$currency = $currencies->appendChild($this->dom_->createElement('currency'));
+		$currency = $this->cache_['currencies']->appendChild($this->dom_->createElement('currency'));
 		$currency->setAttribute('id', $id);
 			if(!empty($cur['rate'])) $currency->setAttribute('rate', $cur['rate']);
 			if(!empty($cur['plus'])) $currency->setAttribute('plus', $cur['plus']);
@@ -130,20 +138,11 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	* @return	&$this
 	**/
 	public function &addCategory(YML_category $cat){
-	$shop = $this->xpath_->query('//shop');
-		if($shop->length != 1){
-		throw new YML_exception_absentElement('You must add element "shop" first!');
+		if(! $this->checkElementPresents('categories')){ //Create on demand
+		$this->cache_['categories'] = $this->checkElementPresents('shop', true)->appendChild($this->dom_->createElement('categories'));
 		}
 
-	$categories = $this->xpath_->query('//categories');
-		if($categories->length != 1){ //Create on demand
-		$categories = $shop->item(0)->appendChild($this->dom_->createElement('categories'));
-		}
-		else{
-		$categories = $categories->item(0);
-		}
-
-	$categories->appendChild($cat->getXML($this->dom_));
+	$this->cache_['categories']->appendChild($cat->getXML($this->dom_));
 	return $this;
 	}#m addCategory
 
@@ -166,27 +165,19 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	* @return	&Object(DOMElement)
 	**/
 	private function getOffers(){
-	$offers = $this->xpath_->query('//offers');
-		if ($offers->length < 1){ //
-		$shop = $this->xpath_->query('//shop')->item(0);
-		return $shop->appendChild($this->dom_->createElement('offers'));
+		if(! $this->checkElementPresents('offers')){ //Create on demand
+		$this->cache_['offers'] = $this->checkElementPresents('shop', true)->appendChild($this->dom_->createElement('offers'));
 		}
-		else{
-		return $offers->item(0);
-		}
+	return $this->cache_['offers'];
 	}#m getOffers
 
 	/**
 	* Return <yml_catalog> DOM element.
 	*
-	* @return	Object(DOMElement)
+	* @return	&Object(DOMElement)
 	**/
-	public function getYml_catalog(){
-	$currs = $this->xpath_->query('//yml_catalog');
-		if ($currs->length < 1){
-		throw new YML_exception_absentElement('<yml_catalog> absent!');
-		}
-	return $currs->item(0);
+	public function &getYml_catalog(){
+	return $this->checkElementPresents('yml_catalog', true);
 	}#m getYml_catalog
 
 	/**
@@ -195,11 +186,7 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	* @return	Object(DOMElement)
 	**/
 	public function getCurrencies(){
-	$currs = $this->xpath_->query('//currencies');
-		if ($currs->length < 1){
-		throw new YML_exception_absentElement('<currencies> absent!');
-		}
-	return $currs->item(0);
+	return $this->checkElementPresents('currencies', true);
 	}#m getCurrencies
 
 	/**
@@ -208,11 +195,7 @@ private $xpath_;	// DOMXpath object to perfom any queries
 	* @return	Object(DOMElement)
 	**/
 	public function getCategories(){
-	$cats = $this->xpath_->query('//categories');
-		if ($cats->length < 1){
-		throw new YML_exception_absentElement('<categories> absent!');
-		}
-	return $cats->item(0);
+	return $this->checkElementPresents('categories', true);
 	}#m getCategories
 
 	/**
@@ -228,4 +211,21 @@ private $xpath_;	// DOMXpath object to perfom any queries
 		}
 	return $this->dom_->saveXML();
 	}#m saveXML
+
+	/**
+	* Return true if element was add in tree, false otherwise.
+	* Made for caching purpose, because Xpath is very slow for such simple queries.
+	* Return &$this, or throw exception, so it may be used in chain.
+	*
+	* @param	string	$name Name of requested item.
+	* @param	boolean	$throw If true element required and exception throwed, otherwise returned reference to element or false.
+	* @return	&DOMElement Requested node.
+	* @Throws(YML_exception_absentElement)
+	**/
+	protected function &checkElementPresents($name, $throw = false){
+		if($throw and ! $this->cache_[$name]){
+		throw new YML_exception_absentElement("You must add element '$name' first!");
+		}
+		else return $this->cache_[$name];
+	}#m checkElementPresents
 }#c YML
