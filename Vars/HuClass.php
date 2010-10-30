@@ -4,7 +4,7 @@
 *
 * @package Vars
 * @subpackage Classes
-* @version 1.4
+* @version 1.5
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -27,6 +27,9 @@
 *	- To break loop: Vars/Settings/settings.php:24 -> Vars/HuClass.php:28 -> macroses/REQUIRED_VAR.php:16 ->
 *		-> Exceptions/variables.php:93 -> Debug/backtrace.php:45 -> Debug/HuFormat.php:14 -> Vars/Settings/settings.php
 *		include_once('macroses/REQUIRED_VAR.php'); moved to method createWithoutLSB (it single who uses this macro)
+*
+*	* 2010-10-31 00:01 ver 1.4 to 1.5
+*	- Add method clone;
 **/
 
 /*-inc
@@ -53,7 +56,7 @@ abstract class HuClass{
 	* @return instance of the reguired new class.
 	* @Throw(ClassUnknownException)
 	**/
-	static function create(){
+	public static function create(){
 //	$reflectionObj = new ReflectionClass(static::className);
 	#http://blog.felho.hu/what-is-new-in-php-53-part-2-late-static-binding.html
 		if (function_exists('get_called_class')) $className = get_called_class(); # Most reliable if available
@@ -65,6 +68,27 @@ abstract class HuClass{
 		if ($reflectionObj->getConstructor()) return $reflectionObj->newInstanceArgs(func_get_args());
 		else return $reflectionObj->newInstance();
 	}#m create
+
+	/**
+	* This is just wrupper for system counstruction 'clone'. Objects in PHP implicitly returned by
+	*	reference (see http://www.php.net/manual/en/language.references.spot.php#59820), so, to use it
+	*	without modification of main object I should clone it, but it is break one line counstruction chain.
+	* F.e. I want only count such items:
+	*	$dellin->getNotMatchedCities()->filter(create_function('$v', 'return is_null($v->region);'))->count()
+	* it implicitly MODIFY $dellin object! Off course if it is not return clone of object itself, what is not
+	*	a common case. So, we want do something similar:
+	* (clone $dellin->getNotMatchedCities())->filter(create_function('$v', 'return is_null($v->region);'))->count()
+	* But PHP does not allow such construction and fire there parsing error.
+	* For this case the method intended. In our example it whould:
+	* HuClass::clone($dellin->getNotMatchedCities())->filter(create_function('$v', 'return is_null($v->region);'))->count()
+	*
+	* Some developer notes:
+	*	- Unfortunately we can't name it as just clone even in class because it is reserved word.
+	*	- I use clone in method because argument itself again implicitly passed as reference, so it is required.
+	**/
+	public static function cloning($obj){
+	return clone $obj;
+	}#m cloning
 
 	/**
 	* This is similar create, but created for backward capability only.
