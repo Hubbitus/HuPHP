@@ -311,7 +311,7 @@ const huScheme = 'hu://';
 	* @param	integer	$initial
 	* @return	mixed
 	**/
-	public function reduce($callback, $initial =  0){
+	public function reduce($callback, $initial = 0){
 	return array_reduce($this->__SETS, $callback, $initial);
 	}#m reduce
 
