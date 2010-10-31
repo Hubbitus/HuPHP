@@ -462,7 +462,8 @@ private $notMatchedCities;
 	 * @return	string
 	 */
 	public function buildMapConfig(){
-	$ret = "\$GLOBALS['__CONFIG']['dellin'] = array(\n";
+	$ret = "\$GLOBALS['__CONFIG']['dellin'] = array(
+	#countyid => XML id\n";
 		foreach ($this->getMatchedCities() as $city){
  		$ret .= "\t" . $city->city->getPHPConfigLine() . ",\n";
 		}
@@ -478,7 +479,7 @@ private $notMatchedCities;
 	$ret = '';
 		// All new, but with region parsed
 		foreach ($this->getNotMatchedCities('withMatchedRegion') as $city){
-		$ret .= 'INSERT INTO xcart_counties (stateid, county) VALUES (' . REQUIRED_VAR($city->region->stateid) . ', "' . $city->city->{1} . '");' . "\n";
+		$ret .= 'INSERT INTO xcart_counties (stateid, county) VALUES (' . REQUIRED_VAR($city->region->stateid) . ', "' . REQUIRED_VAR($city->city->{1}) . '");' . "\n";
 		}
 	return $ret;
 	}#m buildInsertsOfNewCitites
