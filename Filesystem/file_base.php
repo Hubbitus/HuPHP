@@ -170,7 +170,7 @@ protected	$content;
 	* @Throws(VariableRequiredException)
 	**/
 	public function &setContentFromString($string){
-	$this->content = REQUIRED_VAR($string);
+	$this->content = REQUIRED_NOT_NULL($string);
 	$this->_writePending = true;
 	return $this;
 	}#m setContentFromString
@@ -198,7 +198,7 @@ protected	$content;
 	public function writeContent($flags = null, $resource_context = null){
 	$this->checkOpenError(
 		#$this->rawFilename because may be file generally not exists!
-		(bool) ($count = @file_put_contents($this->path(), $this->content, $flags, $resource_context))
+		false !== ($count = @file_put_contents($this->path(), $this->content, $flags, $resource_context))
 	);
 	$this->_writePending = false;
 	return $count;
@@ -211,7 +211,7 @@ protected	$content;
 		if ( ! $succ ){
 			if (!$this->isExists()) throw new FileNotExistsException('File not found', $this->path());
 			if (!$this->isReadable()) throw new FileNotReadableException('File not readable. Check permissions.', $this->path());
-			throw new FileNotReadableException('Unknown error get file.', $this->path());
+			throw new FileNotReadableException('Unknown error operate on file.', $this->path());
 		}
 	}#m checkOpenError
 }#c file_base

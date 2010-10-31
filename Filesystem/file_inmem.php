@@ -91,7 +91,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	public function writeContent($flags = null, $resource_context = null, $implodeWith = null, $updateLineSep = true){
 	$this->checkOpenError(
 		#$this->rawFilename because may be file generally not exists!
-		(bool) ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags, $resource_context))
+		false !==  ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags, $resource_context))
 	);
 	$this->_writePending = false;
 	return $count;
