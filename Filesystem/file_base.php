@@ -5,7 +5,7 @@
 * @package Filesystem
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @version 2.0b
+* @version 2.1
 *
 * @changelog
 *	* 2008-08-27 ver 1.0 to 1.1
@@ -22,7 +22,7 @@
 *		behaviour it is not initialised!
 *
 *	* 2009-03-23 16:44 ver 1.2.1 to 1.2.2
-*	- Method ::loadContent() changed to @return	&$this;. Full PhpDoc writed.
+*	- Method ::loadContent() changed to @return	&$this;. Full PhpDoc written.
 *
 *	* 2009-03-25 10:50 ver 1.2.2 to 2.0b
 *	- Major changes. Make @package Filesystem and split current file_base class to 3:
@@ -34,6 +34,10 @@
 *	- Fix few minor bugs (in ::implodeLines(), ::getBLOB())...
 *	- Method ::writeContents() renamed to ::writeContent()
 *	- Acces type of method ::checkOpenError() changed from private to protected.
+*
+*	* 2010-11-16 17:42 ver 2.0b to 2.1
+*	- Add unlink method.
+*	- Explicit inlude 'macroses/REQUIRED_NOT_NULL.php'.
 **/
 
 /*-inc
@@ -42,6 +46,7 @@ include_once('Exceptions/filesystem.php');
 include_once('System/OS.php');
 */
 include_once('macroses/REQUIRED_VAR.php');
+include_once('macroses/REQUIRED_NOT_NULL.php');
 /**
 * @uses REQUIRED_VAR()
 * @uses VariableRequiredException
@@ -142,6 +147,15 @@ protected	$content;
 	public function isReadable(){
 	return is_readable($this->path());
 	}#m isReadable
+
+	/**
+	* Unlink (delete) file
+	*
+	* @return>boolean
+	**/
+	public function unlink(){
+	return unlink($this->path());
+	}#m unlink
 
 	/**
 	* Return directory part of current path (file must not be exist!).
