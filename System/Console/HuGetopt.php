@@ -108,10 +108,11 @@ protected $__SETS = array(
 *	3) Enviroment variable POSIXLY_CORRECT not handled, and behaviour always same as GNU default (first +/- in optstring modes too not handled!!!)
 *	4) Additionly in settings moved 'long_start' ('--') and 'short_start' ('-') and may be changed if you want.
 * 		Even more, it is array, and may contain any amount of element. It is usefull, if you, for example, wish use '-' and '+' in short options.
-*	5) PHP-CLI self do NOT correctly handle long options with sign "=" form:
+*	5) PHP-CLI self do NOT correctly handle long options with sign "=" form or without space:
 *		--longOpt 'optarg' - correct
 * 		--longOpt='optarg' - In $argv placed full, not correct exploded to opt and optarg.
-*		GuGetopt correct handle both.
+*		--longOpt'optarg' - In $argv placed full, not correct exploded to opt and optarg.
+*		GuGetopt correct handle all this cases.
 *	6) Also PHP-CLI does NOT handle short options in clue form (F.e. -o -t -f -s - does, -otfs - NOT). So, HuGetopt - handle it properly!
 **/
 class HuGetopt extends get_settings{
@@ -249,7 +250,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 			}
 			else{//: or ::
 				if (
-					!($o->{'='}->_last_ and ($optarg = $o->Val->_last_) )	//If NOT long option '=' form
+					!($optarg = $o->Val->_last_)	//If NOT long option '=' form
 					 and
 					( ( false !== ($optarg = $this->nextArg())) and false === $this->isOpt($optarg) ) //And next NOT arg of current option
 					){
@@ -348,16 +349,19 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 	/**
 	* Check if arg is long option
-	*	But, BE CAREFULL ->Val wil be filled in only one case: See additional 5 in main	description of class HuGetopt
-	*	about bug in php-cli to parse --longOpt='optarg' form of long options. In this form, when value of arg in same element
-	*	of $argv - this it parsed and filled ->Val with this value, and ->= set to true. In other cases, next argument not got!
+	*	But, BE CAREFULL ->Val will be filled in only one case: See additional
+	*	5 in main description of class HuGetopt about bug in php-cli to parse
+	*	--longOpt='optarg' and --longOpt'optarg' forms of long options. In
+	*	this form, when value of arg in same element of $argv - this it parsed
+	*	and filled ->Val with this value, and ->= set to true. In other cases,
+	*	next argument not got!
 	*
 	* @param	string	$arg. Arg-string to check
 	* @return	false|Object(HuGetopt_option).
 	**/
 	public function isLongOpt($arg){
 	$re = new RegExp_pcre(
-     	( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->alternative ? array_merge($this->sets()->start_long, $this->sets()->start_short) : $this->sets()->start_long)).')('.implode('|', array_keys($this->_optsL)).')(=|\b)(.*)/s' ),
+     	( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->alternative ? array_merge($this->sets()->start_long, $this->sets()->start_short) : $this->sets()->start_long)).')('.implode('|', array_keys($this->_optsL)).')(?>\s*|=)(.*)/s' ),
 		$arg);
 	$re->doMatch();
 
