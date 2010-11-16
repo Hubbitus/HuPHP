@@ -361,7 +361,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 	**/
 	public function isLongOpt($arg){
 	$re = new RegExp_pcre(
-     	( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->alternative ? array_merge($this->sets()->start_long, $this->sets()->start_short) : $this->sets()->start_long)).')('.implode('|', array_keys($this->_optsL)).')(?>\s*|=)(.*)/s' ),
+     	( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->alternative ? array_merge($this->sets()->start_long, $this->sets()->start_short) : $this->sets()->start_long)).')('.implode('|', array_keys($this->_optsL)).')(=|(?>\s*))(.*)/s' ),
 		$arg);
 	$re->doMatch();
 
