@@ -79,7 +79,7 @@ class consts{#Full - constants
 			}
 		return array_filter($constants);
 		}
-	}#m getName
+	}#m getNameByValue
 } #c consts
 
 /*

@@ -49,7 +49,7 @@ public $properties = array();
 	* Constructor.
 	*
 	* @param	array	$possibles. Array of string - possibe names of propertys.
-	* @param	array=null	$array
+	* @param	array=null	$array Initial values.
 	**/
 	function __construct(array $possibles, array $array = null){
 	$this->properties = $possibles;
