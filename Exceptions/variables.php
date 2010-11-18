@@ -100,6 +100,8 @@ class VariableRangeLTException	extends VariableRangeException{}
 
 class VariableArrayInconsistentException extends VariableException{}
 
+class VariableReadOnlyException	extends VariableException{}
+
 /**
 * It's Before declaration of VariableRequiredException may produce cycle of includes...
 **/
