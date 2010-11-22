@@ -72,8 +72,8 @@ parent::__construct($this->properties, $array);
 * @param	boolean	$value
 * @return string
 **/
-public function filter_get__text_boolean($name, $value){
-return ($value ? 'true' : 'false');
+public function filter_get__text_boolean(&$name, &$value){
+$value ? $value = 'true' : $value = 'false';
 }#m filter_get__text_boolean
 
 //Defaults
