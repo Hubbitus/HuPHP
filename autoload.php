@@ -7,14 +7,16 @@
 	if ( !defined('AUTOINCLUDE_FILE') ) define('AUTOINCLUDE_FILE', '__autoload.map.php');
 	if ( !defined('AUTOLOAD_DEBUG') ) define('AUTOLOAD_DEBUG', false);
 include_once('macroses/IS_SET.php'); //It must be explicit yet
+
+
 /**
 * Magick class autoload function.
 *
 * @param	string	$classname
 * @return	boolean
 **/
-//function __load_class($classname){
-function __autoload($classname){
+function __load_class($classname){
+//function __autoload($classname){
 include_once('System/OS.php');//It must be explicit yet
 	if (
 		is_set('class_file', (array)@$GLOBALS['__CONFIG'][$classname])
@@ -45,6 +47,19 @@ include_once('System/OS.php');//It must be explicit yet
 	}
 return false;
 }
+
+	// spl_autoload_register allow register chain of autoloaders to do not conflict with other libraries
+	if (function_exists('spl_autoload_register')){
+		if (function_exists('__autoload')){// Exists from enother libraries and must be registered explicitly according to MAN
+		spl_autoload_register('__autoload', true);
+		}
+	spl_autoload_register('__load_class', true);
+	}
+	else{ // If not available last chance to do it on old fashion way
+		function __autoload($classname){
+		__load_class($classname);
+		}
+	}
 
 //$GLOBALS['__CONFIG'] =
 
