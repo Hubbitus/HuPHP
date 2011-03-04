@@ -68,7 +68,7 @@ private static $instance = array();
 	**/
 	public static function &singleton($className){
 		if (!isset(self::$instance[$className])){// @TODO: provide hashing class name and args, and index by hash.
-			if (!function_exists('__autoload')) self::tryIncludeByClassName($className);
+			if (!function_exists('__autoload') and (!function_exists('spl_autoload_functions') or !spl_autoload_functions())) self::tryIncludeByClassName($className);
 
 		$args = func_get_args();
 		unset($args[0]);//Class name

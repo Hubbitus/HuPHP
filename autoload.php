@@ -10,7 +10,7 @@ include_once('macroses/IS_SET.php'); //It must be explicit yet
 
 
 /**
-* Magick class autoload function.
+* Magic class autoload function.
 *
 * @param	string	$classname
 * @return	boolean
