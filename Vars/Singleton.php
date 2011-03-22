@@ -4,7 +4,7 @@
 *
 * @package Vars
 * @subpackage Classes
-* @version 1.2.1
+* @version 1.2.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
@@ -31,6 +31,9 @@
 *
 *	* 2009-05-29 18:32 ver 1.2 to 1.2.1
 *	- include_once('Vars/HuConfig.class.php'); //Must be implisit, to break dependency circle. Free &CONF() function used.
+*
+*	* 2011-03-22 13:24 ver 1.2.1 to 1.2.2
+*	- Implement planned before (from inner TODO) hashing parameters in singleton method.
 **/
 
 /*-inc
@@ -67,22 +70,23 @@ private static $instance = array();
 	* @params	variable number of parameters. Any other parameters directly passed to instantiated class-constructor.
 	**/
 	public static function &singleton($className){
-		if (!isset(self::$instance[$className])){// @TODO: provide hashing class name and args, and index by hash.
+	$args = func_get_args();
+	unset($args[0]);//Class name
+
+	$hash = $className . '_' . self::hash($args);
+		if (!isset(self::$instance[$hash])){
 			if (!function_exists('__autoload') and (!function_exists('spl_autoload_functions') or !spl_autoload_functions())) self::tryIncludeByClassName($className);
 
-		$args = func_get_args();
-		unset($args[0]);//Class name
 		/*
 		Using Reflection to instanciate class with any args.
 		See http://ru2.php.net/manual/ru/function.call-user-func-array.php, comment of richard_harrison at rjharrison dot org
 		*/
-		// make a reflection object
 		$reflectionObj = new ReflectionClass($className);
 		// use Reflection to create a new instance, using the $args
-		self::$instance[$className] = $reflectionObj->newInstanceArgs($args);
+		self::$instance[$hash] = $reflectionObj->newInstanceArgs($args);
 		}
 
-	return self::$instance[$className];
+	return self::$instance[$hash];
 	}#m singleton
 
 	/**
@@ -118,7 +122,17 @@ private static $instance = array();
 	**/
 	public function __clone(){
 	trigger_error('Clone is not allowed.', E_USER_ERROR);
-	}
+	}#m __clone
+
+	/**
+	 * Provide simple way of hashing objects and array
+	 *
+	 * @param	mixed $param
+	 * @return	string
+	 */
+	public static function hash($param){
+	return md5(http_build_query($param));
+	}#m hash
 }#c Single
 
 /**
