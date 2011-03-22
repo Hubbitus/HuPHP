@@ -19,7 +19,13 @@ require_once('Exceptions/BaseException.php');
 * @uses BaseException
 **/
 
-class DBException extends BaseException{}
+class DBException extends BaseException{
+	public $db;
+	public function __construct($message, database &$db){
+	parent::__construct($message);
+	$this->db = $db;
+	}#__c
+}
 
 class ConnectErrorDBException extends DBException{
 public $DBError;//Ref to database_error object

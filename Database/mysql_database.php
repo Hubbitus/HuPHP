@@ -54,7 +54,7 @@ public $db_type = 'mysql';
 				);
 
 			// It often called from constructor. So, object is not istantiated to future cal to it getError()
-			$cedbe = new ConnectErrorDBException ($this->Error->settings->TXT_cantConnect);
+			$cedbe = new ConnectErrorDBException($this->Error->settings->TXT_cantConnect, $this);
 			$cedbe->DBError =& $this->Error;
 			throw $cedbe;
 			}
@@ -78,7 +78,7 @@ public $db_type = 'mysql';
 				'',
 				debug_backtrace()
 			);
-		throw new QueryFailedDBException($this->Error->settings->TXT_queryFailed);
+		throw new QueryFailedDBException($this->Error->settings->TXT_queryFailed, $this);
 		}
 
 		#Возвращаем если требовалось Last_insert_id (в случае INSERT),
