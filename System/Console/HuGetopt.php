@@ -188,7 +188,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 				'Mod'	=> (string)@$opt[2]
 			)
 		);
-		$this->_optsS[$opt[0]]	= $k;
+			$this->_optsS[$opt[0]]	= $k;
 			if (@$opt[1])
 			$this->_optsL[$opt[1]]	= $k;
 		}
@@ -256,7 +256,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 					){
 
 					if('::' == $o->Mod){//Mandatory argument for option
-					throw new HuGetoptArgumentRequiredException('Option ['.$o->Opt->_last_.'] required argument!');
+					throw new HuGetoptArgumentRequiredException(new backtrace(), 'Option [' . $o->Opt->_last_ . '] requires argument!');
 					}
 				}
 			$o->Val->_last_ = $optarg;
@@ -319,7 +319,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 
 		if ($re->matchCount()){
 			//Handle sequence of short options without optarguments -otfs.
-			if ($o = $this->getOptByStr($re->match(2), 's') and ':' == $o->Mod ){//Have optarg
+			if ($o = $this->getOptByStr($re->match(2), 's') and (':' == $o->Mod or '::' == $o->Mod) ){//Have optarg
 			return new HuGetopt_option(
 				$this->sets()->HuGetopt_option_options
 				,array(
@@ -327,6 +327,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 					'Opt'	=> new HuArray($re->match(2)),
 //					'Val'	=> ( '' != $this->_opts[ $this->_optsS[$re->match(1)] ]->Mod ) ? $this->nextArg() : null
 					'Val'	=> new HuArray($re->match(3)),
+					'Val'	=> new HuArray(($re->match(3) ? $re->match(3) : $this->nextArg())),
 					'OptT'	=> new HuArray('s')
 				)
 			);
@@ -372,7 +373,8 @@ private $_curArg;		//Current arg, if needed correction on real.
 					'Sep'	=> new HuArray($re->match(1)),
 					'Opt'	=> new HuArray($re->match(2)),
 					'='		=> new HuArray($re->match(3)),
-					'Val'	=> new HuArray($re->match(4)),
+//					'Val'	=> new HuArray($re->match(4)),
+					'Val'	=> new HuArray(($re->match(4) ? $re->match(4) : $this->nextArg())),
 					'OptT'	=> new HuArray('l')
 				)
 			);
