@@ -413,6 +413,24 @@ private $_curArg;		//Current arg, if needed correction on real.
 	}#m getNonOpts
 
 	/**
+	 * Return array known (defined for parsing, not parsed!) short options.
+	 * 
+	 * @return array
+	 */
+	public function getListShortOpts(){
+	return $this->_optsS;
+	}#m getListShortOpts
+
+	/**
+	 * Return array known (defined for parsing, not parsed!) long options.
+	 *
+	 * @return array
+	 */
+	public function getListLongOpts(){
+	return $this->_optsL;
+	}#m getListLongOpts
+
+	/**
 	* Idea (and method name) got from PEAR Console_getopt and adopted, modified.
 	* Safely read the $argv PHP array across different PHP configurations.
 	* Will take care on register_globals and register_argc_argv ini directives
