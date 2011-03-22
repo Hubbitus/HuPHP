@@ -28,7 +28,7 @@ find .. -type f -iname '*.php' \
 		echo "$line" | sed -nr "/function/d;/class/s@${DIR}(.*?\\.php):\s*(abstract\s+)?class\s+([^[:space:]{]+)(\s+extends\s+[^[:space:]{]+)?(\s+implements\s+[^[:space:]{]+)*\s*\{?\}?\s*(\$|(//|#).*|;)\$@\t'\3'\t=> '\1',@g;/interface/s@${DIR}(.*?\\.php):\s*interface\s+([^\s{]+)\s*\{@\t'\2'\t=> '\1', #interface@g;p" \
 			| grep -v 'Debug/log_dump.php' >> "$OUT_FILE"
 		done \
-			| sed -nr "s@(${DIR}.*\\.php):.*?@\1@g;p" | sort | uniq | xargs -r -I{} ./phpsource.extract_functions.php "{}" "$DIR" \
+			| sed -nr "s@(${DIR}.*\\.php):.*?@\1@g;p" | sort | uniq | xargs -r -I{} php -d include_path=../ ./phpsource.extract_functions.php "{}" "$DIR" \
 				>> "$OUT_FILE"
 
 echo -n ");
