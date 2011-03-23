@@ -40,10 +40,11 @@ protected $__SETS = array(
 	'password'	=> '',
 	'dbName'		=> 'grub',
 	'persistent'	=> true,
+	'charset'		=> 'CP1251' // TO fire SET NAMES... {@see ::set_names()}
 */
 	'CHARSET_RECODE' => array (
-		'FROM'	=> 'CP1251',
-		'TO'		=> 'UTF-8'
+		'FROM'	=> 'CP1251',	// Script charset
+		'TO'		=> 'UTF-8'	// DB charset
 	),
 	'DEBUG'		=> false,
 
@@ -85,6 +86,7 @@ protected	$rowsTotal;
 		#Исключения пусть ловят вовне
 		$this->db_connect();
 		$this->db_select();
+		$this->set_names();
 		}
 	}#__c
 
@@ -93,6 +95,19 @@ protected	$rowsTotal;
 		throw new DBSelectErrorDBException($this->Error->settings->TXT_noDBselected, $this);
 	}#m db_select
 
+	/**
+	 * Fire query "SET NAMES $charset".
+	 * By default if $charset is null and set $this->settings->CHARSET_RECODE->TO it used,
+	 *	or if defined $this->settings->charset otherwise do nothing.
+	 *
+	 * @param	string(null)	$charset
+	 * @return	nothing
+	 */
+	public function set_names($charset = null){
+		if ( ($ch = $charset) or ($ch = @$this->settings->CHARSET_RECODE['TO']) or ($ch = $this->settings->charset) ){
+		$this->query('SET NAMES ' . $ch);
+		}
+	}#m set_names
 
 	function &__get ($name){#Переопределяем, чтобы сделать ссылку на настройки не изменяемой!
 	#таким образом настройки менять можно будет, а сменить объект настроек - нет
