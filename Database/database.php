@@ -90,7 +90,7 @@ protected	$rowsTotal;
 
 	public function db_select(){
 		if (!call_user_func($this->db_type.'_select_db', $this->settings->dbName))
-		throw new DBSelectErrorDBException($this->Error->settings->TXT_noDBselected);
+		throw new DBSelectErrorDBException($this->Error->settings->TXT_noDBselected, $this);
 	}#m db_select
 
 
