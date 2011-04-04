@@ -14,4 +14,6 @@ class BaseException extends Exception{
 		else $this->message = $addmess.$this->message;
 	}
 }
+
+class NotImplementedException extends BaseException{};
 ?>
