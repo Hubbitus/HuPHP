@@ -70,7 +70,7 @@ abstract class HuClass{
 	}#m create
 
 	/**
-	* This is just wrupper for system counstruction 'clone'. Objects in PHP implicitly returned by
+	* This is just wrupper for system construction 'clone'. Objects in PHP implicitly returned by
 	*	reference (see http://www.php.net/manual/en/language.references.spot.php#59820), so, to use it
 	*	without modification of main object I should clone it, but it is break one line counstruction chain.
 	* F.e. I want only count such items:
@@ -116,6 +116,7 @@ abstract class HuClass{
 	* So, in this page, below, i found next fine workaraound (see comment and example of "trithaithus at tibiahumor dot net")
 	*
 	* Also this hack was be founded here http://blog.adaniels.nl/articles/a-dark-corner-of-php-class-casting/
+	*
 	* @param $toClassName string Class name to what casting do
 	* @param $what mixed
 	* @return Object($toClassName)
