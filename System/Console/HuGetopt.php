@@ -249,8 +249,9 @@ private $_curArg;		//Current arg, if needed correction on real.
 			$o->Val->_last_ = true;
 			}
 			else{//: or ::
+			$optarg = $o->Val->_last_; //def
 				if (
-					!($optarg = $o->Val->_last_)	//If NOT long option '=' form
+					!$o->Val->count()	//If NOT long option '=' form
 					 and
 					( ( false !== ($optarg = $this->nextArg())) and false === $this->isOpt($optarg) ) //And next NOT arg of current option
 					){
@@ -326,8 +327,8 @@ private $_curArg;		//Current arg, if needed correction on real.
 					'Sep'	=> new HuArray($re->match(1)),
 					'Opt'	=> new HuArray($re->match(2)),
 //					'Val'	=> ( '' != $this->_opts[ $this->_optsS[$re->match(1)] ]->Mod ) ? $this->nextArg() : null
-					'Val'	=> new HuArray($re->match(3)),
-					'Val'	=> new HuArray(($re->match(3) ? $re->match(3) : $this->nextArg())),
+//					'Val'	=> new HuArray($re->match(3)),
+					'Val'	=> new HuArray(('' !== (string)$re->match(3) ? $re->match(3) : $this->nextArg())),
 					'OptT'	=> new HuArray('s')
 				)
 			);
