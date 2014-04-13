@@ -142,7 +142,7 @@ class dump extends dump_utils{
 					)->parseCallArgs()->getArg(0)
 				)
 			)
-			!= ( is_object($var) ? spl_object_hash($var) : (string)$var ) /* PHP Catchable fatal error NOT handled traditionaly
+			!= ( is_object($var) ? spl_object_hash($var) : @(string)$var ) /* PHP Catchable fatal error NOT handled traditionaly
 			with try-catch block!
 			See http://ru2.php.net/manual/en/migration52.error-messages.php
 			and http://www.zend.com/forums/index.php?t=rview&th=2607&goto=6920

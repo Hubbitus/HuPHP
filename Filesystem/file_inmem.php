@@ -277,7 +277,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	private function makeCacheLineOffsets(){
 	$this->_linesOffsets = array();
 	$offset = 0;
-	$lines =& $this->getLines();
+	$lines = $this->getLines();
 
 	$linesCount = sizeof($lines);	#For speed up
 	#First line is additional case
