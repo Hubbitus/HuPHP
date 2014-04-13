@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Used tutorial: http://habrahabr.ru/post/144626/
+
+{
+
+rm -rf trunk
+
+git svn clone --authors-file=authors svn+ssh://pasha@x-www.info/svn/_SHARED_/trunk trunk
+
+pushd trunk
+
+git filter-branch --commit-filter 'git_commit_non_empty_tree "$@"' HEAD
+git svn create-ignore
+
+git branch -rd git-svn
+git config --remove-section svn-remote.svn
+git config --remove-section svn
+rm -rf .git/svn
+
+git gc
+
+# Github:
+git remote add origin git@github.com:Hubbitus/HuPHP.git
+git push -u origin master
+
+popd
+
+}  2>&1 | tee git-svn.log
