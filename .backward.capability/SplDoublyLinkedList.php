@@ -5,8 +5,8 @@ if (!class_exists('SplDoublyLinkedList')){
 * before 5.3.0. So, for our Iterator purpose we implement it MINIMAL.
 *
 * Implementation got from example: http://php.net/Iterator
- *
- * Deprecated for any other use than backward capability!
+*
+* Deprecated for any other use than backward capability!
 *
 * @deprecated Since creation
 **/
