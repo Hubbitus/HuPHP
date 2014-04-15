@@ -1,0 +1,2193 @@
+<html>
+<head>
+<title>phpDocumentor Parser Errors and Warnings</title>
+<link rel="stylesheet" type="text/css" href="media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">default</td>
+  </tr>
+  <tr><td class="header_line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="classtrees_default.html" class="menu">class tree: default</a> ]
+		  [ <a href="elementindex_default.html" class="menu">index: default</a> ]
+		  	    [ <a href="elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+	<div id="todolist">
+			<p><a href="todolist.html">Todo List</a></p>
+	</div>
+      <b>Packages:</b><br />
+              <a href="li_default.html">default</a><br />
+              <a href="li_a1agregator-ru.html">a1agregator-ru</a><br />
+              <a href="li_charset_convert.html">charset_convert</a><br />
+              <a href="li_Console.html">Console</a><br />
+              <a href="li_Database.html">Database</a><br />
+              <a href="li_Debug.html">Debug</a><br />
+              <a href="li_dellin-ru.html">dellin-ru</a><br />
+              <a href="li_Exceptions.html">Exceptions</a><br />
+              <a href="li_Filesystem.html">Filesystem</a><br />
+              <a href="li_HuGetopt.html">HuGetopt</a><br />
+              <a href="li_Macroses.html">Macroses</a><br />
+              <a href="li_moysklad.html">moysklad</a><br />
+              <a href="li_Orange.html">Orange</a><br />
+              <a href="li_Pdf.html">Pdf</a><br />
+              <a href="li_Process.html">Process</a><br />
+              <a href="li_RegExp.html">RegExp</a><br />
+              <a href="li_settings.html">settings</a><br />
+              <a href="li_SIMhistory.html">SIMhistory</a><br />
+              <a href="li_SPSR.html">SPSR</a><br />
+              <a href="li_System.html">System</a><br />
+              <a href="li_TopLevel.html">TopLevel</a><br />
+              <a href="li_Users.html">Users</a><br />
+              <a href="li_Vars.html">Vars</a><br />
+              <a href="li_YML.html">YML</a><br />
+            <br /><br />
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+
+<a href="#Post-parsing">Post-parsing</a><br>
+<a href="#autoload.php">autoload.php</a><br>
+<a href="#backtrace.php">backtrace.php</a><br>
+<a href="#backtrace_out.class.php">backtrace_out.class.php</a><br>
+<a href="#BaseException.php">BaseException.php</a><br>
+<a href="#base_user.c.php">base_user.c.php</a><br>
+<a href="#calendar.php">calendar.php</a><br>
+<a href="#charset_convert.class.php">charset_convert.class.php</a><br>
+<a href="#charset_convert_exception.php">charset_convert_exception.php</a><br>
+<a href="#classes.php">classes.php</a><br>
+<a href="#commonOutExtraData.php">commonOutExtraData.php</a><br>
+<a href="#consts.example.php">consts.example.php</a><br>
+<a href="#consts.php">consts.php</a><br>
+<a href="#database.php">database.php</a><br>
+<a href="#database_operators.php">database_operators.php</a><br>
+<a href="#database_where.php">database_where.php</a><br>
+<a href="#dateTime.php">dateTime.php</a><br>
+<a href="#DBError.php">DBError.php</a><br>
+<a href="#debug.php">debug.php</a><br>
+<a href="#DEFINED_CLASS.php">DEFINED_CLASS.php</a><br>
+<a href="#dellinCity.class.php">dellinCity.class.php</a><br>
+<a href="#dellinParse.class.php">dellinParse.class.php</a><br>
+<a href="#dellinRegion.class.php">dellinRegion.class.php</a><br>
+<a href="#DOMnodeOutExtraData.php">DOMnodeOutExtraData.php</a><br>
+<a href="#dump_utils.php">dump_utils.php</a><br>
+<a href="#EMPTY_callback.php">EMPTY_callback.php</a><br>
+<a href="#EMPTY_INT.php">EMPTY_INT.php</a><br>
+<a href="#EMPTY_STR.example.php">EMPTY_STR.example.php</a><br>
+<a href="#EMPTY_STR.php">EMPTY_STR.php</a><br>
+<a href="#EMPTY_VAR.php">EMPTY_VAR.php</a><br>
+<a href="#filesystem.php">filesystem.php</a><br>
+<a href="#file_base.php">file_base.php</a><br>
+<a href="#file_inmem.php">file_inmem.php</a><br>
+<a href="#file_read.php">file_read.php</a><br>
+<a href="#FilterASCII85.php">FilterASCII85.php</a><br>
+<a href="#FilterASCII85_FPDI.php">FilterASCII85_FPDI.php</a><br>
+<a href="#FilterLZW.php">FilterLZW.php</a><br>
+<a href="#FilterLZW_FPDI.php">FilterLZW_FPDI.php</a><br>
+<a href="#fpdf.php">fpdf.php</a><br>
+<a href="#fpdf_tpl.php">fpdf_tpl.php</a><br>
+<a href="#fpdi.php">fpdi.php</a><br>
+<a href="#fpdi2tcpdf_bridge.php">fpdi2tcpdf_bridge.php</a><br>
+<a href="#fpdi_pdf_parser.php">fpdi_pdf_parser.php</a><br>
+<a href="#GDimage_class.php">GDimage_class.php</a><br>
+<a href="#gentime_class.php">gentime_class.php</a><br>
+<a href="#HuArray.php">HuArray.php</a><br>
+<a href="#HuClass.php">HuClass.php</a><br>
+<a href="#HuConfig.class.php">HuConfig.class.php</a><br>
+<a href="#HuError.php">HuError.php</a><br>
+<a href="#HuFormat.example.php">HuFormat.example.php</a><br>
+<a href="#HuFormat.php">HuFormat.php</a><br>
+<a href="#huFormatOutExtraData.php">huFormatOutExtraData.php</a><br>
+<a href="#HuGetopt.example.php">HuGetopt.example.php</a><br>
+<a href="#HuGetopt.php">HuGetopt.php</a><br>
+<a href="#HuLOG.php">HuLOG.php</a><br>
+<a href="#Hu_Console_Getopt.bak.PEAR.php">Hu_Console_Getopt.bak.PEAR.php</a><br>
+<a href="#iconv_charset_convert.class.php">iconv_charset_convert.class.php</a><br>
+<a href="#INT_CHECK_RANGE.php">INT_CHECK_RANGE.php</a><br>
+<a href="#JsHttpRequest.php">JsHttpRequest.php</a><br>
+<a href="#logo_class.php">logo_class.php</a><br>
+<a href="#log_dump.php">log_dump.php</a><br>
+<a href="#mcache.php">mcache.php</a><br>
+<a href="#MIME.php">MIME.php</a><br>
+<a href="#moysklad.class.php">moysklad.class.php</a><br>
+<a href="#moysklad.example.php">moysklad.example.php</a><br>
+<a href="#moysklad_agents.class.php">moysklad_agents.class.php</a><br>
+<a href="#moysklad_companies.class.php">moysklad_companies.class.php</a><br>
+<a href="#moysklad_connectors.class.php">moysklad_connectors.class.php</a><br>
+<a href="#moysklad_consignments.class.php">moysklad_consignments.class.php</a><br>
+<a href="#moysklad_contract.class.php">moysklad_contract.class.php</a><br>
+<a href="#moysklad_country.class.php">moysklad_country.class.php</a><br>
+<a href="#moysklad_currencies.class.php">moysklad_currencies.class.php</a><br>
+<a href="#moysklad_customEntity.class.php">moysklad_customEntity.class.php</a><br>
+<a href="#moysklad_customEntityMetadata.class.php">moysklad_customEntityMetadata.class.php</a><br>
+<a href="#moysklad_customerOrders.class.php">moysklad_customerOrders.class.php</a><br>
+<a href="#moysklad_deliveries_demand.class.php">moysklad_deliveries_demand.class.php</a><br>
+<a href="#moysklad_deliveries_supply.class.php">moysklad_deliveries_supply.class.php</a><br>
+<a href="#moysklad_element_base.class.php">moysklad_element_base.class.php</a><br>
+<a href="#moysklad_embeddedEntityMetadata.class.php">moysklad_embeddedEntityMetadata.class.php</a><br>
+<a href="#moysklad_enters.class.php">moysklad_enters.class.php</a><br>
+<a href="#moysklad_entityTemplatesMetadata.class.php">moysklad_entityTemplatesMetadata.class.php</a><br>
+<a href="#moysklad_goodFolders.class.php">moysklad_goodFolders.class.php</a><br>
+<a href="#moysklad_goods.class.php">moysklad_goods.class.php</a><br>
+<a href="#moysklad_gtd.class.php">moysklad_gtd.class.php</a><br>
+<a href="#moysklad_inventories.class.php">moysklad_inventories.class.php</a><br>
+<a href="#moysklad_invoicesIn.class.php">moysklad_invoicesIn.class.php</a><br>
+<a href="#moysklad_invoicesOut.class.php">moysklad_invoicesOut.class.php</a><br>
+<a href="#moysklad_losses.class.php">moysklad_losses.class.php</a><br>
+<a href="#moysklad_messages.class.php">moysklad_messages.class.php</a><br>
+<a href="#moysklad_moves.class.php">moysklad_moves.class.php</a><br>
+<a href="#moysklad_myCompany.class.php">moysklad_myCompany.class.php</a><br>
+<a href="#moysklad_persons.class.php">moysklad_persons.class.php</a><br>
+<a href="#moysklad_places.class.php">moysklad_places.class.php</a><br>
+<a href="#moysklad_priceLists.class.php">moysklad_priceLists.class.php</a><br>
+<a href="#moysklad_processingPlans.class.php">moysklad_processingPlans.class.php</a><br>
+<a href="#moysklad_processings.class.php">moysklad_processings.class.php</a><br>
+<a href="#moysklad_project.class.php">moysklad_project.class.php</a><br>
+<a href="#moysklad_purchaseOrders.class.php">moysklad_purchaseOrders.class.php</a><br>
+<a href="#moysklad_reason.class.php">moysklad_reason.class.php</a><br>
+<a href="#moysklad_reportTemplatesMetadata.class.php">moysklad_reportTemplatesMetadata.class.php</a><br>
+<a href="#moysklad_scripts.class.php">moysklad_scripts.class.php</a><br>
+<a href="#moysklad_service.class.php">moysklad_service.class.php</a><br>
+<a href="#moysklad_shareModes.class.php">moysklad_shareModes.class.php</a><br>
+<a href="#moysklad_things.class.php">moysklad_things.class.php</a><br>
+<a href="#moysklad_uoms.class.php">moysklad_uoms.class.php</a><br>
+<a href="#moysklad_warehouses.class.php">moysklad_warehouses.class.php</a><br>
+<a href="#moysklad_workflow.class.php">moysklad_workflow.class.php</a><br>
+<a href="#mssql_database.php">mssql_database.php</a><br>
+<a href="#MultipleInheritance.example.php">MultipleInheritance.example.php</a><br>
+<a href="#MultipleInheritance.php">MultipleInheritance.php</a><br>
+<a href="#mysql_database.php">mysql_database.php</a><br>
+<a href="#network.php">network.php</a><br>
+<a href="#OS.php">OS.php</a><br>
+<a href="#outExtraData.interface.php">outExtraData.interface.php</a><br>
+<a href="#pdf_context.php">pdf_context.php</a><br>
+<a href="#pdf_parser.php">pdf_parser.php</a><br>
+<a href="#Php.php">Php.php</a><br>
+<a href="#process.php">process.php</a><br>
+<a href="#Process.php">Process.php</a><br>
+<a href="#RegExp_base.php">RegExp_base.php</a><br>
+<a href="#RegExp_pcre.php">RegExp_pcre.php</a><br>
+<a href="#REQUIRED_NOT_NULL.php">REQUIRED_NOT_NULL.php</a><br>
+<a href="#REQUIRED_VAR.php">REQUIRED_VAR.php</a><br>
+<a href="#robokassa.php">robokassa.php</a><br>
+<a href="#serialize.php">serialize.php</a><br>
+<a href="#SerializedData.php">SerializedData.php</a><br>
+<a href="#session.php">session.php</a><br>
+<a href="#Session.php">Session.php</a><br>
+<a href="#settings.php">settings.php</a><br>
+<a href="#settings_check.php">settings_check.php</a><br>
+<a href="#settings_check_static.php">settings_check_static.php</a><br>
+<a href="#settings_filter.class.php">settings_filter.class.php</a><br>
+<a href="#settings_filter.example.php">settings_filter.example.php</a><br>
+<a href="#settings_filter_base.class.php">settings_filter_base.class.php</a><br>
+<a href="#settings_filter_default.class.php">settings_filter_default.class.php</a><br>
+<a href="#settings_filter_ignore.class.php">settings_filter_ignore.class.php</a><br>
+<a href="#settings_filter_null.class.php">settings_filter_null.class.php</a><br>
+<a href="#settings_filter_readOnly.class.php">settings_filter_readOnly.class.php</a><br>
+<a href="#sim_messages.php">sim_messages.php</a><br>
+<a href="#Singleton.php">Singleton.php</a><br>
+<a href="#SMS_partnerAPI.php">SMS_partnerAPI.php</a><br>
+<a href="#SPSR_in_parse.class.php">SPSR_in_parse.class.php</a><br>
+<a href="#SPSR_in_parse.example.php">SPSR_in_parse.example.php</a><br>
+<a href="#sqlite3_database.php">sqlite3_database.php</a><br>
+<a href="#store.php">store.php</a><br>
+<a href="#template_class.php">template_class.php</a><br>
+<a href="#template_class_2.1.php">template_class_2.1.php</a><br>
+<a href="#template_class_NEW2.php">template_class_NEW2.php</a><br>
+<a href="#test.php">test.php</a><br>
+<a href="#Tokenizer.php">Tokenizer.php</a><br>
+<a href="#to_conf(mapToSpsr).php">to_conf(mapToSpsr).php</a><br>
+<a href="#trans.class.php">trans.class.php</a><br>
+<a href="#try-examples.php">try-examples.php</a><br>
+<a href="#ufpdf-fpdi-test.php">ufpdf-fpdi-test.php</a><br>
+<a href="#ufpdf-test.php">ufpdf-test.php</a><br>
+<a href="#ufpdf.php">ufpdf.php</a><br>
+<a href="#uniord.php">uniord.php</a><br>
+<a href="#variables.php">variables.php</a><br>
+<a href="#VariableStream.php">VariableStream.php</a><br>
+<a href="#YML.class.php">YML.class.php</a><br>
+<a href="#YML.example.php">YML.example.php</a><br>
+<a href="#YML_category.php">YML_category.php</a><br>
+<a href="#YML_category_flat.php">YML_category_flat.php</a><br>
+<a href="#YML_offer.php">YML_offer.php</a><br>
+<a href="#YML_offer_artisttitle.php">YML_offer_artisttitle.php</a><br>
+<a href="#YML_offer_audiobook.php">YML_offer_audiobook.php</a><br>
+<a href="#YML_offer_book.php">YML_offer_book.php</a><br>
+<a href="#YML_offer_eventticket.php">YML_offer_eventticket.php</a><br>
+<a href="#YML_offer_generic.php">YML_offer_generic.php</a><br>
+<a href="#YML_offer_tour.php">YML_offer_tour.php</a><br>
+<a href="#YML_offer_vendormodel.php">YML_offer_vendormodel.php</a><br>
+<a href="#__autoload.map.php">__autoload.map.php</a><br>
+<a name="Post-parsing"></a>
+<h1>Post-parsing</h1>
+<h2>Warnings:</h2><br>
+<b>Warning</b> - 
+duplicate class element "FPDF" in file /home/_SHARED_/Pdf/lib/ufpdf/fpdf.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - Class Hu_Console_Getopt parent Console_Getopt not found<br>
+<b>Warning</b> - Class FPDF parent TCPDF not found<br>
+<b>Warning</b> - {@inheritdoc} can only be used in the docblock of a child class<br>
+<b>Warning</b> - {@inheritdoc} can only be used in the docblock of a child class<br>
+<b>Warning</b> - 
+duplicate define element "FPDF_FONTPATH" in file /home/_SHARED_/Pdf/lib/fpdi/ufpdf-test.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate define element "FPDF_VERSION" in file /home/_SHARED_/Pdf/lib/ufpdf/fpdf.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate define element "UFPDF_VERSION" in file /home/_SHARED_/Pdf/lib/fpdi/ufpdf.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - Class UFPDF in file /home/_SHARED_/Pdf/lib/fpdi/ufpdf.php has multiple possible parents named FPDF.  Cannot resolve name conflict,
+ try ignoring a file that contains the conflicting parent class<br>
+<b>Warning</b> - 
+duplicate class element "template" in file /home/_SHARED_/template/template_class_NEW2.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - {@inheritdoc} can only be used in the docblock of a child class<br>
+<b>Warning</b> - {@inheritdoc} can only be used in the docblock of a child class<br>
+<b>Warning</b> - {@inheritdoc} can only be used in the docblock of a child class<br>
+<b>Warning</b> - {@inheritdoc} can only be used in the docblock of a child class<br>
+<b>Warning</b> - {@inheritdoc} can only be used in the docblock of a child class<br>
+<b>Warning</b> - Class FPDF_TPL in file /home/_SHARED_/Pdf/lib/fpdi/fpdf_tpl.php has multiple possible parents named UFPDF.  Cannot resolve name conflict,
+ try ignoring a file that contains the conflicting parent class<br>
+<b>Warning</b> - Class UFPDF in file /home/_SHARED_/Pdf/lib/ufpdf/ufpdf.php has multiple possible parents named FPDF.  Cannot resolve name conflict,
+ try ignoring a file that contains the conflicting parent class<br>
+<b>Warning</b> - {@inheritdoc} can only be used in the docblock of a child class<br>
+<b>Warning</b> - {@inheritdoc} can only be used in the docblock of a child class<br>
+<b>Warning</b> - 
+duplicate define element "FPDF_FONTPATH" in file /home/_SHARED_/Pdf/lib/ufpdf/ufpdf-test.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate class element "UFPDF" in file /home/_SHARED_/Pdf/lib/fpdi/ufpdf.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate class element "dump" in file /home/_SHARED_/Debug/debug.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate class element "FPDF" in file /home/_SHARED_/Pdf/lib/fpdi/fpdi2tcpdf_bridge.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate class element "template" in file /home/_SHARED_/template/template_class.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate function element "file_get_contents" in file /home/_SHARED_/template/template_class_NEW2.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate function element "file_get_contents" in file /home/_SHARED_/template/template_class.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<a name="a1agregator_MSG.php"></a>
+<h1>a1agregator_MSG.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 19</b> - no @package tag was used in a DocBlock for class a1agregatorException<br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class a1agregatorMSGParseException<br>
+<b>Warning on line 20</b> - Class "a1agregatorMSGParseException" has no Class-level DocBlock.<br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class a1agregatorMSGSkeyMismatchException<br>
+<b>Warning on line 21</b> - Class "a1agregatorMSGSkeyMismatchException" has no Class-level DocBlock.<br>
+<b>Warning on line 22</b> - no @package tag was used in a DocBlock for class a1agregatorMSGSignatureException<br>
+<b>Warning on line 22</b> - Class "a1agregatorMSGSignatureException" has no Class-level DocBlock.<br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for class a1agregator_MSG_answer<br>
+<b>Warning on line 46</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 70</b> - no @package tag was used in a DocBlock for class a1agregator_MSG<br>
+<b>Warning on line 178</b> - Unknown tag "@Throw(a1agregatorMSGParseException," used<br>
+<b>Warning on line 215</b> - Unknown tag "@inheritdoc" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $cost - параметр, определяющий сумму, которая зачисляется на счет партнера в usd, переведенная по курсу последней выплаты, в примере 0.015. Этот параметр носит только информативный характер. Сумма за эту смс при выплате в WMZ будет скорректирована по курсу WM на день выплаты."<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $test – необязательный параметр, приходит только при тестовой смс. Если он равен единице значит смс тестовая."<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $num – короткий номер, на который абонент отправлял запрос, в примере 1121"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $cost_rur - сумма, которая зачисляется на счет партнера в рублях, в примере 0.54"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $smsid – идентификатор сообщения в системе а1агрегатор, в примере 5094"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $operator_id – числовой идентификатор оператора, в примере 120 (Билайн)"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $user_id – телефон абонента, отправившего смс, в примере 7909908037"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $retry – параметр повтора смс, если равен единице значит смс повторная. При повторной смс все другие параметры дублируют первую непрошедшую смс."<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $try – Порядковый номер попытки отправки смс сообщения через разные прокси сервера. SMS можно также считать повторной SMS с параметрами retry =1 или try<>1."<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $country_id – Absent in documentation, but present in tests
+
+ // Additional My:"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $operator – Absent in documentation, but present in tests"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $country_id – Absent in documentation, but present in tests"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $operator – Absent in documentation, but present in tests"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $sign – это последовательность символов, которая кодируется по алгоритму MD5, передается всегда. Последовательность получается путем последовательного соединения параметров:
+    date, msg_trans, operator_id, user_id, smsid, cost_rur, ran, test, num, country_id, skey
+    Применяется в целях повышения безопасности."<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $ran – параметр надежности абонентского номера - цифра от 1 до 10, которая показывает степень доверия и обеспеченности деньгами к абон. номеру. 1-4 - ненадежные, 5-7 - средние, 8-10 - надежные. В примере 7"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $skey – это последовательность символов, которая кодируется по алгоритму MD5, передается в случаи использования параметра  “Секретный ключ”, в примере передается слово test. Применяется в целях дополнительной безопасности. Указывать секретный ключ необязательно."<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $msg_trans – транслитерация сообщения, в примере “test”"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $PlainSkey - Right Skey to check"<br>
+<b>Error on line 98</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var $msg – сообщение, которое отправил абонент, в примере “test”"<br>
+<a name="autoload.php"></a>
+<h1>autoload.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 130</b> - File "/home/_SHARED_/autoload.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="backtrace.php"></a>
+<h1>backtrace.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 44</b> - Page-level DocBlock precedes "include_once 'macroses/ASSIGN_IF.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 60</b> - no @package tag was used in a DocBlock for class BacktraceEmptyException<br>
+<b>Warning on line 83</b> - no @package tag was used in a DocBlock for class backtraceNode<br>
+<b>Warning on line 134</b> - Unknown tag "@Throw(ClassPropertyNotExistsException)" used<br>
+<b>Warning on line 173</b> - Method "current" has no method-level DocBlock.<br>
+<b>Warning on line 177</b> - Method "key" has no method-level DocBlock.<br>
+<b>Warning on line 181</b> - Method "next" has no method-level DocBlock.<br>
+<b>Warning on line 185</b> - Method "valid" has no method-level DocBlock.<br>
+<b>Warning on line 213</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<b>Warning on line 227</b> - Unknown tag "@Throws(VariableArrayInconsistentException," used<br>
+<b>Warning on line 268</b> - Class "backtrace" has no Class-level DocBlock.<br>
+<b>Warning on line 268</b> - no @package tag was used in a DocBlock for class backtrace<br>
+<b>Warning on line 328</b> - Unknown tag "@Throw(VariableRangeException)" used<br>
+<b>Warning on line 374</b> - Unknown tag "@Throw(VariableRangeException)" used<br>
+<b>Warning on line 446</b> - Unknown tag "@Throws(VariableRequiredException," used<br>
+<b>Warning on line 487</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<a name="backtrace_out.class.php"></a>
+<h1>backtrace_out.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class backtrace_out<br>
+<b>Warning on line 26</b> - Method "strToConsole" has no method-level DocBlock.<br>
+<b>Warning on line 30</b> - Method "strToFile" has no method-level DocBlock.<br>
+<b>Warning on line 34</b> - Method "strToWeb" has no method-level DocBlock.<br>
+<a name="BaseException.php"></a>
+<h1>BaseException.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 14</b> - Method "ADDMessage" has no method-level DocBlock.<br>
+<b>Warning on line 17</b> - no @package tag was used in a DocBlock for class NotImplementedException<br>
+<b>Warning on line 17</b> - Class "NotImplementedException" has no Class-level DocBlock.<br>
+<a name="base_user.c.php"></a>
+<h1>base_user.c.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 22</b> - Page-level DocBlock precedes "include_once 'macroses/EMPTY_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 31</b> - no @package tag was used in a DocBlock for class user_settings<br>
+<b>Warning on line 33</b> - no @package tag was used in a DocBlock for class UserAuthentificateException<br>
+<b>Warning on line 33</b> - Class "UserAuthentificateException" has no Class-level DocBlock.<br>
+<b>Warning on line 35</b> - no @package tag was used in a DocBlock for class user_base<br>
+<b>Warning on line 35</b> - Class "user_base" has no Class-level DocBlock.<br>
+<b>Warning on line 124</b> - Method "getID" has no method-level DocBlock.<br>
+<b>Warning on line 128</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 132</b> - Method "getLogin" has no method-level DocBlock.<br>
+<b>Warning on line 137</b> - Method "getLogoBlob" has no method-level DocBlock.<br>
+<b>Warning on line 142</b> - Method "__wakeup" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 117</b> - "@return" tag was used without any parameters, illegal<br>
+<a name="calendar.php"></a>
+<h1>calendar.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 14</b> - no @package tag was used in a DocBlock for class DHTML_Calendar<br>
+<b>Warning on line 14</b> - Class "DHTML_Calendar" has no Class-level DocBlock.<br>
+<b>Warning on line 39</b> - Method "DHTML_Calendar" has no method-level DocBlock.<br>
+<b>Warning on line 43</b> - Method "set_option" has no method-level DocBlock.<br>
+<b>Warning on line 47</b> - Method "load_files" has no method-level DocBlock.<br>
+<b>Warning on line 63</b> - Method "get_load_files_code" has no method-level DocBlock.<br>
+<b>Warning on line 71</b> - Method "_make_calendar" has no method-level DocBlock.<br>
+<b>Warning on line 86</b> - Method "make_input_field" has no method-level DocBlock.<br>
+<b>Warning on line 90</b> - Method "_field_id" has no method-level DocBlock.<br>
+<b>Warning on line 91</b> - Method "_trigger_id" has no method-level DocBlock.<br>
+<b>Warning on line 92</b> - Method "_gen_id" has no method-level DocBlock.<br>
+<b>Warning on line 106</b> - Method "_make_js_hash" has no method-level DocBlock.<br>
+<b>Warning on line 115</b> - Method "_make_html_attr" has no method-level DocBlock.<br>
+<b>Warning on line 118</b> - File "/home/_SHARED_/JavaScript/jscalendar/calendar.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="charset_convert.class.php"></a>
+<h1>charset_convert.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class charset_convert<br>
+<b>Warning on line 40</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 20</b> - "include" include_once's DocBlock has @subpackage tags, illegal. ignoring tag "@subpackage charset_convert"<br>
+<b>Error on line 20</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Vars"<br>
+<b>Error on line 117</b> - setText method's DocBlock has @package tag, illegal. ignoring tag "@package string"<br>
+<b>Error on line 143</b> - "@return" tag was used without any parameters, illegal<br>
+<a name="charset_convert_exception.php"></a>
+<h1>charset_convert_exception.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 19</b> - no @package tag was used in a DocBlock for class charset_convert_exception<br>
+<a name="classes.php"></a>
+<h1>classes.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class ClassException<br>
+<b>Warning on line 23</b> - Class "ClassUnknownException" has no Class-level DocBlock.<br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class ClassUnknownException<br>
+<b>Warning on line 24</b> - Class "ClassNotExistsException" has no Class-level DocBlock.<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class ClassNotExistsException<br>
+<b>Warning on line 25</b> - Class "ClassMethodExistsException" has no Class-level DocBlock.<br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class ClassMethodExistsException<br>
+<b>Warning on line 26</b> - Class "ClassPropertyNotExistsException" has no Class-level DocBlock.<br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class ClassPropertyNotExistsException<br>
+<a name="commonOutExtraData.php"></a>
+<h1>commonOutExtraData.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for class commonOutExtraData<br>
+<b>Warning on line 31</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 35</b> - Method "strToConsole" has no method-level DocBlock.<br>
+<b>Warning on line 39</b> - Method "strToFile" has no method-level DocBlock.<br>
+<b>Warning on line 43</b> - Method "strToWeb" has no method-level DocBlock.<br>
+<b>Warning on line 47</b> - Method "strToPrint" has no method-level DocBlock.<br>
+<b>Warning on line 51</b> - Method "strByOutType" has no method-level DocBlock.<br>
+<a name="consts.example.php"></a>
+<h1>consts.example.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 14</b> - Page-level DocBlock precedes "include 'autoload.php'", use another DocBlock to document the source element<br>
+<h2>Errors:</h2><br>
+<b>Error on line 14</b> - include include's DocBlock has @package tag, illegal. ignoring tag "@package Vars"<br>
+<b>Error on line 14</b> - "include" include's DocBlock has @subpackage tags, illegal. ignoring tag "@subpackage Consts"<br>
+<a name="consts.php"></a>
+<h1>consts.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class consts<br>
+<b>Warning on line 20</b> - example file "consts.example.php" does not exist<br>
+<b>Warning on line 89</b> - Class "const_value_filter" has no Class-level DocBlock.<br>
+<b>Warning on line 89</b> - no @package tag was used in a DocBlock for class const_value_filter<br>
+<b>Warning on line 93</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 97</b> - Method "cmp" has no method-level DocBlock.<br>
+<a name="database.php"></a>
+<h1>database.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class DBException<br>
+<b>Warning on line 26</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 29</b> - Class "ConnectErrorDBException" has no Class-level DocBlock.<br>
+<b>Warning on line 29</b> - no @package tag was used in a DocBlock for class ConnectErrorDBException<br>
+<b>Warning on line 32</b> - no @package tag was used in a DocBlock for class DB_settings<br>
+<b>Warning on line 32</b> - no @package tag was used in a DocBlock for class DBSelectErrorDBException<br>
+<b>Warning on line 32</b> - Class "DBSelectErrorDBException" has no Class-level DocBlock.<br>
+<b>Warning on line 33</b> - Class "QueryFailedDBException" has no Class-level DocBlock.<br>
+<b>Warning on line 33</b> - no @package tag was used in a DocBlock for class QueryFailedDBException<br>
+<b>Warning on line 35</b> - Class "DBnullGetException" has no Class-level DocBlock.<br>
+<b>Warning on line 35</b> - no @package tag was used in a DocBlock for class DBnullGetException<br>
+<b>Warning on line 59</b> - Class "database" has no Class-level DocBlock.<br>
+<b>Warning on line 59</b> - no @package tag was used in a DocBlock for class database<br>
+<b>Warning on line 95</b> - Method "db_select" has no method-level DocBlock.<br>
+<b>Warning on line 123</b> - Method "__get" has no method-level DocBlock.<br>
+<b>Warning on line 127</b> - Method "sql_num_fields" has no method-level DocBlock.<br>
+<b>Warning on line 133</b> - Method "sql_fetch_field" has no method-level DocBlock.<br>
+<b>Warning on line 138</b> - Method "sql_fetch_fields" has no method-level DocBlock.<br>
+<b>Warning on line 149</b> - Method "sql_fetch_assoc" has no method-level DocBlock.<br>
+<b>Warning on line 157</b> - Method "sql_fetch_row" has no method-level DocBlock.<br>
+<b>Warning on line 165</b> - Method "sql_fetch_array" has no method-level DocBlock.<br>
+<b>Warning on line 174</b> - Method "sql_fetch_object" has no method-level DocBlock.<br>
+<b>Warning on line 179</b> - Method "sql_free_result" has no method-level DocBlock.<br>
+<b>Warning on line 183</b> - Method "sql_num_rows" has no method-level DocBlock.<br>
+<b>Warning on line 188</b> - Method "rowsTotal" has no method-level DocBlock.<br>
+<b>Warning on line 190</b> - Method "db_connect" has no method-level DocBlock.<br>
+<b>Warning on line 191</b> - Method "query" has no method-level DocBlock.<br>
+<b>Warning on line 192</b> - Method "query_limit" has no method-level DocBlock.<br>
+<b>Warning on line 193</b> - Method "ToBlob" has no method-level DocBlock.<br>
+<b>Warning on line 194</b> - Method "sql_next_result" has no method-level DocBlock.<br>
+<b>Warning on line 195</b> - Method "sql_escape_string" has no method-level DocBlock.<br>
+<b>Warning on line 213</b> - Method "iconv_result" has no method-level DocBlock.<br>
+<b>Warning on line 220</b> - Method "iconv_query" has no method-level DocBlock.<br>
+<b>Warning on line 222</b> - Method "collectDebugInfo" has no method-level DocBlock.<br>
+<b>Warning on line 241</b> - Method "__wakeup" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 235</b> - "@return" tag was used without any parameters, illegal<br>
+<a name="database_operators.php"></a>
+<h1>database_operators.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "database_operators" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class database_operators<br>
+<b>Warning on line 62</b> - File "/home/_SHARED_/Database/database_operators.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="database_where.php"></a>
+<h1>database_where.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 11</b> - no @package tag was used in a DocBlock for class database_where<br>
+<b>Warning on line 43</b> - Method "setArray" has no method-level DocBlock.<br>
+<b>Warning on line 262</b> - File "/home/_SHARED_/Database/database_where.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="dateTime.php"></a>
+<h1>dateTime.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class WrongStringDateException<br>
+<b>Warning on line 9</b> - Class "WrongStringModifyDateException" has no Class-level DocBlock.<br>
+<b>Warning on line 9</b> - no @package tag was used in a DocBlock for class WrongStringModifyDateException<br>
+<b>Warning on line 10</b> - File "/home/_SHARED_/Exceptions/dateTime.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="DBError.php"></a>
+<h1>DBError.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - no @package tag was used in a DocBlock for class DBError<br>
+<b>Warning on line 35</b> - no @package tag was used in a DocBlock for class DBError_settings<br>
+<b>Warning on line 35</b> - Class "DBError_settings" has no Class-level DocBlock.<br>
+<a name="debug.php"></a>
+<h1>debug.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 51</b> - Page-level DocBlock precedes "define DUMP_DO_NOT_DEFINE_STUMP_DUMP", use another DocBlock to document the source element<br>
+<b>Warning on line 321</b> - Unknown tag "@Throw(VariableRangeException)" used<br>
+<a name="DEFINED_CLASS.php"></a>
+<h1>DEFINED_CLASS.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - Unknown tag "@params" used<br>
+<a name="dellinCity.class.php"></a>
+<h1>dellinCity.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 22</b> - no @package tag was used in a DocBlock for class dellinCity<br>
+<b>Warning on line 49</b> - Unknown tag "@const" used<br>
+<b>Warning on line 55</b> - Unknown tag "@const" used<br>
+<b>Warning on line 60</b> - Unknown tag "@const" used<br>
+<b>Warning on line 65</b> - Unknown tag "@const" used<br>
+<b>Warning on line 70</b> - Unknown tag "@const" used<br>
+<b>Warning on line 75</b> - Unknown tag "@const" used<br>
+<b>Warning on line 80</b> - Unknown tag "@const" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 15</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package dellin-ru"<br>
+<a name="dellinParse.class.php"></a>
+<h1>dellinParse.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 16</b> - no @package tag was used in a DocBlock for class dellinNotApplicableException<br>
+<b>Warning on line 16</b> - Class "dellinNotApplicableException" has no Class-level DocBlock.<br>
+<b>Warning on line 25</b> - example file "to_conf(mapToSpsr).php" does not exist<br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class dellinParse<br>
+<b>Warning on line 55</b> - Unknown tag "@const" used<br>
+<b>Warning on line 65</b> - Unknown tag "@const" used<br>
+<b>Warning on line 234</b> - Unknown tag "@Throws(dellinNotMatchedException)" used<br>
+<b>Warning on line 247</b> - Unknown tag "@Throws(dellinNotMatchedException)" used<br>
+<b>Warning on line 261</b> - Unknown tag "@Throws(dellinNotMatchedException)" used<br>
+<b>Warning on line 292</b> - Unknown tag "@Throws(dellinNotMatchedException)" used<br>
+<b>Warning on line 320</b> - Unknown tag "@Throws(dellinNotMatchedException)" used<br>
+<b>Warning on line 348</b> - Unknown tag "@Throws(dellinNotMatchedException)" used<br>
+<b>Warning on line 376</b> - Unknown tag "@Throws(dellinNotMatchedException)" used<br>
+<b>Warning on line 404</b> - Unknown tag "@Throws(dellinNotMatchedException)" used<br>
+<b>Warning on line 440</b> - Unknown tag "@Throws" used<br>
+<a name="dellinRegion.class.php"></a>
+<h1>dellinRegion.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 22</b> - no @package tag was used in a DocBlock for class dellinRegion<br>
+<b>Warning on line 43</b> - Unknown tag "@const" used<br>
+<b>Warning on line 49</b> - Unknown tag "@const" used<br>
+<b>Warning on line 54</b> - Unknown tag "@const" used<br>
+<b>Warning on line 59</b> - Unknown tag "@const" used<br>
+<b>Warning on line 64</b> - Unknown tag "@const" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 15</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package dellin-ru"<br>
+<a name="DOMnodeOutExtraData.php"></a>
+<h1>DOMnodeOutExtraData.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class DOMnodeOutExtraData<br>
+<b>Warning on line 45</b> - Method "strToConsole" has no method-level DocBlock.<br>
+<b>Warning on line 49</b> - Method "strToFile" has no method-level DocBlock.<br>
+<b>Warning on line 53</b> - Method "strToWeb" has no method-level DocBlock.<br>
+<a name="dump_utils.php"></a>
+<h1>dump_utils.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 14</b> - DocBlock would be page-level, but precedes class "dump_utils", use another DocBlock to document the file<br>
+<a name="EMPTY_callback.php"></a>
+<h1>EMPTY_callback.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 19</b> - Unknown tag "@params" used<br>
+<a name="EMPTY_INT.php"></a>
+<h1>EMPTY_INT.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 4</b> - File "/home/_SHARED_/macroses/EMPTY_INT.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="EMPTY_STR.example.php"></a>
+<h1>EMPTY_STR.example.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 12</b> - Page-level DocBlock precedes "include_once 'autoload.php'", use another DocBlock to document the source element<br>
+<h2>Errors:</h2><br>
+<b>Error on line 12</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Macroses"<br>
+<a name="EMPTY_STR.php"></a>
+<h1>EMPTY_STR.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 36</b> - Unknown tag "@params" used<br>
+<b>Warning on line 36</b> - example file "EMPTY_STR.example.php" does not exist<br>
+<b>Warning on line 86</b> - example file "EMPTY_STR.example.php" does not exist<br>
+<a name="EMPTY_VAR.php"></a>
+<h1>EMPTY_VAR.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - Unknown tag "@params" used<br>
+<a name="filesystem.php"></a>
+<h1>filesystem.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - no @package tag was used in a DocBlock for class FilesystemException<br>
+<b>Warning on line 21</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 26</b> - Method "__toString" has no method-level DocBlock.<br>
+<b>Warning on line 29</b> - Class "RemoteGetException" has no Class-level DocBlock.<br>
+<b>Warning on line 29</b> - no @package tag was used in a DocBlock for class RemoteGetException<br>
+<b>Warning on line 31</b> - Class "FileLoadErrorException" has no Class-level DocBlock.<br>
+<b>Warning on line 31</b> - no @package tag was used in a DocBlock for class FileLoadErrorException<br>
+<b>Warning on line 32</b> - Class "FileNotReadableException" has no Class-level DocBlock.<br>
+<b>Warning on line 32</b> - no @package tag was used in a DocBlock for class FileNotReadableException<br>
+<b>Warning on line 33</b> - no @package tag was used in a DocBlock for class FileNotExistsException<br>
+<b>Warning on line 33</b> - Class "FileNotExistsException" has no Class-level DocBlock.<br>
+<a name="file_base.php"></a>
+<h1>file_base.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 47</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 60</b> - no @package tag was used in a DocBlock for class file_base<br>
+<b>Warning on line 155</b> - Unknown tag "@return>boolean" used<br>
+<b>Warning on line 185</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<b>Warning on line 198</b> - Unknown tag "@Throw(VariableRequiredException)" used<br>
+<b>Warning on line 229</b> - Method "checkOpenError" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 47</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Filesystem"<br>
+<a name="file_inmem.php"></a>
+<h1>file_inmem.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 22</b> - Page-level DocBlock precedes "include_once 'file_base.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 30</b> - no @package tag was used in a DocBlock for class file_inmem<br>
+<b>Warning on line 67</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 78</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<b>Warning on line 78</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 89</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 110</b> - Unknown tag "@Throw(VariableEmptyException)" used<br>
+<b>Warning on line 205</b> - Unknown tag "@Throw(VariableRangeException)" used<br>
+<b>Warning on line 266</b> - Unknown tag "@Throw(VariableEmptyException)" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 22</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Filesystem"<br>
+<a name="file_read.php"></a>
+<h1>file_read.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 19</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for class file_read<br>
+<b>Warning on line 42</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 96</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 19</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Filesystem"<br>
+<a name="FilterASCII85.php"></a>
+<h1>FilterASCII85.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - Class "FilterASCII85" has no Class-level DocBlock.<br>
+<b>Warning on line 28</b> - no @package tag was used in a DocBlock for class FilterASCII85<br>
+<b>Warning on line 32</b> - Method "error" has no method-level DocBlock.<br>
+<b>Warning on line 92</b> - Method "decode" has no method-level DocBlock.<br>
+<b>Warning on line 96</b> - Method "encode" has no method-level DocBlock.<br>
+<b>Warning on line 97</b> - File "/home/_SHARED_/Pdf/lib/fpdi/filters/FilterASCII85.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="FilterASCII85_FPDI.php"></a>
+<h1>FilterASCII85_FPDI.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - Class "FilterASCII85_FPDI" has no Class-level DocBlock.<br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class FilterASCII85_FPDI<br>
+<b>Warning on line 27</b> - Method "FPDI_FilterASCII85" has no method-level DocBlock.<br>
+<b>Warning on line 31</b> - Method "error" has no method-level DocBlock.<br>
+<b>Warning on line 32</b> - File "/home/_SHARED_/Pdf/lib/fpdi/filters/FilterASCII85_FPDI.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="FilterLZW.php"></a>
+<h1>FilterLZW.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 19</b> - Class "FilterLZW" has no Class-level DocBlock.<br>
+<b>Warning on line 19</b> - no @package tag was used in a DocBlock for class FilterLZW<br>
+<b>Warning on line 34</b> - Method "error" has no method-level DocBlock.<br>
+<b>Warning on line 148</b> - Method "getNextCode" has no method-level DocBlock.<br>
+<b>Warning on line 152</b> - Method "encode" has no method-level DocBlock.<br>
+<b>Warning on line 153</b> - File "/home/_SHARED_/Pdf/lib/fpdi/filters/FilterLZW.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="FilterLZW_FPDI.php"></a>
+<h1>FilterLZW_FPDI.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - Class "FilterLZW_FPDI" has no Class-level DocBlock.<br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class FilterLZW_FPDI<br>
+<b>Warning on line 27</b> - Method "FilterLZW_FPDI" has no method-level DocBlock.<br>
+<b>Warning on line 31</b> - Method "error" has no method-level DocBlock.<br>
+<b>Warning on line 32</b> - File "/home/_SHARED_/Pdf/lib/fpdi/filters/FilterLZW_FPDI.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fpdf.php"></a>
+<h1>fpdf.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 12</b> - no @package tag was used in a DocBlock for class FPDF<br>
+<b>Warning on line 12</b> - Class "FPDF" has no Class-level DocBlock.<br>
+<b>Warning on line 12</b> - no @package tag was used in a DocBlock for class FPDF<br>
+<b>Warning on line 12</b> - Class "FPDF" has no Class-level DocBlock.<br>
+<b>Warning on line 169</b> - Method "SetMargins" has no method-level DocBlock.<br>
+<b>Warning on line 169</b> - Method "SetMargins" has no method-level DocBlock.<br>
+<b>Warning on line 177</b> - Method "SetLeftMargin" has no method-level DocBlock.<br>
+<b>Warning on line 177</b> - Method "SetLeftMargin" has no method-level DocBlock.<br>
+<b>Warning on line 183</b> - Method "SetTopMargin" has no method-level DocBlock.<br>
+<b>Warning on line 183</b> - Method "SetTopMargin" has no method-level DocBlock.<br>
+<b>Warning on line 189</b> - Method "SetRightMargin" has no method-level DocBlock.<br>
+<b>Warning on line 189</b> - Method "SetRightMargin" has no method-level DocBlock.<br>
+<b>Warning on line 197</b> - Method "SetAutoPageBreak" has no method-level DocBlock.<br>
+<b>Warning on line 197</b> - Method "SetAutoPageBreak" has no method-level DocBlock.<br>
+<b>Warning on line 210</b> - Method "SetDisplayMode" has no method-level DocBlock.<br>
+<b>Warning on line 210</b> - Method "SetDisplayMode" has no method-level DocBlock.<br>
+<b>Warning on line 219</b> - Method "SetCompression" has no method-level DocBlock.<br>
+<b>Warning on line 219</b> - Method "SetCompression" has no method-level DocBlock.<br>
+<b>Warning on line 227</b> - Method "SetTitle" has no method-level DocBlock.<br>
+<b>Warning on line 227</b> - Method "SetTitle" has no method-level DocBlock.<br>
+<b>Warning on line 235</b> - Method "SetSubject" has no method-level DocBlock.<br>
+<b>Warning on line 235</b> - Method "SetSubject" has no method-level DocBlock.<br>
+<b>Warning on line 243</b> - Method "SetAuthor" has no method-level DocBlock.<br>
+<b>Warning on line 243</b> - Method "SetAuthor" has no method-level DocBlock.<br>
+<b>Warning on line 251</b> - Method "SetKeywords" has no method-level DocBlock.<br>
+<b>Warning on line 251</b> - Method "SetKeywords" has no method-level DocBlock.<br>
+<b>Warning on line 259</b> - Method "SetCreator" has no method-level DocBlock.<br>
+<b>Warning on line 259</b> - Method "SetCreator" has no method-level DocBlock.<br>
+<b>Warning on line 265</b> - Method "AliasNbPages" has no method-level DocBlock.<br>
+<b>Warning on line 265</b> - Method "AliasNbPages" has no method-level DocBlock.<br>
+<b>Warning on line 271</b> - Method "Error" has no method-level DocBlock.<br>
+<b>Warning on line 271</b> - Method "Error" has no method-level DocBlock.<br>
+<b>Warning on line 277</b> - Method "Open" has no method-level DocBlock.<br>
+<b>Warning on line 277</b> - Method "Open" has no method-level DocBlock.<br>
+<b>Warning on line 294</b> - Method "Close" has no method-level DocBlock.<br>
+<b>Warning on line 294</b> - Method "Close" has no method-level DocBlock.<br>
+<b>Warning on line 363</b> - Method "AddPage" has no method-level DocBlock.<br>
+<b>Warning on line 363</b> - Method "AddPage" has no method-level DocBlock.<br>
+<b>Warning on line 368</b> - Method "Header" has no method-level DocBlock.<br>
+<b>Warning on line 368</b> - Method "Header" has no method-level DocBlock.<br>
+<b>Warning on line 373</b> - Method "Footer" has no method-level DocBlock.<br>
+<b>Warning on line 373</b> - Method "Footer" has no method-level DocBlock.<br>
+<b>Warning on line 379</b> - Method "PageNo" has no method-level DocBlock.<br>
+<b>Warning on line 379</b> - Method "PageNo" has no method-level DocBlock.<br>
+<b>Warning on line 390</b> - Method "SetDrawColor" has no method-level DocBlock.<br>
+<b>Warning on line 390</b> - Method "SetDrawColor" has no method-level DocBlock.<br>
+<b>Warning on line 402</b> - Method "SetFillColor" has no method-level DocBlock.<br>
+<b>Warning on line 402</b> - Method "SetFillColor" has no method-level DocBlock.<br>
+<b>Warning on line 412</b> - Method "SetTextColor" has no method-level DocBlock.<br>
+<b>Warning on line 412</b> - Method "SetTextColor" has no method-level DocBlock.<br>
+<b>Warning on line 424</b> - Method "GetStringWidth" has no method-level DocBlock.<br>
+<b>Warning on line 424</b> - Method "GetStringWidth" has no method-level DocBlock.<br>
+<b>Warning on line 432</b> - Method "SetLineWidth" has no method-level DocBlock.<br>
+<b>Warning on line 432</b> - Method "SetLineWidth" has no method-level DocBlock.<br>
+<b>Warning on line 438</b> - Method "Line" has no method-level DocBlock.<br>
+<b>Warning on line 438</b> - Method "Line" has no method-level DocBlock.<br>
+<b>Warning on line 450</b> - Method "Rect" has no method-level DocBlock.<br>
+<b>Warning on line 450</b> - Method "Rect" has no method-level DocBlock.<br>
+<b>Warning on line 498</b> - Method "AddFont" has no method-level DocBlock.<br>
+<b>Warning on line 498</b> - Method "AddFont" has no method-level DocBlock.<br>
+<b>Warning on line 560</b> - Method "SetFont" has no method-level DocBlock.<br>
+<b>Warning on line 560</b> - Method "SetFont" has no method-level DocBlock.<br>
+<b>Warning on line 571</b> - Method "SetFontSize" has no method-level DocBlock.<br>
+<b>Warning on line 571</b> - Method "SetFontSize" has no method-level DocBlock.<br>
+<b>Warning on line 579</b> - Method "AddLink" has no method-level DocBlock.<br>
+<b>Warning on line 579</b> - Method "AddLink" has no method-level DocBlock.<br>
+<b>Warning on line 589</b> - Method "SetLink" has no method-level DocBlock.<br>
+<b>Warning on line 589</b> - Method "SetLink" has no method-level DocBlock.<br>
+<b>Warning on line 595</b> - Method "Link" has no method-level DocBlock.<br>
+<b>Warning on line 595</b> - Method "Link" has no method-level DocBlock.<br>
+<b>Warning on line 606</b> - Method "Text" has no method-level DocBlock.<br>
+<b>Warning on line 606</b> - Method "Text" has no method-level DocBlock.<br>
+<b>Warning on line 612</b> - Method "AcceptPageBreak" has no method-level DocBlock.<br>
+<b>Warning on line 612</b> - Method "AcceptPageBreak" has no method-level DocBlock.<br>
+<b>Warning on line 691</b> - Method "Cell" has no method-level DocBlock.<br>
+<b>Warning on line 691</b> - Method "Cell" has no method-level DocBlock.<br>
+<b>Warning on line 804</b> - Method "MultiCell" has no method-level DocBlock.<br>
+<b>Warning on line 804</b> - Method "MultiCell" has no method-level DocBlock.<br>
+<b>Warning on line 885</b> - Method "Write" has no method-level DocBlock.<br>
+<b>Warning on line 885</b> - Method "Write" has no method-level DocBlock.<br>
+<b>Warning on line 895</b> - Method "Ln" has no method-level DocBlock.<br>
+<b>Warning on line 895</b> - Method "Ln" has no method-level DocBlock.<br>
+<b>Warning on line 951</b> - Method "Image" has no method-level DocBlock.<br>
+<b>Warning on line 951</b> - Method "Image" has no method-level DocBlock.<br>
+<b>Warning on line 957</b> - Method "GetX" has no method-level DocBlock.<br>
+<b>Warning on line 957</b> - Method "GetX" has no method-level DocBlock.<br>
+<b>Warning on line 966</b> - Method "SetX" has no method-level DocBlock.<br>
+<b>Warning on line 966</b> - Method "SetX" has no method-level DocBlock.<br>
+<b>Warning on line 972</b> - Method "GetY" has no method-level DocBlock.<br>
+<b>Warning on line 972</b> - Method "GetY" has no method-level DocBlock.<br>
+<b>Warning on line 982</b> - Method "SetY" has no method-level DocBlock.<br>
+<b>Warning on line 982</b> - Method "SetY" has no method-level DocBlock.<br>
+<b>Warning on line 989</b> - Method "SetXY" has no method-level DocBlock.<br>
+<b>Warning on line 989</b> - Method "SetXY" has no method-level DocBlock.<br>
+<b>Warning on line 1056</b> - Method "Output" has no method-level DocBlock.<br>
+<b>Warning on line 1056</b> - Method "Output" has no method-level DocBlock.<br>
+<b>Warning on line 1083</b> - Method "_getpageformat" has no method-level DocBlock.<br>
+<b>Warning on line 1083</b> - Method "_getpageformat" has no method-level DocBlock.<br>
+<b>Warning on line 1090</b> - Method "_getfontpath" has no method-level DocBlock.<br>
+<b>Warning on line 1090</b> - Method "_getfontpath" has no method-level DocBlock.<br>
+<b>Warning on line 1133</b> - Method "_beginpage" has no method-level DocBlock.<br>
+<b>Warning on line 1133</b> - Method "_beginpage" has no method-level DocBlock.<br>
+<b>Warning on line 1138</b> - Method "_endpage" has no method-level DocBlock.<br>
+<b>Warning on line 1138</b> - Method "_endpage" has no method-level DocBlock.<br>
+<b>Warning on line 1148</b> - Method "_escape" has no method-level DocBlock.<br>
+<b>Warning on line 1148</b> - Method "_escape" has no method-level DocBlock.<br>
+<b>Warning on line 1154</b> - Method "_textstring" has no method-level DocBlock.<br>
+<b>Warning on line 1154</b> - Method "_textstring" has no method-level DocBlock.<br>
+<b>Warning on line 1187</b> - Method "_UTF8toUTF16" has no method-level DocBlock.<br>
+<b>Warning on line 1187</b> - Method "_UTF8toUTF16" has no method-level DocBlock.<br>
+<b>Warning on line 1196</b> - Method "_dounderline" has no method-level DocBlock.<br>
+<b>Warning on line 1196</b> - Method "_dounderline" has no method-level DocBlock.<br>
+<b>Warning on line 1220</b> - Method "_parsejpg" has no method-level DocBlock.<br>
+<b>Warning on line 1220</b> - Method "_parsejpg" has no method-level DocBlock.<br>
+<b>Warning on line 1303</b> - Method "_parsepng" has no method-level DocBlock.<br>
+<b>Warning on line 1303</b> - Method "_parsepng" has no method-level DocBlock.<br>
+<b>Warning on line 1320</b> - Method "_readstream" has no method-level DocBlock.<br>
+<b>Warning on line 1320</b> - Method "_readstream" has no method-level DocBlock.<br>
+<b>Warning on line 1327</b> - Method "_readint" has no method-level DocBlock.<br>
+<b>Warning on line 1327</b> - Method "_readint" has no method-level DocBlock.<br>
+<b>Warning on line 1349</b> - Method "_parsegif" has no method-level DocBlock.<br>
+<b>Warning on line 1349</b> - Method "_parsegif" has no method-level DocBlock.<br>
+<b>Warning on line 1357</b> - Method "_newobj" has no method-level DocBlock.<br>
+<b>Warning on line 1357</b> - Method "_newobj" has no method-level DocBlock.<br>
+<b>Warning on line 1364</b> - Method "_putstream" has no method-level DocBlock.<br>
+<b>Warning on line 1364</b> - Method "_putstream" has no method-level DocBlock.<br>
+<b>Warning on line 1373</b> - Method "_out" has no method-level DocBlock.<br>
+<b>Warning on line 1373</b> - Method "_out" has no method-level DocBlock.<br>
+<b>Warning on line 1444</b> - Method "_putpages" has no method-level DocBlock.<br>
+<b>Warning on line 1444</b> - Method "_putpages" has no method-level DocBlock.<br>
+<b>Warning on line 1558</b> - Method "_putfonts" has no method-level DocBlock.<br>
+<b>Warning on line 1558</b> - Method "_putfonts" has no method-level DocBlock.<br>
+<b>Warning on line 1606</b> - Method "_putimages" has no method-level DocBlock.<br>
+<b>Warning on line 1606</b> - Method "_putimages" has no method-level DocBlock.<br>
+<b>Warning on line 1612</b> - Method "_putxobjectdict" has no method-level DocBlock.<br>
+<b>Warning on line 1612</b> - Method "_putxobjectdict" has no method-level DocBlock.<br>
+<b>Warning on line 1624</b> - Method "_putresourcedict" has no method-level DocBlock.<br>
+<b>Warning on line 1624</b> - Method "_putresourcedict" has no method-level DocBlock.<br>
+<b>Warning on line 1637</b> - Method "_putresources" has no method-level DocBlock.<br>
+<b>Warning on line 1637</b> - Method "_putresources" has no method-level DocBlock.<br>
+<b>Warning on line 1653</b> - Method "_putinfo" has no method-level DocBlock.<br>
+<b>Warning on line 1653</b> - Method "_putinfo" has no method-level DocBlock.<br>
+<b>Warning on line 1673</b> - Method "_putcatalog" has no method-level DocBlock.<br>
+<b>Warning on line 1673</b> - Method "_putcatalog" has no method-level DocBlock.<br>
+<b>Warning on line 1678</b> - Method "_putheader" has no method-level DocBlock.<br>
+<b>Warning on line 1678</b> - Method "_putheader" has no method-level DocBlock.<br>
+<b>Warning on line 1685</b> - Method "_puttrailer" has no method-level DocBlock.<br>
+<b>Warning on line 1685</b> - Method "_puttrailer" has no method-level DocBlock.<br>
+<b>Warning on line 1720</b> - Method "_enddoc" has no method-level DocBlock.<br>
+<b>Warning on line 1720</b> - Method "_enddoc" has no method-level DocBlock.<br>
+<b>Warning on line 1731</b> - File "/home/_SHARED_/Pdf/lib/ufpdf/fpdf.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 1731</b> - File "/home/_SHARED_/Pdf/lib/fpdf/fpdf.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fpdf_tpl.php"></a>
+<h1>fpdf_tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - Class "FPDF_TPL" has no Class-level DocBlock.<br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class FPDF_TPL<br>
+<b>Warning on line 170</b> - Unknown tag "@retrun" used<br>
+<b>Warning on line 316</b> - Method "AddLink" has no method-level DocBlock.<br>
+<b>Warning on line 322</b> - Method "SetLink" has no method-level DocBlock.<br>
+<b>Warning on line 403</b> - Method "_putxobjectdict" has no method-level DocBlock.<br>
+<b>Warning on line 415</b> - File "/home/_SHARED_/Pdf/lib/fpdi/fpdf_tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fpdi.php"></a>
+<h1>fpdi.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 30</b> - no @package tag was used in a DocBlock for class FPDI<br>
+<b>Warning on line 30</b> - Class "FPDI" has no Class-level DocBlock.<br>
+<b>Warning on line 174</b> - Method "getLastUsedPageBox" has no method-level DocBlock.<br>
+<b>Warning on line 195</b> - Method "useTemplate" has no method-level DocBlock.<br>
+<b>Warning on line 504</b> - File "/home/_SHARED_/Pdf/lib/fpdi/fpdi.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fpdi2tcpdf_bridge.php"></a>
+<h1>fpdi2tcpdf_bridge.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - no @package tag was used in a DocBlock for class FPDF<br>
+<b>Warning on line 40</b> - Method "__get" has no method-level DocBlock.<br>
+<b>Warning on line 51</b> - Method "__set" has no method-level DocBlock.<br>
+<b>Warning on line 170</b> - File "/home/_SHARED_/Pdf/lib/fpdi/fpdi2tcpdf_bridge.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fpdi_pdf_parser.php"></a>
+<h1>fpdi_pdf_parser.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class fpdi_pdf_parser<br>
+<b>Warning on line 21</b> - Class "fpdi_pdf_parser" has no Class-level DocBlock.<br>
+<b>Warning on line 297</b> - Method "getPageBoxes" has no method-level DocBlock.<br>
+<b>Warning on line 344</b> - Method "_getPageRotation" has no method-level DocBlock.<br>
+<b>Warning on line 383</b> - File "/home/_SHARED_/Pdf/lib/fpdi/fpdi_pdf_parser.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="GDimage_class.php"></a>
+<h1>GDimage_class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 13</b> - no @package tag was used in a DocBlock for class ImageException<br>
+<b>Warning on line 20</b> - Class "ImageUploadException" has no Class-level DocBlock.<br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class ImageUploadException<br>
+<b>Warning on line 23</b> - Class "GDimage" has no Class-level DocBlock.<br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class GDimage<br>
+<b>Warning on line 41</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 49</b> - Method "getCapabs" has no method-level DocBlock.<br>
+<b>Warning on line 57</b> - Method "createTrueColor" has no method-level DocBlock.<br>
+<b>Warning on line 66</b> - Method "getFile" has no method-level DocBlock.<br>
+<b>Warning on line 71</b> - Method "imgFromString" has no method-level DocBlock.<br>
+<b>Warning on line 92</b> - Method "resize" has no method-level DocBlock.<br>
+<b>Warning on line 107</b> - Method "preview" has no method-level DocBlock.<br>
+<b>Warning on line 146</b> - Method "parseUserColor" has no method-level DocBlock.<br>
+<b>Warning on line 153</b> - Method "fill" has no method-level DocBlock.<br>
+<b>Warning on line 179</b> - Method "convertTo" has no method-level DocBlock.<br>
+<b>Warning on line 220</b> - Method "getUpload" has no method-level DocBlock.<br>
+<b>Warning on line 231</b> - Method "putFile" has no method-level DocBlock.<br>
+<b>Warning on line 238</b> - Method "getString" has no method-level DocBlock.<br>
+<b>Warning on line 245</b> - Method "getResource" has no method-level DocBlock.<br>
+<b>Warning on line 317</b> - Method "enlarge" has no method-level DocBlock.<br>
+<b>Warning on line 327</b> - Method "imgINIT" has no method-level DocBlock.<br>
+<b>Warning on line 332</b> - Method "imgFREE" has no method-level DocBlock.<br>
+<b>Warning on line 336</b> - Method "width" has no method-level DocBlock.<br>
+<b>Warning on line 340</b> - Method "height" has no method-level DocBlock.<br>
+<b>Warning on line 342</b> - File "/home/_SHARED_/images/GDimage_class.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="gentime_class.php"></a>
+<h1>gentime_class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 1</b> - Class "gentime" has no Class-level DocBlock.<br>
+<b>Warning on line 1</b> - no @package tag was used in a DocBlock for class gentime<br>
+<b>Warning on line 8</b> - Method "start" has no method-level DocBlock.<br>
+<b>Warning on line 19</b> - Method "stop" has no method-level DocBlock.<br>
+<b>Warning on line 38</b> - Method "bench" has no method-level DocBlock.<br>
+<b>Warning on line 40</b> - File "/home/_SHARED_/Debug/gentime_class.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="HuArray.php"></a>
+<h1>HuArray.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 50</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 57</b> - no @package tag was used in a DocBlock for class HuArray<br>
+<b>Warning on line 76</b> - Unknown tag "@params" used<br>
+<b>Warning on line 148</b> - Unknown tag "@Throws(VariableIsNullException)" used<br>
+<b>Warning on line 200</b> - Unknown tag "@example:" used<br>
+<b>Warning on line 322</b> - Method "rewind" has no method-level DocBlock.<br>
+<b>Warning on line 326</b> - Method "current" has no method-level DocBlock.<br>
+<b>Warning on line 330</b> - Method "key" has no method-level DocBlock.<br>
+<b>Warning on line 334</b> - Method "next" has no method-level DocBlock.<br>
+<b>Warning on line 338</b> - Method "valid" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 50</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Vars"<br>
+<a name="HuClass.php"></a>
+<h1>HuClass.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 46</b> - no @package tag was used in a DocBlock for class NullClass<br>
+<b>Warning on line 48</b> - no @package tag was used in a DocBlock for class HuClass<br>
+<b>Warning on line 48</b> - Class "HuClass" has no Class-level DocBlock.<br>
+<b>Warning on line 58</b> - Unknown tag "@Throw(ClassUnknownException)" used<br>
+<b>Warning on line 103</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<b>Warning on line 103</b> - Unknown tag "@params" used<br>
+<a name="HuConfig.class.php"></a>
+<h1>HuConfig.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - Page-level DocBlock precedes "include_once 'Vars/Settings/settings_check.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 36</b> - example file "Single::def('HuConfig')->config_value" does not exist<br>
+<b>Warning on line 36</b> - no @package tag was used in a DocBlock for class HuConfig<br>
+<b>Warning on line 40</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 77</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 154</b> - example file "dump::a(Single::def('HuConfig')->test);
+ dump::a(Single::def('HuConfig')->test->First);
+ dump::a(Single::def('HuConfig')->test->Second);
+ Single::def('HuConfig')->test->Second = 'Another text';
+ dump::a(Single::def('HuConfig')->test->Second);
+ CONF()->test->Second = 'Yet ANOTHER Another text';
+ dump::a(CONF()->test->Second);
+ dump::a(Single::def('HuConfig')->test);" does not exist<br>
+<h2>Errors:</h2><br>
+<b>Error on line 26</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Vars"<br>
+<b>Error on line 26</b> - "include" include_once's DocBlock has @subpackage tags, illegal. ignoring tag "@subpackage Settings"<br>
+<a name="HuError.php"></a>
+<h1>HuError.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 39</b> - Page-level DocBlock precedes "include_once 'macroses/EMPTY_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 50</b> - no @package tag was used in a DocBlock for class HuError_settings<br>
+<b>Warning on line 98</b> - example file "protected $__SETS = array(
+    #В формате settings::getString(array)
+    'FORMAT_CONSOLE'    => array(
+            array('date', "\033[36m", "\033[0m"),
+        'level',
+            array('type', "\033[1m", "\033[0m: ", ''),//Bold
+        'logText',
+            array('extra', "\n"),
+        "\n"
+        ),
+    'FORMAT_WEB'    => array(
+            array('date', "<b>", "</b>"),
+        'level',
+            array('type', "<b>", "</b>: ", ''),
+        'logText',
+            array('extra', "<br\\>\n"),
+        "<br\\>\n"
+        ),
+    'FORMAT_FILE'    => array(
+        'date',
+        'level',
+            array('type', '', ': ', ''),
+        'logText',
+            array('extra', "\n"),
+        "\n"
+        ),
+    ),
+    );" does not exist<br>
+<b>Warning on line 100</b> - no @package tag was used in a DocBlock for class HuError<br>
+<b>Warning on line 107</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 200</b> - Unknown tag "@Throw(VariableRangeException)" used<br>
+<b>Warning on line 218</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 230</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 253</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 289</b> - Unknown tag "@inheritdocs" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 276</b> - "@return" tag was used without any parameters, illegal<br>
+<a name="HuFormat.example.php"></a>
+<h1>HuFormat.example.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - Page-level DocBlock precedes "include 'autoload.php'", use another DocBlock to document the source element<br>
+<a name="HuFormat.php"></a>
+<h1>HuFormat.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 31</b> - Page-level DocBlock precedes "include_once 'macroses/EMPTY_STR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 48</b> - no @package tag was used in a DocBlock for class HuFormatException<br>
+<b>Warning on line 54</b> - no @package tag was used in a DocBlock for class HuFormat<br>
+<b>Warning on line 54</b> - example file "HuFormat.example.php" does not exist<br>
+<b>Warning on line 274</b> - Unknown tag "@Throw(VariableRangeException)" used<br>
+<b>Warning on line 314</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<b>Warning on line 363</b> - Unknown tag "@Throw(VariableRangeException)" used<br>
+<b>Warning on line 531</b> - Method "strToWeb" has no method-level DocBlock.<br>
+<b>Warning on line 532</b> - Method "strToConsole" has no method-level DocBlock.<br>
+<b>Warning on line 533</b> - Method "strToPrint" has no method-level DocBlock.<br>
+<b>Warning on line 534</b> - Method "strByOutType" has no method-level DocBlock.<br>
+<a name="huFormatOutExtraData.php"></a>
+<h1>huFormatOutExtraData.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 29</b> - no @package tag was used in a DocBlock for class huFormatOutExtraData<br>
+<b>Warning on line 48</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 55</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 62</b> - Unknown tag "@inheritdoc" used<br>
+<a name="HuGetopt.example.php"></a>
+<h1>HuGetopt.example.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 44</b> - File "/home/_SHARED_/System/Console/HuGetopt.example.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="HuGetopt.php"></a>
+<h1>HuGetopt.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 19</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 33</b> - no @package tag was used in a DocBlock for class HuGetoptArgumentRequiredException<br>
+<b>Warning on line 35</b> - no @package tag was used in a DocBlock for class HuGetopt_option<br>
+<b>Warning on line 35</b> - Class "HuGetopt_option" has no Class-level DocBlock.<br>
+<b>Warning on line 54</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 79</b> - no @package tag was used in a DocBlock for class HuGetopt_settings<br>
+<b>Warning on line 79</b> - example file "of use HuGetopt.example.php" does not exist<br>
+<b>Warning on line 117</b> - no @package tag was used in a DocBlock for class HuGetopt<br>
+<b>Warning on line 179</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<b>Warning on line 231</b> - Unknown tag "@Throws(HuGetoptArgumentRequiredException)" used<br>
+<b>Warning on line 443</b> - Unknown tag "@Throw(VariableEmptyException)" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 19</b> - "include" include_once's DocBlock has @subpackage tags, illegal. ignoring tag "@subpackage Getopt"<br>
+<b>Error on line 19</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Console"<br>
+<b>Error on line 146</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var array "<br>
+<b>Error on line 304</b> - "@return" tag was used without any parameters, illegal<br>
+<a name="HuLOG.php"></a>
+<h1>HuLOG.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 40</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 50</b> - no @package tag was used in a DocBlock for class HuLOG_settings<br>
+<b>Warning on line 72</b> - Class "HuLOG_text" has no Class-level DocBlock.<br>
+<b>Warning on line 72</b> - no @package tag was used in a DocBlock for class HuLOG_text<br>
+<b>Warning on line 90</b> - Class "HuLOG_text_settings" has no Class-level DocBlock.<br>
+<b>Warning on line 90</b> - no @package tag was used in a DocBlock for class HuLOG_text_settings<br>
+<b>Warning on line 130</b> - Class "HuLOG" has no Class-level DocBlock.<br>
+<b>Warning on line 130</b> - no @package tag was used in a DocBlock for class HuLOG<br>
+<b>Warning on line 143</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 152</b> - Method "log_to_file" has no method-level DocBlock.<br>
+<b>Warning on line 156</b> - Method "log_print" has no method-level DocBlock.<br>
+<b>Warning on line 178</b> - Method "makeLogString" has no method-level DocBlock.<br>
+<b>Warning on line 200</b> - Method "toLog" has no method-level DocBlock.<br>
+<b>Warning on line 205</b> - Method "writeLogs" has no method-level DocBlock.<br>
+<a name="Hu_Console_Getopt.bak.PEAR.php"></a>
+<h1>Hu_Console_Getopt.bak.PEAR.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 10</b> - Page-level DocBlock precedes "require_once 'Console/Getopt.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 12</b> - Class "Hu_Console_Getopt" has no Class-level DocBlock.<br>
+<b>Warning on line 12</b> - no @package tag was used in a DocBlock for class Hu_Console_Getopt<br>
+<b>Warning on line 23</b> - Method "SwapKeysAndNumbers" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 10</b> - require_once include's DocBlock has @package tag, illegal. ignoring tag "@package HuGetopt"<br>
+<a name="iconv_charset_convert.class.php"></a>
+<h1>iconv_charset_convert.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 30</b> - Class "iconv_charset_convert" has no Class-level DocBlock.<br>
+<b>Warning on line 30</b> - no @package tag was used in a DocBlock for class iconv_charset_convert<br>
+<b>Warning on line 42</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 42</b> - Unknown tag "@Throws(charset_convert_exception," used<br>
+<b>Warning on line 88</b> - Method "error_handler" has no method-level DocBlock.<br>
+<a name="INT_CHECK_RANGE.php"></a>
+<h1>INT_CHECK_RANGE.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - File "/home/_SHARED_/macroses/INT_CHECK_RANGE.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<h2>Errors:</h2><br>
+<b>Error on line 6</b> - "@return" tag was used without any parameters, illegal<br>
+<b>Error on line 6</b> - "@param" tag was used without any parameters, illegal<br>
+<a name="JsHttpRequest.php"></a>
+<h1>JsHttpRequest.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class JsHttpRequest<br>
+<b>Warning on line 496</b> - File "/home/_SHARED_/JavaScript/JsHttpRequest/JsHttpRequest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="logo_class.php"></a>
+<h1>logo_class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - no @package tag was used in a DocBlock for class logo<br>
+<b>Warning on line 34</b> - Method "logoForm" has no method-level DocBlock.<br>
+<b>Warning on line 68</b> - Method "savePic" has no method-level DocBlock.<br>
+<b>Warning on line 124</b> - Method "calcDimensions" has no method-level DocBlock.<br>
+<b>Warning on line 127</b> - Method "upLoadUserImg" has no method-level DocBlock.<br>
+<b>Warning on line 129</b> - File "/home/_SHARED_/images/logo_class.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="log_dump.php"></a>
+<h1>log_dump.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 12</b> - Unknown tag "@created" used<br>
+<b>Warning on line 12</b> - Page-level DocBlock precedes "include_once 'Debug/dump_utils.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 42</b> - no @package tag was used in a DocBlock for class dump<br>
+<b>Warning on line 42</b> - Class "dump" has no Class-level DocBlock.<br>
+<b>Warning on line 45</b> - Method "log" has no method-level DocBlock.<br>
+<a name="mcache.php"></a>
+<h1>mcache.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - File "/home/_SHARED_/Storage/mcache.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MIME.php"></a>
+<h1>MIME.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - Class "MIME" has no Class-level DocBlock.<br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class MIME<br>
+<b>Warning on line 29</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 186</b> - Method "type" has no method-level DocBlock.<br>
+<b>Warning on line 213</b> - Method "applyRecursiveMagic" has no method-level DocBlock.<br>
+<b>Warning on line 253</b> - Method "description" has no method-level DocBlock.<br>
+<b>Warning on line 266</b> - Method "description_StartElement" has no method-level DocBlock.<br>
+<b>Warning on line 272</b> - Method "description_EndElement" has no method-level DocBlock.<br>
+<b>Warning on line 281</b> - Method "description_Data" has no method-level DocBlock.<br>
+<b>Warning on line 293</b> - Class "MIME_MagicRule" has no Class-level DocBlock.<br>
+<b>Warning on line 293</b> - no @package tag was used in a DocBlock for class MIME_MagicRule<br>
+<b>Warning on line 305</b> - File "/home/_SHARED_/Filesystem/MIME.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="moysklad.class.php"></a>
+<h1>moysklad.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 16</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 16</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class moysklad_exception<br>
+<b>Warning on line 20</b> - Class "moysklad_exception" has no Class-level DocBlock.<br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class moysklad_exception_absentElement<br>
+<b>Warning on line 21</b> - Class "moysklad_exception_absentElement" has no Class-level DocBlock.<br>
+<b>Warning on line 22</b> - no @package tag was used in a DocBlock for class moysklad_exception_unemplimented<br>
+<b>Warning on line 22</b> - Class "moysklad_exception_unemplimented" has no Class-level DocBlock.<br>
+<b>Warning on line 23</b> - Class "moysklad_exception_novalid" has no Class-level DocBlock.<br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class moysklad_exception_novalid<br>
+<b>Warning on line 33</b> - no @package tag was used in a DocBlock for class moysklad<br>
+<b>Warning on line 33</b> - Unknown tag "@created" used<br>
+<b>Warning on line 110</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 114</b> - Method "commonAddRootElement" has no method-level DocBlock.<br>
+<b>Warning on line 118</b> - Method "commonAddElement" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 16</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package moysklad"<br>
+<a name="moysklad.example.php"></a>
+<h1>moysklad.example.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - Page-level DocBlock precedes "include_once 'autoload.php'", use another DocBlock to document the source element<br>
+<h2>Errors:</h2><br>
+<b>Error on line 15</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package moysklad"<br>
+<a name="moysklad_agents.class.php"></a>
+<h1>moysklad_agents.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_agents<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_agent<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_companies.class.php"></a>
+<h1>moysklad_companies.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_companies<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_company<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_connectors.class.php"></a>
+<h1>moysklad_connectors.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_connectors<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_connector<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_consignments.class.php"></a>
+<h1>moysklad_consignments.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_consignments<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_consignment<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_contract.class.php"></a>
+<h1>moysklad_contract.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_contract<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_country.class.php"></a>
+<h1>moysklad_country.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_country<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_currencies.class.php"></a>
+<h1>moysklad_currencies.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_currencies<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_currency<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_customEntity.class.php"></a>
+<h1>moysklad_customEntity.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_customEntity<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_customEntityMetadata.class.php"></a>
+<h1>moysklad_customEntityMetadata.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_customEntityMetadata<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_customerOrders.class.php"></a>
+<h1>moysklad_customerOrders.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_customerOrders<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_customerOrder<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_deliveries_demand.class.php"></a>
+<h1>moysklad_deliveries_demand.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_deliveries_demand<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_demand<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_deliveries_supply.class.php"></a>
+<h1>moysklad_deliveries_supply.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_deliveries_supply<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_supply<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_element_base.class.php"></a>
+<h1>moysklad_element_base.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_element_base<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 48</b> - Method "__construct" has no method-level DocBlock.<br>
+<a name="moysklad_embeddedEntityMetadata.class.php"></a>
+<h1>moysklad_embeddedEntityMetadata.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_embeddedEntityMetadata<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_enters.class.php"></a>
+<h1>moysklad_enters.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_enters<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_enter<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_entityTemplatesMetadata.class.php"></a>
+<h1>moysklad_entityTemplatesMetadata.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_entityTemplatesMetadata<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_goodFolders.class.php"></a>
+<h1>moysklad_goodFolders.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 17</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 17</b> - Page-level DocBlock precedes "include_once 'macroses/EMPTY_callback.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class moysklad_goodFolders<br>
+<b>Warning on line 26</b> - Unknown tag "@created" used<br>
+<b>Warning on line 29</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 39</b> - no @package tag was used in a DocBlock for class moysklad_goodFolder<br>
+<b>Warning on line 39</b> - Unknown tag "@created" used<br>
+<b>Warning on line 77</b> - Method "getName" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 17</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package moysklad"<br>
+<a name="moysklad_goods.class.php"></a>
+<h1>moysklad_goods.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_goods<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_good<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 81</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_gtd.class.php"></a>
+<h1>moysklad_gtd.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_gtd<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_inventories.class.php"></a>
+<h1>moysklad_inventories.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_inventories<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_inventory<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_invoicesIn.class.php"></a>
+<h1>moysklad_invoicesIn.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_invoicesIn<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_invoiceIn<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_invoicesOut.class.php"></a>
+<h1>moysklad_invoicesOut.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_invoicesOut<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_invoiceOut<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_losses.class.php"></a>
+<h1>moysklad_losses.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_losses<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_loss<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_messages.class.php"></a>
+<h1>moysklad_messages.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_messages<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_message<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_moves.class.php"></a>
+<h1>moysklad_moves.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_moves<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_move<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_myCompany.class.php"></a>
+<h1>moysklad_myCompany.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_myCompany<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_persons.class.php"></a>
+<h1>moysklad_persons.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_persons<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_person<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_places.class.php"></a>
+<h1>moysklad_places.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_places<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_place<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_priceLists.class.php"></a>
+<h1>moysklad_priceLists.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_priceLists<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_priceList<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_processingPlans.class.php"></a>
+<h1>moysklad_processingPlans.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_processingPlans<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_processingPlan<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_processings.class.php"></a>
+<h1>moysklad_processings.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_processings<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_processing<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_project.class.php"></a>
+<h1>moysklad_project.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_project<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_purchaseOrders.class.php"></a>
+<h1>moysklad_purchaseOrders.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_purchaseOrders<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_purchaseOrder<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_reason.class.php"></a>
+<h1>moysklad_reason.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_reason<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_lossReason<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 50</b> - no @package tag was used in a DocBlock for class moysklad_enterReason<br>
+<b>Warning on line 50</b> - Unknown tag "@created" used<br>
+<b>Warning on line 53</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_reportTemplatesMetadata.class.php"></a>
+<h1>moysklad_reportTemplatesMetadata.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_reportTemplatesMetadata<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_scripts.class.php"></a>
+<h1>moysklad_scripts.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_scripts<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_script<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_service.class.php"></a>
+<h1>moysklad_service.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_service<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_shareModes.class.php"></a>
+<h1>moysklad_shareModes.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_shareModes<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_shareMode<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_things.class.php"></a>
+<h1>moysklad_things.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_things<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_thing<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_uoms.class.php"></a>
+<h1>moysklad_uoms.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_uoms<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_uom<br>
+<b>Warning on line 83</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_warehouses.class.php"></a>
+<h1>moysklad_warehouses.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_warehouses<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<b>Warning on line 37</b> - Unknown tag "@created" used<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class moysklad_warehouse<br>
+<b>Warning on line 40</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="moysklad_workflow.class.php"></a>
+<h1>moysklad_workflow.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - example file "moysklad.example.php" does not exist<br>
+<b>Warning on line 24</b> - Unknown tag "@created" used<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class moysklad_workflow<br>
+<b>Warning on line 27</b> - Method "getName" has no method-level DocBlock.<br>
+<a name="mssql_database.php"></a>
+<h1>mssql_database.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 40</b> - Class "mssql_database_settings" has no Class-level DocBlock.<br>
+<b>Warning on line 40</b> - no @package tag was used in a DocBlock for class mssql_database_settings<br>
+<b>Warning on line 44</b> - no @package tag was used in a DocBlock for class mssql_database<br>
+<b>Warning on line 44</b> - Class "mssql_database" has no Class-level DocBlock.<br>
+<b>Warning on line 78</b> - Method "db_connect" has no method-level DocBlock.<br>
+<b>Warning on line 120</b> - Method "query" has no method-level DocBlock.<br>
+<b>Warning on line 131</b> - Method "query_limit" has no method-level DocBlock.<br>
+<b>Warning on line 137</b> - Method "ToBlob" has no method-level DocBlock.<br>
+<b>Warning on line 141</b> - Method "sql_next_result" has no method-level DocBlock.<br>
+<b>Warning on line 146</b> - Method "sql_escape_string" has no method-level DocBlock.<br>
+<b>Warning on line 182</b> - Method "collectDebugInfo" has no method-level DocBlock.<br>
+<a name="MultipleInheritance.example.php"></a>
+<h1>MultipleInheritance.example.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 12</b> - no @package tag was used in a DocBlock for class A<br>
+<b>Warning on line 18</b> - Method "aa" has no method-level DocBlock.<br>
+<b>Warning on line 22</b> - Method "ab" has no method-level DocBlock.<br>
+<b>Warning on line 25</b> - Class "B" has no Class-level DocBlock.<br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class B<br>
+<b>Warning on line 31</b> - Method "bb" has no method-level DocBlock.<br>
+<b>Warning on line 35</b> - Method "ab" has no method-level DocBlock.<br>
+<b>Warning on line 38</b> - Class "C" has no Class-level DocBlock.<br>
+<b>Warning on line 38</b> - no @package tag was used in a DocBlock for class C<br>
+<b>Warning on line 41</b> - Method "cc" has no method-level DocBlock.<br>
+<b>Warning on line 75</b> - Class "D" has no Class-level DocBlock.<br>
+<b>Warning on line 75</b> - no @package tag was used in a DocBlock for class D<br>
+<b>Warning on line 81</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 90</b> - File "/home/_SHARED_/macroses/MultipleInheritance.example.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MultipleInheritance.php"></a>
+<h1>MultipleInheritance.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 10</b> - example file "MultipleInheritance.example.php" does not exist<br>
+<b>Warning on line 15</b> - File "/home/_SHARED_/macroses/MultipleInheritance.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="mysql_database.php"></a>
+<h1>mysql_database.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - no @package tag was used in a DocBlock for class mysql_database_settings<br>
+<b>Warning on line 32</b> - no @package tag was used in a DocBlock for class mysql_database<br>
+<b>Warning on line 32</b> - Class "mysql_database" has no Class-level DocBlock.<br>
+<b>Warning on line 61</b> - Method "db_connect" has no method-level DocBlock.<br>
+<b>Warning on line 91</b> - Method "query" has no method-level DocBlock.<br>
+<b>Warning on line 96</b> - Method "query_limit" has no method-level DocBlock.<br>
+<b>Warning on line 101</b> - Method "ToBlob" has no method-level DocBlock.<br>
+<b>Warning on line 104</b> - Method "sql_next_result" has no method-level DocBlock.<br>
+<b>Warning on line 108</b> - Method "sql_escape_string" has no method-level DocBlock.<br>
+<b>Warning on line 119</b> - Method "rowsTotal" has no method-level DocBlock.<br>
+<b>Warning on line 136</b> - Method "collectDebugInfo" has no method-level DocBlock.<br>
+<a name="network.php"></a>
+<h1>network.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class NetworkException<br>
+<b>Warning on line 10</b> - no @package tag was used in a DocBlock for class SocketOpenException<br>
+<b>Warning on line 10</b> - Class "SocketOpenException" has no Class-level DocBlock.<br>
+<b>Warning on line 11</b> - Class "SocketReadException" has no Class-level DocBlock.<br>
+<b>Warning on line 11</b> - no @package tag was used in a DocBlock for class SocketReadException<br>
+<b>Warning on line 12</b> - Class "SocketReadTimeoutException" has no Class-level DocBlock.<br>
+<b>Warning on line 12</b> - no @package tag was used in a DocBlock for class SocketReadTimeoutException<br>
+<b>Warning on line 13</b> - Class "SocketWriteException" has no Class-level DocBlock.<br>
+<b>Warning on line 13</b> - no @package tag was used in a DocBlock for class SocketWriteException<br>
+<b>Warning on line 14</b> - Class "SocketWriteTimeoutException" has no Class-level DocBlock.<br>
+<b>Warning on line 14</b> - no @package tag was used in a DocBlock for class SocketWriteTimeoutException<br>
+<b>Warning on line 15</b> - File "/home/_SHARED_/Exceptions/network.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="OS.php"></a>
+<h1>OS.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class OS<br>
+<b>Warning on line 95</b> - Unknown tag "@include('include.php')" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 75</b> - "@return" tag was used without any parameters, illegal<br>
+<a name="outExtraData.interface.php"></a>
+<h1>outExtraData.interface.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 10</b> - no @package tag was used in a DocBlock for interface outExtraData<br>
+<b>Warning on line 57</b> - Unknown tag "@Throw(VariableRangeException)" used<br>
+<b>Warning on line 63</b> - no @package tag was used in a DocBlock for class __outExtraData__common_implementation<br>
+<b>Warning on line 63</b> - Class "__outExtraData__common_implementation" has no Class-level DocBlock.<br>
+<b>Warning on line 88</b> - Method "strByOutType" has no method-level DocBlock.<br>
+<b>Warning on line 94</b> - Method "strToPrint" has no method-level DocBlock.<br>
+<b>Warning on line 96</b> - File "/home/_SHARED_/Vars/outExtraData.interface.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="pdf_context.php"></a>
+<h1>pdf_context.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 19</b> - Class "pdf_context" has no Class-level DocBlock.<br>
+<b>Warning on line 19</b> - no @package tag was used in a DocBlock for class pdf_context<br>
+<b>Warning on line 42</b> - Method "pdf_context" has no method-level DocBlock.<br>
+<b>Warning on line 64</b> - Method "reset" has no method-level DocBlock.<br>
+<b>Warning on line 78</b> - Method "ensure_content" has no method-level DocBlock.<br>
+<b>Warning on line 95</b> - Method "increase_length" has no method-level DocBlock.<br>
+<b>Warning on line 96</b> - File "/home/_SHARED_/Pdf/lib/fpdi/pdf_context.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="pdf_parser.php"></a>
+<h1>pdf_parser.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 50</b> - Class "pdf_parser" has no Class-level DocBlock.<br>
+<b>Warning on line 50</b> - no @package tag was used in a DocBlock for class pdf_parser<br>
+<b>Warning on line 705</b> - File "/home/_SHARED_/Pdf/lib/fpdi/pdf_parser.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Php.php"></a>
+<h1>Php.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class Subsys_JsHttpRequest_Php<br>
+<b>Warning on line 318</b> - File "/home/_SHARED_/JavaScript/JsHttpRequest/Php.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Process.php"></a>
+<h1>Process.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 11</b> - Page-level DocBlock precedes "include_once 'Debug/log_dump.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class Process_state<br>
+<b>Warning on line 41</b> - Method "getCwd" has no method-level DocBlock.<br>
+<b>Warning on line 45</b> - Method "setCwd" has no method-level DocBlock.<br>
+<b>Warning on line 49</b> - Method "getEnv" has no method-level DocBlock.<br>
+<b>Warning on line 53</b> - Method "setEnv" has no method-level DocBlock.<br>
+<b>Warning on line 57</b> - Method "getResult" has no method-level DocBlock.<br>
+<b>Warning on line 61</b> - Method "getError" has no method-level DocBlock.<br>
+<b>Warning on line 76</b> - Method "describe" has no method-level DocBlock.<br>
+<b>Warning on line 80</b> - Class "Process" has no Class-level DocBlock.<br>
+<b>Warning on line 80</b> - no @package tag was used in a DocBlock for class Process<br>
+<b>Warning on line 99</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 103</b> - Method "getState" has no method-level DocBlock.<br>
+<b>Warning on line 107</b> - Method "setState" has no method-level DocBlock.<br>
+<b>Warning on line 120</b> - Method "open" has no method-level DocBlock.<br>
+<b>Warning on line 130</b> - Method "setNonBlockingMode" has no method-level DocBlock.<br>
+<b>Warning on line 139</b> - Method "writeIn" has no method-level DocBlock.<br>
+<b>Warning on line 145</b> - Method "readOut" has no method-level DocBlock.<br>
+<b>Warning on line 150</b> - Method "readErr" has no method-level DocBlock.<br>
+<b>Warning on line 160</b> - Method "closeAll" has no method-level DocBlock.<br>
+<b>Warning on line 168</b> - Method "execute" has no method-level DocBlock.<br>
+<b>Warning on line 185</b> - Method "exec" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 11</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Process"<br>
+<a name="process.php"></a>
+<h1>process.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - no @package tag was used in a DocBlock for class ProcessException<br>
+<b>Warning on line 23</b> - Method "__construct" has no method-level DocBlock.<br>
+<a name="RegExp_base.php"></a>
+<h1>RegExp_base.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 37</b> - Page-level DocBlock precedes "include_once 'Vars/HuClass.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 47</b> - no @package tag was used in a DocBlock for class RegExp_base_base<br>
+<b>Warning on line 84</b> - @method magic tag does not have name, illegal. Ignoring tag "@method create() "<br>
+<b>Warning on line 118</b> - Unknown tag "@Throws(VariableIsNullException)" used<br>
+<b>Warning on line 140</b> - Unknown tag "@Throws(VariableIsNullException)" used<br>
+<b>Warning on line 165</b> - Unknown tag "@Throws(VariableIsNullException)" used<br>
+<b>Warning on line 350</b> - no @package tag was used in a DocBlock for class RegExp_base<br>
+<b>Warning on line 353</b> - Method "getMatch" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 37</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package RegExp"<br>
+<a name="RegExp_pcre.php"></a>
+<h1>RegExp_pcre.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - Page-level DocBlock precedes "include_once 'RegExp/RegExp_base.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 33</b> - no @package tag was used in a DocBlock for class RegExp_pcre<br>
+<h2>Errors:</h2><br>
+<b>Error on line 28</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package RegExp"<br>
+<a name="REQUIRED_NOT_NULL.php"></a>
+<h1>REQUIRED_NOT_NULL.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 34</b> - Unknown tag "@Throws(VariableIsNullException)" used<br>
+<a name="REQUIRED_VAR.php"></a>
+<h1>REQUIRED_VAR.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 35</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<a name="robokassa.php"></a>
+<h1>robokassa.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class robokassa_sph<br>
+<b>Warning on line 25</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 34</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 47</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 93</b> - no @package tag was used in a DocBlock for class robokassa<br>
+<b>Warning on line 188</b> - Unknown tag "@TODO:" used<br>
+<b>Warning on line 237</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 250</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 263</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 333</b> - Unknown tag "@example:" used<br>
+<a name="serialize.php"></a>
+<h1>serialize.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class SerializeException<br>
+<b>Warning on line 9</b> - File "/home/_SHARED_/Exceptions/serialize.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="SerializedData.php"></a>
+<h1>SerializedData.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 1</b> - no @package tag was used in a DocBlock for class SerializedData<br>
+<b>Warning on line 1</b> - Class "SerializedData" has no Class-level DocBlock.<br>
+<b>Warning on line 13</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 17</b> - Method "__get" has no method-level DocBlock.<br>
+<b>Warning on line 21</b> - Method "__set" has no method-level DocBlock.<br>
+<b>Warning on line 26</b> - Method "__toString" has no method-level DocBlock.<br>
+<b>Warning on line 30</b> - Method "toString" has no method-level DocBlock.<br>
+<b>Warning on line 32</b> - File "/home/_SHARED_/Vars/SerializedData.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Session.php"></a>
+<h1>Session.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class SessionException<br>
+<b>Warning on line 9</b> - File "/home/_SHARED_/Exceptions/Session.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="session.php"></a>
+<h1>session.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - File "/home/_SHARED_/Storage/session.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="settings.php"></a>
+<h1>settings.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 27</b> - Page-level DocBlock precedes "include_once 'macroses/EMPTY_STR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 30</b> - no @package tag was used in a DocBlock for class settings<br>
+<b>Warning on line 30</b> - Class "settings" has no Class-level DocBlock.<br>
+<b>Warning on line 205</b> - no @package tag was used in a DocBlock for class get_settings<br>
+<h2>Errors:</h2><br>
+<b>Error on line 27</b> - "include" include_once's DocBlock has @subpackage tags, illegal. ignoring tag "@subpackage settings"<br>
+<b>Error on line 27</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Vars"<br>
+<a name="settings_check.php"></a>
+<h1>settings_check.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 37</b> - Page-level DocBlock precedes "include_once 'Exceptions/classes.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 44</b> - no @package tag was used in a DocBlock for class settings_check<br>
+<b>Warning on line 62</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 70</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 90</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 109</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 123</b> - Unknown tag "@Throws" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 37</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package settings"<br>
+<a name="settings_check_static.php"></a>
+<h1>settings_check_static.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - no @package tag was used in a DocBlock for class settings_check_static<br>
+<a name="settings_filter.class.php"></a>
+<h1>settings_filter.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 33</b> - Unknown tag "@created" used<br>
+<b>Warning on line 34</b> - example file "settings_filter.example.php" does not exist<br>
+<b>Warning on line 34</b> - no @package tag was used in a DocBlock for class settings_filter<br>
+<b>Warning on line 52</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 64</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 74</b> - Unknown tag "@inheritdoc" used<br>
+<b>Warning on line 146</b> - Unknown tag "@TODO." used<br>
+<a name="settings_filter.example.php"></a>
+<h1>settings_filter.example.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - File "/home/_SHARED_/Vars/Settings/settings_filter/settings_filter.example.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="settings_filter_base.class.php"></a>
+<h1>settings_filter_base.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - Unknown tag "@created" used<br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for class settings_filter_base<br>
+<b>Warning on line 34</b> - Method "__construct" has no method-level DocBlock.<br>
+<a name="settings_filter_default.class.php"></a>
+<h1>settings_filter_default.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - Unknown tag "@created" used<br>
+<b>Warning on line 19</b> - no @package tag was used in a DocBlock for class settings_filter_default<br>
+<b>Warning on line 48</b> - Method "apply" has no method-level DocBlock.<br>
+<a name="settings_filter_ignore.class.php"></a>
+<h1>settings_filter_ignore.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - Unknown tag "@created" used<br>
+<b>Warning on line 19</b> - no @package tag was used in a DocBlock for class settings_filter_ignore<br>
+<b>Warning on line 22</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 27</b> - Method "apply" has no method-level DocBlock.<br>
+<a name="settings_filter_null.class.php"></a>
+<h1>settings_filter_null.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - Unknown tag "@created" used<br>
+<b>Warning on line 19</b> - no @package tag was used in a DocBlock for class settings_filter_null<br>
+<b>Warning on line 29</b> - Method "apply" has no method-level DocBlock.<br>
+<a name="settings_filter_readOnly.class.php"></a>
+<h1>settings_filter_readOnly.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - Unknown tag "@created" used<br>
+<b>Warning on line 19</b> - no @package tag was used in a DocBlock for class settings_filter_readOnly<br>
+<b>Warning on line 22</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 28</b> - Unknown tag "@inheritdoc" used<br>
+<a name="sim_messages.php"></a>
+<h1>sim_messages.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 22</b> - no @package tag was used in a DocBlock for class sim_message<br>
+<b>Warning on line 50</b> - Method "parse" has no method-level DocBlock.<br>
+<b>Warning on line 84</b> - Method "recodeText" has no method-level DocBlock.<br>
+<b>Warning on line 97</b> - Method "getString" has no method-level DocBlock.<br>
+<b>Warning on line 101</b> - Method "__get" has no method-level DocBlock.<br>
+<b>Warning on line 104</b> - Class "sim_messages" has no Class-level DocBlock.<br>
+<b>Warning on line 104</b> - no @package tag was used in a DocBlock for class sim_messages<br>
+<b>Warning on line 110</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 123</b> - Method "parseFile" has no method-level DocBlock.<br>
+<b>Warning on line 128</b> - Method "orderBy" has no method-level DocBlock.<br>
+<b>Warning on line 135</b> - Method "orderCmp" has no method-level DocBlock.<br>
+<b>Warning on line 141</b> - Method "recodeAll" has no method-level DocBlock.<br>
+<b>Warning on line 145</b> - Method "add" has no method-level DocBlock.<br>
+<b>Warning on line 149</b> - Method "getArray" has no method-level DocBlock.<br>
+<b>Warning on line 154</b> - Method "merge" has no method-level DocBlock.<br>
+<b>Warning on line 162</b> - Method "getString" has no method-level DocBlock.<br>
+<a name="Singleton.php"></a>
+<h1>Singleton.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 42</b> - Page-level DocBlock precedes "include_once 'Vars/HuConfig.class.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 53</b> - no @package tag was used in a DocBlock for class Single<br>
+<b>Warning on line 71</b> - Unknown tag "@params" used<br>
+<b>Warning on line 147</b> - example file " //Default invoke, using $GLOBALS['__CONFIG']['classname'] as arguments." does not exist<br>
+<h2>Errors:</h2><br>
+<b>Error on line 42</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Vars"<br>
+<b>Error on line 42</b> - "include" include_once's DocBlock has @subpackage tags, illegal. ignoring tag "@subpackage Classes"<br>
+<b>Error on line 109</b> - "@return" tag was used without any parameters, illegal<br>
+<a name="SMS_partnerAPI.php"></a>
+<h1>SMS_partnerAPI.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class MSG_partnerAPIException<br>
+<b>Warning on line 23</b> - Class "MSG_AuthErrorException" has no Class-level DocBlock.<br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class MSG_AuthErrorException<br>
+<b>Warning on line 24</b> - Class "MSG_SendFailException" has no Class-level DocBlock.<br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class MSG_SendFailException<br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class MSG_InParseErrorException<br>
+<b>Warning on line 25</b> - Page-level DocBlock precedes "include_once 'Debug/HuLOG.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 25</b> - Class "MSG_InParseErrorException" has no Class-level DocBlock.<br>
+<b>Warning on line 38</b> - no @package tag was used in a DocBlock for class SMS_partner_settings<br>
+<b>Warning on line 56</b> - Class "SMS_partnerAPI" has no Class-level DocBlock.<br>
+<b>Warning on line 56</b> - no @package tag was used in a DocBlock for class SMS_partnerAPI<br>
+<b>Warning on line 70</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 75</b> - Method "__get" has no method-level DocBlock.<br>
+<b>Warning on line 80</b> - Method "getTransport" has no method-level DocBlock.<br>
+<b>Warning on line 98</b> - Method "auth" has no method-level DocBlock.<br>
+<b>Warning on line 105</b> - Method "getAuthID" has no method-level DocBlock.<br>
+<b>Warning on line 131</b> - Method "parseInMSG" has no method-level DocBlock.<br>
+<b>Warning on line 135</b> - Method "setMSG" has no method-level DocBlock.<br>
+<b>Warning on line 139</b> - Method "getMessage" has no method-level DocBlock.<br>
+<b>Warning on line 160</b> - Method "sendMSG" has no method-level DocBlock.<br>
+<b>Warning on line 166</b> - Method "parseServerAnswer" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 25</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package Orange"<br>
+<a name="SPSR_in_parse.class.php"></a>
+<h1>SPSR_in_parse.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 47</b> - example file "SPSR_in_parse.example.php" does not exist<br>
+<b>Warning on line 48</b> - no @package tag was used in a DocBlock for class SPSR_in_parse<br>
+<b>Warning on line 91</b> - Method "__construct" has no method-level DocBlock.<br>
+<a name="SPSR_in_parse.example.php"></a>
+<h1>SPSR_in_parse.example.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - Page-level DocBlock precedes "include 'autoload.php'", use another DocBlock to document the source element<br>
+<h2>Errors:</h2><br>
+<b>Error on line 15</b> - include include's DocBlock has @package tag, illegal. ignoring tag "@package SPSR"<br>
+<a name="sqlite3_database.php"></a>
+<h1>sqlite3_database.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 19</b> - no @package tag was used in a DocBlock for class sqlite3_database_settings<br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class sqlite3_database<br>
+<b>Warning on line 59</b> - Method "db_connect" has no method-level DocBlock.<br>
+<b>Warning on line 96</b> - Method "query" has no method-level DocBlock.<br>
+<b>Warning on line 101</b> - Method "query_limit" has no method-level DocBlock.<br>
+<b>Warning on line 106</b> - Method "ToBlob" has no method-level DocBlock.<br>
+<b>Warning on line 110</b> - Method "sql_next_result" has no method-level DocBlock.<br>
+<b>Warning on line 114</b> - Method "sql_escape_string" has no method-level DocBlock.<br>
+<b>Warning on line 142</b> - Method "collectDebugInfo" has no method-level DocBlock.<br>
+<b>Warning on line 146</b> - Method "sql_fetch_field" has no method-level DocBlock.<br>
+<b>Warning on line 150</b> - Method "sql_fetch_assoc" has no method-level DocBlock.<br>
+<b>Warning on line 154</b> - Method "sql_fetch_row" has no method-level DocBlock.<br>
+<b>Warning on line 173</b> - Method "sql_fetch_object" has no method-level DocBlock.<br>
+<b>Warning on line 179</b> - Method "sql_free_result" has no method-level DocBlock.<br>
+<b>Warning on line 183</b> - Method "sql_num_rows" has no method-level DocBlock.<br>
+<a name="store.php"></a>
+<h1>store.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - File "/home/_SHARED_/Storage/store.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="template_class.php"></a>
+<h1>template_class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - Unknown tag "@Changelog" used<br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for file /home/_SHARED_/template/template_class.php<br>
+<b>Warning on line 31</b> - no @package tag was used in a DocBlock for class template<br>
+<b>Warning on line 89</b> - Method "template" has no method-level DocBlock.<br>
+<b>Warning on line 124</b> - Method "find_path" has no method-level DocBlock.<br>
+<b>Warning on line 129</b> - Method "load_file" has no method-level DocBlock.<br>
+<b>Warning on line 133</b> - Method "string_template" has no method-level DocBlock.<br>
+<b>Warning on line 138</b> - Method "assign" has no method-level DocBlock.<br>
+<b>Warning on line 143</b> - Method "assignByRef" has no method-level DocBlock.<br>
+<b>Warning on line 190</b> - Method "include_file" has no method-level DocBlock.<br>
+<b>Warning on line 221</b> - Method "varrrs" has no method-level DocBlock.<br>
+<b>Warning on line 230</b> - Method "set" has no method-level DocBlock.<br>
+<b>Warning on line 358</b> - Method "cycle" has no method-level DocBlock.<br>
+<b>Warning on line 363</b> - Method "replace" has no method-level DocBlock.<br>
+<b>Warning on line 379</b> - Method "esli" has no method-level DocBlock.<br>
+<b>Warning on line 417</b> - Method "alt" has no method-level DocBlock.<br>
+<b>Warning on line 452</b> - Method "evalute" has no method-level DocBlock.<br>
+<b>Warning on line 462</b> - Method "get_var" has no method-level DocBlock.<br>
+<b>Warning on line 554</b> - Method "WYSIWYG" has no method-level DocBlock.<br>
+<b>Warning on line 558</b> - Method "_" has no method-level DocBlock.<br>
+<b>Warning on line 600</b> - Method "parse" has no method-level DocBlock.<br>
+<b>Warning on line 611</b> - Method "printout" has no method-level DocBlock.<br>
+<b>Warning on line 630</b> - Method "scheme" has no method-level DocBlock.<br>
+<b>Warning on line 636</b> - Method "message" has no method-level DocBlock.<br>
+<b>Warning on line 643</b> - Method "result" has no method-level DocBlock.<br>
+<b>Warning on line 667</b> - Method "RTESafe" has no method-level DocBlock.<br>
+<b>Warning on line 694</b> - Method "RTEShortHTML" has no method-level DocBlock.<br>
+<a name="template_class_2.1.php"></a>
+<h1>template_class_2.1.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - Unknown tag "@Changelog" used<br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for file /home/_SHARED_/template/template_class_2.1.php<br>
+<b>Warning on line 31</b> - no @package tag was used in a DocBlock for class template<br>
+<b>Warning on line 89</b> - Method "template" has no method-level DocBlock.<br>
+<b>Warning on line 124</b> - Method "find_path" has no method-level DocBlock.<br>
+<b>Warning on line 129</b> - Method "load_file" has no method-level DocBlock.<br>
+<b>Warning on line 133</b> - Method "string_template" has no method-level DocBlock.<br>
+<b>Warning on line 138</b> - Method "assign" has no method-level DocBlock.<br>
+<b>Warning on line 143</b> - Method "assignByRef" has no method-level DocBlock.<br>
+<b>Warning on line 190</b> - Method "include_file" has no method-level DocBlock.<br>
+<b>Warning on line 221</b> - Method "varrrs" has no method-level DocBlock.<br>
+<b>Warning on line 230</b> - Method "set" has no method-level DocBlock.<br>
+<b>Warning on line 358</b> - Method "cycle" has no method-level DocBlock.<br>
+<b>Warning on line 363</b> - Method "replace" has no method-level DocBlock.<br>
+<b>Warning on line 379</b> - Method "esli" has no method-level DocBlock.<br>
+<b>Warning on line 417</b> - Method "alt" has no method-level DocBlock.<br>
+<b>Warning on line 452</b> - Method "evalute" has no method-level DocBlock.<br>
+<b>Warning on line 462</b> - Method "get_var" has no method-level DocBlock.<br>
+<b>Warning on line 554</b> - Method "WYSIWYG" has no method-level DocBlock.<br>
+<b>Warning on line 558</b> - Method "_" has no method-level DocBlock.<br>
+<b>Warning on line 600</b> - Method "parse" has no method-level DocBlock.<br>
+<b>Warning on line 611</b> - Method "printout" has no method-level DocBlock.<br>
+<b>Warning on line 630</b> - Method "scheme" has no method-level DocBlock.<br>
+<b>Warning on line 636</b> - Method "message" has no method-level DocBlock.<br>
+<b>Warning on line 643</b> - Method "result" has no method-level DocBlock.<br>
+<b>Warning on line 667</b> - Method "RTESafe" has no method-level DocBlock.<br>
+<b>Warning on line 694</b> - Method "RTEShortHTML" has no method-level DocBlock.<br>
+<a name="template_class_NEW2.php"></a>
+<h1>template_class_NEW2.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class template<br>
+<b>Warning on line 76</b> - Method "template" has no method-level DocBlock.<br>
+<b>Warning on line 111</b> - Method "find_path" has no method-level DocBlock.<br>
+<b>Warning on line 116</b> - Method "load_file" has no method-level DocBlock.<br>
+<b>Warning on line 120</b> - Method "string_template" has no method-level DocBlock.<br>
+<b>Warning on line 125</b> - Method "assign" has no method-level DocBlock.<br>
+<b>Warning on line 158</b> - Method "include_file" has no method-level DocBlock.<br>
+<b>Warning on line 189</b> - Method "varrrs" has no method-level DocBlock.<br>
+<b>Warning on line 198</b> - Method "set" has no method-level DocBlock.<br>
+<b>Warning on line 326</b> - Method "cycle" has no method-level DocBlock.<br>
+<b>Warning on line 331</b> - Method "replace" has no method-level DocBlock.<br>
+<b>Warning on line 347</b> - Method "esli" has no method-level DocBlock.<br>
+<b>Warning on line 385</b> - Method "alt" has no method-level DocBlock.<br>
+<b>Warning on line 420</b> - Method "evalute" has no method-level DocBlock.<br>
+<b>Warning on line 430</b> - Method "get_var" has no method-level DocBlock.<br>
+<b>Warning on line 522</b> - Method "WYSIWYG" has no method-level DocBlock.<br>
+<b>Warning on line 526</b> - Method "_" has no method-level DocBlock.<br>
+<b>Warning on line 568</b> - Method "parse" has no method-level DocBlock.<br>
+<b>Warning on line 579</b> - Method "printout" has no method-level DocBlock.<br>
+<b>Warning on line 596</b> - Method "scheme" has no method-level DocBlock.<br>
+<b>Warning on line 602</b> - Method "message" has no method-level DocBlock.<br>
+<b>Warning on line 609</b> - Method "result" has no method-level DocBlock.<br>
+<b>Warning on line 633</b> - Method "RTESafe" has no method-level DocBlock.<br>
+<b>Warning on line 660</b> - Method "RTEShortHTML" has no method-level DocBlock.<br>
+<b>Warning on line 671</b> - File "/home/_SHARED_/template/template_class_NEW2.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="test.php"></a>
+<h1>test.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 115</b> - File "/home/_SHARED_/JavaScript/jscalendar/test.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Tokenizer.php"></a>
+<h1>Tokenizer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 48</b> - Page-level DocBlock precedes "define T_ML_COMMENT", use another DocBlock to document the source element<br>
+<b>Warning on line 67</b> - no @package tag was used in a DocBlock for class Tokenizer<br>
+<b>Warning on line 173</b> - Unknown tag "@Throws(VariableRequiredException)" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 258</b> - Inline tag {@link} in tag  is unterminated, "link ::getArg()) method."<br>
+<a name="to_conf(mapToSpsr).php"></a>
+<h1>to_conf(mapToSpsr).php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 16</b> - Page-level DocBlock precedes "include 'x-cart-init.php'", use another DocBlock to document the source element<br>
+<h2>Errors:</h2><br>
+<b>Error on line 16</b> - include include's DocBlock has @package tag, illegal. ignoring tag "@package dellin-ru"<br>
+<a name="trans.class.php"></a>
+<h1>trans.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - Method "translit" has no method-level DocBlock.<br>
+<a name="try-examples.php"></a>
+<h1>try-examples.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 720</b> - File "/home/_SHARED_/try-examples.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ufpdf-fpdi-test.php"></a>
+<h1>ufpdf-fpdi-test.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 37</b> - File "/home/_SHARED_/Pdf/lib/ufpdf/ufpdf-fpdi-test.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ufpdf-test.php"></a>
+<h1>ufpdf-test.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - File "/home/_SHARED_/Pdf/lib/ufpdf/ufpdf-test.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 21</b> - File "/home/_SHARED_/Pdf/lib/fpdi/ufpdf-test.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ufpdf.php"></a>
+<h1>ufpdf.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - Class "UFPDF" has no Class-level DocBlock.<br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class UFPDF<br>
+<b>Warning on line 20</b> - Class "UFPDF" has no Class-level DocBlock.<br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class UFPDF<br>
+<b>Warning on line 42</b> - Method "GetStringWidth" has no method-level DocBlock.<br>
+<b>Warning on line 42</b> - Method "GetStringWidth" has no method-level DocBlock.<br>
+<b>Warning on line 71</b> - Method "AddFont" has no method-level DocBlock.<br>
+<b>Warning on line 71</b> - Method "AddFont" has no method-level DocBlock.<br>
+<b>Warning on line 82</b> - Method "Text" has no method-level DocBlock.<br>
+<b>Warning on line 82</b> - Method "Text" has no method-level DocBlock.<br>
+<b>Warning on line 88</b> - Method "AcceptPageBreak" has no method-level DocBlock.<br>
+<b>Warning on line 88</b> - Method "AcceptPageBreak" has no method-level DocBlock.<br>
+<b>Warning on line 168</b> - Method "Cell" has no method-level DocBlock.<br>
+<b>Warning on line 168</b> - Method "Cell" has no method-level DocBlock.<br>
+<b>Warning on line 242</b> - Method "_dounderline" has no method-level DocBlock.<br>
+<b>Warning on line 242</b> - Method "_dounderline" has no method-level DocBlock.<br>
+<b>Warning on line 250</b> - Method "_textstring" has no method-level DocBlock.<br>
+<b>Warning on line 250</b> - Method "_textstring" has no method-level DocBlock.<br>
+<b>Warning on line 258</b> - Method "_escapetext" has no method-level DocBlock.<br>
+<b>Warning on line 258</b> - Method "_escapetext" has no method-level DocBlock.<br>
+<b>Warning on line 274</b> - Method "_putinfo" has no method-level DocBlock.<br>
+<b>Warning on line 274</b> - Method "_putinfo" has no method-level DocBlock.<br>
+<b>Warning on line 375</b> - Method "utf8_to_utf16be" has no method-level DocBlock.<br>
+<b>Warning on line 375</b> - Method "utf8_to_utf16be" has no method-level DocBlock.<br>
+<b>Warning on line 466</b> - Method "utf8_to_codepoints" has no method-level DocBlock.<br>
+<b>Warning on line 466</b> - Method "utf8_to_codepoints" has no method-level DocBlock.<br>
+<b>Warning on line 472</b> - File "/home/_SHARED_/Pdf/lib/fpdi/ufpdf.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 472</b> - File "/home/_SHARED_/Pdf/lib/ufpdf/ufpdf.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="uniord.php"></a>
+<h1>uniord.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 32</b> - File "/home/_SHARED_/Vars/uniord.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="variables.php"></a>
+<h1>variables.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 31</b> - no @package tag was used in a DocBlock for class VariableException<br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class VariableRequiredException<br>
+<b>Warning on line 49</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 91</b> - no @package tag was used in a DocBlock for class VariableEmptyException<br>
+<b>Warning on line 91</b> - Class "VariableEmptyException" has no Class-level DocBlock.<br>
+<b>Warning on line 92</b> - Class "VariableIsNullException" has no Class-level DocBlock.<br>
+<b>Warning on line 92</b> - no @package tag was used in a DocBlock for class VariableIsNullException<br>
+<b>Warning on line 94</b> - no @package tag was used in a DocBlock for class VariableRangeException<br>
+<b>Warning on line 94</b> - Class "VariableRangeException" has no Class-level DocBlock.<br>
+<b>Warning on line 96</b> - no @package tag was used in a DocBlock for class VariableRangeGTException<br>
+<b>Warning on line 98</b> - no @package tag was used in a DocBlock for class VariableRangeLTException<br>
+<b>Warning on line 100</b> - Class "VariableArrayInconsistentException" has no Class-level DocBlock.<br>
+<b>Warning on line 100</b> - no @package tag was used in a DocBlock for class VariableArrayInconsistentException<br>
+<b>Warning on line 102</b> - no @package tag was used in a DocBlock for class VariableReadOnlyException<br>
+<b>Warning on line 102</b> - Class "VariableReadOnlyException" has no Class-level DocBlock.<br>
+<a name="VariableStream.php"></a>
+<h1>VariableStream.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 27</b> - Method "stream_open" has no method-level DocBlock.<br>
+<b>Warning on line 34</b> - Method "stream_read" has no method-level DocBlock.<br>
+<b>Warning on line 43</b> - Method "stream_write" has no method-level DocBlock.<br>
+<b>Warning on line 48</b> - Method "stream_tell" has no method-level DocBlock.<br>
+<b>Warning on line 53</b> - Method "stream_eof" has no method-level DocBlock.<br>
+<b>Warning on line 96</b> - Method "stream_seek" has no method-level DocBlock.<br>
+<a name="YML.class.php"></a>
+<h1>YML.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 18</b> - example file "YML.example.php" does not exist<br>
+<b>Warning on line 20</b> - Class "YML_exception" has no Class-level DocBlock.<br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class YML_exception<br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class YML_exception_absentElement<br>
+<b>Warning on line 21</b> - Class "YML_exception_absentElement" has no Class-level DocBlock.<br>
+<b>Warning on line 30</b> - Unknown tag "@created" used<br>
+<b>Warning on line 30</b> - no @package tag was used in a DocBlock for class YML<br>
+<b>Warning on line 52</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 61</b> - Unknown tag "@Throws(VariableRequired)" used<br>
+<b>Warning on line 224</b> - Unknown tag "@Throws(YML_exception_absentElement)" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 18</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package YML"<br>
+<a name="YML.example.php"></a>
+<h1>YML.example.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - Page-level DocBlock precedes "include_once 'autoload.php'", use another DocBlock to document the source element<br>
+<h2>Errors:</h2><br>
+<b>Error on line 15</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package YML"<br>
+<a name="YML_category.php"></a>
+<h1>YML_category.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_NOT_NULL.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class YML_category<br>
+<b>Warning on line 35</b> - Method "__construct" has no method-level DocBlock.<br>
+<h2>Errors:</h2><br>
+<b>Error on line 21</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package YML"<br>
+<b>Error on line 41</b> - "@param" tag was used without any parameters, illegal<br>
+<a name="YML_category_flat.php"></a>
+<h1>YML_category_flat.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - no @package tag was used in a DocBlock for class YML_category_flat<br>
+<b>Warning on line 23</b> - Method "__construct" has no method-level DocBlock.<br>
+<a name="YML_offer.php"></a>
+<h1>YML_offer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - Page-level DocBlock precedes "include_once 'macroses/REQUIRED_VAR.php'", use another DocBlock to document the source element<br>
+<b>Warning on line 20</b> - Class "YML_offer_exception" has no Class-level DocBlock.<br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class YML_offer_exception<br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class YML_offer_exception_constraint<br>
+<b>Warning on line 21</b> - Class "YML_offer_exception_constraint" has no Class-level DocBlock.<br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class YML_offer_attributes<br>
+<b>Warning on line 38</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 92</b> - no @package tag was used in a DocBlock for class YML_offer<br>
+<b>Warning on line 194</b> - Unknown tag "@Throws(YML_offer_exception_constraint)" used<br>
+<b>Warning on line 207</b> - Unknown tag "@Throws(YML_offer_exception_constraint)" used<br>
+<b>Warning on line 221</b> - Unknown tag "@Throws(YML_offer_exception_constraint)" used<br>
+<h2>Errors:</h2><br>
+<b>Error on line 18</b> - include_once include's DocBlock has @package tag, illegal. ignoring tag "@package YML"<br>
+<a name="YML_offer_artisttitle.php"></a>
+<h1>YML_offer_artisttitle.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class YML_offer_artisttitle<br>
+<b>Warning on line 44</b> - Method "__construct" has no method-level DocBlock.<br>
+<a name="YML_offer_audiobook.php"></a>
+<h1>YML_offer_audiobook.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - Class "YML_offer_audiobook" has no Class-level DocBlock.<br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class YML_offer_audiobook<br>
+<b>Warning on line 60</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 67</b> - Unknown tag "@Throws(YML_offer_exception_constraint)" used<br>
+<a name="YML_offer_book.php"></a>
+<h1>YML_offer_book.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class YML_offer_book<br>
+<b>Warning on line 23</b> - Class "YML_offer_book" has no Class-level DocBlock.<br>
+<b>Warning on line 49</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 56</b> - Unknown tag "@Throws(YML_offer_exception_constraint)" used<br>
+<a name="YML_offer_eventticket.php"></a>
+<h1>YML_offer_eventticket.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class YML_offer_eventticket<br>
+<b>Warning on line 45</b> - Method "__construct" has no method-level DocBlock.<br>
+<a name="YML_offer_generic.php"></a>
+<h1>YML_offer_generic.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 22</b> - no @package tag was used in a DocBlock for class YML_offer_attributes_generic<br>
+<b>Warning on line 30</b> - no @package tag was used in a DocBlock for class YML_offer_generic<br>
+<b>Warning on line 30</b> - Class "YML_offer_generic" has no Class-level DocBlock.<br>
+<b>Warning on line 43</b> - Method "__construct" has no method-level DocBlock.<br>
+<a name="YML_offer_tour.php"></a>
+<h1>YML_offer_tour.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class YML_offer_tour<br>
+<b>Warning on line 52</b> - Method "__construct" has no method-level DocBlock.<br>
+<a name="YML_offer_vendormodel.php"></a>
+<h1>YML_offer_vendormodel.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class YML_offer_vendormodel<br>
+<b>Warning on line 23</b> - Class "YML_offer_vendormodel" has no Class-level DocBlock.<br>
+<b>Warning on line 50</b> - Method "__construct" has no method-level DocBlock.<br>
+<a name="__autoload.map.php"></a>
+<h1>__autoload.map.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 281</b> - File "/home/_SHARED_/__autoload.map.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Tue, 15 Apr 2014 16:16:53 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

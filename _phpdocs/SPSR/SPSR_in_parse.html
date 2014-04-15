@@ -1,0 +1,787 @@
+<html>
+<head>
+<title>Docs For Class SPSR_in_parse</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">SPSR</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_SPSR.html" class="menu">class tree: SPSR</a> ]
+		  [ <a href="../elementindex_SPSR.html" class="menu">index: SPSR</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+	<div id="todolist">
+			<p><a href="../todolist.html">Todo List</a></p>
+	</div>
+      <b>Packages:</b><br />
+              <a href="../li_default.html">default</a><br />
+              <a href="../li_a1agregator-ru.html">a1agregator-ru</a><br />
+              <a href="../li_charset_convert.html">charset_convert</a><br />
+              <a href="../li_Console.html">Console</a><br />
+              <a href="../li_Database.html">Database</a><br />
+              <a href="../li_Debug.html">Debug</a><br />
+              <a href="../li_dellin-ru.html">dellin-ru</a><br />
+              <a href="../li_Exceptions.html">Exceptions</a><br />
+              <a href="../li_Filesystem.html">Filesystem</a><br />
+              <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Macroses.html">Macroses</a><br />
+              <a href="../li_moysklad.html">moysklad</a><br />
+              <a href="../li_Orange.html">Orange</a><br />
+              <a href="../li_Pdf.html">Pdf</a><br />
+              <a href="../li_Process.html">Process</a><br />
+              <a href="../li_RegExp.html">RegExp</a><br />
+              <a href="../li_settings.html">settings</a><br />
+              <a href="../li_SIMhistory.html">SIMhistory</a><br />
+              <a href="../li_SPSR.html">SPSR</a><br />
+              <a href="../li_System.html">System</a><br />
+              <a href="../li_TopLevel.html">TopLevel</a><br />
+              <a href="../li_Users.html">Users</a><br />
+              <a href="../li_Vars.html">Vars</a><br />
+              <a href="../li_YML.html">YML</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../SPSR/__vendors---cpcr.ru---SPSR_in_parse.class.php.html">		SPSR_in_parse.class.php
+		</a><br>
+			<a href="../SPSR/__vendors---cpcr.ru---SPSR_in_parse.example.php.html">		SPSR_in_parse.example.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../SPSR/SPSR_in_parse.html">SPSR_in_parse</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: SPSR_in_parse</h1>
+Source Location: /_vendors/cpcr.ru/SPSR_in_parse.class.php<br /><br />
+
+
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre><br />
+<div class="description">Class to parse and manipulate very different cpcr.ru data for online tariff calculation.</div><br /><br />
+
+
+
+
+        
+</td>
+
+<td valign="top">
+<h3><a href="#class_vars">Variables</a></h3>
+<ul>
+    <li><a href="../SPSR/SPSR_in_parse.html#var$all_cities_name">$all_cities_name</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#var$filterOut">$filterOut</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#var$no_region_name">$no_region_name</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#var$_compiled">$_compiled</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#var$_mainXML">$_mainXML</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#var$_xpath">$_xpath</a></li>
+  </ul>
+</td>
+
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../SPSR/SPSR_in_parse.html#method__construct">__construct</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methodcompile">compile</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methodcompileCountry">compileCountry</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methoddumpDOMnode">dumpDOMnode</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methodgetCountries">getCountries</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methodgetCountryById">getCountryById</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methodgetCountryByName">getCountryByName</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methodgetCountryByXPath">getCountryByXPath</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methodloadCities">loadCities</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methodloadCitiesc">loadCitiesc</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methodparseCitiesForeign">parseCitiesForeign</a></li>
+    <li><a href="../SPSR/SPSR_in_parse.html#methodparseCitiesRussian">parseCitiesRussian</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+
+
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 49]<br />
+Class to parse and manipulate very different cpcr.ru data for online tariff calculation.<br /><br /><p>SPSR have many files wit different structure and organazed through arse!  Futhermore it have not normal specification how parse and links it.  Even more evil - answers of support frequently crudely and incompetent (sometimes different from different people).  This class is essential which I can understand from very-very-very long correspondence with this company.</p><p>We want on out unified structure, but in fact have ABSOLUTELY different  scheme on in:  1) In the Russia(Россия) there defined regions: Region XML elements in the same file, where Countries defined: 		http://www.cpcr.ru/cgi-bin/postxml.pl?Regions  2) But regions is NOT defined for other Countries. So, for unified approach we will use self::$no_region_name (by def: '---') single region.  3) The next exception is Belarus (Белоруссия). In SPSR notation it is Region of Russia! (&lt;Regions Id=&quot;55&quot; Owner_Id=&quot;2&quot; RegionName=&quot;Белоруссия&quot;/&gt;) 		and its cities located in Russian xml file by region!  4) Belarus have region with same name as country! It renamed to self::no_region_name.  5) The next step is Cities. 	5.1) For the Russia it is localted in file http://www.cpcr.ru/components/xml/cities.xml 	5.2) For all other countries in - http://www.cpcr.ru/components/xml/citiesc.xml 	And what is more bad - files have different structures! So, we must handle its separately.  6) Some incorrect and strange items filtered by Regexp in SPSR_in_parse::filterOut  7) Some regions (Russia) have cities with the same name it own. 	7.1) Such cities filtered out. 	7.2) If after all filters Region has not any Cities, add one &quot;meta&quot; with name self::$all_cities_name and 		other attributes from city filtered in 7.1 or just create new one with name self::$all_cities_name and 		copied attributes: &quot;Owner_Id&quot; =&gt; &quot;Region_Owner_ID&quot;, &quot;Id&quot; =&gt; &quot;Region_ID&quot; from region.</p><br />
+</div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+<hr />
+<a name="class_vars"></a>
+<h3>Class Variables</h3>
+<div class="tags">
+	<a name="var$all_cities_name"></a>
+	<p></p>
+	<h4>static $all_cities_name = <span class="value">&nbsp;'Все'</span></h4>
+	<p>[line 51]</p>
+  
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$no_region_name"></a>
+	<p></p>
+	<h4>static $no_region_name = <span class="value">&nbsp;'---'</span></h4>
+	<p>[line 50]</p>
+  
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$filterOut"></a>
+	<p></p>
+	<h4>$filterOut = <span class="value">array(<br>
+//&nbsp;&nbsp;&nbsp;'countries'<br>
+&nbsp;&nbsp;&nbsp;'regions'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'/Дальнее&nbsp;зарубежье/'<br>
+//&nbsp;&nbsp;&nbsp;'cities'<br>
+)</span></h4>
+	<p>[line 69]</p>
+  Filter some strange and incorrect items like &quot;Дальнее зарубежье&quot; region of Russia!. Regexp.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>array</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_compiled"></a>
+	<p></p>
+	<h4>$_compiled = <span class="value">&nbsp;false</span></h4>
+	<p>[line 63]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_mainXML"></a>
+	<p></p>
+	<h4>$_mainXML = <span class="value"></span></h4>
+	<p>[line 61]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_xpath"></a>
+	<p></p>
+	<h4>$_xpath = <span class="value"></span></h4>
+	<p>[line 62]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+</div><br />
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+  <hr />
+	<a name="methoddumpDOMnode"></a>
+	<h3>static method dumpDOMnode <span class="smalllinenumber">[line 295]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static nothing dumpDOMnode(
+DOMNode
+$elem, [string
+$header = 'DOMElement'])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Helper (temp?) function to output Object(DOMElement) as XML<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Object(DOMNode)&nbsp;&nbsp;</td>
+        <td><b>$elem</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$header</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+
+  <hr />
+	<a name="method__construct"></a>
+	<h3>constructor __construct <span class="smalllinenumber">[line 75]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>SPSR_in_parse __construct(
+[
+$regionsfile = 'http://www.cpcr.ru/cgi-bin/postxml.pl?Regions'], [
+$citiesfile = 'http://www.cpcr.ru/components/xml/cities.xml'], [
+$citiescfile = 'http://www.cpcr.ru/components/xml/citiesc.xml'], [
+$outencoding = 'utf-8'])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$regionsfile</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$citiesfile</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$citiescfile</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$outencoding</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodcompile"></a>
+	<h3>method compile <span class="smalllinenumber">[line 100]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>&$this &amp;compile(
+[string
+$needCountries = '//Countries[normalize-space(@Country_Name)=&quot;Россия&quot; or normalize-space(@Country_Name)=&quot;Белоруссия&quot; or normalize-space(@Country_Name)=&quot;Украина&quot;]'])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Compile all mesh of foles CPCR to one well-signed structure.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$needCountries</b>&nbsp;&nbsp;</td>
+        <td>XPAth string to select countries, which interested now.</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodcompileCountry"></a>
+	<h3>method compileCountry <span class="smalllinenumber">[line 114]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>&$this compileCountry(
+DOMElement
+$country)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Compile separate country.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Object(DOMElement)&nbsp;&nbsp;</td>
+        <td><b>$country</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetCountries"></a>
+	<h3>method getCountries <span class="smalllinenumber">[line 230]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Object(DOMDocument) getCountries(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Return all countries.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetCountryById"></a>
+	<h3>method getCountryById <span class="smalllinenumber">[line 187]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Object(DOMElement) getCountryById(
+int
+$id)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Return Country from compiled list (if was not compiled yet - compiled by default) by its ID.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$id</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetCountryByName"></a>
+	<h3>method getCountryByName <span class="smalllinenumber">[line 204]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Object(DOMElement)|null getCountryByName(
+string
+$name)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Return Country from compiled list (if was not compiled yet - compiled by default) by its name.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$name</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetCountryByXPath"></a>
+	<h3>method getCountryByXPath <span class="smalllinenumber">[line 218]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Object(DOMNodeList) getCountryByXPath(
+string
+$xpathquery)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Return Country from compiled list (if was not compiled yet - compiled by default) by Xpath.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$xpathquery</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodloadCities"></a>
+	<h3>method loadCities <span class="smalllinenumber">[line 264]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>&$this &amp;loadCities(
+[boolean
+$force = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Load XML file of Russian cities if it is not loaded yet (or second argument set to true)<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$force</b>&nbsp;&nbsp;</td>
+        <td>If true - in any case load.</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodloadCitiesc"></a>
+	<h3>method loadCitiesc <span class="smalllinenumber">[line 279]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>&$this &amp;loadCitiesc(
+[boolean
+$force = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Load XML file of Foreign cities if it is not loaded yet (or second argument set to true)<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$force</b>&nbsp;&nbsp;</td>
+        <td>If true - in any case load.</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodparseCitiesForeign"></a>
+	<h3>method parseCitiesForeign <span class="smalllinenumber">[line 253]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Object(DOMNodeList) parseCitiesForeign(
+DOMElement
+&$country, integer
+$regionId)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Foreign countries do not devided to regions, only Russia.<br /><br /><p>Return DOMNodeList of cities belong to country.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">integer&nbsp;&nbsp;</td>
+        <td><b>$regionId</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">DOMElement&nbsp;&nbsp;</td>
+        <td><b>&$country</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodparseCitiesRussian"></a>
+	<h3>method parseCitiesRussian <span class="smalllinenumber">[line 241]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Object(DOMNodeList) parseCitiesRussian(
+DOMElement
+&$region, integer
+$regionId)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Foreign countries do not devided to regions, only Russia.<br /><br /><p>Return DOMNodeList of cities belong to region.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">integer&nbsp;&nbsp;</td>
+        <td><b>$regionId</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">DOMElement&nbsp;&nbsp;</td>
+        <td><b>&$region</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+
+</div><br />
+
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Tue, 15 Apr 2014 16:16:39 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

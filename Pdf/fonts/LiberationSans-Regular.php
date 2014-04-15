@@ -1,4 +1,8 @@
 <?php
+/**
+* @package Pdf
+*/
+
 $type='TrueTypeUnicode';
 $name='LiberationSans-Regular';
 $desc=array('Ascent'=>905,'Descent'=>-212,'CapHeight'=>905,'Flags'=>32,'FontBBox'=>'[-203 -303 1050 910]','ItalicAngle'=>0,'StemV'=>70,'MissingWidth'=>600);

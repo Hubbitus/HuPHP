@@ -20,9 +20,8 @@
 *	- Add methods ::iconv(), ::enconv()
 **/
 
-/*
 include_once('file_base.php');
-*/
+
 /**
 * @uses REQUIRED_VAR
 * @uses VariableRequiredException

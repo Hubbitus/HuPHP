@@ -1,4 +1,8 @@
 <?php
+/**
+* @package Pdf
+*/
+
 $type='TrueTypeUnicode';
 $name='LiberationMono-Bold';
 $desc=array('Ascent'=>833,'Descent'=>-300,'CapHeight'=>833,'Flags'=>33,'FontBBox'=>'[-27 -300 615 833]','ItalicAngle'=>0,'StemV'=>120,'MissingWidth'=>600);

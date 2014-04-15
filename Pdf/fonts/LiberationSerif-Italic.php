@@ -1,4 +1,8 @@
 <?php
+/**
+* @package Pdf
+*/
+
 $type='TrueTypeUnicode';
 $name='LiberationSerif-Italic';
 $desc=array('Ascent'=>891,'Descent'=>-216,'CapHeight'=>891,'Flags'=>96,'FontBBox'=>'[-177 -303 1088 981]','ItalicAngle'=>-17.3,'StemV'=>70,'MissingWidth'=>600);

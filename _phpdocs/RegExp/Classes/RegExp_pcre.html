@@ -1,0 +1,764 @@
+<html>
+<head>
+<title>Docs For Class RegExp_pcre</title>
+<link rel="stylesheet" type="text/css" href="../../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">RegExp</td>
+  </tr>
+  <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_RegExp.html" class="menu">class tree: RegExp</a> ]
+		  [ <a href="../../elementindex_RegExp.html" class="menu">index: RegExp</a> ]
+		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+	<div id="todolist">
+			<p><a href="../../todolist.html">Todo List</a></p>
+	</div>
+      <b>Packages:</b><br />
+              <a href="../../li_default.html">default</a><br />
+              <a href="../../li_a1agregator-ru.html">a1agregator-ru</a><br />
+              <a href="../../li_charset_convert.html">charset_convert</a><br />
+              <a href="../../li_Console.html">Console</a><br />
+              <a href="../../li_Database.html">Database</a><br />
+              <a href="../../li_Debug.html">Debug</a><br />
+              <a href="../../li_dellin-ru.html">dellin-ru</a><br />
+              <a href="../../li_Exceptions.html">Exceptions</a><br />
+              <a href="../../li_Filesystem.html">Filesystem</a><br />
+              <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Macroses.html">Macroses</a><br />
+              <a href="../../li_moysklad.html">moysklad</a><br />
+              <a href="../../li_Orange.html">Orange</a><br />
+              <a href="../../li_Pdf.html">Pdf</a><br />
+              <a href="../../li_Process.html">Process</a><br />
+              <a href="../../li_RegExp.html">RegExp</a><br />
+              <a href="../../li_settings.html">settings</a><br />
+              <a href="../../li_SIMhistory.html">SIMhistory</a><br />
+              <a href="../../li_SPSR.html">SPSR</a><br />
+              <a href="../../li_System.html">System</a><br />
+              <a href="../../li_TopLevel.html">TopLevel</a><br />
+              <a href="../../li_Users.html">Users</a><br />
+              <a href="../../li_Vars.html">Vars</a><br />
+              <a href="../../li_YML.html">YML</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../../RegExp/_RegExp---RegExp_base.php.html">		RegExp_base.php
+		</a><br>
+			<a href="../../RegExp/_RegExp---RegExp_pcre.php.html">		RegExp_pcre.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+	Classes<br />	    &nbsp;&nbsp;		<a href="../../RegExp/Classes/RegExp_base.html">RegExp_base</a><br />
+	    &nbsp;&nbsp;		<a href="../../RegExp/Classes/RegExp_base_base.html">RegExp_base_base</a><br />
+	    &nbsp;&nbsp;		<a href="../../RegExp/Classes/RegExp_pcre.html">RegExp_pcre</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: RegExp_pcre</h1>
+Source Location: /RegExp/RegExp_pcre.php<br /><br />
+
+
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre><a href="../../Vars/Classes/HuClass.html">HuClass</a>
+   |
+   --<a href="../../RegExp/Classes/RegExp_base_base.html">RegExp_base_base</a>
+      |
+      --<a href="../../RegExp/Classes/RegExp_base.html">RegExp_base</a>
+         |
+         --RegExp_pcre</pre><br />
+<div class="description"></div><br /><br />
+<h4>Author(s):</h4>
+<ul>
+              </ul>
+
+
+        
+
+        
+</td>
+
+
+<td valign="top">
+<h3><a href="#class_consts">Constants</a></h3>
+<ul>
+    <li><a href="../../RegExp/Classes/RegExp_pcre.html#constclassName">className</a></li>
+  </ul>
+</td>
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../../RegExp/Classes/RegExp_pcre.html#methodconvertOffsetToChars">convertOffsetToChars</a></li>
+    <li><a href="../../RegExp/Classes/RegExp_pcre.html#methoddoMatch">doMatch</a></li>
+    <li><a href="../../RegExp/Classes/RegExp_pcre.html#methoddoMatchAll">doMatchAll</a></li>
+    <li><a href="../../RegExp/Classes/RegExp_pcre.html#methodquote">quote</a></li>
+    <li><a href="../../RegExp/Classes/RegExp_pcre.html#methodreplace">replace</a></li>
+    <li><a href="../../RegExp/Classes/RegExp_pcre.html#methodsplit">split</a></li>
+    <li><a href="../../RegExp/Classes/RegExp_pcre.html#methodtest">test</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+<td valign="top">
+<h3>Inherited Constants</h3>
+<div class="tags">
+<h4>Class: <a href="../../RegExp/Classes/RegExp_base_base.html">RegExp_base_base</a></h4>
+<dl>
+<dt>
+  <a href="../../RegExp/Classes/RegExp_base_base.html#constclassName">RegExp_base_base::className</a>
+</dt>
+<dd>
+   
+</dd>
+</dl>
+</div>
+</td>
+
+<td valign="top">
+<h3>Inherited Variables</h3>
+<div class="tags">
+<h4>Class: <a href="../../RegExp/Classes/RegExp_base_base.html">RegExp_base_base</a></h4>
+<dl>
+<dt>
+  <a href="../../RegExp/Classes/RegExp_base_base.html#var$matchCount">RegExp_base_base::$matchCount</a>
+  
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../RegExp/Classes/RegExp_base_base.html#var$matches">RegExp_base_base::$matches</a>
+  
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../RegExp/Classes/RegExp_base_base.html#var$matchesValid">RegExp_base_base::$matchesValid</a>
+  
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../RegExp/Classes/RegExp_base_base.html#var$paireddelimeters">RegExp_base_base::$paireddelimeters</a>
+  
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../RegExp/Classes/RegExp_base_base.html#var$RegExp">RegExp_base_base::$RegExp</a>
+  
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../RegExp/Classes/RegExp_base_base.html#var$replaceRes">RegExp_base_base::$replaceRes</a>
+  
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../RegExp/Classes/RegExp_base_base.html#var$replaceTo">RegExp_base_base::$replaceTo</a>
+  
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../RegExp/Classes/RegExp_base_base.html#var$replaceValid">RegExp_base_base::$replaceValid</a>
+  
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../RegExp/Classes/RegExp_base_base.html#var$sourceText">RegExp_base_base::$sourceText</a>
+  
+</dt>
+<dd>
+   
+</dd>
+</dl>
+</div>
+</td>
+
+<td valign="top">
+<h3>Inherited Methods</h3>
+<div class="tags">
+<h4>Class: <a href="../../RegExp/Classes/RegExp_base.html">RegExp_base</a></h4>
+<dl>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base.html#methodgetMatch">RegExp_base::getMatch()</a>
+
+  </dt>
+  <dd>
+    
+  </dd>
+  </dl>
+<h4>Class: <a href="../../RegExp/Classes/RegExp_base_base.html">RegExp_base_base</a></h4>
+<dl>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#method__construct">RegExp_base_base::__construct()</a>
+
+  </dt>
+  <dd>
+    Constructor.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methoddoMatch">RegExp_base_base::doMatch()</a>
+
+  </dt>
+  <dd>
+    Description of $flags and $offset see on http://www.php.net/preg_match_all  Called by default, in -&gt;match()!
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methoddoMatchAll">RegExp_base_base::doMatchAll()</a>
+
+  </dt>
+  <dd>
+    {@see -&gt;doMatch()}. But match all occurences.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodgetHuMatches">RegExp_base_base::getHuMatches()</a>
+
+  </dt>
+  <dd>
+    Full equivalent of {@see getMatches()) except of result returned as Object(HuArray) instead of regular array.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodgetMatches">RegExp_base_base::getMatches()</a>
+
+  </dt>
+  <dd>
+    Full(os sub, if $n present) array of matches after call (not checked!) {@see doMatch()}, {@see doMatchAll()}, {@see split()}
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodgetRegExp">RegExp_base_base::getRegExp()</a>
+
+  </dt>
+  <dd>
+    Return regexp string.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodgetRegExpBody">RegExp_base_base::getRegExpBody()</a>
+
+  </dt>
+  <dd>
+    Assume RegeExp correct. Do not check it.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodgetRegExpDelimiterEnd">RegExp_base_base::getRegExpDelimiterEnd()</a>
+
+  </dt>
+  <dd>
+    Return endDelimiter
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodgetRegExpDelimiterStart">RegExp_base_base::getRegExpDelimiterStart()</a>
+
+  </dt>
+  <dd>
+    Return startDelimiter
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodgetRegExpModifiers">RegExp_base_base::getRegExpModifiers()</a>
+
+  </dt>
+  <dd>
+    Return RegExpModifiers
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodgetText">RegExp_base_base::getText()</a>
+
+  </dt>
+  <dd>
+    Return current text.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodmatch">RegExp_base_base::match()</a>
+
+  </dt>
+  <dd>
+    Return N-th single match
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodmatchCount">RegExp_base_base::matchCount()</a>
+
+  </dt>
+  <dd>
+    Return count of matches. If matches not valid - by default do ::doMatchAll() first
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodquote">RegExp_base_base::quote()</a>
+
+  </dt>
+  <dd>
+    Quote given string or each (recursive) string in array.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodreplace">RegExp_base_base::replace()</a>
+
+  </dt>
+  <dd>
+    Description see <a href="http://php.net/preg_replace">http://php.net/preg_replace</a>
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodset">RegExp_base_base::set()</a>
+
+  </dt>
+  <dd>
+    Set Pattern, text, raplacement. Shorthand to appropriate methods.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodsetRegExp">RegExp_base_base::setRegExp()</a>
+
+  </dt>
+  <dd>
+    Set RegExp from string.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodsetReplaceTo">RegExp_base_base::setReplaceTo()</a>
+
+  </dt>
+  <dd>
+    Set ReplaceTo
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodsetText">RegExp_base_base::setText()</a>
+
+  </dt>
+  <dd>
+    Set text to match from string.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodsetTextRef">RegExp_base_base::setTextRef()</a>
+
+  </dt>
+  <dd>
+    Equivalent of {@see -&gt;&amp;setText()}, but assign text by ref. Be very carefully!
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodsplit">RegExp_base_base::split()</a>
+
+  </dt>
+  <dd>
+    Split by regexp. Results as usual in matches.
+  </dd>
+    <dt>
+    <a href="../../RegExp/Classes/RegExp_base_base.html#methodtest">RegExp_base_base::test()</a>
+
+  </dt>
+  <dd>
+    Do test, faster then doMatch, don't filling -&gt;matches, -&gt;matchCount and other.
+  </dd>
+  </dl>
+<h4>Class: <a href="../../Vars/Classes/HuClass.html">HuClass</a></h4>
+<dl>
+    <dt>
+    <a href="../../Vars/Classes/HuClass.html#methodcast">HuClass::cast()</a>
+
+  </dt>
+  <dd>
+    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+  </dd>
+    <dt>
+    <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
+
+  </dt>
+  <dd>
+    This is just wrupper for system construction 'clone'. Objects in PHP implicitly returned by 	reference (see http://www.php.net/manual/en/language.references.spot.php#59820), so, to use it 	without modification of main object I should clone it, but it is break one line counstruction chain.
+  </dd>
+    <dt>
+    <a href="../../Vars/Classes/HuClass.html#methodcreate">HuClass::create()</a>
+
+  </dt>
+  <dd>
+    To extends most (all) classes.
+  </dd>
+    <dt>
+    <a href="../../Vars/Classes/HuClass.html#methodcreateWithoutLSB">HuClass::createWithoutLSB()</a>
+
+  </dt>
+  <dd>
+    This is similar create, but created for backward capability only.
+  </dd>
+  </dl>
+</div>
+</td>
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 34]<br />
+<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/Tokenizer.html">Tokenizer</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../RegExp/Classes/RegExp_base.html">RegExp_base</a></td>
+  </tr>
+</table>
+</div>
+
+</div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+  <hr />
+	<a name="methodquote"></a>
+	<h3>static method quote <span class="smalllinenumber">[line 54]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void quote(
+
+$toQuote, [
+$delimeter = '/'])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methodquote">RegExp_base_base::quote()</a> (Quote given string or each (recursive) string in array.)<br /><br />
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$toQuote</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$delimeter</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+
+  <hr />
+	<a name="methodconvertOffsetToChars"></a>
+	<h3>method convertOffsetToChars <span class="smalllinenumber">[line 103]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>nothing convertOffsetToChars(
+[int(PREG_OFFSET_CAPTURE)
+$flags = PREG_OFFSET_CAPTURE])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Conversion bytes offsets to characters.<br /><br /><p>Whith PREG_OFFSET_CAPTURE preg_match* returns bytes offset!!!! nor chars!!!!  So, recalculate it in chars is several methods:  1) Using utf8_decode. See http://ru2.php.net/manual/ru/function.strlen.php 	comment &quot;chernyshevsky at hotmail dot com&quot;  2) And using mb_strlen http://ru2.php.net/manual/ru/function.preg-match.php comment &quot;chuckie&quot;</p><p>I using combination of its. And it independent of the presence mbstring extension!</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">int(PREG_OFFSET_CAPTURE)&nbsp;&nbsp;</td>
+        <td><b>$flags</b>&nbsp;&nbsp;</td>
+        <td>Flags which was used in previous operation.</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methoddoMatch"></a>
+	<h3>method doMatch <span class="smalllinenumber">[line 65]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void &amp;doMatch(
+[
+$flags = null], [
+$offset = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methoddoMatch">RegExp_base_base::doMatch()</a> (Description of $flags and $offset see on http://www.php.net/preg_match_all  Called by default, in -&gt;match()!)<br /><br />
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$flags</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$offset</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methoddoMatchAll"></a>
+	<h3>method doMatchAll <span class="smalllinenumber">[line 75]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void &amp;doMatchAll(
+[
+$flags = null], [
+$offset = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methoddoMatchAll">RegExp_base_base::doMatchAll()</a> ({@see -&gt;doMatch()}. But match all occurences.)<br /><br />
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$flags</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$offset</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodreplace"></a>
+	<h3>method replace <span class="smalllinenumber">[line 138]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array replace(
+[int
+$limit = -1])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Description see <a href="http://php.net/preg_replace">http://php.net/preg_replace</a>  Results cached, so fill free invoke it several times without overhead of replace.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>Results of replace. Cached.</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methodreplace">RegExp_base_base::replace()</a> (Description see <a href="http://php.net/preg_replace">http://php.net/preg_replace</a>)<br /><br />
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$limit</b>&nbsp;&nbsp;</td>
+        <td>If present - replace only $limit occurrences. In default case of -1 - replace ALL.</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsplit"></a>
+	<h3>method split <span class="smalllinenumber">[line 155]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>&$this &amp;split(
+[int(-1)
+$limit = -1], [int(null)
+$flags = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Split by regexp.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>since:</b>&nbsp;&nbsp;</td><td>Version 2.1.1</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methodsplit">RegExp_base_base::split()</a> (Split by regexp. Results as usual in matches.)<br /><br />
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">int(-1)&nbsp;&nbsp;</td>
+        <td><b>$limit</b>&nbsp;&nbsp;</td>
+        <td>If present - replace only $limit occurrences. In default case of -1 - replace ALL.</td>
+      </tr>
+          <tr>
+        <td class="type">int(null)&nbsp;&nbsp;</td>
+        <td><b>$flags</b>&nbsp;&nbsp;</td>
+        <td><a href="http://php.net/preg-split">http://php.net/preg-split</a> for detailed descriptions of $flags.</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodtest"></a>
+	<h3>method test <span class="smalllinenumber">[line 47]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void test(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methodtest">RegExp_base_base::test()</a> (Do test, faster then doMatch, don't filling -&gt;matches, -&gt;matchCount and other.)<br /><br />
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+
+</div><br />
+
+<hr />
+<a name="class_consts"></a>
+<h3>Class Constants</h3>
+<div class="tags">
+	<a name="constclassName"></a>
+	<p></p>
+	<h4>className = <span class="value">&nbsp;'RegExp_pcre'</span></h4>
+	<p>[line 35]</p>
+  
+
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+</div><br />
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Tue, 15 Apr 2014 16:16:33 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

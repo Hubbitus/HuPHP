@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>Docs for page RegExp_base.php</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">RegExp</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_RegExp.html" class="menu">class tree: RegExp</a> ]
+		  [ <a href="../elementindex_RegExp.html" class="menu">index: RegExp</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+	<div id="todolist">
+			<p><a href="../todolist.html">Todo List</a></p>
+	</div>
+      <b>Packages:</b><br />
+              <a href="../li_default.html">default</a><br />
+              <a href="../li_a1agregator-ru.html">a1agregator-ru</a><br />
+              <a href="../li_charset_convert.html">charset_convert</a><br />
+              <a href="../li_Console.html">Console</a><br />
+              <a href="../li_Database.html">Database</a><br />
+              <a href="../li_Debug.html">Debug</a><br />
+              <a href="../li_dellin-ru.html">dellin-ru</a><br />
+              <a href="../li_Exceptions.html">Exceptions</a><br />
+              <a href="../li_Filesystem.html">Filesystem</a><br />
+              <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Macroses.html">Macroses</a><br />
+              <a href="../li_moysklad.html">moysklad</a><br />
+              <a href="../li_Orange.html">Orange</a><br />
+              <a href="../li_Pdf.html">Pdf</a><br />
+              <a href="../li_Process.html">Process</a><br />
+              <a href="../li_RegExp.html">RegExp</a><br />
+              <a href="../li_settings.html">settings</a><br />
+              <a href="../li_SIMhistory.html">SIMhistory</a><br />
+              <a href="../li_SPSR.html">SPSR</a><br />
+              <a href="../li_System.html">System</a><br />
+              <a href="../li_TopLevel.html">TopLevel</a><br />
+              <a href="../li_Users.html">Users</a><br />
+              <a href="../li_Vars.html">Vars</a><br />
+              <a href="../li_YML.html">YML</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../RegExp/_RegExp---RegExp_base.php.html">		RegExp_base.php
+		</a><br>
+			<a href="../RegExp/_RegExp---RegExp_pcre.php.html">		RegExp_pcre.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+	Classes<br />	    &nbsp;&nbsp;		<a href="../RegExp/Classes/RegExp_base.html">RegExp_base</a><br />
+	    &nbsp;&nbsp;		<a href="../RegExp/Classes/RegExp_base_base.html">RegExp_base_base</a><br />
+	    &nbsp;&nbsp;		<a href="../RegExp/Classes/RegExp_pcre.html">RegExp_pcre</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Procedural File: RegExp_base.php</h1>
+Source Location: /RegExp/RegExp_base.php<br /><br />
+
+
+<br>
+<br>
+
+<div class="contents">
+<h2>Classes:</h2>
+<dt><a href="../RegExp/Classes/RegExp_base_base.html">RegExp_base_base</a></dt>
+	<dd></dd>
+<dt><a href="../RegExp/Classes/RegExp_base.html">RegExp_base</a></dt>
+	<dd>Require late-static-bindings future, so, it is available only in PHP version &gt;= 5.3.0-dev</dd>
+</div><br /><br />
+
+<h2>Page Details:</h2>
+RegExp manupulation.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+  </tr>
+  <tr>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>2.1.2.1</td>
+  </tr>
+  <tr>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
+  </tr>
+  <tr>
+    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2008-05-29 <ul><li>Separate classes RegExp_base_base and RegExp_base to allov using this on PHP &lt; 5.3.0-dev</li><li>Add doc to methods, reformatting.</li></ul>     * 2008-05-30 19:05 <ul><li>Made $paireddelimeters method NOT static. It is allowed in implementation, because it is may
+        now be used as property. So, if outsource code use it static - must change it. This is sacrifice
+        to to compatibility with PHP &lt; 5.3.0 (whithout late static bindings)</li><li>getMatch add in eval-code, to avoid fatal errors in earler versions PHP</li></ul>     * 2009-01-18 14:57 (No version bump) <ul><li>Reflect renaming Class.php to HuClass.php</li></ul>     * 2009-01-18 23:39 ver 2.1b to 2.1 <ul><li>Add method getText in base class</li></ul>     * 2009-02-11 13:41 ver 2.1 to 2.1.1 <ul><li>Add method split</li></ul>     * 2009-03-02 01:52 ver 2.1.1 to 2.1.2 <ul><li>Add optional parameter $n into ::getMatches() method.</li><li>Add ::getHuMatches() method</li></ul>     * 2009-03-02 16:49 ver 2.1.2 to 2.1.2.1 <ul><li>Fix setTextRef, to set ref, not copy :)</li></ul></td>
+  </tr>
+</table>
+</div>
+
+<br /><br />
+<h4>Includes:</h4>
+<div class="tags">
+include_once(<a href="../Vars/Classes/_Vars---HuClass.php.html">'Vars/HuClass.php'</a>) [line 38]<br />
+RegExp manupulation.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+  </tr>
+  <tr>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>2.1.2.1</td>
+  </tr>
+  <tr>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
+  </tr>
+  <tr>
+    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2008-05-29 <ul><li>Separate classes RegExp_base_base and RegExp_base to allov using this on PHP &lt; 5.3.0-dev</li><li>Add doc to methods, reformatting.</li></ul>     * 2008-05-30 19:05 <ul><li>Made $paireddelimeters method NOT static. It is allowed in implementation, because it is may
+        now be used as property. So, if outsource code use it static - must change it. This is sacrifice
+        to to compatibility with PHP &lt; 5.3.0 (whithout late static bindings)</li><li>getMatch add in eval-code, to avoid fatal errors in earler versions PHP</li></ul>     * 2009-01-18 14:57 (No version bump) <ul><li>Reflect renaming Class.php to HuClass.php</li></ul>     * 2009-01-18 23:39 ver 2.1b to 2.1 <ul><li>Add method getText in base class</li></ul>     * 2009-02-11 13:41 ver 2.1 to 2.1.1 <ul><li>Add method split</li></ul>     * 2009-03-02 01:52 ver 2.1.1 to 2.1.2 <ul><li>Add optional parameter $n into ::getMatches() method.</li><li>Add ::getHuMatches() method</li></ul>     * 2009-03-02 16:49 ver 2.1.2 to 2.1.2.1 <ul><li>Fix setTextRef, to set ref, not copy :)</li></ul></td>
+  </tr>
+</table>
+</div>
+
+include_once(<a href="../Macroses/_macroses---EMPTY_STR.php.html">'macroses/EMPTY_STR.php'</a>) [line 39]<br />
+
+include_once(<a href="../Macroses/_macroses---REQUIRED_NOT_NULL.php.html">'macroses/REQUIRED_NOT_NULL.php'</a>) [line 40]<br />
+
+</div>
+
+<br /><br />
+
+<br /><br />
+
+<br />
+
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Tue, 15 Apr 2014 16:16:32 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+

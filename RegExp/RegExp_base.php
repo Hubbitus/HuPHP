@@ -35,9 +35,7 @@
 *	- Fix setTextRef, to set ref, not copy :)
 **/
 
-/*-inc
-include_once('Vars/HuClass.php');	#For method "create"
-*/
+include_once('Vars/HuClass.php');
 include_once('macroses/EMPTY_STR.php');
 include_once('macroses/REQUIRED_NOT_NULL.php');
 /**

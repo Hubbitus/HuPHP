@@ -1,4 +1,8 @@
 <?php
+/**
+* @package Pdf
+*/
+
 $type='TrueTypeUnicode';
 $name='DejaVuSansMono';
 $desc=array('Ascent'=>928,'Descent'=>-236,'CapHeight'=>928,'Flags'=>33,'FontBBox'=>'[-558 -375 718 1042]','ItalicAngle'=>0,'StemV'=>70,'MissingWidth'=>602);

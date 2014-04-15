@@ -10,11 +10,13 @@
 * @changelog
 *	* 2009-10-12 16:59 ver 1.0
 *	- Initial version.
-**/
+*/
 
-include('autoload.php');
-
+/**
+* @example Pdf/test_unicode.php
+*/
 define('FPDF_FONTPATH', 'Pdf/fonts/');
+include('autoload.php');
 
 $pdf = new FPDI();
 

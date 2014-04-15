@@ -1,4 +1,8 @@
 <?php
+/**
+* @package Pdf
+*/
+
 $type='TrueTypeUnicode';
 $name='LiberationSerif-Bold';
 $desc=array('Ascent'=>891,'Descent'=>-216,'CapHeight'=>891,'Flags'=>32,'FontBBox'=>'[-182 -303 1085 1008]','ItalicAngle'=>0,'StemV'=>120,'MissingWidth'=>600);
