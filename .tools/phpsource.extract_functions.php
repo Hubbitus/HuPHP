@@ -1,11 +1,8 @@
 #!/usr/bin/php
 <?
-//define('AUTOLOAD_DEBUG', true);
-//include('autoload.php');
-
 /*
 * Map regeneration in progrees by this script, so, we must include all explicit!
-* Futhermore - we must do it with al descending includes in reverted mode (leaf first)!
+* Futhermore - we must do it with all descending includes in reverted mode (leaf first)!
 * this all to do not use autoinclde mechanisms!
 **/
 include_once('Exceptions/BaseException.php');
@@ -16,6 +13,7 @@ include_once('Debug/debug.php');
 
 include_once('Vars/Settings/settings.php');
 include_once('Vars/HuArray.php');
+include_once('RegExp/IRegExp.php');
 include_once('RegExp/RegExp_base.php');
 include_once('RegExp/RegExp_pcre.php');
 /**
@@ -24,30 +22,33 @@ include_once('RegExp/RegExp_pcre.php');
 **/
 
 $_skip_functions = array(
-	'myErrorHandler'		# In mssql_database to catch errors. Hack
+	'myErrorHandler'		// In mssql_database to catch errors. Hack
 	,'backtrace__printout_WEB_helper'
-	,'file_get_contents'	# In template old backward capability.
+	,'file_get_contents'	// In template old backward capability.
 );
 
 ###############################################################################################
 
-//Base example from: http://ru.php.net/manual/ru/tokenizer.examples.php
-/*
-* T_ML_COMMENT does not exist in PHP 5.
-* The following three lines define it in order to
-* preserve backwards compatibility.
-*
-* The next two lines define the PHP 5 only T_DOC_COMMENT,
-* which we will mask as T_ML_COMMENT for PHP 4.
-*/
+
+	/**
+	* @internal
+	* Base example from: http://ru.php.net/manual/ru/tokenizer.examples.php
+	*
+	* T_ML_COMMENT does not exist in PHP 5.
+	* The following three lines define it in order to
+	* preserve backwards compatibility.
+	*
+	* The next two lines define the PHP 5 only T_DOC_COMMENT,
+	* which we will mask as T_ML_COMMENT for PHP 4.
+	*/
 	if ( !defined('T_ML_COMMENT') ){
-	define('T_ML_COMMENT', T_COMMENT);
+		define('T_ML_COMMENT', T_COMMENT);
 	} elseif( !defined('T_DOC_COMMENT') ){
-	define('T_DOC_COMMENT', T_ML_COMMENT);
+		define('T_DOC_COMMENT', T_ML_COMMENT);
 	}
 
 //$source = file_get_contents('example.php');
-$source = file_get_contents(($inputfile = isset($argv[1]) ? $argv[1] : 'php://stdin')); #$argv[2] optionnaly part of DIR, which must be stripped
+$source = file_get_contents(($inputfile = isset($argv[1]) ? $argv[1] : 'php://stdin')); // $argv[2] optionnaly part of DIR, which must be stripped
 $tokens = token_get_all($source);
 
 $class_started = false;
@@ -114,7 +115,7 @@ foreach ($tokens as $token){
 	}
 }
 //Echo only function names. one per line
-//RegExp for function name got from (in Russian is absent): http://ru.php.net/manual/en/functions.user-defined.php
+//RegExp for function name got from: http://ru.php.net/manual/en/functions.user-defined.php
 $m = classCreate('RegExp_pcre', '#function\s+\&?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)
 		->doMatchAll()
 			->getHuMatches(1)

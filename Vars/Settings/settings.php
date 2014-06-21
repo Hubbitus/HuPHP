@@ -29,7 +29,7 @@ include_once('macroses/EMPTY_STR.php');
 include_once('Vars/HuClass.php');	#Static method ::create()
 
 class settings extends HuClass{
-protected $__SETS = array();#Сами настройки, массив
+	protected $__SETS = array(); // Array of settings itself
 
 	/**
 	* Constructor.
@@ -48,8 +48,8 @@ protected $__SETS = array();#Сами настройки, массив
 	* @return	&$this
 	**/
 	public function &setSetting($name, $value){
-	$this->__SETS[$name] = $value;
-	return $this;
+		$this->__SETS[$name] = $value;
+		return $this;
 	}#m setSetting
 
 	/**
@@ -61,7 +61,7 @@ protected $__SETS = array();#Сами настройки, массив
 	* @return	nothing
 	**/
 	public function setSettingsArray(array $setArr){
-	$this->__SETS = REQUIRED_VAR($setArr);
+		$this->__SETS = REQUIRED_VAR($setArr);
 	}#m setSettingsArray
 
 	/**
@@ -72,15 +72,15 @@ protected $__SETS = array();#Сами настройки, массив
 	* @param	array	$setArr
 	**/
 	public function mergeSettingsArray(array $setArr){
-	/**
-	* @internal
-	* We don't use array_merge there because want preserv keys, even numerical:
-	* http://ru2.php.net/manual/en/function.array-merge.php#92602
-	* We also can't use simple array concatenation because want overwrite old values by new one...
-	* So, doing all manually!
-	**/
+		/**
+		* @internal
+		* We don't use array_merge there because want preserve keys, even numerical:
+		* http://ru2.php.net/manual/en/function.array-merge.php#92602
+		* We also can't use simple array concatenation because want overwrite old values by new one...
+		* So, doing all manually!
+		**/
 		foreach (REQUIRED_VAR($setArr) as $key => $val){
-		$this->__SETS[$key] = $val;
+			$this->__SETS[$key] = $val;
 		}
 	}#m mergeSettingsArray
 
@@ -91,7 +91,7 @@ protected $__SETS = array();#Сами настройки, массив
 	* @return	mixed
 	**/
 	public function &getProperty($name){
-	return $this->__SETS[REQUIRED_NOT_NULL($name)];
+		return $this->__SETS[REQUIRED_NOT_NULL($name)];
 	}#m getProperty
 
 	/**
@@ -102,8 +102,8 @@ protected $__SETS = array();#Сами настройки, массив
 	* @return	&$this
 	**/
 	public function &__set($name, $value){
-	$this->setSetting($name, $value);
-	return $this;
+		$this->setSetting($name, $value);
+		return $this;
 	}#m __set
 
 	/**
@@ -113,7 +113,7 @@ protected $__SETS = array();#Сами настройки, массив
 	* @return	mixed
 	**/
 	public function &__get($name){
-	return $this->getProperty($name);
+		return $this->getProperty($name);
 	}#m __get
 
 	/**
@@ -123,7 +123,7 @@ protected $__SETS = array();#Сами настройки, массив
 	* @return	boolean
 	**/
 	public function __isset($name) {
-	return isset($this->__SETS[REQUIRED_NOT_NULL($name)]);
+		return isset($this->__SETS[REQUIRED_NOT_NULL($name)]);
 	}#m __isset
 
 	/**
@@ -135,11 +135,11 @@ protected $__SETS = array();#Сами настройки, массив
 	* @return	string
 	**/
 	public function getString(array $fields){
-	$str = '';
+		$str = '';
 		foreach (REQUIRED_VAR($fields) as $field){
-		$str .= $this->formatField($field);
+			$str .= $this->formatField($field);
 		}
-	return $str;
+		return $str;
 	}#m getString
 
 	/**
@@ -166,10 +166,10 @@ protected $__SETS = array();#Сами настройки, массив
 	public function formatField($field){
 		if (is_array($field)){
 			if (!isset($field[0])) $field = array_values($field);
-		return NON_EMPTY_STR(@$this->getProperty($field[0]), @$field[1], @$field[2], @$field[3]);
+			return NON_EMPTY_STR(@$this->getProperty($field[0]), @$field[1], @$field[2], @$field[3]);
 		}
 		else{
-		return EMPTY_STR(@$this->getProperty($field), $field);#Или по имени настройку, если это просто текст;
+			return EMPTY_STR(@$this->getProperty($field), $field);#Или по имени настройку, если это просто текст;
 		}
 	}#m formatField
 
@@ -179,8 +179,8 @@ protected $__SETS = array();#Сами настройки, массив
 	* @return &$this
 	**/
 	public function &clear(){
-	$this->__SETS = array();
-	return $this;
+		$this->__SETS = array();
+		return $this;
 	}#m clear
 
 	/**
@@ -189,7 +189,7 @@ protected $__SETS = array();#Сами настройки, массив
 	* @return integer
 	**/
 	public function length(){
-	return sizeof($this->__SETS);
+		return sizeof($this->__SETS);
 	}#m length
 }#c settings
 
@@ -199,9 +199,8 @@ protected $__SETS = array();#Сами настройки, массив
 include_once('macroses/REQUIRED_VAR.php');
 include_once('macroses/REQUIRED_NOT_NULL.php');
 
-#Для удобного наследования
 /**
-* Parent class for more usefull using in parents who want be "customizable"
+* Parent class for more usefull using in parents who want be "customizable". Convenient nesting.
 **/
 class get_settings{
 /** WARNING! Must be inicialised in parents! **/

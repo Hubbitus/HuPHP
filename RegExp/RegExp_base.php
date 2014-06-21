@@ -5,7 +5,7 @@
 * @package RegExp
 * @version 2.1.2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @copyright Copyright (c) 2014, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
 *	* 2008-05-29
@@ -46,7 +46,7 @@ include_once('macroses/REQUIRED_NOT_NULL.php');
 * @uses HuClass
 * @uses HuArray
 **/
-abstract class RegExp_base_base extends HuClass{
+abstract class RegExp_base_base extends HuClass implements IRegExp{
 #MUST be defined properly in childs untill late static binding
 const className = 'RegExp_base';
 
@@ -283,15 +283,6 @@ public $paireddelimeters = array(
 	* @return &$this
 	**/
 	abstract public function &split($limit = -1, $flags = null);
-
-	/**
-	* Quote given string or each (recursive) string in array.
-	*
-	* @param	string|array	$toQuote
-	* @param	string='/'	$delimiter. Chars to addition escape. Usaly (and default) char start and end of regexp.
-	* @return	string|array	Same type as given.
-	**/
-	abstract public static function quote($toQuote, $delimeter = '/');
 
 	/**
 	* Full(os sub, if $n present) array of matches after call (not checked!) {@see doMatch()}, {@see doMatchAll()}, {@see split()}

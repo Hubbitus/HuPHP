@@ -5,7 +5,7 @@ OUT_FILE=${OUT_FILE:-"$DIR/__autoload.map.php"}
 
 : > "$OUT_FILE"
 #{
-echo "<? //This is automatically generated file! Please, do not edit it manual!!!
+echo "<? //This is automatically generated file! Please, do not edit it manualy!!! Instead use .tools scripts.
 \$GLOBALS['__CONFIG']['__autoload_map'] = array(" >> "$OUT_FILE"
 
 # RegExp_base.php contains Function definition in Eval as hack. so, explicit exclude it.

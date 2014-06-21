@@ -1,3 +1,4 @@
+#!/bin/env php
 <?
 include('autoload.php');
 

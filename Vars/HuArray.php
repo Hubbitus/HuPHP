@@ -64,7 +64,7 @@ const huScheme = 'hu://';
 	* @param	(array)mixed=null	$array	 Mixed, explicit cast as array!
 	**/
 	function __construct(/*(array)*/ $array = null){
-	parent::__construct((array)$array);
+		parent::__construct((array)$array);
 	}#__c
 
 	/**
@@ -75,12 +75,12 @@ const huScheme = 'hu://';
 	* @return	&$this
 	**/
 	public function &push($var){
-	//On old PHP got errro: PHP Fatal error:  func_get_args(): Can't be used as a function parameter in /home/_SHARED_/Vars/HuArray.php on line 58
-	//call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), func_get_args()));
-	//Do the same with temp var:
-	$args = func_get_args();
-	call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $args));
-	return $this;
+		//On old PHP got error: PHP Fatal error:  func_get_args(): Can't be used as a function parameter in /home/_SHARED_/Vars/HuArray.php on line 58
+		//call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), func_get_args()));
+		//Do the same with temp var:
+		$args = func_get_args();
+		call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $args));
+		return $this;
 	}#m push
 
 	/**
@@ -91,8 +91,8 @@ const huScheme = 'hu://';
 	**/
 	public function &pushArray(array $arr){
 		if ($arr)
-		call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $arr));
-	return $this;
+			call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $arr));
+		return $this;
 	}#m pushArray
 
 	/**
@@ -102,7 +102,7 @@ const huScheme = 'hu://';
 	* @return	$this->pushArray()
 	**/
 	public function &pushHuArray(HuArray $arr){
-	return $this->pushArray($arr->getArray());
+		return $this->pushArray($arr->getArray());
 	}#m pushHuArray
 
 	/**
@@ -111,8 +111,8 @@ const huScheme = 'hu://';
 	* @return &mixed
 	**/
 	public function &last(){
-	end($this->__SETS);
-	return $this->__SETS[key($this->__SETS)];
+		end($this->__SETS);
+		return $this->__SETS[key($this->__SETS)];
 	}#m last
 
 	/**
@@ -121,7 +121,7 @@ const huScheme = 'hu://';
 	* @return	array
 	**/
 	public function getArray(){
-	return $this->__SETS;
+		return $this->__SETS;
 	}#m getArray
 
 	/**
@@ -136,7 +136,7 @@ const huScheme = 'hu://';
 	* @return Object(HuArray)
 	**/
 	public function getSlice($offset, $length = null, $preserve_keys = false){
-	return new HuArray(array_slice($this->__SETS, $offset, EMPTY_VAR($length, sizeof($this->__SETS)), $preserve_keys));
+		return new HuArray(array_slice($this->__SETS, $offset, EMPTY_VAR($length, sizeof($this->__SETS)), $preserve_keys));
 	}#m getSlice
 
 	/**
@@ -147,7 +147,7 @@ const huScheme = 'hu://';
 	* @Throws(VariableIsNullException)
 	**/
 	public function &getProperty($name){
-	return $this->__SETS[REQUIRED_NOT_NULL($name)];
+		return $this->__SETS[REQUIRED_NOT_NULL($name)];
 	}#m getProperty
 
 	/**
@@ -174,7 +174,7 @@ const huScheme = 'hu://';
 		**/
 		elseif( self::huScheme == substr($name, 0, strlen(self::huScheme)) ) return $this->hu( substr($name, strlen(self::huScheme)) );
 		else
-		return $this->getProperty($name);
+			return $this->getProperty($name);
 	}#m __get
 
 	/**
@@ -200,7 +200,7 @@ const huScheme = 'hu://';
 	**/
 	function &hu($name){
 		if (is_array($this->$name)) $this->$name = new HuArray($this->$name);
-	return $this->getProperty($name);
+		return $this->getProperty($name);
 	}#m hu
 
 	/**
@@ -209,19 +209,19 @@ const huScheme = 'hu://';
 	* @param	string	$name
 	* @param	mixed	$value
 	**/
-	function __set($name, $value){
+	function &__set($name, $value){
 		/**
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
 		if ('_last_' == $name){
-		$ref =& $this->last();
+			$ref =& $this->last();
 		}
 		elseif( self::huScheme == substr($name, 0, strlen(self::huScheme)) ) $ref =& $this->hu( substr($name, strlen(self::huScheme)) );
 		else{
-		$ref =& $this->getProperty($name);
+			$ref =& $this->getProperty($name);
 		}
-	$ref = $value;
+		$ref = $value;
 	}#m __set
 
 	/**
@@ -231,8 +231,8 @@ const huScheme = 'hu://';
 	* @return	&$this
 	**/
 	public function walk($callback){
-	array_walk($this->__SETS, $callback);
-	return $this;
+		array_walk($this->__SETS, $callback);
+		return $this;
 	}#m walk
 
 	/**
@@ -243,8 +243,8 @@ const huScheme = 'hu://';
 	* @return	&$this
 	**/
 	public function &filter($callback){
-	$this->__SETS = array_filter($this->__SETS, $callback);
-	return $this;
+		$this->__SETS = array_filter($this->__SETS, $callback);
+		return $this;
 	}#m filter
 
 	/**
@@ -254,8 +254,8 @@ const huScheme = 'hu://';
 	* @return	&$this
 	**/
 	public function &filterByKeys(array $keys){
-	$this->__SETS = array_diff_key( $this->__SETS, array_flip(  array_intersect(   array_keys($this->__SETS), $keys   )  ) );
-	return $this;
+		$this->__SETS = array_diff_key( $this->__SETS, array_flip(  array_intersect(   array_keys($this->__SETS), $keys   )  ) );
+		return $this;
 	}#m filterByKeys
 
 	/**
@@ -267,8 +267,8 @@ const huScheme = 'hu://';
 	* @return	&$this
 	**/
 	public function &filterOutByKeys(array $keys){
-	$this->__SETS = array_diff_key( $this->__SETS, array_flip($keys) );
-	return $this;
+		$this->__SETS = array_diff_key( $this->__SETS, array_flip($keys) );
+		return $this;
 	}#m filterOutByKeys
 
 	/**
@@ -278,10 +278,10 @@ const huScheme = 'hu://';
 	* @return	&$this
 	**/
 	public function &filterKeysCallback($callback){
-	$keys = new self(array_flip( $this->__SETS ));
-	$keys->filter($callback);
-	$this->filterByKeys($keys->getArray());
-	return $this;
+		$keys = new self(array_flip( $this->__SETS ));
+		$keys->filter($callback);
+		$this->filterByKeys($keys->getArray());
+		return $this;
 	}#m filterKeysCallback
 
 	/**
@@ -291,7 +291,7 @@ const huScheme = 'hu://';
 	* @return	string
 	**/
 	public function implode($delim = ''){
-	return implode($delim, $this->__SETS);
+		return implode($delim, $this->__SETS);
 	}#m implode
 
 	/**
@@ -300,7 +300,7 @@ const huScheme = 'hu://';
 	* @return	int
 	**/
 	public function count(){
-	return count($this->__SETS);
+		return count($this->__SETS);
 	}#m count
 
 	/**
@@ -312,30 +312,30 @@ const huScheme = 'hu://';
 	* @return	mixed
 	**/
 	public function reduce($callback, $initial = 0){
-	return array_reduce($this->__SETS, $callback, $initial);
+		return array_reduce($this->__SETS, $callback, $initial);
 	}#m reduce
 
-/*##########################################################
-## From interface Iterator
-##########################################################*/
+	/*##########################################################
+	## From interface Iterator
+	##########################################################*/
 	public function rewind(){
-	reset($this->__SETS);
+		reset($this->__SETS);
 	}#m rewind
 
 	public function current(){
-	return /* $var = */ current($this->__SETS);
+		return /* $var = */ current($this->__SETS);
 	}#m current
 
 	public function key(){
-	return /* $var = */ key($this->__SETS);
+		return /* $var = */ key($this->__SETS);
 	}#m key
 
 	public function next(){
-	return /* $var =*/ next($this->__SETS);
+		return /* $var =*/ next($this->__SETS);
 	}#m next
 
 	public function valid(){
-	return ($this->current() !== false);
+		return ($this->current() !== false);
 	}#m valid
 }#c HuArray
 ?>
