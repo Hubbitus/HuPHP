@@ -4,7 +4,7 @@
 *
 * @package RegExp
 * @version 2.1.2.1
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 *
 * @changelog
@@ -33,20 +33,21 @@
 *
 *	* 2009-03-02 16:49 ver 2.1.2 to 2.1.2.1
 *	- Fix setTextRef, to set ref, not copy :)
+*21.06.2014 Now placed in open access in github - all other changes only in git!
 **/
 
 include_once('Vars/HuClass.php');
 include_once('macroses/EMPTY_STR.php');
 include_once('macroses/REQUIRED_NOT_NULL.php');
+
 /**
 * @uses REQUIRED_NOT_NULL()
 * @uses VariableIsNullException
 * @uses HuClass
 * @uses HuArray
 **/
-
 abstract class RegExp_base_base extends HuClass{
-#MUST be defined properly in childs
+#MUST be defined properly in childs untill late static binding
 const className = 'RegExp_base';
 
 protected $sourceText;
@@ -84,7 +85,7 @@ public $paireddelimeters = array(
 	* For parameters {@see ->set()}
 	**/
 	public function __construct($regexp = null, $text = null, $replaceTo = null){
-	$this->set($regexp, $text, $replaceTo);
+		$this->set($regexp, $text, $replaceTo);
 	}#_c
 
 	/**
@@ -95,9 +96,9 @@ public $paireddelimeters = array(
 	**/
 	public function match($Number){
 		if (!$this->matchesValid)#May be throw Exception???
-		$this->doMatch();
+			$this->doMatch();
 
-	return $this->matches[$Number];
+		return $this->matches[$Number];
 	}#m match
 
 	/**
@@ -106,7 +107,7 @@ public $paireddelimeters = array(
 	* @return string
 	**/
 	public function getRegExp(){
-	return $this->RegExp;
+		return $this->RegExp;
 	}#m getRegExp
 
 	/**
@@ -117,9 +118,9 @@ public $paireddelimeters = array(
 	* @Throws(VariableIsNullException)
 	**/
 	public function &setRegExp($regexp){
-	$this->RegExp = REQUIRED_NOT_NULL($regexp);
-	$this->matchesValid = false;
-	return $this;
+		$this->RegExp = REQUIRED_NOT_NULL($regexp);
+		$this->matchesValid = false;
+		return $this;
 	}#m setRegExp
 
 	/**
@@ -128,7 +129,7 @@ public $paireddelimeters = array(
 	* @return string
 	**/
 	public function getText(){
-	return $this->sourceText;
+		return $this->sourceText;
 	}#m getText
 
 	/**
@@ -139,9 +140,9 @@ public $paireddelimeters = array(
 	* @Throws(VariableIsNullException)
 	**/
 	public function &setText($text){
-	$this->sourceText = REQUIRED_NOT_NULL($text);
-	$this->matchesValid = false;
-	return $this;
+		$this->sourceText = REQUIRED_NOT_NULL($text);
+		$this->matchesValid = false;
+		return $this;
 	}#m setText
 
 	/**
@@ -151,9 +152,9 @@ public $paireddelimeters = array(
 	* @return &$this
 	**/
 	public function &setTextRef(&$text){
-	$this->sourceText =& $text;
-	$this->matchesValid = false;
-	return $this;
+		$this->sourceText =& $text;
+		$this->matchesValid = false;
+		return $this;
 	}#m setTextRef
 
 	/**
@@ -164,9 +165,9 @@ public $paireddelimeters = array(
 	* @Throws(VariableIsNullException)
 	**/
 	public function &setReplaceTo($text){
-	$this->replaceTo = REQUIRED_NOT_NULL($text);
-	$this->replaceValid = $this->matchesValid = false;
-	return $this;
+		$this->replaceTo = REQUIRED_NOT_NULL($text);
+		$this->replaceValid = $this->matchesValid = false;
+		return $this;
 	}#m setReplaceTo
 
 	/**
@@ -176,8 +177,8 @@ public $paireddelimeters = array(
 	**/
 	public function matchCount(){
 		if (!$this->matchesValid)#May be throw Exception???
-		$this->doMatchAll();
-	return $this->matchCount;
+			$this->doMatchAll();
+		return $this->matchCount;
 	}#m MatchCount
 
 	/**
@@ -192,13 +193,13 @@ public $paireddelimeters = array(
 		foreach (array('RegExp', 'Text', 'replaceTo') as $v){
 			if ($$v) $this->{"set$v"} ($$v);
 		}
-	return $this;
+		return $this;
 	}#m set
 
 	/**
 	* Do test, faster then doMatch, don't filling ->matches, ->matchCount and other.
 	**/
-	abstract public function test();#{}#m test
+	abstract public function test();#m test
 
 	/**
 	* Description of $flags and $offset see on http://www.php.net/preg_match_all
@@ -222,7 +223,7 @@ public $paireddelimeters = array(
 	* @return char
 	**/
 	public function getRegExpDelimiterStart($item = null){
-	$item = is_null($item) ? 0 : $item;
+		$item = is_null($item) ? 0 : $item;
 		if (is_array($this->RegExp)) return $this->RegExp[$item]{0};
 		else return $this->RegExp{0};
 	}#m getRegExpDelimiterStart
@@ -235,8 +236,9 @@ public $paireddelimeters = array(
 	**/
 	public function getRegExpDelimiterEnd($item = null){
 		if (isset($this->paireddelimeters[$this->getRegExpDelimiterStart($item)]))
-		return $this->paireddelimeters[$this->getRegExpDelimiterStart($item)];
-		else return $this->getRegExpDelimiterStart($item);
+			return $this->paireddelimeters[$this->getRegExpDelimiterStart($item)];
+		else
+			return $this->getRegExpDelimiterStart($item);
 	}#m getRegExpDelimiterEnd
 
 	/**
@@ -246,7 +248,7 @@ public $paireddelimeters = array(
 	* @return string
 	**/
 	public function getRegExpBody($item = null){
-	$item = is_null($item) ? 0 : $item;
+		$item = is_null($item) ? 0 : $item;
 		if (is_array($this->RegExp)) return substr($this->RegExp[$item], 1, strrpos($this->RegExp[$item], $this->getRegExpDelimiterEnd($item)) - 1);
 		else return substr($this->RegExp, 1, strrpos($this->RegExp, $this->getRegExpDelimiterEnd()) - 1);
 	}#m getRegExpBody
@@ -258,7 +260,7 @@ public $paireddelimeters = array(
 	* @return char
 	**/
 	public function getRegExpModifiers($item = null){
-	$item = is_null($item) ? 0 : $item;
+		$item = is_null($item) ? 0 : $item;
 		if (is_array($this->RegExp)) return (string)substr($this->RegExp[$item], strrpos($this->RegExp[$item], $this->getRegExpDelimiterEnd($item)) + 1 );
 		else return (string)substr($this->RegExp, strrpos($this->RegExp, $this->getRegExpDelimiterEnd()) + 1 );
 	}#m getRegExpModifiers
@@ -309,10 +311,7 @@ public $paireddelimeters = array(
 	* @return Object(HuArray) of last matches.
 	**/
 	public function getHuMatches($n = null){
-	/*-inc
-	include_once('Vars/HuArray.php');
-	*/
-	return new HuArray($this->getMatches($n));
+		return new HuArray($this->getMatches($n));
 	}#m getHuMatches
 }#c RegExp_base_base
 
@@ -328,7 +327,6 @@ public $paireddelimeters = array(
 		* for fast static call
 		**/
 			public static function getMatch($regexp, $text, $N=0){
-			//$tmpR = new self::$className($regexp, $text);
 			/**
 			* Require using static:: instead of self::. See
 			* http://ru2.php.net/manual/ru/language.oop5.static.php single
