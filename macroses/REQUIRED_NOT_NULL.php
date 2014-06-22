@@ -1,22 +1,14 @@
 <?
 /**
-* Toolkit of small functions as "macroses".
+* Toolkit of small functions aka "macroses".
 * DEBUG version
+*
 * @package Macroses
 * @version 1.2
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created ?2008-05-29 19:55 version 1.2 from 1.0
 *
-* @changelog
-*	2008-05-29 19:55 version 1.2 from 1.0
-*	- Rewritten with VariableRequiredException. Now provide only backtrace, not Tokenizer! It takes
-*	less overhead and debag/nodebug handled in one place (in exception class)
-**/
-
-/*-inc
-include_once('Exceptions/variables.php');
-*/
-/**
 * @uses VariableIsNullException
 **/
 

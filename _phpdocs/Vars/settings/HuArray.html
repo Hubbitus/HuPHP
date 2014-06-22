@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Vars.html" class="menu">class tree: Vars</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Vars.html" class="menu">class tree: Vars</a> ]
 		  [ <a href="../../elementindex_Vars.html" class="menu">index: Vars</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -141,10 +142,10 @@ Source Location: /Vars/HuArray.php<br /><br />
 <div class="description"></div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-                          </ul>
+        </ul>
 
 
-                
+    
 
                 <p class="implements">
             Implements interfaces:
@@ -314,7 +315,7 @@ Source Location: /Vars/HuArray.php<br /><br />
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -347,22 +348,13 @@ Source Location: /Vars/HuArray.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 58]<br />
+[line 18]<br />
 <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../RegExp/Classes/RegExp_base_base.html">RegExp_base_base</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/VariableIsNullException.html">VariableIsNullException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Vars/settings/settings.html">settings</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---REQUIRED_NOT_NULL.php.html#functionREQUIRED_NOT_NULL">REQUIRED_NOT_NULL()</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../RegExp/_RegExp---RegExp_base.php.html">RegExp_base.php</a></td>
   </tr>
 </table>
 </div>
@@ -378,7 +370,7 @@ Source Location: /Vars/HuArray.php<br /><br />
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 66]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 26]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -407,7 +399,7 @@ Overrides <a href="../../Vars/settings/settings.html#method__construct">settings
   </div>
   <hr />
 	<a name="methodcount"></a>
-	<h3>method count <span class="smalllinenumber">[line 302]</span></h3>
+	<h3>method count <span class="smalllinenumber">[line 262]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -434,7 +426,7 @@ Overrides <a href="../../Vars/settings/settings.html#method__construct">settings
   </div>
   <hr />
 	<a name="methodcurrent"></a>
-	<h3>method current <span class="smalllinenumber">[line 325]</span></h3>
+	<h3>method current <span class="smalllinenumber">[line 284]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -466,7 +458,7 @@ Overrides <a href="../../Vars/settings/settings.html#method__construct">settings
   </div>
   <hr />
 	<a name="methodfilter"></a>
-	<h3>method filter <span class="smalllinenumber">[line 245]</span></h3>
+	<h3>method filter <span class="smalllinenumber">[line 205]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -504,7 +496,7 @@ $callback)</code>
   </div>
   <hr />
 	<a name="methodfilterByKeys"></a>
-	<h3>method filterByKeys <span class="smalllinenumber">[line 256]</span></h3>
+	<h3>method filterByKeys <span class="smalllinenumber">[line 216]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -542,7 +534,7 @@ $keys)</code>
   </div>
   <hr />
 	<a name="methodfilterKeysCallback"></a>
-	<h3>method filterKeysCallback <span class="smalllinenumber">[line 280]</span></h3>
+	<h3>method filterKeysCallback <span class="smalllinenumber">[line 240]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -580,7 +572,7 @@ $callback)</code>
   </div>
   <hr />
 	<a name="methodfilterOutByKeys"></a>
-	<h3>method filterOutByKeys <span class="smalllinenumber">[line 269]</span></h3>
+	<h3>method filterOutByKeys <span class="smalllinenumber">[line 229]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -618,7 +610,7 @@ $keys)</code>
   </div>
   <hr />
 	<a name="methodgetArray"></a>
-	<h3>method getArray <span class="smalllinenumber">[line 123]</span></h3>
+	<h3>method getArray <span class="smalllinenumber">[line 83]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -645,7 +637,7 @@ $keys)</code>
   </div>
   <hr />
 	<a name="methodgetProperty"></a>
-	<h3>method getProperty <span class="smalllinenumber">[line 149]</span></h3>
+	<h3>method getProperty <span class="smalllinenumber">[line 109]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -683,7 +675,7 @@ Overrides <a href="../../Vars/settings/settings.html#methodgetProperty">settings
   </div>
   <hr />
 	<a name="methodgetSlice"></a>
-	<h3>method getSlice <span class="smalllinenumber">[line 138]</span></h3>
+	<h3>method getSlice <span class="smalllinenumber">[line 98]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -733,7 +725,7 @@ $preserve_keys = false])</code>
   </div>
   <hr />
 	<a name="methodhu"></a>
-	<h3>method hu <span class="smalllinenumber">[line 201]</span></h3>
+	<h3>method hu <span class="smalllinenumber">[line 161]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -762,7 +754,7 @@ $name)</code>
   </div>
   <hr />
 	<a name="methodimplode"></a>
-	<h3>method implode <span class="smalllinenumber">[line 293]</span></h3>
+	<h3>method implode <span class="smalllinenumber">[line 253]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -800,7 +792,7 @@ $delim = ''])</code>
   </div>
   <hr />
 	<a name="methodkey"></a>
-	<h3>method key <span class="smalllinenumber">[line 329]</span></h3>
+	<h3>method key <span class="smalllinenumber">[line 288]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -832,7 +824,7 @@ $delim = ''])</code>
   </div>
   <hr />
 	<a name="methodlast"></a>
-	<h3>method last <span class="smalllinenumber">[line 113]</span></h3>
+	<h3>method last <span class="smalllinenumber">[line 73]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -859,7 +851,7 @@ $delim = ''])</code>
   </div>
   <hr />
 	<a name="methodnext"></a>
-	<h3>method next <span class="smalllinenumber">[line 333]</span></h3>
+	<h3>method next <span class="smalllinenumber">[line 292]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -891,7 +883,7 @@ $delim = ''])</code>
   </div>
   <hr />
 	<a name="methodpush"></a>
-	<h3>method push <span class="smalllinenumber">[line 77]</span></h3>
+	<h3>method push <span class="smalllinenumber">[line 37]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -935,7 +927,7 @@ $var.)</code>
   </div>
   <hr />
 	<a name="methodpushArray"></a>
-	<h3>method pushArray <span class="smalllinenumber">[line 92]</span></h3>
+	<h3>method pushArray <span class="smalllinenumber">[line 52]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -973,7 +965,7 @@ $arr)</code>
   </div>
   <hr />
 	<a name="methodpushHuArray"></a>
-	<h3>method pushHuArray <span class="smalllinenumber">[line 104]</span></h3>
+	<h3>method pushHuArray <span class="smalllinenumber">[line 64]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1017,7 +1009,7 @@ $var.)</code>
   </div>
   <hr />
 	<a name="methodreduce"></a>
-	<h3>method reduce <span class="smalllinenumber">[line 314]</span></h3>
+	<h3>method reduce <span class="smalllinenumber">[line 274]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1064,7 +1056,7 @@ $initial = 0])</code>
   </div>
   <hr />
 	<a name="methodrewind"></a>
-	<h3>method rewind <span class="smalllinenumber">[line 321]</span></h3>
+	<h3>method rewind <span class="smalllinenumber">[line 280]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1096,7 +1088,7 @@ $initial = 0])</code>
   </div>
   <hr />
 	<a name="methodvalid"></a>
-	<h3>method valid <span class="smalllinenumber">[line 337]</span></h3>
+	<h3>method valid <span class="smalllinenumber">[line 296]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1128,7 +1120,7 @@ $initial = 0])</code>
   </div>
   <hr />
 	<a name="methodwalk"></a>
-	<h3>method walk <span class="smalllinenumber">[line 233]</span></h3>
+	<h3>method walk <span class="smalllinenumber">[line 193]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1166,7 +1158,7 @@ $callback)</code>
   </div>
   <hr />
 	<a name="method__get"></a>
-	<h3>method __get <span class="smalllinenumber">[line 162]</span></h3>
+	<h3>method __get <span class="smalllinenumber">[line 122]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1195,11 +1187,11 @@ Overrides <a href="../../Vars/settings/settings.html#method__get">settings::__ge
   </div>
   <hr />
 	<a name="method__set"></a>
-	<h3>method __set <span class="smalllinenumber">[line 212]</span></h3>
+	<h3>method __set <span class="smalllinenumber">[line 172]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>void __set(
+		<code>void &amp;__set(
 string
 $name, mixed
 $value)</code>
@@ -1238,7 +1230,7 @@ Overrides <a href="../../Vars/settings/settings.html#method__set">settings::__se
 	<a name="consthuScheme"></a>
 	<p></p>
 	<h4>huScheme = <span class="value">&nbsp;'hu://'</span></h4>
-	<p>[line 59]</p>
+	<p>[line 19]</p>
   
 
   <br />
@@ -1248,7 +1240,7 @@ Overrides <a href="../../Vars/settings/settings.html#method__set">settings::__se
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:39 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:12 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

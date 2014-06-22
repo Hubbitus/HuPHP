@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
 		  [ <a href="../../elementindex_Debug.html" class="menu">index: Debug</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -55,6 +56,8 @@
                         <b>Files:</b><br />
       	  <div class="package">
 			<a href="../../Debug/_Debug---_HuFormat.defaults---backtraceprintout.php.html">		backtrace::printout.php
+		</a><br>
+			<a href="../../Debug/_Debug---gentime_class.php.html">		gentime_class.php
 		</a><br>
 			<a href="../../Debug/_Debug---Tokenizer.php.html">		Tokenizer.php
 		</a><br>
@@ -119,14 +122,15 @@
 	Dump-utils<br />	    &nbsp;&nbsp;		<a href="../../Debug/Dump-utils/dump_utils.html">dump_utils</a><br />
 	  </div>
   <div class="package">
+		    		<a href="../../Debug/gentime.html">gentime</a><br />
+	    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
+	  </div>
+  <div class="package">
 	HuFormat<br />	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormat.html">HuFormat</a><br />
 	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormatException.html">HuFormatException</a><br />
 	  </div>
   <div class="package">
 	log_dump<br />	    &nbsp;&nbsp;		<a href="../../Debug/log_dump/dump.html">dump</a><br />
-	  </div>
-  <div class="package">
-		    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
 	  </div>
                 </td>
     <td>
@@ -156,10 +160,10 @@ Source Location: /Debug/backtrace.php<br /><br />
 <div class="description"></div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-                                                                    </ul>
+        </ul>
 
 
-                                            
+    
 
         
 </td>
@@ -365,43 +369,13 @@ Source Location: /Debug/backtrace.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 61]<br />
+[line 28]<br />
 <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/VariableEmptyException.html">VariableEmptyException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/VariableRangeException.html">VariableRangeException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/VariableRequiredException.html">VariableRequiredException</a></td>
-  </tr>
-  <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/Bactrace/BacktraceEmptyException.html">BacktraceEmptyException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/VariableArrayInconsistentException.html">VariableArrayInconsistentException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---REQUIRED_VAR.php.html#functionREQUIRED_VAR">REQUIRED_VAR()</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/Bactrace/BacktraceEmptyException.html">BacktraceEmptyException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/ClassPropertyNotExistsException.html">ClassPropertyNotExistsException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---EMPTY_VAR.php.html#functionEMPTY_VAR">EMPTY_VAR()</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/HuFormat/HuFormat.html">HuFormat</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---ASSIGN_IF.php.html#functionASSIGN_IF">ASSIGN_IF()</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/Bactrace/_Debug---backtrace.php.html">backtrace.php</a></td>
   </tr>
 </table>
 </div>
@@ -414,7 +388,7 @@ Source Location: /Debug/backtrace.php<br /><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:23 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:01 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

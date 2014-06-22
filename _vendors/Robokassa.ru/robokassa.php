@@ -4,17 +4,14 @@
 *
 * @package Orange SMS-API
 * @version 1.1.1
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 */
-
-//include('autoload.php');
 
 /**
 * Robokassa allow use additional user parameters, but require start
 * it names from 'sph' prefix.
 *
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @uses settings
 * @uses VariableRangeException
 **/
@@ -25,7 +22,7 @@ class robokassa_sph extends settings{
 	**/
 	public function setSetting($name, $value){
 		if(strtolower(substr($name, 0, 3)) != 'sph') $name = 'sph_' . $name;
-	parent::setSetting($name, $value);
+		parent::setSetting($name, $value);
 	}#m setSetting
 
 	/**
@@ -33,12 +30,12 @@ class robokassa_sph extends settings{
 	* @inheritdoc
 	**/
 	public function setSettingsArray(array $setArr){
-	$this->__SETS = array();
-	/**
-	* @internal
-	* For our realisation just foreach all, now we can simple invoke mergeSettingsArray()
-	**/
-	$this->mergeSettingsArray($setArr);
+		$this->__SETS = array();
+		/**
+		* @internal
+		* For our realisation just foreach all, now we can simple invoke mergeSettingsArray()
+		**/
+		$this->mergeSettingsArray($setArr);
 	}#m setSettingsArray
 
 	/**
@@ -55,8 +52,8 @@ class robokassa_sph extends settings{
 	* @return	&$this
 	**/
 	function &sort(){
-	ksort($this->__SETS);
-	return $this;
+		ksort($this->__SETS);
+		return $this;
 	}#m sort
 
 	/**
@@ -65,13 +62,13 @@ class robokassa_sph extends settings{
 	* @return	string
 	**/
 	public function getString(){
-	$this->sort();
-	$ret = '';
+		$this->sort();
+		$ret = '';
 		foreach ($this->__SETS as $key => $value){
-		$ret .= '&' . urlencode($key) . '=' . urlencode($value);
+			$ret .= '&' . urlencode($key) . '=' . urlencode($value);
 		}
 		if (strlen($ret) > 2048) throw new VariableRangeException('Max encoded length of SPHs can not be greater than 2048');
-	return $ret;
+		return $ret;
 	}#m getString
 
 	/**
@@ -80,7 +77,7 @@ class robokassa_sph extends settings{
 	* @return	string
 	**/
 	public function __toString(){
-	return $this->getString();
+		return $this->getString();
 	}#m __toString()
 }#c robokassa_sph
 
@@ -92,86 +89,86 @@ class robokassa_sph extends settings{
 * @uses VariableRangeException
 **/
 class robokassa extends settings_check{
-const BASE_url_production = 'https://merchant.roboxchange.com/Index.aspx?';
-const BASE_url_test = 'http://test.robokassa.ru/Index.aspx?';
+	const BASE_url_production = 'https://merchant.roboxchange.com/Index.aspx?';
+	const BASE_url_test = 'http://test.robokassa.ru/Index.aspx?';
 
-public $properties = array(
-	'MrchLogin', 'MrchPass1', 'MrchPass2',  'OutSum', 'InvId', 'Desc', 'SignatureValue', 'IncCurrLabel', 'Culture', 'Encoding', 'Email'
-	,'sph'
-	// auxiliary data
-	,'URL_FORMAT', 'SIGNATURE_FORMAT', 'SIGNATURE_IN_success_FORMAT', 'SIGNATURE_IN_result_FORMAT', 'BASE_URL'
-);
+	public $properties = array(
+		'MrchLogin', 'MrchPass1', 'MrchPass2',  'OutSum', 'InvId', 'Desc', 'SignatureValue', 'IncCurrLabel', 'Culture', 'Encoding', 'Email'
+		,'sph'
+		// auxiliary data
+		,'URL_FORMAT', 'SIGNATURE_FORMAT', 'SIGNATURE_IN_success_FORMAT', 'SIGNATURE_IN_result_FORMAT', 'BASE_URL'
+	);
 
-protected $__SETS = array(
-/**
-* @var $MrchLogin;	Merchant Login in Robokassa
-* @var $MrchPass1;	Merchant Password1 in Robokassa
-* @var $MrchPass2;	Merchant Password2 in Robokassa for the XML interface
-* @var $OutSum;		Sum of order
-* @var $InvId;		Order number in store. Must be unique in store.
-* @var $Desc;		Order description. Max length - 100 chars.
-*
-* @var $SignatureValue;	Computed: Signature value. {@see ::getSignature()} method.
+	protected $__SETS = array(
+		/**
+		* @var $MrchLogin;	Merchant Login in Robokassa
+		* @var $MrchPass1;	Merchant Password1 in Robokassa
+		* @var $MrchPass2;	Merchant Password2 in Robokassa for the XML interface
+		* @var $OutSum;		Sum of order
+		* @var $InvId;		Order number in store. Must be unique in store.
+		* @var $Desc;		Order description. Max length - 100 chars.
+		*
+		* @var $SignatureValue;	Computed: Signature value. {@see ::getSignature()} method.
+		*
+		* @var $IncCurrLabel;	Optional: Initial currency. May be changed by user during pay process.
+		* @var $Culture			Optional: Language: 'en' | 'ru'
+		* @var $Encoding 		Optional: For the HTML-form of kassa. Not needed on redirect.
+		* @var $Email			Optional: Email of user. May be changed by user during pay process.
+		*
+		* @var $sph				Object(robokassa_sph)
+		* @var $sph:			String of alternative conversion of $this->sph. For more detailes {@see ::getProperty()} method.
+		*/
+		//Default values
+		'BASE_URL' => self::BASE_url_production
+		,'Culture' => 'ru'
+		,'Encoding' => 'utf-8'
 
-* @var $IncCurrLabel;	Optional: Initial currency. May be changed by user during pay process.
-* @var $Culture			Optional: Language: 'en' | 'ru'
-* @var $Encoding 		Optional: For the HTML-form of kassa. Not needed on redirect.
-* @var $Email			Optional: Email of user. May be changed by user during pay process.
-*
-* @var $sph				Object(robokassa_sph)
-* @var $sph:			String of alternative conversion of $this->sph. For more detailes {@see ::getProperty()} method.
-*/
-//Default values
-	'BASE_URL' => self::BASE_url_production
-	,'Culture' => 'ru'
-	,'Encoding' => 'utf-8'
+		,'URL_FORMAT'	=> array(
+			'BASE_URL'
+			,array('MrchLogin', 'MrchLogin=')
+			,array('OutSum_F', '&OutSum=')
+			,array('InvId', '&InvId=')
+			,array('Desc', '&Desc=')
+			,array('SignatureValue', '&SignatureValue=')
+			,array('IncCurrLabel', '&IncCurrLabel=')
+			,array('Culture', '&Culture=')
+			,array('Encoding', '&Encoding=')
+			,array('Email', '&Email=')
 
-	,'URL_FORMAT'	=> array(
-		'BASE_URL'
-		,array('MrchLogin', 'MrchLogin=')
-		,array('OutSum_F', '&OutSum=')
-		,array('InvId', '&InvId=')
-		,array('Desc', '&Desc=')
-		,array('SignatureValue', '&SignatureValue=')
-		,array('IncCurrLabel', '&IncCurrLabel=')
-		,array('Culture', '&Culture=')
-		,array('Encoding', '&Encoding=')
-		,array('Email', '&Email=')
+			,array('sph', '', '', '') //Last '' is important
+		)
+		,'SIGNATURE_FORMAT'	=> array(
+			array('MrchLogin', '', ':')
+			,array('OutSum', '', ':')
+			,array('InvId', '', ':')
+//			,array('Desc', '', ':') By Specification it is not marked as Optional, but in example it is not present!
+			,'MrchPass1'
+			,array('sph:', ':', '', '')
+		)
+		,'SIGNATURE_IN_success_FORMAT'	=> array( //IN signature, to check
+			array('OutSum', '', ':')
+			,array('InvId', '', ':')
+			,'MrchPass1'
+			,array('sph:', ':', '', '')
+		)
+		,'SIGNATURE_IN_result_FORMAT'	=> array( //IN signature, to check
+			array('OutSum', '', ':')
+			,array('InvId', '', ':')
+			,'MrchPass2'
+			,array('sph:', ':', '', '')
+		)
+	);
 
-		,array('sph', '', '', '') //Last '' is important
-	)
-	,'SIGNATURE_FORMAT'	=> array(
-		array('MrchLogin', '', ':')
-		,array('OutSum', '', ':')
-		,array('InvId', '', ':')
-//		,array('Desc', '', ':') By Specification it is not marked as Optional, but in example it is not present!
-		,'MrchPass1'
-		,array('sph:', ':', '', '')
-	)
-	,'SIGNATURE_IN_success_FORMAT'	=> array( //IN signature, to check
-		array('OutSum', '', ':')
-		,array('InvId', '', ':')
-		,'MrchPass1'
-		,array('sph:', ':', '', '')
-	)
-	,'SIGNATURE_IN_result_FORMAT'	=> array( //IN signature, to check
-		array('OutSum', '', ':')
-		,array('InvId', '', ':')
-		,'MrchPass2'
-		,array('sph:', ':', '', '')
-	)
-);
-
-//[&shpa=yyy&shpb=xxx...-пользовательские_параметры_начинающиеся_с_SHP_в_сумме_до_2048_знаков]
-private /* robokassa_sph */ $sph;
+	//[&shpa=yyy&shpb=xxx...-пользовательские_параметры_начинающиеся_с_SHP_в_сумме_до_2048_знаков]
+	private /* robokassa_sph */ $sph;
 
 	/**
 	* @param	array	$array Settings.
 	**/
 	function __construct(array $array){
-	$this->sph = new robokassa_sph(@$array['sph']);
-	parent::__construct($this->properties, $array);
-	}#m __construct
+		$this->sph = new robokassa_sph(@$array['sph']);
+		parent::__construct($this->properties, $array);
+	}#__c
 
 	/**
 	* Get URL to redirect on robokassa payment geteway.
@@ -179,7 +176,7 @@ private /* robokassa_sph */ $sph;
 	* @return	string
 	**/
 	function getPayURL(){
-	return $this->getString($this->URL_FORMAT);
+		return $this->getString($this->URL_FORMAT);
 	}#m getPayURL
 
 	/**
@@ -203,7 +200,7 @@ private /* robokassa_sph */ $sph;
 	<input type=hidden name=ORDER_NUM value="<?php echo htmlspecialchars($ordr); ?>">
 	</form>
 	<?
-	}#m getPayForm
+	}#m getPayForm"
 
 	/**
 	* Reimplement to allow calculate signature on the fly and some more magick
@@ -211,23 +208,23 @@ private /* robokassa_sph */ $sph;
 	public function getProperty($name){
 		switch ($name){
 			case 'SignatureValue':
-			return $this->getSignature();
-			break;
+				return $this->getSignature();
+				break;
 
 			case 'sph':	// Force string
-			return $this->sph->getString();
-			break;
+				return $this->sph->getString();
+				break;
 
 			case 'sph:':	// For signature calculation need other format
-			return preg_replace('^&', ':', $this->sph);
-			break;
+				return preg_replace('^&', ':', $this->sph);
+				break;
 
 			case 'OutSum_F': //Formated by specification.
-			return number_format($this->__SETS['OutSum'], 2, '.', '');
-			break;//OutSum
+				return number_format($this->__SETS['OutSum'], 2, '.', '');
+				break;//OutSum
 
 			default:
-			return parent::getProperty($name);
+				return parent::getProperty($name);
 		}
 	}#m getProperty
 
@@ -236,11 +233,11 @@ private /* robokassa_sph */ $sph;
 	* @inheritdoc
 	**/
 	public function setSetting($name, $value){
-	parent::setSetting($this->checkNamePossible($name, __METHOD__), $value);
+		parent::setSetting($this->checkNamePossible($name, __METHOD__), $value);
 		switch ($name){
 			case 'Desc':
 				if (strlen($this->$name) > 100) throw new VariableRangeException('Max possible length of "Desc" field can not be greater than 100');
-			break;//Desc
+				break;//Desc
 		}
 	}#m setSetting
 
@@ -249,12 +246,12 @@ private /* robokassa_sph */ $sph;
 	* @inheritdoc
 	**/
 	public function setSettingsArray(array $setArr){
-	$this->__SETS = array();
-	/**
-	* @internal
-	* For our realization just foreach all, now we can simple invoke mergeSettingsArray()
-	**/
-	$this->mergeSettingsArray($setArr);
+		$this->__SETS = array();
+		/**
+		* @internal
+		* For our realization just foreach all, now we can simple invoke mergeSettingsArray()
+		**/
+		$this->mergeSettingsArray($setArr);
 	}#m setSettingsArray
 
 	/**
@@ -274,7 +271,7 @@ private /* robokassa_sph */ $sph;
 	public function &testMode($on = true){
 		if ($on) $this->BASE_URL = self::BASE_url_test;
 		else $this->BASE_URL = self::BASE_url_production;
-	return $this;
+		return $this;
 	}#m testMode
 
 	/**
@@ -283,7 +280,7 @@ private /* robokassa_sph */ $sph;
 	* @return	string
 	**/
 	public function getSignature(){
-	return md5( $this->getString($this->SIGNATURE_FORMAT) );
+		return md5( $this->getString($this->SIGNATURE_FORMAT) );
 	}#m getSignature
 
 	/**
@@ -292,7 +289,7 @@ private /* robokassa_sph */ $sph;
 	* @return	string
 	**/
 	public function getSignatureInSuccess(){
-	return md5( $this->getString($this->SIGNATURE_IN_success_FORMAT) );
+		return md5( $this->getString($this->SIGNATURE_IN_success_FORMAT) );
 	}#m getSignatureInSuccess
 
 	/**
@@ -301,7 +298,7 @@ private /* robokassa_sph */ $sph;
 	* @return	string
 	**/
 	public function getSignatureInResult(){
-	return md5( $this->getString($this->SIGNATURE_IN_result_FORMAT) );
+		return md5( $this->getString($this->SIGNATURE_IN_result_FORMAT) );
 	}#m getSignatureInResult
 }#c robokassa
 
@@ -312,8 +309,7 @@ private /* robokassa_sph */ $sph;
 *		,'MrchPass1'	=> 'my_super_pass'
 *		,'OutSum'	=> '777'
 *		,'InvId'	=> '123'
-*#		,'Desc'		=> 'Super puper order'
-*		,'Desc'		=> 'Description'
+*		,'Desc'		=> 'Super puper order'
 *
 *		,'IncCurrLabel'	=> 'PCR'	// Yandex-money
 *		,'Culture'	=> 'ru'	// Non needed, 'ru' is default value

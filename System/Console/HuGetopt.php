@@ -5,43 +5,28 @@
 * @package Console
 * @subpackage Getopt
 * @version 0.1.3
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created ?2008-05-30 15:52 v 0.1.1 to 0.1.2
 *
-* @changelog
-*	* 2008-05-30 15:52 v 0.1.1 to 0.1.2
-*	- Add compatibility with PHP < 5.3.0-dev. Replace constructions ?: by macros EMPTY_VAR
-*
-*	* 2009-03-06 15:29 ver 0.1.2 to 0.1.3
-*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
-*	- Reformat and fill many PhpDocs
+* @uses REQUIRED_VAR()
+* @uses VariableRequiredException
 **/
 
 include_once('macroses/REQUIRED_VAR.php');
 include_once('macroses/EMPTY_VAR.php');
-/*-inc
-include_once('RegExp/RegExp_pcre.php');
-include_once('Vars/HuArray.php');
-include_once('Vars/Settings/settings_check.php');
-
-include_once('Exceptions/variables.php');
-*/
-/**
-* @uses REQUIRED_VAR()
-* @uses VariableRequiredException
-**/
 
 class HuGetoptArgumentRequiredException extends VariableRequiredException{}
 
 class HuGetopt_option extends settings_check{
 /**
 * Like this (examples, structure):
-* 	||| First "Availability"
-* 	|-> OptL	=> 'long'
+*	||| First "Availability"
+*	|-> OptL	=> 'long'
 *	|-> OptS	=> 's'
 *	|-> Mod		=> ':'
 *	||| Then, 'real'. This fields filled only after parse user input. Each array, because more then once may be presents in CL.
-* 	|-> Opt		=> HyArray('s')		// Opt present, parsed from user-input.
+*	|-> Opt		=> HyArray('s')		// Opt present, parsed from user-input.
 *	|-> Sep		=> HuArray('-')		// '--'
 *	|-> Val		=> HuArray('Text')	//Or just true if interesting only present it or not.
 *	||| Misc
@@ -53,11 +38,11 @@ class HuGetopt_option extends settings_check{
 	* @inheritdoc
 	**/
 	public function __construct(array $possibles, array $array = null){
-	parent::__construct($possibles, $array);
+		parent::__construct($possibles, $array);
 		foreach (array('Opt', 'Sep', 'Val', '=', 'OptT') as $k){
 			if ( !isset($this->{$k}) ) $this->setSetting($k, new HuArray);
 		}
-	}#m __construct
+	}#__c
 
 	/**
 	* Add parsed option in values HuArrays (Opt, Sep, Val, =, OptT)
@@ -67,9 +52,9 @@ class HuGetopt_option extends settings_check{
 	**/
 	public function add(HuGetopt_option $toAdd){
 		foreach (array('Opt', 'Sep', 'Val', '=', 'OptT') as $k){
-		$this->{$k}->pushHuArray($toAdd->{$k});
+			$this->{$k}->pushHuArray($toAdd->{$k});
 		}
-	return $this;
+		return $this;
 	}#m add
 
 }#c HuGetopt_option
@@ -78,18 +63,18 @@ class HuGetopt_option extends settings_check{
 * @example of use HuGetopt.example.php
 **/
 class HuGetopt_settings extends settings{
-protected $__SETS = array(
-	'start_short'	=> array('-'),
-	'start_long'	=> array('--'),
-	'alternative'	=> false,	/** Allow long options to start with a short_start (‘-’ by default) **/
+	protected $__SETS = array(
+		'start_short'	=> array('-'),
+		'start_long'	=> array('--'),
+		'alternative'	=> false,	/** Allow long options to start with a short_start (‘-’ by default) **/
 
-	/** {@see class HuGetopt_option} to description name and {@see class settings_check} to check option. **/
-	'HuGetopt_option_options'	=> array(
-		'OptL', 'OptS', 'Mod',
-		'Opt', 'Sep', 'Val',
-		'=', 'OptT'
-	)
-);
+		/** {@see class HuGetopt_option} to description name and {@see class settings_check} to check option. **/
+		'HuGetopt_option_options'	=> array(
+			'OptL', 'OptS', 'Mod',
+			'Opt', 'Sep', 'Val',
+			'=', 'OptT'
+		)
+	);
 }#c HuGetopt_settings
 
 /**
@@ -116,39 +101,41 @@ protected $__SETS = array(
 *	6) Also PHP-CLI does NOT handle short options in clue form (F.e. -o -t -f -s - does, -otfs - NOT). So, HuGetopt - handle it properly!
 **/
 class HuGetopt extends get_settings{
-/**
-* Array of raw arguments to parse
-* @var array
-*/
-private $argv;
+	/**
+	* Array of raw arguments to parse
+	* @var array
+	*/
+	private $argv;
 
-/**
-* Parsed options (what provided to parse arguments of command line).
-* @var array
-**/
-private $_opts;
+	/**
+	* Parsed options (what provided to parse arguments of command line).
+	* @var array
+	**/
+	private $_opts;
 
-/**
-* Non-option arguments (all other)
-* @var HuArray
-**/
-private $_nonopts;
+	/**
+	* Non-option arguments (all other)
+	* @var HuArray
+	**/
+	private $_nonopts;
 
-/**
-* Parsed arguments from command line.
-* @var array
-**/
-private $_args;
-/**
-* Short and long and long arrays cache. Only fore speedup, otherwise need iterate each time ti find needed.
-* @var array
-* @var array
-**/
-private $_optsL;
-private $_optsS;
+	/**
+	* Parsed arguments from command line.
+	* @var array
+	**/
+	private $_args;
 
-private $_curArgv = 0;	//Current index.
-private $_curArg;		//Current arg, if needed correction on real.
+	/**
+	* Short and long and long arrays cache. Only fore speedup, otherwise need iterate each time ti find needed.
+	* @var array
+	* @var array
+	**/
+	private $_optsL;
+	private $_optsS;
+
+	private $_curArgv = 0;	//Current index.
+	private $_curArg;		//Current arg, if needed correction on real.
+
 	/**
 	* Construct
 	*
@@ -156,9 +143,9 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* @param 	Object(HuGetopt_settings)	$sets=null. Settings. If null - instanced default.
 	**/
 	public function __construct(array $opts, HuGetopt_settings $sets = null){
-	$this->_sets = EMPTY_VAR($sets, new HuGetopt_settings);
-	$this->setOpts($opts);
-	$this->_nonopts = new HuArray();
+		$this->_sets = EMPTY_VAR($sets, new HuGetopt_settings);
+		$this->setOpts($opts);
+		$this->_nonopts = new HuArray();
 	}#__c
 
 	/**
@@ -178,21 +165,21 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* @Throws(VariableRequiredException)
 	**/
 	public function &setOpts(array $opts){
-	$this->_optsS = $this->_optsL = $this->_opts = array();
-		foreach (REQUIRED_VAR($opts) as $k => $opt) {
-		$this->_opts[$k]	= new HuGetopt_option(
-			$this->sets()->HuGetopt_option_options
-			,array(
-				'OptS' 	=> $opt[0],
-				'OptL'	=> @$opt[1],
-				'Mod'	=> (string)@$opt[2]
-			)
-		);
+		$this->_optsS = $this->_optsL = $this->_opts = array();
+		foreach (REQUIRED_VAR($opts) as $k => $opt){
+			$this->_opts[$k]	= new HuGetopt_option(
+				$this->sets()->HuGetopt_option_options
+				,array(
+					'OptS' 	=> $opt[0],
+					'OptL'	=> @$opt[1],
+					'Mod'	=> (string)@$opt[2]
+				)
+			);
 			$this->_optsS[$opt[0]]	= $k;
 			if (@$opt[1])
-			$this->_optsL[$opt[1]]	= $k;
+				$this->_optsL[$opt[1]]	= $k;
 		}
-	return $this;
+		return $this;
 	}#m setOpts
 
 	/**
@@ -208,19 +195,19 @@ private $_curArg;		//Current arg, if needed correction on real.
 	public function &getOptByStr($str, $type = 'a'){
 		switch ($type){
 			case 's':
-			$type =& $this->_optsS;
-			break;
+				$type =& $this->_optsS;
+				break;
 
 			case 'l':
-			$type =& $this->_optsL;
-			break;
+				$type =& $this->_optsL;
+				break;
 
 			default:
 				if (1 == strlen($str)) $type =& $this->_optsS;
 				else $type =& $this->_optsL;
-			break;
+				break;
 		}
-	return $this->_opts[ $type [$str] ];
+		return $this->_opts[ $type [$str] ];
 	}#m getOptByStr
 
 	/**
@@ -230,37 +217,37 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* @Throws(HuGetoptArgumentRequiredException)
 	**/
 	public function parseArgs(){
-	$this->_nonopts->push($this->currentArg());
+		$this->_nonopts->push($this->currentArg());
 		while($cArg = $this->nextArg()){
 			if ( '--' == ($cArg) ){
-			$this->_nonopts->pushArray(array_splice($this->nextArg(), $this->_curArgv));
-			break;
+				$this->_nonopts->pushArray(array_splice($this->nextArg(), $this->_curArgv));
+				break;
 			}
 
 			if ( !($o = $this->isOpt($cArg)) ){
-			$this->_nonopts->push($cArg);
-			continue;
+				$this->_nonopts->push($cArg);
+				continue;
 			}
 
 		//reference. All modification - inplace.
 		$o = $this->getOptByStr($o->Opt->{0}, $o->OptT->{0})->add($o);
 
 			if('' == $o->Mod){
-			$o->Val->_last_ = true;
+				$o->Val->_last_ = true;
 			}
 			else{//: or ::
-			$optarg = $o->Val->_last_; //def
+				$optarg = $o->Val->_last_; //def
 				if (
 					!$o->Val->count()	//If NOT long option '=' form
 					 and
 					( ( false !== ($optarg = $this->nextArg())) and false === $this->isOpt($optarg) ) //And next NOT arg of current option
 					){
 
-					if('::' == $o->Mod){//Mandatory argument for option
-					throw new HuGetoptArgumentRequiredException(new backtrace(), 'Option [' . $o->Opt->_last_ . '] requires argument!');
+						if('::' == $o->Mod){//Mandatory argument for option
+							throw new HuGetoptArgumentRequiredException(new backtrace(), 'Option [' . $o->Opt->_last_ . '] requires argument!');
+						}
 					}
-				}
-			$o->Val->_last_ = $optarg;
+				$o->Val->_last_ = $optarg;
 			}
 		}
 	}#m parseArgs
@@ -272,12 +259,12 @@ private $_curArg;		//Current arg, if needed correction on real.
 	**/
 	protected function nextArg(){
 		if ($this->_curArg){
-		$tmp = $this->_curArg;
-		$this->_curArg = null;
-		return $tmp;
+			$tmp = $this->_curArg;
+			$this->_curArg = null;
+			return $tmp;
 		}
 		elseif(++$this->_curArgv < sizeof($this->argv)){
-		return $this->argv[$this->_curArgv];
+			return $this->argv[$this->_curArgv];
 		}
 		else return false;
 	}#m nextArg
@@ -289,9 +276,9 @@ private $_curArg;		//Current arg, if needed correction on real.
 	**/
 	protected function currentArg(){
 		if ($this->_curArg){
-		$tmp = $this->_curArg;
-		$this->_curArg = null;
-		return $tmp;
+			$tmp = $this->_curArg;
+			$this->_curArg = null;
+			return $tmp;
 		}
 		else return $this->argv[$this->_curArgv];
 	}#m currentArg
@@ -303,7 +290,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* @return
 	**/
 	protected function isOpt($arg){
-	return ( ($r =& $this->isShortOpt($arg)) ? $r : $this->isLongOpt($arg) );
+		return ( ($r =& $this->isShortOpt($arg)) ? $r : $this->isLongOpt($arg) );
 	}#m isOpt
 
 	/**
@@ -313,40 +300,39 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* @return	false|Object(HuGetopt_option). In object ->Val NOT filled. For exception see description {@see ::isLongOpt()}
 	**/
 	public function isShortOpt($arg){
-	$re = new RegExp_pcre(
-		( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->start_short)).')('.implode('|', array_keys($this->_optsS)).')(.*)/s' ),
-		$arg);
-	$re->doMatch();
+		$re = new RegExp_pcre(
+			( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->start_short)).')('.implode('|', array_keys($this->_optsS)).')(.*)/s' ),
+			$arg
+		);
+		$re->doMatch();
 
 		if ($re->matchCount()){
 			//Handle sequence of short options without optarguments -otfs.
 			if ($o = $this->getOptByStr($re->match(2), 's') and (':' == $o->Mod or '::' == $o->Mod) ){//Have optarg
-			return new HuGetopt_option(
-				$this->sets()->HuGetopt_option_options
-				,array(
-					'Sep'	=> new HuArray($re->match(1)),
-					'Opt'	=> new HuArray($re->match(2)),
-//					'Val'	=> ( '' != $this->_opts[ $this->_optsS[$re->match(1)] ]->Mod ) ? $this->nextArg() : null
-//					'Val'	=> new HuArray($re->match(3)),
-					'Val'	=> new HuArray(('' !== (string)$re->match(3) ? $re->match(3) : $this->nextArg())),
-					'OptT'	=> new HuArray('s')
-				)
-			);
+				return new HuGetopt_option(
+					$this->sets()->HuGetopt_option_options
+					,array(
+						'Sep'	=> new HuArray($re->match(1)),
+						'Opt'	=> new HuArray($re->match(2)),
+						'Val'	=> new HuArray(('' !== (string)$re->match(3) ? $re->match(3) : $this->nextArg())),
+						'OptT'	=> new HuArray('s')
+					)
+				);
 			}
 			else{//Not have optarg => $re->match(2) is continue of nonoptarg options.
 				if ($re->match(3)) $this->_curArg = '-' . $re->match(3);
-			return new HuGetopt_option(
-				$this->sets()->HuGetopt_option_options
-				,array(
-					'Sep'	=> new HuArray($re->match(1)),
-					'Opt'	=> new HuArray($re->match(2)),
-					'Val'	=> new HuArray( array(null) ),
-					'OptT'	=> new HuArray('s')
-				)
-			);
+				return new HuGetopt_option(
+					$this->sets()->HuGetopt_option_options
+					,array(
+						'Sep'	=> new HuArray($re->match(1)),
+						'Opt'	=> new HuArray($re->match(2)),
+						'Val'	=> new HuArray( array(null) ),
+						'OptT'	=> new HuArray('s')
+					)
+				);
 			}
 		}
-	return false;
+		return false;
 	}#m isShortOpt
 
 	/**
@@ -362,25 +348,25 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* @return	false|Object(HuGetopt_option).
 	**/
 	public function isLongOpt($arg){
-	$re = new RegExp_pcre(
-     	( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->alternative ? array_merge($this->sets()->start_long, $this->sets()->start_short) : $this->sets()->start_long)).')('.implode('|', array_keys($this->_optsL)).')(=|(?>\s*))(.*)/s' ),
-		$arg);
-	$re->doMatch();
+		$re = new RegExp_pcre(
+			( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->alternative ? array_merge($this->sets()->start_long, $this->sets()->start_short) : $this->sets()->start_long)).')('.implode('|', array_keys($this->_optsL)).')(=|(?>\s*))(.*)/s' ),
+			$arg
+		);
+		$re->doMatch();
 
 		if ($re->matchCount()){
-		return new HuGetopt_option(
+			return new HuGetopt_option(
 				$this->sets()->HuGetopt_option_options
 				,array(
 					'Sep'	=> new HuArray($re->match(1)),
 					'Opt'	=> new HuArray($re->match(2)),
 					'='		=> new HuArray($re->match(3)),
-//					'Val'	=> new HuArray($re->match(4)),
 					'Val'	=> new HuArray(($re->match(4) ? $re->match(4) : $this->nextArg())),
 					'OptT'	=> new HuArray('l')
 				)
 			);
 		}
-	return false;
+		return false;
 	}#m isLongOpt
 
 	/**
@@ -390,8 +376,8 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* @return	&$this
 	**/
 	public function &setArgv(array $argv){
-	$this->argv = $argv;
-	return $this;
+		$this->argv = $argv;
+		return $this;
 	}#m setArgv
 
 	/**
@@ -402,7 +388,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* @return Object(HuGetopt_option)	$this->getOptByStr()
 	**/
 	public function get($opt, $type = 'a'){
-	return $this->getOptByStr($opt, $type);
+		return $this->getOptByStr($opt, $type);
 	}#m get
 
 	/**
@@ -412,7 +398,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* @return Object(HuArray).
 	**/
 	public function getNonOpts($from = 0){
-	return $this->_nonopts->getSlice($from);
+		return $this->_nonopts->getSlice($from);
 	}#m getNonOpts
 
 	/**
@@ -421,7 +407,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 	 * @return array
 	 */
 	public function getListShortOpts(){
-	return $this->_optsS;
+		return $this->_optsS;
 	}#m getListShortOpts
 
 	/**
@@ -430,7 +416,7 @@ private $_curArg;		//Current arg, if needed correction on real.
 	 * @return array
 	 */
 	public function getListLongOpts(){
-	return $this->_optsL;
+		return $this->_optsL;
 	}#m getListLongOpts
 
 	/**
@@ -442,13 +428,14 @@ private $_curArg;		//Current arg, if needed correction on real.
 	* @Throw(VariableEmptyException)
 	**/
 	public function &readPHPArgv(){
-	global $argv;
+		global $argv;
+
 		if (is_array($argv)) $this->setArgv($argv);
 		elseif (@is_array($_SERVER['argv'])) $this->setArgv($_SERVER['argv']);
 		elseif (@is_array($GLOBALS['HTTP_SERVER_VARS']['argv'])) $this->setArgv($GLOBALS['HTTP_SERVER_VARS']['argv']);
 		else throw new VariableEmptyException("readPHPArgv(): Could not read cmd args (register_argc_argv=Off?)");
 
-	return $this;
-    }#m readPHPargv
+		return $this;
+	}#m readPHPargv
 }#c HuGetopt
 ?>

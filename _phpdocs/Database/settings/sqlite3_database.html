@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Database.html" class="menu">class tree: Database</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Database.html" class="menu">class tree: Database</a> ]
 		  [ <a href="../../elementindex_Database.html" class="menu">index: Database</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -56,6 +57,8 @@
       	  <div class="package">
 			<a href="../../Database/_Database---database.php.html">		database.php
 		</a><br>
+			<a href="../../Database/_Database---database_where.php.html">		database_where.php
+		</a><br>
 			<a href="../../Database/_Database---mssql_database.php.html">		mssql_database.php
 		</a><br>
 			<a href="../../Database/_Database---mysql_database.php.html">		mysql_database.php
@@ -72,13 +75,16 @@
             <b>Classes:</b><br />
         <div class="package">
 	settings<br />	    &nbsp;&nbsp;		<a href="../../Database/settings/database.html">database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/DB_settings.html">DB_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../../Database/settings/mssql_database.html">mssql_database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/mssql_database_settings.html">mssql_database_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../../Database/settings/mysql_database.html">mysql_database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/mysql_database_settings.html">mysql_database_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../../Database/settings/sqlite3_database.html">sqlite3_database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/sqlite3_database_settings.html">sqlite3_database_settings</a><br />
+	  </div>
+  <div class="package">
+		    		<a href="../../Database/database_where.html">database_where</a><br />
+	    		<a href="../../Database/DB_settings.html">DB_settings</a><br />
+	    		<a href="../../Database/mssql_database_settings.html">mssql_database_settings</a><br />
+	    		<a href="../../Database/mysql_database_settings.html">mysql_database_settings</a><br />
+	    		<a href="../../Database/sqlite3_database_settings.html">sqlite3_database_settings</a><br />
 	  </div>
   <div class="package">
 	DBError<br />	    &nbsp;&nbsp;		<a href="../../Database/DBError/DBError.html">DBError</a><br />
@@ -267,14 +273,14 @@ Source Location: /Database/sqlite3_database.php<br /><br />
 
   </dt>
   <dd>
-    
+    Перекодировка ЗАПРОСА, тоесть В БД
   </dd>
     <dt>
     <a href="../../Database/settings/database.html#methodiconv_result">database::iconv_result()</a>
 
   </dt>
   <dd>
-    
+    Перекодировка РЕЗУЛЬТАТА, тоесть ИЗ БД
   </dd>
     <dt>
     <a href="../../Database/settings/database.html#methodquery">database::query()</a>
@@ -295,7 +301,7 @@ Source Location: /Database/sqlite3_database.php<br /><br />
 
   </dt>
   <dd>
-    
+    Returns TOTAL rows for query, whithout LIMIT effect
   </dd>
     <dt>
     <a href="../../Database/settings/database.html#methodset_names">database::set_names()</a>
@@ -323,7 +329,7 @@ Source Location: /Database/sqlite3_database.php<br /><br />
 
   </dt>
   <dd>
-    
+    Добиваемся некоторой &quot;универсальности&quot;
   </dd>
     <dt>
     <a href="../../Database/settings/database.html#methodsql_fetch_field">database::sql_fetch_field()</a>
@@ -393,7 +399,7 @@ Source Location: /Database/sqlite3_database.php<br /><br />
 
   </dt>
   <dd>
-    
+    Переопределяем, чтобы сделать ссылку на настройки не изменяемой!
   </dd>
     <dt>
     <a href="../../Database/settings/database.html#method__wakeup">database::__wakeup()</a>
@@ -429,7 +435,7 @@ Source Location: /Database/sqlite3_database.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 27]<br />
+[line 22]<br />
 Implementation over PDO_sqlite3<br /><br />
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
@@ -441,7 +447,7 @@ Implementation over PDO_sqlite3<br /><br />
 	<a name="var$db_type"></a>
 	<p></p>
 	<h4>$db_type = <span class="value">&nbsp;'sqlite3'</span></h4>
-	<p>[line 28]</p>
+	<p>[line 23]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -473,7 +479,7 @@ Implementation over PDO_sqlite3<br /><br />
 
   <hr />
 	<a name="methodcollectDebugInfo"></a>
-	<h3>method collectDebugInfo <span class="smalllinenumber">[line 128]</span></h3>
+	<h3>method collectDebugInfo <span class="smalllinenumber">[line 125]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -529,7 +535,7 @@ Overrides <a href="../../Database/settings/database.html#methodcollectDebugInfo"
   </div>
   <hr />
 	<a name="methoddb_connect"></a>
-	<h3>method db_connect <span class="smalllinenumber">[line 38]</span></h3>
+	<h3>method db_connect <span class="smalllinenumber">[line 33]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -556,7 +562,7 @@ Overrides <a href="../../Database/settings/database.html#methoddb_connect">datab
   </div>
   <hr />
 	<a name="methoddb_select"></a>
-	<h3>method db_select <span class="smalllinenumber">[line 65]</span></h3>
+	<h3>method db_select <span class="smalllinenumber">[line 60]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -583,7 +589,7 @@ Overrides <a href="../../Database/settings/database.html#methoddb_select">databa
   </div>
   <hr />
 	<a name="methodquery"></a>
-	<h3>method query <span class="smalllinenumber">[line 68]</span></h3>
+	<h3>method query <span class="smalllinenumber">[line 63]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -633,7 +639,7 @@ Overrides <a href="../../Database/settings/database.html#methodquery">database::
   </div>
   <hr />
 	<a name="methodquery_limit"></a>
-	<h3>method query_limit <span class="smalllinenumber">[line 99]</span></h3>
+	<h3>method query_limit <span class="smalllinenumber">[line 94]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -689,7 +695,7 @@ Overrides <a href="../../Database/settings/database.html#methodquery_limit">data
   </div>
   <hr />
 	<a name="methodrowsTotal"></a>
-	<h3>method rowsTotal <span class="smalllinenumber">[line 123]</span></h3>
+	<h3>method rowsTotal <span class="smalllinenumber">[line 120]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -710,13 +716,13 @@ Overrides <a href="../../Database/settings/database.html#methodquery_limit">data
 <br /><br />
 
 	
-Overrides <a href="../../Database/settings/database.html#methodrowsTotal">database::rowsTotal()</a> (parent method not documented)<br /><br />
+Overrides <a href="../../Database/settings/database.html#methodrowsTotal">database::rowsTotal()</a> (Returns TOTAL rows for query, whithout LIMIT effect)<br /><br />
 
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodsql_escape_string"></a>
-	<h3>method sql_escape_string <span class="smalllinenumber">[line 113]</span></h3>
+	<h3>method sql_escape_string <span class="smalllinenumber">[line 110]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -754,7 +760,7 @@ Overrides <a href="../../Database/settings/database.html#methodsql_escape_string
   </div>
   <hr />
 	<a name="methodsql_fetch_array"></a>
-	<h3>method sql_fetch_array <span class="smalllinenumber">[line 164]</span></h3>
+	<h3>method sql_fetch_array <span class="smalllinenumber">[line 160]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -804,7 +810,7 @@ Overrides <a href="../../Database/settings/database.html#methodsql_fetch_array">
   </div>
   <hr />
 	<a name="methodsql_fetch_assoc"></a>
-	<h3>method sql_fetch_assoc <span class="smalllinenumber">[line 149]</span></h3>
+	<h3>method sql_fetch_assoc <span class="smalllinenumber">[line 145]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -825,13 +831,13 @@ Overrides <a href="../../Database/settings/database.html#methodsql_fetch_array">
 <br /><br />
 
 	
-Overrides <a href="../../Database/settings/database.html#methodsql_fetch_assoc">database::sql_fetch_assoc()</a> (parent method not documented)<br /><br />
+Overrides <a href="../../Database/settings/database.html#methodsql_fetch_assoc">database::sql_fetch_assoc()</a> (Добиваемся некоторой &quot;универсальности&quot;)<br /><br />
 
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodsql_fetch_field"></a>
-	<h3>method sql_fetch_field <span class="smalllinenumber">[line 145]</span></h3>
+	<h3>method sql_fetch_field <span class="smalllinenumber">[line 141]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -869,7 +875,7 @@ Overrides <a href="../../Database/settings/database.html#methodsql_fetch_field">
   </div>
   <hr />
 	<a name="methodsql_fetch_object"></a>
-	<h3>method sql_fetch_object <span class="smalllinenumber">[line 170]</span></h3>
+	<h3>method sql_fetch_object <span class="smalllinenumber">[line 166]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -913,7 +919,7 @@ Overrides <a href="../../Database/settings/database.html#methodsql_fetch_object"
   </div>
   <hr />
 	<a name="methodsql_fetch_row"></a>
-	<h3>method sql_fetch_row <span class="smalllinenumber">[line 153]</span></h3>
+	<h3>method sql_fetch_row <span class="smalllinenumber">[line 149]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -940,7 +946,7 @@ Overrides <a href="../../Database/settings/database.html#methodsql_fetch_row">da
   </div>
   <hr />
 	<a name="methodsql_free_result"></a>
-	<h3>method sql_free_result <span class="smalllinenumber">[line 176]</span></h3>
+	<h3>method sql_free_result <span class="smalllinenumber">[line 172]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -967,7 +973,7 @@ Overrides <a href="../../Database/settings/database.html#methodsql_free_result">
   </div>
   <hr />
 	<a name="methodsql_next_result"></a>
-	<h3>method sql_next_result <span class="smalllinenumber">[line 109]</span></h3>
+	<h3>method sql_next_result <span class="smalllinenumber">[line 106]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -994,7 +1000,7 @@ Overrides <a href="../../Database/settings/database.html#methodsql_next_result">
   </div>
   <hr />
 	<a name="methodsql_num_rows"></a>
-	<h3>method sql_num_rows <span class="smalllinenumber">[line 182]</span></h3>
+	<h3>method sql_num_rows <span class="smalllinenumber">[line 178]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1021,7 +1027,7 @@ Overrides <a href="../../Database/settings/database.html#methodsql_num_rows">dat
   </div>
   <hr />
 	<a name="methodToBlob"></a>
-	<h3>method ToBlob <span class="smalllinenumber">[line 105]</span></h3>
+	<h3>method ToBlob <span class="smalllinenumber">[line 102]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1031,7 +1037,7 @@ $str)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		In sqlite3 does not needed<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -1063,7 +1069,7 @@ Overrides <a href="../../Database/settings/database.html#methodToBlob">database:
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:39 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:58 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -1,16 +1,13 @@
 <?
 /**
-* Toolkit of small functions as "macroses".
+* Toolkit of small functions aka "macroses".
 * eecho macros.
 *
 * @package Macroses
 * @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-*	* 2009-12-14 12:10 ver 1.0
-*	- Initial version
+* @created 2009-12-14 12:10
 **/
 
 /**
@@ -21,6 +18,6 @@
 * @return	boolean
 **/
 function eecho($str){
-return file_put_contents('php://stderr', $str);
+	return file_put_contents('php://stderr', $str);
 }#f eecho
 ?>

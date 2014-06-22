@@ -6,68 +6,40 @@
 * @version 2.1.2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2014, Pahan-Hubbitus (Pavel Alexeev)
+* @created 2008-05-29
 *
-* @changelog
-*	* 2008-05-29
-*	- Separate classes RegExp_base_base and RegExp_base to allov using this on PHP < 5.3.0-dev
-*	- Add doc to methods, reformatting.
-*
-*	* 2008-05-30 19:05
-*	- Made $paireddelimeters method NOT static. It is allowed in implementation, because it is may
-*		now be used as property. So, if outsource code use it static - must change it. This is sacrifice
-*		to to compatibility with PHP < 5.3.0 (whithout late static bindings)
-*	- getMatch add in eval-code, to avoid fatal errors in earler versions PHP
-*
-*	* 2009-01-18 14:57 (No version bump)
-*	- Reflect renaming Class.php to HuClass.php
-*
-*	* 2009-01-18 23:39 ver 2.1b to 2.1
-*	- Add method getText in base class
-*
-*	* 2009-02-11 13:41 ver 2.1 to 2.1.1
-*	- Add method split
-*
-*	* 2009-03-02 01:52 ver 2.1.1 to 2.1.2
-*	- Add optional parameter $n into ::getMatches() method.
-*	- Add ::getHuMatches() method
-*
-*	* 2009-03-02 16:49 ver 2.1.2 to 2.1.2.1
-*	- Fix setTextRef, to set ref, not copy :)
-*21.06.2014 Now placed in open access in github - all other changes only in git!
+* @uses REQUIRED_NOT_NULL()
+* @uses VariableIsNullException
+* @uses HuClass
+* @uses HuArray
 **/
 
 include_once('Vars/HuClass.php');
 include_once('macroses/EMPTY_STR.php');
 include_once('macroses/REQUIRED_NOT_NULL.php');
 
-/**
-* @uses REQUIRED_NOT_NULL()
-* @uses VariableIsNullException
-* @uses HuClass
-* @uses HuArray
-**/
 abstract class RegExp_base_base extends HuClass implements IRegExp{
-#MUST be defined properly in childs untill late static binding
-const className = 'RegExp_base';
+	// MUST be defined properly in childs untill late static binding
+	const className = 'RegExp_base';
 
-protected $sourceText;
-protected $RegExp;
+	protected $sourceText;
+	protected $RegExp;
 
-protected $matchCount;
-protected $matches;
-protected $matchesValid = false;
+	protected $matchCount;
+	protected $matches;
+	protected $matchesValid = false;
 
-protected $replaceTo;
-protected $replaceRes;
-protected $replaceValid;
+	protected $replaceTo;
+	protected $replaceRes;
+	protected $replaceValid;
 
-#array of paired delimeters, where start not equals end. Key is start delimiter.
-public $paireddelimeters = array(
-	'{' => '}',
-	'<' => '>',
-	'(' => ')',
-	'[' => ']',
-);
+	// array of paired delimeters, where start not equals end. Key is start delimiter.
+	public $paireddelimeters = array(
+		'{' => '}',
+		'<' => '>',
+		'(' => ')',
+		'[' => ']',
+	);
 
 	/**
 	* Aka __construct, but for static call.
@@ -86,7 +58,7 @@ public $paireddelimeters = array(
 	**/
 	public function __construct($regexp = null, $text = null, $replaceTo = null){
 		$this->set($regexp, $text, $replaceTo);
-	}#_c
+	}#__c
 
 	/**
 	* Return N-th single match
@@ -95,7 +67,7 @@ public $paireddelimeters = array(
 	* @return string|array
 	**/
 	public function match($Number){
-		if (!$this->matchesValid)#May be throw Exception???
+		if (!$this->matchesValid) // May be throw Exception???
 			$this->doMatch();
 
 		return $this->matches[$Number];
@@ -176,7 +148,7 @@ public $paireddelimeters = array(
 	* @return integer
 	**/
 	public function matchCount(){
-		if (!$this->matchesValid)#May be throw Exception???
+		if (!$this->matchesValid) // May be throw Exception???
 			$this->doMatchAll();
 		return $this->matchCount;
 	}#m MatchCount

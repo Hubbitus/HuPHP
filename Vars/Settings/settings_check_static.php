@@ -3,11 +3,10 @@
 * Extended variant of settings_check to handle "uncleared" fields.
 *
 * @package settings
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
-*
-* @changelog
+* @created ???
 **/
 
 /**

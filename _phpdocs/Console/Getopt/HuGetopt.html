@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Console.html" class="menu">class tree: Console</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Console.html" class="menu">class tree: Console</a> ]
 		  [ <a href="../../elementindex_Console.html" class="menu">index: Console</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -153,7 +154,7 @@ Source Location: /System/Console/HuGetopt.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 118]<br />
+[line 103]<br />
 First there was a try to use http://pear.php.net/Console_getopt. Created Hu_Console_Getopt  extending pear class. But it is very limited: <ol><li>No way to bind short options to long</li><li>No way get value presented by long OR short options. They logic only outside.</li></ol><br /><br /><p>3. Options provided after non optioned arguments - compleatly ignored. 	4. In case when one option provided more than once - only last value present, other lost.</p><p>Adjust PEAR Console_getopt is very difficult, so, write self version.</p><p>In most casese behaviour this class is same as described in GNU &quot;man 3 getopt&quot;, with several exceptions-additionals: 	1) Format of incoming options (optstring by GNU man) is different, more flexible allow associate short option with long! 	2) Don't support GNU extension -W 	3) Enviroment variable POSIXLY_CORRECT not handled, and behaviour always same as GNU default (first +/- in optstring modes too not handled!!!) 	4) Additionly in settings moved 'long_start' ('--') and 'short_start' ('-') and may be changed if you want.  		Even more, it is array, and may contain any amount of element. It is usefull, if you, for example, wish use '-' and '+' in short options. 	5) PHP-CLI self do NOT correctly handle long options with sign &quot;=&quot; form or without space: 		--longOpt 'optarg' - correct  		--longOpt='optarg' - In $argv placed full, not correct exploded to opt and optarg. 		--longOpt'optarg' - In $argv placed full, not correct exploded to opt and optarg. 		GuGetopt correct handle all this cases. 	6) Also PHP-CLI does NOT handle short options in clue form (F.e. -o -t -f -s - does, -otfs - NOT). So, HuGetopt - handle it properly!</p><br />
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
@@ -166,7 +167,7 @@ First there was a try to use http://pear.php.net/Console_getopt. Created Hu_Cons
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 158]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 145]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -222,7 +223,7 @@ $sets=null.)</code>
   </div>
   <hr />
 	<a name="methodcurrentArg"></a>
-	<h3>method currentArg <span class="smalllinenumber">[line 290]</span></h3>
+	<h3>method currentArg <span class="smalllinenumber">[line 277]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -249,7 +250,7 @@ $sets=null.)</code>
   </div>
   <hr />
 	<a name="methodget"></a>
-	<h3>method get <span class="smalllinenumber">[line 404]</span></h3>
+	<h3>method get <span class="smalllinenumber">[line 390]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -293,7 +294,7 @@ $type = 'a'])</code>
   </div>
   <hr />
 	<a name="methodgetListLongOpts"></a>
-	<h3>method getListLongOpts <span class="smalllinenumber">[line 432]</span></h3>
+	<h3>method getListLongOpts <span class="smalllinenumber">[line 418]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -320,7 +321,7 @@ $type = 'a'])</code>
   </div>
   <hr />
 	<a name="methodgetListShortOpts"></a>
-	<h3>method getListShortOpts <span class="smalllinenumber">[line 423]</span></h3>
+	<h3>method getListShortOpts <span class="smalllinenumber">[line 409]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -347,7 +348,7 @@ $type = 'a'])</code>
   </div>
   <hr />
 	<a name="methodgetNonOpts"></a>
-	<h3>method getNonOpts <span class="smalllinenumber">[line 414]</span></h3>
+	<h3>method getNonOpts <span class="smalllinenumber">[line 400]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -391,7 +392,7 @@ $from.)</code>
   </div>
   <hr />
 	<a name="methodgetOptByStr"></a>
-	<h3>method getOptByStr <span class="smalllinenumber">[line 208]</span></h3>
+	<h3>method getOptByStr <span class="smalllinenumber">[line 195]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -441,7 +442,7 @@ $type.)</code>
   </div>
   <hr />
 	<a name="methodisLongOpt"></a>
-	<h3>method isLongOpt <span class="smalllinenumber">[line 364]</span></h3>
+	<h3>method isLongOpt <span class="smalllinenumber">[line 350]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -485,7 +486,7 @@ $arg.)</code>
   </div>
   <hr />
 	<a name="methodisOpt"></a>
-	<h3>method isOpt <span class="smalllinenumber">[line 305]</span></h3>
+	<h3>method isOpt <span class="smalllinenumber">[line 292]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -529,7 +530,7 @@ $arg.)</code>
   </div>
   <hr />
 	<a name="methodisShortOpt"></a>
-	<h3>method isShortOpt <span class="smalllinenumber">[line 315]</span></h3>
+	<h3>method isShortOpt <span class="smalllinenumber">[line 302]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -576,7 +577,7 @@ $arg.)</code>
   </div>
   <hr />
 	<a name="methodnextArg"></a>
-	<h3>method nextArg <span class="smalllinenumber">[line 273]</span></h3>
+	<h3>method nextArg <span class="smalllinenumber">[line 260]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -603,7 +604,7 @@ $arg.)</code>
   </div>
   <hr />
 	<a name="methodparseArgs"></a>
-	<h3>method parseArgs <span class="smalllinenumber">[line 232]</span></h3>
+	<h3>method parseArgs <span class="smalllinenumber">[line 219]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -630,7 +631,7 @@ $arg.)</code>
   </div>
   <hr />
 	<a name="methodreadPHPArgv"></a>
-	<h3>method readPHPArgv <span class="smalllinenumber">[line 444]</span></h3>
+	<h3>method readPHPArgv <span class="smalllinenumber">[line 430]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -657,7 +658,7 @@ $arg.)</code>
   </div>
   <hr />
 	<a name="methodsetArgv"></a>
-	<h3>method setArgv <span class="smalllinenumber">[line 392]</span></h3>
+	<h3>method setArgv <span class="smalllinenumber">[line 378]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -695,7 +696,7 @@ $argv)</code>
   </div>
   <hr />
 	<a name="methodsetOpts"></a>
-	<h3>method setOpts <span class="smalllinenumber">[line 180]</span></h3>
+	<h3>method setOpts <span class="smalllinenumber">[line 167]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -743,7 +744,7 @@ $opts.)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:43 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:15 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

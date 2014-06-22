@@ -10,8 +10,6 @@
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
 * @created 2009-06-29
-*
-* @changelog
 **/
 
 
@@ -33,14 +31,15 @@
 * @example settings_filter.example.php
 **/
 class settings_filter extends settings_check_static{
-protected $__filt_set = array();
-protected $__filt_get = array();
+	protected $__filt_set = array();
+	protected $__filt_get = array();
+
 	/**
 	* Apply all desired filters and set value.
 	**/
 	public function setSetting($name, $value){
 		foreach ($this->getFilterSet($name) as $filt){
-		$filt->apply($name, $value);
+			$filt->apply($name, $value);
 		}
 		if (!is_null($name)) parent::setSetting($name, $value);
 	}#m setSetting
@@ -51,11 +50,11 @@ protected $__filt_get = array();
 	* @inheritdoc
 	**/
 	public function &getProperty($name){
-	$val =& parent::getProperty($name);
+		$val =& parent::getProperty($name);
 		foreach ($this->getFilterGet($name) as $filt){
-		$filt->apply($name, $val);
+			$filt->apply($name, $val);
 		}
-	return $val;
+		return $val;
 	}#m getProperty
 
 	/**
@@ -63,9 +62,9 @@ protected $__filt_get = array();
 	* @inheritdoc
 	**/
 	public function setSettingsArray(array $setArr){
-	$this->__SETS = array();
-	// For our realisation just foreach all, now we can simple invoke mergeSettingsArray()
-	$this->mergeSettingsArray($setArr);
+		$this->__SETS = array();
+		// For our realisation just foreach all, now we can simple invoke mergeSettingsArray()
+		$this->mergeSettingsArray($setArr);
 	}#m setSettingsArray
 
 	/**
@@ -77,7 +76,8 @@ protected $__filt_get = array();
 		* This may be done also through array_walk, but in it required intermediate function to swap arguments.
 		* I think direct cycle will be faster.
 		**/
-		foreach (REQUIRED_VAR($setArr) as $key => $value) $this->setSetting($key, $value);
+		foreach (REQUIRED_VAR($setArr) as $key => $value)
+			$this->setSetting($key, $value);
 	}#m mergeSettingsArray
 
 	/**
@@ -87,9 +87,9 @@ protected $__filt_get = array();
 	* @return	integer.	FilterId to allow delete it later.
 	**/
 	public function addFilterGet(settings_filter_base $filt){
-	$q = $this->getFilterGet($filt->propName);
-	$q->push($filt);
-	return ($q->count() - 1);
+		$q = $this->getFilterGet($filt->propName);
+		$q->push($filt);
+		return ($q->count() - 1);
 	}#m addFilterGet
 
 	/**
@@ -99,9 +99,9 @@ protected $__filt_get = array();
 	* @return	integer.	FilterId to allow delete it later.
 	**/
 	public function addFilterSet(settings_filter_base $filt){
-	$q = $this->getFilterSet($filt->propName);
-	$q->push($filt);
-	return ($q->count() - 1);
+		$q = $this->getFilterSet($filt->propName);
+		$q->push($filt);
+		return ($q->count() - 1);
 	}#m addFilterSet
 
 	/**
@@ -114,7 +114,7 @@ protected $__filt_get = array();
 	**/
 	protected function &getFilterGet($name){
 		if (!isset($this->__filt_get[$name])) $this->__filt_get[$name] = new SplDoublyLinkedList();
-	return $this->__filt_get[$name];
+		return $this->__filt_get[$name];
 	}#m getFilterGet
 
 	/**
@@ -127,7 +127,7 @@ protected $__filt_get = array();
 	**/
 	protected function &getFilterSet($name){
 		if (!isset($this->__filt_set[$name])) $this->__filt_set[$name] = new SplDoublyLinkedList();
-	return $this->__filt_set[$name];
+		return $this->__filt_set[$name];
 	}#m getFilterSet
 
 	/** @TODO. Implement RAW-functionality in child class
@@ -146,8 +146,8 @@ protected $__filt_get = array();
 	* @return	&$this
 	**/
 	public function &delFilterGet($propName, $filterId){
-	$this->getFilterGet($propName)->offsetUnset($filterId);;
-	return $this;
+		$this->getFilterGet($propName)->offsetUnset($filterId);;
+		return $this;
 	}#m delFilterGet
 
 	/**
@@ -161,8 +161,8 @@ protected $__filt_get = array();
 	* @return	&$this
 	**/
 	public function &delFilterSet($propName, $filterId){
-	$this->getFilterSet($propName)->offsetUnset($filterId);;
-	return $this;
+		$this->getFilterSet($propName)->offsetUnset($filterId);;
+		return $this;
 	}#m delFilterSet
 }#c settings_filter
 ?>

@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Vars.html" class="menu">class tree: Vars</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Vars.html" class="menu">class tree: Vars</a> ]
 		  [ <a href="../../elementindex_Vars.html" class="menu">index: Vars</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -133,7 +134,7 @@ Source Location: /Vars/Singleton.php<br /><br />
 <div class="contents">
 <h2>Classes:</h2>
 <dt><a href="../../Vars/Classes/Single.html">Single</a></dt>
-	<dd>Example from http://ru2.php.net/manual/ru/language.oop5.patterns.php</dd>
+	<dd>Example from http://ru2.php.net/manual/ru/language.oop5.patterns.php, modified</dd>
 </div><br /><br />
 
 <h2>Page Details:</h2>
@@ -142,7 +143,7 @@ Singleton pattern.<br /><br /><br /><br />
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>1.2.2</td>
@@ -151,8 +152,13 @@ Singleton pattern.<br /><br /><br /><br />
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2008-05-30 13:22 <ul><li>Fore backward capability replace construction (!@var ?: &quot;Error&quot;) to (!@var ? '' : &quot;Error&quot;)</li></ul>     * 2009-03-01 11:07 ver 1.0b to 1.1 <ul><li>Method tryIncludeByClassName now deprecated. Use autoload instead.</li><li>In ::def() method suppress error if config absent: @$GLOBALS['__CONFIG'][$className]</li><li>Method def now return reference, how it do method singleton too.</li><li>Add few examples of usage.</li></ul>     * 2009-03-05 13:18 ver 1.1 to 1.1.1 <ul><li>fprintf(STDERR, ...) replaced to file_put_contents('php://stderr', ...) to do not fire warnings what STDERR defined when in web.</li></ul>     * 2009-03-05 13:39 ver 1.1.1 to 1.1.2     * Adjust include, since OS::is_includeable now only return boolean, do not tryed include anything.     * 2009-03-10 06:19 ver 1.1.2 to 1.2 <ul><li>Method ::def() now used CONF()-&gt;getRaw($className) instead of direct accessing to @$GLOBALS['__CONFIG'][$className]
-        with all futures what it does such as settings autoload.</li><li>include_once('Vars/HuConfig.class.php') added additional dependency.</li></ul>     * 2009-05-29 18:32 ver 1.2 to 1.2.1 <ul><li>include_once('Vars/HuConfig.class.php'); //Must be implisit, to break dependency circle. Free &amp;CONF() function used.</li></ul>     * 2011-03-22 13:24 ver 1.2.1 to 1.2.2 <ul><li>Implement planned before (from inner TODO) hashing parameters in singleton method.</li></ul></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../System/OS.html">OS</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Vars/Settings/HuConfig.html">HuConfig</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/ClassNotExistsException.html">ClassNotExistsException</a></td>
   </tr>
 </table>
 </div>
@@ -160,13 +166,13 @@ Singleton pattern.<br /><br /><br /><br />
 <br /><br />
 <h4>Includes:</h4>
 <div class="tags">
-include_once(<a href="../../Vars/Settings/_Vars---HuConfig.class.php.html">'Vars/HuConfig.class.php'</a>) [line 43]<br />
+include_once(<a href="../../Vars/Settings/_Vars---HuConfig.class.php.html">'Vars/HuConfig.class.php'</a>) [line 16]<br />
 Singleton pattern.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>1.2.2</td>
@@ -175,8 +181,13 @@ Singleton pattern.<br /><br /><br /><br />
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2008-05-30 13:22 <ul><li>Fore backward capability replace construction (!@var ?: &quot;Error&quot;) to (!@var ? '' : &quot;Error&quot;)</li></ul>     * 2009-03-01 11:07 ver 1.0b to 1.1 <ul><li>Method tryIncludeByClassName now deprecated. Use autoload instead.</li><li>In ::def() method suppress error if config absent: @$GLOBALS['__CONFIG'][$className]</li><li>Method def now return reference, how it do method singleton too.</li><li>Add few examples of usage.</li></ul>     * 2009-03-05 13:18 ver 1.1 to 1.1.1 <ul><li>fprintf(STDERR, ...) replaced to file_put_contents('php://stderr', ...) to do not fire warnings what STDERR defined when in web.</li></ul>     * 2009-03-05 13:39 ver 1.1.1 to 1.1.2     * Adjust include, since OS::is_includeable now only return boolean, do not tryed include anything.     * 2009-03-10 06:19 ver 1.1.2 to 1.2 <ul><li>Method ::def() now used CONF()-&gt;getRaw($className) instead of direct accessing to @$GLOBALS['__CONFIG'][$className]
-        with all futures what it does such as settings autoload.</li><li>include_once('Vars/HuConfig.class.php') added additional dependency.</li></ul>     * 2009-05-29 18:32 ver 1.2 to 1.2.1 <ul><li>include_once('Vars/HuConfig.class.php'); //Must be implisit, to break dependency circle. Free &amp;CONF() function used.</li></ul>     * 2011-03-22 13:24 ver 1.2.1 to 1.2.2 <ul><li>Implement planned before (from inner TODO) hashing parameters in singleton method.</li></ul></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../System/OS.html">OS</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Vars/Settings/HuConfig.html">HuConfig</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/ClassNotExistsException.html">ClassNotExistsException</a></td>
   </tr>
 </table>
 </div>
@@ -192,7 +203,7 @@ Singleton pattern.<br /><br /><br /><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:37 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:57 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

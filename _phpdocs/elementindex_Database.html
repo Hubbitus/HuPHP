@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="classtrees_Database.html" class="menu">class tree: Database</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="classtrees_Database.html" class="menu">class tree: Database</a> ]
 		  [ <a href="elementindex_Database.html" class="menu">index: Database</a> ]
 		  	    [ <a href="elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -50,11 +50,14 @@
               <a href="li_Exceptions.html">Exceptions</a><br />
               <a href="li_charset_convert.html">charset_convert</a><br />
               <a href="li_Macroses.html">Macroses</a><br />
+              <a href="li_Image.html">Image</a><br />
               <a href="li_RegExp.html">RegExp</a><br />
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
 			<a href="Database/_Database---database.php.html">		database.php
+		</a><br>
+			<a href="Database/_Database---database_where.php.html">		database_where.php
 		</a><br>
 			<a href="Database/_Database---mssql_database.php.html">		mssql_database.php
 		</a><br>
@@ -72,13 +75,16 @@
             <b>Classes:</b><br />
         <div class="package">
 	settings<br />	    &nbsp;&nbsp;		<a href="Database/settings/database.html">database</a><br />
-	    &nbsp;&nbsp;		<a href="Database/settings/DB_settings.html">DB_settings</a><br />
 	    &nbsp;&nbsp;		<a href="Database/settings/mssql_database.html">mssql_database</a><br />
-	    &nbsp;&nbsp;		<a href="Database/settings/mssql_database_settings.html">mssql_database_settings</a><br />
 	    &nbsp;&nbsp;		<a href="Database/settings/mysql_database.html">mysql_database</a><br />
-	    &nbsp;&nbsp;		<a href="Database/settings/mysql_database_settings.html">mysql_database_settings</a><br />
 	    &nbsp;&nbsp;		<a href="Database/settings/sqlite3_database.html">sqlite3_database</a><br />
-	    &nbsp;&nbsp;		<a href="Database/settings/sqlite3_database_settings.html">sqlite3_database_settings</a><br />
+	  </div>
+  <div class="package">
+		    		<a href="Database/database_where.html">database_where</a><br />
+	    		<a href="Database/DB_settings.html">DB_settings</a><br />
+	    		<a href="Database/mssql_database_settings.html">mssql_database_settings</a><br />
+	    		<a href="Database/mysql_database_settings.html">mysql_database_settings</a><br />
+	    		<a href="Database/sqlite3_database_settings.html">sqlite3_database_settings</a><br />
 	  </div>
   <div class="package">
 	DBError<br />	    &nbsp;&nbsp;		<a href="Database/DBError/DBError.html">DBError</a><br />
@@ -91,6 +97,7 @@
 
 <a name="top"></a>
 <h1>Element index for package Database</h1>
+	[ <a href="elementindex_Database.html#a">a</a> ]
 	[ <a href="elementindex_Database.html#c">c</a> ]
 	[ <a href="elementindex_Database.html#d">d</a> ]
 	[ <a href="elementindex_Database.html#f">f</a> ]
@@ -109,19 +116,33 @@
 		<h2>_</h2>
 		<dl>
 							<dt><b>$__SETS</b></dt>
+				<dd>in file database.php, variable <a href="Database/DB_settings.html#var$__SETS">DB_settings::$__SETS</a></dd>
+							<dt><b>__construct</b></dt>
+				<dd>in file database_where.php, method <a href="Database/database_where.html#method__construct">database_where::__construct()</a></dd>
+							<dt><b>$__SETS</b></dt>
 				<dd>in file DBError.php, variable <a href="Database/DBError/DBError_settings.html#var$__SETS">DBError_settings::$__SETS</a></dd>
 							<dt><b>__construct</b></dt>
 				<dd>in file DBError.php, method <a href="Database/DBError/DBError.html#method__construct">DBError::__construct()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</dd>
 							<dt><b>$_sets</b></dt>
 				<dd>in file database.php, variable <a href="Database/settings/database.html#var$_sets">database::$_sets</a></dd>
-							<dt><b>$__SETS</b></dt>
-				<dd>in file database.php, variable <a href="Database/settings/DB_settings.html#var$__SETS">DB_settings::$__SETS</a></dd>
 							<dt><b>__construct</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#method__construct">database::__construct()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</dd>
 							<dt><b>__get</b></dt>
-				<dd>in file database.php, method <a href="Database/settings/database.html#method__get">database::__get()</a></dd>
+				<dd>in file database.php, method <a href="Database/settings/database.html#method__get">database::__get()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Переопределяем, чтобы сделать ссылку на настройки не изменяемой!</dd>
 							<dt><b>__wakeup</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#method__wakeup">database::__wakeup()</a></dd>
+					</dl>
+	</div>
+	<a href="elementindex_Database.html#top">top</a><br>
+  <hr />
+	<a name="a"></a>
+	<div>
+		<h2>a</h2>
+		<dl>
+							<dt><b>add</b></dt>
+				<dd>in file database_where.php, method <a href="Database/database_where.html#methodadd">database_where::add()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add where conditions in end</dd>
+							<dt><b>append</b></dt>
+				<dd>in file database_where.php, method <a href="Database/database_where.html#methodappend">database_where::append()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Append another object to end of conditions.</dd>
 					</dl>
 	</div>
 	<a href="elementindex_Database.html#top">top</a><br>
@@ -130,6 +151,8 @@
 	<div>
 		<h2>c</h2>
 		<dl>
+							<dt><b>count</b></dt>
+				<dd>in file database_where.php, method <a href="Database/database_where.html#methodcount">database_where::count()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return amount of elements</dd>
 							<dt><b>collectDebugInfo</b></dt>
 				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodcollectDebugInfo">sqlite3_database::collectDebugInfo()</a></dd>
 							<dt><b>collectDebugInfo</b></dt>
@@ -148,36 +171,42 @@
 		<dl>
 							<dt><b>database.php</b></dt>
 				<dd>procedural page <a href="Database/_Database---database.php.html">database.php</a></dd>
+							<dt><b>database_where.php</b></dt>
+				<dd>procedural page <a href="Database/_Database---database_where.php.html">database_where.php</a></dd>
+							<dt><b>database_where</b></dt>
+				<dd>in file database_where.php, class <a href="Database/database_where.html">database_where</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Database abstraction layer.</dd>
+							<dt><b>DB_settings</b></dt>
+				<dd>in file database.php, class <a href="Database/DB_settings.html">DB_settings</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Database abstraction layer.</dd>
+							<dt><b>default_operator</b></dt>
+				<dd>in file database_where.php, class constant <a href="Database/database_where.html#constdefault_operator">database_where::default_operator</a></dd>
 							<dt><b>DBError.php</b></dt>
 				<dd>procedural page <a href="Database/DBError/_Database---DBError.php.html">DBError.php</a></dd>
 							<dt><b>DBError</b></dt>
-				<dd>in file DBError.php, class <a href="Database/DBError/DBError.html">DBError</a></dd>
+				<dd>in file DBError.php, class <a href="Database/DBError/DBError.html">DBError</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Database abstraction layer.</dd>
 							<dt><b>DBError_settings</b></dt>
 				<dd>in file DBError.php, class <a href="Database/DBError/DBError_settings.html">DBError_settings</a></dd>
 							<dt><b>$db_link</b></dt>
 				<dd>in file database.php, variable <a href="Database/settings/database.html#var$db_link">database::$db_link</a></dd>
 							<dt><b>$db_type</b></dt>
-				<dd>in file sqlite3_database.php, variable <a href="Database/settings/sqlite3_database.html#var$db_type">sqlite3_database::$db_type</a></dd>
-							<dt><b>$db_type</b></dt>
 				<dd>in file mysql_database.php, variable <a href="Database/settings/mysql_database.html#var$db_type">mysql_database::$db_type</a></dd>
 							<dt><b>$db_type</b></dt>
 				<dd>in file mssql_database.php, variable <a href="Database/settings/mssql_database.html#var$db_type">mssql_database::$db_type</a></dd>
+							<dt><b>$db_type</b></dt>
+				<dd>in file sqlite3_database.php, variable <a href="Database/settings/sqlite3_database.html#var$db_type">sqlite3_database::$db_type</a></dd>
 							<dt><b>database</b></dt>
-				<dd>in file database.php, class <a href="Database/settings/database.html">database</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
+				<dd>in file database.php, class <a href="Database/settings/database.html">database</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 							<dt><b>db_connect</b></dt>
-				<dd>in file database.php, method <a href="Database/settings/database.html#methoddb_connect">database::db_connect()</a></dd>
+				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methoddb_connect">sqlite3_database::db_connect()</a></dd>
 							<dt><b>db_connect</b></dt>
 				<dd>in file mysql_database.php, method <a href="Database/settings/mysql_database.html#methoddb_connect">mysql_database::db_connect()</a></dd>
 							<dt><b>db_connect</b></dt>
 				<dd>in file mssql_database.php, method <a href="Database/settings/mssql_database.html#methoddb_connect">mssql_database::db_connect()</a></dd>
 							<dt><b>db_connect</b></dt>
-				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methoddb_connect">sqlite3_database::db_connect()</a></dd>
+				<dd>in file database.php, method <a href="Database/settings/database.html#methoddb_connect">database::db_connect()</a></dd>
 							<dt><b>db_select</b></dt>
 				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methoddb_select">sqlite3_database::db_select()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;For sqlite in file only one database may be placed and select do not implemented</dd>
 							<dt><b>db_select</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methoddb_select">database::db_select()</a></dd>
-							<dt><b>DB_settings</b></dt>
-				<dd>in file database.php, class <a href="Database/settings/DB_settings.html">DB_settings</a></dd>
 					</dl>
 	</div>
 	<a href="elementindex_Database.html#top">top</a><br>
@@ -198,6 +227,10 @@
 	<div>
 		<h2>g</h2>
 		<dl>
+							<dt><b>getArray</b></dt>
+				<dd>in file database_where.php, method <a href="Database/database_where.html#methodgetArray">database_where::getArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return array of Where-tokens (from constructed, and may be modified).</dd>
+							<dt><b>getSQL</b></dt>
+				<dd>in file database_where.php, method <a href="Database/database_where.html#methodgetSQL">database_where::getSQL()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return SQL-string, to using in SQL-querys statement</dd>
 							<dt><b>getError</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methodgetError">database::getError()</a></dd>
 							<dt><b>getSQL</b></dt>
@@ -210,14 +243,14 @@
 	<div>
 		<h2>i</h2>
 		<dl>
+							<dt><b>INT_STR_LENGTH</b></dt>
+				<dd>in file mssql_database.php, class constant <a href="Database/mssql_database_settings.html#constINT_STR_LENGTH">mssql_database_settings::INT_STR_LENGTH</a></dd>
 							<dt><b>iconv_query</b></dt>
-				<dd>in file database.php, method <a href="Database/settings/database.html#methodiconv_query">database::iconv_query()</a></dd>
+				<dd>in file database.php, method <a href="Database/settings/database.html#methodiconv_query">database::iconv_query()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Перекодировка ЗАПРОСА, тоесть В БД</dd>
 							<dt><b>iconv_result</b></dt>
-				<dd>in file database.php, method <a href="Database/settings/database.html#methodiconv_result">database::iconv_result()</a></dd>
+				<dd>in file database.php, method <a href="Database/settings/database.html#methodiconv_result">database::iconv_result()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Перекодировка РЕЗУЛЬТАТА, тоесть ИЗ БД</dd>
 							<dt><b>int_fixed_length</b></dt>
 				<dd>in file mssql_database.php, method <a href="Database/settings/mssql_database.html#methodint_fixed_length">mssql_database::int_fixed_length()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Helper method for ::MSSQLintArray()</dd>
-							<dt><b>INT_STR_LENGTH</b></dt>
-				<dd>in file mssql_database.php, class constant <a href="Database/settings/mssql_database_settings.html#constINT_STR_LENGTH">mssql_database_settings::INT_STR_LENGTH</a></dd>
 					</dl>
 	</div>
 	<a href="elementindex_Database.html#top">top</a><br>
@@ -230,18 +263,18 @@
 				<dd>procedural page <a href="Database/_Database---mssql_database.php.html">mssql_database.php</a></dd>
 							<dt><b>mysql_database.php</b></dt>
 				<dd>procedural page <a href="Database/_Database---mysql_database.php.html">mysql_database.php</a></dd>
+							<dt><b>mssql_database_settings</b></dt>
+				<dd>in file mssql_database.php, class <a href="Database/mssql_database_settings.html">mssql_database_settings</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Database abstraction layer.</dd>
 							<dt><b>myErrorHandler</b></dt>
-				<dd>in file mssql_database.php, function <a href="Database/_Database---mssql_database.php.html#functionmyErrorHandler">myErrorHandler()</a></dd>
+				<dd>in file mssql_database.php, function <a href="Database/_Database---mssql_database.php.html#functionmyErrorHandler">myErrorHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Database abstraction layer.</dd>
+							<dt><b>mysql_database_settings</b></dt>
+				<dd>in file mysql_database.php, class <a href="Database/mysql_database_settings.html">mysql_database_settings</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Database abstraction layer.</dd>
 							<dt><b>MSSQLintArray</b></dt>
 				<dd>in file mssql_database.php, method <a href="Database/settings/mssql_database.html#methodMSSQLintArray">mssql_database::MSSQLintArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;To coding into MSSQL pseudo &quot;array&quot; (which are not supported)  Result string, which will be splited into items by fixed length of item.</dd>
 							<dt><b>mssql_database</b></dt>
-				<dd>in file mssql_database.php, class <a href="Database/settings/mssql_database.html">mssql_database</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
-							<dt><b>mssql_database_settings</b></dt>
-				<dd>in file mssql_database.php, class <a href="Database/settings/mssql_database_settings.html">mssql_database_settings</a></dd>
+				<dd>in file mssql_database.php, class <a href="Database/settings/mssql_database.html">mssql_database</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 							<dt><b>mysql_database</b></dt>
-				<dd>in file mysql_database.php, class <a href="Database/settings/mysql_database.html">mysql_database</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
-							<dt><b>mysql_database_settings</b></dt>
-				<dd>in file mysql_database.php, class <a href="Database/settings/mysql_database_settings.html">mysql_database_settings</a></dd>
+				<dd>in file mysql_database.php, class <a href="Database/settings/mysql_database.html">mysql_database</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 					</dl>
 	</div>
 	<a href="elementindex_Database.html#top">top</a><br>
@@ -285,9 +318,9 @@
 							<dt><b>rowsTotal</b></dt>
 				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodrowsTotal">sqlite3_database::rowsTotal()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;TOTAL rows for query, whithout LIMIT effect</dd>
 							<dt><b>rowsTotal</b></dt>
-				<dd>in file mysql_database.php, method <a href="Database/settings/mysql_database.html#methodrowsTotal">mysql_database::rowsTotal()</a></dd>
+				<dd>in file mysql_database.php, method <a href="Database/settings/mysql_database.html#methodrowsTotal">mysql_database::rowsTotal()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;TOTAL rows for query, whithout LIMIT effect</dd>
 							<dt><b>rowsTotal</b></dt>
-				<dd>in file database.php, method <a href="Database/settings/database.html#methodrowsTotal">database::rowsTotal()</a></dd>
+				<dd>in file database.php, method <a href="Database/settings/database.html#methodrowsTotal">database::rowsTotal()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns TOTAL rows for query, whithout LIMIT effect</dd>
 					</dl>
 	</div>
 	<a href="elementindex_Database.html#top">top</a><br>
@@ -298,18 +331,22 @@
 		<dl>
 							<dt><b>sqlite3_database.php</b></dt>
 				<dd>procedural page <a href="Database/_Database---sqlite3_database.php.html">sqlite3_database.php</a></dd>
+							<dt><b>safeAppend</b></dt>
+				<dd>in file database_where.php, method <a href="Database/database_where.html#methodsafeAppend">database_where::safeAppend()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Append another object to end of conditions.</dd>
+							<dt><b>setArray</b></dt>
+				<dd>in file database_where.php, method <a href="Database/database_where.html#methodsetArray">database_where::setArray()</a></dd>
+							<dt><b>sqlite3_database_settings</b></dt>
+				<dd>in file sqlite3_database.php, class <a href="Database/sqlite3_database_settings.html">sqlite3_database_settings</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Database abstraction layer.</dd>
 							<dt><b>set_names</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methodset_names">database::set_names()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Fire query &quot;SET NAMES $charset&quot;.</dd>
 							<dt><b>sqlite3_database</b></dt>
 				<dd>in file sqlite3_database.php, class <a href="Database/settings/sqlite3_database.html">sqlite3_database</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Implementation over PDO_sqlite3</dd>
-							<dt><b>sqlite3_database_settings</b></dt>
-				<dd>in file sqlite3_database.php, class <a href="Database/settings/sqlite3_database_settings.html">sqlite3_database_settings</a></dd>
-							<dt><b>sql_escape_string</b></dt>
-				<dd>in file mysql_database.php, method <a href="Database/settings/mysql_database.html#methodsql_escape_string">mysql_database::sql_escape_string()</a></dd>
 							<dt><b>sql_escape_string</b></dt>
 				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodsql_escape_string">sqlite3_database::sql_escape_string()</a></dd>
 							<dt><b>sql_escape_string</b></dt>
 				<dd>in file mssql_database.php, method <a href="Database/settings/mssql_database.html#methodsql_escape_string">mssql_database::sql_escape_string()</a></dd>
+							<dt><b>sql_escape_string</b></dt>
+				<dd>in file mysql_database.php, method <a href="Database/settings/mysql_database.html#methodsql_escape_string">mysql_database::sql_escape_string()</a></dd>
 							<dt><b>sql_escape_string</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_escape_string">database::sql_escape_string()</a></dd>
 							<dt><b>sql_fetch_array</b></dt>
@@ -317,13 +354,13 @@
 							<dt><b>sql_fetch_array</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_fetch_array">database::sql_fetch_array()</a></dd>
 							<dt><b>sql_fetch_assoc</b></dt>
-				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_fetch_assoc">database::sql_fetch_assoc()</a></dd>
+				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_fetch_assoc">database::sql_fetch_assoc()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Добиваемся некоторой &quot;универсальности&quot;</dd>
 							<dt><b>sql_fetch_assoc</b></dt>
 				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodsql_fetch_assoc">sqlite3_database::sql_fetch_assoc()</a></dd>
 							<dt><b>sql_fetch_field</b></dt>
-				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodsql_fetch_field">sqlite3_database::sql_fetch_field()</a></dd>
-							<dt><b>sql_fetch_field</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_fetch_field">database::sql_fetch_field()</a></dd>
+							<dt><b>sql_fetch_field</b></dt>
+				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodsql_fetch_field">sqlite3_database::sql_fetch_field()</a></dd>
 							<dt><b>sql_fetch_fields</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_fetch_fields">database::sql_fetch_fields()</a></dd>
 							<dt><b>sql_fetch_object</b></dt>
@@ -333,27 +370,27 @@
 							<dt><b>sql_fetch_object</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_fetch_object">database::sql_fetch_object()</a></dd>
 							<dt><b>sql_fetch_row</b></dt>
-				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_fetch_row">database::sql_fetch_row()</a></dd>
-							<dt><b>sql_fetch_row</b></dt>
 				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodsql_fetch_row">sqlite3_database::sql_fetch_row()</a></dd>
+							<dt><b>sql_fetch_row</b></dt>
+				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_fetch_row">database::sql_fetch_row()</a></dd>
 							<dt><b>sql_free_result</b></dt>
 				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodsql_free_result">sqlite3_database::sql_free_result()</a></dd>
 							<dt><b>sql_free_result</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_free_result">database::sql_free_result()</a></dd>
 							<dt><b>sql_next_result</b></dt>
-				<dd>in file mysql_database.php, method <a href="Database/settings/mysql_database.html#methodsql_next_result">mysql_database::sql_next_result()</a></dd>
-							<dt><b>sql_next_result</b></dt>
 				<dd>in file mssql_database.php, method <a href="Database/settings/mssql_database.html#methodsql_next_result">mssql_database::sql_next_result()</a></dd>
+							<dt><b>sql_next_result</b></dt>
+				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodsql_next_result">sqlite3_database::sql_next_result()</a></dd>
 							<dt><b>sql_next_result</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_next_result">database::sql_next_result()</a></dd>
 							<dt><b>sql_next_result</b></dt>
-				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodsql_next_result">sqlite3_database::sql_next_result()</a></dd>
+				<dd>in file mysql_database.php, method <a href="Database/settings/mysql_database.html#methodsql_next_result">mysql_database::sql_next_result()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;MySQL does not support multiple recordset. This is possible in mysqli only.</dd>
 							<dt><b>sql_num_fields</b></dt>
 				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_num_fields">database::sql_num_fields()</a></dd>
 							<dt><b>sql_num_rows</b></dt>
-				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_num_rows">database::sql_num_rows()</a></dd>
-							<dt><b>sql_num_rows</b></dt>
 				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodsql_num_rows">sqlite3_database::sql_num_rows()</a></dd>
+							<dt><b>sql_num_rows</b></dt>
+				<dd>in file database.php, method <a href="Database/settings/database.html#methodsql_num_rows">database::sql_num_rows()</a></dd>
 					</dl>
 	</div>
 	<a href="elementindex_Database.html#top">top</a><br>
@@ -363,9 +400,9 @@
 		<h2>t</h2>
 		<dl>
 							<dt><b>ToBlob</b></dt>
-				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodToBlob">sqlite3_database::ToBlob()</a></dd>
+				<dd>in file sqlite3_database.php, method <a href="Database/settings/sqlite3_database.html#methodToBlob">sqlite3_database::ToBlob()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;In sqlite3 does not needed</dd>
 							<dt><b>ToBlob</b></dt>
-				<dd>in file mysql_database.php, method <a href="Database/settings/mysql_database.html#methodToBlob">mysql_database::ToBlob()</a></dd>
+				<dd>in file mysql_database.php, method <a href="Database/settings/mysql_database.html#methodToBlob">mysql_database::ToBlob()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;In MySQL not needed - implement as stub</dd>
 							<dt><b>ToBlob</b></dt>
 				<dd>in file mssql_database.php, method <a href="Database/settings/mssql_database.html#methodToBlob">mssql_database::ToBlob()</a></dd>
 							<dt><b>ToBlob</b></dt>
@@ -376,7 +413,7 @@
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:18 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:12:57 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

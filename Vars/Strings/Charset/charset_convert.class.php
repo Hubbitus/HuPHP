@@ -5,30 +5,21 @@
 * @package Vars
 * @subpackage charset_convert
 * @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created ?2009-03-06 16:08 ver 1.1 to 1.0
 *
-* @changelog
-*	* 2009-03-06 16:08 ver 1.1 to 1.0
-*	* Rename file from charset_convert.php to charset_convert.class.php (it will be reflected in framework)
-*	* As it now part off Vars package move it into Vars directory (as part of /Strings directory).
-*	* Assign @package Vars and turn current charset_convert to @subpackage
-**/
-
-/*-inc
-include_once('Exceptions/Strings/charset/charset_convert_exception.php');
-*/
-include_once('macroses/REQUIRED_VAR.php');
-/**
 * @uses REQUIRED_VAR()
 * @uses VariableRequiredException
 **/
 
+include_once('macroses/REQUIRED_VAR.php');
+
 abstract class charset_convert{
-protected $_in = null;
-protected $_out = null;
-protected $_text = null;
-protected $_resText = null;
+	protected $_in = null;
+	protected $_out = null;
+	protected $_text = null;
+	protected $_resText = null;
 
 	/**
 	* Constructor.
@@ -39,11 +30,12 @@ protected $_resText = null;
 	* @Throws(VariableRequiredException)
 	**/
 	public function __construct($text, $inEnc = null, $outEnc = 'UTF-8'){
-	$this->setInEnc($inEnc);
-	$this->setOutEnc($outEnc);
-	$this->setText(REQUIRED_VAR($text, 'TextToConvert'));
+		$this->setInEnc($inEnc);
+		$this->setOutEnc($outEnc);
+		$this->setText(REQUIRED_VAR($text, 'TextToConvert'));
+
 		if ($inEnc and $outEnc) $this->convert();
-	}#m __construct
+	}#__c
 
 	/**
 	* Main working horse. Must be reimplemented each time we should provide new layer of xonversion (mb, iconv, recode etc)
@@ -58,10 +50,10 @@ protected $_resText = null;
 	* @return string of result
 	**/
 	static public function conv($text, $inEnc = null, $outEnc = 'UTF-8'){
-	//This is correct only if Late Static Binding present. So, it starts from PHP 5.3.0
-	// If we want make this code work on earler releases - just copy this function compleatly in derivates.
-	$conv = new self($text, $inEnc, $outEnc);
-	return $conv->getResult();
+		// This is correct only if Late Static Binding present. So, it starts from PHP 5.3.0
+		// If we want make this code work on earler releases - just copy this function compleatly in derivates.
+		$conv = new self($text, $inEnc, $outEnc);
+		return $conv->getResult();
 	}#m conv
 
 	/**
@@ -71,9 +63,9 @@ protected $_resText = null;
 	* @return &$this
 	**/
 	public function &setInEnc($enc){
-	$this->_in = $enc;
-	$this->_resText = null;
-	return $this;
+		$this->_in = $enc;
+		$this->_resText = null;
+		return $this;
 	}#m setInEnc
 
 	/**
@@ -82,7 +74,7 @@ protected $_resText = null;
 	* @return string
 	**/
 	public function getInEnc(){
-	return $this->_in;
+		return $this->_in;
 	}#m getInEnc
 
 	/**
@@ -92,9 +84,9 @@ protected $_resText = null;
 	* @return &$this
 	**/
 	public function &setOutEnc($enc){
-	$this->_out = $enc;
-	$this->_resText = null;
-	return $this;
+		$this->_out = $enc;
+		$this->_resText = null;
+		return $this;
 	}#m setOutEnc
 
 	/**
@@ -103,7 +95,7 @@ protected $_resText = null;
 	* @return string
 	**/
 	public function getOutEnc(){
-	return $this->_out;
+		return $this->_out;
 	}#m getOutEnc
 
 	/**
@@ -113,8 +105,8 @@ protected $_resText = null;
 	* @return &$this
 	**/
 	public function &setText($newText){
-	$this->_text = $newText;
-	return $this;
+		$this->_text = $newText;
+		return $this;
 	}#m setText
 
 	/**
@@ -123,7 +115,7 @@ protected $_resText = null;
 	* @return string
 	**/
 	public function getText(){
-	return $this->_text;
+		return $this->_text;
 	}#m getText
 
 	/**
@@ -133,7 +125,7 @@ protected $_resText = null;
 	**/
 	public function getResult(){
 		if (empty($this->_resText)) $this->convert();
-	return $this->_resText;
+		return $this->_resText;
 	}#m getResult
 
 	/**
@@ -142,7 +134,7 @@ protected $_resText = null;
 	* @return
 	**/
 	public function __toString(){
-	return $this->getResult();
+		return $this->getResult();
 	}#m __toString
 } #c charset_convert
 ?>

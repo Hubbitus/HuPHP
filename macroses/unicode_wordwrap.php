@@ -1,15 +1,12 @@
 <?
 /**
-* Toolkit of small functions as "macroses".
+* Toolkit of small functions aka "macroses".
 *
 * @package Macroses
 * @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-*	* 2009-10-22 19:03 ver 1.0
-*	- Initial version
+* @created 2009-10-22 19:03
 **/
 
 /**
@@ -31,6 +28,6 @@ function unicode_wordwrap($str, $len = 75, $break = "\n", $cut = false){
 	if($cut) $reg = $reg = "#(.{{$len}}|.{1,$len}$)#us";
 	// "|$" part needed because if it is absent tail processed incorrectly (last word is not counted)
 	else $reg = "#(.{1,$len})(?:[^\pL]|$)#us";
-return substr(preg_replace($reg, "\\1$break", $str), 0, -strlen($break));// Cut off last $break. In both cases it is always must be present.
+	return substr(preg_replace($reg, "\\1$break", $str), 0, -strlen($break));// Cut off last $break. In both cases it is always must be present.
 }#f unicode_wordwrap
 ?>

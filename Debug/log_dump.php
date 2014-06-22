@@ -5,7 +5,7 @@
 * @package Debug
 * @subpackage log_dump
 * @version 2.2b
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2008-05-29 17:35
 **/
@@ -24,13 +24,12 @@ include_once('Debug/dump_utils.php'); //Function used. Must be included explicit
 * @return string|void	Depend on parameter $return
 **/
 function log_dump($var, $header = false, $return = true){
-$ret = '';
-	if ($header) $ret .= $header .':';	#As is and only explicitly given, without any magic
-$ret .= dump_utils::transformCorrect_print_r(print_r($var, true))."\n";
+	$ret = '';
+	if ($header) $ret .= $header .':'; //As is and only explicitly given, without any magic
+	$ret .= dump_utils::transformCorrect_print_r(print_r($var, true))."\n";
 	if ($return) return $ret;
 	else echo $ret;
-}#m log
-
+}#f log_dump
 
 	if (
 		!class_exists('dump')

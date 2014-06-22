@@ -3,19 +3,9 @@
 * System environment and information
 * @package System ??
 * @version 2.0.3
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-*
-*	@changelog
-*	* 2008-11-05 00:47 ver 2.0b to 2.0.1
-*	- In method OS::is_includeable() remove second parameter $include, because including file in caller context
-*		is not possible. And inclusion in context of this method is mistake!
-*
-*	* 2009-01-25 00:58 ver 2.0.1 to 2.0.2
-*	- Add method isPathAbsolute()
-
-*	* 2009-02-26 15:56 ver 2.0.2 to 2.0.3
-*	- In method isPathAbsolute($pathToCheck) add handling registered wrappers to always absolute!
+* @created ?2008-11-05 00:47 ver 2.0b to 2.0.1
 **/
 
 /**
@@ -23,39 +13,39 @@
 * Was System, but it is registered in PEAR, change to OS
 **/
 class OS {
-const OUT_TYPE_BROWSER = 1;
-const OUT_TYPE_CONSOLE = 2;
-const OUT_TYPE_PRINT = 4; /** Pseudo!!! Need automaticaly detect OUT_TYPE_BROWSER or OUT_TYPE_CONSOLE */
-const OUT_TYPE_FILE = 8;
-const OUT_TYPE_WAP = 16;
-#const OUT_TYPE_ = 16;
+	const OUT_TYPE_BROWSER = 1;
+	const OUT_TYPE_CONSOLE = 2;
+	const OUT_TYPE_PRINT = 4; /** Pseudo!!! Need automaticaly detect OUT_TYPE_BROWSER or OUT_TYPE_CONSOLE */
+	const OUT_TYPE_FILE = 8;
+	const OUT_TYPE_WAP = 16;
+	#const OUT_TYPE_ = 16;
 
-/**
-* Possible return-values of
-* http://ru2.php.net/php_sapi_name comment from "cheezy at lumumba dot luc dot ac dot be"
-**/
-static $SAPIs = array(
-	'aolserver',
-	'activescript',
-	'apache',
-	'cgi-fcgi',
-	'cgi',
-	'isapi',
-	'nsapi',
-	'phttpd',
-	'roxen',
-	'java_servlet',
-	'thttpd',
-	'pi3web',
-	'apache2filter',
-	'caudium',
-	'apache2handler',
-	'tux',
-	'webjames',
-	'cli',
-	'embed,',
-	'milter'
-);
+	/**
+	* Possible return-values of
+	* http://ru2.php.net/php_sapi_name comment from "cheezy at lumumba dot luc dot ac dot be"
+	**/
+	static $SAPIs = array(
+		'aolserver',
+		'activescript',
+		'apache',
+		'cgi-fcgi',
+		'cgi',
+		'isapi',
+		'nsapi',
+		'phttpd',
+		'roxen',
+		'java_servlet',
+		'thttpd',
+		'pi3web',
+		'apache2filter',
+		'caudium',
+		'apache2handler',
+		'tux',
+		'webjames',
+		'cli',
+		'embed,',
+		'milter'
+	);
 
 
 	/**
@@ -74,7 +64,7 @@ static $SAPIs = array(
 	* @return
 	**/
 	static public function phpSapiName(){
-	return php_sapi_name();
+		return php_sapi_name();
 	}#m phpSapiName
 
 	/**
@@ -99,9 +89,9 @@ static $SAPIs = array(
 		* woudn't manualy check all paths in include_path. Just open this file to read
 		* with include_path check parameter support! */
 		if ($res = @fopen($filename, 'r', true)){
-		fclose($res);	// Not realy need opened file, only result of opening.
+			fclose($res);	// Not realy need opened file, only result of opening.
 		}
-	return (bool)$res;
+		return (bool)$res;
 	}#m is_inludeable
 
 	/**
@@ -111,15 +101,15 @@ static $SAPIs = array(
 	* @return boolean
 	**/
 	static public function isPathAbsolute($pathToCheck){
-		if ( preg_match('#^(?:' . implode('|', stream_get_wrappers()) . ')://#', $pathToCheck) ) return true; // Registered wrappers always absolute!
+		if ( preg_match('@^(?:' . implode('|', stream_get_wrappers()) . ')://@', $pathToCheck) ) return true; // Registered wrappers always absolute!
 
 		//@TODO: case 'DAR': ;break; //Darwin http://qaix.com/php-web-programming/139-944-constant-php-os-and-mac-server-read.shtml
 		// This check from http://ru2.php.net/php_uname
 		if ('WIN' != strtoupper(substr(PHP_OS, 0, 3))){
-		return ( '/' == $pathToCheck{0} );
+			return ( '/' == $pathToCheck{0} );
 		}
 		else{//WIN
-		return ( ':' == $pathToCheck{1} );
+			return ( ':' == $pathToCheck{1} );
 		}
 	}
 }#c OS

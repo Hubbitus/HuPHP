@@ -1,7 +1,6 @@
 #!/usr/bin/php
 <?
-include_once('Debug/debug.php');
-
+require('autoload.php');
 dump::a('Just test');
 
 $bt = backtrace::create();

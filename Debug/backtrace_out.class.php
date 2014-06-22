@@ -6,18 +6,10 @@
 * @package Debug
 * @subpackage Bactrace
 * @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created 2009-03-07 18:35
 *
-* @changelog
-*	* 2009-03-07 18:35 ver 1.0
-*	- Initial add.
-**/
-
-/*-inc
-include_once('Vars/commonOutExtraData.php');
-*/
-/**
 * @uses commonOutExtraData
 **/
 
@@ -34,3 +26,4 @@ class backtrace_out extends commonOutExtraData{
 	return $this->_var->printout(true, null, OS::OUT_TYPE_BROWSER);
 	}#m strToWeb
 }#c
+?>

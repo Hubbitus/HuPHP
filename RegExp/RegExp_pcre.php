@@ -4,26 +4,9 @@
 *
 * @package RegExp
 * @version 2.2
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-*	* 2009-02-11 13:41 ver 2.1 to 2.1.1
-*	- Add method split
-*
-*	* 2009-03-18 17:09 ver 2.1.1 to 2.2
-*	- In method ::convertOffsetToChars() many changes.
-*		o Fix to walk through all members, not only 0 and 1
-		o Recalculate offset may be done by many ways. See test/strlen_speed_tests.php for more detailes.
-*			Short conclusion from this tests are:
-*				1) It is very-very slowly operations, so
-*					1.1) We refusal to do it in any time. This must be called
-*						manually (and it also may need binary offset meantime too!!!).
-*					1.2) For that, change access type to public
-*				2) To case when it is needed second conclusion - the most fast way is mb_strlen, but it is not included in core PHP...
-*					2.1) If available, mb_strlen is used
-*					2.2) For capability, provide fallback to strlen(utf8_decode(...)) (2nd place of speed)
-*		o Make default value for flag parameter ($flags = PREG_OFFSET_CAPTURE), as we have 1 implementation and only this flag have sence
+* @created ?2009-02-11 13:41 ver 2.1 to 2.1.1
 **/
 
 include_once('RegExp/RegExp_base.php'); //Must be explicit, because there used eval-hack to define some subclas and it excluded from autoload

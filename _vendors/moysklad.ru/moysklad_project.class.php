@@ -9,21 +9,15 @@
 * @copyright Copyright (c) 2010, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
 * @example moysklad.example.php
-*
-* @changelog
-*	* 2010-04-01 01:15 ver 1.0
-*	- Initial version.
+* @created 2010-04-01 01:15
 **/
 
 /**
 * Moysklad element project.
-*
-* @author Pavel Alexeev aka Pahan-Hubbitus
-* @created 2010-04-01 01:15 ver 1.0
-* @copyright 2010 Pavael Alexeev Aka Pahan-Hubbitus
 **/
 class moysklad_project extends moysklad_element_base{
 	function getName(){
-	return 'project';
+		return 'project';
 	}#m getName
 }#c moysklad_project
+?>

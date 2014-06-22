@@ -6,10 +6,7 @@
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2010, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
-*
-* @changelog
-*	* 2010-03-30 15:15 ver 1.0
-*	- Initial version.
+* @created 2010-03-30 15:15
 **/
 
 //EXAMPLE:
@@ -51,11 +48,11 @@ $xml->add_uom(
 $xml->add_good(
 	new moysklad_good(
 		array(
-			'minimumBalance'	=> 0		#"20.0"
+			'minimumBalance'	=> 0	// "20.0"
 			,'buyPrice'		=> 10
 			,'salePrice'		=> 20
 			,'uomId'			=> 'tVD4k03EhnKBPbeXSY9RW2' /*0*/
-			,'parentId'		=> 0	# CategoryId!
+			,'parentId'		=> 0	// CategoryId!
 			,'name'			=> 'Наш классный товар'
 			,'updatedBy'		=> $updatedBy
 			// elements

@@ -4,14 +4,10 @@
 *
 * @package Debug
 * @version 2.1
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-* 2008-12-06 17:20 ver 2.0 to 2.1
-*	Correct argtype Array and String for log (FORMAT_FILE) output. Make it same as for console
+* @created 2008-12-06 17:20 ver 2.0 to 2.1
 **/
-
 
 /**
 * Helper to more flexibility show large amount of data (long strings, dump of arrays etc.)
@@ -116,7 +112,7 @@ $GLOBALS['__CONFIG']['backtrace::printout'] = array(
 );
 $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']	=  $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB']['argtypes'];
 $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']['argtypes']	=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB']['argtypes'];
-#Difference in argTypes
+// Difference in argTypes
 $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']['argtypes']['string']
 	= $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']['argtypes']['string']
 	= array('E:::', '\'\\\'\'.htmlspecialchars(substr($var, 0, 28)).((($sl = strlen($var)) < 28) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}\'');

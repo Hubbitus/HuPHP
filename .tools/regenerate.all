@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Regenerate all generated stuff: Autoincludes, Docs, Packages (Phar, OneFile)
+
+{
+#./auto_extract_class_map.bash
+
+rm -f ./Packages/{HuDebug.phar,one.Debug.php}
+
+./Packages/makeHuDebug.phar.php
+#./Packages/makeOneFile.php
+
+# This command in: https://github.com/Hubbitus/shell.scripts
+#huPhpDoc .
+
+#echo 'Simple test run UNPACKED:';
+#./Packages/test.unpacked.php
+
+#echo 'Simple test run PHAR:';
+#./Packages/test.HuDebug.phar.php
+
+#echo 'Simple test run ONEFILE:';
+#./Packages/test.HuDebug.One.php
+} | tee regenerate.all.log

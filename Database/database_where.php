@@ -1,29 +1,33 @@
 <?
-/*-inc
-include_once('Database/database_operators.php');
-*/
-include_once('macroses/EMPTY_STR.php');
 /**
+* Database abstraction layer.
+* Documented AFTER creation, in progress.
+* @package Database
+* @version 1.0
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created ???
+*
 * @uses EMPTY_STR()
 * @uses NON_EMPTY_STR()
 * @uses database_operators
 **/
 
 class database_where{
-private $_whereArr = array();
-private $_whereStr = '';
+	private $_whereArr = array();
+	private $_whereStr = '';
 
-private $_l;
-private $_r;
+	private $_l;
+	private $_r;
 
-private $_quote = "'";
+	private $_quote = "'";
 
-private $_logic = 'and';
+	private $_logic = 'and';
 
-const default_operator = '=';
+	const default_operator = '=';
 
 	/**
-	* #Hmm, may be need opposite str2arr?? Later.
+	* @TODO Hmm, may be need opposite str2arr?? Later.
 	* $l, $r may be used as:
 	*	$l = '[', $r = ']' for MSSQL Server
 	*	$l = '`', $r = '`' for MySQL Server
@@ -32,15 +36,15 @@ const default_operator = '=';
 	* In case $l provided, but $r - not - $r assuming equals $l
 	**/
 	public function __construct(array $where = array(), $l = '', $r = '', $quote = "'"){
-	$this->setArray($where, $l, $r, $quote);
-	}#c
+		$this->setArray($where, $l, $r, $quote);
+	}#__c
 
 	public function setArray(array $where, $l = '', $r = '', $quote = "'"){
-	$this->_whereArr = $where;
-	$this->_l = $l;
-	$this->_r = EMPTY_STR($r, $l);
-	$this->_quote = $quote;
-	$this->_whereStr = '';	#Will be filled on request.
+		$this->_whereArr = $where;
+		$this->_l = $l;
+		$this->_r = EMPTY_STR($r, $l);
+		$this->_quote = $quote;
+		$this->_whereStr = ''; // Will be filled on request.
 	}#m setArray
 
 	/**
@@ -50,9 +54,9 @@ const default_operator = '=';
 	* @return &$this
 	**/
 	public function &add(/* array|string */$what){
-	$this->_whereArr[] = $what;
-	$this->_whereStr = null; //recalc it later
-	return $this;
+		$this->_whereArr[] = $what;
+		$this->_whereStr = null; //recalc it later
+		return $this;
 	}#m add
 
 	/**
@@ -61,7 +65,7 @@ const default_operator = '=';
 	* @return array
 	**/
 	public function getArray(){
-	return $this->_whereArr;
+		return $this->_whereArr;
 	}#m getArray
 
 	/**
@@ -70,8 +74,8 @@ const default_operator = '=';
 	* @return &$this
 	**/
 	public function append(database_where $whatAppend){
-	$this->_whereArr = array_merge($this->_whereArr, $whatAppend->getArray());
-	return $this;
+		$this->_whereArr = array_merge($this->_whereArr, $whatAppend->getArray());
+		return $this;
 	}#m append
 
 	/**
@@ -90,12 +94,10 @@ const default_operator = '=';
 	**/
 	public function safeAppend(database_where $whatAppend){
 		if ($whatAppend->count()){
-		$this->add('AND'); //So, If expliscit given LogicOperator, brackets will be added aroud!
-//		$this->add('(');
-		$this->append($whatAppend);
-//		$this->add(')');
+			$this->add('AND'); //So, If expliscit given LogicOperator, brackets will be added aroud!
+			$this->append($whatAppend);
 		}
-	return $this;
+		return $this;
 	}#m safeAppend
 
 	/**
@@ -104,7 +106,7 @@ const default_operator = '=';
 	* @return integer
 	**/
 	public function count(){
-	return count($this->_whereArr);
+		return count($this->_whereArr);
 	}#m count
 
 	/**
@@ -114,20 +116,19 @@ const default_operator = '=';
 	*/
 	public function getSQL(){
 		if (!$this->_whereStr) $this->convertToSQL();
-	return $this->_whereStr;
+		return $this->_whereStr;
 	}#m getSQL
 
-##############################################################
 	/**
 	* @ This is main working horse!
 	* Handle user-friendly form of parameters. $this->_whereArr is array of elements:
 	* $this->_whereArr
-	* 1	array('ID' => 1)					-> ID=1				# Operator 'self::default_operator' is default. Field is key, value in value.
-	* 2	array('ID' => array (2, '<='))		-> ID <= 2			# As 1, but value - array. Warning - Operator is SECOND argument of secod array. [Operator:=]
+	* 1	array('ID' => 1)					-> ID=1				// Operator 'self::default_operator' is default. Field is key, value in value.
+	* 2	array('ID' => array (2, '<='))		-> ID <= 2			// As 1, but value - array. Warning - Operator is SECOND argument of secod array. [Operator:=]
 	* 3	array('ID' => array (2, 'BETWEEN', 15))	-> ID BETWEEN 1 AND 15
-	* 4	array('ID', array (2, '<='))			-> ID <= 2			# As <2>, but 2 argument - array. Warning - Operator is SECOND argument of secod array. [Operator:=]
-	* 5	array('ID', '1', 'q:>=')				-> ID>='1'			# Operator given explicit, owervise '='. One dimension array. Arrange: FieldName, FieldValue, [Operator:=]
-	* 6	array('ID', '1', 'BETWEEN', 10)		-> ID BETWEEN 1 AND 10	# Special case, ternary operator.
+	* 4	array('ID', array (2, '<='))			-> ID <= 2			// As <2>, but 2 argument - array. Warning - Operator is SECOND argument of secod array. [Operator:=]
+	* 5	array('ID', '1', 'q:>=')				-> ID>='1'			// Operator given explicit, owervise '='. One dimension array. Arrange: FieldName, FieldValue, [Operator:=]
+	* 6	array('ID', '1', 'BETWEEN', 10)		-> ID BETWEEN 1 AND 10	// Special case, ternary operator.
 	* 7	(string)""
 	*	7.1 If string is operator from database_operators::$operators3 (such as AND, OR, XOR, && etc) - change logic (default is 'and'), and group other in (). F.e.:
 	*		$this->_whereArr = array(
@@ -144,7 +145,7 @@ const default_operator = '=';
 	* ADDITIONALY has second sintax LIKE:
 	* $this->_whereArr = array(
 	* 8	'ID'		=> array(1, '<'),
-	* 9	'USER'	=> 5,			# or 'USER'	=> array(5)
+	* 9	'USER'	=> 5,			// or 'USER'	=> array(5)
 	* )
 	*
 	* In both sintax if Operator contains ':' each symbol before mean:
@@ -156,57 +157,56 @@ const default_operator = '=';
 	*		array('Name of field', '[ABC]%', 'q:LIKE')
 	**/
 	private function convertToSQL(){
-		#Если не пустое - добавляем само слово WHERE
-		if (! empty($this->_whereArr)){#Has at least 1 element
-		$this->_whereStr = 'WHERE (';
+		// If empty add WHERE keyword
+		if (! empty($this->_whereArr)){// Has at least 1 element
+			$this->_whereStr = 'WHERE (';
 		}
 		else return '';
 
-	$add_logic_op = false;
+		$add_logic_op = false;
 		foreach ($this->_whereArr as $key => $item){
-			if (is_string($item) or is_numeric($item)){#<7.x>
+			if (is_string($item) or is_numeric($item)){//<7.x>
 				if (in_array($logic = strtoupper(trim($item)), database_operators::$operatorsLogical)){
-				$this->_logic = $logic;
-				$this->_whereStr .= ') '.$this->_logic.' (';#<7.1>
-				$add_logic_op = false;	#add operator
+					$this->_logic = $logic;
+					$this->_whereStr .= ') '.$this->_logic.' (';//<7.1>
+					$add_logic_op = false;	//add operator
 				}
-				else $this->_whereStr .= NON_EMPTY_STR($item, ' ', ' ');#<7.2> - AS IS
+				else $this->_whereStr .= NON_EMPTY_STR($item, ' ', ' ');//<7.2> - AS IS
 			}
 			else{
-				#add operator
+				// add operator
 				if ($add_logic_op) $this->_whereStr .= NON_EMPTY_STR($this->_logic, ' ', ' ');
 
-				if (is_numeric($key)){#First sintax
+				if (is_numeric($key)){//First sintax
 					/*
 					$item = array('newKey' => array(newValue, operator));
 					OR
 					$item = array('newKey' => newValue);
 					*/
 					if ( 1 == sizeof($item)){
-					#Ensure array
-					$item = (array)$item;
-					list($new_key, $new_item) = each($item);
-					$this->_whereStr .= $this->constructPhrase($new_key, (array)$new_item);#<1>,<2>,<3>
+						$item = (array)$item;
+						list($new_key, $new_item) = each($item);
+						$this->_whereStr .= $this->constructPhrase($new_key, (array)$new_item);//<1>,<2>,<3>
 					}
-					else{#Key, value, Operator
+					else{//Key, value, Operator
 						if ( is_array($item[1]) )
-						$this->_whereStr .= $this->constructPhrase($item[0], $item[1]);#<4>
+							$this->_whereStr .= $this->constructPhrase($item[0], $item[1]);//<4>
 						else
-						$this->_whereStr .= $this->constructPhrase($item[0], array_slice($item, 1));#<5>,<6>
+							$this->_whereStr .= $this->constructPhrase($item[0], array_slice($item, 1));//<5>,<6>
 					}
 				}
-				else{#Second sintax
+				else{// Second syntax
 					if ( is_array($item[0]) )
-					$this->_whereStr .= $this->constructPhrase($key, $item[0]);#<9>
+						$this->_whereStr .= $this->constructPhrase($key, $item[0]);//<9>
 					else
-					$this->_whereStr .= $this->constructPhrase($key, (array)$item);#<8>
+						$this->_whereStr .= $this->constructPhrase($key, (array)$item);//<8>
 				}
 
-			#One added.
-			$add_logic_op = true;
+				// One added.
+				$add_logic_op = true;
 			}
 		}
-	$this->_whereStr .= ')';
+		$this->_whereStr .= ')';
 	}#m convertToSQL
 
 	/**
@@ -216,35 +216,36 @@ const default_operator = '=';
 	* @returns string
 	**/
 	private function constructPhrase($FieldName, array $OperVal){
-	$ret = '';
-	$opt = '';
+		$ret = '';
+		$opt = '';
 		if (1 == sizeof($OperVal)){
-		$op = self::default_operator;
+			$op = self::default_operator;
 		}
 		else{
 			if (strpos(@$OperVal[1], ':')){
-			#May produce Notice, if single option(s), without operator
-			@list ($opt, $op) = explode(':', @$OperVal[1]);
-			$op = strtoupper(EMPTY_STR(trim($op), self::default_operator));
+				// May produce Notice, if single option(s), without operator
+				@list ($opt, $op) = explode(':', @$OperVal[1]);
+				$op = strtoupper(EMPTY_STR(trim($op), self::default_operator));
 			}
 			else{//Or Operator, or Empty!
-			$op = EMPTY_STR(@$OperVal[1], self::default_operator);
+				$op = EMPTY_STR(@$OperVal[1], self::default_operator);
 			}
 		}
 
-	$ret .= $this->escapeFieldName($FieldName, $opt);
-			switch ($op){
-			case 'BETWEEN':#Special case - ternary operator
-			$ret .= ' '.$op.' '.$this->quoteFieldValue($OperVal[0], $opt).' AND '.$this->quoteFieldValue($OperVal[2], $opt);
-			break;
+		$ret .= $this->escapeFieldName($FieldName, $opt);
+		switch ($op){
+			case 'BETWEEN': //Special case - ternary operator
+				$ret .= ' '.$op.' '.$this->quoteFieldValue($OperVal[0], $opt).' AND '.$this->quoteFieldValue($OperVal[2], $opt);
+				break;
 
 			default:
-			$ret .= ' '.$op.' '.$this->quoteFieldValue($OperVal[0], $opt);
-			}
-	return $ret;
+				$ret .= ' '.$op.' '.$this->quoteFieldValue($OperVal[0], $opt);
+		}
+		return $ret;
 	}#m constructPhrase
 
 	/**
+	*
 	**/
 	private function escapeFieldName(&$fieldName, $opt){
 		if (stristr($opt, 'e'))
@@ -253,6 +254,7 @@ const default_operator = '=';
 	}#m escapeFieldName
 
 	/**
+	*
 	**/
 	private function quoteFieldValue(&$fieldVal, $opt){
 		if (stristr($opt, 'q'))

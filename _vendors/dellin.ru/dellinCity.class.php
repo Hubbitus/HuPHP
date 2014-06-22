@@ -7,10 +7,7 @@
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2010, Pahan-Hubbitus (Pavel Alexeev)
 * @link http://dellin.ru/developers/
-*
-* @changelog
-*	* 2010-10-31 11:21 ver 1.0
-*	- Initial version
+* @created 2010-10-31 11:21
 **/
 
 include_once('macroses/REQUIRED_VAR.php');

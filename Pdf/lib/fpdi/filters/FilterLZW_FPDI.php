@@ -31,3 +31,4 @@ class FilterLZW_FPDI extends FilterLZW {
         $this->fpdi->error($msg);
     }
 }
+?>

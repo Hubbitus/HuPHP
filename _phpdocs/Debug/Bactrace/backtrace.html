@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
 		  [ <a href="../../elementindex_Debug.html" class="menu">index: Debug</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -55,6 +56,8 @@
                         <b>Files:</b><br />
       	  <div class="package">
 			<a href="../../Debug/_Debug---_HuFormat.defaults---backtraceprintout.php.html">		backtrace::printout.php
+		</a><br>
+			<a href="../../Debug/_Debug---gentime_class.php.html">		gentime_class.php
 		</a><br>
 			<a href="../../Debug/_Debug---Tokenizer.php.html">		Tokenizer.php
 		</a><br>
@@ -119,14 +122,15 @@
 	Dump-utils<br />	    &nbsp;&nbsp;		<a href="../../Debug/Dump-utils/dump_utils.html">dump_utils</a><br />
 	  </div>
   <div class="package">
+		    		<a href="../../Debug/gentime.html">gentime</a><br />
+	    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
+	  </div>
+  <div class="package">
 	HuFormat<br />	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormat.html">HuFormat</a><br />
 	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormatException.html">HuFormatException</a><br />
 	  </div>
   <div class="package">
 	log_dump<br />	    &nbsp;&nbsp;		<a href="../../Debug/log_dump/dump.html">dump</a><br />
-	  </div>
-  <div class="package">
-		    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
 	  </div>
                 </td>
     <td>
@@ -146,10 +150,10 @@ Source Location: /Debug/backtrace.php<br /><br />
 <div class="description"></div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-              </ul>
+                                </ul>
 
 
-        
+                    
 
                 <p class="implements">
             Implements interfaces:
@@ -209,16 +213,25 @@ Source Location: /Debug/backtrace.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 269]<br />
+[line 233]<br />
 <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---REQUIRED_VAR.php.html">REQUIRED_VAR.php</a></td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/_Exceptions---variables.php.html">variables.php</a></td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/_Debug---Tokenizer.php.html">Tokenizer.php</a></td>
+  </tr>
+  <tr>
     <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/VariableException.html">VariableException</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/Tokenizer.html">Tokenizer</a></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/Bactrace/backtrace.html#methoddump">backtrace::dump()</a></td>
   </tr>
 </table>
 </div>
@@ -233,7 +246,7 @@ Source Location: /Debug/backtrace.php<br /><br />
 	<a name="var$_format"></a>
 	<p></p>
 	<h4>$_format = <span class="value"></span></h4>
-	<p>[line 273]</p>
+	<p>[line 237]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -264,7 +277,7 @@ Source Location: /Debug/backtrace.php<br /><br />
 <div class="tags">
   <hr />
 	<a name="methodcreate"></a>
-	<h3>static method create <span class="smalllinenumber">[line 299]</span></h3>
+	<h3>static method create <span class="smalllinenumber">[line 263]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -309,7 +322,7 @@ $removeSelf = 2])</code>
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 285]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 249]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -353,7 +366,7 @@ $removeSelf = 1])</code>
   </div>
   <hr />
 	<a name="methodcurrent"></a>
-	<h3>method current <span class="smalllinenumber">[line 520]</span></h3>
+	<h3>method current <span class="smalllinenumber">[line 478]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -385,7 +398,7 @@ $removeSelf = 1])</code>
   </div>
   <hr />
 	<a name="methoddelNode"></a>
-	<h3>method delNode <span class="smalllinenumber">[line 375]</span></h3>
+	<h3>method delNode <span class="smalllinenumber">[line 333]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -423,7 +436,7 @@ $N = null])</code>
   </div>
   <hr />
 	<a name="methoddump"></a>
-	<h3>method dump <span class="smalllinenumber">[line 312]</span></h3>
+	<h3>method dump <span class="smalllinenumber">[line 276]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -447,6 +460,9 @@ $header('_debug_bactrace()'))</code>
   </tr>
   <tr>
     <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/Bactrace/backtrace.html">backtrace</a></td>
   </tr>
 </table>
 </div>
@@ -479,7 +495,7 @@ $header('_debug_bactrace()'))</code>
   </div>
   <hr />
 	<a name="methodend"></a>
-	<h3>method end <span class="smalllinenumber">[line 567]</span></h3>
+	<h3>method end <span class="smalllinenumber">[line 525]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -506,7 +522,7 @@ $header('_debug_bactrace()'))</code>
   </div>
   <hr />
 	<a name="methodfind"></a>
-	<h3>method find <span class="smalllinenumber">[line 412]</span></h3>
+	<h3>method find <span class="smalllinenumber">[line 370]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -544,7 +560,7 @@ $need)</code>
   </div>
   <hr />
 	<a name="methodfindRegexp"></a>
-	<h3>method findRegexp <span class="smalllinenumber">[line 432]</span></h3>
+	<h3>method findRegexp <span class="smalllinenumber">[line 390]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -585,7 +601,7 @@ $need)</code>
   </div>
   <hr />
 	<a name="methodgetNode"></a>
-	<h3>method getNode <span class="smalllinenumber">[line 329]</span></h3>
+	<h3>method getNode <span class="smalllinenumber">[line 287]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -623,7 +639,7 @@ $N)</code>
   </div>
   <hr />
 	<a name="methodkey"></a>
-	<h3>method key <span class="smalllinenumber">[line 534]</span></h3>
+	<h3>method key <span class="smalllinenumber">[line 492]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -655,7 +671,7 @@ $N)</code>
   </div>
   <hr />
 	<a name="methodlength"></a>
-	<h3>method length <span class="smalllinenumber">[line 390]</span></h3>
+	<h3>method length <span class="smalllinenumber">[line 348]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -682,7 +698,7 @@ $N)</code>
   </div>
   <hr />
 	<a name="methodnext"></a>
-	<h3>method next <span class="smalllinenumber">[line 543]</span></h3>
+	<h3>method next <span class="smalllinenumber">[line 501]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -714,7 +730,7 @@ $N)</code>
   </div>
   <hr />
 	<a name="methodprev"></a>
-	<h3>method prev <span class="smalllinenumber">[line 577]</span></h3>
+	<h3>method prev <span class="smalllinenumber">[line 535]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -741,7 +757,7 @@ $N)</code>
   </div>
   <hr />
 	<a name="methodprintout"></a>
-	<h3>method printout <span class="smalllinenumber">[line 447]</span></h3>
+	<h3>method printout <span class="smalllinenumber">[line 405]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -791,7 +807,7 @@ $OutType = null])</code>
   </div>
   <hr />
 	<a name="methodrewind"></a>
-	<h3>method rewind <span class="smalllinenumber">[line 511]</span></h3>
+	<h3>method rewind <span class="smalllinenumber">[line 469]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -823,7 +839,7 @@ $OutType = null])</code>
   </div>
   <hr />
 	<a name="methodsetNode"></a>
-	<h3>method setNode <span class="smalllinenumber">[line 348]</span></h3>
+	<h3>method setNode <span class="smalllinenumber">[line 306]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -867,7 +883,7 @@ $node)</code>
   </div>
   <hr />
 	<a name="methodsetPrintoutFormat"></a>
-	<h3>method setPrintoutFormat <span class="smalllinenumber">[line 488]</span></h3>
+	<h3>method setPrintoutFormat <span class="smalllinenumber">[line 445]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -883,14 +899,10 @@ $format)</code>
 <li><div class="src-line"><span class="src-doc">*</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;Debug</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@version</span><span class="src-doc">&nbsp;2.1</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Pahan-Hubbitus&nbsp;(Pavel&nbsp;Alexeev)&nbsp;&lt;Pahan&nbsp;[at]&nbsp;Hubbitus&nbsp;[&nbsp;dot.&nbsp;]&nbsp;info&gt;</span></div></li>
+<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Pahan-Hubbitus&nbsp;(Pavel&nbsp;Alexeev)&nbsp;&lt;Pahan@Hubbitus.info&gt;</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@copyright</span><span class="src-doc">&nbsp;Copyright&nbsp;(c)&nbsp;2008,&nbsp;Pahan-Hubbitus&nbsp;(Pavel&nbsp;Alexeev)</span></div></li>
-<li><div class="src-line"><span class="src-doc">*</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-tag">@changelog</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;&nbsp;2008-12-06&nbsp;17:20&nbsp;ver&nbsp;2.0&nbsp;to&nbsp;2.1</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Correct&nbsp;argtype&nbsp;Array&nbsp;and&nbsp;String&nbsp;for&nbsp;log&nbsp;(FORMAT_FILE)&nbsp;output.&nbsp;Make&nbsp;it&nbsp;same&nbsp;as&nbsp;for&nbsp;console</span></div></li>
+<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-tag">@created</span><span class="src-doc">&nbsp;2008-12-06&nbsp;17:20&nbsp;ver&nbsp;2.0&nbsp;to&nbsp;2.1</span></div></li>
 <li><div class="src-line"><span class="src-doc">***/</span></div></li>
-<li><div class="src-line">&nbsp;</div></li>
 <li><div class="src-line">&nbsp;</div></li>
 <li><div class="src-line"><span class="src-doc">/**</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;Helper&nbsp;to&nbsp;more&nbsp;flexibility&nbsp;show&nbsp;large&nbsp;amount&nbsp;of&nbsp;data&nbsp;(long&nbsp;strings,&nbsp;dump&nbsp;of&nbsp;arrays&nbsp;etc.)</span></div></li>
@@ -995,7 +1007,7 @@ $format)</code>
 <li><div class="src-line"><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line"><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_CONSOLE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_WEB'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line"><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_FILE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]&nbsp;&nbsp;&nbsp;&nbsp;</span>=<span class="src-sym">&amp;&nbsp;</span><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_WEB'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
-<li><div class="src-line"><span class="src-comm">#Difference&nbsp;in&nbsp;argTypes</span></div></li>
+<li><div class="src-line"><span class="src-comm">//&nbsp;Difference&nbsp;in&nbsp;argTypes</span></div></li>
 <li><div class="src-line"><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_FILE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'string'</span><span class="src-sym">]</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_CONSOLE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'string'</span><span class="src-sym">]</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'E:::'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'\'\\\'\'.htmlspecialchars(substr($var,&nbsp;0,&nbsp;28)).((($sl&nbsp;=&nbsp;strlen($var))&nbsp;&lt;&nbsp;28)&nbsp;?&nbsp;\'\'&nbsp;:&nbsp;\'...\').\'\\\'{\'.$sl.\'}\''</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
@@ -1035,7 +1047,7 @@ $format)</code>
   </div>
   <hr />
 	<a name="methodvalid"></a>
-	<h3>method valid <span class="smalllinenumber">[line 557]</span></h3>
+	<h3>method valid <span class="smalllinenumber">[line 515]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1067,7 +1079,7 @@ $format)</code>
   </div>
   <hr />
 	<a name="method__toString"></a>
-	<h3>method __toString <span class="smalllinenumber">[line 498]</span></h3>
+	<h3>method __toString <span class="smalllinenumber">[line 455]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1098,7 +1110,7 @@ $format)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:23 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:01 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

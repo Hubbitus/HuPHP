@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_System.html" class="menu">class tree: System</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_System.html" class="menu">class tree: System</a> ]
 		  [ <a href="../elementindex_System.html" class="menu">index: System</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -81,10 +82,10 @@ Source Location: /System/OS.php<br /><br />
 <div class="description">Class OS has mainly (all) static methods, to determine system-enveroments, like OS or type of out.</div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-                    </ul>
+                                </ul>
 
 
-            
+                    
 
         
 </td>
@@ -134,19 +135,25 @@ Source Location: /System/OS.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 25]<br />
+[line 15]<br />
 Class OS has mainly (all) static methods, to determine system-enveroments, like OS or type of out.<br /><br /><p>Was System, but it is registered in PEAR, change to OS</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/HuFormat/HuFormatException.html">HuFormatException</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/_Filesystem---file_base.php.html">file_base.php</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/HuLOG/HuLOG_settings.html">HuLOG_settings</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Vars/Classes/_Vars---Singleton.php.html">Singleton.php</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/HuLOG/HuError_settings.html">HuError_settings</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/HuLOG/_Debug---HuLOG.php.html">HuLOG.php</a></td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/HuFormat/_Debug---HuFormat.php.html">HuFormat.php</a></td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/HuLOG/_Debug---HuError.php.html">HuError.php</a></td>
   </tr>
 </table>
 </div>
@@ -161,28 +168,28 @@ Class OS has mainly (all) static methods, to determine system-enveroments, like 
 	<a name="var$SAPIs"></a>
 	<p></p>
 	<h4>static $SAPIs = <span class="value">array(<br>
-&nbsp;&nbsp;&nbsp;'aolserver',<br>
-&nbsp;&nbsp;&nbsp;'activescript',<br>
-&nbsp;&nbsp;&nbsp;'apache',<br>
-&nbsp;&nbsp;&nbsp;'cgi-fcgi',<br>
-&nbsp;&nbsp;&nbsp;'cgi',<br>
-&nbsp;&nbsp;&nbsp;'isapi',<br>
-&nbsp;&nbsp;&nbsp;'nsapi',<br>
-&nbsp;&nbsp;&nbsp;'phttpd',<br>
-&nbsp;&nbsp;&nbsp;'roxen',<br>
-&nbsp;&nbsp;&nbsp;'java_servlet',<br>
-&nbsp;&nbsp;&nbsp;'thttpd',<br>
-&nbsp;&nbsp;&nbsp;'pi3web',<br>
-&nbsp;&nbsp;&nbsp;'apache2filter',<br>
-&nbsp;&nbsp;&nbsp;'caudium',<br>
-&nbsp;&nbsp;&nbsp;'apache2handler',<br>
-&nbsp;&nbsp;&nbsp;'tux',<br>
-&nbsp;&nbsp;&nbsp;'webjames',<br>
-&nbsp;&nbsp;&nbsp;'cli',<br>
-&nbsp;&nbsp;&nbsp;'embed,',<br>
-&nbsp;&nbsp;&nbsp;'milter'<br>
-)</span></h4>
-	<p>[line 37]</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'aolserver',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'activescript',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'apache',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'cgi-fcgi',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'cgi',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'isapi',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'nsapi',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'phttpd',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'roxen',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'java_servlet',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'thttpd',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'pi3web',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'apache2filter',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'caudium',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'apache2handler',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tux',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'webjames',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'cli',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'embed,',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'milter'<br>
+&nbsp;&nbsp;&nbsp;)</span></h4>
+	<p>[line 27]</p>
   Possible return-values of<br /><br /><p>http://ru2.php.net/php_sapi_name comment from &quot;cheezy at lumumba dot luc dot ac dot be&quot;</p><br />
 
   <br />
@@ -204,7 +211,7 @@ Class OS has mainly (all) static methods, to determine system-enveroments, like 
 <div class="tags">
   <hr />
 	<a name="methodgetOutType"></a>
-	<h3>static method getOutType <span class="smalllinenumber">[line 66]</span></h3>
+	<h3>static method getOutType <span class="smalllinenumber">[line 56]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -234,7 +241,7 @@ Class OS has mainly (all) static methods, to determine system-enveroments, like 
   </div>
   <hr />
 	<a name="methodisPathAbsolute"></a>
-	<h3>static method isPathAbsolute <span class="smalllinenumber">[line 113]</span></h3>
+	<h3>static method isPathAbsolute <span class="smalllinenumber">[line 103]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -272,7 +279,7 @@ $pathToCheck)</code>
   </div>
   <hr />
 	<a name="methodis_includeable"></a>
-	<h3>static method is_includeable <span class="smalllinenumber">[line 96]</span></h3>
+	<h3>static method is_includeable <span class="smalllinenumber">[line 86]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -316,7 +323,7 @@ $filenam)</code>
   </div>
   <hr />
 	<a name="methodphpSapiName"></a>
-	<h3>static method phpSapiName <span class="smalllinenumber">[line 76]</span></h3>
+	<h3>static method phpSapiName <span class="smalllinenumber">[line 66]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -352,7 +359,7 @@ $filenam)</code>
 	<a name="constOUT_TYPE_BROWSER"></a>
 	<p></p>
 	<h4>OUT_TYPE_BROWSER = <span class="value">&nbsp;1</span></h4>
-	<p>[line 26]</p>
+	<p>[line 16]</p>
   
 
   <br />
@@ -360,7 +367,7 @@ $filenam)</code>
 	<a name="constOUT_TYPE_CONSOLE"></a>
 	<p></p>
 	<h4>OUT_TYPE_CONSOLE = <span class="value">&nbsp;2</span></h4>
-	<p>[line 27]</p>
+	<p>[line 17]</p>
   
 
   <br />
@@ -368,7 +375,7 @@ $filenam)</code>
 	<a name="constOUT_TYPE_FILE"></a>
 	<p></p>
 	<h4>OUT_TYPE_FILE = <span class="value">&nbsp;8</span></h4>
-	<p>[line 29]</p>
+	<p>[line 19]</p>
   Pseudo!!! Need automaticaly detect OUT_TYPE_BROWSER or OUT_TYPE_CONSOLE<br /><br />
 
   <br />
@@ -376,7 +383,7 @@ $filenam)</code>
 	<a name="constOUT_TYPE_PRINT"></a>
 	<p></p>
 	<h4>OUT_TYPE_PRINT = <span class="value">&nbsp;4</span></h4>
-	<p>[line 28]</p>
+	<p>[line 18]</p>
   
 
   <br />
@@ -384,7 +391,7 @@ $filenam)</code>
 	<a name="constOUT_TYPE_WAP"></a>
 	<p></p>
 	<h4>OUT_TYPE_WAP = <span class="value">&nbsp;16</span></h4>
-	<p>[line 30]</p>
+	<p>[line 20]</p>
   
 
   <br />
@@ -394,7 +401,7 @@ $filenam)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:30 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:50 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

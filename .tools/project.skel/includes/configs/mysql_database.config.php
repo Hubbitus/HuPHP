@@ -1,5 +1,5 @@
 <?
-$GLOBALS['__CONFIG']['db'] = 'mysql_database';	#Current used DB configuration
+$GLOBALS['__CONFIG']['db'] = 'mysql_database'; //Current used DB configuration
 
 $GLOBALS['__CONFIG']['mysql_database'] = array(
 	'class_file'	=> 'Database/mysql_database.php'

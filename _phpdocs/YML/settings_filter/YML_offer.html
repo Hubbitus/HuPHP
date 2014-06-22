@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_YML.html" class="menu">class tree: YML</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_YML.html" class="menu">class tree: YML</a> ]
 		  [ <a href="../../elementindex_YML.html" class="menu">index: YML</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -504,7 +505,7 @@ Source Location: /_vendors/yandex.ru/market_YML/YML_offer.php<br /><br />
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -537,7 +538,7 @@ Source Location: /_vendors/yandex.ru/market_YML/YML_offer.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 93]<br />
+[line 86]<br />
 YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -558,34 +559,34 @@ YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 	<a name="var$properties"></a>
 	<p></p>
 	<h4>$properties = <span class="value">array(<br>
-&nbsp;&nbsp;&nbsp;//&nbsp;Common&nbsp;fields<br>
-&nbsp;&nbsp;&nbsp;'url'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;URL-адрес&nbsp;страницы&nbsp;товара<br>
-&nbsp;&nbsp;&nbsp;,'price'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Цена,&nbsp;по&nbsp;которой&nbsp;данный&nbsp;товар&nbsp;можно&nbsp;приобрести.Цена&nbsp;товарного&nbsp;предложения&nbsp;округляеся&nbsp;и&nbsp;выводится&nbsp;в&nbsp;зависимости&nbsp;от&nbsp;настроек&nbsp;пользователя.<br>
-&nbsp;&nbsp;&nbsp;,'currencyId'&nbsp;&nbsp;&nbsp;#&nbsp;Идентификатор&nbsp;валюты&nbsp;товара&nbsp;(RUR,&nbsp;USD,&nbsp;UAH).&nbsp;Для&nbsp;корректного&nbsp;отображения&nbsp;цены&nbsp;в&nbsp;национальной&nbsp;валюте,&nbsp;необходимо&nbsp;использовать&nbsp;идентификатор&nbsp;(например,&nbsp;UAH)&nbsp;с&nbsp;соответствующим&nbsp;значением&nbsp;цены.<br>
-&nbsp;&nbsp;&nbsp;,'categoryId'&nbsp;&nbsp;&nbsp;#+&nbsp;Идентификатор&nbsp;категории&nbsp;товара&nbsp;(целое&nbsp;число&nbsp;не&nbsp;более&nbsp;18&nbsp;знаков).&nbsp;Товарное&nbsp;предложение&nbsp;может&nbsp;принадлежать&nbsp;только&nbsp;одной&nbsp;категории<br>
-&nbsp;&nbsp;&nbsp;,'picture'&nbsp;&nbsp;&nbsp;#?&nbsp;Ссылка&nbsp;на&nbsp;картинку&nbsp;соответствующего&nbsp;товарного&nbsp;предложения.&nbsp;Недопустимо&nbsp;давать&nbsp;ссылку&nbsp;на&nbsp;&quot;заглушку&quot;,&nbsp;т.е.&nbsp;на&nbsp;картинку&nbsp;где&nbsp;написано&nbsp;&quot;картинка&nbsp;отсутствует&quot;&nbsp;или&nbsp;на&nbsp;логотип&nbsp;магазина<br>
-&nbsp;&nbsp;&nbsp;,'delivery'&nbsp;&nbsp;&nbsp;#?<br>
-&nbsp;&nbsp;&nbsp;,'deliveryIncluded'&nbsp;&nbsp;&nbsp;#?<br>
-&nbsp;&nbsp;&nbsp;,'orderingTime'&nbsp;&nbsp;&nbsp;#?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Common&nbsp;fields<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'url'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;URL-адрес&nbsp;страницы&nbsp;товара<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'price'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Цена,&nbsp;по&nbsp;которой&nbsp;данный&nbsp;товар&nbsp;можно&nbsp;приобрести.Цена&nbsp;товарного&nbsp;предложения&nbsp;округляеся&nbsp;и&nbsp;выводится&nbsp;в&nbsp;зависимости&nbsp;от&nbsp;настроек&nbsp;пользователя.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'currencyId'&nbsp;&nbsp;&nbsp;//&nbsp;Идентификатор&nbsp;валюты&nbsp;товара&nbsp;(RUR,&nbsp;USD,&nbsp;UAH).&nbsp;Для&nbsp;корректного&nbsp;отображения&nbsp;цены&nbsp;в&nbsp;национальной&nbsp;валюте,&nbsp;необходимо&nbsp;использовать&nbsp;идентификатор&nbsp;(например,&nbsp;UAH)&nbsp;с&nbsp;соответствующим&nbsp;значением&nbsp;цены.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'categoryId'&nbsp;&nbsp;&nbsp;//+&nbsp;Идентификатор&nbsp;категории&nbsp;товара&nbsp;(целое&nbsp;число&nbsp;не&nbsp;более&nbsp;18&nbsp;знаков).&nbsp;Товарное&nbsp;предложение&nbsp;может&nbsp;принадлежать&nbsp;только&nbsp;одной&nbsp;категории<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'picture'&nbsp;&nbsp;&nbsp;//?&nbsp;Ссылка&nbsp;на&nbsp;картинку&nbsp;соответствующего&nbsp;товарного&nbsp;предложения.&nbsp;Недопустимо&nbsp;давать&nbsp;ссылку&nbsp;на&nbsp;&quot;заглушку&quot;,&nbsp;т.е.&nbsp;на&nbsp;картинку&nbsp;где&nbsp;написано&nbsp;&quot;картинка&nbsp;отсутствует&quot;&nbsp;или&nbsp;на&nbsp;логотип&nbsp;магазина<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'delivery'&nbsp;&nbsp;&nbsp;//?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'deliveryIncluded'&nbsp;&nbsp;&nbsp;//?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'orderingTime'&nbsp;&nbsp;&nbsp;//?<br>
 <br>
-&nbsp;&nbsp;&nbsp;,self::NESTING_PLACEHOLDER<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,self::NESTING_PLACEHOLDER<br>
 <br>
-&nbsp;&nbsp;&nbsp;,'aliases'&nbsp;&nbsp;&nbsp;#?<br>
-&nbsp;&nbsp;&nbsp;,'additional'&nbsp;&nbsp;&nbsp;#*<br>
-&nbsp;&nbsp;&nbsp;,'description'&nbsp;&nbsp;&nbsp;#?<br>
-&nbsp;&nbsp;&nbsp;,'sales_notes'&nbsp;&nbsp;&nbsp;#?&nbsp;Элемент,&nbsp;предназначенный&nbsp;для&nbsp;того,&nbsp;чтобы&nbsp;показать&nbsp;пользователям,&nbsp;чем&nbsp;отличается&nbsp;данный&nbsp;товар&nbsp;от&nbsp;других,&nbsp;или&nbsp;для&nbsp;описания&nbsp;акций&nbsp;магазина&nbsp;(кроме&nbsp;скидок).&nbsp;Допустимая&nbsp;длина&nbsp;текста&nbsp;в&nbsp;элементе&nbsp;-&nbsp;50&nbsp;символов.<br>
-&nbsp;&nbsp;&nbsp;,'promo'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#?<br>
-&nbsp;&nbsp;&nbsp;,'manufacturer_warranty'&nbsp;&nbsp;&nbsp;#?&nbsp;Элемент&nbsp;предназначен&nbsp;для&nbsp;отметки&nbsp;товаров,&nbsp;имеющих&nbsp;официальную&nbsp;гарантию&nbsp;производителя.<br>
-&nbsp;&nbsp;&nbsp;,'country_of_origin'&nbsp;&nbsp;&nbsp;#?&nbsp;Элемент&nbsp;предназначен&nbsp;для&nbsp;указания&nbsp;страны&nbsp;производства&nbsp;товара.<br>
-&nbsp;&nbsp;&nbsp;,'downloadable'&nbsp;&nbsp;&nbsp;#?&nbsp;Элемент&nbsp;предназначен&nbsp;обозначения&nbsp;товара,&nbsp;который&nbsp;можно&nbsp;скачать.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'aliases'&nbsp;&nbsp;&nbsp;//?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'additional'&nbsp;&nbsp;&nbsp;//*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'description'&nbsp;&nbsp;&nbsp;//?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'sales_notes'&nbsp;&nbsp;&nbsp;//?&nbsp;Элемент,&nbsp;предназначенный&nbsp;для&nbsp;того,&nbsp;чтобы&nbsp;показать&nbsp;пользователям,&nbsp;чем&nbsp;отличается&nbsp;данный&nbsp;товар&nbsp;от&nbsp;других,&nbsp;или&nbsp;для&nbsp;описания&nbsp;акций&nbsp;магазина&nbsp;(кроме&nbsp;скидок).&nbsp;Допустимая&nbsp;длина&nbsp;текста&nbsp;в&nbsp;элементе&nbsp;-&nbsp;50&nbsp;символов.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'promo'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'manufacturer_warranty'&nbsp;&nbsp;&nbsp;//?&nbsp;Элемент&nbsp;предназначен&nbsp;для&nbsp;отметки&nbsp;товаров,&nbsp;имеющих&nbsp;официальную&nbsp;гарантию&nbsp;производителя.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'country_of_origin'&nbsp;&nbsp;&nbsp;//?&nbsp;Элемент&nbsp;предназначен&nbsp;для&nbsp;указания&nbsp;страны&nbsp;производства&nbsp;товара.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'downloadable'&nbsp;&nbsp;&nbsp;//?&nbsp;Элемент&nbsp;предназначен&nbsp;обозначения&nbsp;товара,&nbsp;который&nbsp;можно&nbsp;скачать.<br>
 <br>
-&nbsp;&nbsp;&nbsp;//&nbsp;INNER,&nbsp;static<br>
-&nbsp;&nbsp;&nbsp;,'__props'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<br>
-&nbsp;&nbsp;&nbsp;,'__currencies'&nbsp;&nbsp;&nbsp;//<br>
-&nbsp;&nbsp;&nbsp;,'__categories'&nbsp;&nbsp;&nbsp;//<br>
-&nbsp;&nbsp;&nbsp;,'__xpath'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<br>
-)</span></h4>
-	<p>[line 96]</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;INNER,&nbsp;static<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'__props'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'__currencies'&nbsp;&nbsp;&nbsp;//<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'__categories'&nbsp;&nbsp;&nbsp;//<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'__xpath'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<br>
+&nbsp;&nbsp;&nbsp;)</span></h4>
+	<p>[line 89]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -614,7 +615,7 @@ YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 	<a name="var$static_settings"></a>
 	<p></p>
 	<h4>$static_settings = <span class="value">array('__props',&nbsp;'__currencies',&nbsp;'__categories',&nbsp;'__xpath')</span></h4>
-	<p>[line 124]</p>
+	<p>[line 118]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -650,7 +651,7 @@ YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 134]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 128]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -736,7 +737,7 @@ Overrides <a href="../../settings/settings/settings_check.html#method__construct
   </div>
   <hr />
 	<a name="methodfilter_set__check_categoryId"></a>
-	<h3>method filter_set__check_categoryId <span class="smalllinenumber">[line 208]</span></h3>
+	<h3>method filter_set__check_categoryId <span class="smalllinenumber">[line 201]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -783,7 +784,7 @@ $val)</code>
   </div>
   <hr />
 	<a name="methodfilter_set__check_currencyId"></a>
-	<h3>method filter_set__check_currencyId <span class="smalllinenumber">[line 195]</span></h3>
+	<h3>method filter_set__check_currencyId <span class="smalllinenumber">[line 188]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -830,7 +831,7 @@ $val)</code>
   </div>
   <hr />
 	<a name="methodfilter_set__check_picture"></a>
-	<h3>method filter_set__check_picture <span class="smalllinenumber">[line 222]</span></h3>
+	<h3>method filter_set__check_picture <span class="smalllinenumber">[line 215]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -877,7 +878,7 @@ $val)</code>
   </div>
   <hr />
 	<a name="methodgetRegularKeys"></a>
-	<h3>method getRegularKeys <span class="smalllinenumber">[line 232]</span></h3>
+	<h3>method getRegularKeys <span class="smalllinenumber">[line 225]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -907,7 +908,7 @@ Overrides <a href="../../settings/settings/settings_check_static.html#methodgetR
   </div>
   <hr />
 	<a name="methodgetXML"></a>
-	<h3>method getXML <span class="smalllinenumber">[line 158]</span></h3>
+	<h3>method getXML <span class="smalllinenumber">[line 152]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -934,7 +935,7 @@ Overrides <a href="../../settings/settings/settings_check_static.html#methodgetR
   </div>
   <hr />
 	<a name="methodisValid"></a>
-	<h3>method isValid <span class="smalllinenumber">[line 255]</span></h3>
+	<h3>method isValid <span class="smalllinenumber">[line 248]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -961,7 +962,7 @@ Overrides <a href="../../settings/settings/settings_check_static.html#methodgetR
   </div>
   <hr />
 	<a name="methodnesting"></a>
-	<h3>method nesting <span class="smalllinenumber">[line 246]</span></h3>
+	<h3>method nesting <span class="smalllinenumber">[line 239]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -996,7 +997,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodnesting">se
 	<a name="constNESTING_PLACEHOLDER"></a>
 	<p></p>
 	<h4>NESTING_PLACEHOLDER = <span class="value">&nbsp;'&lt;&lt;==NESTING==&gt;&gt;'</span></h4>
-	<p>[line 94]</p>
+	<p>[line 87]</p>
   
 
   <br />
@@ -1006,7 +1007,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodnesting">se
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:45 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:14:04 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

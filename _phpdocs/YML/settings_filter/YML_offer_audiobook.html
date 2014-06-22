@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_YML.html" class="menu">class tree: YML</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_YML.html" class="menu">class tree: YML</a> ]
 		  [ <a href="../../elementindex_YML.html" class="menu">index: YML</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -549,7 +550,7 @@ Source Location: /_vendors/yandex.ru/market_YML/YML_offer_audiobook.php<br /><br
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -582,7 +583,7 @@ Source Location: /_vendors/yandex.ru/market_YML/YML_offer_audiobook.php<br /><br
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 24]<br />
+[line 21]<br />
 YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
@@ -594,33 +595,33 @@ YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 	<a name="var$properties_addon"></a>
 	<p></p>
 	<h4>$properties_addon = <span class="value">array(<br>
-//&nbsp;&nbsp;&nbsp;author?,&nbsp;name,&nbsp;publisher?,&nbsp;series?,&nbsp;year?,&nbsp;ISBN?,&nbsp;volume?,&nbsp;part?,&nbsp;language?,&nbsp;table_of_contents?,&nbsp;performed_by?,&nbsp;perfomace_type?,&nbsp;storage?,&nbsp;format?,&nbsp;recording_lenght?<br>
-&nbsp;&nbsp;&nbsp;'author'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#?&nbsp;Автор&nbsp;произведения<br>
-&nbsp;&nbsp;&nbsp;,'name'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Наименование&nbsp;произведения<br>
-&nbsp;&nbsp;&nbsp;,'publisher'&nbsp;&nbsp;&nbsp;#?&nbsp;Издательство<br>
-&nbsp;&nbsp;&nbsp;,'series'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#?&nbsp;Серия<br>
-&nbsp;&nbsp;&nbsp;,'year'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#?&nbsp;Год&nbsp;издания<br>
-&nbsp;&nbsp;&nbsp;,'ISBN'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#?&nbsp;Код&nbsp;книги,&nbsp;если&nbsp;их&nbsp;несколько,&nbsp;то&nbsp;указываются&nbsp;через&nbsp;запятую.<br>
-//&nbsp;Present&nbsp;in&nbsp;description,&nbsp;but&nbsp;not&nbsp;allowed&nbsp;by&nbsp;DTD<br>
-//&nbsp;&nbsp;&nbsp;,'description'&nbsp;&nbsp;&nbsp;#&nbsp;Аннотация&nbsp;к&nbsp;книге.<br>
-&nbsp;&nbsp;&nbsp;,'volume'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#?&nbsp;Количество&nbsp;томов.<br>
-&nbsp;&nbsp;&nbsp;,'part'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#?&nbsp;Номер&nbsp;тома.<br>
-&nbsp;&nbsp;&nbsp;,'language'&nbsp;&nbsp;&nbsp;#?&nbsp;Язык&nbsp;произведения.<br>
-&nbsp;&nbsp;&nbsp;,'table_of_contents'&nbsp;&nbsp;&nbsp;#?&nbsp;Оглавление.&nbsp;Выводится&nbsp;информация&nbsp;о&nbsp;наименованиях&nbsp;произведений,&nbsp;если&nbsp;это&nbsp;сборник&nbsp;рассказов&nbsp;или&nbsp;стихов.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;author?,&nbsp;name,&nbsp;publisher?,&nbsp;series?,&nbsp;year?,&nbsp;ISBN?,&nbsp;volume?,&nbsp;part?,&nbsp;language?,&nbsp;table_of_contents?,&nbsp;performed_by?,&nbsp;perfomace_type?,&nbsp;storage?,&nbsp;format?,&nbsp;recording_lenght?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'author'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//?&nbsp;Автор&nbsp;произведения<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'name'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Наименование&nbsp;произведения<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'publisher'&nbsp;&nbsp;&nbsp;//?&nbsp;Издательство<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'series'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//?&nbsp;Серия<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'year'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//?&nbsp;Год&nbsp;издания<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'ISBN'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//?&nbsp;Код&nbsp;книги,&nbsp;если&nbsp;их&nbsp;несколько,&nbsp;то&nbsp;указываются&nbsp;через&nbsp;запятую.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Present&nbsp;in&nbsp;description,&nbsp;but&nbsp;not&nbsp;allowed&nbsp;by&nbsp;DTD<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;,'description'&nbsp;&nbsp;&nbsp;//&nbsp;Аннотация&nbsp;к&nbsp;книге.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'volume'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//?&nbsp;Количество&nbsp;томов.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'part'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//?&nbsp;Номер&nbsp;тома.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'language'&nbsp;&nbsp;&nbsp;//?&nbsp;Язык&nbsp;произведения.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'table_of_contents'&nbsp;&nbsp;&nbsp;//?&nbsp;Оглавление.&nbsp;Выводится&nbsp;информация&nbsp;о&nbsp;наименованиях&nbsp;произведений,&nbsp;если&nbsp;это&nbsp;сборник&nbsp;рассказов&nbsp;или&nbsp;стихов.<br>
 <br>
-&nbsp;&nbsp;&nbsp;,'performed_by'&nbsp;&nbsp;&nbsp;#?&nbsp;Исполнитель.&nbsp;Если&nbsp;их&nbsp;несколько,&nbsp;перечисляются&nbsp;через&nbsp;запятую<br>
-&nbsp;&nbsp;&nbsp;,'performance_type'&nbsp;&nbsp;&nbsp;#?&nbsp;Тип&nbsp;адиокниги&nbsp;(радиоспектакль,&nbsp;произведение&nbsp;начитано,&nbsp;...)<br>
-&nbsp;&nbsp;&nbsp;,'storage'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#?&nbsp;Носитель,&nbsp;на&nbsp;котором&nbsp;поставляется&nbsp;аудиокнига.<br>
-&nbsp;&nbsp;&nbsp;,'format'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#?&nbsp;Формат&nbsp;аудиокниги.<br>
-&nbsp;&nbsp;&nbsp;/**<br>
-&nbsp;&nbsp;&nbsp;*&nbsp;WARNING!&nbsp;recording_lenght&nbsp;format&nbsp;is&nbsp;completely&nbsp;absent&nbsp;in&nbsp;DTD&nbsp;(mentioned<br>
-&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;as&nbsp;#PCDATA)&nbsp;and&nbsp;have&nbsp;another&nbsp;format&nbsp;in&nbsp;example&nbsp;then&nbsp;in&nbsp;description!<br>
-&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;Current&nbsp;implementation&nbsp;by&nbsp;description<br>
-&nbsp;&nbsp;&nbsp;*&nbsp;WARNING2!&nbsp;It&nbsp;is&nbsp;recording_lenght,&nbsp;NOT&nbsp;recording_length&nbsp;in&nbsp;DTD!<br>
-&nbsp;&nbsp;&nbsp;**/<br>
-&nbsp;&nbsp;&nbsp;,'recording_lenght'&nbsp;&nbsp;&nbsp;#?&nbsp;Время&nbsp;звучания&nbsp;задается&nbsp;в&nbsp;формате&nbsp;mm.ss&nbsp;(минуты.секунды).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'performed_by'&nbsp;&nbsp;&nbsp;//?&nbsp;Исполнитель.&nbsp;Если&nbsp;их&nbsp;несколько,&nbsp;перечисляются&nbsp;через&nbsp;запятую<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'performance_type'&nbsp;&nbsp;&nbsp;//?&nbsp;Тип&nbsp;адиокниги&nbsp;(радиоспектакль,&nbsp;произведение&nbsp;начитано,&nbsp;...)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'storage'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//?&nbsp;Носитель,&nbsp;на&nbsp;котором&nbsp;поставляется&nbsp;аудиокнига.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'format'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//?&nbsp;Формат&nbsp;аудиокниги.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;WARNING!&nbsp;recording_lenght&nbsp;format&nbsp;is&nbsp;completely&nbsp;absent&nbsp;in&nbsp;DTD&nbsp;(mentioned<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;as&nbsp;PCDATA)&nbsp;and&nbsp;have&nbsp;another&nbsp;format&nbsp;in&nbsp;example&nbsp;then&nbsp;in&nbsp;description!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;Current&nbsp;implementation&nbsp;by&nbsp;description<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;WARNING2!&nbsp;It&nbsp;is&nbsp;recording_lenght,&nbsp;NOT&nbsp;recording_length&nbsp;in&nbsp;DTD!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'recording_lenght'&nbsp;&nbsp;&nbsp;//?&nbsp;Время&nbsp;звучания&nbsp;задается&nbsp;в&nbsp;формате&nbsp;mm.ss&nbsp;(минуты.секунды).<br>
 )</span></h4>
-	<p>[line 27]</p>
+	<p>[line 23]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -652,7 +653,7 @@ YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 55]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 51]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -708,7 +709,7 @@ Overrides <a href="../../YML/settings_filter/YML_offer.html#method__construct">Y
   </div>
   <hr />
 	<a name="methodfilter_set__check_recording_length"></a>
-	<h3>method filter_set__check_recording_length <span class="smalllinenumber">[line 68]</span></h3>
+	<h3>method filter_set__check_recording_length <span class="smalllinenumber">[line 64]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -756,7 +757,7 @@ $name,
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:48 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:14:06 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -3,37 +3,24 @@
 * Operations with file in memory.
 *
 * @package Filesystem
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @version 2.0.1b
+* @created ?2009-03-25 13:51 ver 2.0b
 *
-* @changelog
-*	* 2009-03-25 13:51 ver 2.0b
-*	- Initial SPLITTED version. See changelog of file_base.php
-*	- Fix few minor bugs (in ::implodeLines(), ::getBLOB())...
-*	- Change methods ::setLineSep() and ::checkLoad() to return &$this
-*
-*	* 2009-03-31 18:14 ver 2.0b to 2.0.1b
-*	- Explicit check "false !==" instead of just casting to bool. So, read zero-length file is also positive result.
-*
-*	* 2009-12-14 11:47 ver 2.0.1b to 2.0.2
-*	- Add methods ::iconv(), ::enconv()
-**/
-
-include_once('file_base.php');
-
-/**
 * @uses REQUIRED_VAR
 * @uses VariableRequiredException
 * @uses file_base
 **/
 
+include_once('file_base.php');
+
 class file_inmem extends file_base{
 private $lineContent = null;
 
-private $_lineSep = "\n";		#Unix by default
+private $_lineSep = "\n";		// Unix by default
 
-private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetByLine methods
+private $_linesOffsets = array();	// Cache For ->getLineByOffset and ->getOffsetByLine methods
 
 	/**
 	* Load full content of file into memmory.
@@ -48,27 +35,27 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	* @return	&$this
 	**/
 	public function &loadContent($use_include_path = false, $resource_context = null, $offset = null, $maxlen = null){
-	$this->checkOpenError(
-		false !==
-			($maxlen
-			?
-			($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset, $maxlen))
-			:
-			($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset))
+		$this->checkOpenError(
+			false !== (
+				$maxlen
+				?
+				($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset, $maxlen))
+				:
+				($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset))
 			)
-	);
-	$this->lineContent = array();
-	$this->_linesOffsets = array();
-	return $this;
+		);
+		$this->lineContent = array();
+		$this->_linesOffsets = array();
+		return $this;
 	}#m loadContent
 
 	/**
 	* @inheritdoc
 	**/
 	public function &setContentFromString($string){
-	$this->lineContent = array();
-	$this->_linesOffsets = array();
-	return parent::setContentFromString($string);
+		$this->lineContent = array();
+		$this->_linesOffsets = array();
+		return parent::setContentFromString($string);
 	}#m setContentFromString
 
 	/**
@@ -77,7 +64,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	* @Throws(VariableRequiredException)
 	**/
 	public function &appendString($string){
-	return $this->setContentFromString($this->content . REQUIRED_VAR($string));
+		return $this->setContentFromString($this->content . REQUIRED_VAR($string));
 	}#m appendString
 
 	/**
@@ -88,17 +75,16 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	* @param	boolean	$updateLineSep See descr ->implodeLines()
 	**/
 	public function writeContent($flags = null, $resource_context = null, $implodeWith = null, $updateLineSep = true){
-	$this->checkOpenError(
-		#$this->rawFilename because may be file generally not exists!
-		false !==  ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags, $resource_context))
-	);
-	$this->_writePending = false;
-	return $count;
+		$this->checkOpenError(
+			// $this->rawFilename because may be file generally not exists!
+			false !==  ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags, $resource_context))
+		);
+		$this->_writePending = false;
+		return $count;
 	}#m writeContent
 
-###########################
-### Self introduced methods
-###########################
+	/// Self introduced methods ///
+
 	/**
 	* Return array of specified lines or all by default
 	*
@@ -109,7 +95,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	* @Throw(VariableEmptyException)
 	**/
 	public function getLines(array $lines = array(), $updateLineSep = true){
-	$this->checkLoad();
+		$this->checkLoad();
 		if (!$this->lineContent) $this->explodeLines($updateLineSep);
 
 		if(!empty($lines)) return call_user_func_array('array_slice', array_merge(array( 0 => $this->lineContent), $lines) );
@@ -122,10 +108,10 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	* @param	boolean $updateLineSep if true - update lineSep by presented in whole content.
 	**/
 	protected function explodeLines($updateLineSep = true){
-	preg_match_all('/(.*?)([\n\r])/', $this->content, $this->lineContent, PREG_PATTERN_ORDER);
+		preg_match_all('/(.*?)([\n\r])/', $this->content, $this->lineContent, PREG_PATTERN_ORDER);
 		if ($updateLineSep) $this->_lineSep = $this->lineContent[2][0/*Any realy. Assuming all equal.*/];
-	$this->lineContent = $this->lineContent[1];
-	$this->_linesOffsets = array();
+		$this->lineContent = $this->lineContent[1];
+		$this->_linesOffsets = array();
 	}#m explodeLines
 
 	/**
@@ -136,8 +122,8 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	**/
 	protected function implodeLines($implodeWith = null, $updateLineSep = true){
 		if ($implodeWith and $updateLineSep) $this->setLineSep($implodeWith);
-	$this->_linesOffsets = array();
-	return ($this->content = implode($implodeWith, $this->lineContent)); //Set or not, implode as requested.
+		$this->_linesOffsets = array();
+		return ($this->content = implode($implodeWith, $this->lineContent)); //Set or not, implode as requested.
 	}#m implodeLines
 
 	/**
@@ -154,7 +140,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 			( $implodeWith and $implodeWith != $this->_lineSep)
 		)
 		$this->implodeLines($implodeWith, $updateLineSep);
-	return $this->content;
+		return $this->content;
 	}#m getBLOB
 
 	/**
@@ -162,7 +148,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	* @return	string
 	**/
 	public function getLineSep() {
-	return $this->_lineSep;
+		return $this->_lineSep;
 	}#m getLineSep
 
 	/**
@@ -178,9 +164,9 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	* @return	&$this
 	**/
 	public function &setLineSep($newSep) {
-	$this->_leneSep = $newSep;
-	$this->_linesOffsets = array();
-	return $this;
+		$this->_leneSep = $newSep;
+		$this->_linesOffsets = array();
+		return $this;
 	}#m getLineSep
 
 	/**
@@ -193,7 +179,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	**/
 	public function getLineAt($line){
 		if (!$this->lineContent) $this->explodeLines($updateLineSep);
-	return $this->lineContent[$line];
+		return $this->lineContent[$line];
 	}#m getLineAt
 
 	/**
@@ -208,11 +194,12 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 		if ($offset > $this->_linesOffsets[sizeof($this->_linesOffsets)-1][1])
 		throw new VariableRangeException('Overflow! This offset does not exists.');
 
-	#Data ordered - provide binary search as alternative to array_search
-	$size = sizeof($this->_linesOffsets) - 1;	#For speed up only
-	$left = 0; $right = $size;	#Points of interval
-	$found = false;
-	$line = ceil($size / 2);
+		// Data ordered - provide binary search as fast alternative to array_search
+		$size = sizeof($this->_linesOffsets) - 1; // For speed up only
+		$left = 0; $right = $size;	// Points of interval
+		$found = false;
+		$line = ceil($size / 2);
+
 		/*
 		* Boundary conditions. Additional check of lowest value is mandatory, if used ceil() (0 is not accessible).
 		* Additional check of highest value addad only to efficient
@@ -220,24 +207,24 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 		* convergence of the algorithm
 		**/
 		if ($offset >= $this->_linesOffsets[0][0] and $offset <= $this->_linesOffsets[0][1])
-		return 0;
+			return 0;
 
 		if ($offset >= $this->_linesOffsets[$size][0] and $offset <= $this->_linesOffsets[$size][1])
-		return $size;
+			return $size;
 
 		do{
 			if ( $offset >= $this->_linesOffsets[$line][0] ){
 				if ( $offset <= $this->_linesOffsets[$line][1] ){
-				$found = true;	#Done
+					$found = true; // done
 				}
 				else{
-				$left = $line;
-				$line += ceil( ($right - $line) / 2 );
+					$left = $line;
+					$line += ceil( ($right - $line) / 2 );
 				}
 			}
 			else{
-			$right = $line;
-			$line -= ceil( ($line - $left) / 2);
+				$right = $line;
+				$line -= ceil( ($line - $left) / 2);
 			}
 		} while(!$found);
 
@@ -255,7 +242,7 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 		if (!$this->_linesOffsets) $this->makeCacheLineOffsets();
 		if ($line >= sizeof($this->_linesOffsets)) throw new VariableRangeException('Overflow! This line does not exists.');
 
-	return $this->_linesOffsets[$line];
+		return $this->_linesOffsets[$line];
 	}#m getOffsetByLine
 
 	/**
@@ -267,25 +254,26 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	private function &checkLoad(){
 		if (empty($this->lineContent) and empty($this->content))
 		throw VariableEmptyException('Line-Content and Content is empty! May be you forgot call one of ->load*() method first?');
-	return $this;
+		return $this;
 	}#m checkLoad
 
 	/**
 	* Make cache of lines and its offsets.
 	**/
 	private function makeCacheLineOffsets(){
-	$this->_linesOffsets = array();
-	$offset = 0;
-	$lines = $this->getLines();
+		$this->_linesOffsets = array();
+		$offset = 0;
+		$lines = $this->getLines();
 
-	$linesCount = sizeof($lines);	#For speed up
-	#First line is additional case
-	$this->_linesOffsets[0] = array($offset, ($offset += -1 + strlen(utf8_decode($lines[0])) + strlen(utf8_decode($this->getLineSep()))) );
-		#From 1 line, NOT 0
+		$linesCount = sizeof($lines);
+		// First line is additional case
+		$this->_linesOffsets[0] = array($offset, ($offset += -1 + strlen(utf8_decode($lines[0])) + strlen(utf8_decode($this->getLineSep()))) );
+		// From 1 line, NOT 0
 		for($i = 1; $i < $linesCount; $i++){
-		$this->_linesOffsets[$i] = array(
-			$offset + 1,
-			( $offset += strlen(utf8_decode($lines[$i])) + strlen(utf8_decode($this->getLineSep())) )  );
+			$this->_linesOffsets[$i] = array(
+				$offset + 1,
+				( $offset += strlen(utf8_decode($lines[$i])) + strlen(utf8_decode($this->getLineSep())) )
+			);
 		}
 	}#m makeCacheLineOffsets
 
@@ -298,8 +286,8 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	* @return	&$this
 	**/
 	public function &iconv($fromEnc, $toEnc = 'UTF-8'){
-	$this->setContentFromString(iconv($fromEnc, $toEnc, $this->getBLOB()));
-	return $this;
+		$this->setContentFromString(iconv($fromEnc, $toEnc, $this->getBLOB()));
+		return $this;
 	}#m iconv
 
 	/**
@@ -312,8 +300,8 @@ private $_linesOffsets = array();	#Cache For ->getLineByOffset and ->getOffsetBy
 	* @return	&$this;
 	**/
 	public function &enconv($lang = 'russian', $toEnc = 'UTF-8'){
-	$this->setContentFromString(Process::exec("enconv -L $lang -x $toEnc", null, null, $this->getBLOB()));
-	return $this;
+		$this->setContentFromString(Process::exec("enconv -L $lang -x $toEnc", null, null, $this->getBLOB()));
+		return $this;
 	}#m enconv
 }#c file_inmem
 ?>

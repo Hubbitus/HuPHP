@@ -4,70 +4,46 @@
 *
 * @package Orange SMS-API
 * @version 1.1.2
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-*	* 2009-03-06 15:29 ver 1.0 to 1.0.1
-*	- Push into Hubbitus framework
-*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
-*
-*	* 2009-03-09 20:32 ver 1.0.1 to 1.1
-*	- Adjust all pathes
-*	- In constructor drop any options, all reffs must be present. All magick must be outside this object
-*
-*	* 2009-03-10 08:23 ver 1.1 to 1.1.1
-*	- Compleatly delete property _db, it is unneded.
-*
-*	* 2009-05-17 14:16 ver 1.1.1 to 1.1.2
-*	- Move into _vendors subdir
+* @created ?2009-03-06 15:29 ver 1.0 to 1.0.1
 **/
-
-include_once('Debug/HuLOG.php');
-include_once('Vars/Settings/settings.php');
-include_once('Filesystem/file_inmem.php');
-include_once('RegExp/RegExp_pcre.php');
-
-include_once('macroses/EMPTY_STR.php');
-
-include_once('_vendors/O-Range-SMS-partnerAPI/SMS_partner_MSG.php');
-include_once('Exceptions/SMS_partnerAPI.php');
 
 /**
 * Setting related to partner - login, password and others...
 **/
 class SMS_partner_settings extends settings {
-/*
-#Defaults
-protected $__SETS = array(
-	'URL'		=> 'http://api.o-range.ru/?',
-	'authTime'	=> '20',	#minutes
+	/*
+	//Defaults
+	protected $__SETS = array(
+		'URL'		=> 'http://api.o-range.ru/?',
+		'authTime'	=> '20', // minutes
 
-	'in_pass'		=> 'SuperPuperPass',
+		'in_pass'		=> 'SuperPuperPass',
 
-	'login'		=> 'conf',
-	'password'	=> '1234',
+		'login'		=> 'conf',
+		'password'	=> '1234',
 
-	'net_transport'=> 'file_inmem',	#classname
-	'user_answer'	=> 'Spasibo, Vasha anketa podniata. Ne zabud\'te obnovit\' stranicu chtobi ubeditsia v etom'
-);
-*/
+		'net_transport'=> 'file_inmem', // classname
+		'user_answer'	=> 'Spasibo, Vasha anketa podniata. Ne zabud\'te obnovit\' stranicu chtobi ubeditsia v etom'
+	);
+	*/
 }
 
 class SMS_partnerAPI extends get_settings{
-protected $_log;
+	protected $_log;
 
-protected $_transport = null;	#Making on fly
+	protected $_transport = null; // Make on the fly
 
-private $authID;
+	private $authID;
 
-private /* SMS_partner_MSG */ $MSG;
+	private /* SMS_partner_MSG */ $MSG;
 
 	public function __construct(SMS_partner_settings &$sets, HuLOG &$log){
-	@session_start();
-	$this->_sets =& $sets;
-	$this->MSG = new SMS_partner_MSG();
-	$this->_log =& $log;
+		@session_start();
+		$this->_sets =& $sets;
+		$this->MSG = new SMS_partner_MSG();
+		$this->_log =& $log;
 	}#__c
 
 	function __get($name){
@@ -77,24 +53,24 @@ private /* SMS_partner_MSG */ $MSG;
 
 	public function &getTransport(){
 		if (! $this->_transport ) $this->_transport = new $this->settings->net_transport;
-	return $this->_transport;
+		return $this->_transport;
 	}#m getTransport
 
 	public function auth(){
-	ini_set('session.cache_expire', $this->settings->authTime);
+		ini_set('session.cache_expire', $this->settings->authTime);
 		try{
-		$this->transport->setPath($this->settings->URL . 'cmd=auth&login=' . $this->settings->login . '&pass=' . $this->settings->password);
-		$this->transport->loadContent();
-		$_SESSION['authID'] = $this->authID = $this->parseServerAnswer('authID');
+			$this->transport->setPath($this->settings->URL . 'cmd=auth&login=' . $this->settings->login . '&pass=' . $this->settings->password);
+			$this->transport->loadContent();
+			$_SESSION['authID'] = $this->authID = $this->parseServerAnswer('authID');
 			if (!$this->authID) throw new MSG_AuthErrorException("Auth error!\nServer response: ".$this->transport->getBLOB()."\nOn query:".$this->settings->URL.'cmd=auth&login='.$this->settings->login.'&pass='.$this->settings->password);
 		}
-		catch(FilesystemException $fse){#ERROR. TODO process this error.
-		$this->_log->toLog($fse->__toString(), 'ERR', 'net');
-		throw $fse;
+		catch(FilesystemException $fse){// ERROR. @TODO process this error.
+			$this->_log->toLog($fse->__toString(), 'ERR', 'net');
+			throw $fse;
 		}
 		catch (MSG_partnerAPIException $mpae){
-		$this->_log->toLog($mpae->__toString(), 'ERR', 'auth');
-		throw $mpae;
+			$this->_log->toLog($mpae->__toString(), 'ERR', 'auth');
+			throw $mpae;
 		}
 	}#m auth
 
@@ -102,68 +78,68 @@ private /* SMS_partner_MSG */ $MSG;
 		if (!$this->authID)
 			if (@$_SESSION['authID']) $this->authID = $_SESSION['authID'];
 			else $this->auth();
-	return $this->authID;
+		return $this->authID;
 	}#m getAuthID
 
 	public function parseInMSG($rawString){
-	#http://ourSMSgate.tld/gate.cgi?pass=d41d8cd98f00b204e9800998ecf8427e&ShortNbr=2300&msgInID=12452&UserPhone=79111234567&text=8uXx8u7i7uUg8e7u4fnl7ejl
-	parse_str($rawString, $msg);
-	$this->MSG->setSettingsArray($msg);
-		#do NOT use empty() because it works ONLY with variables!!!
+		// http://ourSMSgate.tld/gate.cgi?pass=d41d8cd98f00b204e9800998ecf8427e&ShortNbr=2300&msgInID=12452&UserPhone=79111234567&text=8uXx8u7i7uUg8e7u4fnl7ejl
+		parse_str($rawString, $msg);
+		$this->MSG->setSettingsArray($msg);
+		// do NOT use empty() because it works ONLY with variables!!!
 		if (!@$this->MSG->msgInID or !@$this->MSG->ShortNbr or !@$this->MSG->UserPhone or !@$this->MSG->pass or !@$this->MSG->text){
-		$what = 'Empty field(s):';
+			$what = 'Empty field(s):';
 			if (!@$this->MSG->msgInID)	$what .= ' [msgInID]';
 			if (!@$this->MSG->ShortNbr)	$what .= ' [ShortNbr]';
 			if (!@$this->MSG->UserPhone)	$what .= ' [UserPhone]';
 			if (!@$this->MSG->pass)		$what .= ' [pass]';
-		throw new MSG_InParseErrorException('Error parsing Incoming message. '.$what."\nQUERY_STRING:".EMPTY_STR($rawString, @$_SERVER['QUERY_STRING']));
+			throw new MSG_InParseErrorException('Error parsing Incoming message. '.$what."\nQUERY_STRING:".EMPTY_STR($rawString, @$_SERVER['QUERY_STRING']));
 		}
 
-	$this->in_auth();
+		$this->in_auth();
 
-	$this->MSG->setSetting('base64_text', $this->MSG->text);
-	$this->MSG->setSetting('text', base64_decode(str_replace(' ', '+', @$this->MSG->base64_text)));
-	#prepare for answer. Inverse (copy) few fields by default.
-	$this->MSG->setSetting('answerto', $this->MSG->msgInID);
-	$this->MSG->setSetting('to', $this->MSG->UserPhone);
+		$this->MSG->setSetting('base64_text', $this->MSG->text);
+		$this->MSG->setSetting('text', base64_decode(str_replace(' ', '+', @$this->MSG->base64_text)));
+		// prepare for answer. Inverse (copy) few fields by default.
+		$this->MSG->setSetting('answerto', $this->MSG->msgInID);
+		$this->MSG->setSetting('to', $this->MSG->UserPhone);
 
-	$this->_log->toLog('MSG in', 'ACS', 'msg', $this->MSG->getString($this->MSG->LOG_FORMAT));
-	echo 'OK';	#Answer to Server
+		$this->_log->toLog('MSG in', 'ACS', 'msg', $this->MSG->getString($this->MSG->LOG_FORMAT));
+		echo 'OK'; // Answer to Server
 	}#m parseInMSG
 
 	public function setMSG(array $msg){
-	$this->MSG->mergeSettingsArray($msg);
+		$this->MSG->mergeSettingsArray($msg);
 	}#m setMSG
 
 	public function getMessage(){
-	return $this->MSG;
+		return $this->MSG;
 	}#m getMessage
 
 	public function sendMSG(){
-	#http://api.o-range.ru/?authID=fc6XJgmaNpF8ZRMQ0lVXU1&cmd=send&answerto=26260&to=79052084523&text=8uXx8iDw8/Hx6u7j7iD/5/vq4CDiIHNtc19hcGk=
+		// http://api.o-range.ru/?authID=fc6XJgmaNpF8ZRMQ0lVXU1&cmd=send&answerto=26260&to=79052084523&text=8uXx8iDw8/Hx6u7j7iD/5/vq4CDiIHNtc19hcGk=
 		try{
-		$this->MSG->setSetting('base64_text', base64_encode($this->MSG->text));
-		$this->transport->setPath($this->settings->URL.'authID='.$this->getAuthID().$this->MSG->getString($this->MSG->CMD_SEND_FORMAT));
-		$this->transport->loadContent();
-		$this->MSG->setSetting('msgOutID', $this->_result = $this->parseServerAnswer('msgOutID'));
+			$this->MSG->setSetting('base64_text', base64_encode($this->MSG->text));
+			$this->transport->setPath($this->settings->URL.'authID='.$this->getAuthID().$this->MSG->getString($this->MSG->CMD_SEND_FORMAT));
+			$this->transport->loadContent();
+			$this->MSG->setSetting('msgOutID', $this->_result = $this->parseServerAnswer('msgOutID'));
 			if (!intval($this->MSG->msgOutID)) throw new MSG_SendFailException("Message sent error!\nServer response: ".$this->transport->getBLOB()."\nOn query:".$this->settings->URL.'authID='.$this->getAuthID().$this->MSG->getString($this->MSG->CMD_SEND_FORMAT));
-		$this->_log->toLog('MSG out', 'ACS', 'msg', $this->MSG->getString($this->MSG->LOG_FORMAT));
+			$this->_log->toLog('MSG out', 'ACS', 'msg', $this->MSG->getString($this->MSG->LOG_FORMAT));
 		}
 		catch (FilesystemException $fse){
-		#TODO Error-handling
-		$this->_log->toLog($fse->__toString(), 'ERR', 'net');
-		throw $fse;
+			// @TODO Error-handling
+			$this->_log->toLog($fse->__toString(), 'ERR', 'net');
+			throw $fse;
 		}
 		catch (MSG_SendFailException $msf){
-		$this->_log->toLog($msf->__toString(), 'ERR', 'net');
-		throw $msf;
+			$this->_log->toLog($msf->__toString(), 'ERR', 'net');
+			throw $msf;
 		}
 	}#m sendMSG
 
 	protected function parseServerAnswer($what){
-	#<OK/><authID>cpahqq4enpjbag0266hqvddr42</authID>
-	$reg = new RegExp_pcre ('#<OK/><'.RegExp_pcre::quote($what).'>(.*)</' . RegExp_pcre::quote($what) . '>#', $this->transport->getBLOB());
-	return ($this->_result = $reg->match(1));
+		// <OK/><authID>cpahqq4enpjbag0266hqvddr42</authID>
+		$reg = new RegExp_pcre ('@<OK/><'.RegExp_pcre::quote($what).'>(.*)</' . RegExp_pcre::quote($what) . '>@', $this->transport->getBLOB());
+		return ($this->_result = $reg->match(1));
 	}#m parseServerAnswer
 
 	/**
@@ -172,7 +148,7 @@ private /* SMS_partner_MSG */ $MSG;
 	* @return	boolean
 	**/
 	function in_auth() {
-	return ($this->MSG->pass == $this->settings->in_pass);
+		return ($this->MSG->pass == $this->settings->in_pass);
 	}#m in_auth
 }#c SMS_partnerAPI
 ?>

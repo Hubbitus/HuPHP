@@ -4,12 +4,9 @@
 * @package Debug
 * @subpackage Dump-utils
 * @version 2.3
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-* 2008-06-26 03:58
-*	- Add in transformCorrect_print_r transformation empty array into 1 string ( /Array(0){\s+}/ -> Array(0){} )
+* @created 2008-06-26 03:58
 **/
 
 class dump_utils{

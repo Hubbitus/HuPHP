@@ -9,51 +9,40 @@
 * @copyright Copyright (c) 2010, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
 * @example moysklad.example.php
-*
-* @changelog
-*	* 2010-04-01 01:15 ver 1.0
-*	- Initial version.
+* @created 2010-04-01 01:15
 **/
 
 include_once ('macroses/EMPTY_callback.php');
 
 /**
 * Moysklad element goodFolders.
-*
-* @author Pavel Alexeev aka Pahan-Hubbitus
-* @created 2010-04-01 01:15 ver 1.0
-* @copyright 2010 Pavael Alexeev Aka Pahan-Hubbitus
 **/
 class moysklad_goodFolders extends moysklad_element_base{
 	function getName(){
-	return 'goodFolders';
+		return 'goodFolders';
 	}#m getName
 }#c moysklad_goodFolders
 
 /**
 * Moysklad element script.
-*
-* @author Pavel Alexeev aka Pahan-Hubbitus
-* @created 2010-04-01 16:47 ver 1.0
-* @copyright 2010 Pavael Alexeev aka Pahan-Hubbitus
 **/
 class moysklad_goodFolder extends moysklad_element_base {
-// Each attributes shoud be listed here
-protected $attributes_defaults = array(
-	'productCode'	=> ''
-	,'vat'		=> '18'
-	,'name'		=> ''
-	,'updatedBy'	=> 'admin@hubbitus'
-	,'updated'	=> null //If null propogated by date('c') in constructor
-	,'changeMode'	=> 'NONE'
-	,'readMode'	=> 'ALL'
-);
-protected $elements_defaults = array(
-	'id'			=> null
-	,'version'	=> 0
-	,'company'	=> null
-	,'description'	=> null
-);
+	// Each attributes shoud be listed here
+	protected $attributes_defaults = array(
+		'productCode'	=> ''
+		,'vat'		=> '18'
+		,'name'		=> ''
+		,'updatedBy'	=> 'admin@hubbitus'
+		,'updated'	=> null //If null propogated by date('c') in constructor
+		,'changeMode'	=> 'NONE'
+		,'readMode'	=> 'ALL'
+	);
+	protected $elements_defaults = array(
+		'id'			=> null
+		,'version'	=> 0
+		,'company'	=> null
+		,'description'	=> null
+	);
 
 	/**
 	*
@@ -61,19 +50,22 @@ protected $elements_defaults = array(
 	* @TODO add data type checks and requirements
 	**/
 	function __construct(array $value){
-	parent::__construct('');
+		parent::__construct('');
+
 		// PHP does not allow dinamic (non constants) initializations
 		if(is_null($this->attributes_defaults['updated'])) $this->attributes_defaults['updated'] = date('c');
+
 		foreach($this->attributes_defaults as $attr => $val){
-		// isset id not function but language construction and can't be invoked directly
-		$this->dom->setAttribute($attr, EMPTY_callback(create_function('$v', 'return isset($v);'), @$value[$attr], $val));
+			// isset id not function but language construction and can't be invoked directly
+			$this->dom->setAttribute($attr, EMPTY_callback(create_function('$v', 'return isset($v);'), @$value[$attr], $val));
 		}
 		foreach ($this->elements_defaults as $elem => $val){
-		$this->dom->appendChild(new DOMElement($elem, EMPTY_callback(create_function('$v', 'return isset($v);'), @$value[$elem], $val)));
+			$this->dom->appendChild(new DOMElement($elem, EMPTY_callback(create_function('$v', 'return isset($v);'), @$value[$elem], $val)));
 		}
 	}#m  __construct
 
 	function getName(){
-	return 'goodFolder';
+		return 'goodFolder';
 	}#m getName
 }#c moysklad_goodFolder
+?>

@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Database.html" class="menu">class tree: Database</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Database.html" class="menu">class tree: Database</a> ]
 		  [ <a href="../../elementindex_Database.html" class="menu">index: Database</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -56,6 +57,8 @@
       	  <div class="package">
 			<a href="../../Database/_Database---database.php.html">		database.php
 		</a><br>
+			<a href="../../Database/_Database---database_where.php.html">		database_where.php
+		</a><br>
 			<a href="../../Database/_Database---mssql_database.php.html">		mssql_database.php
 		</a><br>
 			<a href="../../Database/_Database---mysql_database.php.html">		mysql_database.php
@@ -72,13 +75,16 @@
             <b>Classes:</b><br />
         <div class="package">
 	settings<br />	    &nbsp;&nbsp;		<a href="../../Database/settings/database.html">database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/DB_settings.html">DB_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../../Database/settings/mssql_database.html">mssql_database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/mssql_database_settings.html">mssql_database_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../../Database/settings/mysql_database.html">mysql_database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/mysql_database_settings.html">mysql_database_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../../Database/settings/sqlite3_database.html">sqlite3_database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/sqlite3_database_settings.html">sqlite3_database_settings</a><br />
+	  </div>
+  <div class="package">
+		    		<a href="../../Database/database_where.html">database_where</a><br />
+	    		<a href="../../Database/DB_settings.html">DB_settings</a><br />
+	    		<a href="../../Database/mssql_database_settings.html">mssql_database_settings</a><br />
+	    		<a href="../../Database/mysql_database_settings.html">mysql_database_settings</a><br />
+	    		<a href="../../Database/sqlite3_database_settings.html">sqlite3_database_settings</a><br />
 	  </div>
   <div class="package">
 	DBError<br />	    &nbsp;&nbsp;		<a href="../../Database/DBError/DBError.html">DBError</a><br />
@@ -101,13 +107,13 @@ Source Location: /Database/database.php<br /><br />
 <pre><a href="../../Vars/settings/get_settings.html">get_settings</a>
    |
    --database</pre><br />
-<div class="description">Parent class for more usefull using in parents who want be &quot;customizable&quot;</div><br /><br />
+<div class="description">Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-                          </ul>
+                                            </ul>
 
 
-                
+                            
 
         
 </td>
@@ -171,7 +177,7 @@ Source Location: /Database/database.php<br /><br />
 <div class="tags">
 <dl>
 <dt><a href="../../Database/settings/mysql_database.html">mysql_database</a></dt>
-	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
+	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 </dl>
 <dl>
 <dt><a href="../../Database/settings/sqlite3_database.html">sqlite3_database</a></dt>
@@ -179,7 +185,7 @@ Source Location: /Database/database.php<br /><br />
 </dl>
 <dl>
 <dt><a href="../../Database/settings/mssql_database.html">mssql_database</a></dt>
-	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
+	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 </dl>
 </div>
 </td>
@@ -215,8 +221,8 @@ Source Location: /Database/database.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 60]<br />
-Parent class for more usefull using in parents who want be &quot;customizable&quot;<br /><br /><br /><br />
+[line 41]<br />
+Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -224,13 +230,22 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
     <td><b>abstract:</b>&nbsp;&nbsp;</td><td></td>
   </tr>
   <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/_Database---mssql_database.php.html">mssql_database.php</a></td>
+  </tr>
+  <tr>
     <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/_Database---mssql_database.php.html#functionmyErrorHandler">myErrorHandler()</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/settings/mysql_database_settings.html">mysql_database_settings</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/_Database---sqlite3_database.php.html">sqlite3_database.php</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/settings/sqlite3_database_settings.html">sqlite3_database_settings</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/_Database---mysql_database.php.html">mysql_database.php</a></td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/mysql_database_settings.html">mysql_database_settings</a></td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/sqlite3_database_settings.html">sqlite3_database_settings</a></td>
   </tr>
 </table>
 </div>
@@ -245,7 +260,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$db_link"></a>
 	<p></p>
 	<h4>$db_link = <span class="value">&nbsp;null</span></h4>
-	<p>[line 63]</p>
+	<p>[line 44]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -270,7 +285,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$Field"></a>
 	<p></p>
 	<h4>$Field = <span class="value">null</span></h4>
-	<p>[line 68]</p>
+	<p>[line 49]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -295,7 +310,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$Fields"></a>
 	<p></p>
 	<h4>$Fields = <span class="value">null</span></h4>
-	<p>[line 69]</p>
+	<p>[line 50]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -320,7 +335,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$Query"></a>
 	<p></p>
 	<h4>$Query = <span class="value">&nbsp;''</span></h4>
-	<p>[line 65]</p>
+	<p>[line 46]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -345,7 +360,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$RES"></a>
 	<p></p>
 	<h4>$RES = <span class="value"></span></h4>
-	<p>[line 67]</p>
+	<p>[line 48]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -370,7 +385,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$result"></a>
 	<p></p>
 	<h4>$result = <span class="value"></span></h4>
-	<p>[line 66]</p>
+	<p>[line 47]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -395,7 +410,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$rowsTotal"></a>
 	<p></p>
 	<h4>$rowsTotal = <span class="value"></span></h4>
-	<p>[line 72]</p>
+	<p>[line 53]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -420,7 +435,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$_sets"></a>
 	<p></p>
 	<h4>$_sets = <span class="value">&nbsp;null</span></h4>
-	<p>[line 61]</p>
+	<p>[line 42]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -452,7 +467,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 78]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 59]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -496,7 +511,7 @@ $dontConnect = false])</code>
   </div>
   <hr />
 	<a name="methodcollectDebugInfo"></a>
-	<h3>method collectDebugInfo <span class="smalllinenumber">[line 223]</span></h3>
+	<h3>method collectDebugInfo <span class="smalllinenumber">[line 216]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -569,7 +584,7 @@ $d_backtrace)</code>
   </div>
   <hr />
 	<a name="methoddb_connect"></a>
-	<h3>method db_connect <span class="smalllinenumber">[line 191]</span></h3>
+	<h3>method db_connect <span class="smalllinenumber">[line 180]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -613,7 +628,7 @@ $d_backtrace)</code>
   </div>
   <hr />
 	<a name="methoddb_select"></a>
-	<h3>method db_select <span class="smalllinenumber">[line 93]</span></h3>
+	<h3>method db_select <span class="smalllinenumber">[line 73]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -646,7 +661,7 @@ $d_backtrace)</code>
   </div>
   <hr />
 	<a name="methodgetError"></a>
-	<h3>method getError <span class="smalllinenumber">[line 228]</span></h3>
+	<h3>method getError <span class="smalllinenumber">[line 221]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -673,7 +688,7 @@ $d_backtrace)</code>
   </div>
   <hr />
 	<a name="methodgetSQL"></a>
-	<h3>method getSQL <span class="smalllinenumber">[line 236]</span></h3>
+	<h3>method getSQL <span class="smalllinenumber">[line 229]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -700,7 +715,7 @@ $d_backtrace)</code>
   </div>
   <hr />
 	<a name="methodiconv_query"></a>
-	<h3>method iconv_query <span class="smalllinenumber">[line 217]</span></h3>
+	<h3>method iconv_query <span class="smalllinenumber">[line 210]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -709,7 +724,7 @@ $d_backtrace)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Перекодировка ЗАПРОСА, тоесть В БД<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -727,7 +742,7 @@ $d_backtrace)</code>
   </div>
   <hr />
 	<a name="methodiconv_result"></a>
-	<h3>method iconv_result <span class="smalllinenumber">[line 201]</span></h3>
+	<h3>method iconv_result <span class="smalllinenumber">[line 192]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -736,7 +751,7 @@ $d_backtrace)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Перекодировка РЕЗУЛЬТАТА, тоесть ИЗ БД<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -754,7 +769,7 @@ $d_backtrace)</code>
   </div>
   <hr />
 	<a name="methodquery"></a>
-	<h3>method query <span class="smalllinenumber">[line 192]</span></h3>
+	<h3>method query <span class="smalllinenumber">[line 181]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -821,7 +836,7 @@ $last_id = false])</code>
   </div>
   <hr />
 	<a name="methodquery_limit"></a>
-	<h3>method query_limit <span class="smalllinenumber">[line 193]</span></h3>
+	<h3>method query_limit <span class="smalllinenumber">[line 182]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -894,7 +909,7 @@ $print_query = false])</code>
   </div>
   <hr />
 	<a name="methodrowsTotal"></a>
-	<h3>method rowsTotal <span class="smalllinenumber">[line 187]</span></h3>
+	<h3>method rowsTotal <span class="smalllinenumber">[line 176]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -903,7 +918,7 @@ $print_query = false])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Returns TOTAL rows for query, whithout LIMIT effect<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -917,7 +932,7 @@ $print_query = false])</code>
 	<p>Overridden in child classes as:<br />
 		<dl>
 	<dt><a href="../../Database/settings/mysql_database.html#methodrowsTotal">mysql_database::rowsTotal()</a></dt>
-		<dd></dd>
+		<dd>TOTAL rows for query, whithout LIMIT effect</dd>
 	</dl>
 		<dl>
 	<dt><a href="../../Database/settings/sqlite3_database.html#methodrowsTotal">sqlite3_database::rowsTotal()</a></dt>
@@ -931,7 +946,7 @@ $print_query = false])</code>
   </div>
   <hr />
 	<a name="methodset_names"></a>
-	<h3>method set_names <span class="smalllinenumber">[line 106]</span></h3>
+	<h3>method set_names <span class="smalllinenumber">[line 86]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -969,7 +984,7 @@ $charset = null])</code>
   </div>
   <hr />
 	<a name="methodsql_escape_string"></a>
-	<h3>method sql_escape_string <span class="smalllinenumber">[line 196]</span></h3>
+	<h3>method sql_escape_string <span class="smalllinenumber">[line 185]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1024,7 +1039,7 @@ $charset = null])</code>
   </div>
   <hr />
 	<a name="methodsql_fetch_array"></a>
-	<h3>method sql_fetch_array <span class="smalllinenumber">[line 160]</span></h3>
+	<h3>method sql_fetch_array <span class="smalllinenumber">[line 148]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1057,7 +1072,7 @@ $charset = null])</code>
   </div>
   <hr />
 	<a name="methodsql_fetch_assoc"></a>
-	<h3>method sql_fetch_assoc <span class="smalllinenumber">[line 142]</span></h3>
+	<h3>method sql_fetch_assoc <span class="smalllinenumber">[line 127]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1066,7 +1081,7 @@ $charset = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Добиваемся некоторой &quot;универсальности&quot;<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -1090,7 +1105,7 @@ $charset = null])</code>
   </div>
   <hr />
 	<a name="methodsql_fetch_field"></a>
-	<h3>method sql_fetch_field <span class="smalllinenumber">[line 130]</span></h3>
+	<h3>method sql_fetch_field <span class="smalllinenumber">[line 113]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1134,7 +1149,7 @@ $offset = null])</code>
   </div>
   <hr />
 	<a name="methodsql_fetch_fields"></a>
-	<h3>method sql_fetch_fields <span class="smalllinenumber">[line 136]</span></h3>
+	<h3>method sql_fetch_fields <span class="smalllinenumber">[line 119]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1161,7 +1176,7 @@ $offset = null])</code>
   </div>
   <hr />
 	<a name="methodsql_fetch_object"></a>
-	<h3>method sql_fetch_object <span class="smalllinenumber">[line 168]</span></h3>
+	<h3>method sql_fetch_object <span class="smalllinenumber">[line 155]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1215,7 +1230,7 @@ $params = array()])</code>
   </div>
   <hr />
 	<a name="methodsql_fetch_row"></a>
-	<h3>method sql_fetch_row <span class="smalllinenumber">[line 152]</span></h3>
+	<h3>method sql_fetch_row <span class="smalllinenumber">[line 141]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1248,7 +1263,7 @@ $params = array()])</code>
   </div>
   <hr />
 	<a name="methodsql_free_result"></a>
-	<h3>method sql_free_result <span class="smalllinenumber">[line 177]</span></h3>
+	<h3>method sql_free_result <span class="smalllinenumber">[line 164]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1281,7 +1296,7 @@ $params = array()])</code>
   </div>
   <hr />
 	<a name="methodsql_next_result"></a>
-	<h3>method sql_next_result <span class="smalllinenumber">[line 195]</span></h3>
+	<h3>method sql_next_result <span class="smalllinenumber">[line 184]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1307,7 +1322,7 @@ $params = array()])</code>
 	<p>Overridden in child classes as:<br />
 		<dl>
 	<dt><a href="../../Database/settings/mysql_database.html#methodsql_next_result">mysql_database::sql_next_result()</a></dt>
-		<dd></dd>
+		<dd>MySQL does not support multiple recordset. This is possible in mysqli only.</dd>
 	</dl>
 		<dl>
 	<dt><a href="../../Database/settings/sqlite3_database.html#methodsql_next_result">sqlite3_database::sql_next_result()</a></dt>
@@ -1325,7 +1340,7 @@ $params = array()])</code>
   </div>
   <hr />
 	<a name="methodsql_num_fields"></a>
-	<h3>method sql_num_fields <span class="smalllinenumber">[line 126]</span></h3>
+	<h3>method sql_num_fields <span class="smalllinenumber">[line 109]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1352,7 +1367,7 @@ $params = array()])</code>
   </div>
   <hr />
 	<a name="methodsql_num_rows"></a>
-	<h3>method sql_num_rows <span class="smalllinenumber">[line 182]</span></h3>
+	<h3>method sql_num_rows <span class="smalllinenumber">[line 169]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1385,7 +1400,7 @@ $params = array()])</code>
   </div>
   <hr />
 	<a name="methodToBlob"></a>
-	<h3>method ToBlob <span class="smalllinenumber">[line 194]</span></h3>
+	<h3>method ToBlob <span class="smalllinenumber">[line 183]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1412,11 +1427,11 @@ $str)</code>
 	<p>Overridden in child classes as:<br />
 		<dl>
 	<dt><a href="../../Database/settings/mysql_database.html#methodToBlob">mysql_database::ToBlob()</a></dt>
-		<dd></dd>
+		<dd>In MySQL not needed - implement as stub</dd>
 	</dl>
 		<dl>
 	<dt><a href="../../Database/settings/sqlite3_database.html#methodToBlob">sqlite3_database::ToBlob()</a></dt>
-		<dd></dd>
+		<dd>In sqlite3 does not needed</dd>
 	</dl>
 		<dl>
 	<dt><a href="../../Database/settings/mssql_database.html#methodToBlob">mssql_database::ToBlob()</a></dt>
@@ -1440,7 +1455,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="method__get"></a>
-	<h3>method __get <span class="smalllinenumber">[line 112]</span></h3>
+	<h3>method __get <span class="smalllinenumber">[line 96]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1450,7 +1465,7 @@ $name)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Переопределяем, чтобы сделать ссылку на настройки не изменяемой!<br /><br /><p>таким образом настройки менять можно будет, а сменить объект настроек - нет</p><br /><br /><br />
 
 	
 Overrides <a href="../../Vars/settings/get_settings.html#method__get">get_settings::__get()</a> (Overload to provide ref on settings object. So, settings will be changable,  but can't be replaced settings object!)<br /><br />
@@ -1469,7 +1484,7 @@ Overrides <a href="../../Vars/settings/get_settings.html#method__get">get_settin
   </div>
   <hr />
 	<a name="method__wakeup"></a>
-	<h3>method __wakeup <span class="smalllinenumber">[line 240]</span></h3>
+	<h3>method __wakeup <span class="smalllinenumber">[line 233]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1500,7 +1515,7 @@ Overrides <a href="../../Vars/settings/get_settings.html#method__get">get_settin
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:27 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:03 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

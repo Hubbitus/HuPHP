@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_dellin-ru.html" class="menu">class tree: dellin-ru</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_dellin-ru.html" class="menu">class tree: dellin-ru</a> ]
 		  [ <a href="../elementindex_dellin-ru.html" class="menu">index: dellin-ru</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -139,7 +140,7 @@ Source Location: /_vendors/dellin.ru/dellinParse.class.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 26]<br />
+[line 23]<br />
 Class to parse dellin.ru Cities of delivery and map its to our current S-Cart database values (inspired by SPSR structure).<br /><br /><p>Parsing limited only to Russia.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -164,7 +165,7 @@ Class to parse dellin.ru Cities of delivery and map its to our current S-Cart da
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 104]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 101]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -202,7 +203,7 @@ $xmlSource)</code>
   </div>
   <hr />
 	<a name="methodbuildInsertsOfNewCitites"></a>
-	<h3>method buildInsertsOfNewCitites <span class="smalllinenumber">[line 478]</span></h3>
+	<h3>method buildInsertsOfNewCitites <span class="smalllinenumber">[line 475]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -229,7 +230,7 @@ $xmlSource)</code>
   </div>
   <hr />
 	<a name="methodbuildMapConfig"></a>
-	<h3>method buildMapConfig <span class="smalllinenumber">[line 464]</span></h3>
+	<h3>method buildMapConfig <span class="smalllinenumber">[line 461]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -256,7 +257,7 @@ $xmlSource)</code>
   </div>
   <hr />
 	<a name="methodgetMatchedCities"></a>
-	<h3>method getMatchedCities <span class="smalllinenumber">[line 427]</span></h3>
+	<h3>method getMatchedCities <span class="smalllinenumber">[line 424]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -283,7 +284,7 @@ $xmlSource)</code>
   </div>
   <hr />
 	<a name="methodgetNotMatchedCities"></a>
-	<h3>method getNotMatchedCities <span class="smalllinenumber">[line 441]</span></h3>
+	<h3>method getNotMatchedCities <span class="smalllinenumber">[line 438]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -330,7 +331,7 @@ $whatRegion.)</code>
   </div>
   <hr />
 	<a name="methodmatch"></a>
-	<h3>method match <span class="smalllinenumber">[line 117]</span></h3>
+	<h3>method match <span class="smalllinenumber">[line 114]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -357,7 +358,7 @@ $whatRegion.)</code>
   </div>
   <hr />
 	<a name="methodmatchRegion"></a>
-	<h3>method matchRegion <span class="smalllinenumber">[line 186]</span></h3>
+	<h3>method matchRegion <span class="smalllinenumber">[line 183]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -396,7 +397,7 @@ $whatRegion.)</code>
 &nbsp;&nbsp;&nbsp;FROM<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xcart_counties&nbsp;c&nbsp;LEFT&nbsp;JOIN&nbsp;xcart_states&nbsp;s&nbsp;ON&nbsp;(s.stateid&nbsp;=&nbsp;c.stateid)<br>
 &nbsp;&nbsp;&nbsp;WHERE&nbsp;country_code&nbsp;=&nbsp;&quot;RU&quot;&nbsp;'</span></h4>
-	<p>[line 56]</p>
+	<p>[line 53]</p>
   Base part of SQL query to try several type matches of cities.<br /><br />
 
   <br />
@@ -407,7 +408,7 @@ $whatRegion.)</code>
 &nbsp;&nbsp;&nbsp;FROM<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xcart_states<br>
 &nbsp;&nbsp;&nbsp;WHERE&nbsp;country_code&nbsp;=&nbsp;&quot;RU&quot;&nbsp;'</span></h4>
-	<p>[line 66]</p>
+	<p>[line 63]</p>
   Base part of SQL query to try several type matches of regions.<br /><br />
 
   <br />
@@ -415,7 +416,7 @@ $whatRegion.)</code>
 	<a name="constURL_CITIES"></a>
 	<p></p>
 	<h4>URL_CITIES = <span class="value">&nbsp;'http://public.services.dellin.ru/calculatorService2/index.html?request=xmlForm'</span></h4>
-	<p>[line 27]</p>
+	<p>[line 24]</p>
   
 
   <br />
@@ -425,7 +426,7 @@ $whatRegion.)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:30 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:05 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

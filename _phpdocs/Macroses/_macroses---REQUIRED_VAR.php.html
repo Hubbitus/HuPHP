@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_Macroses.html" class="menu">class tree: Macroses</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_Macroses.html" class="menu">class tree: Macroses</a> ]
 		  [ <a href="../elementindex_Macroses.html" class="menu">index: Macroses</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -102,12 +103,12 @@ Source Location: /macroses/REQUIRED_VAR.php<br /><br />
 
 
 <h2>Page Details:</h2>
-Toolkit of small functions as &quot;macroses&quot;.<br /><br /><p>DEBUG version</p><br /><br /><br />
+Toolkit of small functions aka &quot;macroses&quot;.<br /><br /><p>DEBUG version</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>1.2</td>
@@ -116,7 +117,10 @@ Toolkit of small functions as &quot;macroses&quot;.<br /><br /><p>DEBUG version<
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>2008-05-29 19:55 version 1.2 from 1.0 <ul><li>Rewritten with VariableRequiredException. Now provide only backtrace, not Tokenizer! It takes</li></ul>    less overhead and debag/nodebug handled in one place (in exception class)</td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/VariableRequiredException.html">VariableRequiredException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Debug/Bactrace/backtrace.html">backtrace</a></td>
   </tr>
 </table>
 </div>
@@ -130,7 +134,7 @@ Toolkit of small functions as &quot;macroses&quot;.<br /><br /><p>DEBUG version<
 <br />
   <hr />
 	<a name="functionREQUIRED_VAR"></a>
-	<h3>REQUIRED_VAR <span class="smalllinenumber">[line 36]</span></h3>
+	<h3>REQUIRED_VAR <span class="smalllinenumber">[line 28]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -144,28 +148,37 @@ Toolkit of small functions as &quot;macroses&quot;.<br /><br /><p>DEBUG version<
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/HuFormat/HuFormatException.html">HuFormatException</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Vars/charset_convert/_Vars---Strings---Charset---charset_convert.class.php.html">charset_convert.class.php</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/Bactrace/BacktraceEmptyException.html">BacktraceEmptyException</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Vars/charset_convert/_Vars---Strings---Charset---iconv_charset_convert.class.php.html">iconv_charset_convert.class.php</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Console/Getopt/HuGetoptArgumentRequiredException.html">HuGetoptArgumentRequiredException</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Vars/Classes/_Vars---HuClass.php.html">HuClass.php</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/file_read.html">file_read</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/_Filesystem---file_read.php.html">file_read.php</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Vars/charset_convert/charset_convert.html">charset_convert</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/_Filesystem---file_base.php.html">file_base.php</a></td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Console/Getopt/_System---Console---HuGetopt.php.html">HuGetopt.php</a></td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/Bactrace/_Debug---backtrace.php.html">backtrace.php</a></td>
   </tr>
   <tr>
     <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../dellin-ru/dellinRegion.html">dellinRegion</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/file_inmem.html">file_inmem</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/_Filesystem---file_inmem.php.html">file_inmem.php</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/Tokenizer.html">Tokenizer</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/HuFormat/_Debug---HuFormat.php.html">HuFormat.php</a></td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/_Debug---Tokenizer.php.html">Tokenizer.php</a></td>
   </tr>
   <tr>
     <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../dellin-ru/dellinCity.html">dellinCity</a></td>
@@ -200,7 +213,7 @@ Toolkit of small functions as &quot;macroses&quot;.<br /><br /><p>DEBUG version<
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:33 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:53 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

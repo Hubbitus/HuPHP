@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_settings.html" class="menu">class tree: settings</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_settings.html" class="menu">class tree: settings</a> ]
 		  [ <a href="../../elementindex_settings.html" class="menu">index: settings</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -393,7 +394,7 @@ Source Location: /Vars/Settings/settings_filter/settings_filter.class.php<br /><
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -426,7 +427,7 @@ Source Location: /Vars/Settings/settings_filter/settings_filter.class.php<br /><
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 35]<br />
+[line 33]<br />
 Extended variant of settings_check, with check possible options.<br /><br /><p>You may easy add any amount of &quot;filters&quot; on get/set property operations  	by easy register new filter like: 	$obj-&gt;addGetFilter('testProp', callback $func);</p><p>Set filters intended prmarly for static transformations like check, conversions etc.  	In this case value transformed on set stage once, and stored result as 	value only (original value droped).</p><p>Get filters primarly intended for dinamic values, non-deterministic behaviour. 	F.e. to add current datetime to field, check outside params etc...</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -450,7 +451,7 @@ Extended variant of settings_check, with check possible options.<br /><br /><p>Y
 	<a name="var$__filt_get"></a>
 	<p></p>
 	<h4>$__filt_get = <span class="value">array()</span></h4>
-	<p>[line 37]</p>
+	<p>[line 35]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -475,7 +476,7 @@ Extended variant of settings_check, with check possible options.<br /><br /><p>Y
 	<a name="var$__filt_set"></a>
 	<p></p>
 	<h4>$__filt_set = <span class="value">array()</span></h4>
-	<p>[line 36]</p>
+	<p>[line 34]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -783,7 +784,7 @@ $name)</code>
   </div>
   <hr />
 	<a name="methodgetProperty"></a>
-	<h3>method getProperty <span class="smalllinenumber">[line 53]</span></h3>
+	<h3>method getProperty <span class="smalllinenumber">[line 52]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -821,7 +822,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodgetProperty
   </div>
   <hr />
 	<a name="methodmergeSettingsArray"></a>
-	<h3>method mergeSettingsArray <span class="smalllinenumber">[line 75]</span></h3>
+	<h3>method mergeSettingsArray <span class="smalllinenumber">[line 74]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -859,7 +860,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodmergeSettin
   </div>
   <hr />
 	<a name="methodsetSetting"></a>
-	<h3>method setSetting <span class="smalllinenumber">[line 41]</span></h3>
+	<h3>method setSetting <span class="smalllinenumber">[line 40]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -903,7 +904,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodsetSetting"
   </div>
   <hr />
 	<a name="methodsetSettingsArray"></a>
-	<h3>method setSettingsArray <span class="smalllinenumber">[line 65]</span></h3>
+	<h3>method setSettingsArray <span class="smalllinenumber">[line 64]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -945,7 +946,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodsetSettings
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:36 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:55 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

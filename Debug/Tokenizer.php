@@ -34,30 +34,10 @@
 *
 * @package Debug
 * @version 2.1.2
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created ?2009-03-18 17:44 ver 2.1 to 2.1.1
 *
-* @changelog
-*	* 2009-03-18 17:44 ver 2.1 to 2.1.1
-*	- Make direct call to $this->_regexp->convertOffsetToChars();. It is not called any time cince RegExp_pcre ver 2.2
-*
-*	* 2009-03-25 15:03 ver 2.1.1 to 2.1.2
-*	- After split file_base to 2 childs switch there use file_inmem.
-**/
-
-	if (!defined('T_ML_COMMENT')) {
-	define('T_ML_COMMENT', T_COMMENT);
-	} else {
-	define('T_DOC_COMMENT', T_ML_COMMENT);
-	}
-
-/*-inc
-include_once('Debug/backtrace.php');
-include_once('RegExp/RegExp_pcre.php');
-include_once('Filesystem/file_inmem.php');
-*/
-include_once('macroses/REQUIRED_VAR.php');
-/**
 * @uses REQUIRED_VAR()
 * @uses VariableRequiredException
 * @uses backtrace
@@ -65,16 +45,24 @@ include_once('macroses/REQUIRED_VAR.php');
 * @uses file_inmem
 **/
 
-class Tokenizer{
-private /* backtraceNode */ $_debugBacktrace = null;
+include_once('macroses/REQUIRED_VAR.php');
 
-protected $_filePhpSrc = null;
-private $_callStartLine = 0;
-private $_callText = '';
-private $_tokens = null;
-private $_curTokPos = 0;
-private $_args = array();
-private $_regexp = null;
+	if (!defined('T_ML_COMMENT')) {
+		define('T_ML_COMMENT', T_COMMENT);
+	} else {
+		define('T_DOC_COMMENT', T_ML_COMMENT);
+	}
+
+class Tokenizer{
+	private /* backtraceNode */ $_debugBacktrace = null;
+
+	protected $_filePhpSrc = null;
+	private $_callStartLine = 0;
+	private $_callText = '';
+	private $_tokens = null;
+	private $_curTokPos = 0;
+	private $_args = array();
+	private $_regexp = null;
 
 	/**
 	* Constructor.
@@ -85,7 +73,7 @@ private $_regexp = null;
 	public function __construct(/* array | backtraceNode */ $db = array()){
 		if (is_array($db)) $this->setFromBTN(new backtraceNode($db));
 		$this->setFromBTN($db);
-	}#m __construct
+	}#__c
 
 	/**
 	* Set from Object(backtraceNode).
@@ -94,9 +82,9 @@ private $_regexp = null;
 	* @return &$this
 	**/
 	public function &setFromBTN(backtraceNode $db){
-	$this->clear();
-	$this->_debugBacktrace = $db;
-	return $this;
+		$this->clear();
+		$this->_debugBacktrace = $db;
+		return $this;
 	}#m setFromBTN
 
 	/**
@@ -104,7 +92,7 @@ private $_regexp = null;
 	* {@inheritdoc ::__construct()}
 	**/
 	static public function create(/* array | backtraceNode */ $db){
-	return new self($db);
+		return new self($db);
 	}#m create
 
 	/**
@@ -113,15 +101,14 @@ private $_regexp = null;
 	* @return nothing
 	**/
 	public function clear(){
-	#Fill all to defaults
-	$this->_debugBacktrace = null;
-	$this->_filePhpSrc = null;
-	$this->_callStartLine = 0;
-	$this->_callText = '';
-	$this->_tokens = null;
-	$this->_curTokPos = 0;
-	$this->_args = array();
-	$this->_regexp = null;
+		$this->_debugBacktrace = null;
+		$this->_filePhpSrc = null;
+		$this->_callStartLine = 0;
+		$this->_callText = '';
+		$this->_tokens = null;
+		$this->_curTokPos = 0;
+		$this->_args = array();
+		$this->_regexp = null;
 	}#m clear
 
 	/**
@@ -143,8 +130,8 @@ private $_regexp = null;
 	* @return	&$this
 	**/
 	public function &setArg($n, $value){
-	$this->_args[$n] = $value;
-	return $this;
+		$this->_args[$n] = $value;
+		return $this;
 	}#m setArg
 
 	/**
@@ -153,7 +140,7 @@ private $_regexp = null;
 	* @return array
 	**/
 	public function getArgs(){
-	return $this->_args;
+		return $this->_args;
 	}#m getArgs
 
 	/**
@@ -162,30 +149,29 @@ private $_regexp = null;
 	* @return integer
 	**/
 	public function countArgs(){
-	return sizeof($this->_args);
+		return sizeof($this->_args);
 	}#m countArgs
 
 	/**
 	* Search full text of call in src php-file
 	*
 	* @return $this
- 	* @Throws(VariableRequiredException)
+	* @Throws(VariableRequiredException)
 	**/
 	protected function findTextCall(){
-	$this->_filePhpSrc = new file_inmem(REQUIRED_VAR($this->_debugBacktrace->file));
-	$this->_filePhpSrc->loadContent();
+		$this->_filePhpSrc = new file_inmem(REQUIRED_VAR($this->_debugBacktrace->file));
+		$this->_filePhpSrc->loadContent();
 
-	$rega = '/'
-		.RegExp_pcre::quote(@$this->_debugBacktrace->type)	#For classes '->' or '::'. For regular functions not exist.
-		.'\b'.$this->_debugBacktrace->function	#In case of method and regular function same name present.
-		.'\s*\((.*?)\s*\)'	#call
-		.'/xms';
-	//c_dump($rega, '$rega');
+		$rega = '/'
+			.RegExp_pcre::quote(@$this->_debugBacktrace->type) // For classes '->' or '::'. For regular functions not exist.
+			.'\b'.$this->_debugBacktrace->function // In case of method and regular function same name present.
+			.'\s*\((.*?)\s*\)' // call
+			.'/xms';
 
-	$this->_regexp = new RegExp_pcre($rega, $this->_filePhpSrc->getBLOB());
-	$this->_regexp->doMatchAll(PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
-	$this->_regexp->convertOffsetToChars(PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
-	return $this;
+			$this->_regexp = new RegExp_pcre($rega, $this->_filePhpSrc->getBLOB());
+		$this->_regexp->doMatchAll(PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
+		$this->_regexp->convertOffsetToChars(PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
+		return $this;
 	}#m findTextCall
 
 	/**
@@ -199,37 +185,29 @@ private $_regexp = null;
 	**/
 	protected function &findCallStrings(){
 		if (!$this->_regexp) $this->findTextCall();
-	$delta = PHP_INT_MAX;
-	$this->_callStartLine = 0;
+
+		$delta = PHP_INT_MAX;
+		$this->_callStartLine = 0;
 
 		//Search closest line
 		foreach ($this->_regexp->getMatches() as $k => $match){
-		$lineN = $this->_filePhpSrc->getLineByOffset($match[0][1]) + 1;	#Indexing from 0
-			if ( ($d = $this->_debugBacktrace->line - $lineN) >= 0 and $d < $delta){
-			$delta = $d;
-			$this->_callStartLine = $lineN;
+			$lineN = $this->_filePhpSrc->getLineByOffset($match[0][1]) + 1; //Indexing from 0
+				if ( ($d = $this->_debugBacktrace->line - $lineN) >= 0 and $d < $delta){
+					$delta = $d;
+					$this->_callStartLine = $lineN;
+				}
+				else break;//Not needed more
 			}
-			else break;#Not needed more
-		}
-	//c_dump($delta, '$delta');
-	//c_dump($realStartLine, '$realStartLine');
 
-	/*
-	$linesOfCall = $this->_filePhpSrc->getLines(array($realStartLine - 1, $delta + 1));
-	c_dump($linesOfCall, 'Lines of Call');
-	$linesOfCall = implode($this->_filePhpSrc->getLineSep(), $linesOfCall);
-	c_dump($linesOfCall, 'Lines of Call');
-	$tokens = token_get_all('<?' . $linesOfCall . '?>');
-	*/
-	$this->_callText = implode(
-		$this->_filePhpSrc->getLineSep(),
-		$this->_filePhpSrc->getLines(
-			array(
-			$this->_callStartLine - 1,
-			$delta + 1
-			)
-		)
-	);
+			$this->_callText = implode(
+				$this->_filePhpSrc->getLineSep()
+				,$this->_filePhpSrc->getLines(
+					array(
+						$this->_callStartLine - 1
+						,$delta + 1
+					)
+				)
+			);
 	return $this;
 	}#m findCallStrings
 
@@ -240,10 +218,10 @@ private $_regexp = null;
 	**/
 	public function &parseTokens(){
 		if (!$this->_callText) $this->findCallStrings();
-	//c_dump($this->_callText, '$this->_callText');
-	#Without start and end tags not parsed properly.
-	$this->_tokens = token_get_all('<?' . $this->_callText . '?>');
-	return $this;
+
+		// Without start and end tags not parsed properly.
+		$this->_tokens = token_get_all('<?' . $this->_callText . '?>');
+		return $this;
 	}#m parseTokens
 
 	/**
@@ -259,55 +237,54 @@ private $_regexp = null;
 	public function &parseCallArgs($stripWhitespace = false, $stripComments = false){
 		if ($this->_tokens === null) $this->parseTokens();
 
-	$this->skipToStartCallArguments();
-	$this->addArg();
-	$sParenthesis = 0;	#stack
-	$sz = sizeof($this->_tokens);	#Speed Up
-		while ($this->_curTokPos < $sz){
-		$token =& $this->_tokens[$this->_curTokPos++];
+		$this->skipToStartCallArguments();
+		$this->addArg();
+		$sParenthesis = 0; //stack
+		$sz = sizeof($this->_tokens);
+			while ($this->_curTokPos < $sz){
+				$token =& $this->_tokens[$this->_curTokPos++];
 
-			if (is_string($token)){
-				switch($token){
-				case '(':
-				++$sParenthesis;
-					#Self ( - do not want
-					if ($sParenthesis > 1) $this->addToArg($token);
-				break;
+				if (is_string($token)){
+					switch($token){
+						case '(':
+							++$sParenthesis;
+							// Self ( - do not want
+							if ($sParenthesis > 1) $this->addToArg($token);
+						break;
 
-				case ')':
-				--$sParenthesis;
-					if (0 == $sParenthesis) break 2;
-				$this->addToArg($token);
-				break;
+						case ')':
+							--$sParenthesis;
+							if (0 == $sParenthesis) break 2;
+							$this->addToArg($token);
+							break;
 
-				case ',':
-					if (1 == $sParenthesis) $this->addArg();
-					else $this->addToArg($token);
-				break;
+						case ',':
+							if (1 == $sParenthesis) $this->addArg();
+							else $this->addToArg($token);
+							break;
 
-				default:
-				$this->addToArg($token);
+						default:
+							$this->addToArg($token);
+					}
+				}
+				else{
+					switch($token[0]){
+						case T_COMMENT:
+						case T_ML_COMMENT:	// we've defined this
+						case T_DOC_COMMENT:	// and this
+							if (!$stripComments) $this->addToArg($token[1]);
+							break;
+
+						case T_WHITESPACE:
+							if (!$stripWhitespace) $this->addToArg($token[1]);
+							break;
+
+						default:
+							$this->addToArg($token[1]);
+					}
 				}
 			}
-			else{
-			//c_dump(token_name($token[0]));
-				switch($token[0]){
-				case T_COMMENT:
-				case T_ML_COMMENT:	// we've defined this
-				case T_DOC_COMMENT:	// and this
-					if (!$stripComments) $this->addToArg($token[1]);
-				break;
-
-				case T_WHITESPACE:
-					if (!$stripWhitespace) $this->addToArg($token[1]);
-				break;
-
-				default:
-				$this->addToArg($token[1]);
-				}
-			}
-		}
-	return $this;
+		return $this;
 	}#m parseCallArgs
 
 	/**
@@ -316,14 +293,13 @@ private $_regexp = null;
 	* @return $this
 	**/
 	private function skipToStartCallArguments(){
-	$sz = sizeof($this->_tokens);	#Speed Up
-		while ($this->_curTokPos < $sz){
-		$token =& $this->_tokens[$this->_curTokPos++];
-			if (is_array($token) and T_STRING == $token[0] and $token[1] == $this->_debugBacktrace->function){
-			return;
+		$sz = sizeof($this->_tokens);
+			while ($this->_curTokPos < $sz){
+				$token =& $this->_tokens[$this->_curTokPos++];
+				if (is_array($token) and T_STRING == $token[0] and $token[1] == $this->_debugBacktrace->function)
+					return;
 			}
-		}
-	return $this;
+		return $this;
 	}#m skipToStartCallArguments
 
 	/**
@@ -332,7 +308,7 @@ private $_regexp = null;
 	* @return noting
 	**/
 	private function addToArg($str){
-	$this->_args[$this->countArgs() - 1] .= $str;
+		$this->_args[$this->countArgs() - 1] .= $str;
 	}#m addToArg
 
 	/**
@@ -341,7 +317,7 @@ private $_regexp = null;
 	* @return nothing
 	**/
 	private function addArg(){
-	$this->_args[$this->countArgs()] = '';
+		$this->_args[$this->countArgs()] = '';
 	}#m addArg
 
 	/**
@@ -354,7 +330,8 @@ private $_regexp = null;
 	**/
 	static public function trimQuotes($arg, $all = false){
 		if (!$arg) return '';
-	$len = strlen($arg);
+
+		$len = strlen($arg);
 		if ('"' == $arg{0} or '\'' == $arg{0}) $from = 1;
 		else $from = 0;
 		if ('"' == $arg{$len-1} or '\'' == $arg{$len-1}) $len -= (1 + $from);

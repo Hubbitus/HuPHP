@@ -5,21 +5,19 @@
 *
 * @package Vars
 * @version 1.0b
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-* 2008-06-16 14:33
-*	- Add stream_stat() STUB, only for warnings supress
+* @created 2008-06-16 14:33
 **/
 
-#Very usefull example from http://www.php.net/manual/ru/function.stream-wrapper-register.php
+/**
+* Very usefull example from http://www.php.net/manual/ru/function.stream-wrapper-register.php as base for implementation
+**/
 class VariableStream {
 	var $position;
 	var $varname;
   
-	function stream_open($path, $mode, $options, &$opened_path)
-	{
+	function stream_open($path, $mode, $options, &$opened_path){
 		$url = parse_url($path);
 		$this->varname = $url["host"];
 		$this->position = 0;
@@ -27,15 +25,13 @@ class VariableStream {
 		return true;
 	}
 
-	function stream_read($count)
-	{
+	function stream_read($count){
 		$ret = substr($GLOBALS[$this->varname], $this->position, $count);
 		$this->position += strlen($ret);
 		return $ret;
 	}
 
-	function stream_write($data)
-	{
+	function stream_write($data){
 		$left = substr($GLOBALS[$this->varname], 0, $this->position);
 		$right = substr($GLOBALS[$this->varname], $this->position + strlen($data));
 		$GLOBALS[$this->varname] = $left . $data . $right;
@@ -43,26 +39,22 @@ class VariableStream {
 		return strlen($data);
 	}
 
-	function stream_tell()
-	{
+	function stream_tell(){
 		return $this->position;
 	}
 
-	function stream_eof()
-	{
+	function stream_eof(){
 		return $this->position >= strlen($GLOBALS[$this->varname]);
 	}
 
 	/**
 	* This is STUB, only for warnings supress
 	**/
-	function stream_stat()
-	{
+	function stream_stat(){
 		return array();
 	}
 
-	function stream_seek($offset, $whence)
-	{
+	function stream_seek($offset, $whence){
 		switch ($whence) {
 			case SEEK_SET:
 				if ($offset < strlen($GLOBALS[$this->varname]) && $offset >= 0) {
@@ -101,7 +93,7 @@ stream_wrapper_register("var", "VariableStream")
 	or die("Failed to register protocol");
 
 /*
-#EXAMPLES
+@example
 
 $myvar = "";
    

@@ -1,8 +1,5 @@
 <?
 include_once('autoload.php');
-// As it is in progress, autoload don't known about new classes:
-#include_once('settings_filter.php');
-#include_once('settings_filter_filter.php');
 
 $filt = new settings_filter(array('foo', 'bar'), array('foo' => 5, 'bar' => 'Test string'));
 //Then regsister 2 filters:

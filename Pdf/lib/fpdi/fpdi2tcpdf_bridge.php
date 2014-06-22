@@ -169,3 +169,4 @@ class FPDF extends TCPDF {
         return current(unpack('H*', $str));
     }
 }
+?>

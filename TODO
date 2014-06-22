@@ -1,0 +1,4 @@
+1) Add License and URL add to all my files
+2) Phar and OneFile creation check and ressurect
+3) Rebuild all command introduces but does not work properly
+4) Check dump::* on last php file without closing ?>

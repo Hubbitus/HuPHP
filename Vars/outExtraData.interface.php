@@ -9,7 +9,8 @@
 **/
 
 interface outExtraData{
-//public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide format (parts) and need known for what
+	//public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide format (parts) and need known for what
+
 	/**
 	* String to print into file. Primary for logs string representation
 	*
@@ -64,32 +65,33 @@ interface outExtraData{
 class __outExtraData__common_implementation{
 	//Only hack - common realization!
 	public static function strByOutType(/*$this*/&$obj, $type, $format = null){
-	$obj->_curTypeOut = $type;
+		$obj->_curTypeOut = $type;
+
 		switch ($type){
-		case OS::OUT_TYPE_BROWSER:
-		return $obj->strToWeb($format);
-		break;
+			case OS::OUT_TYPE_BROWSER:
+			return $obj->strToWeb($format);
+				break;
 
-		case OS::OUT_TYPE_CONSOLE:
-		return $obj->strToConsole($format);
-		break;
+			case OS::OUT_TYPE_CONSOLE:
+				return $obj->strToConsole($format);
+				break;
 
-		case OS::OUT_TYPE_FILE:
-		return $obj->strToFile($format);
-		break;
+			case OS::OUT_TYPE_FILE:
+				return $obj->strToFile($format);
+				break;
 
-		#Addition, preudo
-		case OS::OUT_TYPE_PRINT:
-		return $obj->strToPrint($format);
-		break;
+			// Addition, pseudo
+			case OS::OUT_TYPE_PRINT:
+				return $obj->strToPrint($format);
+				break;
 
-		default:
-		throw new VariableRangeException('$type MUST be one of: OS::OUT_TYPE_BROWSER, OS::OUT_TYPE_CONSOLE, OS::OUT_TYPE_FILE or OS::OUT_TYPE_PRINT!');
+			default:
+				throw new VariableRangeException('$type MUST be one of: OS::OUT_TYPE_BROWSER, OS::OUT_TYPE_CONSOLE, OS::OUT_TYPE_FILE or OS::OUT_TYPE_PRINT!');
 		}
 	}#m strByOutType
 
 	public function strToPrint(/*$this*/&$obj, $format = null){
-	$obj->_curTypeOut = OS::OUT_TYPE_PRINT;//Pseudo. Will be clarified.
+		$obj->_curTypeOut = OS::OUT_TYPE_PRINT;//Pseudo. Will be clarified.
 		if (OS::OUT_TYPE_BROWSER == OS::getOutType()) return $obj->strToWeb($format);
 		else return $obj->strToConsole($format);
 	}#m strToPrint

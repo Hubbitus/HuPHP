@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Vars.html" class="menu">class tree: Vars</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Vars.html" class="menu">class tree: Vars</a> ]
 		  [ <a href="../../elementindex_Vars.html" class="menu">index: Vars</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -137,10 +138,10 @@ Source Location: /Vars/Consts/consts.php<br /><br />
 <div class="description"></div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-        </ul>
+              </ul>
 
 
-    
+        
 
         
 </td>
@@ -173,11 +174,14 @@ Source Location: /Vars/Consts/consts.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 21]<br />
+[line 16]<br />
 <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Vars/Consts/_Vars---Consts---consts.example.php.html">consts.example.php</a></td>
+  </tr>
   <tr>
     <td><b>example:</b>&nbsp;&nbsp;</td><td>example not found</td>
   </tr>
@@ -194,7 +198,7 @@ Source Location: /Vars/Consts/consts.php<br /><br />
 <div class="tags">
   <hr />
 	<a name="methodget"></a>
-	<h3>static method get <span class="smalllinenumber">[line 57]</span></h3>
+	<h3>static method get <span class="smalllinenumber">[line 51]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -235,7 +239,7 @@ $const)</code>
   </div>
   <hr />
 	<a name="methodgetNameByValue"></a>
-	<h3>static method getNameByValue <span class="smalllinenumber">[line 70]</span></h3>
+	<h3>static method getNameByValue <span class="smalllinenumber">[line 64]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -243,7 +247,7 @@ $const)</code>
 mixed
 $value, [string
 $category = ''], [string
-$regexp = '#.*#i'], [boolean
+$regexp = '@.*@i'], [boolean
 $not_categorized = false])</code>
     </td></tr></table>
     </td></tr></table><br />
@@ -281,7 +285,7 @@ $not_categorized = false])</code>
           <tr>
         <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$regexp</b>&nbsp;&nbsp;</td>
-        <td>Regexp to filter out. Default &quot;#.*#i&quot;, what meen - no filter, return all. {@see ::get_regexp}</td>
+        <td>Regexp to filter out. Default &quot;@.*@i&quot;, what meen - no filter, return all. {@see ::get_regexp}</td>
       </tr>
           <tr>
         <td class="type">boolean&nbsp;&nbsp;</td>
@@ -294,14 +298,14 @@ $not_categorized = false])</code>
   </div>
   <hr />
 	<a name="methodget_regexp"></a>
-	<h3>static method get_regexp <span class="smalllinenumber">[line 30]</span></h3>
+	<h3>static method get_regexp <span class="smalllinenumber">[line 25]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>static array get_regexp(
 [string
 $category = ''], [string
-$regexp = '#.*#i'], [boolean
+$regexp = '@.*@i'], [boolean
 $not_categorized = false])</code>
     </td></tr></table>
     </td></tr></table><br />
@@ -334,7 +338,7 @@ $not_categorized = false])</code>
           <tr>
         <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$regexp</b>&nbsp;&nbsp;</td>
-        <td>Regexp to filter out. Default &quot;#.*#i&quot;, what meen - no filter, return all.</td>
+        <td>Regexp to filter out. Default &quot;@.*@i&quot;, what meen - no filter, return all.</td>
       </tr>
           <tr>
         <td class="type">boolean&nbsp;&nbsp;</td>
@@ -352,7 +356,7 @@ $not_categorized = false])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:26 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:03 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_SIMhistory.html" class="menu">class tree: SIMhistory</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_SIMhistory.html" class="menu">class tree: SIMhistory</a> ]
 		  [ <a href="../elementindex_SIMhistory.html" class="menu">index: SIMhistory</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -79,14 +80,23 @@ Source Location: /_vendors/sim-im.org/sim_messages.php<br /><br />
 
 <h3><a href="#class_details">Class Overview</a></h3>
 <pre></pre><br />
-<div class="description"></div><br /><br />
+<div class="description">Get, parse and manipulate SIM-IM message history files.</div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-                          </ul>
+          <li>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</li>
+                                          </ul>
 
 
-                
+                                    
+<h4>Version:</h4>
+<ul>
+  <li>0.2</li>
+</ul>
 
+<h4>Copyright:</h4>
+<ul>
+  <li>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</li>
+</ul>
         
 </td>
 
@@ -119,11 +129,20 @@ Source Location: /_vendors/sim-im.org/sim_messages.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 23]<br />
-<br /><br />
+[line 15]<br />
+Get, parse and manipulate SIM-IM message history files.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
+  </tr>
+  <tr>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>0.2</td>
+  </tr>
+  <tr>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
+  </tr>
   <tr>
     <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Vars/VariableStream.html">VariableStream</a></td>
   </tr>
@@ -131,10 +150,10 @@ Source Location: /_vendors/sim-im.org/sim_messages.php<br /><br />
     <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Process/Process.html">Process</a></td>
   </tr>
   <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Macroses/_macroses---EMPTY_STR.php.html#functionNON_EMPTY_STR">NON_EMPTY_STR()</a></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td>debug</td>
   </tr>
   <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td>debug</td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Macroses/_macroses---EMPTY_STR.php.html#functionNON_EMPTY_STR">NON_EMPTY_STR()</a></td>
   </tr>
 </table>
 </div>
@@ -150,7 +169,7 @@ Source Location: /_vendors/sim-im.org/sim_messages.php<br /><br />
 
   <hr />
 	<a name="methodgetString"></a>
-	<h3>method getString <span class="smalllinenumber">[line 87]</span></h3>
+	<h3>method getString <span class="smalllinenumber">[line 80]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -177,7 +196,7 @@ Source Location: /_vendors/sim-im.org/sim_messages.php<br /><br />
   </div>
   <hr />
 	<a name="methodparse"></a>
-	<h3>method parse <span class="smalllinenumber">[line 34]</span></h3>
+	<h3>method parse <span class="smalllinenumber">[line 27]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -188,7 +207,7 @@ $string)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Parses message in format:<br /><br /><p>ServerText=&quot;Текст сообщения&quot;  Flags=17  Background=16777215  Foreground=0  Time=1185694212</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -221,20 +240,20 @@ $string)</code>
   </div>
   <hr />
 	<a name="methodrecodeText"></a>
-	<h3>method recodeText <span class="smalllinenumber">[line 62]</span></h3>
+	<h3>method recodeText <span class="smalllinenumber">[line 56]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>void recodeText(
-[
-$encTo = 'utf-8'], [
-$encFrom = 'cp1251'], [
-$justRecode = false], [
+[string
+$encTo = 'utf-8'], [string
+$encFrom = 'cp1251'], [boolean
+$justRecode = false], [string
 $language = 'russian'])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Recode text to $encTo from:  1) autodetected encoding if $justRecode = false. If autodetect failed to $encFrom  2) $encFrom, if $justRecode = true<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -252,24 +271,24 @@ $language = 'russian'])</code>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$encTo</b>&nbsp;&nbsp;</td>
-        <td></td>
+        <td>Opt['utf-8']. Encoding To convert.</td>
       </tr>
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$encFrom</b>&nbsp;&nbsp;</td>
-        <td></td>
+        <td>Opt['cp1251']. Encoding From convert.</td>
       </tr>
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">boolean&nbsp;&nbsp;</td>
         <td><b>$justRecode</b>&nbsp;&nbsp;</td>
-        <td></td>
+        <td>Opt['false']. Do autodetect of encForm or not.</td>
       </tr>
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$language</b>&nbsp;&nbsp;</td>
-        <td></td>
+        <td>Opt['russian']. Language for autodetection encoding (see man enca).</td>
       </tr>
         </table>
     </div><br />
@@ -277,7 +296,7 @@ $language = 'russian'])</code>
   </div>
   <hr />
 	<a name="method__get"></a>
-	<h3>method __get <span class="smalllinenumber">[line 100]</span></h3>
+	<h3>method __get <span class="smalllinenumber">[line 93]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -319,7 +338,7 @@ $name)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:37 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:56 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -1,15 +1,12 @@
 <?
 /**
-* Toolkit of small functions as "macroses".
+* Toolkit of small functions aka "macroses".
 *
 * @package Macroses
 * @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-*	* 2009-03-01 13:57 ver 1.0
-*	- Initial version
+* @created 2009-03-01 13:57
 **/
 
 /**
@@ -39,7 +36,7 @@
 * @param &(string|array)	$where Where check.
 * @return boolean
 **/
-function is_set($what, $where){# Opposite to standard isset.
+function is_set($what, $where){// Opposite to standard isset.
 	if (is_string($where) and !is_numeric($what)) return false;
 	else return isset($where[$what]);
 }

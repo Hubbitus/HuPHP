@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Database.html" class="menu">class tree: Database</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Database.html" class="menu">class tree: Database</a> ]
 		  [ <a href="../../elementindex_Database.html" class="menu">index: Database</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -56,6 +57,8 @@
       	  <div class="package">
 			<a href="../../Database/_Database---database.php.html">		database.php
 		</a><br>
+			<a href="../../Database/_Database---database_where.php.html">		database_where.php
+		</a><br>
 			<a href="../../Database/_Database---mssql_database.php.html">		mssql_database.php
 		</a><br>
 			<a href="../../Database/_Database---mysql_database.php.html">		mysql_database.php
@@ -72,13 +75,16 @@
             <b>Classes:</b><br />
         <div class="package">
 	settings<br />	    &nbsp;&nbsp;		<a href="../../Database/settings/database.html">database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/DB_settings.html">DB_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../../Database/settings/mssql_database.html">mssql_database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/mssql_database_settings.html">mssql_database_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../../Database/settings/mysql_database.html">mysql_database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/mysql_database_settings.html">mysql_database_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../../Database/settings/sqlite3_database.html">sqlite3_database</a><br />
-	    &nbsp;&nbsp;		<a href="../../Database/settings/sqlite3_database_settings.html">sqlite3_database_settings</a><br />
+	  </div>
+  <div class="package">
+		    		<a href="../../Database/database_where.html">database_where</a><br />
+	    		<a href="../../Database/DB_settings.html">DB_settings</a><br />
+	    		<a href="../../Database/mssql_database_settings.html">mssql_database_settings</a><br />
+	    		<a href="../../Database/mysql_database_settings.html">mysql_database_settings</a><br />
+	    		<a href="../../Database/sqlite3_database_settings.html">sqlite3_database_settings</a><br />
 	  </div>
   <div class="package">
 	DBError<br />	    &nbsp;&nbsp;		<a href="../../Database/DBError/DBError.html">DBError</a><br />
@@ -229,7 +235,7 @@ Source Location: /Database/DBError.php<br /><br />
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -262,7 +268,7 @@ Source Location: /Database/DBError.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 36]<br />
+[line 30]<br />
 
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
@@ -274,27 +280,26 @@ Source Location: /Database/DBError.php<br /><br />
 	<a name="var$__SETS"></a>
 	<p></p>
 	<h4>$__SETS = <span class="value">array(<br>
-&nbsp;&nbsp;&nbsp;//Aka-Constants<br>
-&nbsp;&nbsp;&nbsp;'TXT_queryFailed'&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'SQL&nbsp;Query&nbsp;failed',<br>
-&nbsp;&nbsp;&nbsp;'TXT_cantConnect'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'Could&nbsp;not&nbsp;connect&nbsp;to&nbsp;DB',<br>
-&nbsp;&nbsp;&nbsp;'TXT_noDBselected'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'Can&nbsp;not&nbsp;change&nbsp;database',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Aka-Constants<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'TXT_queryFailed'&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'SQL&nbsp;Query&nbsp;failed',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'TXT_cantConnect'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'Could&nbsp;not&nbsp;connect&nbsp;to&nbsp;DB',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'TXT_noDBselected'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'Can&nbsp;not&nbsp;change&nbsp;database',<br>
 <br>
-&nbsp;&nbsp;&nbsp;/**<br>
-&nbsp;&nbsp;&nbsp;*&nbsp;@see&nbsp;HuError::updateDate()<br>
-&nbsp;&nbsp;&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;'AUTO_DATE'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;true,<br>
-&nbsp;&nbsp;&nbsp;'DATE_FORMAT'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'Y-m-d&nbsp;H:i:s:&nbsp;',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@see&nbsp;HuError::updateDate()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'AUTO_DATE'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;true,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'DATE_FORMAT'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'Y-m-d&nbsp;H:i:s:&nbsp;',<br>
 <br>
-&nbsp;&nbsp;&nbsp;/**&nbsp;Header&nbsp;for&nbsp;'extra'-data,&nbsp;which&nbsp;may&nbsp;be&nbsp;present&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;'EXTRA_HEADER'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'Extra&nbsp;info',<br>
-/////////////////////////////////////////////////////////////////////////////////////////////<br>
-&nbsp;&nbsp;&nbsp;#In&nbsp;format&nbsp;settings::getString(array)<br>
-&nbsp;&nbsp;&nbsp;#To&nbsp;out&nbsp;in&nbsp;Browser<br>
-&nbsp;&nbsp;&nbsp;'FORMAT_WEB'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;array&nbsp;(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('TXT_queryFailed',&nbsp;&quot;\n&lt;br&nbsp;\&gt;&lt;u&gt;&lt;b&gt;&quot;,&nbsp;&quot;&lt;/b&gt;&lt;/u&gt;:\n&lt;br&nbsp;\&gt;&quot;,&nbsp;''),'server_message',array('errNo','&nbsp;(',')'),array('server_messageS',&quot;&lt;br&nbsp;\&gt;\n&lt;b&gt;&quot;,'&lt;/b&gt;'),&quot;\n&lt;br&gt;&lt;u&gt;On&nbsp;query:&lt;/u&gt;&nbsp;&quot;,array('Query','&lt;pre&nbsp;style=&quot;color:&nbsp;red&quot;&gt;','&lt;/pre&gt;'),array('bt',&quot;&lt;br&nbsp;\&gt;\n&quot;)),#In&nbsp;CLI-mode<br>
-'FORMAT_CONSOLE'=&gt;array(array('TXT_queryFailed',&quot;\033[1m&quot;,&quot;\033[0m:\n&quot;,''),'server_message',array('errNo','(',')'),array('server_messageS',&quot;\n\033[31;1m&quot;,&quot;\033[0m&quot;),&quot;\n\033[4;1mOn&nbsp;query:\033[0m&nbsp;&quot;,array('Query',&quot;\033[31m&quot;,&quot;\033[0m&quot;),array('bt',&quot;\n&quot;)),#Primarly&nbsp;for&nbsp;logs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;Header&nbsp;for&nbsp;'extra'-data,&nbsp;which&nbsp;may&nbsp;be&nbsp;present&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'EXTRA_HEADER'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'Extra&nbsp;info',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;In&nbsp;format&nbsp;settings::getString(array)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;To&nbsp;out&nbsp;in&nbsp;Browser<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'FORMAT_WEB'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;array&nbsp;(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('TXT_queryFailed',&nbsp;&quot;\n&lt;br&nbsp;\&gt;&lt;u&gt;&lt;b&gt;&quot;,&nbsp;&quot;&lt;/b&gt;&lt;/u&gt;:\n&lt;br&nbsp;\&gt;&quot;,&nbsp;''),'server_message',array('errNo','&nbsp;(',')'),array('server_messageS',&quot;&lt;br&nbsp;\&gt;\n&lt;b&gt;&quot;,'&lt;/b&gt;'),&quot;\n&lt;br&gt;&lt;u&gt;On&nbsp;query:&lt;/u&gt;&nbsp;&quot;,array('Query','&lt;pre&nbsp;style=&quot;color:&nbsp;red&quot;&gt;','&lt;/pre&gt;'),array('bt',&quot;&lt;br&nbsp;\&gt;\n&quot;)),//&nbsp;In&nbsp;CLI-mode<br>
+'FORMAT_CONSOLE'=&gt;array(array('TXT_queryFailed',&quot;\033[1m&quot;,&quot;\033[0m:\n&quot;,''),'server_message',array('errNo','(',')'),array('server_messageS',&quot;\n\033[31;1m&quot;,&quot;\033[0m&quot;),&quot;\n\033[4;1mOn&nbsp;query:\033[0m&nbsp;&quot;,array('Query',&quot;\033[31m&quot;,&quot;\033[0m&quot;),array('bt',&quot;\n&quot;)),//&nbsp;Primarly&nbsp;for&nbsp;logs&nbsp;(files)<br>
 'FORMAT_FILE'=&gt;array(array('TXT_queryFailed','',&quot;:\n&quot;),'server_message',array('errNo','(',')'),array('server_messageS',&quot;\n&quot;,&quot;&quot;),&quot;\nOn&nbsp;query:&quot;,array('Query',&quot;=&gt;&quot;,&quot;&lt;=&quot;),array('bt',&quot;\n&quot;)),)</span></h4>
-	<p>[line 38]</p>
+	<p>[line 32]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -327,7 +332,7 @@ Source Location: /Database/DBError.php<br /><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:29 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:05 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

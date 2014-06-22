@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="classtrees_Debug.html" class="menu">class tree: Debug</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="classtrees_Debug.html" class="menu">class tree: Debug</a> ]
 		  [ <a href="elementindex_Debug.html" class="menu">index: Debug</a> ]
 		  	    [ <a href="elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -50,11 +50,14 @@
               <a href="li_Exceptions.html">Exceptions</a><br />
               <a href="li_charset_convert.html">charset_convert</a><br />
               <a href="li_Macroses.html">Macroses</a><br />
+              <a href="li_Image.html">Image</a><br />
               <a href="li_RegExp.html">RegExp</a><br />
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
 			<a href="Debug/_Debug---_HuFormat.defaults---backtraceprintout.php.html">		backtrace::printout.php
+		</a><br>
+			<a href="Debug/_Debug---gentime_class.php.html">		gentime_class.php
 		</a><br>
 			<a href="Debug/_Debug---Tokenizer.php.html">		Tokenizer.php
 		</a><br>
@@ -119,14 +122,15 @@
 	Dump-utils<br />	    &nbsp;&nbsp;		<a href="Debug/Dump-utils/dump_utils.html">dump_utils</a><br />
 	  </div>
   <div class="package">
+		    		<a href="Debug/gentime.html">gentime</a><br />
+	    		<a href="Debug/Tokenizer.html">Tokenizer</a><br />
+	  </div>
+  <div class="package">
 	HuFormat<br />	    &nbsp;&nbsp;		<a href="Debug/HuFormat/HuFormat.html">HuFormat</a><br />
 	    &nbsp;&nbsp;		<a href="Debug/HuFormat/HuFormatException.html">HuFormatException</a><br />
 	  </div>
   <div class="package">
 	log_dump<br />	    &nbsp;&nbsp;		<a href="Debug/log_dump/dump.html">dump</a><br />
-	  </div>
-  <div class="package">
-		    		<a href="Debug/Tokenizer.html">Tokenizer</a><br />
 	  </div>
                 </td>
     <td>
@@ -221,6 +225,8 @@
 		<dl>
 							<dt><b>backtrace__printout_WEB_helper</b></dt>
 				<dd>in file backtrace::printout.php, function <a href="Debug/_Debug---_HuFormat.defaults---backtraceprintout.php.html#functionbacktrace__printout_WEB_helper">backtrace__printout_WEB_helper()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Helper to more flexibility show large amount of data (long strings, dump of arrays etc.)</dd>
+							<dt><b>bench</b></dt>
+				<dd>in file gentime_class.php, method <a href="Debug/gentime.html#methodbench">gentime::bench()</a></dd>
 							<dt><b>backtrace::printout.php</b></dt>
 				<dd>procedural page <a href="Debug/_Debug---_HuFormat.defaults---backtraceprintout.php.html">backtrace::printout.php</a></dd>
 							<dt><b>backtrace</b></dt>
@@ -230,7 +236,7 @@
 							<dt><b>backtraceNode</b></dt>
 				<dd>in file backtrace.php, class <a href="Debug/Bactrace/backtraceNode.html">backtraceNode</a><br>&nbsp;&nbsp;&nbsp;&nbsp;BackTraceNode. In array converted to like this. Otherwise each member accessible separately.</dd>
 							<dt><b>backtrace_out</b></dt>
-				<dd>in file backtrace_out.class.php, class <a href="Debug/Bactrace/backtrace_out.html">backtrace_out</a></dd>
+				<dd>in file backtrace_out.class.php, class <a href="Debug/Bactrace/backtrace_out.html">backtrace_out</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Debug and backtrace toolkit.</dd>
 							<dt><b>backtrace.php</b></dt>
 				<dd>procedural page <a href="Debug/Bactrace/_Debug---backtrace.php.html">backtrace.php</a></dd>
 							<dt><b>backtrace_out.class.php</b></dt>
@@ -335,6 +341,10 @@
 	<div>
 		<h2>g</h2>
 		<dl>
+							<dt><b>gentime_class.php</b></dt>
+				<dd>procedural page <a href="Debug/_Debug---gentime_class.php.html">gentime_class.php</a></dd>
+							<dt><b>gentime</b></dt>
+				<dd>in file gentime_class.php, class <a href="Debug/gentime.html">gentime</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Debug and backtrace toolkit.</dd>
 							<dt><b>getArg</b></dt>
 				<dd>in file Tokenizer.php, method <a href="Debug/Tokenizer.html#methodgetArg">Tokenizer::getArg()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return string of parsed argument by it number (index from 0). Bounds not checked!</dd>
 							<dt><b>getArgs</b></dt>
@@ -370,7 +380,7 @@
 							<dt><b>HuFormat</b></dt>
 				<dd>in file HuFormat.php, class <a href="Debug/HuFormat/HuFormat.html">HuFormat</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Class to format different structures.</dd>
 							<dt><b>HuFormatException</b></dt>
-				<dd>in file HuFormat.php, class <a href="Debug/HuFormat/HuFormatException.html">HuFormatException</a></dd>
+				<dd>in file HuFormat.php, class <a href="Debug/HuFormat/HuFormatException.html">HuFormatException</a><br>&nbsp;&nbsp;&nbsp;&nbsp;VariablesExceptions</dd>
 							<dt><b>HuError.php</b></dt>
 				<dd>procedural page <a href="Debug/HuLOG/_Debug---HuError.php.html">HuError.php</a></dd>
 							<dt><b>HuLOG.php</b></dt>
@@ -382,7 +392,7 @@
 							<dt><b>huFormatOutExtraData</b></dt>
 				<dd>in file huFormatOutExtraData.php, class <a href="Debug/HuLOG/huFormatOutExtraData.html">huFormatOutExtraData</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Class to provide easy wrapper aroun HuFormat for anywhere usage.</dd>
 							<dt><b>HuLOG</b></dt>
-				<dd>in file HuLOG.php, class <a href="Debug/HuLOG/HuLOG.html">HuLOG</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
+				<dd>in file HuLOG.php, class <a href="Debug/HuLOG/HuLOG.html">HuLOG</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 							<dt><b>HuLOG_settings</b></dt>
 				<dd>in file HuLOG.php, class <a href="Debug/HuLOG/HuLOG_settings.html">HuLOG_settings</a></dd>
 							<dt><b>HuLOG_text</b></dt>
@@ -520,7 +530,7 @@
 		<h2>r</h2>
 		<dl>
 							<dt><b>rewind</b></dt>
-				<dd>in file backtrace.php, method <a href="Debug/Bactrace/backtraceNode.html#methodrewind">backtraceNode::rewind()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;#########################################################</dd>
+				<dd>in file backtrace.php, method <a href="Debug/Bactrace/backtraceNode.html#methodrewind">backtraceNode::rewind()</a></dd>
 							<dt><b>rewind</b></dt>
 				<dd>in file backtrace.php, method <a href="Debug/Bactrace/backtrace.html#methodrewind">backtrace::rewind()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Rewind internal pointer to begin</dd>
 					</dl>
@@ -535,6 +545,10 @@
 				<dd>in file Tokenizer.php, method <a href="Debug/Tokenizer.html#methodsetArg">Tokenizer::setArg()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set to arg new value.</dd>
 							<dt><b>setFromBTN</b></dt>
 				<dd>in file Tokenizer.php, method <a href="Debug/Tokenizer.html#methodsetFromBTN">Tokenizer::setFromBTN()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set from Object(backtraceNode).</dd>
+							<dt><b>start</b></dt>
+				<dd>in file gentime_class.php, method <a href="Debug/gentime.html#methodstart">gentime::start()</a></dd>
+							<dt><b>stop</b></dt>
+				<dd>in file gentime_class.php, method <a href="Debug/gentime.html#methodstop">gentime::stop()</a></dd>
 							<dt><b>setArgsFormat</b></dt>
 				<dd>in file backtrace.php, method <a href="Debug/Bactrace/backtraceNode.html#methodsetArgsFormat">backtraceNode::setArgsFormat()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set format to formatArgs. Array by type of out as key {@see OS::OUT_* constants}, and values as array in format,     as described in {@see class HuFormat}. <ol><li><div class="src-line"><span class="src-php">&lt;?</span></div></li>
 <li><div class="src-line"><span class="src-doc">/**</span></div></li>
@@ -542,14 +556,10 @@
 <li><div class="src-line"><span class="src-doc">*</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;Debug</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@version</span><span class="src-doc">&nbsp;2.1</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Pahan-Hubbitus&nbsp;(Pavel&nbsp;Alexeev)&nbsp;&lt;Pahan&nbsp;[at]&nbsp;Hubbitus&nbsp;[&nbsp;dot.&nbsp;]&nbsp;info&gt;</span></div></li>
+<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Pahan-Hubbitus&nbsp;(Pavel&nbsp;Alexeev)&nbsp;&lt;Pahan@Hubbitus.info&gt;</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@copyright</span><span class="src-doc">&nbsp;Copyright&nbsp;(c)&nbsp;2008,&nbsp;Pahan-Hubbitus&nbsp;(Pavel&nbsp;Alexeev)</span></div></li>
-<li><div class="src-line"><span class="src-doc">*</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-tag">@changelog</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;&nbsp;2008-12-06&nbsp;17:20&nbsp;ver&nbsp;2.0&nbsp;to&nbsp;2.1</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Correct&nbsp;argtype&nbsp;Array&nbsp;and&nbsp;String&nbsp;for&nbsp;log&nbsp;(FORMAT_FILE)&nbsp;output.&nbsp;Make&nbsp;it&nbsp;same&nbsp;as&nbsp;for&nbsp;console</span></div></li>
+<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-tag">@created</span><span class="src-doc">&nbsp;2008-12-06&nbsp;17:20&nbsp;ver&nbsp;2.0&nbsp;to&nbsp;2.1</span></div></li>
 <li><div class="src-line"><span class="src-doc">***/</span></div></li>
-<li><div class="src-line">&nbsp;</div></li>
 <li><div class="src-line">&nbsp;</div></li>
 <li><div class="src-line"><span class="src-doc">/**</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;Helper&nbsp;to&nbsp;more&nbsp;flexibility&nbsp;show&nbsp;large&nbsp;amount&nbsp;of&nbsp;data&nbsp;(long&nbsp;strings,&nbsp;dump&nbsp;of&nbsp;arrays&nbsp;etc.)</span></div></li>
@@ -654,7 +664,7 @@
 <li><div class="src-line"><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line"><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_CONSOLE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_WEB'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line"><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_FILE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]&nbsp;&nbsp;&nbsp;&nbsp;</span>=<span class="src-sym">&amp;&nbsp;</span><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_WEB'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
-<li><div class="src-line"><span class="src-comm">#Difference&nbsp;in&nbsp;argTypes</span></div></li>
+<li><div class="src-line"><span class="src-comm">//&nbsp;Difference&nbsp;in&nbsp;argTypes</span></div></li>
 <li><div class="src-line"><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_FILE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'string'</span><span class="src-sym">]</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_CONSOLE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'string'</span><span class="src-sym">]</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'E:::'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'\'\\\'\'.htmlspecialchars(substr($var,&nbsp;0,&nbsp;28)).((($sl&nbsp;=&nbsp;strlen($var))&nbsp;&lt;&nbsp;28)&nbsp;?&nbsp;\'\'&nbsp;:&nbsp;\'...\').\'\\\'{\'.$sl.\'}\''</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
@@ -676,14 +686,10 @@
 <li><div class="src-line"><span class="src-doc">*</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;Debug</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@version</span><span class="src-doc">&nbsp;2.1</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Pahan-Hubbitus&nbsp;(Pavel&nbsp;Alexeev)&nbsp;&lt;Pahan&nbsp;[at]&nbsp;Hubbitus&nbsp;[&nbsp;dot.&nbsp;]&nbsp;info&gt;</span></div></li>
+<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Pahan-Hubbitus&nbsp;(Pavel&nbsp;Alexeev)&nbsp;&lt;Pahan@Hubbitus.info&gt;</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-coretag">@copyright</span><span class="src-doc">&nbsp;Copyright&nbsp;(c)&nbsp;2008,&nbsp;Pahan-Hubbitus&nbsp;(Pavel&nbsp;Alexeev)</span></div></li>
-<li><div class="src-line"><span class="src-doc">*</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-tag">@changelog</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;&nbsp;2008-12-06&nbsp;17:20&nbsp;ver&nbsp;2.0&nbsp;to&nbsp;2.1</span></div></li>
-<li><div class="src-line"><span class="src-doc">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Correct&nbsp;argtype&nbsp;Array&nbsp;and&nbsp;String&nbsp;for&nbsp;log&nbsp;(FORMAT_FILE)&nbsp;output.&nbsp;Make&nbsp;it&nbsp;same&nbsp;as&nbsp;for&nbsp;console</span></div></li>
+<li><div class="src-line"><span class="src-doc">*&nbsp;</span><span class="src-doc-tag">@created</span><span class="src-doc">&nbsp;2008-12-06&nbsp;17:20&nbsp;ver&nbsp;2.0&nbsp;to&nbsp;2.1</span></div></li>
 <li><div class="src-line"><span class="src-doc">***/</span></div></li>
-<li><div class="src-line">&nbsp;</div></li>
 <li><div class="src-line">&nbsp;</div></li>
 <li><div class="src-line"><span class="src-doc">/**</span></div></li>
 <li><div class="src-line"><span class="src-doc">*&nbsp;Helper&nbsp;to&nbsp;more&nbsp;flexibility&nbsp;show&nbsp;large&nbsp;amount&nbsp;of&nbsp;data&nbsp;(long&nbsp;strings,&nbsp;dump&nbsp;of&nbsp;arrays&nbsp;etc.)</span></div></li>
@@ -788,7 +794,7 @@
 <li><div class="src-line"><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line"><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_CONSOLE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_WEB'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line"><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_FILE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]&nbsp;&nbsp;&nbsp;&nbsp;</span>=<span class="src-sym">&amp;&nbsp;</span><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_WEB'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
-<li><div class="src-line"><span class="src-comm">#Difference&nbsp;in&nbsp;argTypes</span></div></li>
+<li><div class="src-line"><span class="src-comm">//&nbsp;Difference&nbsp;in&nbsp;argTypes</span></div></li>
 <li><div class="src-line"><span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_FILE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'string'</span><span class="src-sym">]</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-var">$GLOBALS</span><span class="src-sym">[</span><span class="src-str">'__CONFIG'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'backtrace::printout'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'FORMAT_CONSOLE'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'argtypes'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'string'</span><span class="src-sym">]</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'E:::'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'\'\\\'\'.htmlspecialchars(substr($var,&nbsp;0,&nbsp;28)).((($sl&nbsp;=&nbsp;strlen($var))&nbsp;&lt;&nbsp;28)&nbsp;?&nbsp;\'\'&nbsp;:&nbsp;\'...\').\'\\\'{\'.$sl.\'}\''</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
@@ -877,6 +883,8 @@
 	<div>
 		<h2>t</h2>
 		<dl>
+							<dt><b>$time_start</b></dt>
+				<dd>in file gentime_class.php, variable <a href="Debug/gentime.html#var$time_start">gentime::$time_start</a></dd>
 							<dt><b>Tokenizer.php</b></dt>
 				<dd>procedural page <a href="Debug/_Debug---Tokenizer.php.html">Tokenizer.php</a></dd>
 							<dt><b>Tokenizer</b></dt>
@@ -892,7 +900,7 @@
 							<dt><b>transformCorrect_var_dump</b></dt>
 				<dd>in file dump_utils.php, method <a href="Debug/Dump-utils/dump_utils.html#methodtransformCorrect_var_dump">dump_utils::transformCorrect_var_dump()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Transform string, which is text-representation of requested var into more well formated form.</dd>
 							<dt><b>toLog</b></dt>
-				<dd>in file HuLOG.php, method <a href="Debug/HuLOG/HuLOG.html#methodtoLog">HuLOG::toLog()</a></dd>
+				<dd>in file HuLOG.php, method <a href="Debug/HuLOG/HuLOG.html#methodtoLog">HuLOG::toLog()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Main method to log messages</dd>
 					</dl>
 	</div>
 	<a href="elementindex_Debug.html#top">top</a><br>
@@ -931,7 +939,7 @@
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:18 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:12:57 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

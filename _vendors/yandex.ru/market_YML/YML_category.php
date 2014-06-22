@@ -4,19 +4,10 @@
 * Example of usage see below.
 *
 * @package YML
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.1.1
-*
-* @changelog
-*	* 2009-08-24 16:06 ver 1.0
-*	- Initial version.
-*
-*	* 2010-08-10 13:14 ver 1.0 to 1.1
-*	- Make _value_ and id mandatory and check in getXML method.
-*
-*	* 2010-11-07 23:36 ver 1.1 to 1.1.1
-*	- Replace REQUIRED_VAR by REQUIRED_NOT_NULL to allow 0 values.
+* @created 2009-08-24 16:06
 **/
 
 include_once('macroses/REQUIRED_NOT_NULL.php');

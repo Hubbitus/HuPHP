@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_RegExp.html" class="menu">class tree: RegExp</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_RegExp.html" class="menu">class tree: RegExp</a> ]
 		  [ <a href="../elementindex_RegExp.html" class="menu">index: RegExp</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -54,12 +55,18 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../RegExp/_RegExp---IRegExp.php.html">		IRegExp.php
+		</a><br>
 			<a href="../RegExp/_RegExp---RegExp_base.php.html">		RegExp_base.php
 		</a><br>
 			<a href="../RegExp/_RegExp---RegExp_pcre.php.html">		RegExp_pcre.php
 		</a><br>
 	  </div><br />
       
+            <b>Interfaces:</b><br />
+        <div class="package">
+		    		<a href="../RegExp/IRegExp.html">IRegExp</a><br />
+	  </div>
       
             <b>Classes:</b><br />
         <div class="package">
@@ -90,26 +97,13 @@ RegExp manupulation. PCRE-version.<br /><br /><br /><br />
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>2.2</td>
   </tr>
   <tr>
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
-  </tr>
-  <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2009-02-11 13:41 ver 2.1 to 2.1.1 <ul><li>Add method split</li></ul>     * 2009-03-18 17:09 ver 2.1.1 to 2.2 <ul><li>In method ::convertOffsetToChars() many changes.
-        o Fix to walk through all members, not only 0 and 1
-            Short conclusion from this tests are:
-                1) It is very-very slowly operations, so
-                    1.1) We refusal to do it in any time. This must be called
-                        manually (and it also may need binary offset meantime too!!!).
-                    1.2) For that, change access type to public
-                2) To case when it is needed second conclusion - the most fast way is mb_strlen, but it is not included in core PHP...
-                    2.1) If available, mb_strlen is used
-                    2.2) For capability, provide fallback to strlen(utf8_decode(...)) (2nd place of speed)
-        o Make default value for flag parameter ($flags = PREG_OFFSET_CAPTURE), as we have 1 implementation and only this flag have sence</li></ul></td>
   </tr>
 </table>
 </div>
@@ -117,32 +111,19 @@ RegExp manupulation. PCRE-version.<br /><br /><br /><br />
 <br /><br />
 <h4>Includes:</h4>
 <div class="tags">
-include_once(<a href="../RegExp/_RegExp---RegExp_base.php.html">'RegExp/RegExp_base.php'</a>) [line 29]<br />
+include_once(<a href="../RegExp/_RegExp---RegExp_base.php.html">'RegExp/RegExp_base.php'</a>) [line 12]<br />
 RegExp manupulation. PCRE-version.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>2.2</td>
   </tr>
   <tr>
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
-  </tr>
-  <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2009-02-11 13:41 ver 2.1 to 2.1.1 <ul><li>Add method split</li></ul>     * 2009-03-18 17:09 ver 2.1.1 to 2.2 <ul><li>In method ::convertOffsetToChars() many changes.
-        o Fix to walk through all members, not only 0 and 1
-            Short conclusion from this tests are:
-                1) It is very-very slowly operations, so
-                    1.1) We refusal to do it in any time. This must be called
-                        manually (and it also may need binary offset meantime too!!!).
-                    1.2) For that, change access type to public
-                2) To case when it is needed second conclusion - the most fast way is mb_strlen, but it is not included in core PHP...
-                    2.1) If available, mb_strlen is used
-                    2.2) For capability, provide fallback to strlen(utf8_decode(...)) (2nd place of speed)
-        o Make default value for flag parameter ($flags = PREG_OFFSET_CAPTURE), as we have 1 implementation and only this flag have sence</li></ul></td>
   </tr>
 </table>
 </div>
@@ -158,7 +139,7 @@ RegExp manupulation. PCRE-version.<br /><br /><br /><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:33 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:52 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

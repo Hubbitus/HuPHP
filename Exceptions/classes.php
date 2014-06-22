@@ -3,19 +3,11 @@
 * ClassExceptions
 *
 * @package Exceptions
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.1
+* @created ?2008-05-31 5:26 ver 1.0 to 1.1
 *
-* @changelog
-*	* 2008-05-31 5:26 v 1.0 to 1.1
-*	- Add ClassUnknownException
-**/
-
-/*-inc
-require_once('Exceptions/BaseException.php');
-*/
-/**
 * @uses BaseException
 **/
 

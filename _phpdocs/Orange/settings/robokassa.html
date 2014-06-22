@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Orange.html" class="menu">class tree: Orange</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Orange.html" class="menu">class tree: Orange</a> ]
 		  [ <a href="../../elementindex_Orange.html" class="menu">index: Orange</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -311,7 +312,7 @@ Source Location: /_vendors/Robokassa.ru/robokassa.php<br /><br />
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -344,7 +345,7 @@ Source Location: /_vendors/Robokassa.ru/robokassa.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 94]<br />
+[line 91]<br />
 Class to handle ROBOKASSA.ru interface (http://www.robokassa.ru/Doc/Ru/Interface.aspx) of payment gateway<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -371,12 +372,12 @@ Class to handle ROBOKASSA.ru interface (http://www.robokassa.ru/Doc/Ru/Interface
 	<a name="var$properties"></a>
 	<p></p>
 	<h4>$properties = <span class="value">array(<br>
-&nbsp;&nbsp;&nbsp;'MrchLogin',&nbsp;'MrchPass1',&nbsp;'MrchPass2',&nbsp;&nbsp;'OutSum',&nbsp;'InvId',&nbsp;'Desc',&nbsp;'SignatureValue',&nbsp;'IncCurrLabel',&nbsp;'Culture',&nbsp;'Encoding',&nbsp;'Email'<br>
-&nbsp;&nbsp;&nbsp;,'sph'<br>
-&nbsp;&nbsp;&nbsp;//&nbsp;auxiliary&nbsp;data<br>
-&nbsp;&nbsp;&nbsp;,'URL_FORMAT',&nbsp;'SIGNATURE_FORMAT',&nbsp;'SIGNATURE_IN_success_FORMAT',&nbsp;'SIGNATURE_IN_result_FORMAT',&nbsp;'BASE_URL'<br>
-)</span></h4>
-	<p>[line 98]</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'MrchLogin',&nbsp;'MrchPass1',&nbsp;'MrchPass2',&nbsp;&nbsp;'OutSum',&nbsp;'InvId',&nbsp;'Desc',&nbsp;'SignatureValue',&nbsp;'IncCurrLabel',&nbsp;'Culture',&nbsp;'Encoding',&nbsp;'Email'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'sph'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;auxiliary&nbsp;data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'URL_FORMAT',&nbsp;'SIGNATURE_FORMAT',&nbsp;'SIGNATURE_IN_success_FORMAT',&nbsp;'SIGNATURE_IN_result_FORMAT',&nbsp;'BASE_URL'<br>
+&nbsp;&nbsp;&nbsp;)</span></h4>
+	<p>[line 95]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -405,37 +406,37 @@ Class to handle ROBOKASSA.ru interface (http://www.robokassa.ru/Doc/Ru/Interface
 	<a name="var$__SETS"></a>
 	<p></p>
 	<h4>$__SETS = <span class="value">array(<br>
-/**<br>
-*&nbsp;@var&nbsp;$MrchLogin;&nbsp;&nbsp;&nbsp;Merchant&nbsp;Login&nbsp;in&nbsp;Robokassa<br>
-*&nbsp;@var&nbsp;$MrchPass1;&nbsp;&nbsp;&nbsp;Merchant&nbsp;Password1&nbsp;in&nbsp;Robokassa<br>
-*&nbsp;@var&nbsp;$MrchPass2;&nbsp;&nbsp;&nbsp;Merchant&nbsp;Password2&nbsp;in&nbsp;Robokassa&nbsp;for&nbsp;the&nbsp;XML&nbsp;interface<br>
-*&nbsp;@var&nbsp;$OutSum;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sum&nbsp;of&nbsp;order<br>
-*&nbsp;@var&nbsp;$InvId;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Order&nbsp;number&nbsp;in&nbsp;store.&nbsp;Must&nbsp;be&nbsp;unique&nbsp;in&nbsp;store.<br>
-*&nbsp;@var&nbsp;$Desc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Order&nbsp;description.&nbsp;Max&nbsp;length&nbsp;-&nbsp;100&nbsp;chars.<br>
-*<br>
-*&nbsp;@var&nbsp;$SignatureValue;&nbsp;&nbsp;&nbsp;Computed:&nbsp;Signature&nbsp;value.&nbsp;{@see&nbsp;::getSignature()}&nbsp;method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$MrchLogin;&nbsp;&nbsp;&nbsp;Merchant&nbsp;Login&nbsp;in&nbsp;Robokassa<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$MrchPass1;&nbsp;&nbsp;&nbsp;Merchant&nbsp;Password1&nbsp;in&nbsp;Robokassa<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$MrchPass2;&nbsp;&nbsp;&nbsp;Merchant&nbsp;Password2&nbsp;in&nbsp;Robokassa&nbsp;for&nbsp;the&nbsp;XML&nbsp;interface<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$OutSum;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sum&nbsp;of&nbsp;order<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$InvId;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Order&nbsp;number&nbsp;in&nbsp;store.&nbsp;Must&nbsp;be&nbsp;unique&nbsp;in&nbsp;store.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$Desc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Order&nbsp;description.&nbsp;Max&nbsp;length&nbsp;-&nbsp;100&nbsp;chars.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$SignatureValue;&nbsp;&nbsp;&nbsp;Computed:&nbsp;Signature&nbsp;value.&nbsp;{@see&nbsp;::getSignature()}&nbsp;method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$IncCurrLabel;&nbsp;&nbsp;&nbsp;Optional:&nbsp;Initial&nbsp;currency.&nbsp;May&nbsp;be&nbsp;changed&nbsp;by&nbsp;user&nbsp;during&nbsp;pay&nbsp;process.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$Culture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Optional:&nbsp;Language:&nbsp;'en'&nbsp;|&nbsp;'ru'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$Encoding&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Optional:&nbsp;For&nbsp;the&nbsp;HTML-form&nbsp;of&nbsp;kassa.&nbsp;Not&nbsp;needed&nbsp;on&nbsp;redirect.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Optional:&nbsp;Email&nbsp;of&nbsp;user.&nbsp;May&nbsp;be&nbsp;changed&nbsp;by&nbsp;user&nbsp;during&nbsp;pay&nbsp;process.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$sph&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object(robokassa_sph)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@var&nbsp;$sph:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;of&nbsp;alternative&nbsp;conversion&nbsp;of&nbsp;$this-&gt;sph.&nbsp;For&nbsp;more&nbsp;detailes&nbsp;{@see&nbsp;::getProperty()}&nbsp;method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Default&nbsp;values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'BASE_URL'&nbsp;=&gt;&nbsp;self::BASE_url_production<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'Culture'&nbsp;=&gt;&nbsp;'ru'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'Encoding'&nbsp;=&gt;&nbsp;'utf-8'<br>
 <br>
-*&nbsp;@var&nbsp;$IncCurrLabel;&nbsp;&nbsp;&nbsp;Optional:&nbsp;Initial&nbsp;currency.&nbsp;May&nbsp;be&nbsp;changed&nbsp;by&nbsp;user&nbsp;during&nbsp;pay&nbsp;process.<br>
-*&nbsp;@var&nbsp;$Culture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Optional:&nbsp;Language:&nbsp;'en'&nbsp;|&nbsp;'ru'<br>
-*&nbsp;@var&nbsp;$Encoding&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Optional:&nbsp;For&nbsp;the&nbsp;HTML-form&nbsp;of&nbsp;kassa.&nbsp;Not&nbsp;needed&nbsp;on&nbsp;redirect.<br>
-*&nbsp;@var&nbsp;$Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Optional:&nbsp;Email&nbsp;of&nbsp;user.&nbsp;May&nbsp;be&nbsp;changed&nbsp;by&nbsp;user&nbsp;during&nbsp;pay&nbsp;process.<br>
-*<br>
-*&nbsp;@var&nbsp;$sph&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object(robokassa_sph)<br>
-*&nbsp;@var&nbsp;$sph:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;of&nbsp;alternative&nbsp;conversion&nbsp;of&nbsp;$this-&gt;sph.&nbsp;For&nbsp;more&nbsp;detailes&nbsp;{@see&nbsp;::getProperty()}&nbsp;method.<br>
-*/<br>
-//Default&nbsp;values<br>
-&nbsp;&nbsp;&nbsp;'BASE_URL'&nbsp;=&gt;&nbsp;self::BASE_url_production<br>
-&nbsp;&nbsp;&nbsp;,'Culture'&nbsp;=&gt;&nbsp;'ru'<br>
-&nbsp;&nbsp;&nbsp;,'Encoding'&nbsp;=&gt;&nbsp;'utf-8'<br>
-<br>
-&nbsp;&nbsp;&nbsp;,'URL_FORMAT'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;array(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'BASE_URL'<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,array('MrchLogin',&nbsp;'MrchLogin='),array('OutSum_F','&amp;OutSum='),array('InvId','&amp;InvId='),array('Desc','&amp;Desc='),array('SignatureValue','&amp;SignatureValue='),array('IncCurrLabel','&amp;IncCurrLabel='),array('Culture','&amp;Culture='),array('Encoding','&amp;Encoding='),array('Email','&amp;Email='),array('sph','','','')//Last&nbsp;''&nbsp;is&nbsp;important<br>
-),'SIGNATURE_FORMAT'=&gt;array(array('MrchLogin','',':'),array('OutSum','',':'),array('InvId','',':')//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,array('Desc',&nbsp;'',&nbsp;':')&nbsp;By&nbsp;Specification&nbsp;it&nbsp;is&nbsp;not&nbsp;marked&nbsp;as&nbsp;Optional,&nbsp;but&nbsp;in&nbsp;example&nbsp;it&nbsp;is&nbsp;not&nbsp;present!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'URL_FORMAT'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;array(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'BASE_URL'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,array('MrchLogin',&nbsp;'MrchLogin='),array('OutSum_F','&amp;OutSum='),array('InvId','&amp;InvId='),array('Desc','&amp;Desc='),array('SignatureValue','&amp;SignatureValue='),array('IncCurrLabel','&amp;IncCurrLabel='),array('Culture','&amp;Culture='),array('Encoding','&amp;Encoding='),array('Email','&amp;Email='),array('sph','','','')//Last&nbsp;''&nbsp;is&nbsp;important<br>
+),'SIGNATURE_FORMAT'=&gt;array(array('MrchLogin','',':'),array('OutSum','',':'),array('InvId','',':')//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,array('Desc',&nbsp;'',&nbsp;':')&nbsp;By&nbsp;Specification&nbsp;it&nbsp;is&nbsp;not&nbsp;marked&nbsp;as&nbsp;Optional,&nbsp;but&nbsp;in&nbsp;example&nbsp;it&nbsp;is&nbsp;not&nbsp;present!<br>
 ,'MrchPass1',array('sph:',':','','')),'SIGNATURE_IN_success_FORMAT'=&gt;array(//IN&nbsp;signature,&nbsp;to&nbsp;check<br>
 array('OutSum','',':'),array('InvId','',':'),'MrchPass1',array('sph:',':','','')),'SIGNATURE_IN_result_FORMAT'=&gt;array(//IN&nbsp;signature,&nbsp;to&nbsp;check<br>
 array('OutSum','',':'),array('InvId','',':'),'MrchPass2',array('sph:',':','','')))</span></h4>
-	<p>[line 105]</p>
+	<p>[line 102]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -471,7 +472,7 @@ array('OutSum','',':'),array('InvId','',':'),'MrchPass2',array('sph:',':','','')
 
   <hr />
 	<a name="methodgetPayForm"></a>
-	<h3>method getPayForm <span class="smalllinenumber">[line 189]</span></h3>
+	<h3>method getPayForm <span class="smalllinenumber">[line 186]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -489,7 +490,7 @@ array('OutSum','',':'),array('InvId','',':'),'MrchPass2',array('sph:',':','','')
   </div>
   <hr />
 	<a name="methodgetPayURL"></a>
-	<h3>method getPayURL <span class="smalllinenumber">[line 181]</span></h3>
+	<h3>method getPayURL <span class="smalllinenumber">[line 178]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -507,7 +508,7 @@ array('OutSum','',':'),array('InvId','',':'),'MrchPass2',array('sph:',':','','')
   </div>
   <hr />
 	<a name="methodgetProperty"></a>
-	<h3>method getProperty <span class="smalllinenumber">[line 211]</span></h3>
+	<h3>method getProperty <span class="smalllinenumber">[line 208]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -545,7 +546,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodgetProperty
   </div>
   <hr />
 	<a name="methodgetSignature"></a>
-	<h3>method getSignature <span class="smalllinenumber">[line 285]</span></h3>
+	<h3>method getSignature <span class="smalllinenumber">[line 282]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -572,7 +573,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodgetProperty
   </div>
   <hr />
 	<a name="methodgetSignatureInResult"></a>
-	<h3>method getSignatureInResult <span class="smalllinenumber">[line 303]</span></h3>
+	<h3>method getSignatureInResult <span class="smalllinenumber">[line 300]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -599,7 +600,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodgetProperty
   </div>
   <hr />
 	<a name="methodgetSignatureInSuccess"></a>
-	<h3>method getSignatureInSuccess <span class="smalllinenumber">[line 294]</span></h3>
+	<h3>method getSignatureInSuccess <span class="smalllinenumber">[line 291]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -626,7 +627,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodgetProperty
   </div>
   <hr />
 	<a name="methodmergeSettingsArray"></a>
-	<h3>method mergeSettingsArray <span class="smalllinenumber">[line 264]</span></h3>
+	<h3>method mergeSettingsArray <span class="smalllinenumber">[line 261]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -664,7 +665,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodmergeSettin
   </div>
   <hr />
 	<a name="methodsetSetting"></a>
-	<h3>method setSetting <span class="smalllinenumber">[line 238]</span></h3>
+	<h3>method setSetting <span class="smalllinenumber">[line 235]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -708,7 +709,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodsetSetting"
   </div>
   <hr />
 	<a name="methodsetSettingsArray"></a>
-	<h3>method setSettingsArray <span class="smalllinenumber">[line 251]</span></h3>
+	<h3>method setSettingsArray <span class="smalllinenumber">[line 248]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -746,7 +747,7 @@ Overrides <a href="../../settings/settings/settings_check.html#methodsetSettings
   </div>
   <hr />
 	<a name="methodtestMode"></a>
-	<h3>method testMode <span class="smalllinenumber">[line 274]</span></h3>
+	<h3>method testMode <span class="smalllinenumber">[line 271]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -798,7 +799,7 @@ $on=true)</code>
 	<a name="constBASE_url_production"></a>
 	<p></p>
 	<h4>BASE_url_production = <span class="value">&nbsp;'https://merchant.roboxchange.com/Index.aspx?'</span></h4>
-	<p>[line 95]</p>
+	<p>[line 92]</p>
   
 
   <br />
@@ -806,7 +807,7 @@ $on=true)</code>
 	<a name="constBASE_url_test"></a>
 	<p></p>
 	<h4>BASE_url_test = <span class="value">&nbsp;'http://test.robokassa.ru/Index.aspx?'</span></h4>
-	<p>[line 96]</p>
+	<p>[line 93]</p>
   
 
   <br />
@@ -816,7 +817,7 @@ $on=true)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:33 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:53 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

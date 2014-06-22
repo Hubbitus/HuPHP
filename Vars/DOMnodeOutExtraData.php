@@ -7,12 +7,9 @@
 * @package Debug
 * @subpackage HuLOG
 * @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-*	* 2009-05-20 19:10 ver 1.0
-*	- Initial version.
+* @created 2009-05-20 19:10
 **/
 
 /**
@@ -25,7 +22,8 @@
 * @uses dump
 **/
 class DOMnodeOutExtraData extends commonOutExtraData{
-protected /* DOMDocument */ $_var;
+	protected /* DOMDocument */ $_var;
+
 	/**
 	* Constructor.
 	*
@@ -35,22 +33,22 @@ protected /* DOMDocument */ $_var;
 	*	format (See class {@see HuFormat} for more details).
 	**/
 	function  __construct(DOMNode $var, $encoding = 'utf-8'){
-	$this->_var = new DOMDocument('1.0', $encoding); // DOMDocument NEEDED ot import into it nodes, it also NEEDED to export result asXML...
-	$this->_var->appendChild($this->_var->importNode($var, true));
-	$this->_var->preserveWhiteSpace = false;
-	$this->_var->formatOutput = true;
+		$this->_var = new DOMDocument('1.0', $encoding); // DOMDocument NEEDED ot import into it nodes, it also NEEDED to export result asXML...
+		$this->_var->appendChild($this->_var->importNode($var, true));
+		$this->_var->preserveWhiteSpace = false;
+		$this->_var->formatOutput = true;
 	}#__c
 
 	public function strToConsole($format = null){
-	return dump::c(trim($this->_var->saveXML()), null, true);
+		return dump::c(trim($this->_var->saveXML()), null, true);
 	}#m strToConsole
 
 	public function strToFile($format = null){
-	return dump::log(trim($this->_var->saveXML()), false, true);
+		return dump::log(trim($this->_var->saveXML()), false, true);
 	}#m strToFile
 
 	public function strToWeb($format = null){
-	return dump::w(trim($this->_var->saveXML()), false, true);
+		return dump::w(trim($this->_var->saveXML()), false, true);
 	}#m strToWeb
 }#c huFormatOutExtraData
 ?>

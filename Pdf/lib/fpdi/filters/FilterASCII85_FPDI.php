@@ -31,3 +31,4 @@ class FilterASCII85_FPDI extends FilterASCII85 {
         $this->fpdi->error($msg);
     }
 }
+?>

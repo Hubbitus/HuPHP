@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_Filesystem.html" class="menu">class tree: Filesystem</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_Filesystem.html" class="menu">class tree: Filesystem</a> ]
 		  [ <a href="../elementindex_Filesystem.html" class="menu">index: Filesystem</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -136,11 +137,11 @@ Source Location: /Filesystem/file_base.php<br /><br />
 <div class="tags">
 <dl>
 <dt><a href="../Filesystem/file_read.html">file_read</a></dt>
-	<dd></dd>
+	<dd>Base class for most file-related operations.</dd>
 </dl>
 <dl>
 <dt><a href="../Filesystem/file_inmem.html">file_inmem</a></dt>
-	<dd></dd>
+	<dd>Base class for most file-related operations.</dd>
 </dl>
 </div>
 </td>
@@ -154,16 +155,16 @@ Source Location: /Filesystem/file_base.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 61]<br />
+[line 24]<br />
 Base class for most file-related operations.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/file_inmem.html">file_inmem</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/_Filesystem---file_inmem.php.html">file_inmem.php</a></td>
   </tr>
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/file_read.html">file_read</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/_Filesystem---file_read.php.html">file_read.php</a></td>
   </tr>
 </table>
 </div>
@@ -178,7 +179,7 @@ Base class for most file-related operations.<br /><br /><br /><br />
 	<a name="var$content"></a>
 	<p></p>
 	<h4>$content = <span class="value"></span></h4>
-	<p>[line 69]</p>
+	<p>[line 32]</p>
   Pending content for write *<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -203,7 +204,7 @@ Base class for most file-related operations.<br /><br /><br /><br />
 	<a name="var$_writePending"></a>
 	<p></p>
 	<h4>$_writePending = <span class="value">&nbsp;false</span></h4>
-	<p>[line 66]</p>
+	<p>[line 29]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -235,7 +236,7 @@ Base class for most file-related operations.<br /><br /><br /><br />
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 76]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 39]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -273,7 +274,7 @@ $filename = ''])</code>
   </div>
   <hr />
 	<a name="method__destruct"></a>
-	<h3>destructor __destruct <span class="smalllinenumber">[line 83]</span></h3>
+	<h3>destructor __destruct <span class="smalllinenumber">[line 46]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -300,7 +301,7 @@ $filename = ''])</code>
   </div>
   <hr />
 	<a name="methodappendString"></a>
-	<h3>method appendString <span class="smalllinenumber">[line 199]</span></h3>
+	<h3>method appendString <span class="smalllinenumber">[line 162]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -350,7 +351,7 @@ $string.)</code>
   </div>
   <hr />
 	<a name="methodcheckOpenError"></a>
-	<h3>method checkOpenError <span class="smalllinenumber">[line 224]</span></h3>
+	<h3>method checkOpenError <span class="smalllinenumber">[line 187]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -388,7 +389,7 @@ $succ)</code>
   </div>
   <hr />
 	<a name="methodclearPendingWrite"></a>
-	<h3>method clearPendingWrite <span class="smalllinenumber">[line 174]</span></h3>
+	<h3>method clearPendingWrite <span class="smalllinenumber">[line 137]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -415,7 +416,7 @@ $succ)</code>
   </div>
   <hr />
 	<a name="methodgetDir"></a>
-	<h3>method getDir <span class="smalllinenumber">[line 165]</span></h3>
+	<h3>method getDir <span class="smalllinenumber">[line 128]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -442,7 +443,7 @@ $succ)</code>
   </div>
   <hr />
 	<a name="methodisExists"></a>
-	<h3>method isExists <span class="smalllinenumber">[line 137]</span></h3>
+	<h3>method isExists <span class="smalllinenumber">[line 100]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -469,7 +470,7 @@ $succ)</code>
   </div>
   <hr />
 	<a name="methodisReadable"></a>
-	<h3>method isReadable <span class="smalllinenumber">[line 147]</span></h3>
+	<h3>method isReadable <span class="smalllinenumber">[line 110]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -496,7 +497,7 @@ $succ)</code>
   </div>
   <hr />
 	<a name="methodpath"></a>
-	<h3>method path <span class="smalllinenumber">[line 119]</span></h3>
+	<h3>method path <span class="smalllinenumber">[line 82]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -523,7 +524,7 @@ $succ)</code>
   </div>
   <hr />
 	<a name="methodrawPath"></a>
-	<h3>method rawPath <span class="smalllinenumber">[line 128]</span></h3>
+	<h3>method rawPath <span class="smalllinenumber">[line 91]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -550,7 +551,7 @@ $succ)</code>
   </div>
   <hr />
 	<a name="methodsetContentFromString"></a>
-	<h3>method setContentFromString <span class="smalllinenumber">[line 186]</span></h3>
+	<h3>method setContentFromString <span class="smalllinenumber">[line 149]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -600,7 +601,7 @@ $string.)</code>
   </div>
   <hr />
 	<a name="methodsetPath"></a>
-	<h3>method setPath <span class="smalllinenumber">[line 93]</span></h3>
+	<h3>method setPath <span class="smalllinenumber">[line 56]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -638,7 +639,7 @@ $filename)</code>
   </div>
   <hr />
 	<a name="methodunlink"></a>
-	<h3>method unlink <span class="smalllinenumber">[line 156]</span></h3>
+	<h3>method unlink <span class="smalllinenumber">[line 119]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -665,7 +666,7 @@ $filename)</code>
   </div>
   <hr />
 	<a name="methodwriteContent"></a>
-	<h3>method writeContent <span class="smalllinenumber">[line 212]</span></h3>
+	<h3>method writeContent <span class="smalllinenumber">[line 175]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -726,7 +727,7 @@ $resource_context = null])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:32 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:07 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

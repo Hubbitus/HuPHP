@@ -8,25 +8,14 @@
 *
 * @package Vars
 * @subpackage settings
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0.5
-*
-* @changelog
-*	* 2008-05-30 23:19
-*	- Move include macroses REQUIRED_VAR.php and REQUIRED_NOT_NULL.php after declaration class
-*	 settings to break cycle of includes
-*
-*	* 2009-01-18 14:57 (No version bump)
-*	- Reflect renaming Class.php to HuClass.php
-*
-*	* 2009-05-08 10:37 ver 1.0.4 to 1.0.5
-*	- Add magick ::__set() method
-*	- return &$this; in ::setSetting() and ::__set() methods now.
+* @created 2008-05-30 23:19
 **/
 
 include_once('macroses/EMPTY_STR.php');
-include_once('Vars/HuClass.php');	#Static method ::create()
+include_once('Vars/HuClass.php'); // Static method ::create()
 
 class settings extends HuClass{
 	protected $__SETS = array(); // Array of settings itself
@@ -169,7 +158,7 @@ class settings extends HuClass{
 			return NON_EMPTY_STR(@$this->getProperty($field[0]), @$field[1], @$field[2], @$field[3]);
 		}
 		else{
-			return EMPTY_STR(@$this->getProperty($field), $field);#Или по имени настройку, если это просто текст;
+			return EMPTY_STR(@$this->getProperty($field), $field); // Or by name if it just text
 		}
 	}#m formatField
 
@@ -226,3 +215,4 @@ protected /* settings */ $_sets = null;
 	return $this->_sets;
 	}#m sets
 }#c get_settings
+?>

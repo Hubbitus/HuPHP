@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_YML.html" class="menu">class tree: YML</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_YML.html" class="menu">class tree: YML</a> ]
 		  [ <a href="../../elementindex_YML.html" class="menu">index: YML</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -548,7 +549,7 @@ Source Location: /_vendors/yandex.ru/market_YML/YML_offer_vendormodel.php<br /><
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -581,7 +582,7 @@ Source Location: /_vendors/yandex.ru/market_YML/YML_offer_vendormodel.php<br /><
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 24]<br />
+[line 21]<br />
 YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
@@ -593,26 +594,26 @@ YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 	<a name="var$properties_addon"></a>
 	<p></p>
 	<h4>$properties_addon = <span class="value">array(<br>
-//&nbsp;typePrefix?,&nbsp;vendor,&nbsp;vendorCode?,&nbsp;model,&nbsp;(provider,&nbsp;tarifplan?)?<br>
-&nbsp;&nbsp;&nbsp;'typePrefix'&nbsp;&nbsp;&nbsp;#?&nbsp;Группа&nbsp;товаров&nbsp;\&nbsp;категория.<br>
-&nbsp;&nbsp;&nbsp;,'vendor'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Производитель<br>
-&nbsp;&nbsp;&nbsp;,'vendorCode'&nbsp;&nbsp;&nbsp;#?&nbsp;Код&nbsp;товара&nbsp;(указывается&nbsp;код&nbsp;производителя)<br>
-&nbsp;&nbsp;&nbsp;,'model'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Модель<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;typePrefix?,&nbsp;vendor,&nbsp;vendorCode?,&nbsp;model,&nbsp;(provider,&nbsp;tarifplan?)?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'typePrefix'&nbsp;&nbsp;&nbsp;//?&nbsp;Группа&nbsp;товаров&nbsp;\&nbsp;категория.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'vendor'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Производитель<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'vendorCode'&nbsp;&nbsp;&nbsp;//?&nbsp;Код&nbsp;товара&nbsp;(указывается&nbsp;код&nbsp;производителя)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'model'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Модель<br>
 <br>
-&nbsp;&nbsp;&nbsp;,'provider'&nbsp;&nbsp;&nbsp;#?<br>
-&nbsp;&nbsp;&nbsp;,'tarifplan'&nbsp;&nbsp;&nbsp;#?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'provider'&nbsp;&nbsp;&nbsp;//?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'tarifplan'&nbsp;&nbsp;&nbsp;//?<br>
 <br>
-/*???&nbsp;Не&nbsp;опнятно,&nbsp;послал&nbsp;письмо.&nbsp;Нету&nbsp;этого&nbsp;в&nbsp;DTD<br>
-&nbsp;&nbsp;&nbsp;,'name'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Наименование&nbsp;товарного&nbsp;предложения<br>
-&nbsp;&nbsp;&nbsp;,'delivery'&nbsp;&nbsp;&nbsp;#&nbsp;Элемент,&nbsp;обозначающий&nbsp;возможность&nbsp;доставить&nbsp;соответствующий&nbsp;товар.&nbsp;&quot;false&quot;&nbsp;данный&nbsp;товар&nbsp;не&nbsp;может&nbsp;быть&nbsp;доставлен(&quot;самовывоз&quot;).&nbsp;&quot;true&quot;&nbsp;товар&nbsp;доставляется&nbsp;на&nbsp;условиях,&nbsp;которые&nbsp;указываются&nbsp;в&nbsp;партнерском&nbsp;интерфейсе&nbsp;http://partner.market.yandex.ru&nbsp;на&nbsp;странице&nbsp;&quot;редактирование&quot;.<br>
-&nbsp;&nbsp;&nbsp;,'description'&nbsp;&nbsp;&nbsp;#&nbsp;Описание&nbsp;товарного&nbsp;предложения<br>
-&nbsp;&nbsp;&nbsp;,'available'&nbsp;&nbsp;&nbsp;#&nbsp;Статус&nbsp;доступности&nbsp;товара&nbsp;-&nbsp;в&nbsp;наличии/на&nbsp;заказ.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;available=&quot;false&quot;&nbsp;-&nbsp;товарное&nbsp;предложение&nbsp;на&nbsp;заказ.&nbsp;Магазин&nbsp;готов&nbsp;осуществить&nbsp;поставку&nbsp;товара&nbsp;на&nbsp;указанных&nbsp;условиях&nbsp;в&nbsp;течение&nbsp;месяца&nbsp;(срок&nbsp;может&nbsp;быть&nbsp;больше&nbsp;для&nbsp;товаров,&nbsp;которые&nbsp;всеми&nbsp;участниками&nbsp;рынка&nbsp;поставляются&nbsp;только&nbsp;на&nbsp;заказ)..&nbsp;Те&nbsp;товарные&nbsp;предложения,&nbsp;на&nbsp;которые&nbsp;заказы&nbsp;не&nbsp;принимаются,&nbsp;не&nbsp;должны&nbsp;выгружаться&nbsp;в&nbsp;Яндекс.Маркет.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;available=&quot;true&quot;&nbsp;-&nbsp;товарное&nbsp;предложение&nbsp;в&nbsp;наличии.&nbsp;Магазин&nbsp;готов&nbsp;сразу&nbsp;договариваться&nbsp;с&nbsp;покупателем&nbsp;о&nbsp;доставке&nbsp;товара<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Более&nbsp;точное&nbsp;описание&nbsp;можно&nbsp;посмотреть&nbsp;в&nbsp;требованиях&nbsp;к&nbsp;рекламным&nbsp;Материалам.<br>
-&nbsp;*/<br>
-)</span></h4>
-	<p>[line 26]</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*???&nbsp;Не&nbsp;понятно,&nbsp;послал&nbsp;письмо.&nbsp;Нету&nbsp;этого&nbsp;в&nbsp;DTD<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'name'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Наименование&nbsp;товарного&nbsp;предложения<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'delivery'&nbsp;&nbsp;&nbsp;//&nbsp;Элемент,&nbsp;обозначающий&nbsp;возможность&nbsp;доставить&nbsp;соответствующий&nbsp;товар.&nbsp;&quot;false&quot;&nbsp;данный&nbsp;товар&nbsp;не&nbsp;может&nbsp;быть&nbsp;доставлен(&quot;самовывоз&quot;).&nbsp;&quot;true&quot;&nbsp;товар&nbsp;доставляется&nbsp;на&nbsp;условиях,&nbsp;которые&nbsp;указываются&nbsp;в&nbsp;партнерском&nbsp;интерфейсе&nbsp;http://partner.market.yandex.ru&nbsp;на&nbsp;странице&nbsp;&quot;редактирование&quot;.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'description'&nbsp;&nbsp;&nbsp;//&nbsp;Описание&nbsp;товарного&nbsp;предложения<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'available'&nbsp;&nbsp;&nbsp;//&nbsp;Статус&nbsp;доступности&nbsp;товара&nbsp;-&nbsp;в&nbsp;наличии/на&nbsp;заказ.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;available=&quot;false&quot;&nbsp;-&nbsp;товарное&nbsp;предложение&nbsp;на&nbsp;заказ.&nbsp;Магазин&nbsp;готов&nbsp;осуществить&nbsp;поставку&nbsp;товара&nbsp;на&nbsp;указанных&nbsp;условиях&nbsp;в&nbsp;течение&nbsp;месяца&nbsp;(срок&nbsp;может&nbsp;быть&nbsp;больше&nbsp;для&nbsp;товаров,&nbsp;которые&nbsp;всеми&nbsp;участниками&nbsp;рынка&nbsp;поставляются&nbsp;только&nbsp;на&nbsp;заказ)..&nbsp;Те&nbsp;товарные&nbsp;предложения,&nbsp;на&nbsp;которые&nbsp;заказы&nbsp;не&nbsp;принимаются,&nbsp;не&nbsp;должны&nbsp;выгружаться&nbsp;в&nbsp;Яндекс.Маркет.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;available=&quot;true&quot;&nbsp;-&nbsp;товарное&nbsp;предложение&nbsp;в&nbsp;наличии.&nbsp;Магазин&nbsp;готов&nbsp;сразу&nbsp;договариваться&nbsp;с&nbsp;покупателем&nbsp;о&nbsp;доставке&nbsp;товара<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Более&nbsp;точное&nbsp;описание&nbsp;можно&nbsp;посмотреть&nbsp;в&nbsp;требованиях&nbsp;к&nbsp;рекламным&nbsp;Материалам.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;)</span></h4>
+	<p>[line 23]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -644,7 +645,7 @@ YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 47]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 44]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -704,7 +705,7 @@ Overrides <a href="../../YML/settings_filter/YML_offer.html#method__construct">Y
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:52 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:14:12 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

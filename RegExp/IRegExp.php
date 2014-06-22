@@ -23,3 +23,4 @@ interface IRegExp{
 	**/
 	public static function quote($toQuote, $delimeter = '/');
 }
+?>

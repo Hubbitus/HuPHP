@@ -1,6 +1,7 @@
 <?
 /**
 * Класс шаблонизатора. Версия 2.1.2
+* @deprecated Good idea but trash implementation. To be reimplemented.
 *
 * @Changelog
 *	* Fri Aug 24 2007 Pavel Alexeev <Pahan [ at ] Hubbitus [ DOT ] info>

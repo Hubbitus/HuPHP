@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Vars.html" class="menu">class tree: Vars</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Vars.html" class="menu">class tree: Vars</a> ]
 		  [ <a href="../../elementindex_Vars.html" class="menu">index: Vars</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -144,7 +145,7 @@ Routine tasks to made easy OOP.<br /><br /><br /><br />
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>1.5</td>
@@ -153,7 +154,13 @@ Routine tasks to made easy OOP.<br /><br /><br /><br />
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td><p>*2008-05-31 5:31 v 1.0b to 1.0c <ul><li>Add static method ::createWithoutLSB.</li></ul>     *2008-06-05 16:00 v 1.0c to 1.1 <ul><li>In function classCREATE provide all aditions arguments to HuClass::createWithoutLSB</li></ul>     * 2009-01-18 13:13 ver 1.1 to 1.2 <ul><li>Rename file from Class.php to HuClass.php</li></ul>     * 2009-02-27 15:23 ver 1.2 to 1.3 <ul><li>Make parameter $directClassName mandatory in ::createWithoutLSB()</li><li>and all logic to search name moved from it into ::create()!</li><li>Fix function classCREATE, make $ClassName parameter mandatory</li></ul>     * 2009-03-08 13:33 ver 1.3 to 1.4 <ul></ul>        -&gt; Exceptions/variables.php:93 -&gt; Debug/backtrace.php:45 -&gt; Debug/HuFormat.php:14 -&gt; Vars/Settings/settings.php         include_once('macroses/REQUIRED_VAR.php'); moved to method createWithoutLSB (it single who uses this macro)</p><p>* 2010-10-31 00:01 ver 1.4 to 1.5 <ul><li>Add method clone;</li></ul></p></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/VariableRequiredException.html">VariableRequiredException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---REQUIRED_VAR.php.html#functionREQUIRED_VAR">REQUIRED_VAR()</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/ClassUnknownException.html">ClassUnknownException</a></td>
   </tr>
 </table>
 </div>
@@ -167,7 +174,7 @@ Routine tasks to made easy OOP.<br /><br /><br /><br />
 <br />
   <hr />
 	<a name="functionclassCREATE"></a>
-	<h3>classCREATE <span class="smalllinenumber">[line 139]</span></h3>
+	<h3>classCREATE <span class="smalllinenumber">[line 111]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -194,7 +201,7 @@ Routine tasks to made easy OOP.<br /><br /><br /><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:39 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:12 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

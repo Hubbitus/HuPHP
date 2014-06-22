@@ -1,10 +1,11 @@
 <?
 /**
-* Toolkit of small functions as "macroses".
+* Toolkit of small functions aka "macroses".
+*
 * @package Macroses
 * @subpackage _count
 * @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 

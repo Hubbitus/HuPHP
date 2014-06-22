@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_SPSR.html" class="menu">class tree: SPSR</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_SPSR.html" class="menu">class tree: SPSR</a> ]
 		  [ <a href="../elementindex_SPSR.html" class="menu">index: SPSR</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -136,7 +137,7 @@ Source Location: /_vendors/cpcr.ru/SPSR_in_parse.class.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 49]<br />
+[line 40]<br />
 Class to parse and manipulate very different cpcr.ru data for online tariff calculation.<br /><br /><p>SPSR have many files wit different structure and organazed through arse!  Futhermore it have not normal specification how parse and links it.  Even more evil - answers of support frequently crudely and incompetent (sometimes different from different people).  This class is essential which I can understand from very-very-very long correspondence with this company.</p><p>We want on out unified structure, but in fact have ABSOLUTELY different  scheme on in:  1) In the Russia(Россия) there defined regions: Region XML elements in the same file, where Countries defined: 		http://www.cpcr.ru/cgi-bin/postxml.pl?Regions  2) But regions is NOT defined for other Countries. So, for unified approach we will use self::$no_region_name (by def: '---') single region.  3) The next exception is Belarus (Белоруссия). In SPSR notation it is Region of Russia! (&lt;Regions Id=&quot;55&quot; Owner_Id=&quot;2&quot; RegionName=&quot;Белоруссия&quot;/&gt;) 		and its cities located in Russian xml file by region!  4) Belarus have region with same name as country! It renamed to self::no_region_name.  5) The next step is Cities. 	5.1) For the Russia it is localted in file http://www.cpcr.ru/components/xml/cities.xml 	5.2) For all other countries in - http://www.cpcr.ru/components/xml/citiesc.xml 	And what is more bad - files have different structures! So, we must handle its separately.  6) Some incorrect and strange items filtered by Regexp in SPSR_in_parse::filterOut  7) Some regions (Russia) have cities with the same name it own. 	7.1) Such cities filtered out. 	7.2) If after all filters Region has not any Cities, add one &quot;meta&quot; with name self::$all_cities_name and 		other attributes from city filtered in 7.1 or just create new one with name self::$all_cities_name and 		copied attributes: &quot;Owner_Id&quot; =&gt; &quot;Region_Owner_ID&quot;, &quot;Id&quot; =&gt; &quot;Region_ID&quot; from region.</p><br />
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
@@ -148,7 +149,7 @@ Class to parse and manipulate very different cpcr.ru data for online tariff calc
 	<a name="var$all_cities_name"></a>
 	<p></p>
 	<h4>static $all_cities_name = <span class="value">&nbsp;'Все'</span></h4>
-	<p>[line 51]</p>
+	<p>[line 42]</p>
   
 
   <br />
@@ -164,7 +165,7 @@ Class to parse and manipulate very different cpcr.ru data for online tariff calc
 	<a name="var$no_region_name"></a>
 	<p></p>
 	<h4>static $no_region_name = <span class="value">&nbsp;'---'</span></h4>
-	<p>[line 50]</p>
+	<p>[line 41]</p>
   
 
   <br />
@@ -184,7 +185,7 @@ Class to parse and manipulate very different cpcr.ru data for online tariff calc
 &nbsp;&nbsp;&nbsp;'regions'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'/Дальнее&nbsp;зарубежье/'<br>
 //&nbsp;&nbsp;&nbsp;'cities'<br>
 )</span></h4>
-	<p>[line 69]</p>
+	<p>[line 60]</p>
   Filter some strange and incorrect items like &quot;Дальнее зарубежье&quot; region of Russia!. Regexp.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -209,7 +210,7 @@ Class to parse and manipulate very different cpcr.ru data for online tariff calc
 	<a name="var$_compiled"></a>
 	<p></p>
 	<h4>$_compiled = <span class="value">&nbsp;false</span></h4>
-	<p>[line 63]</p>
+	<p>[line 54]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -234,7 +235,7 @@ Class to parse and manipulate very different cpcr.ru data for online tariff calc
 	<a name="var$_mainXML"></a>
 	<p></p>
 	<h4>$_mainXML = <span class="value"></span></h4>
-	<p>[line 61]</p>
+	<p>[line 52]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -259,7 +260,7 @@ Class to parse and manipulate very different cpcr.ru data for online tariff calc
 	<a name="var$_xpath"></a>
 	<p></p>
 	<h4>$_xpath = <span class="value"></span></h4>
-	<p>[line 62]</p>
+	<p>[line 53]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -290,7 +291,7 @@ Class to parse and manipulate very different cpcr.ru data for online tariff calc
 <div class="tags">
   <hr />
 	<a name="methoddumpDOMnode"></a>
-	<h3>static method dumpDOMnode <span class="smalllinenumber">[line 295]</span></h3>
+	<h3>static method dumpDOMnode <span class="smalllinenumber">[line 286]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -335,7 +336,7 @@ $header = 'DOMElement'])</code>
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 75]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 66]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -391,7 +392,7 @@ $outencoding = 'utf-8'])</code>
   </div>
   <hr />
 	<a name="methodcompile"></a>
-	<h3>method compile <span class="smalllinenumber">[line 100]</span></h3>
+	<h3>method compile <span class="smalllinenumber">[line 91]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -429,7 +430,7 @@ $needCountries = '//Countries[normalize-space(@Country_Name)=&quot;Россия&
   </div>
   <hr />
 	<a name="methodcompileCountry"></a>
-	<h3>method compileCountry <span class="smalllinenumber">[line 114]</span></h3>
+	<h3>method compileCountry <span class="smalllinenumber">[line 105]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -467,7 +468,7 @@ $country)</code>
   </div>
   <hr />
 	<a name="methodgetCountries"></a>
-	<h3>method getCountries <span class="smalllinenumber">[line 230]</span></h3>
+	<h3>method getCountries <span class="smalllinenumber">[line 221]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -494,7 +495,7 @@ $country)</code>
   </div>
   <hr />
 	<a name="methodgetCountryById"></a>
-	<h3>method getCountryById <span class="smalllinenumber">[line 187]</span></h3>
+	<h3>method getCountryById <span class="smalllinenumber">[line 178]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -532,7 +533,7 @@ $id)</code>
   </div>
   <hr />
 	<a name="methodgetCountryByName"></a>
-	<h3>method getCountryByName <span class="smalllinenumber">[line 204]</span></h3>
+	<h3>method getCountryByName <span class="smalllinenumber">[line 195]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -570,7 +571,7 @@ $name)</code>
   </div>
   <hr />
 	<a name="methodgetCountryByXPath"></a>
-	<h3>method getCountryByXPath <span class="smalllinenumber">[line 218]</span></h3>
+	<h3>method getCountryByXPath <span class="smalllinenumber">[line 209]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -608,7 +609,7 @@ $xpathquery)</code>
   </div>
   <hr />
 	<a name="methodloadCities"></a>
-	<h3>method loadCities <span class="smalllinenumber">[line 264]</span></h3>
+	<h3>method loadCities <span class="smalllinenumber">[line 255]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -646,7 +647,7 @@ $force = false])</code>
   </div>
   <hr />
 	<a name="methodloadCitiesc"></a>
-	<h3>method loadCitiesc <span class="smalllinenumber">[line 279]</span></h3>
+	<h3>method loadCitiesc <span class="smalllinenumber">[line 270]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -684,7 +685,7 @@ $force = false])</code>
   </div>
   <hr />
 	<a name="methodparseCitiesForeign"></a>
-	<h3>method parseCitiesForeign <span class="smalllinenumber">[line 253]</span></h3>
+	<h3>method parseCitiesForeign <span class="smalllinenumber">[line 244]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -728,7 +729,7 @@ $regionId)</code>
   </div>
   <hr />
 	<a name="methodparseCitiesRussian"></a>
-	<h3>method parseCitiesRussian <span class="smalllinenumber">[line 241]</span></h3>
+	<h3>method parseCitiesRussian <span class="smalllinenumber">[line 232]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -776,7 +777,7 @@ $regionId)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:39 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:57 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

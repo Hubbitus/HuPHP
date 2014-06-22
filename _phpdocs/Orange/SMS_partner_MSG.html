@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_Orange.html" class="menu">class tree: Orange</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_Orange.html" class="menu">class tree: Orange</a> ]
 		  [ <a href="../elementindex_Orange.html" class="menu">index: Orange</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -95,11 +96,11 @@ Source Location: /_vendors/O-Range-SMS-partnerAPI/SMS_partner_MSG.php<br /><br /
 <div class="description">Orange SMS-API ( http://api.o-range.ru/DOCS/ )</div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-          <li>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</li>
-                        </ul>
+          <li>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</li>
+                  </ul>
 
 
-                        
+                    
 <h4>Version:</h4>
 <ul>
   <li>1.0.2</li>
@@ -236,7 +237,7 @@ Source Location: /_vendors/O-Range-SMS-partnerAPI/SMS_partner_MSG.php<br /><br /
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -269,22 +270,19 @@ Source Location: /_vendors/O-Range-SMS-partnerAPI/SMS_partner_MSG.php<br /><br /
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 15]<br />
+[line 12]<br />
 Orange SMS-API ( http://api.o-range.ru/DOCS/ )<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>1.0.2</td>
   </tr>
   <tr>
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)</td>
-  </tr>
-  <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2009-05-17 14:16 ver 1.0.1 to 1.0.2 <ul><li>Move into _vendors subdir</li></ul></td>
   </tr>
 </table>
 </div>
@@ -299,7 +297,7 @@ Orange SMS-API ( http://api.o-range.ru/DOCS/ )<br /><br /><br /><br />
 	<a name="var$static_settings"></a>
 	<p></p>
 	<h4>$static_settings = <span class="value">array('CMD_SEND_FORMAT',&nbsp;'LOG_FORMAT')</span></h4>
-	<p>[line 37]</p>
+	<p>[line 34]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -324,11 +322,11 @@ Orange SMS-API ( http://api.o-range.ru/DOCS/ )<br /><br /><br /><br />
 	<a name="var$__SETS"></a>
 	<p></p>
 	<h4>$__SETS = <span class="value">array(<br>
-&nbsp;&nbsp;&nbsp;'CMD_SEND_FORMAT'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;array(<br>
-&nbsp;&nbsp;&nbsp;'&amp;cmd=send',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('answerto',&nbsp;'&amp;answerto='),array('to','&amp;to='),array('base64_text','&amp;text=')#TODO:&nbsp;add&nbsp;UCS2&nbsp;support&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'CMD_SEND_FORMAT'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;array(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&amp;cmd=send',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('answerto',&nbsp;'&amp;answerto='),array('to','&amp;to='),array('base64_text','&amp;text=')//&nbsp;@TODO:&nbsp;add&nbsp;UCS2&nbsp;support&nbsp;option<br>
 ),'LOG_FORMAT'=&gt;array(array('pass',&quot;\t[pass]=&gt;&quot;,&quot;\n&quot;),array('ShortNbr',&quot;\t[ShortNbr]=&gt;&quot;,&quot;\n&quot;),array('msgInID',&quot;\t[msgInID]=&gt;&quot;,&quot;\n&quot;),array('UserPhone',&quot;\t[UserPhone]=&gt;&quot;,&quot;\n&quot;),array('text',&quot;\t[text]=&gt;&quot;,&quot;\n&quot;),array('base64_text',&quot;\t[base64_text]=&gt;&quot;,&quot;\n&quot;),array('answerto',&quot;\t[answerto]=&gt;&quot;,&quot;\n&quot;),array('_result',&quot;\t[_result]=&gt;&quot;,&quot;\n&quot;)))</span></h4>
-	<p>[line 16]</p>
+	<p>[line 13]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -364,7 +362,7 @@ Orange SMS-API ( http://api.o-range.ru/DOCS/ )<br /><br /><br /><br />
 
   <hr />
 	<a name="methodclear"></a>
-	<h3>method clear <span class="smalllinenumber">[line 42]</span></h3>
+	<h3>method clear <span class="smalllinenumber">[line 39]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -391,7 +389,7 @@ Overrides <a href="../Vars/settings/settings.html#methodclear">settings::clear()
   </div>
   <hr />
 	<a name="methodsetSettingsArray"></a>
-	<h3>method setSettingsArray <span class="smalllinenumber">[line 54]</span></h3>
+	<h3>method setSettingsArray <span class="smalllinenumber">[line 51]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -433,7 +431,7 @@ Overrides <a href="../Vars/settings/settings.html#methodsetSettingsArray">settin
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:38 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:57 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

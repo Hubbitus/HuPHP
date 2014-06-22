@@ -4,13 +4,10 @@
 * Example of usage see below.
 *
 * @package YML
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
-*
-* @changelog
-*	* 2009-09-28 17:28 ver 1.0
-*	- Initial version.
+* @created 2009-09-28 17:28
 **/
 
 /**

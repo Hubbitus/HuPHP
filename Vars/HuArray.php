@@ -4,56 +4,16 @@
 *
 * @package Vars
 * @version 1.2.4
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created ?2008-09-22 17:55 ver 1.1 to 1.1.1
 *
-* @changelog
-*	* 2008-09-22 17:55 ver 1.1 to 1.1.1
-*	* Add majority this phpdoc header.
-*	- Change include_once('settings.php'); to include_once('Settings/settings.php');
-*
-*	* 2009-02-27 15:08 ver 1.1.1 to 1.1.2
-*	- Some minor fixes in comments.
-*
-*	* 2009-02-27 17:22 ver 1.1.2 to 1.1.3
-*	- Add method filter()
-*	- Add support and implementation of Iterator interface
-*
-*	* 2009-03-02 02:04 ver 1.1.3 to 1.1.4
-*	- Add method ::implode()
-*	- Add metchod ::count()
-*
-*	* 2009-03-06 15:29 ver 1.1.4 to 1.1.5
-*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
-*
-*	* 2009-03-08 15:31 ver 1.1.5 to 1.2
-*	- Add method {@see ::hu()}.
-*	- Modified method __get to support construction like: $HuArrayObj->{'hu://varName'}
-*	- Add methods ::filterByKeys() and ::filterOutByKeys().
-*	- Add method ::filterKeysCallback()
-*
-*	* 2009-03-10 10:33 ver 1.2 to 1.2.1
-*	- In method push implementation add backward compatability with php <= 5.2.9.
-*
-*	* 2009-04-24 19:57 ver 1.2. to 1.2.2
-*	- Add method ::reduce()
-*
-*	* 2009-12-14 13:36 ver 1.2.2 to 1.2.3
-*	- Set default value to '' for $delim in method ::implode()
-*
-*	* 2009-12-17 03:06 ver 1.2.3 to 1.2.4
-*	- Make 'hu://' scheme wrateable.
-**/
-
-/*-inc
-include_once('Vars/Settings/settings.php');
-*/
-include_once('macroses/REQUIRED_VAR.php');
-/**
 * @uses REQUIRED_NOT_NULL()
 * @uses VariableIsNullException
 * @uses settings
 **/
+
+include_once('macroses/REQUIRED_VAR.php');
 
 class HuArray extends settings implements Iterator{
 const huScheme = 'hu://';
@@ -315,9 +275,8 @@ const huScheme = 'hu://';
 		return array_reduce($this->__SETS, $callback, $initial);
 	}#m reduce
 
-	/*##########################################################
-	## From interface Iterator
-	##########################################################*/
+	/// From interface Iterator ///
+
 	public function rewind(){
 		reset($this->__SETS);
 	}#m rewind

@@ -3,27 +3,18 @@
 * Operations with file by serial read/write
 *
 * @package Filesystem
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @version 2.0b
+* @created ?2009-03-25 13:51 ver 2.0b
 *
-* @changelog
-*	* 2009-03-25 13:51 ver 2.0b
-*	- Initial SPLITTED version. See changelog of file_base.php
-*	- Add method ::lineNo()
-**/
-
-/*-inc
-include_once('file_base.php');
-include_once('Vars/VariableStream.php');
-*/
-include_once('macroses/REQUIRED_VAR.php');
-/**
 * @uses REQUIRED_VAR()
 * @uses VariableRequiredException
 * @uses file_base
 * @uses VariableStream
 **/
+
+include_once('macroses/REQUIRED_VAR.php');
 
 class file_read extends file_base{
 private $fd = null;
@@ -42,29 +33,29 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	**/
 	public function writeContent($flags = null, $resource_context = null){
 		if (!$this->fd) $this->open('w', ( $flags & FILE_USE_INCLUDE_PATH ), $resource_context);
-	/*
-	* To provide consistence API and do not fake incoming method parameters we must use streams.
-	* There present function stream_get_contents, but I not found opposite, which can write string to stream.
-	* My decision to use stream_copy_to_stream() function, but for that I must have another stream to copy from.
-	* I not found standard way to map variable on stream, so, use VariableStream in conditional of global temp variable
-	*
-	* Another possible way, may be using 'php://memory' or 'php://temp' (http://mikenaberezny.com/2008/10/17/php-temporary-streams/),
-	* but in this case full variable data must be explicid copyed in this stream.
-	* VariableStream with variable reference give mor migick on my opinion.
-	*/
-	$GLOBALS['__tmp_content_var_stream'] =& $this->content;
-	$this->checkOpenError(
-		#$this->rawFilename because may be file generally not exists!
-		(bool)( $count = @stream_copy_to_stream($this->fd, ($tfd = fopen('var://__tmp_content_var_stream'))) )
-	);
-	$this->_writePending = false;
-	fclose($tfd);
-	return $count;
+
+		/*
+		* To provide consistence API and do not fake incoming method parameters we must use streams.
+		* There present function stream_get_contents, but I not found opposite, which can write string to stream.
+		* My decision to use stream_copy_to_stream() function, but for that I must have another stream to copy from.
+		* I not found standard way to map variable on stream, so, use VariableStream in conditional of global temp variable
+		*
+		* Another possible way, may be using 'php://memory' or 'php://temp' (http://mikenaberezny.com/2008/10/17/php-temporary-streams/),
+		* but in this case full variable data must be explicid copyed in this stream.
+		* VariableStream with variable reference give mor migick on my opinion.
+		*/
+		$GLOBALS['__tmp_content_var_stream'] =& $this->content;
+		$this->checkOpenError(
+			// $this->rawFilename because may be file generally not exists!
+			(bool)( $count = @stream_copy_to_stream($this->fd, ($tfd = fopen('var://__tmp_content_var_stream'))) )
+		);
+
+		$this->_writePending = false;
+		fclose($tfd);
+		return $count;
 	}#m writeContent
 
-###########################
-### Self introduced methods
-###########################
+	/// Self introduced methods ///
 
 	/**
 	* Open file for reading/writing (according to $mode)
@@ -74,17 +65,17 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	* @param	resource	$zcontext  See {@link http://php.net/fopen}
 	**/
 	public function open($mode, $use_include_path = false , $zcontext = null){
-	$this->checkOpenError(
-		(bool)
-			($zcontext
-			?
-			($this->fd = fopen($this->path(), $mode, $use_include_path, $zcontext))
-			:
-			($this->fd = fopen($this->path(), $mode, $use_include_path))
+		$this->checkOpenError(
+			(bool)(
+				$zcontext
+				?
+				($this->fd = fopen($this->path(), $mode, $use_include_path, $zcontext))
+				:
+				($this->fd = fopen($this->path(), $mode, $use_include_path))
 			)
-	);
-	$this->lineContent = array();
-	$this->content = '';
+		);
+		$this->lineContent = array();
+		$this->content = '';
 	}#m open
 
 	/**
@@ -95,8 +86,8 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	* @Throws(VariableRequiredException)
 	**/
 	public function getline($length = null){
-	++$this->_line_no;
-	return $length ? fgets(REQUIRED_VAR($this->fd), $length) : fgets(REQUIRED_VAR($this->fd));
+		++$this->_line_no;
+		return $length ? fgets(REQUIRED_VAR($this->fd), $length) : fgets(REQUIRED_VAR($this->fd));
 	}#m getline
 
 	/**
@@ -108,7 +99,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	* @return	integer
 	**/
 	function lineNo(){
-	return $this->_line_no;;
+		return $this->_line_no;;
 	}#m lineNo
 
 	/**
@@ -121,7 +112,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	* @return	string
 	**/
 	public function getTail ($maxlength = -1, $offset = 0){
-	return stream_get_contents($this->fd, $maxlength, $offset);
+		return stream_get_contents($this->fd, $maxlength, $offset);
 	}#m getTail
 }#c file_read
 ?>

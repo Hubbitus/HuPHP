@@ -1,12 +1,12 @@
 <?
 /**
-* Toolkit of small functions as "macroses".
+* Toolkit of small functions aka "macroses".
 *
-* Example and test toolkit for 
+* Example and test toolkit for *EMPTY_STR* macroses.
 *
 * @package Macroses
 * @version 2.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
@@ -25,23 +25,23 @@ dump::a('===================================');
 }#f test_EMPTY_NONEMPTY_STR
 
 $t = true;
-test_EMPTY_NONEMPTY_STR($t);	# ''; ''
+test_EMPTY_NONEMPTY_STR($t);	// ''; ''
 $t = false;
-test_EMPTY_NONEMPTY_STR($t);	# ''; ''
+test_EMPTY_NONEMPTY_STR($t);	// ''; ''
 $t = null;
-test_EMPTY_NONEMPTY_STR($t);	# ''; ''
+test_EMPTY_NONEMPTY_STR($t);	// ''; ''
 $t = array(1,2,3);
-test_EMPTY_NONEMPTY_STR($t);	# 'Array(3)'; '<Array(3)>'
+test_EMPTY_NONEMPTY_STR($t);	// 'Array(3)'; '<Array(3)>'
 $t = array();
-test_EMPTY_NONEMPTY_STR($t);	# 'Array(0)'; '<Array(0)>'
+test_EMPTY_NONEMPTY_STR($t);	// 'Array(0)'; '<Array(0)>'
 $t = '';
-test_EMPTY_NONEMPTY_STR($t);	# ''; ''
+test_EMPTY_NONEMPTY_STR($t);	// ''; ''
 $t = ' ';
-test_EMPTY_NONEMPTY_STR($t);	# ' '; '< >'
+test_EMPTY_NONEMPTY_STR($t);	// ' '; '< >'
 $t = '   ';
-test_EMPTY_NONEMPTY_STR($t);	# '  '; '<  >'
+test_EMPTY_NONEMPTY_STR($t);	// '  '; '<  >'
 $t = 0;
-test_EMPTY_NONEMPTY_STR($t);	# '0'; '<0>'
+test_EMPTY_NONEMPTY_STR($t);	// '0'; '<0>'
 $t = '0';
-test_EMPTY_NONEMPTY_STR($t);	# '0'; '<0>'
+test_EMPTY_NONEMPTY_STR($t);	// '0'; '<0>'
 ?>

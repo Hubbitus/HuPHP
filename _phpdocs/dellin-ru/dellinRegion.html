@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_dellin-ru.html" class="menu">class tree: dellin-ru</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_dellin-ru.html" class="menu">class tree: dellin-ru</a> ]
 		  [ <a href="../elementindex_dellin-ru.html" class="menu">index: dellin-ru</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -144,7 +145,7 @@ Source Location: /_vendors/dellin.ru/dellinRegion.class.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 23]<br />
+[line 20]<br />
 Class to represent region and set map to its in X-Cart database<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -165,7 +166,7 @@ Class to represent region and set map to its in X-Cart database<br /><br /><br /
 	<a name="var$code"></a>
 	<p></p>
 	<h4>$code = <span class="value"></span></h4>
-	<p>[line 33]</p>
+	<p>[line 30]</p>
   code xcart_states table field to map X-Cart DB data<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -190,7 +191,7 @@ Class to represent region and set map to its in X-Cart database<br /><br /><br /
 	<a name="var$state"></a>
 	<p></p>
 	<h4>$state = <span class="value"></span></h4>
-	<p>[line 38]</p>
+	<p>[line 35]</p>
   code xcart_states table field to map X-Cart DB data. String representation. Excessive.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -215,7 +216,7 @@ Class to represent region and set map to its in X-Cart database<br /><br /><br /
 	<a name="var$stateid"></a>
 	<p></p>
 	<h4>$stateid = <span class="value"></span></h4>
-	<p>[line 28]</p>
+	<p>[line 25]</p>
   stateid xcart_states table field to map X-Cart DB data<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -240,7 +241,7 @@ Class to represent region and set map to its in X-Cart database<br /><br /><br /
 	<a name="var$toMatch"></a>
 	<p></p>
 	<h4>$toMatch = <span class="value"></span></h4>
-	<p>[line 77]</p>
+	<p>[line 74]</p>
   Original city from XML file to what we try match it in DB<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -272,7 +273,7 @@ Class to represent region and set map to its in X-Cart database<br /><br /><br /
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 84]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 81]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -309,7 +310,7 @@ $reg)</code>
 	<a name="constMATCH_BY_CONFIG"></a>
 	<p></p>
 	<h4>MATCH_BY_CONFIG = <span class="value">&nbsp;1</span></h4>
-	<p>[line 55]</p>
+	<p>[line 52]</p>
   Match from config<br /><br />
 
   <br />
@@ -317,7 +318,7 @@ $reg)</code>
 	<a name="constMATCH_BY_FULL_NAME"></a>
 	<p></p>
 	<h4>MATCH_BY_FULL_NAME = <span class="value">&nbsp;2</span></h4>
-	<p>[line 60]</p>
+	<p>[line 57]</p>
   Match by starts (LIKE) with full region name<br /><br />
 
   <br />
@@ -325,7 +326,7 @@ $reg)</code>
 	<a name="constMATCH_BY_SHORT_NAME"></a>
 	<p></p>
 	<h4>MATCH_BY_SHORT_NAME = <span class="value">&nbsp;4</span></h4>
-	<p>[line 65]</p>
+	<p>[line 62]</p>
   Match by starts (LIKE) with short region name<br /><br />
 
   <br />
@@ -333,7 +334,7 @@ $reg)</code>
 	<a name="constMATCH_NO"></a>
 	<p></p>
 	<h4>MATCH_NO = <span class="value">&nbsp;0</span></h4>
-	<p>[line 50]</p>
+	<p>[line 47]</p>
   No match to X-Cart item. All MATCH_* constant represent match only exactly 1  match present. Otherwise it treated as no match.<br /><br />
 
   <br />
@@ -341,7 +342,7 @@ $reg)</code>
 	<a name="constMATCH_NOT_TRIED"></a>
 	<p></p>
 	<h4>MATCH_NOT_TRIED = <span class="value">&nbsp;-1</span></h4>
-	<p>[line 44]</p>
+	<p>[line 41]</p>
   No match untill performed.<br /><br />
 
   <br />
@@ -351,7 +352,7 @@ $reg)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:30 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:05 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

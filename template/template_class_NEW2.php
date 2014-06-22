@@ -1,16 +1,10 @@
 <?
-/*
-Класс шаблонизатора. Версия 2.0a1
-
-%Changelog
-* Птн 27 Апр 2007 15:25:38
-В find_path добавил поиск пути в той же директори что и шаблон (а не только класс шаблона)
-
-* Вск 22 Апр 2007 11:24:12
-Версия a1 - восстановлен из бакапа, скорее всего есть какие-то ошибки, которые уже исправлял раньше :(
-*/
-
 /**
+* Класс шаблонизатора. Версия 2.0a1
+*
+* @deprecated Good idea but trash implementation. To be reimplemented.
+* @created Вск 22 Апр 2007 11:24:12
+*
 * @uses gentime
 **/
 
@@ -21,35 +15,35 @@ ini_set('html_errors', true);
 class template{
 var $content_file;
 
-var $functions = array(	#Имена определенных в шаблоне функций и их приоритеты выполнения
+var $functions = array(	//Имена определенных в шаблоне функций и их приоритеты выполнения
 	'include_file' => 1,
 	'cycle' => 2,
 	'esli' => 3,
 	'WYSIWYG' => 4,
-	'alt' => 5,		#ALTernatives, switch, case
-	'set' => 6,		#Устанавливаем значения переменных
+	'alt' => 5,		//ALTernatives, switch, case
+	'set' => 6,		//Устанавливаем значения переменных
 	'_' => 10
 	);
 
-var $assigned = array();#Значения заменяемых переменных
-var $filename;		#Имя файла шаблона, который парсим
-var $error = array();	#Сообщения обошибках
+var $assigned = array();//Значения заменяемых переменных
+var $filename;		//Имя файла шаблона, который парсим
+var $error = array();	//Сообщения обошибках
 
-var $wysiwyg = false;	#Признак что следующая форма инициализации редактора будет "короткой" когда установлено в true
-var $wysiwyg_full = false;#Всегда выводить "полную" форму инициализации редактора.
+var $wysiwyg = false;	//Признак что следующая форма инициализации редактора будет "короткой" когда установлено в true
+var $wysiwyg_full = false;//Всегда выводить "полную" форму инициализации редактора.
 
-var $_gentime;		#Объект подсчета времени генерации
-var $gentime;		#Результирующее время
+var $_gentime;		//Объект подсчета времени генерации
+var $gentime;		//Результирующее время
 
-protected $_padRes = 0;	#Это для замены строк, сдвиг позиции
-public $_parent = null;	#Будет ссылка на родителя
-public $_top = null;	#Будет ссылка на ВЕРХНЕГО родителя
+protected $_padRes = 0;	//Это для замены строк, сдвиг позиции
+public $_parent = null;	//Будет ссылка на родителя
+public $_top = null;	//Будет ссылка на ВЕРХНЕГО родителя
 
-	function template($filename = false, &$parent = null, &$top = null){#Конструктор
+	function template($filename = false, &$parent = null, &$top = null){//Конструктор
 	$this->_parent = $parent;
 		if ($top) $this->_top = $top;
-		else $this->_top =& $this;	#Если не вложен
-	#########CONSTANTS#########
+		else $this->_top =& $this;	//Если не вложен
+	//########CONSTANTS#########
 		if (!defined('TEMPLATE_DEBUG')) define ('TEMPLATE_DEBUG', false);	#Поумолчанию отключен вывод ошибок
 		if (!defined('TEMPLATE_GENTIMECALC')) define ('TEMPLATE_GENTIMECALC', false);
 

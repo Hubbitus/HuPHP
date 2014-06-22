@@ -10,13 +10,7 @@
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.2
 * @created 2009-06-29
-*
-* @changelog
-*	* 2009-09-29 13:55 ver 1.0 to 1.1
-*	* Add standard filter settings_filter_ignore
-*
-*	* 2009-09-30 12:26 ver 1.1 to 1.2
-*	- Now apply() pass $name and $value by reference, so, both may be changed. It introduce power but dangerouse.
+* @created ?2009-09-29 13:55 ver 1.0 to 1.1
 **/
 
 /**

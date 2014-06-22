@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Vars.html" class="menu">class tree: Vars</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Vars.html" class="menu">class tree: Vars</a> ]
 		  [ <a href="../../elementindex_Vars.html" class="menu">index: Vars</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -134,13 +135,13 @@ Source Location: /Vars/Settings/settings.php<br /><br />
 
 <h3><a href="#class_details">Class Overview</a></h3>
 <pre></pre><br />
-<div class="description">Parent class for more usefull using in parents who want be &quot;customizable&quot;</div><br /><br />
+<div class="description">Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-        </ul>
+              </ul>
 
 
-    
+        
 
         
 </td>
@@ -167,15 +168,15 @@ Source Location: /Vars/Settings/settings.php<br /><br />
 <div class="tags">
 <dl>
 <dt><a href="../../Debug/HuLOG/HuLOG.html">HuLOG</a></dt>
-	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
+	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 </dl>
 <dl>
 <dt><a href="../../Users/settings/user_base.html">user_base</a></dt>
-	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
+	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 </dl>
 <dl>
 <dt><a href="../../Orange/settings/SMS_partnerAPI.html">SMS_partnerAPI</a></dt>
-	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
+	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 </dl>
 <dl>
 <dt><a href="../../Console/Getopt/HuGetopt.html">HuGetopt</a></dt>
@@ -183,7 +184,7 @@ Source Location: /Vars/Settings/settings.php<br /><br />
 </dl>
 <dl>
 <dt><a href="../../Database/settings/database.html">database</a></dt>
-	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
+	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 </dl>
 </div>
 </td>
@@ -197,13 +198,16 @@ Source Location: /Vars/Settings/settings.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 206]<br />
-Parent class for more usefull using in parents who want be &quot;customizable&quot;<br /><br /><br /><br />
+[line 194]<br />
+Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/settings/DB_settings.html">DB_settings</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/_Database---database.php.html">database.php</a></td>
+  </tr>
+  <tr>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Database/DB_settings.html">DB_settings</a></td>
   </tr>
 </table>
 </div>
@@ -219,7 +223,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 
   <hr />
 	<a name="methodsets"></a>
-	<h3>method sets <span class="smalllinenumber">[line 226]</span></h3>
+	<h3>method sets <span class="smalllinenumber">[line 214]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -246,7 +250,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
   </div>
   <hr />
 	<a name="method__get"></a>
-	<h3>method __get <span class="smalllinenumber">[line 217]</span></h3>
+	<h3>method __get <span class="smalllinenumber">[line 205]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -274,7 +278,7 @@ $name)</code>
 	</dl>
 		<dl>
 	<dt><a href="../../Database/settings/database.html#method__get">database::__get()</a></dt>
-		<dd></dd>
+		<dd>Переопределяем, чтобы сделать ссылку на настройки не изменяемой!</dd>
 	</dl>
 	</p>
 	
@@ -298,7 +302,7 @@ $name)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:35 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:54 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_Filesystem.html" class="menu">class tree: Filesystem</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_Filesystem.html" class="menu">class tree: Filesystem</a> ]
 		  [ <a href="../elementindex_Filesystem.html" class="menu">index: Filesystem</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -92,7 +93,7 @@ Base file operations.<br /><br /><br /><br />
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>2.1</td>
@@ -101,12 +102,19 @@ Base file operations.<br /><br /><br /><br />
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2008-08-27 ver 1.0 to 1.1 <ul><li>Added methods: clearPendingWrite(), __destructor(), appendString()</li></ul>     * 2009-01-25 00:00 ver 1.1 to 1.2 <ul><li>Modify setPath() to set full path into -&gt;filename. -&gt;rawFilename filled also.</li><li>Add method: rawPath().</li><li>Add include_once('System/OS.php'); (for the OS::isPathAbsolute)</li></ul>     * 2009-02-26 15:59 ver 1.2 to 1.2.1 <ul><li>Add in setPath initial initialization of $this-&gt;filename in any case! In case
-        if path is relative it will expanded. If not - old
-        behaviour it is not initialised!</li></ul>     * 2009-03-23 16:44 ver 1.2.1 to 1.2.2 <ul><li>Method ::loadContent() changed to @return    &amp;$this;. Full PhpDoc written.</li></ul>     * 2009-03-25 10:50 ver 1.2.2 to 2.0b <ul><li>Major changes. Make @package Filesystem and split current file_base class to 3:
-        o file_base - base is base. Make it abstract.
-        o file_inmem - based on file() or file_get_contents. Operate by whole contents of file in memmory.
-        o file_read - based on fopen/fread/fwrite. Provide operations of continios read, seek, byt read...</li><li>Write PhpDoc'umentation fo all methods for comfortable usage.</li><li>Remove deprecated method ::loadByLines(). Last time it was only alias to ::loadContent() - use it instead.</li><li>Fix few minor bugs (in ::implodeLines(), ::getBLOB())...</li><li>Method ::writeContents() renamed to ::writeContent()</li><li>Acces type of method ::checkOpenError() changed from private to protected.</li></ul>     * 2010-11-16 17:42 ver 2.0b to 2.1 <ul><li>Add unlink method.</li><li>Explicit inlude 'macroses/REQUIRED_NOT_NULL.php'.</li></ul></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/VariableRequiredException.html">VariableRequiredException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Macroses/_macroses---REQUIRED_VAR.php.html#functionREQUIRED_VAR">REQUIRED_VAR()</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/FileNotExistsException.html">FileNotExistsException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/FileNotReadableException.html">FileNotReadableException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../System/OS.html">OS</a></td>
   </tr>
 </table>
 </div>
@@ -114,13 +122,13 @@ Base file operations.<br /><br /><br /><br />
 <br /><br />
 <h4>Includes:</h4>
 <div class="tags">
-include_once(<a href="../Macroses/_macroses---REQUIRED_VAR.php.html">'macroses/REQUIRED_VAR.php'</a>) [line 48]<br />
+include_once(<a href="../Macroses/_macroses---REQUIRED_VAR.php.html">'macroses/REQUIRED_VAR.php'</a>) [line 18]<br />
 Base file operations.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>2.1</td>
@@ -129,17 +137,24 @@ Base file operations.<br /><br /><br /><br />
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2008-08-27 ver 1.0 to 1.1 <ul><li>Added methods: clearPendingWrite(), __destructor(), appendString()</li></ul>     * 2009-01-25 00:00 ver 1.1 to 1.2 <ul><li>Modify setPath() to set full path into -&gt;filename. -&gt;rawFilename filled also.</li><li>Add method: rawPath().</li><li>Add include_once('System/OS.php'); (for the OS::isPathAbsolute)</li></ul>     * 2009-02-26 15:59 ver 1.2 to 1.2.1 <ul><li>Add in setPath initial initialization of $this-&gt;filename in any case! In case
-        if path is relative it will expanded. If not - old
-        behaviour it is not initialised!</li></ul>     * 2009-03-23 16:44 ver 1.2.1 to 1.2.2 <ul><li>Method ::loadContent() changed to @return    &amp;$this;. Full PhpDoc written.</li></ul>     * 2009-03-25 10:50 ver 1.2.2 to 2.0b <ul><li>Major changes. Make @package Filesystem and split current file_base class to 3:
-        o file_base - base is base. Make it abstract.
-        o file_inmem - based on file() or file_get_contents. Operate by whole contents of file in memmory.
-        o file_read - based on fopen/fread/fwrite. Provide operations of continios read, seek, byt read...</li><li>Write PhpDoc'umentation fo all methods for comfortable usage.</li><li>Remove deprecated method ::loadByLines(). Last time it was only alias to ::loadContent() - use it instead.</li><li>Fix few minor bugs (in ::implodeLines(), ::getBLOB())...</li><li>Method ::writeContents() renamed to ::writeContent()</li><li>Acces type of method ::checkOpenError() changed from private to protected.</li></ul>     * 2010-11-16 17:42 ver 2.0b to 2.1 <ul><li>Add unlink method.</li><li>Explicit inlude 'macroses/REQUIRED_NOT_NULL.php'.</li></ul></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/VariableRequiredException.html">VariableRequiredException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Macroses/_macroses---REQUIRED_VAR.php.html#functionREQUIRED_VAR">REQUIRED_VAR()</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/FileNotExistsException.html">FileNotExistsException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/FileNotReadableException.html">FileNotReadableException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../System/OS.html">OS</a></td>
   </tr>
 </table>
 </div>
 
-include_once(<a href="../Macroses/_macroses---REQUIRED_NOT_NULL.php.html">'macroses/REQUIRED_NOT_NULL.php'</a>) [line 49]<br />
+include_once(<a href="../Macroses/_macroses---REQUIRED_NOT_NULL.php.html">'macroses/REQUIRED_NOT_NULL.php'</a>) [line 19]<br />
 
 </div>
 
@@ -152,7 +167,7 @@ include_once(<a href="../Macroses/_macroses---REQUIRED_NOT_NULL.php.html">'macro
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:32 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:07 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

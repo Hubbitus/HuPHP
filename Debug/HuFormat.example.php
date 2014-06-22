@@ -5,12 +5,9 @@
 * @package Debug
 * @subpackage HuFormat
 * @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-*	* 2009-03-17 12:55 ver 1.0
-*	- Initial version
+* @created 2009-03-17 12:55
 **/
 
 include('autoload.php');

@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
 		  [ <a href="../../elementindex_Debug.html" class="menu">index: Debug</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -55,6 +56,8 @@
                         <b>Files:</b><br />
       	  <div class="package">
 			<a href="../../Debug/_Debug---_HuFormat.defaults---backtraceprintout.php.html">		backtrace::printout.php
+		</a><br>
+			<a href="../../Debug/_Debug---gentime_class.php.html">		gentime_class.php
 		</a><br>
 			<a href="../../Debug/_Debug---Tokenizer.php.html">		Tokenizer.php
 		</a><br>
@@ -119,14 +122,15 @@
 	Dump-utils<br />	    &nbsp;&nbsp;		<a href="../../Debug/Dump-utils/dump_utils.html">dump_utils</a><br />
 	  </div>
   <div class="package">
+		    		<a href="../../Debug/gentime.html">gentime</a><br />
+	    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
+	  </div>
+  <div class="package">
 	HuFormat<br />	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormat.html">HuFormat</a><br />
 	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormatException.html">HuFormatException</a><br />
 	  </div>
   <div class="package">
 	log_dump<br />	    &nbsp;&nbsp;		<a href="../../Debug/log_dump/dump.html">dump</a><br />
-	  </div>
-  <div class="package">
-		    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
 	  </div>
                 </td>
     <td>
@@ -145,7 +149,7 @@ Source Location: /Debug/HuLOG.php<br /><br />
 <pre><a href="../../Vars/settings/get_settings.html">get_settings</a>
    |
    --HuLOG</pre><br />
-<div class="description">Parent class for more usefull using in parents who want be &quot;customizable&quot;</div><br /><br />
+<div class="description">Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</div><br /><br />
 
 
 
@@ -213,8 +217,8 @@ Source Location: /Debug/HuLOG.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 131]<br />
-Parent class for more usefull using in parents who want be &quot;customizable&quot;<br /><br />
+[line 101]<br />
+Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.<br /><br />
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
 
@@ -225,7 +229,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$lastLogText"></a>
 	<p></p>
 	<h4>$lastLogText = <span class="value">&nbsp;null</span></h4>
-	<p>[line 134]</p>
+	<p>[line 104]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -250,7 +254,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$lastLogTime"></a>
 	<p></p>
 	<h4>$lastLogTime = <span class="value">&nbsp;null</span></h4>
-	<p>[line 135]</p>
+	<p>[line 105]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -275,7 +279,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$_level"></a>
 	<p></p>
 	<h4>$_level = <span class="value">&nbsp;0</span></h4>
-	<p>[line 132]</p>
+	<p>[line 102]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -300,7 +304,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 	<a name="var$_sets"></a>
 	<p></p>
 	<h4>$_sets = <span class="value">&nbsp;null</span></h4>
-	<p>[line 137]</p>
+	<p>[line 107]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -332,7 +336,7 @@ Parent class for more usefull using in parents who want be &quot;customizable&qu
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 139]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 109]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -361,7 +365,7 @@ $sets = null])</code>
   </div>
   <hr />
 	<a name="methodmakeLogString"></a>
-	<h3>method makeLogString <span class="smalllinenumber">[line 159]</span></h3>
+	<h3>method makeLogString <span class="smalllinenumber">[line 129]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -417,20 +421,20 @@ $extra)</code>
   </div>
   <hr />
 	<a name="methodtoLog"></a>
-	<h3>method toLog <span class="smalllinenumber">[line 186]</span></h3>
+	<h3>method toLog <span class="smalllinenumber">[line 160]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>void toLog(
-
-$log_string, [
-$file = 'ERR'], [
+$log_string
+$log_string, [$file:
+$file = 'ERR'], [$extra
 $type = ''], [
 $extra = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Main method to log messages<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -448,19 +452,19 @@ $extra = null])</code>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">$log_string&nbsp;&nbsp;</td>
         <td><b>$log_string</b>&nbsp;&nbsp;</td>
-        <td></td>
+        <td>- собственно строка в лог, сразу после даты</td>
       </tr>
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">$file:&nbsp;&nbsp;</td>
         <td><b>$file</b>&nbsp;&nbsp;</td>
-        <td></td>
+        <td>* ERR - Ошибки     * ACS - Доступ (ACesS)</td>
       </tr>
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">$extra&nbsp;&nbsp;</td>
         <td><b>$type</b>&nbsp;&nbsp;</td>
-        <td></td>
+        <td>- Любая дополнительная переменная, информация, комментарии...</td>
       </tr>
           <tr>
         <td class="type">&nbsp;&nbsp;</td>
@@ -473,7 +477,7 @@ $extra = null])</code>
   </div>
   <hr />
 	<a name="methodwriteLogs"></a>
-	<h3>method writeLogs <span class="smalllinenumber">[line 203]</span></h3>
+	<h3>method writeLogs <span class="smalllinenumber">[line 178]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -521,7 +525,7 @@ $file)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:43 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:16 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -1,8 +1,4 @@
 <?
-/*-inc
-include_once('Debug/debug.php');
-include ('HuGetopt.php');
-*/
 /**
 * @uses dump
 * @uses HuGetopt
@@ -25,7 +21,7 @@ $argv = array(
   13 => '/home/pasha/bin/mozila_get_extension_info.php',
   14 => '/home/pasha/bin/replace_in_file.php',
   15 => '/home/pasha/bin/SIM_history.php',
-  16 => '-wFile' # Short without space
+  16 => '-wFile' // Short without space
 );
 dump::a($argv);
 

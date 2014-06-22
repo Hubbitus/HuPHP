@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_Filesystem.html" class="menu">class tree: Filesystem</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_Filesystem.html" class="menu">class tree: Filesystem</a> ]
 		  [ <a href="../elementindex_Filesystem.html" class="menu">index: Filesystem</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -86,13 +87,13 @@ Source Location: /Filesystem/file_inmem.php<br /><br />
 <pre><a href="../Filesystem/file_base.html">file_base</a>
    |
    --file_inmem</pre><br />
-<div class="description"></div><br /><br />
+<div class="description">Base class for most file-related operations.</div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-                          </ul>
+        </ul>
 
 
-                
+    
 
         
 </td>
@@ -265,22 +266,13 @@ Source Location: /Filesystem/file_inmem.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 31]<br />
-<br /><br />
+[line 18]<br />
+Base class for most file-related operations.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/Tokenizer.html">Tokenizer</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/VariableRequiredException.html">VariableRequiredException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Macroses/_macroses---REQUIRED_VAR.php.html#functionREQUIRED_VAR">REQUIRED_VAR()</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/file_base.html">file_base</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/_Debug---Tokenizer.php.html">Tokenizer.php</a></td>
   </tr>
 </table>
 </div>
@@ -296,7 +288,7 @@ Source Location: /Filesystem/file_inmem.php<br /><br />
 
   <hr />
 	<a name="methodappendString"></a>
-	<h3>method appendString <span class="smalllinenumber">[line 79]</span></h3>
+	<h3>method appendString <span class="smalllinenumber">[line 66]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -334,7 +326,7 @@ Overrides <a href="../Filesystem/file_base.html#methodappendString">file_base::a
   </div>
   <hr />
 	<a name="methodenconv"></a>
-	<h3>method enconv <span class="smalllinenumber">[line 314]</span></h3>
+	<h3>method enconv <span class="smalllinenumber">[line 302]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -384,7 +376,7 @@ $toEnc = 'UTF-8'])</code>
   </div>
   <hr />
 	<a name="methodexplodeLines"></a>
-	<h3>method explodeLines <span class="smalllinenumber">[line 124]</span></h3>
+	<h3>method explodeLines <span class="smalllinenumber">[line 110]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -422,7 +414,7 @@ $updateLineSep = true])</code>
   </div>
   <hr />
 	<a name="methodgetBLOB"></a>
-	<h3>method getBLOB <span class="smalllinenumber">[line 150]</span></h3>
+	<h3>method getBLOB <span class="smalllinenumber">[line 136]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -466,7 +458,7 @@ $updateLineSep = true])</code>
   </div>
   <hr />
 	<a name="methodgetLineAt"></a>
-	<h3>method getLineAt <span class="smalllinenumber">[line 194]</span></h3>
+	<h3>method getLineAt <span class="smalllinenumber">[line 180]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -504,7 +496,7 @@ $line)</code>
   </div>
   <hr />
 	<a name="methodgetLineByOffset"></a>
-	<h3>method getLineByOffset <span class="smalllinenumber">[line 206]</span></h3>
+	<h3>method getLineByOffset <span class="smalllinenumber">[line 192]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -542,7 +534,7 @@ $offset)</code>
   </div>
   <hr />
 	<a name="methodgetLines"></a>
-	<h3>method getLines <span class="smalllinenumber">[line 111]</span></h3>
+	<h3>method getLines <span class="smalllinenumber">[line 97]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -601,7 +593,7 @@ $updateLineSep.)</code>
   </div>
   <hr />
 	<a name="methodgetLineSep"></a>
-	<h3>method getLineSep <span class="smalllinenumber">[line 164]</span></h3>
+	<h3>method getLineSep <span class="smalllinenumber">[line 150]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -628,7 +620,7 @@ $updateLineSep.)</code>
   </div>
   <hr />
 	<a name="methodgetOffsetByLine"></a>
-	<h3>method getOffsetByLine <span class="smalllinenumber">[line 254]</span></h3>
+	<h3>method getOffsetByLine <span class="smalllinenumber">[line 241]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -669,7 +661,7 @@ $line)</code>
   </div>
   <hr />
 	<a name="methodiconv"></a>
-	<h3>method iconv <span class="smalllinenumber">[line 300]</span></h3>
+	<h3>method iconv <span class="smalllinenumber">[line 288]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -719,7 +711,7 @@ $toEnc = 'UTF-8'])</code>
   </div>
   <hr />
 	<a name="methodimplodeLines"></a>
-	<h3>method implodeLines <span class="smalllinenumber">[line 137]</span></h3>
+	<h3>method implodeLines <span class="smalllinenumber">[line 123]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -763,7 +755,7 @@ $updateLineSep = true])</code>
   </div>
   <hr />
 	<a name="methodloadContent"></a>
-	<h3>method loadContent <span class="smalllinenumber">[line 50]</span></h3>
+	<h3>method loadContent <span class="smalllinenumber">[line 37]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -822,7 +814,7 @@ $maxlen = null])</code>
   </div>
   <hr />
 	<a name="methodsetContentFromString"></a>
-	<h3>method setContentFromString <span class="smalllinenumber">[line 68]</span></h3>
+	<h3>method setContentFromString <span class="smalllinenumber">[line 55]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -860,7 +852,7 @@ Overrides <a href="../Filesystem/file_base.html#methodsetContentFromString">file
   </div>
   <hr />
 	<a name="methodsetLineSep"></a>
-	<h3>method setLineSep <span class="smalllinenumber">[line 180]</span></h3>
+	<h3>method setLineSep <span class="smalllinenumber">[line 166]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -898,7 +890,7 @@ $newSep)</code>
   </div>
   <hr />
 	<a name="methodwriteContent"></a>
-	<h3>method writeContent <span class="smalllinenumber">[line 90]</span></h3>
+	<h3>method writeContent <span class="smalllinenumber">[line 77]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -958,7 +950,7 @@ Overrides <a href="../Filesystem/file_base.html#methodwriteContent">file_base::w
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:32 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:07 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

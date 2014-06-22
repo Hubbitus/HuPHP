@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_moysklad.html" class="menu">class tree: moysklad</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_moysklad.html" class="menu">class tree: moysklad</a> ]
 		  [ <a href="../elementindex_moysklad.html" class="menu">index: moysklad</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -245,16 +246,11 @@ Source Location: /_vendors/moysklad.ru/moysklad_element_base.class.php<br /><br 
 <div class="description">Base class for most (all?) elements in moysklad.</div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-          <li>Pavel Alexeev aka Pahan-Hubbitus</li>
-                  </ul>
+        </ul>
 
 
-                
+    
 
-<h4>Copyright:</h4>
-<ul>
-  <li>2010 Pavael Alexeev Aka Pahan-Hubbitus</li>
-</ul>
         
 </td>
 
@@ -386,7 +382,7 @@ Source Location: /_vendors/moysklad.ru/moysklad_element_base.class.php<br /><br 
 </dl>
 <dl>
 <dt><a href="../moysklad/moysklad_messages.html">moysklad_messages</a></dt>
-	<dd>Moysklad element messages.</dd>
+	<dd>moysklad.ru XML class implementation.</dd>
 </dl>
 <dl>
 <dt><a href="../moysklad/moysklad_message.html">moysklad_message</a></dt>
@@ -879,17 +875,11 @@ Source Location: /_vendors/moysklad.ru/moysklad_element_base.class.php<br /><br 
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 25]<br />
+[line 18]<br />
 Base class for most (all?) elements in moysklad.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pavel Alexeev aka Pahan-Hubbitus</td>
-  </tr>
-  <tr>
-    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>2010 Pavael Alexeev Aka Pahan-Hubbitus</td>
-  </tr>
   <tr>
     <td><b>abstract:</b>&nbsp;&nbsp;</td><td></td>
   </tr>
@@ -906,7 +896,7 @@ Base class for most (all?) elements in moysklad.<br /><br /><br /><br />
 	<a name="var$domf_"></a>
 	<p></p>
 	<h4>$domf_ = <span class="value"></span></h4>
-	<p>[line 33]</p>
+	<p>[line 26]</p>
   We need it, because in current DOM implementation nor DOMelement can append childs  ( http://www.sitepoint.com/forums/showthread.php?t=199386 ),  nor even DOMDocumentFragment until both had not produced from DOMDocument (-&gt;createElement or -&gt;createDocumentFragment)<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -938,7 +928,7 @@ Base class for most (all?) elements in moysklad.<br /><br /><br /><br />
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 39]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 33]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -996,7 +986,7 @@ Overrides DOMElement::constructor __construct ( $name, [$value = ], [$uri = ] ) 
   </div>
   <hr />
 	<a name="method__destruct"></a>
-	<h3>destructor __destruct <span class="smalllinenumber">[line 54]</span></h3>
+	<h3>destructor __destruct <span class="smalllinenumber">[line 48]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1023,7 +1013,7 @@ Overrides DOMElement::constructor __construct ( $name, [$value = ], [$uri = ] ) 
   </div>
   <hr />
 	<a name="methodgetName"></a>
-	<h3>method getName <span class="smalllinenumber">[line 37]</span></h3>
+	<h3>method getName <span class="smalllinenumber">[line 31]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1336,7 +1326,7 @@ Overrides DOMElement::constructor __construct ( $name, [$value = ], [$uri = ] ) 
   </div>
   <hr />
 	<a name="methodsaveXML"></a>
-	<h3>method saveXML <span class="smalllinenumber">[line 84]</span></h3>
+	<h3>method saveXML <span class="smalllinenumber">[line 78]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1374,7 +1364,7 @@ $opts = array( 'formatOutput' =&gt; true, 'encoding' =&gt; 'utf-8', 'preserveWhi
   </div>
   <hr />
 	<a name="methodset_xsi_nil"></a>
-	<h3>method set_xsi_nil <span class="smalllinenumber">[line 63]</span></h3>
+	<h3>method set_xsi_nil <span class="smalllinenumber">[line 57]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1401,7 +1391,7 @@ $opts = array( 'formatOutput' =&gt; true, 'encoding' =&gt; 'utf-8', 'preserveWhi
   </div>
   <hr />
 	<a name="method__get"></a>
-	<h3>method __get <span class="smalllinenumber">[line 72]</span></h3>
+	<h3>method __get <span class="smalllinenumber">[line 66]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1434,7 +1424,7 @@ $name)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:00 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:28 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -1,6 +1,6 @@
 <?
 /**
-* Toolkit of small functions as "macroses".
+* Toolkit of small functions aka "macroses".
 *
 * @package Macroses
 * @version 1.0

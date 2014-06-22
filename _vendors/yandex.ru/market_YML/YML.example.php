@@ -3,13 +3,10 @@
 * Yandex-market YML usage example file.
 *
 * @package YML
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
-*
-* @changelog
-*	* 2009-06-30 17:21 ver 1.0
-*	- Initial version.
+* @created 2009-06-30 17:21
 **/
 
 //EXAMPLE:
@@ -70,12 +67,12 @@ $yml->addShop(
 			,'name'		=> 'Радиатор стальной "KERMI"'
 			,'vendorCode'	=> 'FKV220504'
 			,'description'	=> 'ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ:
-# Высота: 500 мм
-# Длина: 400 мм
-# Мощность: 772 Вт
-# Рабочее давление: 8,7 бар
-# Материал: сталь
-# Цвет: белый'
+* Высота: 500 мм
+* Длина: 400 мм
+* Мощность: 772 Вт
+* Рабочее давление: 8,7 бар
+* Материал: сталь
+* Цвет: белый'
 		)
 		,new YML_offer_attributes_vendormodel(
 			array(
@@ -148,12 +145,12 @@ $yml->addOffer(
 //			,'vendorCode'	=> 'FKV220504'
 			,'model'		=> 'FKV220504'
 			,'description'	=> 'ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ:
-# Высота: 500 мм
-# Длина: 400 мм
-# Мощность: 772 Вт
-# Рабочее давление: 8,7 бар
-# Материал: сталь
-# Цвет: белый'
+* Высота: 500 мм
+* Длина: 400 мм
+* Мощность: 772 Вт
+* Рабочее давление: 8,7 бар
+* Материал: сталь
+* Цвет: белый'
 		)
 		,new YML_offer_attributes_vendormodel(
 			array(

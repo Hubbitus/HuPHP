@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_Database.html" class="menu">class tree: Database</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_Database.html" class="menu">class tree: Database</a> ]
 		  [ <a href="../elementindex_Database.html" class="menu">index: Database</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -56,6 +57,8 @@
       	  <div class="package">
 			<a href="../Database/_Database---database.php.html">		database.php
 		</a><br>
+			<a href="../Database/_Database---database_where.php.html">		database_where.php
+		</a><br>
 			<a href="../Database/_Database---mssql_database.php.html">		mssql_database.php
 		</a><br>
 			<a href="../Database/_Database---mysql_database.php.html">		mysql_database.php
@@ -72,13 +75,16 @@
             <b>Classes:</b><br />
         <div class="package">
 	settings<br />	    &nbsp;&nbsp;		<a href="../Database/settings/database.html">database</a><br />
-	    &nbsp;&nbsp;		<a href="../Database/settings/DB_settings.html">DB_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../Database/settings/mssql_database.html">mssql_database</a><br />
-	    &nbsp;&nbsp;		<a href="../Database/settings/mssql_database_settings.html">mssql_database_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../Database/settings/mysql_database.html">mysql_database</a><br />
-	    &nbsp;&nbsp;		<a href="../Database/settings/mysql_database_settings.html">mysql_database_settings</a><br />
 	    &nbsp;&nbsp;		<a href="../Database/settings/sqlite3_database.html">sqlite3_database</a><br />
-	    &nbsp;&nbsp;		<a href="../Database/settings/sqlite3_database_settings.html">sqlite3_database_settings</a><br />
+	  </div>
+  <div class="package">
+		    		<a href="../Database/database_where.html">database_where</a><br />
+	    		<a href="../Database/DB_settings.html">DB_settings</a><br />
+	    		<a href="../Database/mssql_database_settings.html">mssql_database_settings</a><br />
+	    		<a href="../Database/mysql_database_settings.html">mysql_database_settings</a><br />
+	    		<a href="../Database/sqlite3_database_settings.html">sqlite3_database_settings</a><br />
 	  </div>
   <div class="package">
 	DBError<br />	    &nbsp;&nbsp;		<a href="../Database/DBError/DBError.html">DBError</a><br />
@@ -97,10 +103,10 @@ Source Location: /Database/mysql_database.php<br /><br />
 
 <div class="contents">
 <h2>Classes:</h2>
-<dt><a href="../Database/settings/mysql_database_settings.html">mysql_database_settings</a></dt>
-	<dd></dd>
+<dt><a href="../Database/mysql_database_settings.html">mysql_database_settings</a></dt>
+	<dd>Database abstraction layer.</dd>
 <dt><a href="../Database/settings/mysql_database.html">mysql_database</a></dt>
-	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
+	<dd>Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 </div><br /><br />
 
 <h2>Page Details:</h2>
@@ -109,7 +115,7 @@ Database abstraction layer.<br /><br /><p>Driver for MSSQL database server</p><b
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>2.0</td>
@@ -118,8 +124,7 @@ Database abstraction layer.<br /><br /><p>Driver for MSSQL database server</p><b
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td><p>* 2008-05-31 2:00 <ul><li>In method CollectDebugInfo do not create new backtrace, to pass further the argument which was gotten.</li></ul>    //    'bt'    =&gt; new backtrace(null, 2)//Self collectDebugInfo no needed.         'bt' =&gt; new backtrace($d_backtrace)</p><p>* 2009-03-10 07:50 ver 2.0 to 2.0.1 <ul><li>db_connect often called from constructor. So, object is not istantiated to future cal to it getError()
-        Now we provide property DBError in it itself as ref to db-&gt;Error.</li></ul></p></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Database/settings/database.html">database</a></td>
   </tr>
 </table>
 </div>
@@ -135,7 +140,7 @@ Database abstraction layer.<br /><br /><p>Driver for MSSQL database server</p><b
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:28 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:48 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

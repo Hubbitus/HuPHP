@@ -5,12 +5,9 @@
 *
 * @package SPSR
 * @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-*	* 2009-05-25 11:56 ver 1.0
-*	- Initial version.
+* @created 2009-05-25 11:56
 **/
 
 include('autoload.php');

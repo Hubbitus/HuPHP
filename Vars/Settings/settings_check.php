@@ -7,32 +7,10 @@
 * class HuFormat}).
 *
 * @package settings
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0.7
-*
-* @changelog
-*	* 2008-05-30 16:08
-*	- Add compatibility with PHP < 5.3.0. Replace "static::$properties" to "self::$properties"
-*	 in case when it defined and used in one class is it correct.
-*
-*	* 2008-09-22 17:44 ver 1.0.1 to 1.0.2
-*	- Change include_once('settings.php'); to include_once('Settings/settings.php');
-*
-*	* 2009-03-01 14:55 ver 1.0.2 to 1.0.3
-*	- Method checkNamePossible() changed from private to protected (Primarly for Config class)
-*
-*	* 2009-03-06 15:29 ver 1.0.3 to 1.0.4
-*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
-*
-*	* 2009-03-10 04:24 ver 1.0.4 to 1.0.5
-*	- Add method ::addSetting()
-*
-*	* 2009-05-21 22:46 ver 1.0.5 to 1.0.6
-*	* Make $properties non-static! This prevent mesh properies in 2 child of this class.
-*
-*	* 2009-07-02 13:32 ver 1.0.6 to 1.0.7
-*	- Add method ::nesting()
+* @created ?2008-05-30 16:08
 **/
 
 include_once('Exceptions/classes.php');
@@ -43,7 +21,7 @@ include_once('Vars/Settings/settings.php');
 * Slowly, but safely.
 **/
 class settings_check extends settings{
-public $properties = array();
+	public $properties = array();
 
 	/**
 	* Constructor.
@@ -52,7 +30,7 @@ public $properties = array();
 	* @param	array=null	$array Initial values.
 	**/
 	function __construct(array $possibles, array $array = null){
-	$this->properties = $possibles;
+		$this->properties = $possibles;
 		if ($array) $this->mergeSettingsArray($array);
 	}#constructor
 
@@ -61,7 +39,7 @@ public $properties = array();
 	* @inheritdoc
 	**/
 	public function setSetting($name, $value){
-	parent::setSetting($this->checkNamePossible($name, __METHOD__), $value);
+		parent::setSetting($this->checkNamePossible($name, __METHOD__), $value);
 	}#m setSetting
 
 	/**
@@ -69,7 +47,7 @@ public $properties = array();
 	* @inheritdoc
 	**/
 	public function &getProperty($name){
-	return parent::getProperty($this->checkNamePossible($name, __METHOD__));
+		return parent::getProperty($this->checkNamePossible($name, __METHOD__));
 	}#m getProperty
 
 	/**
@@ -80,8 +58,8 @@ public $properties = array();
 	* @return	nothing
 	**/
 	public function addSetting($name, $value){
-	$this->properties[] = $name;
-	parent::setSetting($name, $value);
+		$this->properties[] = $name;
+		parent::setSetting($name, $value);
 	}#m addSetting
 
 	/**
@@ -89,8 +67,8 @@ public $properties = array();
 	* @inheritdoc
 	**/
 	public function setSettingsArray(array $setArr){
-	array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
-	parent::setSettingsArray($setArr);
+		array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
+		parent::setSettingsArray($setArr);
 	}#m setSettingsArray
 
 	/**
@@ -100,7 +78,7 @@ public $properties = array();
 	* @return	boolean
 	**/
 	public function __isset($name) {
-	return parent::__isset($this->checkNamePossible($name, __METHOD__));
+		return parent::__isset($this->checkNamePossible($name, __METHOD__));
 	}#m __isset
 
 	/**
@@ -108,8 +86,8 @@ public $properties = array();
 	* @inheritdoc
 	**/
 	public function mergeSettingsArray(array $setArr){
-	array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
-	parent::mergeSettingsArray($setArr);
+		array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
+		parent::mergeSettingsArray($setArr);
 	}#m mergeSettingsArray
 
 	/**
@@ -123,7 +101,7 @@ public $properties = array();
 	**/
 	protected function checkNamePossible($name, $method, $walkmethod = null){
 		if (!in_array($name, $this->properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist in ' . get_class($this) . '!');
-	return	$name;
+		return	$name;
 	}#m checkNamePossible
 
 	/**
@@ -139,8 +117,8 @@ public $properties = array();
 	* So, method MUST be called explicitly. No any magic here!!!
 	**/
 	public function nesting(){
-	//We can't use here nor operatorr + (union), nor array_merge function. We need ADD elements.
-	array_splice($this->properties, count($this->properties), 1, $this->properties_addon);
+		//We can't use here nor operatorr + (union), nor array_merge function. We need ADD elements.
+		array_splice($this->properties, count($this->properties), 1, $this->properties_addon);
 	}#m nesting
 }#c settings_check
 ?>

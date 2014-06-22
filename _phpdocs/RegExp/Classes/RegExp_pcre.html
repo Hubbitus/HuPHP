@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_RegExp.html" class="menu">class tree: RegExp</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_RegExp.html" class="menu">class tree: RegExp</a> ]
 		  [ <a href="../../elementindex_RegExp.html" class="menu">index: RegExp</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -54,12 +55,18 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../../RegExp/_RegExp---IRegExp.php.html">		IRegExp.php
+		</a><br>
 			<a href="../../RegExp/_RegExp---RegExp_base.php.html">		RegExp_base.php
 		</a><br>
 			<a href="../../RegExp/_RegExp---RegExp_pcre.php.html">		RegExp_pcre.php
 		</a><br>
 	  </div><br />
       
+            <b>Interfaces:</b><br />
+        <div class="package">
+		    		<a href="../../RegExp/IRegExp.html">IRegExp</a><br />
+	  </div>
       
             <b>Classes:</b><br />
         <div class="package">
@@ -322,13 +329,6 @@ Source Location: /RegExp/RegExp_pcre.php<br /><br />
     Return count of matches. If matches not valid - by default do ::doMatchAll() first
   </dd>
     <dt>
-    <a href="../../RegExp/Classes/RegExp_base_base.html#methodquote">RegExp_base_base::quote()</a>
-
-  </dt>
-  <dd>
-    Quote given string or each (recursive) string in array.
-  </dd>
-    <dt>
     <a href="../../RegExp/Classes/RegExp_base_base.html#methodreplace">RegExp_base_base::replace()</a>
 
   </dt>
@@ -392,7 +392,7 @@ Source Location: /RegExp/RegExp_pcre.php<br /><br />
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -425,13 +425,13 @@ Source Location: /RegExp/RegExp_pcre.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 34]<br />
+[line 17]<br />
 <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/Tokenizer.html">Tokenizer</a></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../../Debug/_Debug---Tokenizer.php.html">Tokenizer.php</a></td>
   </tr>
   <tr>
     <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../RegExp/Classes/RegExp_base.html">RegExp_base</a></td>
@@ -449,7 +449,7 @@ Source Location: /RegExp/RegExp_pcre.php<br /><br />
 <div class="tags">
   <hr />
 	<a name="methodquote"></a>
-	<h3>static method quote <span class="smalllinenumber">[line 54]</span></h3>
+	<h3>static method quote <span class="smalllinenumber">[line 30]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -472,7 +472,7 @@ $delimeter = '/'])</code>
 <br /><br />
 
 	
-Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methodquote">RegExp_base_base::quote()</a> (Quote given string or each (recursive) string in array.)<br /><br />
+
 
         <h4>Parameters:</h4>
     <div class="tags">
@@ -494,7 +494,7 @@ Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methodquote">RegEx
 
   <hr />
 	<a name="methodconvertOffsetToChars"></a>
-	<h3>method convertOffsetToChars <span class="smalllinenumber">[line 103]</span></h3>
+	<h3>method convertOffsetToChars <span class="smalllinenumber">[line 72]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -532,7 +532,7 @@ $flags = PREG_OFFSET_CAPTURE])</code>
   </div>
   <hr />
 	<a name="methoddoMatch"></a>
-	<h3>method doMatch <span class="smalllinenumber">[line 65]</span></h3>
+	<h3>method doMatch <span class="smalllinenumber">[line 41]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -576,7 +576,7 @@ Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methoddoMatch">Reg
   </div>
   <hr />
 	<a name="methoddoMatchAll"></a>
-	<h3>method doMatchAll <span class="smalllinenumber">[line 75]</span></h3>
+	<h3>method doMatchAll <span class="smalllinenumber">[line 51]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -620,7 +620,7 @@ Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methoddoMatchAll">
   </div>
   <hr />
 	<a name="methodreplace"></a>
-	<h3>method replace <span class="smalllinenumber">[line 138]</span></h3>
+	<h3>method replace <span class="smalllinenumber">[line 107]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -661,7 +661,7 @@ Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methodreplace">Reg
   </div>
   <hr />
 	<a name="methodsplit"></a>
-	<h3>method split <span class="smalllinenumber">[line 155]</span></h3>
+	<h3>method split <span class="smalllinenumber">[line 124]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -708,7 +708,7 @@ Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methodsplit">RegEx
   </div>
   <hr />
 	<a name="methodtest"></a>
-	<h3>method test <span class="smalllinenumber">[line 47]</span></h3>
+	<h3>method test <span class="smalllinenumber">[line 23]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -743,7 +743,7 @@ Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methodtest">RegExp
 	<a name="constclassName"></a>
 	<p></p>
 	<h4>className = <span class="value">&nbsp;'RegExp_pcre'</span></h4>
-	<p>[line 35]</p>
+	<p>[line 18]</p>
   
 
   <br />
@@ -753,7 +753,7 @@ Overrides <a href="../../RegExp/Classes/RegExp_base_base.html#methodtest">RegExp
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:33 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:52 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

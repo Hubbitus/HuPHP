@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_Filesystem.html" class="menu">class tree: Filesystem</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_Filesystem.html" class="menu">class tree: Filesystem</a> ]
 		  [ <a href="../elementindex_Filesystem.html" class="menu">index: Filesystem</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -86,13 +87,10 @@ Source Location: /Filesystem/file_read.php<br /><br />
 <pre><a href="../Filesystem/file_base.html">file_base</a>
    |
    --file_read</pre><br />
-<div class="description"></div><br /><br />
-<h4>Author(s):</h4>
-<ul>
-                          </ul>
+<div class="description">Base class for most file-related operations.</div><br /><br />
 
 
-                
+
 
         
 </td>
@@ -261,26 +259,8 @@ Source Location: /Filesystem/file_read.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 28]<br />
-<br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Vars/VariableStream.html">VariableStream</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/VariableRequiredException.html">VariableRequiredException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Macroses/_macroses---REQUIRED_VAR.php.html#functionREQUIRED_VAR">REQUIRED_VAR()</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/file_base.html">file_base</a></td>
-  </tr>
-</table>
-</div>
-
+[line 19]<br />
+Base class for most file-related operations.<br /><br />
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
 
@@ -291,7 +271,7 @@ Source Location: /Filesystem/file_read.php<br /><br />
 	<a name="var$_line_no"></a>
 	<p></p>
 	<h4>$_line_no = <span class="value">&nbsp;0</span></h4>
-	<p>[line 31]</p>
+	<p>[line 22]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -323,7 +303,7 @@ Source Location: /Filesystem/file_read.php<br /><br />
 
   <hr />
 	<a name="methodgetline"></a>
-	<h3>method getline <span class="smalllinenumber">[line 97]</span></h3>
+	<h3>method getline <span class="smalllinenumber">[line 88]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -367,7 +347,7 @@ $length.)</code>
   </div>
   <hr />
 	<a name="methodgetTail"></a>
-	<h3>method getTail <span class="smalllinenumber">[line 123]</span></h3>
+	<h3>method getTail <span class="smalllinenumber">[line 114]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -411,7 +391,7 @@ $offset = 0])</code>
   </div>
   <hr />
 	<a name="methodlineNo"></a>
-	<h3>method lineNo <span class="smalllinenumber">[line 110]</span></h3>
+	<h3>method lineNo <span class="smalllinenumber">[line 101]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -429,7 +409,7 @@ $offset = 0])</code>
   </div>
   <hr />
 	<a name="methodopen"></a>
-	<h3>method open <span class="smalllinenumber">[line 76]</span></h3>
+	<h3>method open <span class="smalllinenumber">[line 67]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -485,7 +465,7 @@ $mode.)</code>
   </div>
   <hr />
 	<a name="methodwriteContent"></a>
-	<h3>method writeContent <span class="smalllinenumber">[line 43]</span></h3>
+	<h3>method writeContent <span class="smalllinenumber">[line 34]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -536,7 +516,7 @@ Overrides <a href="../Filesystem/file_base.html#methodwriteContent">file_base::w
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:33 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:08 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

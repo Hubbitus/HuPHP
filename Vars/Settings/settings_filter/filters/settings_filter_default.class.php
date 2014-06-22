@@ -7,15 +7,11 @@
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2011, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
-* @created 2011-03-22
-*
-* @changelog
-*	* 2011-03-22 16:24 ver 1.0
-*	- Initial version.
+* @created 2011-03-22 16:24
 **/
 
 /**
-* Default get - filter. If not value (empty of calback) returns default..
+* Default get - filter. If not value (empty of calback) returns default.
 **/
 class settings_filter_default extends settings_filter_base{
 private $default;

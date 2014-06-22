@@ -5,22 +5,9 @@
 * @package Vars
 * @subpackage Settings
 * @version 0.4
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @changelog
-*	* 2009-03-01 22:12 ver 0.1
-*	- Initial version
-*
-*	* 2009-03-06 15:29 ver 0.1 to 0.2
-*	- Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');
-*
-*	* 2009-03-09 05:31 ver 0.2 to 0.3
-*	- Add optional parameter $className to CONF() function!
-*	- @subpackage changed to Settings
-*
-*	* 2009-03-10 04:59 ver 0.3 to 0.4
-*	- Add try to autoinclude config: 'includes/configs/' . $name . '.config.php' if it is untill not present in $GLOBALS['__CONFIG']
+* @created 2009-03-01 22:12
 **/
 
 //It used for __autoload, so, we must directly provide dependencies here
@@ -35,9 +22,10 @@ include_once('macroses/REQUIRED_VAR.php');
 * @example Single::def('HuConfig')->config_value
 **/
 class HuConfig extends settings_check{
-private $_include_tryed = array();
+	private $_include_tryed = array();
+
 	function __construct() {
-	parent::__construct(array_keys($GLOBALS['__CONFIG']), $GLOBALS['__CONFIG']);
+		parent::__construct(array_keys($GLOBALS['__CONFIG']), $GLOBALS['__CONFIG']);
 	}#__c
 
 	/**
@@ -50,7 +38,7 @@ private $_include_tryed = array();
 	* @return &mixed
 	**/
 	public function &getRaw($varname, $nothrow = false){
-	return $this->getProperty($varname, $nothrow);
+		return $this->getProperty($varname, $nothrow);
 	}#m getRaw
 
 	/**
@@ -61,10 +49,11 @@ private $_include_tryed = array();
 	* @return &Object(HuArray)
 	**/
 	public function &__get($varname){
-	$ret =& $this->getProperty($varname);
+		$ret =& $this->getProperty($varname);
+
 		if (is_array($ret)){
-		$ret = new HuArray($ret); //Replace original on the fly
-		return $ret;
+			$ret = new HuArray($ret); //Replace original on the fly
+			return $ret;
 		}
 		else return $ret;
 	}#m __get
@@ -77,27 +66,28 @@ private $_include_tryed = array();
 	**/
 	public function &getProperty($name, $nothrow = false){
 		try{
-		return $this->__SETS[$this->checkNamePossible(REQUIRED_NOT_NULL($name), __METHOD__)];
+			return $this->__SETS[$this->checkNamePossible(REQUIRED_NOT_NULL($name), __METHOD__)];
 		}
 		catch(ClassPropertyNotExistsException $cpne){
 			//Try include appropriate file:
 			if (!in_array($name, $this->_include_tryed)){
-			$this->_include_tryed[] = $name; //In any case to do not check again next time
-			$path = 'includes/configs/' . $name . '.config.php';
+				$this->_include_tryed[] = $name; //In any case to do not check again next time
+				$path = 'includes/configs/' . $name . '.config.php';
 				if(OS::is_includeable($path)){
-				include($path);
+					include($path);
 				}
 				if(m()->is_set($name, $GLOBALS['__CONFIG'])){//New key
-				$this->addSetting($name, $GLOBALS['__CONFIG'][$name]);
+					$this->addSetting($name, $GLOBALS['__CONFIG'][$name]);
 				}
-			return $this->__SETS[$name];
+				return $this->__SETS[$name];
 			}
+
 			//Silent if required.
 			if (!$nothrow) throw $cpne; //If include and fine failed throw outside;
 			else{
-			// Avoid: Notice: Only variable references should be returned by reference in /var/www/_SHARED_/Vars/HuConfig.class.php on line 101
-			$t = null;
-			return $t;
+				// Avoid: Notice: Only variable references should be returned by reference in /var/www/_SHARED_/Vars/HuConfig.class.php on line 101
+				$t = null;
+				return $t;
 			}
 		}
 	}#m getProperty

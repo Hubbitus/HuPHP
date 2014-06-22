@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_Exceptions.html" class="menu">class tree: Exceptions</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_Exceptions.html" class="menu">class tree: Exceptions</a> ]
 		  [ <a href="../elementindex_Exceptions.html" class="menu">index: Exceptions</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -87,8 +88,6 @@
 	    		<a href="../Exceptions/FileNotExistsException.html">FileNotExistsException</a><br />
 	    		<a href="../Exceptions/FileNotReadableException.html">FileNotReadableException</a><br />
 	    		<a href="../Exceptions/FilesystemException.html">FilesystemException</a><br />
-	    		<a href="../Exceptions/ImageException.html">ImageException</a><br />
-	    		<a href="../Exceptions/ImageUploadException.html">ImageUploadException</a><br />
 	    		<a href="../Exceptions/MSG_AuthErrorException.html">MSG_AuthErrorException</a><br />
 	    		<a href="../Exceptions/MSG_InParseErrorException.html">MSG_InParseErrorException</a><br />
 	    		<a href="../Exceptions/MSG_partnerAPIException.html">MSG_partnerAPIException</a><br />
@@ -125,7 +124,7 @@ Source Location: /Exceptions/variables.php<br /><br />
 <div class="contents">
 <h2>Classes:</h2>
 <dt><a href="../Exceptions/VariableException.html">VariableException</a></dt>
-	<dd></dd>
+	<dd>VariablesExceptions</dd>
 <dt><a href="../Exceptions/VariableRequiredException.html">VariableRequiredException</a></dt>
 	<dd></dd>
 <dt><a href="../Exceptions/VariableEmptyException.html">VariableEmptyException</a></dt>
@@ -133,15 +132,15 @@ Source Location: /Exceptions/variables.php<br /><br />
 <dt><a href="../Exceptions/VariableIsNullException.html">VariableIsNullException</a></dt>
 	<dd></dd>
 <dt><a href="../Exceptions/VariableRangeException.html">VariableRangeException</a></dt>
-	<dd></dd>
+	<dd>VariablesExceptions</dd>
 <dt><a href="../Exceptions/VariableRangeGTException.html">VariableRangeGTException</a></dt>
 	<dd>Greater than</dd>
 <dt><a href="../Exceptions/VariableRangeLTException.html">VariableRangeLTException</a></dt>
 	<dd>Less than</dd>
 <dt><a href="../Exceptions/VariableArrayInconsistentException.html">VariableArrayInconsistentException</a></dt>
-	<dd></dd>
+	<dd>VariablesExceptions</dd>
 <dt><a href="../Exceptions/VariableReadOnlyException.html">VariableReadOnlyException</a></dt>
-	<dd></dd>
+	<dd>VariablesExceptions</dd>
 </div><br /><br />
 
 <h2>Page Details:</h2>
@@ -150,7 +149,7 @@ VariablesExceptions<br /><br /><br /><br />
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>2.1</td>
@@ -159,9 +158,13 @@ VariablesExceptions<br /><br /><br /><br />
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2008-05-29 17:51 ver 2.0b to 2.1 <ul><li>Fully rewritten and now contructor of VariableRequiredException takes 1st argument backtrace nor Tokenizer!</li><li>Added methods VariableRequiredException: ::varName and ::getTokenizer</li></ul>     * 2008-05-30 23:19 <ul><li>Move include of Debug/backtrace.php after declaration class VariableRequiredException to
-        break cycle of includes</li></ul>     * 2009-03-08 11:27 ver 2.1 to 2.2 <ul><li>In varName method, $this-&gt;bt-&gt;current() replaced by direct $this-&gt;bt-&gt;getNode(0).
-        In case of object used before (f.e. printout() or any else) 0 element may be not current!!</li></ul></td>
+    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../Debug/HuFormat/_Debug---HuFormat.php.html">HuFormat.php</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Debug/Bactrace/backtrace.html">backtrace</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/BaseException.html">BaseException</a></td>
   </tr>
 </table>
 </div>
@@ -177,7 +180,7 @@ VariablesExceptions<br /><br /><br /><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:43 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:14:01 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_moysklad.html" class="menu">class tree: moysklad</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_moysklad.html" class="menu">class tree: moysklad</a> ]
 		  [ <a href="../elementindex_moysklad.html" class="menu">index: moysklad</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -338,7 +339,7 @@ Source Location: /_vendors/moysklad.ru/moysklad.class.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 34]<br />
+[line 32]<br />
 Main moysklad XML class implementation.<br /><br /><p>WARNING: It is very small part implemented. Only vast majority to goods exchange.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -365,49 +366,49 @@ Main moysklad XML class implementation.<br /><br /><p>WARNING: It is very small 
 	<a name="var$root_elements"></a>
 	<p></p>
 	<h4>$root_elements = <span class="value">array(<br>
-&nbsp;&nbsp;&nbsp;'workflow'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'shareModes'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'scripts'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'messages'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'customEntityMetadata'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'embeddedEntityMetadata'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'entityTemplatesMetadata'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'reportTemplatesMetadata'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'customEntity'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;#&nbsp;Empty<br>
-&nbsp;&nbsp;&nbsp;,'reason'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
-&nbsp;&nbsp;&nbsp;,'currencies'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;#&nbsp;Empty<br>
-&nbsp;&nbsp;&nbsp;,'country'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;#&nbsp;Empty<br>
-&nbsp;&nbsp;&nbsp;,'gtd'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;#&nbsp;Empty<br>
-&nbsp;&nbsp;&nbsp;,'uoms'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
-&nbsp;&nbsp;&nbsp;,'goodFolders'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
-&nbsp;&nbsp;&nbsp;,'goods'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
-&nbsp;&nbsp;&nbsp;,'service'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;#&nbsp;Empty<br>
-&nbsp;&nbsp;&nbsp;,'things'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;#&nbsp;Empty<br>
-&nbsp;&nbsp;&nbsp;,'myCompany'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;#&nbsp;Empty<br>
-&nbsp;&nbsp;&nbsp;,'agents'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
-&nbsp;&nbsp;&nbsp;,'companies'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
-&nbsp;&nbsp;&nbsp;,'persons'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
-&nbsp;&nbsp;&nbsp;,'places'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'warehouses'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
-&nbsp;&nbsp;&nbsp;,'project'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;#&nbsp;Empty<br>
-&nbsp;&nbsp;&nbsp;,'contract'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;#&nbsp;Empty<br>
-&nbsp;&nbsp;&nbsp;,'processingPlans'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
-&nbsp;&nbsp;&nbsp;,'consignments'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
-&nbsp;&nbsp;&nbsp;,'priceLists'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'deliveries-demand'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'deliveries-supply'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'inventories'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'moves'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'losses'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'enters'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'invoicesIn'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'invoicesOut'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'processings'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'customerOrders'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'purchaseOrders'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-&nbsp;&nbsp;&nbsp;,'connectors'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
-)</span></h4>
-	<p>[line 45]</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'workflow'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'shareModes'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'scripts'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'messages'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'customEntityMetadata'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'embeddedEntityMetadata'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'entityTemplatesMetadata'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'reportTemplatesMetadata'&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'customEntity'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;//&nbsp;Empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'reason'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'currencies'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;//&nbsp;Empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'country'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;//&nbsp;Empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'gtd'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;//&nbsp;Empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'uoms'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'goodFolders'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'goods'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'service'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;//&nbsp;Empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'things'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;//&nbsp;Empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'myCompany'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;//&nbsp;Empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'agents'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'companies'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'persons'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'places'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'warehouses'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'project'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;//&nbsp;Empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'contract'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''&nbsp;&nbsp;&nbsp;//&nbsp;Empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'processingPlans'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'consignments'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'priceLists'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'deliveries-demand'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'deliveries-supply'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'inventories'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'moves'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'losses'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'enters'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'invoicesIn'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'invoicesOut'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'processings'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'customerOrders'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'purchaseOrders'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'connectors'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;)</span></h4>
+	<p>[line 43]</p>
   If explicit null element converted at start in something like:<br /><br /><p>&lt;workflow xsi:nil=&quot;true&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;/&gt;</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -439,7 +440,7 @@ Main moysklad XML class implementation.<br /><br /><p>WARNING: It is very small 
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 89]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 87]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -466,7 +467,7 @@ Main moysklad XML class implementation.<br /><br /><p>WARNING: It is very small 
   </div>
   <hr />
 	<a name="methodadd_agent"></a>
-	<h3>method add_agent <span class="smalllinenumber">[line 350]</span></h3>
+	<h3>method add_agent <span class="smalllinenumber">[line 343]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -504,7 +505,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_company"></a>
-	<h3>method add_company <span class="smalllinenumber">[line 361]</span></h3>
+	<h3>method add_company <span class="smalllinenumber">[line 354]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -542,7 +543,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_connector"></a>
-	<h3>method add_connector <span class="smalllinenumber">[line 581]</span></h3>
+	<h3>method add_connector <span class="smalllinenumber">[line 574]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -580,7 +581,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_consignment"></a>
-	<h3>method add_consignment <span class="smalllinenumber">[line 438]</span></h3>
+	<h3>method add_consignment <span class="smalllinenumber">[line 431]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -618,7 +619,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_contract"></a>
-	<h3>method add_contract <span class="smalllinenumber">[line 416]</span></h3>
+	<h3>method add_contract <span class="smalllinenumber">[line 409]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -656,7 +657,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_country"></a>
-	<h3>method add_country <span class="smalllinenumber">[line 262]</span></h3>
+	<h3>method add_country <span class="smalllinenumber">[line 255]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -694,7 +695,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_currency"></a>
-	<h3>method add_currency <span class="smalllinenumber">[line 251]</span></h3>
+	<h3>method add_currency <span class="smalllinenumber">[line 244]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -732,7 +733,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_customEntity"></a>
-	<h3>method add_customEntity <span class="smalllinenumber">[line 218]</span></h3>
+	<h3>method add_customEntity <span class="smalllinenumber">[line 211]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -770,7 +771,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_customEntityMetadata"></a>
-	<h3>method add_customEntityMetadata <span class="smalllinenumber">[line 171]</span></h3>
+	<h3>method add_customEntityMetadata <span class="smalllinenumber">[line 164]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -808,7 +809,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_customerOrder"></a>
-	<h3>method add_customerOrder <span class="smalllinenumber">[line 559]</span></h3>
+	<h3>method add_customerOrder <span class="smalllinenumber">[line 552]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -846,7 +847,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_demand"></a>
-	<h3>method add_demand <span class="smalllinenumber">[line 460]</span></h3>
+	<h3>method add_demand <span class="smalllinenumber">[line 453]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -884,7 +885,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_embeddedEntityMetadata"></a>
-	<h3>method add_embeddedEntityMetadata <span class="smalllinenumber">[line 182]</span></h3>
+	<h3>method add_embeddedEntityMetadata <span class="smalllinenumber">[line 175]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -922,7 +923,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_enter"></a>
-	<h3>method add_enter <span class="smalllinenumber">[line 515]</span></h3>
+	<h3>method add_enter <span class="smalllinenumber">[line 508]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -960,7 +961,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_enterReason"></a>
-	<h3>method add_enterReason <span class="smalllinenumber">[line 240]</span></h3>
+	<h3>method add_enterReason <span class="smalllinenumber">[line 233]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -998,7 +999,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_entityTemplatesMetadata"></a>
-	<h3>method add_entityTemplatesMetadata <span class="smalllinenumber">[line 194]</span></h3>
+	<h3>method add_entityTemplatesMetadata <span class="smalllinenumber">[line 187]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1036,7 +1037,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_good"></a>
-	<h3>method add_good <span class="smalllinenumber">[line 306]</span></h3>
+	<h3>method add_good <span class="smalllinenumber">[line 299]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1074,7 +1075,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_goodFolder"></a>
-	<h3>method add_goodFolder <span class="smalllinenumber">[line 295]</span></h3>
+	<h3>method add_goodFolder <span class="smalllinenumber">[line 288]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1112,7 +1113,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_gtd"></a>
-	<h3>method add_gtd <span class="smalllinenumber">[line 273]</span></h3>
+	<h3>method add_gtd <span class="smalllinenumber">[line 266]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1150,7 +1151,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_inventory"></a>
-	<h3>method add_inventory <span class="smalllinenumber">[line 482]</span></h3>
+	<h3>method add_inventory <span class="smalllinenumber">[line 475]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1188,7 +1189,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_invoiceIn"></a>
-	<h3>method add_invoiceIn <span class="smalllinenumber">[line 526]</span></h3>
+	<h3>method add_invoiceIn <span class="smalllinenumber">[line 519]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1226,7 +1227,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_invoicesOut"></a>
-	<h3>method add_invoicesOut <span class="smalllinenumber">[line 537]</span></h3>
+	<h3>method add_invoicesOut <span class="smalllinenumber">[line 530]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1264,7 +1265,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_loss"></a>
-	<h3>method add_loss <span class="smalllinenumber">[line 504]</span></h3>
+	<h3>method add_loss <span class="smalllinenumber">[line 497]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1302,7 +1303,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_lossReason"></a>
-	<h3>method add_lossReason <span class="smalllinenumber">[line 229]</span></h3>
+	<h3>method add_lossReason <span class="smalllinenumber">[line 222]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1340,7 +1341,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_message"></a>
-	<h3>method add_message <span class="smalllinenumber">[line 160]</span></h3>
+	<h3>method add_message <span class="smalllinenumber">[line 153]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1378,7 +1379,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_move"></a>
-	<h3>method add_move <span class="smalllinenumber">[line 493]</span></h3>
+	<h3>method add_move <span class="smalllinenumber">[line 486]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1416,7 +1417,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_myCompany"></a>
-	<h3>method add_myCompany <span class="smalllinenumber">[line 339]</span></h3>
+	<h3>method add_myCompany <span class="smalllinenumber">[line 332]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1454,7 +1455,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_person"></a>
-	<h3>method add_person <span class="smalllinenumber">[line 372]</span></h3>
+	<h3>method add_person <span class="smalllinenumber">[line 365]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1492,7 +1493,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_place"></a>
-	<h3>method add_place <span class="smalllinenumber">[line 383]</span></h3>
+	<h3>method add_place <span class="smalllinenumber">[line 376]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1530,7 +1531,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_priceList"></a>
-	<h3>method add_priceList <span class="smalllinenumber">[line 449]</span></h3>
+	<h3>method add_priceList <span class="smalllinenumber">[line 442]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1568,7 +1569,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_processing"></a>
-	<h3>method add_processing <span class="smalllinenumber">[line 548]</span></h3>
+	<h3>method add_processing <span class="smalllinenumber">[line 541]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1606,7 +1607,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_processingPlan"></a>
-	<h3>method add_processingPlan <span class="smalllinenumber">[line 427]</span></h3>
+	<h3>method add_processingPlan <span class="smalllinenumber">[line 420]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1644,7 +1645,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_project"></a>
-	<h3>method add_project <span class="smalllinenumber">[line 405]</span></h3>
+	<h3>method add_project <span class="smalllinenumber">[line 398]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1682,7 +1683,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_purchaseOrder"></a>
-	<h3>method add_purchaseOrder <span class="smalllinenumber">[line 570]</span></h3>
+	<h3>method add_purchaseOrder <span class="smalllinenumber">[line 563]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1720,7 +1721,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_reportTemplatesMetadata"></a>
-	<h3>method add_reportTemplatesMetadata <span class="smalllinenumber">[line 206]</span></h3>
+	<h3>method add_reportTemplatesMetadata <span class="smalllinenumber">[line 199]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1758,7 +1759,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_script"></a>
-	<h3>method add_script <span class="smalllinenumber">[line 149]</span></h3>
+	<h3>method add_script <span class="smalllinenumber">[line 142]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1796,7 +1797,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_service"></a>
-	<h3>method add_service <span class="smalllinenumber">[line 317]</span></h3>
+	<h3>method add_service <span class="smalllinenumber">[line 310]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1834,7 +1835,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_shareMode"></a>
-	<h3>method add_shareMode <span class="smalllinenumber">[line 138]</span></h3>
+	<h3>method add_shareMode <span class="smalllinenumber">[line 131]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1872,7 +1873,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_supply"></a>
-	<h3>method add_supply <span class="smalllinenumber">[line 471]</span></h3>
+	<h3>method add_supply <span class="smalllinenumber">[line 464]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1910,7 +1911,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_thing"></a>
-	<h3>method add_thing <span class="smalllinenumber">[line 328]</span></h3>
+	<h3>method add_thing <span class="smalllinenumber">[line 321]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1948,7 +1949,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_uom"></a>
-	<h3>method add_uom <span class="smalllinenumber">[line 284]</span></h3>
+	<h3>method add_uom <span class="smalllinenumber">[line 277]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1986,7 +1987,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_warehouse"></a>
-	<h3>method add_warehouse <span class="smalllinenumber">[line 394]</span></h3>
+	<h3>method add_warehouse <span class="smalllinenumber">[line 387]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2024,7 +2025,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodadd_workflow"></a>
-	<h3>method add_workflow <span class="smalllinenumber">[line 127]</span></h3>
+	<h3>method add_workflow <span class="smalllinenumber">[line 120]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2062,7 +2063,7 @@ $item)</code>
   </div>
   <hr />
 	<a name="methodsaveXML"></a>
-	<h3>method saveXML <span class="smalllinenumber">[line 606]</span></h3>
+	<h3>method saveXML <span class="smalllinenumber">[line 599]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2103,7 +2104,7 @@ $opts = array( 'formatOutput' =&gt; true )])</code>
   </div>
   <hr />
 	<a name="methodschemaValidate"></a>
-	<h3>method schemaValidate <span class="smalllinenumber">[line 591]</span></h3>
+	<h3>method schemaValidate <span class="smalllinenumber">[line 584]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2138,7 +2139,7 @@ $opts = array( 'formatOutput' =&gt; true )])</code>
 	<a name="constXML_SCHEMA"></a>
 	<p></p>
 	<h4>XML_SCHEMA = <span class="value">&nbsp;'http://www.moysklad.ru/schema/exchange-1.2.0.xsd'</span></h4>
-	<p>[line 35]</p>
+	<p>[line 33]</p>
   
 
   <br />
@@ -2148,7 +2149,7 @@ $opts = array( 'formatOutput' =&gt; true )])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:48 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:19 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -9,34 +9,24 @@
 * @copyright Copyright (c) 2010, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
 * @example moysklad.example.php
-*
-* @changelog
-*	* 2010-04-01 01:15 ver 1.0
-*	- Initial version.
+* @created 2010-04-01 01:15
 **/
 
 /**
 * Moysklad element customerOrders.
-*
-* @author Pavel Alexeev aka Pahan-Hubbitus
-* @created 2010-04-01 01:15 ver 1.0
-* @copyright 2010 Pavael Alexeev Aka Pahan-Hubbitus
 **/
 class moysklad_customerOrders extends moysklad_element_base{
 	function getName(){
-	return 'customerOrders';
+		return 'customerOrders';
 	}#m getName
 }#c moysklad_customerOrders
 
 /**
 * Moysklad element script.
-*
-* @author Pavel Alexeev aka Pahan-Hubbitus
-* @created 2010-04-01 16:47 ver 1.0
-* @copyright 2010 Pavael Alexeev aka Pahan-Hubbitus
 **/
 class moysklad_customerOrder extends moysklad_element_base {
 	function getName() {
-	return 'customerOrder';
+		return 'customerOrder';
 	}#m getName
 }#c moysklad_customerOrder
+?>

@@ -9,34 +9,21 @@
 * @copyright Copyright (c) 2010, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
 * @example moysklad.example.php
-*
-* @changelog
-*	* 2010-04-01 01:15 ver 1.0
-*	- Initial version.
+* @created 2010-04-01 01:15
 **/
 
-/**
-* Moysklad element messages.
-*
-* @author Pavel Alexeev aka Pahan-Hubbitus
-* @created 2010-04-01 01:15 ver 1.0
-* @copyright 2010 Pavael Alexeev Aka Pahan-Hubbitus
-**/
 class moysklad_messages extends moysklad_element_base{
 	function getName(){
-	return 'messages';
+		return 'messages';
 	}#m getName
 }#c moysklad_messages
 
 /**
 * Moysklad element script.
-*
-* @author Pavel Alexeev aka Pahan-Hubbitus
-* @created 2010-04-01 16:47 ver 1.0
-* @copyright 2010 Pavael Alexeev aka Pahan-Hubbitus
 **/
 class moysklad_message extends moysklad_element_base {
 	function getName() {
 		return 'message';
 	}#m getName
 }#c moysklad_message
+?>

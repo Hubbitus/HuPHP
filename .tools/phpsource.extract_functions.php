@@ -27,8 +27,7 @@ $_skip_functions = array(
 	,'file_get_contents'	// In template old backward capability.
 );
 
-###############################################################################################
-
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	* @internal
@@ -66,7 +65,7 @@ foreach ($tokens as $token){
 //	}
 
 	if (is_string($token)){// simple 1-character token
-		if ( '{' == $token ){ #All in code
+		if ( '{' == $token ){ //All in code
 			if ($class_started){
 			++$curly_open;
 			continue;
@@ -94,7 +93,7 @@ foreach ($tokens as $token){
 		break;
 
 		case T_CLASS:
-		case T_INTERFACE: #Do not distinguish for our purpose
+		case T_INTERFACE: //Do not distinguish for our purpose
 		$class_started = true;
 		break;
 

@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_RegExp.html" class="menu">class tree: RegExp</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_RegExp.html" class="menu">class tree: RegExp</a> ]
 		  [ <a href="../../elementindex_RegExp.html" class="menu">index: RegExp</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -54,12 +55,18 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../../RegExp/_RegExp---IRegExp.php.html">		IRegExp.php
+		</a><br>
 			<a href="../../RegExp/_RegExp---RegExp_base.php.html">		RegExp_base.php
 		</a><br>
 			<a href="../../RegExp/_RegExp---RegExp_pcre.php.html">		RegExp_pcre.php
 		</a><br>
 	  </div><br />
       
+            <b>Interfaces:</b><br />
+        <div class="package">
+		    		<a href="../../RegExp/IRegExp.html">IRegExp</a><br />
+	  </div>
       
             <b>Classes:</b><br />
         <div class="package">
@@ -87,11 +94,16 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 <div class="description"></div><br /><br />
 <h4>Author(s):</h4>
 <ul>
-                                </ul>
+        </ul>
 
 
-                    
+    
 
+                <p class="implements">
+            Implements interfaces:
+            <ul>
+                <li><a href="../../RegExp/IRegExp.html">IRegExp</a></li>            </ul>
+        </p>
         
 </td>
 
@@ -133,7 +145,6 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
     <li><a href="../../RegExp/Classes/RegExp_base_base.html#methodgetText">getText</a></li>
     <li><a href="../../RegExp/Classes/RegExp_base_base.html#methodmatch">match</a></li>
     <li><a href="../../RegExp/Classes/RegExp_base_base.html#methodmatchCount">matchCount</a></li>
-    <li><a href="../../RegExp/Classes/RegExp_base_base.html#methodquote">quote</a></li>
     <li><a href="../../RegExp/Classes/RegExp_base_base.html#methodreplace">replace</a></li>
     <li><a href="../../RegExp/Classes/RegExp_base_base.html#methodset">set</a></li>
     <li><a href="../../RegExp/Classes/RegExp_base_base.html#methodsetRegExp">setRegExp</a></li>
@@ -174,7 +185,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -207,25 +218,13 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 48]<br />
+[line 21]<br />
 <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><b>abstract:</b>&nbsp;&nbsp;</td><td></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/VariableIsNullException.html">VariableIsNullException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---REQUIRED_NOT_NULL.php.html#functionREQUIRED_NOT_NULL">REQUIRED_NOT_NULL()</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Vars/Classes/HuClass.html">HuClass</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Vars/settings/HuArray.html">HuArray</a></td>
   </tr>
 </table>
 </div>
@@ -240,7 +239,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 	<a name="var$matchCount"></a>
 	<p></p>
 	<h4>$matchCount = <span class="value"></span></h4>
-	<p>[line 55]</p>
+	<p>[line 28]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -265,7 +264,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 	<a name="var$matches"></a>
 	<p></p>
 	<h4>$matches = <span class="value"></span></h4>
-	<p>[line 56]</p>
+	<p>[line 29]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -290,7 +289,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 	<a name="var$matchesValid"></a>
 	<p></p>
 	<h4>$matchesValid = <span class="value">&nbsp;false</span></h4>
-	<p>[line 57]</p>
+	<p>[line 30]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -315,12 +314,12 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 	<a name="var$paireddelimeters"></a>
 	<p></p>
 	<h4>$paireddelimeters = <span class="value">array(<br>
-&nbsp;&nbsp;&nbsp;'{'&nbsp;=&gt;&nbsp;'}',<br>
-&nbsp;&nbsp;&nbsp;'&lt;'&nbsp;=&gt;&nbsp;'&gt;',<br>
-&nbsp;&nbsp;&nbsp;'('&nbsp;=&gt;&nbsp;')',<br>
-&nbsp;&nbsp;&nbsp;'['&nbsp;=&gt;&nbsp;']',<br>
-)</span></h4>
-	<p>[line 64]</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'{'&nbsp;=&gt;&nbsp;'}',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&lt;'&nbsp;=&gt;&nbsp;'&gt;',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'('&nbsp;=&gt;&nbsp;')',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'['&nbsp;=&gt;&nbsp;']',<br>
+&nbsp;&nbsp;&nbsp;)</span></h4>
+	<p>[line 37]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -345,7 +344,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 	<a name="var$RegExp"></a>
 	<p></p>
 	<h4>$RegExp = <span class="value"></span></h4>
-	<p>[line 53]</p>
+	<p>[line 26]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -370,7 +369,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 	<a name="var$replaceRes"></a>
 	<p></p>
 	<h4>$replaceRes = <span class="value"></span></h4>
-	<p>[line 60]</p>
+	<p>[line 33]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -395,7 +394,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 	<a name="var$replaceTo"></a>
 	<p></p>
 	<h4>$replaceTo = <span class="value"></span></h4>
-	<p>[line 59]</p>
+	<p>[line 32]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -420,7 +419,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 	<a name="var$replaceValid"></a>
 	<p></p>
 	<h4>$replaceValid = <span class="value"></span></h4>
-	<p>[line 61]</p>
+	<p>[line 34]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -445,7 +444,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 	<a name="var$sourceText"></a>
 	<p></p>
 	<h4>$sourceText = <span class="value"></span></h4>
-	<p>[line 52]</p>
+	<p>[line 25]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -474,72 +473,10 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 <a name="class_methods"></a>
 <h3>Class Methods</h3>
 <div class="tags">
-  <hr />
-	<a name="methodquote"></a>
-	<h3>static method quote <span class="smalllinenumber">[line 292]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>static string|array quote(
-string|array
-$toQuote, [
-$delimeter = '/'], string='/'
-$delimiter.)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Quote given string or each (recursive) string in array.<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>Same type as given.</td>
-  </tr>
-  <tr>
-    <td><b>abstract:</b>&nbsp;&nbsp;</td><td></td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	<p>Overridden in child classes as:<br />
-		<dl>
-	<dt><a href="../../RegExp/Classes/RegExp_pcre.html#methodquote">RegExp_pcre::quote()</a></dt>
-		<dd></dd>
-	</dl>
-	</p>
-	
-
-
-        <h4>Parameters:</h4>
-    <div class="tags">
-    <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-        <td class="type">string|array&nbsp;&nbsp;</td>
-        <td><b>$toQuote</b>&nbsp;&nbsp;</td>
-        <td></td>
-      </tr>
-          <tr>
-        <td class="type">string='/'&nbsp;&nbsp;</td>
-        <td><b>$delimiter.</b>&nbsp;&nbsp;</td>
-        <td>Chars to addition escape. Usaly (and default) char start and end of regexp.</td>
-      </tr>
-          <tr>
-        <td class="type">&nbsp;&nbsp;</td>
-        <td><b>$delimeter</b>&nbsp;&nbsp;</td>
-        <td></td>
-      </tr>
-        </table>
-    </div><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 86]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 59]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -589,7 +526,7 @@ $replaceTo = null])</code>
   </div>
   <hr />
 	<a name="methoddoMatch"></a>
-	<h3>method doMatch <span class="smalllinenumber">[line 209]</span></h3>
+	<h3>method doMatch <span class="smalllinenumber">[line 182]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -642,7 +579,7 @@ $offset = null])</code>
   </div>
   <hr />
 	<a name="methoddoMatchAll"></a>
-	<h3>method doMatchAll <span class="smalllinenumber">[line 216]</span></h3>
+	<h3>method doMatchAll <span class="smalllinenumber">[line 189]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -695,7 +632,7 @@ $offset = null])</code>
   </div>
   <hr />
 	<a name="methodgetHuMatches"></a>
-	<h3>method getHuMatches <span class="smalllinenumber">[line 311]</span></h3>
+	<h3>method getHuMatches <span class="smalllinenumber">[line 276]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -736,7 +673,7 @@ $n = null])</code>
   </div>
   <hr />
 	<a name="methodgetMatches"></a>
-	<h3>method getMatches <span class="smalllinenumber">[line 300]</span></h3>
+	<h3>method getMatches <span class="smalllinenumber">[line 265]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -777,7 +714,7 @@ $n = null])</code>
   </div>
   <hr />
 	<a name="methodgetRegExp"></a>
-	<h3>method getRegExp <span class="smalllinenumber">[line 108]</span></h3>
+	<h3>method getRegExp <span class="smalllinenumber">[line 81]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -804,7 +741,7 @@ $n = null])</code>
   </div>
   <hr />
 	<a name="methodgetRegExpBody"></a>
-	<h3>method getRegExpBody <span class="smalllinenumber">[line 248]</span></h3>
+	<h3>method getRegExpBody <span class="smalllinenumber">[line 222]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -848,7 +785,7 @@ $item.)</code>
   </div>
   <hr />
 	<a name="methodgetRegExpDelimiterEnd"></a>
-	<h3>method getRegExpDelimiterEnd <span class="smalllinenumber">[line 236]</span></h3>
+	<h3>method getRegExpDelimiterEnd <span class="smalllinenumber">[line 209]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -892,7 +829,7 @@ $item.)</code>
   </div>
   <hr />
 	<a name="methodgetRegExpDelimiterStart"></a>
-	<h3>method getRegExpDelimiterStart <span class="smalllinenumber">[line 224]</span></h3>
+	<h3>method getRegExpDelimiterStart <span class="smalllinenumber">[line 197]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -936,7 +873,7 @@ $item.)</code>
   </div>
   <hr />
 	<a name="methodgetRegExpModifiers"></a>
-	<h3>method getRegExpModifiers <span class="smalllinenumber">[line 260]</span></h3>
+	<h3>method getRegExpModifiers <span class="smalllinenumber">[line 234]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -980,7 +917,7 @@ $item.)</code>
   </div>
   <hr />
 	<a name="methodgetText"></a>
-	<h3>method getText <span class="smalllinenumber">[line 130]</span></h3>
+	<h3>method getText <span class="smalllinenumber">[line 103]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1007,7 +944,7 @@ $item.)</code>
   </div>
   <hr />
 	<a name="methodmatch"></a>
-	<h3>method match <span class="smalllinenumber">[line 96]</span></h3>
+	<h3>method match <span class="smalllinenumber">[line 69]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1045,7 +982,7 @@ $Number)</code>
   </div>
   <hr />
 	<a name="methodmatchCount"></a>
-	<h3>method matchCount <span class="smalllinenumber">[line 177]</span></h3>
+	<h3>method matchCount <span class="smalllinenumber">[line 150]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1072,7 +1009,7 @@ $Number)</code>
   </div>
   <hr />
 	<a name="methodreplace"></a>
-	<h3>method replace <span class="smalllinenumber">[line 272]</span></h3>
+	<h3>method replace <span class="smalllinenumber">[line 246]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1122,7 +1059,7 @@ $limit = -1])</code>
   </div>
   <hr />
 	<a name="methodset"></a>
-	<h3>method set <span class="smalllinenumber">[line 191]</span></h3>
+	<h3>method set <span class="smalllinenumber">[line 164]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1184,7 +1121,7 @@ $text)</code>
   </div>
   <hr />
 	<a name="methodsetRegExp"></a>
-	<h3>method setRegExp <span class="smalllinenumber">[line 119]</span></h3>
+	<h3>method setRegExp <span class="smalllinenumber">[line 92]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1222,7 +1159,7 @@ $regexp)</code>
   </div>
   <hr />
 	<a name="methodsetReplaceTo"></a>
-	<h3>method setReplaceTo <span class="smalllinenumber">[line 166]</span></h3>
+	<h3>method setReplaceTo <span class="smalllinenumber">[line 139]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1260,7 +1197,7 @@ $text)</code>
   </div>
   <hr />
 	<a name="methodsetText"></a>
-	<h3>method setText <span class="smalllinenumber">[line 141]</span></h3>
+	<h3>method setText <span class="smalllinenumber">[line 114]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1298,7 +1235,7 @@ $text)</code>
   </div>
   <hr />
 	<a name="methodsetTextRef"></a>
-	<h3>method setTextRef <span class="smalllinenumber">[line 153]</span></h3>
+	<h3>method setTextRef <span class="smalllinenumber">[line 126]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1342,7 +1279,7 @@ $text)</code>
   </div>
   <hr />
 	<a name="methodsplit"></a>
-	<h3>method split <span class="smalllinenumber">[line 283]</span></h3>
+	<h3>method split <span class="smalllinenumber">[line 257]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1398,7 +1335,7 @@ $flags = null])</code>
   </div>
   <hr />
 	<a name="methodtest"></a>
-	<h3>method test <span class="smalllinenumber">[line 201]</span></h3>
+	<h3>method test <span class="smalllinenumber">[line 174]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1442,7 +1379,7 @@ $flags = null])</code>
 	<a name="constclassName"></a>
 	<p></p>
 	<h4>className = <span class="value">&nbsp;'RegExp_base'</span></h4>
-	<p>[line 50]</p>
+	<p>[line 23]</p>
   
 
   <br />
@@ -1452,7 +1389,7 @@ $flags = null])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:32 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:52 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

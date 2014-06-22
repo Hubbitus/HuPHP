@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="classtrees_Vars.html" class="menu">class tree: Vars</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="classtrees_Vars.html" class="menu">class tree: Vars</a> ]
 		  [ <a href="elementindex_Vars.html" class="menu">index: Vars</a> ]
 		  	    [ <a href="elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -50,6 +50,7 @@
               <a href="li_Exceptions.html">Exceptions</a><br />
               <a href="li_charset_convert.html">charset_convert</a><br />
               <a href="li_Macroses.html">Macroses</a><br />
+              <a href="li_Image.html">Image</a><br />
               <a href="li_RegExp.html">RegExp</a><br />
             <br /><br />
                         <b>Files:</b><br />
@@ -215,7 +216,7 @@
 							<dt><b>charset_convert.class.php</b></dt>
 				<dd>procedural page <a href="Vars/charset_convert/_Vars---Strings---Charset---charset_convert.class.php.html">charset_convert.class.php</a></dd>
 							<dt><b>cast</b></dt>
-				<dd>in file HuClass.php, method <a href="Vars/Classes/HuClass.html#methodcast">HuClass::cast()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.</dd>
+				<dd>in file HuClass.php, method <a href="Vars/Classes/HuClass.html#methodcast">HuClass::cast()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.</dd>
 							<dt><b>classCREATE</b></dt>
 				<dd>in file HuClass.php, function <a href="Vars/Classes/_Vars---HuClass.php.html#functionclassCREATE">classCREATE()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Free function. For instantiate all objects.</dd>
 							<dt><b>cloning</b></dt>
@@ -317,7 +318,7 @@
 							<dt><b>getString</b></dt>
 				<dd>in file settings.php, method <a href="Vars/settings/settings.html#methodgetString">settings::getString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Rreturn string in what merged settings by provided format.</dd>
 							<dt><b>get_settings</b></dt>
-				<dd>in file settings.php, class <a href="Vars/settings/get_settings.html">get_settings</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Parent class for more usefull using in parents who want be &quot;customizable&quot;</dd>
+				<dd>in file settings.php, class <a href="Vars/settings/get_settings.html">get_settings</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Parent class for more usefull using in parents who want be &quot;customizable&quot;. Convenient nesting.</dd>
 					</dl>
 	</div>
 	<a href="elementindex_Vars.html#top">top</a><br>
@@ -459,7 +460,7 @@
 							<dt><b>setText</b></dt>
 				<dd>in file charset_convert.class.php, method <a href="Vars/charset_convert/charset_convert.html#methodsetText">charset_convert::setText()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set text to convert encoding.</dd>
 							<dt><b>Single</b></dt>
-				<dd>in file Singleton.php, class <a href="Vars/Classes/Single.html">Single</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Example from http://ru2.php.net/manual/ru/language.oop5.patterns.php</dd>
+				<dd>in file Singleton.php, class <a href="Vars/Classes/Single.html">Single</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Example from http://ru2.php.net/manual/ru/language.oop5.patterns.php, modified</dd>
 							<dt><b>singleton</b></dt>
 				<dd>in file Singleton.php, method <a href="Vars/Classes/Single.html#methodsingleton">Single::singleton()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;The main singleton static method  All call must be: Single::singleton('ClassName'). Or by its short alias: Single::def('ClassName')</dd>
 							<dt><b>Singleton.php</b></dt>
@@ -501,7 +502,7 @@
 							<dt><b>$varname</b></dt>
 				<dd>in file VariableStream.php, variable <a href="Vars/VariableStream.html#var$varname">VariableStream::$varname</a></dd>
 							<dt><b>VariableStream</b></dt>
-				<dd>in file VariableStream.php, class <a href="Vars/VariableStream.html">VariableStream</a><br>&nbsp;&nbsp;&nbsp;&nbsp;VariableStream stream wrapper. Manipulate stream 'var://varName' as file,  where content is $varName.</dd>
+				<dd>in file VariableStream.php, class <a href="Vars/VariableStream.html">VariableStream</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Very usefull example from http://www.php.net/manual/ru/function.stream-wrapper-register.php as base for implementation</dd>
 							<dt><b>VariableStream.php</b></dt>
 				<dd>procedural page <a href="Vars/_Vars---VariableStream.php.html">VariableStream.php</a></dd>
 							<dt><b>valid</b></dt>
@@ -522,7 +523,7 @@
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:18 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:12:57 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

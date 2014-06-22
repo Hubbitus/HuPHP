@@ -8,10 +8,7 @@
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
 * @created 2010-11-18
-*
-* @changelog
-*	* 2010-11-18 13:43 ver 1.0
-*	- Initial version.
+* @created 2010-11-18 13:43
 **/
 
 /**

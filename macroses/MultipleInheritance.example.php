@@ -1,8 +1,4 @@
 <?
-/*-inc
-include('Debug/debug.php');
-include('macroses/MultipleInheritance.php');
-*/
 include('autoload.php');
 /**
 * @uses inherits_from()
@@ -11,21 +7,21 @@ include('autoload.php');
 
 //Class names and inheritance
 class A{
-public static $instance='AaA';
-const ClassName='aAa';
+	public static $instance = 'AaA';
+	const ClassName = 'aAa';
 
 	function aa(){
-	dump::a('This is method A::aa ('.__CLASS__.'; '.__METHOD__.')');
+		dump::a('This is method A::aa ('.__CLASS__.'; '.__METHOD__.')');
 	}
 
 	function ab(){
-	dump::a('This is method A::ab ('.__CLASS__.'; '.__METHOD__.')');
+		dump::a('This is method A::ab ('.__CLASS__.'; '.__METHOD__.')');
 	}
 }#c A
 
 class B{
-public static $instance='BbB';
-const ClassName='bBb';
+	public static $instance = 'BbB';
+	const ClassName = 'bBb';
 
 	function bb(){
 	dump::a('This is method B::bb ('.__CLASS__.'; '.__METHOD__.')');
@@ -34,13 +30,13 @@ const ClassName='bBb';
 	function ab(){
 	dump::a('This is method B::ab ('.__CLASS__.'; '.__METHOD__.')');
 	}
-}
+}#c B
 
 class C{
 	function cc(){
 	dump::a('This is method C::cc ('.__CLASS__.'; '.__METHOD__.')');
 	}
-}
+}#c C
 
 inherits_from(
 	'C',
@@ -61,17 +57,17 @@ dump::a($var_c instanceof A);//False
 ///////////////////////////////////
 echo "\n";
 
-#
-#class D extends A{// Is NOT worked!!!
-#	function dd(){
-#	dump::a('This is method D::dd ('.__CLASS__.'; '.__METHOD__.')');
-#	}
-#}
-#inherits_from(
-#	'D',
-#	array('B')
-#);
-#
+/*
+class D extends A{// Is NOT worked!!!
+	function dd(){
+		dump::a('This is method D::dd ('.__CLASS__.'; '.__METHOD__.')');
+	}
+}
+inherits_from(
+	'D',
+	array('B')
+);
+*/
 
 class D extends A{
 	function __construct(){

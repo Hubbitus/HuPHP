@@ -5,37 +5,10 @@
 * @package Vars
 * @subpackage Classes
 * @version 1.5
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created ?2008-05-31 5:31 v 1.0b to 1.0c
 *
-* @changelog
-*	*2008-05-31 5:31 v 1.0b to 1.0c
-*	- Add static method ::createWithoutLSB.
-*
-*	*2008-06-05 16:00 v 1.0c to 1.1
-*	- In function classCREATE provide all aditions arguments to HuClass::createWithoutLSB
-*
-*	* 2009-01-18 13:13 ver 1.1 to 1.2
-*	- Rename file from Class.php to HuClass.php
-*
-*	* 2009-02-27 15:23 ver 1.2 to 1.3
-*	- Make parameter $directClassName mandatory in ::createWithoutLSB()
-*	- and all logic to search name moved from it into ::create()!
-*	- Fix function classCREATE, make $ClassName parameter mandatory
-*
-*	* 2009-03-08 13:33 ver 1.3 to 1.4
-*	- To break loop: Vars/Settings/settings.php:24 -> Vars/HuClass.php:28 -> macroses/REQUIRED_VAR.php:16 ->
-*		-> Exceptions/variables.php:93 -> Debug/backtrace.php:45 -> Debug/HuFormat.php:14 -> Vars/Settings/settings.php
-*		include_once('macroses/REQUIRED_VAR.php'); moved to method createWithoutLSB (it single who uses this macro)
-*
-*	* 2010-10-31 00:01 ver 1.4 to 1.5
-*	- Add method clone;
-**/
-
-/*-inc
-include_once('Exceptions/classes.php');
-*/
-/**
 * @uses REQUIRED_VAR()
 * @uses VariableRequiredException
 * @uses ClassUnknownException
@@ -57,12 +30,11 @@ abstract class HuClass{
 	* @Throw(ClassUnknownException)
 	**/
 	public static function create(){
-//	$reflectionObj = new ReflectionClass(static::className);
-	#http://blog.felho.hu/what-is-new-in-php-53-part-2-late-static-binding.html
-		if (function_exists('get_called_class')) $className = get_called_class(); # Most reliable if available
-//??Possible??		elseif(isset(self::_CLASS_)) $className = self::_CLASS_; # Fallback to emulate if present
+		// http://blog.felho.hu/what-is-new-in-php-53-part-2-late-static-binding.html
+		if (function_exists('get_called_class')) $className = get_called_class(); // Most reliable if available
 		else throw new ClassUnknownException('Can\'t determinate class name for who was called ::create() (LSB is not accesible [present start from PHP 5.3.0-dev]). You can use ::createWithoutLSB method or classCREATE() free function with explicit name of needed class!');
-	$reflectionObj = new ReflectionClass($className);
+
+		$reflectionObj = new ReflectionClass($className);
 
 		// use Reflection to create a new instance, using the array of args
 		if ($reflectionObj->getConstructor()) return $reflectionObj->newInstanceArgs(func_get_args());
@@ -87,7 +59,7 @@ abstract class HuClass{
 	*	- I use clone in method because argument itself again implicitly passed as reference, so it is required.
 	**/
 	public static function cloning($obj){
-	return clone $obj;
+		return clone $obj;
 	}#m cloning
 
 	/**
@@ -102,16 +74,16 @@ abstract class HuClass{
 	* @Throws(VariableRequiredException)
 	**/
 	static function createWithoutLSB($directClassName /*, Other Params */){
-	include_once('macroses/REQUIRED_VAR.php');
-	$reflectionObj = new ReflectionClass(REQUIRED_VAR($directClassName));
-	$args = func_get_args();//0 argument - $directClassName
+		include_once('macroses/REQUIRED_VAR.php');
+		$reflectionObj = new ReflectionClass(REQUIRED_VAR($directClassName));
+		$args = func_get_args();//0 argument - $directClassName
 		// use Reflection to create a new instance, using the array of args
 		if ($reflectionObj->getConstructor()) return $reflectionObj->newInstanceArgs(array_slice($args, 1));
 		else return $reflectionObj->newInstance();
 	}#m createWhithoutLSB
 
 	/**
-	* PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+	* PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
 	* See http://ru2.php.net/mysql_fetch_object comments by "Chris at r3i dot it"
 	* So, in this page, below, i found next fine workaraound (see comment and example of "trithaithus at tibiahumor dot net")
 	*
@@ -122,7 +94,7 @@ abstract class HuClass{
 	* @return Object($toClassName)
 	**/
 	static function cast($toClassName, $what){
-	return unserialize(
+		return unserialize(
 			preg_replace(
 				'/^O:[0-9]+:"[^"]+":/',
 				'O:'.strlen($toClassName).':"' . $toClassName . '":',
@@ -137,17 +109,17 @@ abstract class HuClass{
 * {@inheritdoc HuClass::createWithoutLSB}
 **/
 function classCREATE($ClassName /*, Other Params */){
-/*
-* We must use temporary variable due to error:
-* PHP Fatal error:  func_get_args(): Can't be used as a function parameter in /home/_SHARED_/Vars/HuClass.php on line 107
-**/
-$args = func_get_args(); //0 argument - $ClassName
-return call_user_func_array(
-	array(
-		'HuClass',
-		'createWithoutLSB'
-	)
-	,$args
-);
-}
+	/*
+	* We must use temporary variable due to error:
+	* PHP Fatal error:  func_get_args(): Can't be used as a function parameter in /home/_SHARED_/Vars/HuClass.php on line 107
+	**/
+	$args = func_get_args(); //0 argument - $ClassName
+	return call_user_func_array(
+		array(
+			'HuClass',
+			'createWithoutLSB'
+		)
+		,$args
+	);
+}#f classCREATE
 ?>

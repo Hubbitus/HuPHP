@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_Filesystem.html" class="menu">class tree: Filesystem</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_Filesystem.html" class="menu">class tree: Filesystem</a> ]
 		  [ <a href="../elementindex_Filesystem.html" class="menu">index: Filesystem</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -83,7 +84,7 @@ Source Location: /Filesystem/file_inmem.php<br /><br />
 <div class="contents">
 <h2>Classes:</h2>
 <dt><a href="../Filesystem/file_inmem.html">file_inmem</a></dt>
-	<dd></dd>
+	<dd>Base class for most file-related operations.</dd>
 </div><br /><br />
 
 <h2>Page Details:</h2>
@@ -92,7 +93,7 @@ Operations with file in memory.<br /><br /><br /><br />
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>2.0.1b</td>
@@ -101,7 +102,13 @@ Operations with file in memory.<br /><br /><br /><br />
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2009-03-25 13:51 ver 2.0b <ul><li>Initial SPLITTED version. See changelog of file_base.php</li><li>Fix few minor bugs (in ::implodeLines(), ::getBLOB())...</li><li>Change methods ::setLineSep() and ::checkLoad() to return &amp;$this</li></ul>     * 2009-03-31 18:14 ver 2.0b to 2.0.1b <ul><li>Explicit check &quot;false !==&quot; instead of just casting to bool. So, read zero-length file is also positive result.</li></ul>     * 2009-12-14 11:47 ver 2.0.1b to 2.0.2 <ul><li>Add methods ::iconv(), ::enconv()</li></ul></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/VariableRequiredException.html">VariableRequiredException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/file_base.html">file_base</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Macroses/_macroses---REQUIRED_VAR.php.html#functionREQUIRED_VAR">REQUIRED_VAR()</a></td>
   </tr>
 </table>
 </div>
@@ -109,13 +116,13 @@ Operations with file in memory.<br /><br /><br /><br />
 <br /><br />
 <h4>Includes:</h4>
 <div class="tags">
-include_once(<a href="../Filesystem/_Filesystem---file_base.php.html">'file_base.php'</a>) [line 23]<br />
+include_once(<a href="../Filesystem/_Filesystem---file_base.php.html">'file_base.php'</a>) [line 16]<br />
 Operations with file in memory.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>2.0.1b</td>
@@ -124,7 +131,13 @@ Operations with file in memory.<br /><br /><br /><br />
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2009-03-25 13:51 ver 2.0b <ul><li>Initial SPLITTED version. See changelog of file_base.php</li><li>Fix few minor bugs (in ::implodeLines(), ::getBLOB())...</li><li>Change methods ::setLineSep() and ::checkLoad() to return &amp;$this</li></ul>     * 2009-03-31 18:14 ver 2.0b to 2.0.1b <ul><li>Explicit check &quot;false !==&quot; instead of just casting to bool. So, read zero-length file is also positive result.</li></ul>     * 2009-12-14 11:47 ver 2.0.1b to 2.0.2 <ul><li>Add methods ::iconv(), ::enconv()</li></ul></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Exceptions/VariableRequiredException.html">VariableRequiredException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Filesystem/file_base.html">file_base</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../Macroses/_macroses---REQUIRED_VAR.php.html#functionREQUIRED_VAR">REQUIRED_VAR()</a></td>
   </tr>
 </table>
 </div>
@@ -140,7 +153,7 @@ Operations with file in memory.<br /><br /><br /><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:32 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:07 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

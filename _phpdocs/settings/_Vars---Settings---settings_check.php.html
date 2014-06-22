@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../classtrees_settings.html" class="menu">class tree: settings</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../classtrees_settings.html" class="menu">class tree: settings</a> ]
 		  [ <a href="../elementindex_settings.html" class="menu">index: settings</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../li_Exceptions.html">Exceptions</a><br />
               <a href="../li_Filesystem.html">Filesystem</a><br />
               <a href="../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../li_Image.html">Image</a><br />
               <a href="../li_Macroses.html">Macroses</a><br />
               <a href="../li_moysklad.html">moysklad</a><br />
               <a href="../li_Orange.html">Orange</a><br />
@@ -111,16 +112,13 @@ Provide easy to use settigns-cllass for many purpose. Similar array<br /><br /><
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>1.0.7</td>
   </tr>
   <tr>
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
-  </tr>
-  <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td><p>* 2008-05-30 16:08 <ul><li>Add compatibility with PHP &lt; 5.3.0. Replace &quot;static::$properties&quot; to &quot;self::$properties&quot;</li></ul>     in case when it defined and used in one class is it correct.</p><p>* 2008-09-22 17:44 ver 1.0.1 to 1.0.2 <ul><li>Change include_once('settings.php'); to include_once('Settings/settings.php');</li></ul>     * 2009-03-01 14:55 ver 1.0.2 to 1.0.3 <ul><li>Method checkNamePossible() changed from private to protected (Primarly for Config class)</li></ul>     * 2009-03-06 15:29 ver 1.0.3 to 1.0.4 <ul><li>Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');</li></ul>     * 2009-03-10 04:24 ver 1.0.4 to 1.0.5 <ul><li>Add method ::addSetting()</li></ul>     * 2009-05-21 22:46 ver 1.0.5 to 1.0.6     * Make $properties non-static! This prevent mesh properies in 2 child of this class.</p><p>* 2009-07-02 13:32 ver 1.0.6 to 1.0.7 <ul><li>Add method ::nesting()</li></ul></p></td>
   </tr>
 </table>
 </div>
@@ -128,13 +126,13 @@ Provide easy to use settigns-cllass for many purpose. Similar array<br /><br /><
 <br /><br />
 <h4>Includes:</h4>
 <div class="tags">
-include_once(<a href="../Exceptions/_Exceptions---classes.php.html">'Exceptions/classes.php'</a>) [line 38]<br />
+include_once(<a href="../Exceptions/_Exceptions---classes.php.html">'Exceptions/classes.php'</a>) [line 16]<br />
 Provide easy to use settigns-cllass for many purpose. Similar array<br /><br /><p>of settings, but provide several addition methods, and magick methods  to be easy done routine tasks, such as get, set, merge and convert to  string by provided simple format (For more complex formatting {@see class HuFormat}).</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>1.0.7</td>
@@ -142,13 +140,10 @@ Provide easy to use settigns-cllass for many purpose. Similar array<br /><br /><
   <tr>
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
-  <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td><p>* 2008-05-30 16:08 <ul><li>Add compatibility with PHP &lt; 5.3.0. Replace &quot;static::$properties&quot; to &quot;self::$properties&quot;</li></ul>     in case when it defined and used in one class is it correct.</p><p>* 2008-09-22 17:44 ver 1.0.1 to 1.0.2 <ul><li>Change include_once('settings.php'); to include_once('Settings/settings.php');</li></ul>     * 2009-03-01 14:55 ver 1.0.2 to 1.0.3 <ul><li>Method checkNamePossible() changed from private to protected (Primarly for Config class)</li></ul>     * 2009-03-06 15:29 ver 1.0.3 to 1.0.4 <ul><li>Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');</li></ul>     * 2009-03-10 04:24 ver 1.0.4 to 1.0.5 <ul><li>Add method ::addSetting()</li></ul>     * 2009-05-21 22:46 ver 1.0.5 to 1.0.6     * Make $properties non-static! This prevent mesh properies in 2 child of this class.</p><p>* 2009-07-02 13:32 ver 1.0.6 to 1.0.7 <ul><li>Add method ::nesting()</li></ul></p></td>
-  </tr>
 </table>
 </div>
 
-include_once(<a href="../Vars/settings/_Vars---Settings---settings.php.html">'Vars/Settings/settings.php'</a>) [line 39]<br />
+include_once(<a href="../Vars/settings/_Vars---Settings---settings.php.html">'Vars/Settings/settings.php'</a>) [line 17]<br />
 
 </div>
 
@@ -161,7 +156,7 @@ include_once(<a href="../Vars/settings/_Vars---Settings---settings.php.html">'Va
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:36 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:55 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

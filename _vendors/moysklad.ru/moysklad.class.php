@@ -9,10 +9,7 @@
 * @copyright Copyright (c) 2010, Pahan-Hubbitus (Pavel Alexeev)
 * @version 1.0
 * @example moysklad.example.php
-*
-* @changelog
-*	* 2010-03-30 13:34 ver 1.0
-*	- Initial version.
+* @created 2010-03-30 13:34
 **/
 include_once('macroses/REQUIRED_VAR.php');
 
@@ -22,6 +19,7 @@ class moysklad_exception extends BaseException{};
 class moysklad_exception_absentElement extends moysklad_exception{};
 class moysklad_exception_unemplimented extends moysklad_exception{};
 class moysklad_exception_novalid extends moysklad_exception{};
+
 /**
 * Main moysklad XML class implementation.
 * WARNING: It is very small part implemented. Only vast majority to goods exchange.
@@ -32,90 +30,85 @@ class moysklad_exception_novalid extends moysklad_exception{};
 * @copyright 2010 Pavael Alexeev Aka Pahan-Hubbitus
 **/
 class moysklad{
-const XML_SCHEMA = 'http://www.moysklad.ru/schema/exchange-1.2.0.xsd';
+	const XML_SCHEMA = 'http://www.moysklad.ru/schema/exchange-1.2.0.xsd';
 
-private $dom_;		// Main DOMDocument
-private $xpath_;	// DOMXpath object to perfom any queries
+	private $dom_;		// Main DOMDocument
+	private $xpath_;	// DOMXpath object to perfom any queries
 
-/**
-* If explicit null element converted at start in something like:
-*	<workflow xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-* @var array
-**/
-protected $root_elements = array(
-	'workflow'				=> null
-	,'shareModes'				=> null
-	,'scripts'				=> null
-	,'messages'				=> null
-	,'customEntityMetadata'		=> null
-	,'embeddedEntityMetadata'	=> null
-	,'entityTemplatesMetadata'	=> null
-	,'reportTemplatesMetadata'	=> null
-	,'customEntity'			=> ''	# Empty
-	,'reason'					=> ''
-	,'currencies'				=> ''	# Empty
-	,'country'				=> ''	# Empty
-	,'gtd'					=> ''	# Empty
-	,'uoms'					=> ''
-	,'goodFolders'				=> ''
-	,'goods'					=> ''
-	,'service'				=> ''	# Empty
-	,'things'					=> ''	# Empty
-	,'myCompany'				=> ''	# Empty
-	,'agents'					=> ''
-	,'companies'				=> ''
-	,'persons'				=> ''
-	,'places'					=> null
-	,'warehouses'				=> ''
-	,'project'				=> ''	# Empty
-	,'contract'				=> ''	# Empty
-	,'processingPlans'			=> ''
-	,'consignments'			=> ''
-	,'priceLists'				=> null
-	,'deliveries-demand'		=> null
-	,'deliveries-supply'		=> null
-	,'inventories'				=> null
-	,'moves'					=> null
-	,'losses'					=> null
-	,'enters'					=> null
-	,'invoicesIn'				=> null
-	,'invoicesOut'				=> null
-	,'processings'				=> null
-	,'customerOrders'			=> null
-	,'purchaseOrders'			=> null
-	,'connectors'				=> null
-);
+	/**
+	* If explicit null element converted at start in something like:
+	*	<workflow xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+	* @var array
+	**/
+	protected $root_elements = array(
+		'workflow'				=> null
+		,'shareModes'				=> null
+		,'scripts'				=> null
+		,'messages'				=> null
+		,'customEntityMetadata'		=> null
+		,'embeddedEntityMetadata'	=> null
+		,'entityTemplatesMetadata'	=> null
+		,'reportTemplatesMetadata'	=> null
+		,'customEntity'			=> ''	// Empty
+		,'reason'					=> ''
+		,'currencies'				=> ''	// Empty
+		,'country'				=> ''	// Empty
+		,'gtd'					=> ''	// Empty
+		,'uoms'					=> ''
+		,'goodFolders'				=> ''
+		,'goods'					=> ''
+		,'service'				=> ''	// Empty
+		,'things'					=> ''	// Empty
+		,'myCompany'				=> ''	// Empty
+		,'agents'					=> ''
+		,'companies'				=> ''
+		,'persons'				=> ''
+		,'places'					=> null
+		,'warehouses'				=> ''
+		,'project'				=> ''	// Empty
+		,'contract'				=> ''	// Empty
+		,'processingPlans'			=> ''
+		,'consignments'			=> ''
+		,'priceLists'				=> null
+		,'deliveries-demand'		=> null
+		,'deliveries-supply'		=> null
+		,'inventories'				=> null
+		,'moves'					=> null
+		,'losses'					=> null
+		,'enters'					=> null
+		,'invoicesIn'				=> null
+		,'invoicesOut'				=> null
+		,'processings'				=> null
+		,'customerOrders'			=> null
+		,'purchaseOrders'			=> null
+		,'connectors'				=> null
+	);
 
 	public function __construct(){
-	// DTD. http://www.php.net/manual/en/book.dom.php#78929
-	$this->dom_ = new DOMDocument;
-	$this->dom_->encoding = 'UTF-8';
-	$this->dom_->validateOnParse = true;
-	$this->dom_->standalone = true;
-	$this->xpath_ = new DOMXPath($this->dom_);
+		// DTD. http://www.php.net/manual/en/book.dom.php#78929
+		$this->dom_ = new DOMDocument;
+		$this->dom_->encoding = 'UTF-8';
+		$this->dom_->validateOnParse = true;
+		$this->dom_->standalone = true;
+		$this->xpath_ = new DOMXPath($this->dom_);
 
-	// This is 'constant' part
-	$exchange = $this->dom_->appendChild($this->dom_->createElement('exchange'));
+		// This is 'constant' part
+		$exchange = $this->dom_->appendChild($this->dom_->createElement('exchange'));
+
 		foreach ($this->root_elements as $item => $value){
-		include_once('moysklad_' . ($item = str_replace('-', '_', $item)). '.class.php');
-		$__class_name = 'moysklad_' . $item;
-		$itemObj = new $__class_name($value);
-//		$this->'add_' . $item($itemObj);
-		$this->commonAddRootElement($item, $itemObj);
-//			if (is_null($item)){
-//			$itemObj = $exchange->appendChild($this->dom_->createElement($item));
-//			$itemObj->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
-//			$itemObj->setAttribute('xsi:nil', 'true');
-//			}
+			include_once('moysklad_' . ($item = str_replace('-', '_', $item)). '.class.php');
+			$__class_name = 'moysklad_' . $item;
+			$itemObj = new $__class_name($value);
+			$this->commonAddRootElement($item, $itemObj);
 		}
-	}#m __construct
+	}#__c
 
 	private function commonAddRootElement($rootElementName, moysklad_element_base &$elem){
-	$this->dom_->documentElement->appendChild($this->dom_->importNode($elem, true));	
+		$this->dom_->documentElement->appendChild($this->dom_->importNode($elem, true));
 	}#m commonAddElement
 
 	private function commonAddElement($rootElementName, moysklad_element_base &$elem){
-	$this->dom_->getElementsByTagName($rootElementName)->item(0)->appendChild($this->dom_->importNode($elem, true));
+		$this->dom_->getElementsByTagName($rootElementName)->item(0)->appendChild($this->dom_->importNode($elem, true));
 	}#m commonAddElement
 
 	/**
@@ -125,8 +118,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_workflow(moysklad_workflow $item){
-	$this->commonAddElement('workflow', $item);
-	return $this;
+		$this->commonAddElement('workflow', $item);
+		return $this;
 	}#m add_workflow
 
 	/**
@@ -136,8 +129,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_shareMode(moysklad_workflow $item){
-	$this->commonAddElement('shareModes', $item);
-	return $this;
+		$this->commonAddElement('shareModes', $item);
+		return $this;
 	}#m add_shareMode
 
 	/**
@@ -147,8 +140,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_script(moysklad_workflow $item){
-	$this->commonAddElement('scripts', $item);
-	return $this;
+		$this->commonAddElement('scripts', $item);
+		return $this;
 	}#m add_script
 
 	/**
@@ -158,8 +151,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_message(moysklad_message $item) {
-	$this->commonAddElement('messages', $item);
-	return $this;
+		$this->commonAddElement('messages', $item);
+		return $this;
 	}#m add_message
 
 	/**
@@ -169,8 +162,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_customEntityMetadata(moysklad_customEntityMetadata $item) {
-	$this->commonAddElement('customEntityMetadata', $item);
-	return $this;
+		$this->commonAddElement('customEntityMetadata', $item);
+		return $this;
 	}#m add_customEntityMetadata
 
 	/**
@@ -180,8 +173,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_embeddedEntityMetadata(moysklad_embeddedEntityMetadata $item){
-	$this->commonAddElement('embeddedEntityMetadata', $item);
-	return $this;
+		$this->commonAddElement('embeddedEntityMetadata', $item);
+		return $this;
 	}#m add_embeddedEntityMetadata
 
 
@@ -192,8 +185,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_entityTemplatesMetadata(moysklad_entityTemplatesMetadata $item) {
-	$this->commonAddElement('entityTemplatesMetadata', $item);
-	return $this;
+		$this->commonAddElement('entityTemplatesMetadata', $item);
+		return $this;
 	}#m add_entityTemplatesMetadata
 
 
@@ -204,8 +197,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_reportTemplatesMetadata(moysklad_reportTemplatesMetadata $item){
-	$this->commonAddElement('reportTemplatesMetadata', $item);
-	return $this;
+		$this->commonAddElement('reportTemplatesMetadata', $item);
+		return $this;
 	}#m add_reportTemplatesMetadata
 
 
@@ -216,8 +209,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_customEntity(moysklad_customEntity $item) {
-	$this->commonAddElement('customEntity', $item);
-	return $this;
+		$this->commonAddElement('customEntity', $item);
+		return $this;
 	}#m add_customEntity
 
 	/**
@@ -227,8 +220,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_lossReason(moysklad_lossReason $item) {
-	$this->commonAddElement('reason', $item);
-	return $this;
+		$this->commonAddElement('reason', $item);
+		return $this;
 	}#m add_lossReason
 
 	/**
@@ -238,8 +231,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_enterReason(moysklad_enterReason $item) {
-	$this->commonAddElement('reason', $item);
-	return $this;
+		$this->commonAddElement('reason', $item);
+		return $this;
 	}#m add_enterReason
 
 	/**
@@ -249,8 +242,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_currency(moysklad_currency $item) {
-	$this->commonAddElement('currencies', $item);
-	return $this;
+		$this->commonAddElement('currencies', $item);
+		return $this;
 	}#m add_currency
 
 	/**
@@ -260,8 +253,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_country(moysklad_country $item) {
-	$this->commonAddElement('country', $item);
-	return $this;
+		$this->commonAddElement('country', $item);
+		return $this;
 	}#m add_country
 
 	/**
@@ -271,8 +264,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_gtd(moysklad_gtd $item) {
-	$this->commonAddElement('gtd', $item);
-	return $this;
+		$this->commonAddElement('gtd', $item);
+		return $this;
 	}#m add_gtd
 
 	/**
@@ -282,8 +275,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_uom(moysklad_uom $item) {
-	$this->commonAddElement('uoms', $item);
-	return $this;
+		$this->commonAddElement('uoms', $item);
+		return $this;
 	}#m add_uom
 
 	/**
@@ -293,8 +286,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_goodFolder(moysklad_goodFolder $item) {
-	$this->commonAddElement('goodFolders', $item);
-	return $this;
+		$this->commonAddElement('goodFolders', $item);
+		return $this;
 	}#m add_goodFolder
 
 	/**
@@ -304,8 +297,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_good(moysklad_good $item) {
-	$this->commonAddElement('goods', $item);
-	return $this;
+		$this->commonAddElement('goods', $item);
+		return $this;
 	}#m add_good
 
 	/**
@@ -315,8 +308,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_service(moysklad_service $item) {
-	$this->commonAddElement('service', $item);
-	return $this;
+		$this->commonAddElement('service', $item);
+		return $this;
 	}#m add_service
 
 	/**
@@ -326,8 +319,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_thing(moysklad_thing $item) {
-	$this->commonAddElement('things', $item);
-	return $this;
+		$this->commonAddElement('things', $item);
+		return $this;
 	}#m add_thing
 
 	/**
@@ -337,8 +330,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_myCompany(moysklad_myCompany $item) {
-	$this->commonAddElement('myCompany', $item);
-	return $this;
+		$this->commonAddElement('myCompany', $item);
+		return $this;
 	}#m add_myCompany
 
 	/**
@@ -348,8 +341,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_agent(moysklad_agent $item) {
-	$this->commonAddElement('agents', $item);
-	return $this;
+		$this->commonAddElement('agents', $item);
+		return $this;
 	}#m add_agent
 
 	/**
@@ -359,8 +352,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_company(moysklad_company $item) {
-	$this->commonAddElement('companies', $item);
-	return $this;
+		$this->commonAddElement('companies', $item);
+		return $this;
 	}#m add_company
 
 	/**
@@ -370,8 +363,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_person(moysklad_person $item) {
-	$this->commonAddElement('persons', $item);
-	return $this;
+		$this->commonAddElement('persons', $item);
+		return $this;
 	}#m add_person
 
 	/**
@@ -381,8 +374,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_place(moysklad_place $item) {
-	$this->commonAddElement('places', $item);
-	return $this;
+		$this->commonAddElement('places', $item);
+		return $this;
 	}#m add_place
 
 	/**
@@ -392,8 +385,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_warehouse(moysklad_warehouse $item) {
-	$this->commonAddElement('warehouses', $item);
-	return $this;
+		$this->commonAddElement('warehouses', $item);
+		return $this;
 	}#m add_warehouse
 
 	/**
@@ -403,8 +396,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_project(moysklad_project $item) {
-	$this->commonAddElement('project', $item);
-	return $this;
+		$this->commonAddElement('project', $item);
+		return $this;
 	}#m add_project
 
 	/**
@@ -414,8 +407,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_contract(moysklad_contract $item) {
-	$this->commonAddElement('contract', $item);
-	return $this;
+		$this->commonAddElement('contract', $item);
+		return $this;
 	}#m add_contract
 
 	/**
@@ -425,8 +418,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_processingPlan(moysklad_processingPlan $item) {
-	$this->commonAddElement('processingPlans', $item);
-	return $this;
+		$this->commonAddElement('processingPlans', $item);
+		return $this;
 	}#m add_processingPlan
 
 	/**
@@ -436,8 +429,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_consignment(moysklad_consignment $item) {
-	$this->commonAddElement('consignments', $item);
-	return $this;
+		$this->commonAddElement('consignments', $item);
+		return $this;
 	}#m add_consignment
 
 	/**
@@ -447,8 +440,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_priceList(moysklad_priceList $item) {
-	$this->commonAddElement('priceLists', $item);
-	return $this;
+		$this->commonAddElement('priceLists', $item);
+		return $this;
 	}#m add_priceList
 
 	/**
@@ -458,8 +451,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_demand(moysklad_demand $item) {
-	$this->commonAddElement('deliveries-demand', $item);
-	return $this;
+		$this->commonAddElement('deliveries-demand', $item);
+		return $this;
 	}#m add_demand
 
 	/**
@@ -469,8 +462,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_supply(moysklad_supply $item) {
-	$this->commonAddElement('deliveries-supply', $item);
-	return $this;
+		$this->commonAddElement('deliveries-supply', $item);
+		return $this;
 	}#m add_supply
 
 	/**
@@ -480,8 +473,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_inventory(moysklad_inventory $item) {
-	$this->commonAddElement('inventories', $item);
-	return $this;
+		$this->commonAddElement('inventories', $item);
+		return $this;
 	}#m add_inventory
 
 	/**
@@ -491,8 +484,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_move(moysklad_move $item) {
-	$this->commonAddElement('moves', $item);
-	return $this;
+		$this->commonAddElement('moves', $item);
+		return $this;
 	}#m add_move
 
 	/**
@@ -502,8 +495,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_loss(moysklad_loss $item) {
-	$this->commonAddElement('losses', $item);
-	return $this;
+		$this->commonAddElement('losses', $item);
+		return $this;
 	}#m add_loss
 
 	/**
@@ -513,8 +506,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_enter(moysklad_enter $item) {
-	$this->commonAddElement('enters', $item);
-	return $this;
+		$this->commonAddElement('enters', $item);
+		return $this;
 	}#m add_enter
 
 	/**
@@ -524,8 +517,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_invoiceIn(moysklad_invoiceIn $item) {
-	$this->commonAddElement('invoiceIn', $item);
-	return $this;
+		$this->commonAddElement('invoiceIn', $item);
+		return $this;
 	}#m add_invoiceIn
 
 	/**
@@ -535,8 +528,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_invoicesOut(moysklad_invoicesOut $item) {
-	$this->commonAddElement('invoicesOut', $item);
-	return $this;
+		$this->commonAddElement('invoicesOut', $item);
+		return $this;
 	}#m add_invoicesOut
 
 	/**
@@ -546,8 +539,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_processing(moysklad_processing $item) {
-	$this->commonAddElement('processings', $item);
-	return $this;
+		$this->commonAddElement('processings', $item);
+		return $this;
 	}#m add_processing
 
 	/**
@@ -557,8 +550,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_customerOrder(moysklad_customerOrder $item) {
-	$this->commonAddElement('customerOrders', $item);
-	return $this;
+		$this->commonAddElement('customerOrders', $item);
+		return $this;
 	}#m add_customerOrder
 
 	/**
@@ -568,8 +561,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_purchaseOrder(moysklad_purchaseOrder $item) {
-	$this->commonAddElement('purchaseOrders', $item);
-	return $this;
+		$this->commonAddElement('purchaseOrders', $item);
+		return $this;
 	}#m add_purchaseOrder
 
 	/**
@@ -579,8 +572,8 @@ protected $root_elements = array(
 	* @return	&$this
 	**/
 	public function &add_connector(moysklad_connector $item) {
-	$this->commonAddElement('connectors', $item);
-	return $this;
+		$this->commonAddElement('connectors', $item);
+		return $this;
 	}#m add_connector
 
 	/**
@@ -590,9 +583,9 @@ protected $root_elements = array(
 	**/
 	public function &schemaValidate(){
 		if (!$this->dom_->schemaValidate('http://www.moysklad.ru/schema/exchange-1.1.0.xsd')){
-		throw new moysklad_exception_novalid('Documen does no valid!');
+			throw new moysklad_exception_novalid('Documen does no valid!');
 		}
-	return $this;
+		return $this;
 	}#m schemaValidate
 
 	/**
@@ -604,10 +597,10 @@ protected $root_elements = array(
 	* Throws(moysklad_exception_novalid)
 	**/
 	public function saveXML(array $opts = array( 'formatOutput' => true )){
-#?	$this->schemaValidate();
 		foreach ($opts as $opt => $val){
-		$this->dom_->{$opt} = $val;
+			$this->dom_->{$opt} = $val;
 		}
-	return $this->dom_->saveXML();
+		return $this->dom_->saveXML();
 	}#m saveXML
 }#c moysklad
+?>

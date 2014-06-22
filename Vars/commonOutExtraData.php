@@ -5,17 +5,10 @@
 * @package Debug
 * @subpackage HuLOG
 * @version 2.0.2
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created ???
 *
-* @changelog
-**/
-
-/*-inc
-include_once('Vars/outExtraData.interface.php');
-include_once('Debug/debug.php');
-*/
-/**
 * @uses dump
 * @uses outExtraData.interface
 **/

@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
 		  [ <a href="../../elementindex_Debug.html" class="menu">index: Debug</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -55,6 +56,8 @@
                         <b>Files:</b><br />
       	  <div class="package">
 			<a href="../../Debug/_Debug---_HuFormat.defaults---backtraceprintout.php.html">		backtrace::printout.php
+		</a><br>
+			<a href="../../Debug/_Debug---gentime_class.php.html">		gentime_class.php
 		</a><br>
 			<a href="../../Debug/_Debug---Tokenizer.php.html">		Tokenizer.php
 		</a><br>
@@ -119,14 +122,15 @@
 	Dump-utils<br />	    &nbsp;&nbsp;		<a href="../../Debug/Dump-utils/dump_utils.html">dump_utils</a><br />
 	  </div>
   <div class="package">
+		    		<a href="../../Debug/gentime.html">gentime</a><br />
+	    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
+	  </div>
+  <div class="package">
 	HuFormat<br />	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormat.html">HuFormat</a><br />
 	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormatException.html">HuFormatException</a><br />
 	  </div>
   <div class="package">
 	log_dump<br />	    &nbsp;&nbsp;		<a href="../../Debug/log_dump/dump.html">dump</a><br />
-	  </div>
-  <div class="package">
-		    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
 	  </div>
                 </td>
     <td>
@@ -151,7 +155,7 @@ Debug and backtrace toolkit.<br /><br /><br /><br />
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>2.4.2</td>
@@ -159,31 +163,24 @@ Debug and backtrace toolkit.<br /><br /><br /><br />
   <tr>
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
-  <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2008-05-29 15:58 Version 2.3 from 2.2.b <ul><li>Add config-parameter &quot;display_errors&quot;, default true.</li><li>Move methods transformCorrect_print_r and transformCorrect_var_dump to separate class dump_utils (dump_utils.php)</li><li>Move dump::log into log_dump.php in separate function log_dump.
-        dump::log ReRealise with it.
-        It is isfull fo not only debug purpose, and very bad what it depends from much debug-tools (classes, functions, files)</li></ul>     * 2008-06-06 16:40 Ver 2.3 to 2.3.1 <ul><li>Include Debug/log_dump.php (in dump::log) and realize dump::log through log_dump free function.</li><li>Delete all deprecated free functions!</li></ul>     * 2008-08-27 19:15 Ver 2.3.1 to 2.3.2 <ul><li>Handle xdebug.overload_var_dump option in dump::w</li></ul>     * 2008-09-15 22:15 Ver 2.3.2 to 2.3.3 <ul><li>Prevent html-output in dump::c even if html_errors=On</li></ul>     * 2008-10-04 22:25 ver 2.3.3 to 2.3.4 <ul><li>Add bacward-capability function implementation of function spl_object_hash() if it is not exists.</li></ul>     * 2009-01-30 15:10 ver 2.3.4 to 2.3.5 <ul><li>Add include_once('macroses/ISSET_VAR.php');</li><li>All checks to $__CONFIG values replaced by call call to macros {@see ISSET_VAR}.
-        Full explanation reason of it see in description of macros {@see ISSET_VAR}</li></ul>     * 2009-06-16 13:11 ver 2.3.5 to 2.4 <ul><li>Separate set $GLOBALS['__CONFIG']['debug'][*] options default values.</li><li>Remove unused $GLOBALS['__CONFIG']['debug']['whithout_Tokenizer'] option.</li><li>ISSET_VAR() check replaced by array_key_exists() (see internal comment below).</li><li>As now all $GLOBALS['__CONFIG']['debug'][*] settings all has default values, we may direct check its. It faster and reliable.
-        So, exclude all ISSET_VAR call and inclusion such macros.</li><li>Remove define ('NO_DEBUG', false); this constant was unused.</li></ul>     * 2009-06-18 15:21 ver 2.4 to 2.4.1 <ul><li>Inicialize $GLOBALS['__CONFIG']['debug'] as empty array if it is not defined yet to avoid futher warnings</li></ul>     * 2009-10-22 16:20 ver 2.4.1 to 2.4.2 <ul><li>Add method ::e()</li></ul></td>
-  </tr>
 </table>
 </div>
 
 <br /><br />
 <h4>Includes:</h4>
 <div class="tags">
-include_once(<a href="../../Debug/Bactrace/_Debug---backtrace.php.html">'Debug/backtrace.php'</a>) [line 103]<br />
+include_once(<a href="../../Debug/Bactrace/_Debug---backtrace.php.html">'Debug/backtrace.php'</a>) [line 66]<br />
 
-include_once(<a href="../../Debug/Dump-utils/_Debug---dump_utils.php.html">'Debug/dump_utils.php'</a>) [line 53]<br />
+include_once(<a href="../../Debug/Dump-utils/_Debug---dump_utils.php.html">'Debug/dump_utils.php'</a>) [line 14]<br />
 
-include_once(<a href="../../Debug/_Debug---Tokenizer.php.html">'Debug/Tokenizer.php'</a>) [line 102]<br />
+include_once(<a href="../../Debug/_Debug---Tokenizer.php.html">'Debug/Tokenizer.php'</a>) [line 65]<br />
 
 </div>
 
 <br /><br />
   <hr />
 	<a name="global$GLOBALS['__CONFIG']['debug']['display_errors']"></a>
-	<h4><i>integer</i> $GLOBALS['__CONFIG']['debug']['display_errors'] <span class="smalllinenumber">[line 95]</span></h4>
+	<h4><i>integer</i> $GLOBALS['__CONFIG']['debug']['display_errors'] <span class="smalllinenumber">[line 57]</span></h4>
 	<div class="tags">
   	Enable or disable global errors reporting.<br /><br />
   
@@ -198,7 +195,7 @@ include_once(<a href="../../Debug/_Debug---Tokenizer.php.html">'Debug/Tokenizer.
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="global$GLOBALS['__CONFIG']['debug']['errorReporting']"></a>
-	<h4><i>integer</i> $GLOBALS['__CONFIG']['debug']['errorReporting'] <span class="smalllinenumber">[line 84]</span></h4>
+	<h4><i>integer</i> $GLOBALS['__CONFIG']['debug']['errorReporting'] <span class="smalllinenumber">[line 45]</span></h4>
 	<div class="tags">
   	Set error_reporting to this value.<br /><br /><p>Null has special means - no change!</p><br />
   
@@ -213,7 +210,7 @@ include_once(<a href="../../Debug/_Debug---Tokenizer.php.html">'Debug/Tokenizer.
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="global$GLOBALS['__CONFIG']['debug']['parseCallParam']"></a>
-	<h4><i>integer</i> $GLOBALS['__CONFIG']['debug']['parseCallParam'] <span class="smalllinenumber">[line 75]</span></h4>
+	<h4><i>integer</i> $GLOBALS['__CONFIG']['debug']['parseCallParam'] <span class="smalllinenumber">[line 36]</span></h4>
 	<div class="tags">
   	Parsing what parameters present at call time.<br /><br /><p>For example:  dump::c($ttt)  is equivalent to  dump::c($ttt, '$ttt')  This future is very usefull, but require Tokenizer class and got time overhead.</p><br />
   
@@ -230,7 +227,7 @@ include_once(<a href="../../Debug/_Debug---Tokenizer.php.html">'Debug/Tokenizer.
 <br /><br />
   <hr />
 	<a name="defineDUMP_DO_NOT_DEFINE_STUMP_DUMP"></a>
-	<h3>DUMP_DO_NOT_DEFINE_STUMP_DUMP <span class="smalllinenumber">[line 52]</span></h3>
+	<h3>DUMP_DO_NOT_DEFINE_STUMP_DUMP <span class="smalllinenumber">[line 13]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -247,7 +244,7 @@ include_once(<a href="../../Debug/_Debug---Tokenizer.php.html">'Debug/Tokenizer.
 <br />
   <hr />
 	<a name="functionspl_object_hash"></a>
-	<h3>spl_object_hash <span class="smalllinenumber">[line 361]</span></h3>
+	<h3>spl_object_hash <span class="smalllinenumber">[line 325]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -283,7 +280,7 @@ Object $obj)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:30 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:05 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

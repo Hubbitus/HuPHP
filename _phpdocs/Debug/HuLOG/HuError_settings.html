@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
 		  [ <a href="../../elementindex_Debug.html" class="menu">index: Debug</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -55,6 +56,8 @@
                         <b>Files:</b><br />
       	  <div class="package">
 			<a href="../../Debug/_Debug---_HuFormat.defaults---backtraceprintout.php.html">		backtrace::printout.php
+		</a><br>
+			<a href="../../Debug/_Debug---gentime_class.php.html">		gentime_class.php
 		</a><br>
 			<a href="../../Debug/_Debug---Tokenizer.php.html">		Tokenizer.php
 		</a><br>
@@ -119,14 +122,15 @@
 	Dump-utils<br />	    &nbsp;&nbsp;		<a href="../../Debug/Dump-utils/dump_utils.html">dump_utils</a><br />
 	  </div>
   <div class="package">
+		    		<a href="../../Debug/gentime.html">gentime</a><br />
+	    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
+	  </div>
+  <div class="package">
 	HuFormat<br />	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormat.html">HuFormat</a><br />
 	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormatException.html">HuFormatException</a><br />
 	  </div>
   <div class="package">
 	log_dump<br />	    &nbsp;&nbsp;		<a href="../../Debug/log_dump/dump.html">dump</a><br />
-	  </div>
-  <div class="package">
-		    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
 	  </div>
                 </td>
     <td>
@@ -148,12 +152,9 @@ Source Location: /Debug/HuError.php<br /><br />
       |
       --HuError_settings</pre><br />
 <div class="description"></div><br /><br />
-<h4>Author(s):</h4>
-<ul>
-                                            </ul>
 
 
-                            
+
 
         
 </td>
@@ -287,7 +288,7 @@ Source Location: /Debug/HuError.php<br /><br />
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -320,34 +321,7 @@ Source Location: /Debug/HuError.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 51]<br />
-<br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Vars/settings/settings.html">settings</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/VariableRangeException.html">VariableRangeException</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td>outExtraData.interface</td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../System/OS.html">OS</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---EMPTY_VAR.php.html#functionEMPTY_VAR">EMPTY_VAR()</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---EMPTY_STR.php.html#functionNON_EMPTY_STR">NON_EMPTY_STR()</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td>debug</td>
-  </tr>
-</table>
-</div>
+[line 23]<br />
 
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
@@ -359,13 +333,13 @@ Source Location: /Debug/HuError.php<br /><br />
 	<a name="var$__SETS"></a>
 	<p></p>
 	<h4>$__SETS = <span class="value">array(<br>
-&nbsp;&nbsp;&nbsp;/**<br>
-&nbsp;&nbsp;&nbsp;*&nbsp;@example&nbsp;HuLOG.php<br>
-&nbsp;&nbsp;&nbsp;**/<br>
-&nbsp;&nbsp;&nbsp;'FORMAT_WEB'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;array(),/**&nbsp;For&nbsp;strToWeb().&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;empty&nbsp;(by&nbsp;default):&nbsp;dump::w&nbsp;*/'FORMAT_CONSOLE'=&gt;array(),/**&nbsp;For&nbsp;strToConsole().&nbsp;&nbsp;&nbsp;If&nbsp;empty&nbsp;(by&nbsp;default):&nbsp;dump::c&nbsp;*/'FORMAT_FILE'=&gt;array(),/**&nbsp;For&nbsp;strToFile().&nbsp;&nbsp;&nbsp;If&nbsp;empty&nbsp;(by&nbsp;default):&nbsp;dump::log&nbsp;*//**<br>
-&nbsp;&nbsp;&nbsp;*&nbsp;@see&nbsp;::updateDate()<br>
-&nbsp;&nbsp;&nbsp;**/'AUTO_DATE'=&gt;true,'DATE_FORMAT'=&gt;'Y-m-d&nbsp;H:i:s',)</span></h4>
-	<p>[line 53]</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@example&nbsp;HuLOG.php<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'FORMAT_WEB'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;array(),/**&nbsp;For&nbsp;strToWeb().&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;empty&nbsp;(by&nbsp;default):&nbsp;dump::w&nbsp;*/'FORMAT_CONSOLE'=&gt;array(),/**&nbsp;For&nbsp;strToConsole().&nbsp;&nbsp;&nbsp;If&nbsp;empty&nbsp;(by&nbsp;default):&nbsp;dump::c&nbsp;*/'FORMAT_FILE'=&gt;array(),/**&nbsp;For&nbsp;strToFile().&nbsp;&nbsp;&nbsp;If&nbsp;empty&nbsp;(by&nbsp;default):&nbsp;dump::log&nbsp;*//**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@see&nbsp;::updateDate()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**/'AUTO_DATE'=&gt;true,'DATE_FORMAT'=&gt;'Y-m-d&nbsp;H:i:s',)</span></h4>
+	<p>[line 25]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -398,7 +372,7 @@ Source Location: /Debug/HuError.php<br /><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:41 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:13 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

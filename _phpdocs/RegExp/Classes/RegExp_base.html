@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_RegExp.html" class="menu">class tree: RegExp</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_RegExp.html" class="menu">class tree: RegExp</a> ]
 		  [ <a href="../../elementindex_RegExp.html" class="menu">index: RegExp</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -54,12 +55,18 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../../RegExp/_RegExp---IRegExp.php.html">		IRegExp.php
+		</a><br>
 			<a href="../../RegExp/_RegExp---RegExp_base.php.html">		RegExp_base.php
 		</a><br>
 			<a href="../../RegExp/_RegExp---RegExp_pcre.php.html">		RegExp_pcre.php
 		</a><br>
 	  </div><br />
       
+            <b>Interfaces:</b><br />
+        <div class="package">
+		    		<a href="../../RegExp/IRegExp.html">IRegExp</a><br />
+	  </div>
       
             <b>Classes:</b><br />
         <div class="package">
@@ -307,13 +314,6 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
     Return count of matches. If matches not valid - by default do ::doMatchAll() first
   </dd>
     <dt>
-    <a href="../../RegExp/Classes/RegExp_base_base.html#methodquote">RegExp_base_base::quote()</a>
-
-  </dt>
-  <dd>
-    Quote given string or each (recursive) string in array.
-  </dd>
-    <dt>
     <a href="../../RegExp/Classes/RegExp_base_base.html#methodreplace">RegExp_base_base::replace()</a>
 
   </dt>
@@ -377,7 +377,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -410,7 +410,7 @@ Source Location: /RegExp/RegExp_base.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 351]<br />
+[line 312]<br />
 Require late-static-bindings future, so, it is available only in PHP version &gt;= 5.3.0-dev<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -434,7 +434,7 @@ Require late-static-bindings future, so, it is available only in PHP version &gt
 <div class="tags">
   <hr />
 	<a name="methodgetMatch"></a>
-	<h3>static method getMatch <span class="smalllinenumber">[line 352]</span></h3>
+	<h3>static method getMatch <span class="smalllinenumber">[line 313]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -489,7 +489,7 @@ $N = 0])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:32 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:52 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

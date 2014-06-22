@@ -25,7 +25,7 @@ find .. -type f -iname '*.php' \
 		echo "$line"; # This will be processed after whole cycle, to filter dupes and do it only once
 		#echo ========
 
-		echo "$line" | sed -nr "/function/d;/class/s@${DIR}(.*?\\.php):\s*(abstract\s+)?class\s+([^[:space:]{]+)(\s+extends\s+[^[:space:]{]+)?(\s+implements\s+[^[:space:]{]+)*\s*\{?\}?\s*(\$|(//|#).*|;)\$@\t'\3'\t=> '\1',@g;/interface/s@${DIR}(.*?\\.php):\s*interface\s+([^\s{]+)\s*\{@\t'\2'\t=> '\1', #interface@g;p" \
+		echo "$line" | sed -nr "/function/d;/class/s@${DIR}(.*?\\.php):\s*(abstract\s+)?class\s+([^[:space:]{]+)(\s+extends\s+[^[:space:]{]+)?(\s+implements\s+[^[:space:]{]+)*\s*\{?\}?\s*(\$|(//|#).*|;)\$@\t'\3'\t=> '\1',@g;/interface/s@${DIR}(.*?\\.php):\s*interface\s+([^\s{]+)\s*\{@\t'\2'\t=> '\1', // interface@g;p" \
 			| grep -v 'Debug/log_dump.php' >> "$OUT_FILE"
 		done \
 			| sed -nr "s@(${DIR}.*\\.php):.*?@\1@g;p" | sort | uniq | xargs -r -I{} php -d include_path=../ ./phpsource.extract_functions.php "{}" "$DIR" \

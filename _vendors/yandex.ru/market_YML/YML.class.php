@@ -4,17 +4,11 @@
 * Example of usage see below.
 *
 * @package YML
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
 * @example YML.example.php
 * @version 1.1
-*
-* @changelog
-*	* 2009-06-30 17:21 ver 1.0
-*	- Initial version.
-*
-*	* 2010-08-11 11:57 ver 1.0 to 1.1
-*	- Add caching of objects to do not do very slow XPAth queries each time.
+* @created 2009-06-30 17:21
 **/
 include_once('macroses/REQUIRED_VAR.php');
 
@@ -23,34 +17,30 @@ class YML_exception_absentElement extends YML_exception{};
 
 /**
 * Yandex-market class implementation. http://partner.market.yandex.ru/legal/tt/
-*
-* @author pasha
-* @created 2009-06-23
-* @copyright 2009 Pavael Alexeev Aka Pahan-Hubbitus
 **/
 class YML{
-private $dom_;		// Main DOMDocument
-private $xpath_;	// DOMXpath object to perfom any queries
+	private $dom_;		// Main DOMDocument
+	private $xpath_;	// DOMXpath object to perfom any queries
 
-// Cache presents of elements in document to do not do amny times slo Xpath queries.
-protected $cache_ = array(
-	'yml_catalog'	=> null,
-	'shop'		=> null,
-	'currencies'	=> null,
-	'categories'	=> null,
-	'offers'	=> null,
-);
+	// Cache presents of elements in document to do not do amny times slo Xpath queries.
+	protected $cache_ = array(
+		'yml_catalog'	=> null,
+		'shop'		=> null,
+		'currencies'	=> null,
+		'categories'	=> null,
+		'offers'	=> null,
+	);
 
 	public function __construct(){
-	# DTD. http://www.php.net/manual/en/book.dom.php#78929
-	$this->dom_ = DOMImplementation::createDocument('', '', DOMImplementation::createDocumentType('yml_catalog', '', 'shops.dtd'));
-	$this->dom_->encoding = 'UTF-8';
-	$this->dom_->validateOnParse = true;
-	$this->xpath_ = new DOMXPath($this->dom_);
+		// DTD. http://www.php.net/manual/en/book.dom.php#78929
+		$this->dom_ = DOMImplementation::createDocument('', '', DOMImplementation::createDocumentType('yml_catalog', '', 'shops.dtd'));
+		$this->dom_->encoding = 'UTF-8';
+		$this->dom_->validateOnParse = true;
+		$this->xpath_ = new DOMXPath($this->dom_);
 
-	$this->cache_['yml_catalog'] = $this->dom_->appendChild($this->dom_->createElement('yml_catalog'));
-	$this->cache_['yml_catalog']->setAttribute('date', date('Y-m-d H:i'));
-	}#m __construct
+		$this->cache_['yml_catalog'] = $this->dom_->appendChild($this->dom_->createElement('yml_catalog'));
+		$this->cache_['yml_catalog']->setAttribute('date', date('Y-m-d H:i'));
+	}#__c
 
 	/**
 	* Add <shop> to document
@@ -60,11 +50,11 @@ protected $cache_ = array(
 	* @Throws(VariableRequired)
 	**/
 	public function &addShop(array $shop){
-	$this->cache_['shop'] = $this->getYml_catalog()->appendChild($this->dom_->createElement('shop'));
+		$this->cache_['shop'] = $this->getYml_catalog()->appendChild($this->dom_->createElement('shop'));
 		foreach (array('name', 'company', 'url') as $item){
-		$this->cache_['shop']->appendChild($this->dom_->createElement($item, REQUIRED_VAR($shop[$item])));
+			$this->cache_['shop']->appendChild($this->dom_->createElement($item, REQUIRED_VAR($shop[$item])));
 		}
-	return $this;
+		return $this;
 	}#m addShop
 
 	/**
@@ -86,14 +76,14 @@ protected $cache_ = array(
 	* @return	&$this
 	**/
 	public function &addCurrencies(array $curs){
-	$this->cache_['currencies'] = $this->checkElementPresents('shop')->appendChild($this->dom_->createElement('currencies'));
+		$this->cache_['currencies'] = $this->checkElementPresents('shop')->appendChild($this->dom_->createElement('currencies'));
 		foreach (REQUIRED_VAR($curs) as $id => $cur){
-		$currency = $this->cache_['currencies']->appendChild($this->dom_->createElement('currency'));
-		$currency->setAttribute('id', $id);
+			$currency = $this->cache_['currencies']->appendChild($this->dom_->createElement('currency'));
+			$currency->setAttribute('id', $id);
 			if(!empty($cur['rate'])) $currency->setAttribute('rate', $cur['rate']);
 			if(!empty($cur['plus'])) $currency->setAttribute('plus', $cur['plus']);
 		}
-	return $this;
+		return $this;
 	}#m addCurrencies
 
 	/**
@@ -125,9 +115,9 @@ protected $cache_ = array(
 	**/
 	public function &addCategories(array $cats, $class = 'YML_category'){
 		foreach (REQUIRED_VAR($cats) as $id => $cat){
-		$this->addCategory(  new $class( $cat + array('id' => $id) )  );
+			$this->addCategory(  new $class( $cat + array('id' => $id) )  );
 		}
-	return $this;
+		return $this;
 	}#m addCategories
 
 	/**
@@ -139,11 +129,11 @@ protected $cache_ = array(
 	**/
 	public function &addCategory(YML_category $cat){
 		if(! $this->checkElementPresents('categories')){ //Create on demand
-		$this->cache_['categories'] = $this->checkElementPresents('shop', true)->appendChild($this->dom_->createElement('categories'));
+			$this->cache_['categories'] = $this->checkElementPresents('shop', true)->appendChild($this->dom_->createElement('categories'));
 		}
 
-	$this->cache_['categories']->appendChild($cat->getXML($this->dom_));
-	return $this;
+		$this->cache_['categories']->appendChild($cat->getXML($this->dom_));
+		return $this;
 	}#m addCategory
 
 	/**
@@ -154,9 +144,9 @@ protected $cache_ = array(
 	* @return	&$this
 	**/
 	public function &addOffer(YML_offer $offer){
-	$offers = $this->getOffers();
-	$offers->appendChild($this->dom_->importNode($offer->getXML(), true));
-	return $this;
+		$offers = $this->getOffers();
+		$offers->appendChild($this->dom_->importNode($offer->getXML(), true));
+		return $this;
 	}#m addOffer
 
 	/**
@@ -166,9 +156,9 @@ protected $cache_ = array(
 	**/
 	private function getOffers(){
 		if(! $this->checkElementPresents('offers')){ //Create on demand
-		$this->cache_['offers'] = $this->checkElementPresents('shop', true)->appendChild($this->dom_->createElement('offers'));
+			$this->cache_['offers'] = $this->checkElementPresents('shop', true)->appendChild($this->dom_->createElement('offers'));
 		}
-	return $this->cache_['offers'];
+		return $this->cache_['offers'];
 	}#m getOffers
 
 	/**
@@ -177,7 +167,7 @@ protected $cache_ = array(
 	* @return	&Object(DOMElement)
 	**/
 	public function &getYml_catalog(){
-	return $this->checkElementPresents('yml_catalog', true);
+		return $this->checkElementPresents('yml_catalog', true);
 	}#m getYml_catalog
 
 	/**
@@ -186,7 +176,7 @@ protected $cache_ = array(
 	* @return	Object(DOMElement)
 	**/
 	public function getCurrencies(){
-	return $this->checkElementPresents('currencies', true);
+		return $this->checkElementPresents('currencies', true);
 	}#m getCurrencies
 
 	/**
@@ -195,7 +185,7 @@ protected $cache_ = array(
 	* @return	Object(DOMElement)
 	**/
 	public function getCategories(){
-	return $this->checkElementPresents('categories', true);
+		return $this->checkElementPresents('categories', true);
 	}#m getCategories
 
 	/**
@@ -207,9 +197,9 @@ protected $cache_ = array(
 	**/
 	public function saveXML(array $opts = array( 'formatOutput' => true )){
 		foreach ($opts as $opt => $val){
-		$this->dom_->{$opt} = $val;
+			$this->dom_->{$opt} = $val;
 		}
-	return $this->dom_->saveXML();
+		return $this->dom_->saveXML();
 	}#m saveXML
 
 	/**
@@ -224,8 +214,9 @@ protected $cache_ = array(
 	**/
 	protected function &checkElementPresents($name, $throw = false){
 		if($throw and ! $this->cache_[$name]){
-		throw new YML_exception_absentElement("You must add element '$name' first!");
+			throw new YML_exception_absentElement("You must add element '$name' first!");
 		}
 		else return $this->cache_[$name];
 	}#m checkElementPresents
 }#c YML
+?>

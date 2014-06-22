@@ -1,21 +1,13 @@
 <?
 /**
-* SPSR infrastructure support to online shipping rates calculation support ( http://www.cpcr.ru/calculator.html )
+* SPSR infrastructure support to online shipping rates calculation ( http://www.cpcr.ru/calculator.html )
 *
 * @package SPSR
 * @version 1.1
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan [at] Hubbitus [ dot. ] info>
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-*
 * @example SPSR_in_parse.example.php
-*
-* @changelog
-*	* 2009-05-25 11:56 ver 1.0
-*	- Initial version.
-*
-*	* 2009-05-25 15:30 ver 1.0 to 1.1
-*	- Add filtering support.
-*	- Add Root element as main parent to pass xmllint validations.
+* @created 2009-05-25 11:56
 **/
 
 /**
@@ -44,7 +36,6 @@
 *	7.2) If after all filters Region has not any Cities, add one "meta" with name self::$all_cities_name and
 *		other attributes from city filtered in 7.1 or just create new one with name self::$all_cities_name and
 *		copied attributes: "Owner_Id" => "Region_Owner_ID", "Id" => "Region_ID" from region.
-*
 **/
 class SPSR_in_parse{
 static $no_region_name = '---';

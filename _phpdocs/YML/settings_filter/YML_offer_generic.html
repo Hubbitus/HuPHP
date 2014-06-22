@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_YML.html" class="menu">class tree: YML</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_YML.html" class="menu">class tree: YML</a> ]
 		  [ <a href="../../elementindex_YML.html" class="menu">index: YML</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -548,7 +549,7 @@ Source Location: /_vendors/yandex.ru/market_YML/YML_offer_generic.php<br /><br /
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -581,7 +582,7 @@ Source Location: /_vendors/yandex.ru/market_YML/YML_offer_generic.php<br /><br /
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 31]<br />
+[line 28]<br />
 YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
@@ -593,12 +594,12 @@ YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 	<a name="var$properties_addon"></a>
 	<p></p>
 	<h4>$properties_addon = <span class="value">array(<br>
-//&nbsp;name,&nbsp;vendor?,vendorCode?<br>
-&nbsp;&nbsp;&nbsp;'name'<br>
-&nbsp;&nbsp;&nbsp;,'vendor'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#?<br>
-&nbsp;&nbsp;&nbsp;,'vendorCode'&nbsp;&nbsp;&nbsp;#?<br>
-)</span></h4>
-	<p>[line 33]</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;name,&nbsp;vendor?,vendorCode?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'vendor'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,'vendorCode'&nbsp;&nbsp;&nbsp;//?<br>
+&nbsp;&nbsp;&nbsp;)</span></h4>
+	<p>[line 30]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -630,7 +631,7 @@ YML yandex offer<br /><br /><p>This is base (type vendor.model) offer.</p><br />
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 40]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 37]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -690,7 +691,7 @@ Overrides <a href="../../YML/settings_filter/YML_offer.html#method__construct">Y
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:51 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:14:10 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

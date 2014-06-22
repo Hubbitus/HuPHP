@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_Debug.html" class="menu">class tree: Debug</a> ]
 		  [ <a href="../../elementindex_Debug.html" class="menu">index: Debug</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -55,6 +56,8 @@
                         <b>Files:</b><br />
       	  <div class="package">
 			<a href="../../Debug/_Debug---_HuFormat.defaults---backtraceprintout.php.html">		backtrace::printout.php
+		</a><br>
+			<a href="../../Debug/_Debug---gentime_class.php.html">		gentime_class.php
 		</a><br>
 			<a href="../../Debug/_Debug---Tokenizer.php.html">		Tokenizer.php
 		</a><br>
@@ -119,14 +122,15 @@
 	Dump-utils<br />	    &nbsp;&nbsp;		<a href="../../Debug/Dump-utils/dump_utils.html">dump_utils</a><br />
 	  </div>
   <div class="package">
+		    		<a href="../../Debug/gentime.html">gentime</a><br />
+	    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
+	  </div>
+  <div class="package">
 	HuFormat<br />	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormat.html">HuFormat</a><br />
 	    &nbsp;&nbsp;		<a href="../../Debug/HuFormat/HuFormatException.html">HuFormatException</a><br />
 	  </div>
   <div class="package">
 	log_dump<br />	    &nbsp;&nbsp;		<a href="../../Debug/log_dump/dump.html">dump</a><br />
-	  </div>
-  <div class="package">
-		    		<a href="../../Debug/Tokenizer.html">Tokenizer</a><br />
 	  </div>
                 </td>
     <td>
@@ -153,7 +157,7 @@ Debug and backtrace toolkit.<br /><br /><br /><br />
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan">[at] Hubbitus [ dot. ] info Pahan [at] Hubbitus [ dot. ] info</a>&gt;</td>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Pahan-Hubbitus (Pavel Alexeev) &lt;<a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a>&gt;</td>
   </tr>
   <tr>
     <td><b>version:</b>&nbsp;&nbsp;</td><td>2.1.3</td>
@@ -162,9 +166,25 @@ Debug and backtrace toolkit.<br /><br /><br /><br />
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</td>
   </tr>
   <tr>
-    <td><b>changelog:</b>&nbsp;&nbsp;</td><td>* 2008-05-31 03:19 <ul><li>Add capability to PHP &lt; 5.3.0-dev:
-        * Replace construction ($var ?: &quot;text&quot;) with macros EMPTY_STR</li></ul>     * 2008-05-25 17:26 <ul><li>Change include_once('settings.php'); to include_once('Settings/settings.php');</li></ul>     * 2009-03-05 10:32 ver 2.0b to 2.0 <ul><li>Reformat all PHPdocs</li></ul>     * 2009-03-05 20:46 ver 2.0 to 2.1 <ul><li>HuError now implements outExtraData.</li><li>In all methods default value of $formar changed from '' to null (according to interface)</li><li>Implementation of ::strByOutType() and ::strToPrint() moved to &quot;interface common implementation&quot;
-        (see Multiple Inheritance restrictions in it)</li><li>Delete now unused ExtraData class. Instead it implemented (in separate file) commonOutExtraData.</li></ul>     * 2009-03-06 15:29 ver 2.1.2 to 2.1.3 <ul><li>Change include_once('Settings/settings.php'); to include_once('Vars/Settings/settings.php');</li></ul></td>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Vars/settings/settings.html">settings</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td>outExtraData.interface</td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Exceptions/VariableRangeException.html">VariableRangeException</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---EMPTY_VAR.php.html#functionEMPTY_VAR">EMPTY_VAR()</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td>debug</td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../Macroses/_macroses---EMPTY_STR.php.html#functionNON_EMPTY_STR">NON_EMPTY_STR()</a></td>
+  </tr>
+  <tr>
+    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../../System/OS.html">OS</a></td>
   </tr>
 </table>
 </div>
@@ -172,7 +192,7 @@ Debug and backtrace toolkit.<br /><br /><br /><br />
 <br /><br />
 <h4>Includes:</h4>
 <div class="tags">
-include_once(<a href="../../Macroses/_macroses---EMPTY_VAR.php.html">'macroses/EMPTY_VAR.php'</a>) [line 40]<br />
+include_once(<a href="../../Macroses/_macroses---EMPTY_VAR.php.html">'macroses/EMPTY_VAR.php'</a>) [line 21]<br />
 
 </div>
 
@@ -185,7 +205,7 @@ include_once(<a href="../../Macroses/_macroses---EMPTY_VAR.php.html">'macroses/E
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:15:40 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:13 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -14,12 +14,11 @@
  *
  * This backend library also supports POST requests additionally to GET.
  *
- * @author Dmitry Koterov 
+ * @author Dmitry Koterov
  * @version 5.x $Id$
  */
 
-class JsHttpRequest
-{
+class JsHttpRequest{
 	var $SCRIPT_ENCODING = "windows-1251";
 	var $SCRIPT_DECODE_MODE = '';
 	var $LOADER = null;
@@ -149,10 +148,10 @@ class JsHttpRequest
 	 * 
 	 * Set an active script encoding & correct QUERY_STRING according to it.
 	 * Examples:
-	 *   "windows-1251"		  - set plain encoding (non-windows characters, 
+	 *   "windows-1251"		  - set plain encoding (non-windows characters,
 	 *							 e.g. hieroglyphs, are totally ignored)
 	 *   "windows-1251 entities" - set windows encoding, BUT additionally replace:
-	 *							 "&"		 ->  "&amp;" 
+	 *							 "&"		 ->  "&amp;"
 	 *							 hieroglyph  ->  &#XXXX; entity
 	 */
 	function setEncoding($enc)
@@ -491,8 +490,8 @@ class JsHttpRequest
 			0x042E, 0x0410, 0x0411, 0x0426, 0x0414, 0x0415, 0x0424, 0x0413,
 			0x0425, 0x0418, 0x0419, 0x041A, 0x041B, 0x041C, 0x041d, 0x041E,
 			0x041F, 0x042F, 0x0420, 0x0421, 0x0422, 0x0423, 0x0416, 0x0412,
-			0x042C, 0x042B, 0x0417, 0x0428, 0x042d, 0x0429, 0x0427, 0x042A	  
+			0x042C, 0x042B, 0x0417, 0x0428, 0x042d, 0x0429, 0x0427, 0x042A
 		),
 	);
 }
-
+?>

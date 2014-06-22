@@ -12,7 +12,7 @@
   <tr><td class="header_line"><img src="../../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
   <tr>
     <td class="header_menu">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      		  [ <a href="../../classtrees_settings.html" class="menu">class tree: settings</a> ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          		  [ <a href="../../classtrees_settings.html" class="menu">class tree: settings</a> ]
 		  [ <a href="../../elementindex_settings.html" class="menu">index: settings</a> ]
 		  	    [ <a href="../../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -37,6 +37,7 @@
               <a href="../../li_Exceptions.html">Exceptions</a><br />
               <a href="../../li_Filesystem.html">Filesystem</a><br />
               <a href="../../li_HuGetopt.html">HuGetopt</a><br />
+              <a href="../../li_Image.html">Image</a><br />
               <a href="../../li_Macroses.html">Macroses</a><br />
               <a href="../../li_moysklad.html">moysklad</a><br />
               <a href="../../li_Orange.html">Orange</a><br />
@@ -292,7 +293,7 @@ Source Location: /Vars/Settings/settings_check.php<br /><br />
 
   </dt>
   <dd>
-    PHP hasn't any normal possibilities to cast objects into derived class. We need hack to do it.
+    PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
   </dd>
     <dt>
     <a href="../../Vars/Classes/HuClass.html#methodcloning">HuClass::cloning()</a>
@@ -325,7 +326,7 @@ Source Location: /Vars/Settings/settings_check.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 45]<br />
+[line 23]<br />
 Extended variant of settings, with check possible options.<br /><br /><p>Slowly, but safely.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -346,7 +347,7 @@ Extended variant of settings, with check possible options.<br /><br /><p>Slowly,
 	<a name="var$properties"></a>
 	<p></p>
 	<h4>$properties = <span class="value">array()</span></h4>
-	<p>[line 46]</p>
+	<p>[line 24]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -378,7 +379,7 @@ Extended variant of settings, with check possible options.<br /><br /><p>Slowly,
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 54]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 32]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -481,7 +482,7 @@ Overrides <a href="../../Vars/settings/settings.html#method__construct">settings
   </div>
   <hr />
 	<a name="methodaddSetting"></a>
-	<h3>method addSetting <span class="smalllinenumber">[line 82]</span></h3>
+	<h3>method addSetting <span class="smalllinenumber">[line 60]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -525,7 +526,7 @@ $value)</code>
   </div>
   <hr />
 	<a name="methodcheckNamePossible"></a>
-	<h3>method checkNamePossible <span class="smalllinenumber">[line 124]</span></h3>
+	<h3>method checkNamePossible <span class="smalllinenumber">[line 102]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -593,7 +594,7 @@ $walkmethod.)</code>
   </div>
   <hr />
 	<a name="methodgetProperty"></a>
-	<h3>method getProperty <span class="smalllinenumber">[line 71]</span></h3>
+	<h3>method getProperty <span class="smalllinenumber">[line 49]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -645,7 +646,7 @@ Overrides <a href="../../Vars/settings/settings.html#methodgetProperty">settings
   </div>
   <hr />
 	<a name="methodmergeSettingsArray"></a>
-	<h3>method mergeSettingsArray <span class="smalllinenumber">[line 110]</span></h3>
+	<h3>method mergeSettingsArray <span class="smalllinenumber">[line 88]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -693,7 +694,7 @@ Overrides <a href="../../Vars/settings/settings.html#methodmergeSettingsArray">s
   </div>
   <hr />
 	<a name="methodnesting"></a>
-	<h3>method nesting <span class="smalllinenumber">[line 141]</span></h3>
+	<h3>method nesting <span class="smalllinenumber">[line 119]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -726,7 +727,7 @@ Overrides <a href="../../Vars/settings/settings.html#methodmergeSettingsArray">s
   </div>
   <hr />
 	<a name="methodsetSetting"></a>
-	<h3>method setSetting <span class="smalllinenumber">[line 63]</span></h3>
+	<h3>method setSetting <span class="smalllinenumber">[line 41]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -780,7 +781,7 @@ Overrides <a href="../../Vars/settings/settings.html#methodsetSetting">settings:
   </div>
   <hr />
 	<a name="methodsetSettingsArray"></a>
-	<h3>method setSettingsArray <span class="smalllinenumber">[line 91]</span></h3>
+	<h3>method setSettingsArray <span class="smalllinenumber">[line 69]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -832,7 +833,7 @@ Overrides <a href="../../Vars/settings/settings.html#methodsetSettingsArray">set
   </div>
   <hr />
 	<a name="method__isset"></a>
-	<h3>method __isset <span class="smalllinenumber">[line 102]</span></h3>
+	<h3>method __isset <span class="smalllinenumber">[line 80]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -874,7 +875,7 @@ Overrides <a href="../../Vars/settings/settings.html#method__isset">settings::__
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Apr 2014 16:16:36 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
+		    Documentation generated on Sun, 22 Jun 2014 23:13:55 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.4</a>
 	      </div>
       </td></tr></table>
     </td>
