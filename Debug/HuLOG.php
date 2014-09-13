@@ -129,7 +129,7 @@ class HuLOG extends get_settings{//HubbitusLOG :) log занял давно, д�
 	protected function makeLogString($log_string, $file, $type, $extra){
 		$this->lastLogTime = time();
 		$this->lastLogText->setSettingsArray(
-			($extra instanceof NullClass) /* EXPLICIT check what $extra was provided! Null also possible value, what must be dumped, if it peovided, I can't ignore it, also as any other predefined value! **/
+			($extra instanceof NullClass) /* EXPLICIT check what $extra was provided! Null also possible value, what must be dumped, if it provided, It can't be ignored also as any other predefined value! **/
 			?
 			array(
 				'level'	=> sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	//Отступ
@@ -162,8 +162,8 @@ class HuLOG extends get_settings{//HubbitusLOG :) log занял давно, д�
 			//От себя (HuLOG) пишем в лог
 			$to = HuLOG_Settings::LOG_TO_BOTH;
 			$file = 'ERR';
-			$this->makeLogString('НЕ задан файл, куда логгить и как!', $file, 'HuLOG');
-			$this->writeLogs($to);
+			$this->makeLogString('НЕ задан файл, куда логгить и как!', $file, 'HuLOG', null);
+			$this->writeLogs($to, $file);
 		}
 
 		/**

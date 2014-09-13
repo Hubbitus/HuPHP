@@ -20,28 +20,29 @@
 **/
 class commonOutExtraData implements outExtraData{
 protected $_var = null;
+
 	public function __construct($var){
-	$this->_var =& $var;
+	    $this->_var =& $var;
 	}
 
 	public function strToConsole($format = null){
-	return dump::c($this->_var, null, true);
+	    return dump::c($this->_var, null, true);
 	}#m strToConsole
 
 	public function strToFile($format = null){
-	return dump::log($this->_var, false, true);
+	    return dump::log($this->_var, null, true);
 	}#m strToFile
 
 	public function strToWeb($format = null){
-	return dump::w($this->_var, false, true);
+	    return dump::w($this->_var, null, true);
 	}#m strToWeb
 
 	public function strToPrint($format = null){
-	return __outExtraData__common_implementation::strToPrint($this, $format);
+	    return __outExtraData__common_implementation::strToPrint($this, $format);
 	}#m strToPrint
 
 	public function strByOutType($type, $format = null){
-	return __outExtraData__common_implementation::strByOutType($this, $type, $format);
+	    return __outExtraData__common_implementation::strByOutType($this, $type, $format);
 	}#m strByOutType
 }#c commonOutExtraData
 ?>
