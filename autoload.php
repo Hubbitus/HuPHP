@@ -1,4 +1,7 @@
 <?
+if (false === strstr(ini_get('include_path'), dirname(__FILE__))) // Add self dir into search classpath
+    ini_set('include_path', ini_get('include_path') . ':' . dirname(__FILE__));
+
 	/**
 	* Default value, but allow redefine
 	* Also yu may want define AUTOINCLUDE_ADDON_FILE, and it is also will be included.
