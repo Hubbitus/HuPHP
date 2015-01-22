@@ -108,7 +108,7 @@ private $_linesOffsets = array();	// Cache For ->getLineByOffset and ->getOffset
 	* @param	boolean $updateLineSep if true - update lineSep by presented in whole content.
 	**/
 	protected function explodeLines($updateLineSep = true){
-		preg_match_all('/(.*?)([\n\r])/', $this->content, $this->lineContent, PREG_PATTERN_ORDER);
+		preg_match_all('/(.*?)([\n\r]|\z)/', $this->content, $this->lineContent, PREG_PATTERN_ORDER);
 		if ($updateLineSep) $this->_lineSep = $this->lineContent[2][0/*Any realy. Assuming all equal.*/];
 		$this->lineContent = $this->lineContent[1];
 		$this->_linesOffsets = array();
@@ -192,7 +192,7 @@ private $_linesOffsets = array();	// Cache For ->getLineByOffset and ->getOffset
 	public function getLineByOffset($offset){
 		if (!$this->_linesOffsets) $this->makeCacheLineOffsets();
 		if ($offset > $this->_linesOffsets[sizeof($this->_linesOffsets)-1][1])
-		throw new VariableRangeException('Overflow! This offset does not exists.');
+		throw new VariableRangeException("Overflow! Offset [$offset] does not exists in [{$this->path()}].");
 
 		// Data ordered - provide binary search as fast alternative to array_search
 		$size = sizeof($this->_linesOffsets) - 1; // For speed up only
@@ -240,7 +240,7 @@ private $_linesOffsets = array();	// Cache For ->getLineByOffset and ->getOffset
 	**/
 	public function getOffsetByLine($line){
 		if (!$this->_linesOffsets) $this->makeCacheLineOffsets();
-		if ($line >= sizeof($this->_linesOffsets)) throw new VariableRangeException('Overflow! This line does not exists.');
+		if ($line >= sizeof($this->_linesOffsets)) throw new VariableRangeException("Overflow! Line [$line] does not exists in [{$this->path()}].");
 
 		return $this->_linesOffsets[$line];
 	}#m getOffsetByLine

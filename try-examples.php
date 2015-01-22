@@ -708,7 +708,7 @@ $testArray = array(0, 11, 22, 777);
 $ha = new HuArray( $testArray );
 dump::a($ha, 'Original HuArray');
 
-dump::a( $ha->filterByKeys(array(0,2)) );
+dump::a( $ha->filterByKeys(array(0,1)) );
 
 $ha->setSettingsArray( $testArray );
 dump::a($ha, 'Renewed to original');
@@ -719,4 +719,3 @@ $ha->setSettingsArray( $testArray );
 dump::a($ha, 'Renewed to original');
 
 dump::a( $ha->filterKeysCallback( create_function('&$key', 'return ( $key % 2 );') ) );
-?>
