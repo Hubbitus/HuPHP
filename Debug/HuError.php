@@ -189,7 +189,7 @@ class HuError extends settings implements outExtraData{
 	*
 	* @inheritdoc
 	**/
-	public function setSetting($name, $value){
+	public function &setSetting($name, $value){
 		parent::setSetting($name, $value);
 
 		$this->updateDate();
@@ -273,10 +273,10 @@ class HuError extends settings implements outExtraData{
 		}
 
 		if ($fieldValue instanceof outExtraData){
-			return NON_EMPTY_STR($fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
+			return NON_EMPTY_STR(@$fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
 		}
 		elseif($fieldValue instanceof backtrace){
-			return NON_EMPTY_STR($fieldValue->printout(true, null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
+			return NON_EMPTY_STR(@$fieldValue->printout(true, null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
 		}
 		else return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]);
 	}#m formatField

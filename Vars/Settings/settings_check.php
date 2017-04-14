@@ -1,10 +1,9 @@
 <?
 /**
-* Provide easy to use settigns-cllass for many purpose. Similar array
-* of settings, but provide several addition methods, and magick methods
+* Provide easy to use settigns-class for many purpose. Similar array
+* of settings, but provide several addition methods, and magic methods
 * to be easy done routine tasks, such as get, set, merge and convert to
-* string by provided simple format (For more complex formatting {@see
-* class HuFormat}).
+* string by provided simple format (For more complex formatting {@see class HuFormat}).
 *
 * @package settings
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
@@ -38,7 +37,7 @@ class settings_check extends settings{
 	* Reimplement extended variant to chect setting name possibility.
 	* @inheritdoc
 	**/
-	public function setSetting($name, $value){
+	public function &setSetting($name, $value){
 		parent::setSetting($this->checkNamePossible($name, __METHOD__), $value);
 	}#m setSetting
 
@@ -86,7 +85,8 @@ class settings_check extends settings{
 	* @inheritdoc
 	**/
 	public function mergeSettingsArray(array $setArr){
-		array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
+		$a = array_keys(REQUIRED_VAR($setArr)); // Variable introduced only for Strict standard check silence: 'Strict Standards: Only variables should be passed by reference'
+		array_walk($a, array($this, 'checkNamePossible'), __METHOD__);
 		parent::mergeSettingsArray($setArr);
 	}#m mergeSettingsArray
 

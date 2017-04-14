@@ -63,7 +63,6 @@ interface outExtraData{
 
 /* see description on begin about Multiple Inheritance **/
 class __outExtraData__common_implementation{
-	//Only hack - common realization!
 	public static function strByOutType(/*$this*/&$obj, $type, $format = null){
 		$obj->_curTypeOut = $type;
 
@@ -86,11 +85,11 @@ class __outExtraData__common_implementation{
 				break;
 
 			default:
-				throw new VariableRangeException('$type MUST be one of: OS::OUT_TYPE_BROWSER, OS::OUT_TYPE_CONSOLE, OS::OUT_TYPE_FILE or OS::OUT_TYPE_PRINT!');
+				throw new VariableRangeException("$type MUST be one of: OS::OUT_TYPE_BROWSER, OS::OUT_TYPE_CONSOLE, OS::OUT_TYPE_FILE or OS::OUT_TYPE_PRINT!");
 		}
 	}#m strByOutType
 
-	public function strToPrint(/*$this*/&$obj, $format = null){
+	public static function strToPrint(/*$this*/&$obj, $format = null){
 		$obj->_curTypeOut = OS::OUT_TYPE_PRINT;//Pseudo. Will be clarified.
 		if (OS::OUT_TYPE_BROWSER == OS::getOutType()) return $obj->strToWeb($format);
 		else return $obj->strToConsole($format);
