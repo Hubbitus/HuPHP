@@ -85,7 +85,7 @@ class RegExp_pcre extends RegExp_base {
 				$func_strlen = create_function('$str', 'return mb_strlen($str, \'UTF-8\');');
 			}
 			else{//Fallback
-				$func_strlen = create_function('$str', 'return strlen(utf8_decode($str));');
+				$func_strlen = @create_function('$str', 'return strlen(utf8_decode($str));');
 			}
 
 			foreach($this->matches as &$match){
