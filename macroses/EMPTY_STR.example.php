@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Toolkit of small functions aka "macroses".
 *
@@ -13,15 +15,15 @@
 include_once('autoload.php');
 
 function test_EMPTY_NONEMPTY_STR(&$var){
-dump::a($var, 'Original value');
+Dump::a($var, 'Original value');
 //dump::a(EMPTY_STR('', $var, 'DEFAULT'));
 //dump::a(EMPTY_STR('', 0, $var, 'DEFAULT'));
 
 //dump::a(EMPTY_STR($var, 'DEFAULT ($var is empty)'));
-dump::a(EMPTY_STR($var));
-dump::a(NON_EMPTY_STR($var, '<', '>'));
+Dump::a(EMPTY_STR($var));
+Dump::a(NON_EMPTY_STR($var, '<', '>'));
 
-dump::a('===================================');
+Dump::a('===================================');
 }#f test_EMPTY_NONEMPTY_STR
 
 $t = true;
@@ -44,4 +46,3 @@ $t = 0;
 test_EMPTY_NONEMPTY_STR($t);	// '0'; '<0>'
 $t = '0';
 test_EMPTY_NONEMPTY_STR($t);	// '0'; '<0>'
-?>

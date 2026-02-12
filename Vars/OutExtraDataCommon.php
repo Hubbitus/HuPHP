@@ -1,0 +1,49 @@
+<?php
+declare(strict_types=1);
+
+/**
+* Debug and backtrace toolkit.
+*
+* @package Debug
+* @subpackage HuLOG
+* @version 2.0.2
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created ???
+*
+* @uses dump
+* @uses outExtraData.interface
+**/
+
+/**
+* Common implementation suitable for the most types. Primarily intended for logs, like:
+* Single::def('HuLog')->toLog('Exception occurred: ' . $e->getMessage(), 'ERR', 'Some', new commonOutExtraData($SomeCurrentStructuredData));
+* Output based on dump::* functions
+**/
+class OutExtraDataCommon implements OutExtraData {
+protected $_var = null;
+
+	public function __construct($var){
+		$this->_var =& $var;
+	}
+
+	public function strToConsole($format = null){
+		return Dump::c($this->_var, null, true);
+	}#m strToConsole
+
+	public function strToFile($format = null){
+		return Dump::log($this->_var, null, true);
+	}#m strToFile
+
+	public function strToWeb($format = null){
+		return Dump::w($this->_var, null, true);
+	}#m strToWeb
+
+	public function strToPrint($format = null){
+		return __outExtraData__common_implementation::strToPrint($this, $format);
+	}#m strToPrint
+
+	public function strByOutType($type, $format = null){
+		return __outExtraData__common_implementation::strByOutType($this, $type, $format);
+	}#m strByOutType
+}#c

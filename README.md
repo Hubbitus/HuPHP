@@ -2,17 +2,22 @@ HuPHP
 =====
 Hubbitus PHP framework
 
-PHP framework I long time want publish. It mostly written for PHP5 in OOP style provide some object oriented thinks which PHP 6 brings natively, implements auto debug output dependant on automatically detected output method (web, console, log), implements some external APIs like Yandex Market XML, O-range.ru SMS API, rokokassa.ru and a1agregator.ru integration and so on.
+PHP framework for address various PHP missing features like:
+- `Dump` class for easy and convenient dump variables. Not always debugger available, especially in production. And `var_dump`/`print_r` is very basic...
+- `HuArray`. In PHP present `ArrayObject`, but it is also very primitive. As alternative for OOP syntax there are present extension like https://github.com/nikic/scalar_objects, but it also needs to be installed.
+- `HuLog` - easy logging facility with auto configuration.
+- `Vars` - interface for domain (entity) oriented programming.
+- `macroses` - simple functions to handle checks and assertions, like RE
 
 ## Key futures should be mentioned
 
 ### Fully autoloading classes. Just one line needed:
 ```php
-include('autoinclude.php');
+include('HuPHP.autoinclude.php');
 ```
 Other classes will be found without explicit mention.
 
-### Convenients debug support
+### Convenient debug support
 * **Automatic runtime caller arguments name parsing**:
 ```php
 include('autoload.php');
@@ -75,17 +80,15 @@ dump::a($re->match(0));
 
 ### External services protocols and APIs implemented
 * O-Range.ru SMS-partner API
-* a1agregator.ru - SMS services
 * Robokassa.ru - payment gateway
 * sim-im.org - history parsing
-* cpcr.ru - online delivery cost calculation
 * dellin.ru - online delivery cost calculation
-* moysklad.ru                                
+* moysklad.ru
 * yandex.ru - Yandex Market XML (YML).
 
-### Exception hierarchy, Vars, abstract storage, fitlesystem manipulation in most system-agnostic way.
+### Exception hierarchy, Vars, abstract storage, filesystem manipulation in most system-agnostic way.
 * For some examples see code, phpdocs (with history of changes).
-* Some unstructoired examples you may found in [try-examples.php](https://github.com/Hubbitus/HuPHP/blob/master/try-examples.php)
+* Some unstructured examples you may find in [try-examples.php](https://github.com/Hubbitus/HuPHP/blob/master/try-examples.php)
 
 
-Last time I not so much interesting in PHP developing itself, but will be happy if any part of my work will be usefull for anyone. I also not promise, but will try fix found errors.
+Last time I not so much interesting in PHP developing itself, but will be happy if any part of my work will be useful for anyone. I also not promise, but will try fix found errors.

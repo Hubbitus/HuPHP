@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Debug and backtrace toolkit.
 *
@@ -121,6 +123,6 @@ $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE']['argtypes']['array']
 	= array('E:::', '\'Array(\'.count($var).\')\'');
 
 $GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_BROWSER]		=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_WEB'];
-$GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_CONSOLE]		=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE']; 
+$GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_CONSOLE]		=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE'];
 $GLOBALS['__CONFIG']['backtrace::printout'][OS::OUT_TYPE_FILE]			=& $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_FILE'];
 ?>

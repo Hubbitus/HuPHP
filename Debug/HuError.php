@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Debug and backtrace toolkit.
 *
@@ -20,7 +22,7 @@
 
 include_once('macroses/EMPTY_VAR.php');
 
-class HuError_settings extends settings{
+class HuErrorSettings extends Settings{
 	// Defaults
 	protected $__SETS = array(
 		/**
@@ -70,17 +72,17 @@ class HuError_settings extends settings{
 	**/
 }#c HuError_settings
 
-class HuError extends settings implements outExtraData{
+class HuError extends Settings implements OutExtraData {
 	/** Self settings. **/
 	protected /* settings */ $_sets = null;
 	public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide format (parts) and need known for what
 
-	public function __construct(HuError_settings $sets = null){
-		$this->_sets = EMPTY_VAR($sets, new HuError_settings);
+	public function __construct(?HuErrorSettings $sets = null){
+		$this->_sets = EMPTY_VAR($sets, new HuErrorSettings);
 	}#__c
 
 	/**
-	* Due to absent mutiple inheritance in PHP, just copy/paste from class get_settings.
+	* Due to absent multiple inheritance in PHP, just copy/paste from class {@see SettingsGet} @TODO switch to use traits.
 	* Overloading to provide ref on settings without change possibility.
 	* In this case change settings is allowed, but change full settings object - not!
 	*
@@ -100,7 +102,7 @@ class HuError extends settings implements outExtraData{
 			default:
 			/**
 			* Set properties is implicit and NOT returned reference by default.
-			* But for 'settings' we want opposite reference. Whithout capability of functions
+			* But for 'settings' we want opposite reference. Without compatibility of functions
 			* overload by type arguments - is only way silently ignore Notice: Only variable references should be returned by reference
 			**/
 			$t = $this->getProperty($name);
@@ -119,7 +121,7 @@ class HuError extends settings implements outExtraData{
 	public function strToFile($format = null){
 		$this->_curTypeOut = OS::OUT_TYPE_FILE;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_FILE)) return $this->getString($format);
-		else return dump::log($this->__SETS, null, true);
+		else return Dump::log($this->__SETS, null, true);
 	}#m strToFile
 
 	/**
@@ -133,7 +135,7 @@ class HuError extends settings implements outExtraData{
 	public function strToWeb($format = null){
 		$this->_curTypeOut = OS::OUT_TYPE_BROWSER;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_WEB)) return $this->getString($format);
-		else return dump::w($this->__SETS, null, true);
+		else return Dump::w($this->__SETS, null, true);
 	}#m strToWeb
 
 	/**
@@ -147,11 +149,11 @@ class HuError extends settings implements outExtraData{
 	public function strToConsole($format = null){
 		$this->_curTypeOut = OS::OUT_TYPE_CONSOLE;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_CONSOLE)) return $this->getString($format);
-		else return dump::c($this->__SETS, null, true);
+		else return Dump::c($this->__SETS, null, true);
 	}#m strToConsole
 
 	/**
-	* String to print. Automaticaly detect Web or Console. Detect by {@link OS::getOutType()}
+	* String to print. automatically detect Web or Console. Detect by {@link OS::getOutType()}
 	*	and invoke appropriate ::strToWeb() or ::strToConsole()
 	*
 	* @param string $format	If @format not-empty use it for formating result. "Format of $format"
@@ -272,10 +274,10 @@ class HuError extends settings implements outExtraData{
 			$fieldValue = EMPTY_VAR(@$this->{$field[0]}, $field[0]); //Setting by name, or it is just text
 		}
 
-		if ($fieldValue instanceof outExtraData){
+		if ($fieldValue instanceof OutExtraData){
 			return NON_EMPTY_STR(@$fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
 		}
-		elseif($fieldValue instanceof backtrace){
+		elseif($fieldValue instanceof Backtrace){
 			return NON_EMPTY_STR(@$fieldValue->printout(true, null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
 		}
 		else return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]);

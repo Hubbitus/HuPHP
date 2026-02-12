@@ -1,8 +1,10 @@
 #!/usr/bin/php
-<?
-require('autoload.php');
-dump::a('Just test');
+<?php
+declare(strict_types=1);
 
-$bt = backtrace::create();
+require('autoload.php');
+Dump::a('Just test');
+
+$bt = Backtrace::create();
 $bt->printout();
 ?>

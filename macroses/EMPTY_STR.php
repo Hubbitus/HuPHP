@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Toolkit of small functions aka "macroses".
 *
@@ -18,7 +20,7 @@
 *	2) Opposite it, integer 0 fails this check end go to default value, what it also
 *		is not what was prefered. We handle "0" correctly too as "NON EMPTY STRING"
 *	3) Macros do not intended to use with arrays, but PHP has internal support conversion its
-*		to 'Array' string. It is usefull. BUT, nevertheless unfortunately empty
+*		to 'Array' string. It is useful. BUT, nevertheless unfortunately empty
 *		array() converted into empty string! To cast into single form, all arrays
 *		converted into string like "Array(N)" where N is count of elements.
 *
@@ -81,4 +83,3 @@ function EMPTY_STR(){
 function NON_EMPTY_STR(&$str, $prefix='', $suffix='', $defValue=''){
 	return ( strlen(($str = EMPTY_STR($str))) > 0 ? $prefix.$str.$suffix : $defValue);
 }#f NON_EMPTY_STR
-?>

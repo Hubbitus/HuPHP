@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Debug and backtrace toolkit.
 *
@@ -67,11 +69,11 @@ class Tokenizer{
 	/**
 	* Constructor.
 	*
-	* @param array|Object(backtraceNode) $db	Array, one of is subarrays from return result by debug_backtrace();
+	* @param array|BacktraceNode $db	Array, one of is sub-arrays from return result by debug_backtrace();
 	* @return $this
 	**/
-	public function __construct(/* array | backtraceNode */ $db = array()){
-		if (is_array($db)) $this->setFromBTN(new backtraceNode($db));
+	public function __construct(/* array | backtraceNode */ $db = []){
+		if (is_array($db)) $this->setFromBTN(new BacktraceNode($db));
 		$this->setFromBTN($db);
 	}#__c
 
@@ -81,7 +83,7 @@ class Tokenizer{
 	* {@inheritdoc ::__construct()}
 	* @return &$this
 	**/
-	public function &setFromBTN(backtraceNode $db){
+	public function &setFromBTN(BacktraceNode $db){
 		$this->clear();
 		$this->_debugBacktrace = $db;
 		return $this;
@@ -91,16 +93,14 @@ class Tokenizer{
 	* To allow constructions like: Tokenizer::create()->methodName()
 	* {@inheritdoc ::__construct()}
 	**/
-	static public function create(/* array | backtraceNode */ $db){
+	public static function create(/* array | backtraceNode */ $db){
 		return new self($db);
 	}#m create
 
 	/**
 	* Clear object
-	*
-	* @return nothing
 	**/
-	public function clear(){
+	public function clear(): void {
 		$this->_debugBacktrace = null;
 		$this->_filePhpSrc = null;
 		$this->_callStartLine = 0;
@@ -159,16 +159,16 @@ class Tokenizer{
 	* @Throws(VariableRequiredException)
 	**/
 	protected function findTextCall(){
-		$this->_filePhpSrc = new file_inmem(REQUIRED_VAR($this->_debugBacktrace->file));
+		$this->_filePhpSrc = new FileInMemory(REQUIRED_VAR($this->_debugBacktrace->file));
 		$this->_filePhpSrc->loadContent();
 
 		$rega = '/'
-			.RegExp_pcre::quote(@$this->_debugBacktrace->type) // For classes '->' or '::'. For regular functions not exist.
+			.RegExpPcre::quote(@$this->_debugBacktrace->type) // For classes '->' or '::'. For regular functions not exist.
 			.'\b'.$this->_debugBacktrace->function // In case of method and regular function same name present.
 			.'\s*\((.*?)\s*\)' // call
 			.'/xms';
 
-			$this->_regexp = new RegExp_pcre($rega, $this->_filePhpSrc->getBLOB());
+			$this->_regexp = new RegExpPcre($rega, $this->_filePhpSrc->getBLOB());
 		$this->_regexp->doMatchAll(PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
 		$this->_regexp->convertOffsetToChars(PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
 		return $this;
@@ -220,7 +220,7 @@ class Tokenizer{
 		if (!$this->_callText) $this->findCallStrings();
 
 		// Without start and end tags not parsed properly.
-		$this->_tokens = token_get_all('<?' . $this->_callText . '?>');
+		$this->_tokens = token_get_all('Throws' . $this->_callText . '?>');
 		return $this;
 	}#m parseTokens
 
@@ -292,31 +292,27 @@ class Tokenizer{
 	*
 	* @return $this
 	**/
-	private function skipToStartCallArguments(){
+	private function skipToStartCallArguments(): Tokenizer {
 		$sz = sizeof($this->_tokens);
 			while ($this->_curTokPos < $sz){
 				$token =& $this->_tokens[$this->_curTokPos++];
 				if (is_array($token) and T_STRING == $token[0] and $token[1] == $this->_debugBacktrace->function)
-					return;
+					return $this;
 			}
 		return $this;
 	}#m skipToStartCallArguments
 
 	/**
 	* Add text to CURRENT arg.
-	*
-	* @return noting
 	**/
-	private function addToArg($str){
+	private function addToArg($str): void {
 		$this->_args[$this->countArgs() - 1] .= $str;
 	}#m addToArg
 
 	/**
 	* Add next arg to array
-	*
-	* @return nothing
 	**/
-	private function addArg(){
+	private function addArg(): void {
 		$this->_args[$this->countArgs()] = '';
 	}#m addArg
 
@@ -328,13 +324,13 @@ class Tokenizer{
 	* @param	boolean	$all If true - all trim, else (by default) - only paired (if only ended with quote, or only started - leaf it as is).
 	* @return	string
 	**/
-	static public function trimQuotes($arg, $all = false){
+	public static function trimQuotes($arg, $all = false){
 		if (!$arg) return '';
 
 		$len = strlen($arg);
-		if ('"' == $arg{0} or '\'' == $arg{0}) $from = 1;
+		if ('"' == $arg[0] or '\'' == $arg[0]) $from = 1;
 		else $from = 0;
-		if ('"' == $arg{$len-1} or '\'' == $arg{$len-1}) $len -= (1 + $from);
+		if ('"' == $arg[$len-1] or '\'' == $arg[$len-1]) $len -= (1 + $from);
 
 		if ($all) return (substr($arg, $from, $len));
 		elseif(strlen($arg) - $len > 1) return (substr($arg, $from, $len));

@@ -1,6 +1,8 @@
 <?php
+declare(strict_types=1);
+
 /**
-* RegExp manupulation.
+* RegExp manipulation.
 *
 * @package RegExp
 * @version 1.0
@@ -23,4 +25,3 @@ interface IRegExp{
 	**/
 	public static function quote($toQuote, $delimeter = '/');
 }
-?>

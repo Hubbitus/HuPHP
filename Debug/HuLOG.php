@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Debug and backtrace toolkit.
 *
@@ -19,26 +21,26 @@
 include_once('macroses/REQUIRED_VAR.php');
 include_once('macroses/EMPTY_STR.php');
 
-class HuLOG_settings extends settings{
+class HuLOGSettings extends Settings{
 	const LOG_TO_FILE	= OS::OUT_TYPE_FILE; // To file
 	const LOG_TO_PRINT	= OS::OUT_TYPE_PRINT; // To stdout (print, echo)
-	// Unfortunetly PHP does NOT support computed value of constants
+	// Unfortunately PHP does NOT support computed value of constants
 	//const LOG_TO_BOTH	= OS::OUT_TYPE_FILE + OS::OUT_TYPE_PRINT;	//to both
 	const LOG_TO_BOTH	= 12; // to both
 
-protected $__SETS = array(
-	'FILE_PREFIX'		=> 'log_',
-	'LOG_FILE_DIR'		=> './log/',
+	protected $__SETS = [
+		'FILE_PREFIX'		=> 'log_',
+		'LOG_FILE_DIR'		=> './log/',
 
-	'LOG_TO_ACS'		=> self::LOG_TO_BOTH,
-	'LOG_TO_ERR'		=> self::LOG_TO_BOTH,
+		'LOG_TO_ACS'		=> self::LOG_TO_BOTH,
+		'LOG_TO_ERR'		=> self::LOG_TO_BOTH,
 
-	/** In SUBarray in order not to generate extra Entity
-	'HuLOG_Text_settings' => array(
-		// Here may be overwritten defaults settings. {@see HuLOG_text_settings}
-	)
-	*/
-);
+		/** In SUBarray in order not to generate extra Entity
+		'HuLOG_Text_settings' => array(
+			// Here may be overwritten defaults settings. {@see HuLOG_text_settings}
+		)
+		*/
+	];
 }#c HuLOG_settings
 
 class HuLOG_text extends HuError{
@@ -59,7 +61,7 @@ class HuLOG_text extends HuError{
 	}#__c
 }#c HuLOG_text
 
-class HuLOG_text_settings extends HuError_settings{
+class HuLOG_text_settings extends HuErrorSettings{
 	protected $__SETS = array(
 		/**
 		* @see HuError::updateDate()
@@ -98,7 +100,7 @@ class HuLOG_text_settings extends HuError_settings{
 	);
 }#c HuLOG_text_settings
 
-class HuLOG extends get_settings{//HubbitusLOG :) log занял давно, для совместимости старого кода не заменяю имя!
+class HuLOG extends SettingsGet {//HubbitusLOG :) log занял давно, для совместимости старого кода не заменяю имя!
 	public $_level = 0;//Для установки уровней вложенности логовых сообщений в файле
 
 	protected $lastLogText /*HuLOG_text*/= null;
@@ -107,9 +109,9 @@ class HuLOG extends get_settings{//HubbitusLOG :) log занял давно, д�
 	protected $_sets = null;
 
 	function __construct (/* HuLOG_settings OR array*/ $sets = null){
-		if (is_array($sets)) $this->_sets = new HuLOG_settings((array)$sets);
+		if (is_array($sets)) $this->_sets = new HuLOGSettings((array)$sets);
 		elseif($sets) $this->_sets = $sets;
-		else $this->_sets = new HuLOG_settings();//Default
+		else $this->_sets = new HuLOGSettings();//Default
 		$this->lastLogText = new HuLOG_text ($this->settings->HuLOG_Text_settings);
 	}
 
@@ -143,7 +145,7 @@ class HuLOG extends get_settings{//HubbitusLOG :) log занял давно, д�
 				'level'	=> sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	//Отступ
 				'type'	=> $type,			//Type-prefix
 				'logText'	=> $log_string,	//Main text!
-				'extra'	=> ( ($extra instanceof outExtraData) ? $extra : new commonOutExtraData($extra))	//Additional extra data
+				'extra'	=> ( ($extra instanceof OutExtraData) ? $extra : new OutExtraDataCommon($extra))	//Additional extra data
 			)
 		);
 	}
@@ -160,7 +162,7 @@ class HuLOG extends get_settings{//HubbitusLOG :) log занял давно, д�
 	public function toLog($log_string, $file='ERR', $type='', $extra=null){
 		if ( ! ($to = $this->settings->getProperty('LOG_TO_'.$file)) ){
 			//От себя (HuLOG) пишем в лог
-			$to = HuLOG_Settings::LOG_TO_BOTH;
+			$to = HuLOGSettings::LOG_TO_BOTH;
 			$file = 'ERR';
 			$this->makeLogString('НЕ задан файл, куда логгить и как!', $file, 'HuLOG', null);
 			$this->writeLogs($to, $file);
@@ -176,8 +178,8 @@ class HuLOG extends get_settings{//HubbitusLOG :) log занял давно, д�
 	}#m toLog
 
 	protected function writeLogs($to, $file){
-		if ( $to & HuLOG_Settings::LOG_TO_FILE ) $this->log_to_file($file);
-		if ( $to & HuLOG_Settings::LOG_TO_PRINT ) $this->log_print();
+		if ( $to & HuLOGSettings::LOG_TO_FILE ) $this->log_to_file($file);
+		if ( $to & HuLOGSettings::LOG_TO_PRINT ) $this->log_print();
 	}#m writeLogs
 }//c HuLOG
 ?>

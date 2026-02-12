@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Toolkit of small functions aka "macroses".
 *
@@ -27,8 +29,7 @@ function exit_count($count, $message=''){
 * @return	bool|integer
 **/
 function hit_count($count){
-static $_count = 0;
+	static $_count = 0;
 	if (++$_count == $count) return true;
 	else return $_count;
 }
-?>

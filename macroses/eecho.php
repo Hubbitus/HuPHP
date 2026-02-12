@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Toolkit of small functions aka "macroses".
 * eecho macros.
@@ -20,4 +22,3 @@
 function eecho($str){
 	return file_put_contents('php://stderr', $str);
 }#f eecho
-?>

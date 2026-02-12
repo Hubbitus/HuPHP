@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Manipulate processes on *NIX-like systems.
 *
@@ -107,7 +109,7 @@ class Process{
 		if (!is_resource($this->resource)){
 			throw new ProcessException ('Can\'t open process!'.$this->state->describe(), 0, $this->getState());
 		}
-}
+	}
 
 	public function setNonBlockingMode($nonBlock = true, $nonBlockTimeout = 500000){
 		$this->state->nonBlockingMode = $nonBlock;
@@ -221,4 +223,3 @@ catch (Exception $e){
     // there was a problem executing the command
 }
 */
-?>

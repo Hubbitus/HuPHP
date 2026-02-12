@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Класс шаблонизатора. Версия 2.1.2
 * @deprecated Good idea but trash implementation. To be reimplemented.
@@ -19,7 +19,7 @@
 *	- Add method assignFromArray()
 *
 *	* 2009-03-18 08:18 ver 2.1.1 to 2.1.2
-*	- In method ::scheme() fix provide root assigments.
+*	- In method ::scheme() fix provide root assignments.
 **/
 
 /**
@@ -85,7 +85,7 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 		/*-inc
 		include_once('Debug/gentime_class.php');
 		*/
-		$this->_gentime = new gentime;
+		$this->_gentime = new Gentime;
 		$this->_gentime->start();
 		}
 	}#m constructor
@@ -619,7 +619,7 @@ $rega = "#{
 	$this->parse(false);
 
 	$schm = new template($schemeDir.'/'.$scheme, $this, $this->_top);	#Проверки пути есть в конструкторе
-	//Provide assigments
+	//Provide assignments
 	@$schm->assigned[$schm->filename] = (array)$this->assigned[$this->filename];
 	$schm->replace('<!--<<'.basename($scheme, '.scheme').'>>-->', $this->content_file);
 	$schm->parse(false);

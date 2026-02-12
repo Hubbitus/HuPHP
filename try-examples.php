@@ -1,5 +1,5 @@
 #!/bin/env php
-<?
+<?php
 include('autoload.php');
 
 /*
@@ -115,7 +115,7 @@ $m = $r->match(0);
 c_dump($m,'$m');
 //c_dump(mb_strlen(substr($f->getBLOB(), 0, $m[0][1])));
 
-/*Whith PREG_OFFSET_CAPTURE preg_match* returns bytes offset!!!! nor chars!!!!
+/*with PREG_OFFSET_CAPTURE preg_match* returns bytes offset!!!! nor chars!!!!
 So, recalculate it in chars is several methods:
 1) Using utf8_decode. See http://ru2.php.net/manual/ru/function.strlen.php comment "chernyshevsky at hotmail dot com"
 2) And using mb_strlen http://ru2.php.net/manual/ru/function.preg-match.php comment "chuckie"
@@ -706,16 +706,16 @@ dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternate method. Fully equivalent of
 //include_once('Vars/HuArray.php');
 $testArray = array(0, 11, 22, 777);
 $ha = new HuArray( $testArray );
-dump::a($ha, 'Original HuArray');
+Dump::a($ha, 'Original HuArray');
 
-dump::a( $ha->filterByKeys(array(0,1)) );
-
-$ha->setSettingsArray( $testArray );
-dump::a($ha, 'Renewed to original');
-
-dump::a( $ha->filterOutByKeys(array(0,2)) );
+Dump::a( $ha->filterByKeys(array(0,1)) );
 
 $ha->setSettingsArray( $testArray );
-dump::a($ha, 'Renewed to original');
+Dump::a($ha, 'Renewed to original');
 
-dump::a( $ha->filterKeysCallback( create_function('&$key', 'return ( $key % 2 );') ) );
+Dump::a( $ha->filterOutByKeys(array(0,2)) );
+
+$ha->setSettingsArray( $testArray );
+Dump::a($ha, 'Renewed to original');
+
+Dump::a( $ha->filterKeysCallback( create_function('&$key', 'return ( $key % 2 );') ) );

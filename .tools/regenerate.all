@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Regenerate all generated stuff: Autoincludes, Docs, Packages (Phar, OneFile)
+# Regenerate all generated stuff: auto-includes, Docs, Packages (Phar, OneFile)
 
 {
-#./auto_extract_class_map.bash
-
+./auto_extract_class_map.bash
+exit
 rm -f ./Packages/{HuDebug.phar,one.Debug.php}
 
 ./Packages/makeHuDebug.phar.php

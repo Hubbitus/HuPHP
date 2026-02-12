@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 define('BASE_DIR', realpath(dirname(__FILE__) . '/../../'));
 define('FILENAME_PHAR', 'HuPHP.phar');
 define('FILENAME_ONE', 'HuPHP.one.php');

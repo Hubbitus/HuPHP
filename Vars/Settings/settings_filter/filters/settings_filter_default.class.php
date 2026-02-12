@@ -1,6 +1,6 @@
-<?
+<?php
 /**
-* Default get - filter. If not value (empty of calback) returns default..
+* Default get - filter. If not value (empty of callback) returns default.
 *
 * @package settings
 * @subpackage settings_filter
@@ -11,9 +11,9 @@
 **/
 
 /**
-* Default get - filter. If not value (empty of calback) returns default.
+* Default get - filter. If not value (empty of callback) returns default.
 **/
-class settings_filter_default extends settings_filter_base{
+class settings_filter_default extends SettingsFilterBase{
 private $default;
 private $callback_;
 	/**

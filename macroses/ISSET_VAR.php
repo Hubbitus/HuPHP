@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Toolkit of small functions aka "macroses".
 *
@@ -20,8 +22,6 @@
 *
 * With that function we may safely use simple: $str = ISSET_VAR($variable) . 'some'...
 *
-* For Chec
-*
 * @param &mixed	$var variable amount of arguments.
 * @return &mixed
 **/
@@ -42,4 +42,3 @@ function &IS_SET_VAR($what, &$where){
 		return $t;
 	}
 }
-?>

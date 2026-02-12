@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * ReadOnly set - filter. Throws VariableReadOnlyException on try change value.
 *
@@ -14,7 +14,7 @@
 /**
 * ReadOnly set - filter. Throws VariableReadOnlyException on try change value.
 **/
-class settings_filter_readOnly extends settings_filter_base{
+class settings_filter_readOnly extends SettingsFilterBase{
 	public function __construct($propName){
 	parent::__construct($propName, null);
 	}#__c

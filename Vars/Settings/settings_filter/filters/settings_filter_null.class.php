@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Null - filter. Return value "AS IS".
 *
@@ -13,7 +13,7 @@
 /**
 * Null - filter. Return value "AS IS".
 **/
-class settings_filter_null extends settings_filter_base{
+class settings_filter_null extends SettingsFilterBase{
 	/**
 	* Only one argument required.
 	**/

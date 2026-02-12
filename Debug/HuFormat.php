@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Debug and backtrace toolkit.
 *
@@ -26,13 +28,13 @@ include_once('macroses/EMPTY_STR.php');
 include_once('macroses/ASSIGN_IF.php');
 include_once('macroses/REQUIRED_VAR.php');
 
-class HuFormatException extends VariableException{}
+class HuFormatException extends VariableException {}
 
 /**
 * Class to format different structures.
 * @example HuFormat.example.php
 **/
-class HuFormat extends HuError{
+class HuFormat extends HuError {
 	/** Replace this in ->_format on real value of _value (after process mod_s) **/
 	const sprintf_var = '__vAr__';
 	/** Var to process in eval-string in mod_e. In eval string off course witch sign $. **/
@@ -249,12 +251,12 @@ class HuFormat extends HuError{
 	**/
 	public function &changeModsStr($mods){
 		for($i=0; $i < strlen($mods); $i++){
-			if (in_array($mods{$i}, array('+', '-', '*'))){
-				$op = $mods{$i};
-				$mod = $mods{++$i};
+			if (in_array($mods[$i], array('+', '-', '*'))){
+				$op = $mods[$i];
+				$mod = $mods[++$i];
 			}
 			else{
-				$mod = $mods{$i};
+				$mod = $mods[$i];
 				$op = '+';	//Default
 			}
 
@@ -338,11 +340,11 @@ class HuFormat extends HuError{
 		if ($direction){
 			$this->_mod = 0;
 				for($i=0; $i < strlen($this->_modStr); $i++){
-					if (in_array($this->_modStr{$i}, array_keys(self::$MODS))){
-						$this->_mod |= self::$MODS[$this->_modStr{$i}];
-						array_push($this->_modArr, $this->_modStr{$i});
+					if (in_array($this->_modStr[$i], array_keys(self::$MODS))){
+						$this->_mod |= self::$MODS[$this->_modStr[$i]];
+						array_push($this->_modArr, $this->_modStr[$i]);
 					}
-					else throw new VariableRangeException('Unknown modifier - '.$this->_modStr{$i});
+					else throw new VariableRangeException('Unknown modifier - '.$this->_modStr[$i]);
 				}
 		}
 		else{//Now correct array-values
@@ -480,14 +482,14 @@ class HuFormat extends HuError{
 
 		foreach ($this->getValue() as $key => $v){
 			$hf->setValue($v);
-			$hf->_key = $key; //Only for I usefull
+			$hf->_key = $key; //Only for I useful
 			$ret .= $hf->getString();
 		}
 		return $ret;
 	}#m mod_II
 
 	/**
-	* Get Key of cunrrent iteration of I:::.
+	* Get Key of current iteration of I:::.
 	*
 	* @return string
 	**/
@@ -497,14 +499,14 @@ class HuFormat extends HuError{
 	}#m mod_k
 
 	/**
-	* As we averload getString() without arguments, implementation from HuError
-	* is not suitable. So, overload it as and thown exception (class by autoload) to avoid accidentally usages.
-	* @TODO It is very usefull methods. Consider implementation in the future.
+	* As we overload getString() without arguments, implementation from HuError
+	* is not suitable. So, overload it as and thrown exception (class by autoload) to avoid accidentally usages.
+	* @TODO It is very useful methods. Consider implementation in the future.
 	**/
-	public function strToFile($format = null){ throw new ClassMethodExistsException('Method strToFile is not exists yet'); }
-	public function strToWeb($format = null){ throw new ClassMethodExistsException('Method strToWeb is not exists yet'); }
-	public function strToConsole($format = null){ throw new ClassMethodExistsException('Method strToConsole is not exists yet'); }
-	public function strToPrint($format = null){ throw new ClassMethodExistsException('Method strToPrint is not exists yet'); }
-	public function strByOutType($type, $format = null){ throw new ClassMethodExistsException('Method strByOutType is not exists yet'); }
+	public function strToFile($format = null){ throw new ClassMethodException('Method strToFile is not exists yet'); }
+	public function strToWeb($format = null){ throw new ClassMethodException('Method strToWeb is not exists yet'); }
+	public function strToConsole($format = null){ throw new ClassMethodException('Method strToConsole is not exists yet'); }
+	public function strToPrint($format = null){ throw new ClassMethodException('Method strToPrint is not exists yet'); }
+	public function strByOutType($type, $format = null){ throw new ClassMethodException('Method strByOutType is not exists yet'); }
 };#c HuFormat
 ?>

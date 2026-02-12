@@ -1,8 +1,10 @@
 #!/usr/bin/php
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Debug and backtrace toolkit.
-* Utility to generate one Phar-file suitable fo debbuging, contained all needed dependencies.
+* Utility to generate one Phar-file suitable for debugging, contained all needed dependencies.
 * When Phar is not accessible consider use one.Debug.php It has less futures (like compression etc...) but useful in most cases.
 *
 * @package Debug
@@ -20,12 +22,12 @@ require('config.php');
 
 	// create a new phar - phar.readonly must be 0 in php.ini
 	// phar.readonly is enabled by default for security reasons.
-	// On production servers, Phars need never be created, only executed.
+	// On production servers, PHAR need never be created, only executed.
 	if (Phar::canWrite()) {
-		$p = new Phar(FILEPATH_PHAR, 0, FILENAME_PHAR);
+		$p = new Phar(\FILEPATH_PHAR, 0, \FILENAME_PHAR);
 
 //		$includes[] = BASE_DIR . '/Debug/_HuFormat.defaults/backtrace::printout.php';
-		new HuArray();// Any class to load autoinclude map
+		new HuArray();// Any class to load auto-include map
 		$includes = array_unique(array_values($GLOBALS['__CONFIG']['__autoload_map']));
 
 		$i = 0;
@@ -33,9 +35,9 @@ require('config.php');
 			echo ++$i . ") Process [$inc]\n";
 
 			//Replace all includes and requires on Phar!
-			$file = new file_inmem(BASE_DIR . '/' . $inc);
+			$file = new FileInMemory(BASE_DIR . '/' . $inc);
 			$file->loadContent();
-			$re = new RegExp_pcre(
+			$re = new RegExpPcre(
 				//		\\1		 \\2		\\3		\\4 \\5
 				'/(include|require)(_once)?\s*(\()?\s*(\'|")(.*)\\4\s*\\3?\)/', // Do NOT anchor to ;! It is may appear inner string too (in conditions f.e.)
 				$file->getBLOB(),
@@ -59,7 +61,7 @@ require('config.php');
 		}
 //?		}
 
-		$p->setStub('<? Phar::mapPhar("' . FILENAME_PHAR . '"); include_once("phar://' . FILENAME_PHAR . '/autoload.php"); __HALT_COMPILER(); ?>');
+		$p->setStub('<?php Phar::mapPhar("' . FILENAME_PHAR . '"); include_once("phar://' . FILENAME_PHAR . '/autoload.php"); __HALT_COMPILER(); ?>');
 	}
 	else{
 		throw new Exception('Phar write is not possible! Create a new phar - phar.readonly must be 0 in php.ini. Option phar.readonly is enabled by default for security reasons. On production servers, Phars need never be created, only executed.');

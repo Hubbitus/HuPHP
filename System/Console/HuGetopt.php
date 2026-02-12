@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Console package to parse parameters in CLI-mode
 *
@@ -18,7 +20,7 @@ include_once('macroses/EMPTY_VAR.php');
 
 class HuGetoptArgumentRequiredException extends VariableRequiredException{}
 
-class HuGetopt_option extends settings_check{
+class HuGetoptOption extends SettingsCheck {
 /**
 * Like this (examples, structure):
 *	||| First "Availability"
@@ -47,26 +49,26 @@ class HuGetopt_option extends settings_check{
 	/**
 	* Add parsed option in values HuArrays (Opt, Sep, Val, =, OptT)
 	*
-	* @param Object(HuGetopt_option) $toAdd
+	* @param HuGetoptOption $toAdd
 	* @return	&$this
 	**/
-	public function add(HuGetopt_option $toAdd){
+	public function add(HuGetoptOption $toAdd){
 		foreach (array('Opt', 'Sep', 'Val', '=', 'OptT') as $k){
 			$this->{$k}->pushHuArray($toAdd->{$k});
 		}
 		return $this;
 	}#m add
 
-}#c HuGetopt_option
+}#c
 
 /**
 * @example of use HuGetopt.example.php
 **/
-class HuGetopt_settings extends settings{
+class HuGetoptSettings extends Settings {
 	protected $__SETS = array(
 		'start_short'	=> array('-'),
 		'start_long'	=> array('--'),
-		'alternative'	=> false,	/** Allow long options to start with a short_start (‘-’ by default) **/
+		'alternative'	=> false, /** Allow long options to start with a short_start (‘-’ by default) **/
 
 		/** {@see class HuGetopt_option} to description name and {@see class settings_check} to check option. **/
 		'HuGetopt_option_options'	=> array(
@@ -75,24 +77,24 @@ class HuGetopt_settings extends settings{
 			'=', 'OptT'
 		)
 	);
-}#c HuGetopt_settings
+}#c
 
 /**
 * First there was a try to use http://pear.php.net/Console_getopt. Created Hu_Console_Getopt
 * extending pear class. But it is very limited:
 *	1. No way to bind short options to long
 *	2. No way get value presented by long OR short options. They logic only outside.
-*	3. Options provided after non optioned arguments - compleatly ignored.
+*	3. Options provided after non optioned arguments - completely ignored.
 *	4. In case when one option provided more than once - only last value present, other lost.
 *
 * Adjust PEAR Console_getopt is very difficult, so, write self version.
 *
-* In most casese behaviour this class is same as described in GNU "man 3 getopt", with several exceptions-additionals:
+* In most cases behavior this class is same as described in GNU "man 3 getopt", with several exceptions-additionally:
 *	1) Format of incoming options (optstring by GNU man) is different, more flexible allow associate short option with long!
 *	2) Don't support GNU extension -W
-*	3) Enviroment variable POSIXLY_CORRECT not handled, and behaviour always same as GNU default (first +/- in optstring modes too not handled!!!)
-*	4) Additionly in settings moved 'long_start' ('--') and 'short_start' ('-') and may be changed if you want.
-* 		Even more, it is array, and may contain any amount of element. It is usefull, if you, for example, wish use '-' and '+' in short options.
+*	3) Environment variable POSIXLY_CORRECT not handled, and behavior always same as GNU default (first +/- in optstring modes too not handled!!!)
+*	4) Additionally in settings moved 'long_start' ('--') and 'short_start' ('-') and may be changed if you want.
+* 		Even more, it is array, and may contain any amount of element. It is useful, if you, for example, wish use '-' and '+' in short options.
 *	5) PHP-CLI self do NOT correctly handle long options with sign "=" form or without space:
 *		--longOpt 'optarg' - correct
 * 		--longOpt='optarg' - In $argv placed full, not correct exploded to opt and optarg.
@@ -100,7 +102,7 @@ class HuGetopt_settings extends settings{
 *		GuGetopt correct handle all this cases.
 *	6) Also PHP-CLI does NOT handle short options in clue form (F.e. -o -t -f -s - does, -otfs - NOT). So, HuGetopt - handle it properly!
 **/
-class HuGetopt extends get_settings{
+class HuGetopt extends SettingsGet {
 	/**
 	* Array of raw arguments to parse
 	* @var array
@@ -140,10 +142,10 @@ class HuGetopt extends get_settings{
 	* Construct
 	*
 	* @param	array	$opts. Options to set. {@see ::setOpts()}
-	* @param 	Object(HuGetopt_settings)	$sets=null. Settings. If null - instanced default.
+	* @param 	HuGetoptSettings	$sets=null. Settings. If null - instanced default.
 	**/
-	public function __construct(array $opts, HuGetopt_settings $sets = null){
-		$this->_sets = EMPTY_VAR($sets, new HuGetopt_settings);
+	public function __construct(array $opts, HuGetoptSettings $sets = null){
+		$this->_sets = EMPTY_VAR($sets, new HuGetoptSettings);
 		$this->setOpts($opts);
 		$this->_nonopts = new HuArray();
 	}#__c
@@ -167,7 +169,7 @@ class HuGetopt extends get_settings{
 	public function &setOpts(array $opts){
 		$this->_optsS = $this->_optsL = $this->_opts = array();
 		foreach (REQUIRED_VAR($opts) as $k => $opt){
-			$this->_opts[$k]	= new HuGetopt_option(
+			$this->_opts[$k]	= new HuGetoptOption(
 				$this->sets()->HuGetopt_option_options
 				,array(
 					'OptS' 	=> $opt[0],
@@ -244,7 +246,7 @@ class HuGetopt extends get_settings{
 					){
 
 						if('::' == $o->Mod){//Mandatory argument for option
-							throw new HuGetoptArgumentRequiredException(new backtrace(), 'Option [' . $o->Opt->_last_ . '] requires argument!');
+							throw new HuGetoptArgumentRequiredException(new Backtrace(), 'Option [' . $o->Opt->_last_ . '] requires argument!');
 						}
 					}
 				$o->Val->_last_ = $optarg;
@@ -300,8 +302,8 @@ class HuGetopt extends get_settings{
 	* @return	false|Object(HuGetopt_option). In object ->Val NOT filled. For exception see description {@see ::isLongOpt()}
 	**/
 	public function isShortOpt($arg){
-		$re = new RegExp_pcre(
-			( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->start_short)).')('.implode('|', array_keys($this->_optsS)).')(.*)/s' ),
+		$re = new RegExpPcre(
+			( $reg = '/^('.implode('|', RegExpPcre::quote($this->sets()->start_short)).')('.implode('|', array_keys($this->_optsS)).')(.*)/s' ),
 			$arg
 		);
 		$re->doMatch();
@@ -309,7 +311,7 @@ class HuGetopt extends get_settings{
 		if ($re->matchCount()){
 			//Handle sequence of short options without optarguments -otfs.
 			if ($o = $this->getOptByStr($re->match(2), 's') and (':' == $o->Mod or '::' == $o->Mod) ){//Have optarg
-				return new HuGetopt_option(
+				return new HuGetoptOption(
 					$this->sets()->HuGetopt_option_options
 					,array(
 						'Sep'	=> new HuArray($re->match(1)),
@@ -321,7 +323,7 @@ class HuGetopt extends get_settings{
 			}
 			else{//Not have optarg => $re->match(2) is continue of nonoptarg options.
 				if ($re->match(3)) $this->_curArg = '-' . $re->match(3);
-				return new HuGetopt_option(
+				return new HuGetoptOption(
 					$this->sets()->HuGetopt_option_options
 					,array(
 						'Sep'	=> new HuArray($re->match(1)),
@@ -348,14 +350,14 @@ class HuGetopt extends get_settings{
 	* @return	false|Object(HuGetopt_option).
 	**/
 	public function isLongOpt($arg){
-		$re = new RegExp_pcre(
-			( $reg = '/^('.implode('|', RegExp_pcre::quote($this->sets()->alternative ? array_merge($this->sets()->start_long, $this->sets()->start_short) : $this->sets()->start_long)).')('.implode('|', array_keys($this->_optsL)).')(=|(?>\s*))(.*)/s' ),
+		$re = new RegExpPcre(
+			( $reg = '/^('.implode('|', RegExpPcre::quote($this->sets()->alternative ? array_merge($this->sets()->start_long, $this->sets()->start_short) : $this->sets()->start_long)).')('.implode('|', array_keys($this->_optsL)).')(=|(?>\s*))(.*)/s' ),
 			$arg
 		);
 		$re->doMatch();
 
 		if ($re->matchCount()){
-			return new HuGetopt_option(
+			return new HuGetoptOption(
 				$this->sets()->HuGetopt_option_options
 				,array(
 					'Sep'	=> new HuArray($re->match(1)),
@@ -403,7 +405,7 @@ class HuGetopt extends get_settings{
 
 	/**
 	 * Return array known (defined for parsing, not parsed!) short options.
-	 * 
+	 *
 	 * @return array
 	 */
 	public function getListShortOpts(){
@@ -438,4 +440,3 @@ class HuGetopt extends get_settings{
 		return $this;
 	}#m readPHPargv
 }#c HuGetopt
-?>

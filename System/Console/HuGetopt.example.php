@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * @uses dump
 * @uses HuGetopt
@@ -23,7 +25,7 @@ $argv = array(
   15 => '/home/pasha/bin/SIM_history.php',
   16 => '-wFile' // Short without space
 );
-dump::a($argv);
+Dump::a($argv);
 
 $hgo = new HuGetopt(
 	array(
@@ -35,7 +37,6 @@ $hgo = new HuGetopt(
 );
 $hgo->readPHPArgv()->parseArgs();
 //dump::a($hgo->get('w')->Val);
-dump::a($hgo->get('w')->Val->getArray());
-dump::a($hgo->get('i')->Val->getArray());
-dump::a($hgo->getNonOpts());
-?>
+Dump::a($hgo->get('w')->Val->getArray());
+Dump::a($hgo->get('i')->Val->getArray());
+Dump::a($hgo->getNonOpts());

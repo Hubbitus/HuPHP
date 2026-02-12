@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 class SerializedData{
 private $__data = array();
 
@@ -29,5 +31,4 @@ private $__data = array();
 	function toString(){
 	return $this->__toString();
 	}#m __toString
-}#c SerializedData
-?>
+}#c

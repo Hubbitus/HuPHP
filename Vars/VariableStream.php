@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * VariableStream stream wrapper. Manipulate stream 'var://varName' as file,
 * where content is $varName.
@@ -11,17 +13,17 @@
 **/
 
 /**
-* Very usefull example from http://www.php.net/manual/ru/function.stream-wrapper-register.php as base for implementation
+* Very useful example from http://www.php.net/manual/ru/function.stream-wrapper-register.php as base for implementation
 **/
 class VariableStream {
 	var $position;
 	var $varname;
-  
+
 	function stream_open($path, $mode, $options, &$opened_path){
 		$url = parse_url($path);
 		$this->varname = $url["host"];
 		$this->position = 0;
-	   
+
 		return true;
 	}
 
@@ -64,7 +66,7 @@ class VariableStream {
 					 return false;
 				}
 				break;
-			   
+
 			case SEEK_CUR:
 				if ($offset >= 0) {
 					 $this->position += $offset;
@@ -73,7 +75,7 @@ class VariableStream {
 					 return false;
 				}
 				break;
-			   
+
 			case SEEK_END:
 				if (strlen($GLOBALS[$this->varname]) + $offset >= 0) {
 					 $this->position = strlen($GLOBALS[$this->varname]) + $offset;
@@ -82,7 +84,7 @@ class VariableStream {
 					 return false;
 				}
 				break;
-			   
+
 			default:
 				return false;
 		}
@@ -96,7 +98,7 @@ stream_wrapper_register("var", "VariableStream")
 @example
 
 $myvar = "";
-   
+
 $fp = fopen("var://myvar", "r+");
 
 fwrite($fp, "line1\n");
@@ -110,4 +112,3 @@ while (!feof($fp)) {
 fclose($fp);
 var_dump($myvar);
 */
-?>

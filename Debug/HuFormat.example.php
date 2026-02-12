@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Debug and backtrace toolkit. Example usage of HuFormat.
 *
@@ -23,7 +25,7 @@ include_once('macroses/EMPTY_INT.php');
 $format = array(
 	'FORMAT_CONSOLE'	=> array(
 		'A:::' => array(
-			"Differencies:\n",
+			"Diff:\n",
 			array(
 				'I:::' => array(
 					'A:::' =>	array(
@@ -39,7 +41,7 @@ $format = array(
 						array('E:::', '"\t" . $var["field"] . "(" . $var["No"] . "):"'),
 						"\n",
 
-						//"a" got index '-' in array, "E" - evalueate it as present in string after
+						//"a" got index '-' in array, "E" - evaluate it as present in string after
 						array('aE:::-', '"\t" . ( strlen($str = EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"])) < ($rows = EMPTY_INT(`stty size 2>/dev/null | cut -d" " -f2`, 80)/*Console width*/) ? $str : substr($str, 0, $rows - 8/*TAB*/ - 3) . "..." )'),
 						"\n",
 //						array('aE:::+', '"\t".EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"])'),
@@ -56,7 +58,7 @@ $format = array(
 	,
 	'FORMAT_WEB'	=> array(
 		'A:::' => array(
-			"Differencies:\n",
+			"Diff:\n",
 			array(
 				'I:::' => array(
 					'A:::' =>	array(
@@ -122,6 +124,6 @@ $diff =
 */
 
 // Auto select appropriate format WEB or CONSOLE:
-$hfo = new huFormatOutExtraData($diff, $format);
+$hfo = new OutExtraDataHuFormat($diff, $format);
 echo $hfo->strToPrint();
 ?>

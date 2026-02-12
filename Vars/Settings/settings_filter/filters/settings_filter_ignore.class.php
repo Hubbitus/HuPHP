@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Ignore - filter. Ignore all value and always return null.
 *
@@ -13,7 +13,7 @@
 /**
 * Ignore - filter. Ignore all value and always return null.
 **/
-class settings_filter_ignore extends settings_filter_base{
+class settings_filter_ignore extends SettingsFilterBase{
 	public function __construct($propName){
 	parent::__construct($propName, null);
 	}#__c

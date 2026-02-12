@@ -1,8 +1,10 @@
 #!/usr/bin/php
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Debug and backtrace toolkit.
-* Utility to generate one file suitable fo debbuging, contained all needed dependencies.
+* Utility to generate one file suitable for debugging, contained all needed dependencies.
 * This useful where Phar is not accessible. In other cases Phar should bee used - it also provide additional futures like compression etc...
 *
 * @package Debug
@@ -21,18 +23,18 @@ require('config.php');
 //$includes = get_included_files();
 //unset($includes[0]); //Self
 
-//Manualy include
+//Manually include
 //array_push($includes, BASE_DIR . 'Debug/_HuFormat.defaults/backtrace::printout.php');
 
-new HuArray();// Any class to load autoinclude map
+new HuArray();// Any class to load auto-include map
 $includes = array_unique(array_values($GLOBALS['__CONFIG']['__autoload_map']));
-sort($includes); // Renumerate keys
+sort($includes); // Re-numerate keys
 
-$filesIncluded = array();
+$filesIncluded = [];
 
-$res = new file_inmem(FILEPATH_ONE);
-$res->appendString('<?
-/** This is automaticaly generated file. Please, do not edit it! Instead use scripts from .tools directory to regenerate. **/
+$res = new FileInMemory(FILEPATH_ONE);
+$res->appendString('<?php
+/** This is automatically generated file. Please, do not edit it! Instead use scripts from .tools directory to regenerate. **/
 ?>');
 
 	// Backward each
@@ -40,9 +42,9 @@ $res->appendString('<?
 //		if (!in_array($inc, $filesIncluded)){
 			echo $i . ") Process [$inc]\n";
 
-			$file = new file_inmem(BASE_DIR . '/' . $inc);
+			$file = new FileInMemory(BASE_DIR . '/' . $inc);
 			$file->loadContent();
-			$re = new RegExp_pcre(
+			$re = new RegExpPcre(
 				array(
 					'@\(include_once\(\'Debug/_HuFormat.defaults/backtrace::printout.php\'\)\)@' //Special case
 					//		\\1		 \\2		\\3		\\4 \\5

@@ -1,9 +1,11 @@
 #!/usr/bin/php
-<?
+<?php
+declare(strict_types=1);
+
 /*
-* Map regeneration in progrees by this script, so, we must include all explicit!
-* Futhermore - we must do it with all descending includes in reverted mode (leaf first)!
-* this all to do not use autoinclde mechanisms!
+* Map regeneration in progress by this script, so, we must include all explicit!
+* Furthermore - we must do it with all descending includes in reverted mode (leaf first)!
+* this all to do not use auto-include mechanisms!
 **/
 include_once('Exceptions/BaseException.php');
 include_once('Exceptions/variables.php');
@@ -24,7 +26,7 @@ include_once('RegExp/RegExp_pcre.php');
 $_skip_functions = array(
 	'myErrorHandler'		// In mssql_database to catch errors. Hack
 	,'backtrace__printout_WEB_helper'
-	,'file_get_contents'	// In template old backward capability.
+	,'file_get_contents'	// In template old backward compatibility.
 );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,7 +49,7 @@ $_skip_functions = array(
 	}
 
 //$source = file_get_contents('example.php');
-$source = file_get_contents(($inputfile = isset($argv[1]) ? $argv[1] : 'php://stdin')); // $argv[2] optionnaly part of DIR, which must be stripped
+$source = file_get_contents(($inputFile = $argv[1]) ?? 'php://stdin'); // $argv[2] optionally part of DIR, which must be stripped
 $tokens = token_get_all($source);
 
 $class_started = false;
@@ -59,11 +61,6 @@ $res = '';
 * We want cut off all Classes, and comments
 **/
 foreach ($tokens as $token){
-//	if (is_array($token)){
-//	$token['const_mame'] = array_keys(consts::getNameByValue($token[0], '', '/^T_/', false));
-////	$token['const_mame'] = token_name($token[0]);
-//	}
-
 	if (is_string($token)){// simple 1-character token
 		if ( '{' == $token ){ //All in code
 			if ($class_started){
@@ -89,19 +86,18 @@ foreach ($tokens as $token){
 		case T_COMMENT:
 		case T_ML_COMMENT:	// we've defined this
 		case T_DOC_COMMENT:	// and this
-		continue; // no action on comments
-		break;
+		break; // no action on comments
 
 		case T_CLASS:
 		case T_INTERFACE: //Do not distinguish for our purpose
-		$class_started = true;
+			$class_started = true;
 		break;
 
 		case T_CURLY_OPEN: //All "{" in double quotes
 		case T_DOLLAR_OPEN_CURLY_BRACES: //Variables in text like "value of A={$obj->val}"
 			if ($class_started){
-			++$curly_open;
-			continue;
+				++$curly_open;
+				break;
 			}
 			else $res .= $text;
 		break;
@@ -113,21 +109,19 @@ foreach ($tokens as $token){
 		}
 	}
 }
-//Echo only function names. one per line
-//RegExp for function name got from: http://ru.php.net/manual/en/functions.user-defined.php
-$m = classCreate('RegExp_pcre', '#function\s+\&?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)
+	//Echo only function names. One per line
+	//RegExp for function name got from: http://ru.php.net/manual/en/functions.user-defined.php
+	new RegExpPcre('#function\s+\&?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\s*\(#i', $res)
 		->doMatchAll()
 			->getHuMatches(1)
-				->filter(create_function('&$func', 'global $_skip_functions; return ! in_array($func, $_skip_functions);'));
-	if ($m->count()) //Check for the \n
-	echo(
-		$m
-		->walk(
-			create_function(
-				'&$item'
-				,"\$item = \"\t\t'\$item'\t=> '" . classCreate('RegExp_pcre', '#^' . RegExp_pcre::quote(@$argv[2]) . '#', $inputfile)->replace() . "',\";"
+				->filter(fn(&$func) => !in_array($func, $_skip_functions));
+	if ($m->count()){ //Check for the \n
+		echo(
+			$m
+			->walk(
+				fn(&$item) => "\$item = \"\t\t'\$item'\t=> '" . classCreate('RegExp_pcre', '#^' . RegExpPcre::quote(@$argv[2]) . '#', $inputFile)->replace() . "',\";"
 			)
-		)
-		->implode("\n") . "\n"
-	);
+			->implode("\n") . "\n"
+		);
+	}
 ?>

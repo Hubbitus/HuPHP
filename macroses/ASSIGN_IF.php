@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Toolkit of small functions aka "macroses".
 *
@@ -17,4 +19,3 @@
 function ASSIGN_IF(&$var, &$value){
 	if ($value) $var = $value;
 }#f ASSIGN_IF
-?>

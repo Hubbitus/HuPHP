@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * System environment and information
 * @package System ??
@@ -9,13 +11,13 @@
 **/
 
 /**
-* Class OS has mainly (all) static methods, to determine system-enveroments, like OS or type of out.
+* Class OS has mainly (all) static methods, to determine system-environments, like OS or type of out.
 * Was System, but it is registered in PEAR, change to OS
 **/
 class OS {
 	const OUT_TYPE_BROWSER = 1;
 	const OUT_TYPE_CONSOLE = 2;
-	const OUT_TYPE_PRINT = 4; /** Pseudo!!! Need automaticaly detect OUT_TYPE_BROWSER or OUT_TYPE_CONSOLE */
+	const OUT_TYPE_PRINT = 4; /** Pseudo!!! Need automatically detect OUT_TYPE_BROWSER or OUT_TYPE_CONSOLE */
 	const OUT_TYPE_FILE = 8;
 	const OUT_TYPE_WAP = 16;
 	#const OUT_TYPE_ = 16;
@@ -53,7 +55,7 @@ class OS {
 	*
 	* @return Now one of const: ::OUT_TYPE_BROWSER or ::OUT_TYPE_CONSOLE
 	**/
-	static public function getOutType(){
+	public static function getOutType(){
 		if (isset($_SERVER['HTTP_USER_AGENT'])) return self::OUT_TYPE_BROWSER;
 		else return self::OUT_TYPE_CONSOLE;
 	}#m getOutType
@@ -63,7 +65,7 @@ class OS {
 	*
 	* @return
 	**/
-	static public function phpSapiName(){
+	public static function phpSapiName(){
 		return php_sapi_name();
 	}#m phpSapiName
 
@@ -83,10 +85,10 @@ class OS {
 	* @param	string $filenam As it can be passed to include or require.
 	* @return	boolean
 	**/
-	static public function is_includeable($filename){
+	public static function is_includeable($filename){
 		/** is_file, is_readable not suitable, because include_path do not take effect.
 		* And opposite comment of "php at metagg dot com" and "medhefgo at googlemail dot com",
-		* woudn't manualy check all paths in include_path. Just open this file to read
+		* woudn't manually check all paths in include_path. Just open this file to read
 		* with include_path check parameter support! */
 		if ($res = @fopen($filename, 'r', true)){
 			fclose($res);	// Not realy need opened file, only result of opening.
@@ -100,16 +102,16 @@ class OS {
 	* @param $pathToCheck	string Path to check
 	* @return boolean
 	**/
-	static public function isPathAbsolute($pathToCheck){
+	public static function isPathAbsolute($pathToCheck){
 		if ( preg_match('@^(?:' . implode('|', stream_get_wrappers()) . ')://@', $pathToCheck) ) return true; // Registered wrappers always absolute!
 
 		//@TODO: case 'DAR': ;break; //Darwin http://qaix.com/php-web-programming/139-944-constant-php-os-and-mac-server-read.shtml
 		// This check from http://ru2.php.net/php_uname
 		if ('WIN' != strtoupper(substr(PHP_OS, 0, 3))){
-			return ( '/' == $pathToCheck{0} );
+			return ( '/' == $pathToCheck[0] );
 		}
 		else{//WIN
-			return ( ':' == $pathToCheck{1} );
+			return ( ':' == $pathToCheck[1] );
 		}
 	}
 }#c OS

@@ -1,5 +1,7 @@
 #!/usr/bin/php
-<?
+<?php
+declare(strict_types=1);
+
 /*
 $p = new Phar('HuDebug.phar', 0, 'HuDebug.phar');
 dump::a($p);
@@ -20,17 +22,15 @@ define('AUTOLOAD_DEBUG', true);
 require('config.php');
 require(FILEPATH_PHAR);
 
-dump::a('Just test');
+Dump::a('Just test');
 
-dump::a(ini_get('include_path'));
-dump::a(ini_set('include_path', '---')); // For the clear results in the experiment!
-dump::a(ini_get('include_path'));
+Dump::a(ini_get('include_path'));
+Dump::a(ini_set('include_path', '---')); // For the clear results in the experiment!
+Dump::a(ini_get('include_path'));
 
 function f(){
-	backtrace::create()->printout();
+	Backtrace::create()->printout();
 }
 
 f();
-
-
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 include('autoload.php');
 include('Vars/HuConfig.class.php'); // To use CONF()
 

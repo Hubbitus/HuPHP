@@ -1,4 +1,6 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
 * Class to provide OOP interface to array operations.
 *
@@ -15,7 +17,7 @@
 
 include_once('macroses/REQUIRED_VAR.php');
 
-class HuArray extends settings implements Iterator{
+class HuArray extends Settings implements Iterator {
 const huScheme = 'hu://';
 
 	/**
@@ -31,10 +33,10 @@ const huScheme = 'hu://';
 	* Push values.
 	*
 	* @param	mixed	$var.
-	* @params	mixed	any amount of vars (First explicity to make mandatory one at once)
+	* @param	array	$params any amount of vars (First explicitly to make mandatory one at once)
 	* @return	&$this
 	**/
-	public function &push($var){
+	public function &push($var): static {
 		//On old PHP got error: PHP Fatal error:  func_get_args(): Can't be used as a function parameter in /home/_SHARED_/Vars/HuArray.php on line 58
 		//call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), func_get_args()));
 		//Do the same with temp var:
@@ -49,7 +51,7 @@ const huScheme = 'hu://';
 	* @param 	array	$arr
 	* @return	&$this
 	**/
-	public function &pushArray(array $arr){
+	public function &pushArray(array $arr): static {
 		if ($arr)
 			call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $arr));
 		return $this;
@@ -92,8 +94,8 @@ const huScheme = 'hu://';
 	* @param	integer	$length
 	*	Если в эту функцию передан положительный параметр length, последовательность будет включать length элементов. Если в эту функцию передан отрицательный параметр length, в последовательность войдут все элементы исходного массива, начиная с позиции offset и заканчивая позицией, отстоящей на length элементов от конца. Если этот параметр будет опущен, в последовательность войдут все элементы исходного массива, начиная с позиции offset.
 	* @param	boolean	$preserve_keys
-	*	Обратите внимание, поумолчанию сбрасываются ключи массива. Можно переопределить это поведение, установив параметр preserve_keys в TRUE.
-	* @return Object(HuArray)
+	*	Обратите внимание, по умолчанию сбрасываются ключи массива. Можно переопределить это поведение, установив параметр preserve_keys в TRUE.
+	* @return HuArray
 	**/
 	public function getSlice($offset, $length = null, $preserve_keys = false){
 		return new HuArray(array_slice($this->__SETS, $offset, EMPTY_VAR($length, sizeof($this->__SETS)), $preserve_keys));
@@ -150,7 +152,7 @@ const huScheme = 'hu://';
 	* dump::a($ha->one);
 	* dump::a($ha->arr);					// Result Array (raw, as is)!
 	* dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
-	* dump::a($ha->hu('arr')->hu(2));			// Property access. Alse as any HuArray methods like walk(), filter() and any other.
+	* dump::a($ha->hu('arr')->hu(2));			// Property access. Also as any HuArray methods like walk(), filter() and any other.
 	* dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternative method ({@see ::__get()}). Another, form.
 	* Also this form is allow writing:
 	* $ha->{'hu://arr'} = 'Qwerty';
@@ -164,7 +166,7 @@ const huScheme = 'hu://';
 	}#m hu
 
 	/**
-	* Allow change value by short direct form->setttingName = 'qwerty';
+	* Allow change value by short direct form->settingName = 'qwerty';
 	*
 	* @param	string	$name
 	* @param	mixed	$value
@@ -277,24 +279,23 @@ const huScheme = 'hu://';
 
 	/// From interface Iterator ///
 
-	public function rewind(){
+	public function rewind(): void {
 		reset($this->__SETS);
 	}#m rewind
 
-	public function current(){
+	public function current(): mixed {
 		return /* $var = */ current($this->__SETS);
 	}#m current
 
-	public function key(){
+	public function key(): int|string|null {
 		return /* $var = */ key($this->__SETS);
 	}#m key
 
-	public function next(){
+	public function next(): void {
 		return /* $var =*/ next($this->__SETS);
 	}#m next
 
-	public function valid(){
+	public function valid(): bool {
 		return ($this->current() !== false);
 	}#m valid
 }#c HuArray
-?>
