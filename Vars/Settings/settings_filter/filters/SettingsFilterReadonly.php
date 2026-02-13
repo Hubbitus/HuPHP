@@ -17,14 +17,12 @@
 class settings_filter_readOnly extends SettingsFilterBase{
 	public function __construct($propName){
 	parent::__construct($propName, null);
-	}#__c
-
+	}
 	/**
 	* @inheritdoc
 	* Throws(VariableReadOnlyException)
 	**/
 	public function apply(&$name, &$value){
 	throw new VariableReadOnlyException();
-	}#m apply
-}#c settings_filter_readOnly
-?>
+	}
+}

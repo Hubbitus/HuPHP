@@ -6,4 +6,3 @@ require('config.php');
 require(FILEPATH_ONE);
 
 Dump::a('Just test');
-?>

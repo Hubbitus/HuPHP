@@ -14,7 +14,7 @@ declare(strict_types=1);
 /**
 * Extended variant of settings_check to handle "uncleared" fields.
 **/
-class SettingsCheckStatic extends SettingsCheck{
+class SettingsCheckStatic extends SettingsCheck {
 protected $static_settings = array();
 	/**
 	* Clear all except uncleared items.
@@ -23,8 +23,7 @@ protected $static_settings = array();
 		foreach ($this->getRegularKeys() as $key => $sets){
 		$this->__SETS[$key] = null;
 		}
-	}#m clear
-
+	}
 	/**
 	* Return array of regular keys, without 'uncleared' (private, static)
 	*
@@ -32,6 +31,5 @@ protected $static_settings = array();
 	**/
 	public function getRegularKeys(){
 	return array_diff(array_keys($this->__SETS), $this->static_settings);
-	}#m getRegularKeys
-}#c settings_check_static
-?>
+	}
+}

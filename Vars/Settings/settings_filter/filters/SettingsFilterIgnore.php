@@ -13,14 +13,12 @@
 /**
 * Ignore - filter. Ignore all value and always return null.
 **/
-class settings_filter_ignore extends SettingsFilterBase{
+class SettingsFilterIgnore extends SettingsFilterBase{
 	public function __construct($propName){
 	parent::__construct($propName, null);
-	}#__c
-
+	}
 	public function apply(&$name, &$value){
 	$name = null;
 	return null;
-	}#m apply
-}#c settings_filter_ignore
-?>
+	}
+}

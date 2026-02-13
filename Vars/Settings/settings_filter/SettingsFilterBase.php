@@ -28,8 +28,7 @@ private $callback_;
 	public function __construct($propName, $callback){
 	$this->propName = $propName;
 	$this->callback_ = $callback;
-	}#__c
-
+	}
 	/**
 	* In simplest variant - just direct apply provided callback.
 	* $name and $value provided as refrence, so, user can change both as want.
@@ -46,7 +45,5 @@ private $callback_;
 	* Solution found in man, see Example1 http://ru2.php.net/call_user_func
 	**/
 	return call_user_func_array( $this->callback_, array(&$name, &$value) );
-	}#m apply
-}#c settings_filter_base
-
-?>
+	}
+}

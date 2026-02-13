@@ -29,21 +29,17 @@ protected $_var = null;
 
 	public function strToConsole($format = null){
 		return Dump::c($this->_var, null, true);
-	}#m strToConsole
-
+	}
 	public function strToFile($format = null){
 		return Dump::log($this->_var, null, true);
-	}#m strToFile
-
+	}
 	public function strToWeb($format = null){
 		return Dump::w($this->_var, null, true);
-	}#m strToWeb
-
+	}
 	public function strToPrint($format = null){
 		return __outExtraData__common_implementation::strToPrint($this, $format);
-	}#m strToPrint
-
+	}
 	public function strByOutType($type, $format = null){
 		return __outExtraData__common_implementation::strByOutType($this, $type, $format);
-	}#m strByOutType
-}#c
+	}
+}

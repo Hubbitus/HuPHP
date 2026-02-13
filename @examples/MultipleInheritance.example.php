@@ -17,8 +17,7 @@ class A {
 	function ab(){
 		Dump::a('This is method A::ab ('.__CLASS__.'; '.__METHOD__.')');
 	}
-}#c A
-
+}
 class B{
 	public static $instance = 'BbB';
 	const ClassName = 'bBb';
@@ -30,14 +29,12 @@ class B{
 	function ab(){
 	Dump::a('This is method B::ab ('.__CLASS__.'; '.__METHOD__.')');
 	}
-}#c B
-
+}
 class C{
 	function cc(){
 	Dump::a('This is method C::cc ('.__CLASS__.'; '.__METHOD__.')');
 	}
-}#c C
-
+}
 inherits_from(
 	'C',
 	array('A','B')
@@ -84,4 +81,3 @@ $var_d->aa();
 $var_d->bb();
 $var_d->cc();
 $var_d->ab(); //A::ab !!
-?>

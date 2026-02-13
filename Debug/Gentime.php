@@ -47,5 +47,4 @@ class Gentime {
 		eval($code); // to out
 		printf ("<br>Максимальное время %f секунд<br><b>Среднее время %f</b><br>Минимальное время %f<br>", $max_time, $sum_time/$iteration, $min_time);
 	}
-}//c gentime
-?>
+}

@@ -28,8 +28,7 @@ class HuConfig extends SettingsCheck{
 
 	function __construct() {
 		parent::__construct(array_keys($GLOBALS['__CONFIG']), $GLOBALS['__CONFIG']);
-	}#__c
-
+	}
 	/**
 	* As __get before.
 	* Now {@see __get()} reimplemented to return HuArray instead of raw arrays
@@ -41,8 +40,7 @@ class HuConfig extends SettingsCheck{
 	**/
 	public function &getRaw($varname, $nothrow = false){
 		return $this->getProperty($varname, $nothrow);
-	}#m getRaw
-
+	}
 	/**
 	* For more comfort access in config fields without temporary variables like:
 	* Single::def('HuConfig')->test->first
@@ -58,8 +56,7 @@ class HuConfig extends SettingsCheck{
 			return $ret;
 		}
 		else return $ret;
-	}#m __get
-
+	}
 	/**
 	* Reimplement as initial, only return value by reference
 	* Also try include file 'includes/configs/' . $name . '.config.php' if it exist to find needed settings.
@@ -92,9 +89,8 @@ class HuConfig extends SettingsCheck{
 				return $t;
 			}
 		}
-	}#m getProperty
-}#c
-
+	}
+}
 /**
 * Short alias to Single::def('config'). In case of we can-t define constant like:
 * define('CONF', Single::def('config'));

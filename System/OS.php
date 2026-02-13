@@ -49,7 +49,6 @@ class OS {
 		'milter'
 	);
 
-
 	/**
 	* Determines out type of current-running process.
 	*
@@ -58,8 +57,7 @@ class OS {
 	public static function getOutType(){
 		if (isset($_SERVER['HTTP_USER_AGENT'])) return self::OUT_TYPE_BROWSER;
 		else return self::OUT_TYPE_CONSOLE;
-	}#m getOutType
-
+	}
 	/**
 	* php_sapi_name()
 	*
@@ -67,8 +65,7 @@ class OS {
 	**/
 	public static function phpSapiName(){
 		return php_sapi_name();
-	}#m phpSapiName
-
+	}
 	/**
 	* Check if file is includable. I can't just use if (@inlude($file)). Or, more exactly i can, but
 	*	it is have small different meaning:
@@ -94,8 +91,7 @@ class OS {
 			fclose($res);	// Not realy need opened file, only result of opening.
 		}
 		return (bool)$res;
-	}#m is_inludeable
-
+	}
 	/**
 	* Check if given path is absolute or not.
 	*
@@ -114,5 +110,4 @@ class OS {
 			return ( ':' == $pathToCheck[1] );
 		}
 	}
-}#c OS
-?>
+}

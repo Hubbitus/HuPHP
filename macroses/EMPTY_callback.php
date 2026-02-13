@@ -29,5 +29,4 @@ $i = 1; //0 is callback
 	){/*Nothing do, just skip it */}
 
 	if ($res) return $arg;
-}#f EMPTY_callback
-?>
+}

@@ -36,8 +36,7 @@ abstract class HuClass {
 	**/
 	public static function cloning($obj){
 		return clone $obj;
-	}#m cloning
-
+	}
 	/**
 	* PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
 	* See http://ru2.php.net/mysql_fetch_object comments by "Chris at r3i dot it"
@@ -57,5 +56,5 @@ abstract class HuClass {
 				serialize($what)
 			)
 		);
-	}#m cast
-}#c
+	}
+}

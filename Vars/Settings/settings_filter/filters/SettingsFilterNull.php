@@ -13,16 +13,14 @@
 /**
 * Null - filter. Return value "AS IS".
 **/
-class settings_filter_null extends SettingsFilterBase{
+class SettingsFilterNull extends SettingsFilterBase{
 	/**
 	* Only one argument required.
 	**/
 	public function __construct($propName){
 	parent::__construct($propName, null);
-	}#__c
-
+	}
 	public function apply(&$name, &$value){
 	return null;
-	}#m apply
-}#c settings_filter_null
-?>
+	}
+}

@@ -32,4 +32,3 @@ function unicode_wordwrap($str, $len = 75, $break = "\n", $cut = false){
 	else $reg = "#(.{1,$len})(?:[^\pL]|$)#us";
 	return substr(preg_replace($reg, "\\1$break", $str), 0, -strlen($break));// Cut off last $break. In both cases it is always must be present.
 }#f unicode_wordwrap
-?>

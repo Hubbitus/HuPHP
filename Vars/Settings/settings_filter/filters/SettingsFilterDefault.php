@@ -13,7 +13,7 @@
 /**
 * Default get - filter. If not value (empty of callback) returns default.
 **/
-class settings_filter_default extends SettingsFilterBase{
+class SettingsFilterDefault extends SettingsFilterBase {
 private $default;
 private $callback_;
 	/**
@@ -36,12 +36,10 @@ private $callback_;
 		else{
 		$this->callback_ = create_function('$var', 'return empty($var);');
 		}
-	}#__c
-
+	}
 	public function apply(&$name, &$value){
 		if (call_user_func($this->callback_, $value)){
 		$value = $this->default;
 		}
-	}#m apply
-}#c settings_filter_null
-?>
+	}
+}

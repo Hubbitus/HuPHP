@@ -43,12 +43,12 @@ class BacktraceEmptyException extends VariableEmptyException{}
 *		[0] => NULL
 *		[1] => int(0)
 *	}
-* 	//Additional according to standad element of array from debug_backtrace();
+* 	//Additional according to standard element of array from debug_backtrace();
 *	//Point to number in element of array debug_backtrace();
 * 	[N] => 1	//Mandatory
 * }
 *
-* implements Iterator by example from main descrioption http://php.net/manual/ru/language.oop5.iterations.php
+* implements Iterator by example from main description http://php.net/manual/ru/language.oop5.iterations.php
 **/
 class BacktraceNode implements Iterator{
 	static public $properties = array(
@@ -76,8 +76,7 @@ class BacktraceNode implements Iterator{
 	public function __construct(?array $arr = null, $N = false){
 		ASSIGN_IF($this->_btn, $arr);
 		if (false !== $N) $this->_btn['N'] = $N;
-	}#__c
-
+	}
 	/**
 	* To allow constructions like: backtraceNode::create()->methodName()
 	* {@inheritdoc ::__construct()}
@@ -89,24 +88,22 @@ class BacktraceNode implements Iterator{
 		if (version_compare(PHP_VERSION, '5.3.0-dev', '>=')){
 			return eval('return new static($arr, $N);');
 		}
-		else{//This is legitimate onli if it has not derived. So, now it is true...
+		else{//This is legitimate only if it has not derived. So, now it is true...
 			return new self($arr, $N);
 		}
-	}#m create
-
+	}
 	/**
 	* Return property, if it exists, Throw ClassPropertyNotExistsException otherwise
 	*
 	* @param	string	$name	Name of required property
 	* @return	mixed	Reference on property value
-	* @Throw(ClassPropertyNotExistsException)
+	* @throws ClassPropertyNotExistsException
 	**/
 	public function &__get($name){
 		if (!in_array($name, BacktraceNode::$properties)) throw new ClassPropertyNotExistsException('Property "'.$name.'" does NOT exist!');
 
 		return $this->_btn[$name];
-	}#m __get
-
+	}
 	/**
 	* Check isset of requested property. See http://php.net/isset comment of "phpnotes dot 20 dot zsh at spamgourmet dot com"
 	*
@@ -117,41 +114,34 @@ class BacktraceNode implements Iterator{
 		if (!in_array($name, BacktraceNode::$properties)) throw new ClassPropertyNotExistsException('Property <'.$name.'> does NOT exist!');
 
 		return isset($this->_btn[$name]);
-	}#m __isset
-
+	}
 	/**
-	* Dump in appropriate(auto) form bactraceNode.
+	* Dump in appropriate(auto) form backtraceNode.
 	*
 	* @param	boolean	$return
 	* @param	string	$header('backtraceNode')
-	* @return	mixed	return dump::a(...)
+	* @return	mixed	return Dump::a(...)
 	**/
 	public function dump($return = false, $header = 'backtraceNode'){
 		return Dump::a($this->_btn, $header, $return);
-	}#m dump
-
+	}
 	/// From interface Iterator ///
 
 	public function rewind(): void {
 		reset($this->_btn);
-	}#m rewind
-
+	}
 	public function current(): mixed {
 		return /* $var = */ current($this->_btn);
-	}#m current
-
+	}
 	public function key(): mixed {
 		return /* $var = */ key($this->_btn);
-	}#m key
-
+	}
 	public function next(): void {
 		next($this->_btn);
-	}#m next
-
+	}
 	public function valid(): bool {
 		return /* $var = */ ($this->current() !== false);
-	}#m valid
-
+	}
 	/// Private and protected methods ///
 
 	/**
@@ -165,8 +155,7 @@ class BacktraceNode implements Iterator{
 			if (!isset($this->$key) or !fnmatch($prop, $this->$key)) return 1;
 		}
 		return 0;	 // FnmatchEquals!
-	}#m FnmatchCmp
-
+	}
 	/**
 	* Set format to formatArgs. Array by type of out as key {@see OS::OUT_* constants}, and values as array in format,
 	*	as described in {@see class HuFormat}. {@example Debug/_HuFormat.defaults/backtrace::printout.php}
@@ -178,13 +167,12 @@ class BacktraceNode implements Iterator{
 	**/
 	public function setArgsFormat($format): void {
 		$this->_format = REQUIRED_VAR($format);
-	}#m setArgsFormat
-
+	}
 	/**
 	* Return string of formatted args
 	*
 	* @param	array(null)	$format
-	*	If null, trying from ->_format set in {@see ::setSrgsFormat()}, and finaly
+	*	If null, trying from ->_format set in {@see ::setArgsFormat()}, and finally
 	*		get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::printout']
 	* @param	integer		$OutType	If present - determine type of format from $format (passed or default). Must be index in $format.
 	* @return	string
@@ -198,7 +186,7 @@ class BacktraceNode implements Iterator{
 				,$this->_format[$OutType]['argtypes']
 				,@$GLOBALS['__CONFIG']['backtrace::printout'][$OutType]['argtypes']
 				,
-					// Trying include. Conditional ternary operator only for doing include inplace. Parentness () around include is mandatory!!!
+					// Trying include. Conditional ternary operator only for doing include in-place. Parentheses () around include is mandatory!!!
 					( (include_once('Debug/_HuFormat.defaults/backtrace::printout.php')) || true )
 					?
 					// Again provide its value. If it now present - cool, if not - REQUIRED_VAR thor exception
@@ -226,13 +214,12 @@ class BacktraceNode implements Iterator{
 			$args .= $hf->getString();
 		}
 		return $args;
-	}#m formatArgs
-}#c backtraceNode
-
+	}
+}
 /**
 * @uses dump
 **/
-class Backtrace implements Iterator{
+class Backtrace implements Iterator {
 	private $_bt = array();
 
 	private $_curNode = 0;
@@ -243,7 +230,7 @@ class Backtrace implements Iterator{
 	*
 	* @param	array	$bt	Array as result debug_backtrace() or it part. If null filled by
 	*	direct debug_backtrace() call.
-	* @param	int(1)	$removeSelf	If filled automatically, containts also this call
+	* @param	int(1)	$removeSelf	If filled automatically, contains also this call
 	*	(or call ::create() if appropriate). This will remove it. Number is amount of arrays
 	*	remove from stack.
 	* @return	Backtrace
@@ -253,8 +240,7 @@ class Backtrace implements Iterator{
 		else $this->_bt = debug_backtrace();
 
 		while ($removeSelf--) array_shift($this->_bt);
-	}#__c
-
+	}
 	/**
 	* To allow constructions like: backtrace::create()->methodName()
 	*
@@ -264,27 +250,25 @@ class Backtrace implements Iterator{
 	**/
 	public static function create(?array $bt = null, $removeSelf = 2){
 		return new self($bt, $removeSelf);
-	}#m create
-
+	}
 	/**
-	* Dump in appropriate(auto) form bactrace.
-	*	Fast dump of current backtrase may be invoked as backtrace::create()->dump();
+	* Dump in appropriate(auto) form backtrace.
+	*	Fast dump of current backtrace may be invoked as backtrace::create()->dump();
 	*
 	* @deprecated since 2.1.5.1
 	* @param	boolean	$return
-	* @param	string	$header('_debug_bactrace()')
+	* @param	string	$header('_debug_backtrace()')
 	* @return	mixed	return auto::a(...)
 	**/
-	public function dump($return = false, $header = '_debug_bactrace()'){
+	public function dump($return = false, $header = '_debug_backtrace()'){
 		return Dump::a($this->_bt, $header, $return);
-	}#m dump
-
+	}
 	/**
 	* Get BackTraceNode by its number
 	*
 	* @param	integer	$N - Number of interested Node
 	* @return	BacktraceNode
-	* @Throw(VariableRangeException)
+	* @throws VariableRangeException
 	**/
 	public function getNode($N){
 		if (isset($this->_bt[ $N = $this->getNumberOfNode($N) ])){
@@ -296,8 +280,7 @@ class Backtrace implements Iterator{
 		return $this->_bt[$N];
 		}
 		else throw new VariableRangeException('Needed BackTraceNode not found in this BackTrace!');
-	}#m getNode
-
+	}
 	/**
 	* Replace (or silently add) node in place $N
 	*
@@ -307,8 +290,7 @@ class Backtrace implements Iterator{
 	**/
 	public function setNode($N, BacktraceNode $node): void {
 		$this->_bt[ $this->getNumberOfNode($N) ] = $node;
-	}#m setNode
-
+	}
 	/**
 	* Return real number of requested Node in _bt array, implements next logic:
 	*	If $N === null set on current node ({@see ::current()}).
@@ -320,8 +302,7 @@ class Backtrace implements Iterator{
 	**/
 	private function getNumberOfNode($N): int {
 		return ( (null !== $N) ? ($N >= 0 ? $N : $this->length() + $N) : $this->key() );
-	}#m getNumberOfNode
-
+	}
 	/**
 	* Delete node in place $N
 	* After delete, all indexes is recomputed. BUT, current position not changed!
@@ -330,7 +311,7 @@ class Backtrace implements Iterator{
 	* @param	integer	$N	Place of node.
 	*	{@see ::getNumberOfNode() for more details}
 	* @return	void
-	* @Throw(VariableRangeException)
+	* @throws VariableRangeException
 	**/
 	public function delNode($N = null): void {
 		if (!isset($this->_bt[ $calcN = $this->getNumberOfNode($N)])){
@@ -340,8 +321,7 @@ class Backtrace implements Iterator{
 			//Do NOT use unset, because it left old keys
 			array_splice($this->_bt, $calcN, 1);
 		}
-	}#m delNode
-
+	}
 	/**
 	* Return count of BackTraceNodes.
 	*
@@ -349,11 +329,10 @@ class Backtrace implements Iterator{
 	**/
 	public function length(){
 		return sizeof($this->_bt);
-	}#m length
-
+	}
 	/**
-	* Find node of bactrace. To match each possible used fnmatch (http://php.net/fnmatch),
-	* so all it patterns and syntrax allowed.
+	* Find node of backtrace. To match each possible used fnmatch (http://php.net/fnmatch),
+	* so all it patterns and syntax allowed.
 	*
 	* @param	BacktraceNode	$need	Parameters to search:
 	* 	array(
@@ -363,11 +342,11 @@ class Backtrace implements Iterator{
 	*		'type'	=> "->"
 	*	)
 	* Array may contain next elements, each compared as *strings*: file, line, function, class,
-	* object (yes it is, also compared as string, so it may have a sence if implemented __toString
+	* object (yes it is, also compared as string, so it may have a sense if implemented __toString
 	* magic method on it), type.
 	*	Args and N may be present, but first is stupidly compare as string ('Array' === 'Array' :))
 	* and to search by N use ::getNode() this faster.
-	* @return	Object(backtrace)
+	* @return	Backtrace
 	**/
 	public function find(BacktraceNode $need){
 		$ret = clone $this;
@@ -384,22 +363,20 @@ class Backtrace implements Iterator{
 			}
 		}
 		return $ret;
-	}#m find
-
+	}
 	/**
 	* @todo Implement RegExp find. Not now.
 	**/
 	public function findRegexp(BacktraceNode $need){
 		throw new BaseException('Method findRegexp not implemented now!');
-	}#m findRegexp
-
+	}
 	/**
-	* Getted (and modifiyed) from http://php.rinet.ru/manual/ru/function.debug-backtrace.php
+	* Adopted from http://php.rinet.ru/manual/ru/function.debug-backtrace.php
 	* comments of users
 	*
 	* @param	boolean(false)	$return	Return or print directly.
 	* @param	array(null)	$format
-	*	If null, trying from format set in {@see ::setPrintoutFormat()}, and finaly
+	*	If null, trying from format set in {@see ::setPrintoutFormat()}, and finally
 	*		get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::printout']
 	* @param	integer(null)	$OutType	If present - determine type of format from $format (passed or default). Must be index in $format.
 	* @Throws(VariableRequiredException, BacktraceEmptyException)
@@ -412,7 +389,7 @@ class Backtrace implements Iterator{
 				,$this->_format[$OutType]
 				,@$GLOBALS['__CONFIG']['backtrace::printout'][$OutType]
 				,(
-					// Trying include. Conditional ternar operator only for doing include inplace. Parentness () around include is mandatory!!!
+					// Trying include. Conditional ternary operator only for doing include in-place. Parentheses () around include is mandatory!!!
 					( (include_once('Debug/_HuFormat.defaults/backtrace::printout.php')) || true )
 					?
 					// Again provide its value. If it now present - cool, if not - REQUIRED_VAR thor exception
@@ -433,8 +410,7 @@ class Backtrace implements Iterator{
 
 		if ($return) return $ret;
 		else echo $ret;
-	}#m printout
-
+	}
 	/**
 	* Set format to printout. Array by type of out as key {@see OS::OUT_* constants}, and values as array in format,
 	*	as described in {@see class HuFormat}. {@example Debug/_HuFormat.defaults/backtrace::printout.php}
@@ -447,8 +423,7 @@ class Backtrace implements Iterator{
 	public function &setPrintoutFormat($format){
 		$this->_format = REQUIRED_VAR($format);
 		return $this;
-	}#m setPrintoutFormat
-
+	}
 	/**
 	* By default convert into string will ::printout();
 	*
@@ -456,8 +431,7 @@ class Backtrace implements Iterator{
 	**/
 	public function __toString(){
 		return $this->printout(true);
-	}#m __toString
-
+	}
 	/*
 	* From interface Iterator
 	* Use self indexing to allow delete nodes and continue loop foreach.
@@ -468,8 +442,7 @@ class Backtrace implements Iterator{
 	**/
 	public function rewind(): void{
 		$this->_curNode = 0;
-	}#m rewind
-
+	}
 	/**
 	* Return current backtraceNode
 	*
@@ -482,8 +455,7 @@ class Backtrace implements Iterator{
 		catch (VariableRangeException $vre){
 			return null;
 		}
-	}#m current
-
+	}
 	/**
 	* Return current key
 	*
@@ -491,8 +463,7 @@ class Backtrace implements Iterator{
 	**/
 	public function key(): mixed {
 		return $this->_curNode;
-	}#m key
-
+	}
 	/**
 	* Return next backtraceNode
 	*
@@ -506,8 +477,7 @@ class Backtrace implements Iterator{
 		catch (VariableRangeException $vre){
 			return null;
 		}
-	}#m next
-
+	}
 	/**
 	* Return if Iterator valid and not end reached.
 	*
@@ -515,8 +485,7 @@ class Backtrace implements Iterator{
 	**/
 	public function valid(): bool {
 		return ($this->current() !== null);
-	}#m valid
-
+	}
 	/**
 	* Return end backtraceNode and move internal pointer to it. It is NOT part Iterator interface
 	*	and added to more flexibility.
@@ -525,8 +494,7 @@ class Backtrace implements Iterator{
 	**/
 	public function end(){
 		return $this->getNode( ($this->_curNode = $this->length() - 1) );
-	}#m end
-
+	}
 	/**
 	* Return prev backtraceNode and move internal pointer to it. It is NOT part Iterator interface
 	*	and added to more flexibility.
@@ -537,6 +505,5 @@ class Backtrace implements Iterator{
 		if ($this->_curNode < 1) return null;
 
 		return $this->getNode( --$this->_curNode );
-	}#m prev
-}#c backtrace
-?>
+	}
+}

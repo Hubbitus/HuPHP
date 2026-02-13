@@ -1,13 +1,13 @@
 <?php
 /*
-������ ��� ������������� ������ 2.x
-����������� ��������� ������ ���. ���� �����.
+Шаблон для завершения календаря 2.x
+Генерирует HTML код календаря. Всё остальное.
 */
 
 function jscal_end($parent, $matches){
-//������������ ��� ���� ���������� ��� ����� jscal_start (����� end ���� ��??)
+//обработка для начала календаря jscal_start (т.е. end не нужен)
 //$cal = new DHTML_Calendar('/jscalendar/', 'ru_win_', 'calendar-blue', false);
-//$ret = $cal->get_load_files_code();	#��������� JS-������
+//$ret = $cal->get_load_files_code();	//подключение JS-файлов
 $ret = '';
 
 $ret .= '
@@ -15,7 +15,7 @@ $ret .= '
 <span style="background-color: #ff8; cursor: pointer;"
 onmouseover="this.style.backgroundColor=\'#ff0\';"
 onmouseout="this.style.backgroundColor=\'#ff8\';"
-id="show_d_end" title="�������� ��� ������">'.date("d . m . Y").'</span>';
+id="show_d_end" title="Выберите дату">'.date("d . m . Y").'</span>';
 
 $ret .= '<script type="text/javascript">Calendar.setup({'
 .'ifFormat	:	"%Y-%m-%d",'
@@ -29,4 +29,3 @@ $ret .= '<script type="text/javascript">Calendar.setup({'
 return $ret;
 
 }#MOD
-?>

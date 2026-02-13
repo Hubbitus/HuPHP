@@ -25,8 +25,7 @@ class CharsetConvertIconv extends CharsetConvert {
 	**/
 	public function __construct($text, $inEnc = null, $outEnc = 'UTF-8'){
 		parent::__construct($text, $inEnc, $outEnc);
-	}#__c
-
+	}
 	/**
 	* @inheritdoc
 	* @Throws(charset_convert_exception, VariableRequiredException)
@@ -54,8 +53,7 @@ class CharsetConvertIconv extends CharsetConvert {
 			$this->_charset_convert_Errors = null; //Clear BEFORE throw, because if it will be catched correctly - it is not be cleared as well!
 			throw new CharsetConvertException( implode(';', $ttt) );
 		}
-	}#m convert
-
+	}
 	/**
 	* Static equivalent of {@see ::convert()} for satac, fast invoke
 	*
@@ -66,8 +64,7 @@ class CharsetConvertIconv extends CharsetConvert {
 	// If we want make this code work on earler releases - just copy this function compleatly in derivates.
 		$conv = new self($text, $inEnc, $outEnc);
 		return $conv->getResult();
-	}#m conv
-
+	}
 	protected $_charset_convert_Errors = '';
 
 	function error_handler($errno, $errstr, $errfile, $errline /*, $errcontext */ ){
@@ -77,5 +74,5 @@ class CharsetConvertIconv extends CharsetConvert {
 			return true;
 		}
 		else return false;// Default error-handler
-	}#m error_handler
+	}
 }

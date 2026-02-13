@@ -14,4 +14,3 @@ declare(strict_types=1);
 **/
 
 class CharsetConvertException extends BaseException{}
-?>

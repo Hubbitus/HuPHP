@@ -75,8 +75,7 @@ class Tokenizer{
 	public function __construct(/* array | backtraceNode */ $db = []){
 		if (is_array($db)) $this->setFromBTN(new BacktraceNode($db));
 		$this->setFromBTN($db);
-	}#__c
-
+	}
 	/**
 	* Set from Object(backtraceNode).
 	*
@@ -87,16 +86,14 @@ class Tokenizer{
 		$this->clear();
 		$this->_debugBacktrace = $db;
 		return $this;
-	}#m setFromBTN
-
+	}
 	/**
 	* To allow constructions like: Tokenizer::create()->methodName()
 	* {@inheritdoc ::__construct()}
 	**/
 	public static function create(/* array | backtraceNode */ $db){
 		return new self($db);
-	}#m create
-
+	}
 	/**
 	* Clear object
 	**/
@@ -109,8 +106,7 @@ class Tokenizer{
 		$this->_curTokPos = 0;
 		$this->_args = array();
 		$this->_regexp = null;
-	}#m clear
-
+	}
 	/**
 	* Return string of parsed argument by it number (index from 0). Bounds not checked!
 	*
@@ -120,8 +116,7 @@ class Tokenizer{
 	public function getArg($n, $trim = true){
 		if ($trim) return trim($this->_args[$n]);
 		else return $this->_args[$n];
-	}#m getArg
-
+	}
 	/**
 	* Set to arg new value.
 	*
@@ -132,8 +127,7 @@ class Tokenizer{
 	public function &setArg($n, $value){
 		$this->_args[$n] = $value;
 		return $this;
-	}#m setArg
-
+	}
 	/**
 	* Return array of all parsed arguments.
 	*
@@ -141,8 +135,7 @@ class Tokenizer{
 	**/
 	public function getArgs(){
 		return $this->_args;
-	}#m getArgs
-
+	}
 	/**
 	* Return count of parsed arguments.
 	*
@@ -150,8 +143,7 @@ class Tokenizer{
 	**/
 	public function countArgs(){
 		return sizeof($this->_args);
-	}#m countArgs
-
+	}
 	/**
 	* Search full text of call in src php-file
 	*
@@ -172,8 +164,7 @@ class Tokenizer{
 		$this->_regexp->doMatchAll(PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
 		$this->_regexp->convertOffsetToChars(PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
 		return $this;
-	}#m findTextCall
-
+	}
 	/**
 	* See description on begin of file ->_debugBacktrace->line not correct start call-line if call
 	* continued on more then one string!
@@ -209,8 +200,7 @@ class Tokenizer{
 				)
 			);
 	return $this;
-	}#m findCallStrings
-
+	}
 	/**
 	* Parse tokens
 	*
@@ -222,8 +212,7 @@ class Tokenizer{
 		// Without start and end tags not parsed properly.
 		$this->_tokens = token_get_all('Throws' . $this->_callText . '?>');
 		return $this;
-	}#m parseTokens
-
+	}
 	/**
 	* Working horse!
 	* Base idea from: http://ru2.php.net/manual/ru/ref.tokenizer.php
@@ -285,8 +274,7 @@ class Tokenizer{
 				}
 			}
 		return $this;
-	}#m parseCallArgs
-
+	}
 	/**
 	* Move ->_curTokPos to first tokens after functionName(
 	*
@@ -300,22 +288,19 @@ class Tokenizer{
 					return $this;
 			}
 		return $this;
-	}#m skipToStartCallArguments
-
+	}
 	/**
 	* Add text to CURRENT arg.
 	**/
 	private function addToArg($str): void {
 		$this->_args[$this->countArgs() - 1] .= $str;
-	}#m addToArg
-
+	}
 	/**
 	* Add next arg to array
 	**/
 	private function addArg(): void {
 		$this->_args[$this->countArgs()] = '';
-	}#m addArg
-
+	}
 	/**
 	* Strip quotes on start and end of argument.
 	* Paired
@@ -335,6 +320,5 @@ class Tokenizer{
 		if ($all) return (substr($arg, $from, $len));
 		elseif(strlen($arg) - $len > 1) return (substr($arg, $from, $len));
 		else return $arg;
-	}#m trimQuotes
-}#c Tokenizer
-?>
+	}
+}

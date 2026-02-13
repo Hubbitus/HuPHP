@@ -94,8 +94,7 @@ class HuFormat extends HuError {
 	**/
 	public function __construct(array $format = null, &$value = null, $key = null){
 		$this->set($format, $value, $key);
-	}#__c
-
+	}
 	/**
 	* Set main: format and value.
 	*
@@ -111,8 +110,7 @@ class HuFormat extends HuError {
 		if (null !== $format) $this->setFormat($format);
 		$this->_key = $key;
 		return $this;
-	}#m set
-
+	}
 	/**
 	* Return current value.
 	*
@@ -121,8 +119,7 @@ class HuFormat extends HuError {
 	public function &getValue(){
 		if ($this->_realValued) return $this->_realValue;
 		else return $this->_value;
-	}#m getValue
-
+	}
 	/**
 	* Set value
 	*
@@ -138,8 +135,7 @@ class HuFormat extends HuError {
 		$this->_realValued = false;
 		$this->_resStr = null;
 		return $this;
-	}#m setValue
-
+	}
 	/**
 	* Parse incoming format-array and set appropriate properties.
 	* Accepts 3 forms of format (in examples ':::' is {@see ::parseModsName()}):
@@ -184,8 +180,7 @@ class HuFormat extends HuError {
 		}
 
 		return $this;
-	}#m setFormat
-
+	}
 	/**
 	* Parses and set from given str. As separator used {@see self::mods_separator}.
 	* F.e.: 'AI:::line'. If separator not present - whole string in NAME!
@@ -202,8 +197,7 @@ class HuFormat extends HuError {
 			list ($this->_modStr, $this->_name) = explode(self::mods_separator, $str);
 		}
 		return $this->parseMods(true);
-	}#m parseModsName
-
+	}
 	/**
 	* Construct and return string to represent provided value according given format.
 	*
@@ -225,8 +219,7 @@ class HuFormat extends HuError {
 		}
 
 		return $this->_resStr;
-	}#m getString
-
+	}
 	/**
 	* Set or not?
 	*
@@ -236,8 +229,7 @@ class HuFormat extends HuError {
 	public function isMod($mod){
 		if (!$this->_mod and $this->_modstr) $this->parseMods();
 		return ($this->_mod & $mod);
-	}#m isMod
-
+	}
 	/**
 	* Set, or unset mods.
 	*
@@ -280,8 +272,7 @@ class HuFormat extends HuError {
 
 		$this->parseMods(false);
 		return $this;
-	}#m changeModsStr
-
+	}
 	/**
 	* Set Modifiers from string.
 	*
@@ -293,8 +284,7 @@ class HuFormat extends HuError {
 		$this->_modStr = REQUIRED_VAR($modstr);
 		$this->parseMods();
 		return $this;
-	}#m setModsStr
-
+	}
 	/**
 	* Get string of Modifiers.
 	*
@@ -302,8 +292,7 @@ class HuFormat extends HuError {
 	**/
 	public function &getModsStr(){
 		return implode('', $this->_modArr);
-	}#m getModsStr
-
+	}
 	/**
 	* Get Modifiers.
 	*
@@ -311,8 +300,7 @@ class HuFormat extends HuError {
 	**/
 	public function &getMods(){
 		return $this->_mod;
-	}#m setMods
-
+	}
 	/**
 	* Set Modifiers.
 	*
@@ -323,8 +311,7 @@ class HuFormat extends HuError {
 		$this->_mod &= $mods;
 		$this->parseMods(false);
 		return $this;
-	}#m setMods
-
+	}
 	/// Private and Protected methods ///
 
 	/**
@@ -366,8 +353,7 @@ class HuFormat extends HuError {
 		$this->_resStr = null;
 
 		return $this;
-	}#m parseMods
-
+	}
 	/**
 	* Treat ->_name as property-name
 	*
@@ -379,8 +365,7 @@ class HuFormat extends HuError {
 			$this->_realValued = true;
 		}
 		else $this->_realValue = $this->_value->{$this->_realValue};
-	}#m mod_s
-
+	}
 	/**
 	* Tread ->_name as index in ->_value
 	*
@@ -392,8 +377,7 @@ class HuFormat extends HuError {
 			$this->_realValued = true;
 		}
 		else $this->_realValue = $this->_value[$this->_realValue];
-	}#m mod_a
-
+	}
 	/**
 	* Process ->_value through NON_EMPTY_STR. ->_format must have appropriate values.
 	*
@@ -401,8 +385,7 @@ class HuFormat extends HuError {
 	**/
 	protected function mod_n(){
 		return NON_EMPTY_STR($this->getValue(), @$this->_format[0], @$this->_format[1], @$this->_format[2]);
-	}#m mod_n
-
+	}
 	/**
 	* Procces ->_value through standard sprintf function. All elements self::sprintf_var (def: __vAr__) in ->_format replaced by its
 	* real value, and this array go in sprintf
@@ -415,8 +398,7 @@ class HuFormat extends HuError {
 			$this->_format[$key] = $this->_realValue;
 		}
 		return call_user_func_array('sprintf', $this->_format);
-	}#m mod_p
-
+	}
 	/**
 	* Evalute. Evaluted only ->_value
 	*
@@ -428,8 +410,7 @@ class HuFormat extends HuError {
 			$this->_realValued = true;
 		}
 		else eval('$this->_realValue = '.$this->_realValue.';');
-	}#m mod_e
-
+	}
 	/**
 	* Evaluate full! Evaluate all as full result.
 	*
@@ -439,8 +420,7 @@ class HuFormat extends HuError {
 		${self::evalute_var} = $this->getValue();
 		eval('$ret = '.$this->_format[0].';');
 		return $ret;
-	}#m mod_E
-
+	}
 	/**
 	* Value instead name
 	*
@@ -454,8 +434,7 @@ class HuFormat extends HuError {
 		else{
 			throw new HuFormatException('Got conflicted format modifiers!');
 		}
-	}#m mod_e
-
+	}
 	/**
 	* ALL. Recursive parse format
 	*
@@ -469,8 +448,7 @@ class HuFormat extends HuError {
 			$ret .= $hf->getString();
 		}
 		return $ret;
-	}#m mod_AA
-
+	}
 	/**
 	* Iterate by ->_value or ->_realValue.
 	*
@@ -486,8 +464,7 @@ class HuFormat extends HuError {
 			$ret .= $hf->getString();
 		}
 		return $ret;
-	}#m mod_II
-
+	}
 	/**
 	* Get Key of current iteration of I:::.
 	*
@@ -496,8 +473,7 @@ class HuFormat extends HuError {
 	protected function mod_k(){
 		$this->_realValue = $this->_key;
 		$this->_realValued = true;
-	}#m mod_k
-
+	}
 	/**
 	* As we overload getString() without arguments, implementation from HuError
 	* is not suitable. So, overload it as and thrown exception (class by autoload) to avoid accidentally usages.
@@ -508,5 +484,4 @@ class HuFormat extends HuError {
 	public function strToConsole($format = null){ throw new ClassMethodException('Method strToConsole is not exists yet'); }
 	public function strToPrint($format = null){ throw new ClassMethodException('Method strToPrint is not exists yet'); }
 	public function strByOutType($type, $format = null){ throw new ClassMethodException('Method strByOutType is not exists yet'); }
-};#c HuFormat
-?>
+};

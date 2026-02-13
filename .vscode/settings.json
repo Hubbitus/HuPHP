@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "Alexeev",
+        "argtypes",
         "autoinclude",
         "autoloaders",
         "autoloading",
@@ -13,7 +14,10 @@
         "Pahan",
         "paireddelimeters",
         "Pavel",
+        "phpnotes",
+        "spamgourmet",
         "unichr",
         "uniord"
-    ]
+    ],
+    "php.version": "8.3"
 }

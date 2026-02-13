@@ -126,4 +126,3 @@ $diff =
 // Auto select appropriate format WEB or CONSOLE:
 $hfo = new OutExtraDataHuFormat($diff, $format);
 echo $hfo->strToPrint();
-?>

@@ -3,22 +3,30 @@
 # Regenerate all generated stuff: auto-includes, Docs, Packages (Phar, OneFile)
 
 {
-./auto_extract_class_map.bash
-exit
-rm -f ./Packages/{HuDebug.phar,one.Debug.php}
+rm -rf "./Packages/build/*"
 
-./Packages/makeHuDebug.phar.php
-#./Packages/makeOneFile.php
+echo '1) Create Phar distribution:'
+./Packages/Phar.make.php
+echo '1.1) Simple test run PHAR:';
+./Packages/Phar.test.php
 
+echo '2) Create SingleFile distribution:'
+./Packages/SingleFile.make.php
+echo '2.1) Simple test run SingleFile:';
+./Packages/SingleFile.test.php
+
+echo '3) Simple test run UNPACKED (raw):';
+./Packages/Raw.test.php
+
+
+echo '4) Generate PHPDoc documentation):'
 # This command in: https://github.com/Hubbitus/shell.scripts
 #huPhpDoc .
+phpdoc -d "../.." -t _phpdocs --undocumentedelements on \
+    --title "Pavel Alexeev aka Pahan-Hubbitus HuPHP framework documentation" \
+    --customtags 'changelog' --sourcecode on \
+    --ignore '_phpdocs,.git,.svn,_phpdocs.log' \
+    -s -o HTML:Smarty:PHP 2>&1 \
+        | tee _phpdocs.log
 
-#echo 'Simple test run UNPACKED:';
-#./Packages/test.unpacked.php
-
-#echo 'Simple test run PHAR:';
-#./Packages/test.HuDebug.phar.php
-
-#echo 'Simple test run ONEFILE:';
-#./Packages/test.HuDebug.One.php
 } | tee regenerate.all.log

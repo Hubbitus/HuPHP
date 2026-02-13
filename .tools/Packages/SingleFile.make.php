@@ -62,4 +62,3 @@ $res->appendString('<?php
 	}
 
 $res->writeContent();
-?>

@@ -19,5 +19,5 @@ class DatabaseException extends BaseException{
 	public function __construct($message, Database &$db){
 		parent::__construct($message);
 		$this->db = $db;
-	}#__c
+	}
 }

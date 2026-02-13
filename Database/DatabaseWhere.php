@@ -39,16 +39,14 @@ class DatabaseWhere{
 	**/
 	public function __construct(array $where = array(), $l = '', $r = '', $quote = "'"){
 		$this->setArray($where, $l, $r, $quote);
-	}#__c
-
+	}
 	public function setArray(array $where, $l = '', $r = '', $quote = "'"){
 		$this->_whereArr = $where;
 		$this->_l = $l;
 		$this->_r = EMPTY_STR($r, $l);
 		$this->_quote = $quote;
 		$this->_whereStr = ''; // Will be filled on request.
-	}#m setArray
-
+	}
 	/**
 	* Add where conditions in end
 	*
@@ -59,8 +57,7 @@ class DatabaseWhere{
 		$this->_whereArr[] = $what;
 		$this->_whereStr = null; //recalc it later
 		return $this;
-	}#m add
-
+	}
 	/**
 	* Return array of Where-tokens (from constructed, and may be modified).
 	*
@@ -68,8 +65,7 @@ class DatabaseWhere{
 	**/
 	public function getArray(){
 		return $this->_whereArr;
-	}#m getArray
-
+	}
 	/**
 	* Append another object to end of conditions.
 	*
@@ -78,8 +74,7 @@ class DatabaseWhere{
 	public function append(DatabaseWhere $whatAppend){
 		$this->_whereArr = array_merge($this->_whereArr, $whatAppend->getArray());
 		return $this;
-	}#m append
-
+	}
 	/**
 	* Append another object to end of conditions.
 	* Without brackets "()", we may get broken conditions after append (broken permissions f.e.)
@@ -100,8 +95,7 @@ class DatabaseWhere{
 			$this->append($whatAppend);
 		}
 		return $this;
-	}#m safeAppend
-
+	}
 	/**
 	* Return amount of elements
 	*
@@ -109,8 +103,7 @@ class DatabaseWhere{
 	**/
 	public function count(){
 		return count($this->_whereArr);
-	}#m count
-
+	}
 	/**
 	* Return SQL-string, to using in SQL-querys statement
 	*
@@ -119,8 +112,7 @@ class DatabaseWhere{
 	public function getSQL(){
 		if (!$this->_whereStr) $this->convertToSQL();
 		return $this->_whereStr;
-	}#m getSQL
-
+	}
 	/**
 	* @ This is main working horse!
 	* Handle user-friendly form of parameters. $this->_whereArr is array of elements:
@@ -209,8 +201,7 @@ class DatabaseWhere{
 			}
 		}
 		$this->_whereStr .= ')';
-	}#m convertToSQL
-
+	}
 	/**
 	* Parse user input in convertToString(). There have canonical form:
 	* $OperVal is array of Operator and Value(s), like this:
@@ -244,8 +235,7 @@ class DatabaseWhere{
 				$ret .= ' '.$op.' '.$this->quoteFieldValue($OperVal[0], $opt);
 		}
 		return $ret;
-	}#m constructPhrase
-
+	}
 	/**
 	*
 	**/
@@ -253,8 +243,7 @@ class DatabaseWhere{
 		if (stristr($opt, 'e'))
 		return $this->_l.$fieldName.$this->_r;
 		else return $fieldName;
-	}#m escapeFieldName
-
+	}
 	/**
 	*
 	**/
@@ -262,6 +251,5 @@ class DatabaseWhere{
 		if (stristr($opt, 'q'))
 		return $this->_quote.$fieldVal.$this->_quote;
 		else return $fieldVal;
-	}#m quoteFieldValue
-}#c database_where
-?>
+	}
+}

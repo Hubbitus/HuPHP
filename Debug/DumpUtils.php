@@ -36,8 +36,7 @@ class DumpUtils {
 				$dump
 			)
 		);
-	}#m transformCorrect_print_r
-
+	}
 	/**
 	* Transform string, which is text-representation of requested var into more well formatted form.
 	* var_dump variant
@@ -61,6 +60,5 @@ class DumpUtils {
 				$dump
 			)
 		);
-	}#m transformCorrect_var_dump
-}; #c dump_utils
-?>
+	}
+};

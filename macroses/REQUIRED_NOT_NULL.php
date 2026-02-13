@@ -36,4 +36,3 @@ function &REQUIRED_NOT_NULL(&$var, $varname = null){
 	}
 	else return $var;
 }
-?>

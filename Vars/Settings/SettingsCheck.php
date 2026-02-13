@@ -33,7 +33,7 @@ class SettingsCheck extends Settings {
 	function __construct(array $possibles, ?array $array = null){
 		$this->properties = $possibles;
 		if ($array) $this->mergeSettingsArray($array);
-	}#constructor
+	}
 
 	/**
 	* Reimplement extended variant to chect setting name possibility.
@@ -41,16 +41,14 @@ class SettingsCheck extends Settings {
 	**/
 	public function &setSetting($name, $value){
 		parent::setSetting($this->checkNamePossible($name, __METHOD__), $value);
-	}#m setSetting
-
+	}
 	/**
 	* Reimplement extended variant to chect setting name possibility.
 	* @inheritdoc
 	**/
 	public function &getProperty($name){
 		return parent::getProperty($this->checkNamePossible($name, __METHOD__));
-	}#m getProperty
-
+	}
 	/**
 	* Add setting vith value in possible settings.
 	*
@@ -61,8 +59,7 @@ class SettingsCheck extends Settings {
 	public function addSetting($name, $value){
 		$this->properties[] = $name;
 		parent::setSetting($name, $value);
-	}#m addSetting
-
+	}
 	/**
 	* Reimplement extended variant to check setting name possibility.
 	* @inheritdoc
@@ -70,8 +67,7 @@ class SettingsCheck extends Settings {
 	public function setSettingsArray(array $setArr){
 		array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
 		parent::setSettingsArray($setArr);
-	}#m setSettingsArray
-
+	}
 	/**
 	* Check isset of requested property. See http://php.net/isset comment of "phpnotes dot 20 dot zsh at spamgourmet dot com"
 	*
@@ -80,8 +76,7 @@ class SettingsCheck extends Settings {
 	**/
 	public function __isset($name) {
 		return parent::__isset($this->checkNamePossible($name, __METHOD__));
-	}#m __isset
-
+	}
 	/**
 	* Reimplement extended variant to chect setting name possibility.
 	* @inheritdoc
@@ -90,8 +85,7 @@ class SettingsCheck extends Settings {
 		$a = array_keys(REQUIRED_VAR($setArr)); // Variable introduced only for Strict standard check silence: 'Strict Standards: Only variables should be passed by reference'
 		array_walk($a, array($this, 'checkNamePossible'), __METHOD__);
 		parent::mergeSettingsArray($setArr);
-	}#m mergeSettingsArray
-
+	}
 	/**
 	* Check if name is possible, and Throw(ClassPropertyNotExistsException) if not.
 	*
@@ -104,8 +98,7 @@ class SettingsCheck extends Settings {
 	protected function checkNamePossible($name, $method, $walkmethod = null){
 		if (!in_array($name, $this->properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist in ' . get_class($this) . '!');
 		return	$name;
-	}#m checkNamePossible
-
+	}
 	/**
 	* Emulate nesting.
 	*
@@ -121,6 +114,5 @@ class SettingsCheck extends Settings {
 	public function nesting(){
 		//We can't use here nor operatorr + (union), nor array_merge function. We need ADD elements.
 		array_splice($this->properties, count($this->properties), 1, $this->properties_addon);
-	}#m nesting
-}#c settings_check
-?>
+	}
+}

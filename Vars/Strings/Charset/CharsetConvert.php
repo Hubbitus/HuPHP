@@ -37,15 +37,13 @@ abstract class CharsetConvert {
 		$this->setText(REQUIRED_VAR($text, 'TextToConvert'));
 
 		if ($inEnc and $outEnc) $this->convert();
-	}#__c
-
+	}
 	/**
 	* Main working horse. Must be reimplemented each time we should provide new layer of xonversion (mb, iconv, recode etc)
 	*
 	* @return &$this
 	**/
-	abstract public function convert(); //{}#m convert
-
+	abstract public function convert(); //{}
 	/**
 	* Static equivalent of {@see ::convert()} for satac, fast invoke
 	*
@@ -56,8 +54,7 @@ abstract class CharsetConvert {
 		// If we want make this code work on earler releases - just copy this function compleatly in derivates.
 		$conv = new self($text, $inEnc, $outEnc);
 		return $conv->getResult();
-	}#m conv
-
+	}
 	/**
 	* Set new In encoding
 	*
@@ -68,8 +65,7 @@ abstract class CharsetConvert {
 		$this->_in = $enc;
 		$this->_resText = null;
 		return $this;
-	}#m setInEnc
-
+	}
 	/**
 	* Get current In encoding
 	*
@@ -77,8 +73,7 @@ abstract class CharsetConvert {
 	**/
 	public function getInEnc(){
 		return $this->_in;
-	}#m getInEnc
-
+	}
 	/**
 	* Set new Out encoding
 	*
@@ -89,8 +84,7 @@ abstract class CharsetConvert {
 		$this->_out = $enc;
 		$this->_resText = null;
 		return $this;
-	}#m setOutEnc
-
+	}
 	/**
 	* Get current Out encoding
 	*
@@ -98,8 +92,7 @@ abstract class CharsetConvert {
 	**/
 	public function getOutEnc(){
 		return $this->_out;
-	}#m getOutEnc
-
+	}
 	/**
 	* Set text to convert encoding.
 	*
@@ -109,8 +102,7 @@ abstract class CharsetConvert {
 	public function &setText($newText){
 		$this->_text = $newText;
 		return $this;
-	}#m setText
-
+	}
 	/**
 	* Get current text
 	*
@@ -118,8 +110,7 @@ abstract class CharsetConvert {
 	**/
 	public function getText(){
 		return $this->_text;
-	}#m getText
-
+	}
 	/**
 	* Return result of convertation. If it is empty, run {@see ::convert()}
 	*
@@ -128,8 +119,7 @@ abstract class CharsetConvert {
 	public function getResult(){
 		if (empty($this->_resText)) $this->convert();
 		return $this->_resText;
-	}#m getResult
-
+	}
 	/**
 	* Auto convertion into string; {@see ->getResult()}
 	*
@@ -137,6 +127,5 @@ abstract class CharsetConvert {
 	**/
 	public function __toString(){
 		return $this->getResult();
-	}#m __toString
-} #c charset_convert
-?>
+	}
+}

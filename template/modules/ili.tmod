@@ -6,4 +6,3 @@ function ili(&$maint, $match){
 		$content = $maint->varrrs($maint->filename, $tt = array(0,$match[3]), true);
 return $content;
 }
-?>

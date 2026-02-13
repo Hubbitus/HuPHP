@@ -44,13 +44,11 @@ abstract class Database extends SettingsGet {
 			$this->db_select();
 			$this->set_names();
 		}
-	}#__c
-
+	}
 	public function db_select(){
 		if (!call_user_func($this->db_type.'_select_db', $this->settings->dbName))
 		throw new DatabaseSelectException($this->Error->settings->TXT_noDBselected, $this);
-	}#m db_select
-
+	}
 	/**
 	 * Fire query "SET NAMES $charset".
 	 * By default if $charset is null and set $this->settings->CHARSET_RECODE->TO it used,
@@ -63,8 +61,7 @@ abstract class Database extends SettingsGet {
 		if ( ($ch = $charset) or ($ch = @$this->settings->CHARSET_RECODE['TO']) or ($ch = $this->settings->charset) ){
 			$this->query('SET NAMES ' . $ch);
 		}
-	}#m set_names
-
+	}
 	/**
 	* Переопределяем, чтобы сделать ссылку на настройки не изменяемой!
 	*	таким образом настройки менять можно будет, а сменить объект настроек - нет
@@ -80,23 +77,19 @@ abstract class Database extends SettingsGet {
 			return $this->Fields;
 			break;
 		}
-	}#m __get
-
+	}
 	public function &sql_num_fields(){
 		return call_user_func($this->db_type.'_num_fields', $this->result);
-	}#m sql_num_fields
-
+	}
 	public function &sql_fetch_field($offset = null){
 		if ($offset) $this->Field = call_user_func($this->db_type.'_fetch_field', $this->result, $offset);
 		else $this->Field = call_user_func($this->db_type.'_fetch_field', $this->result);
 		return $this->Field;
-	}#m sql_fetch_field
-
+	}
 	public function &sql_fetch_fields(){
 		while ($this->Fields[] = $this->sql_fetch_field()){}
 		return $this->Fields;
-	}#m sql_fetch_fields
-
+	}
 	/**
 	* Добиваемся некоторой "универсальности"
 	**/
@@ -112,22 +105,19 @@ abstract class Database extends SettingsGet {
 		* НЕ для использования самой переменной
 		**/
 		return $this->RES;
-	}#m sql_fetch_assoc
-
+	}
 	public function &sql_fetch_row(){
 		$this->RES = @call_user_func($this->db_type.'_fetch_row', $this->result);
 
 		$this->iconv_result();
 		return $this->RES;
-	}#m sql_fetch_row
-
+	}
 	public function &sql_fetch_array(){
 		$this->RES = @call_user_func($this->db_type.'_fetch_array', $this->result);
 
 		$this->iconv_result();
 		return $this->RES;
-	}#m sql_fetch_array
-
+	}
 	public function &sql_fetch_object($className = 'stdClass', array $params = array()){
 		// See http://ru2.php.net/mysql_fetch_object comments by "Chris at r3i dot it"
 		if ($params) $this->RES = @call_user_func($this->db_type.'_fetch_object', $this->result, $className, $params);
@@ -135,24 +125,20 @@ abstract class Database extends SettingsGet {
 
 		$this->iconv_result();
 		return $this->RES;
-	}#m sql_fetch_object
-
+	}
 	public function sql_free_result(){
 		call_user_func($this->db_type.'_free_result', $this->result);
 		return true;
-	}#m sql_free_result
-
+	}
 	public function sql_num_rows(){
 		return call_user_func($this->db_type.'_num_rows', $this->result);
-	}#m sql_num_rows
-
+	}
 	/**
 	* Returns TOTAL rows for query, Without LIMIT effect
 	**/
 	public function rowsTotal(){
 		return $this->rowsTotal;
-	}#m rowsTotal
-
+	}
 	abstract public function db_connect();
 	abstract public function query($query, $print_query = false, $last_id = false);
 	abstract public function query_limit($query, $from, $amount, $print_query = false);
@@ -178,8 +164,7 @@ abstract class Database extends SettingsGet {
 				}
 			}
 		}
-	}#m iconv_result
-
+	}
 	/**
 	* Перекодировка ЗАПРОСА, тоесть В БД
 	**/
@@ -187,8 +172,7 @@ abstract class Database extends SettingsGet {
 		if (@$this->settings->CHARSET_RECODE){
 			$this->Query = iconv($this->settings->CHARSET_RECODE['FROM'], $this->settings->CHARSET_RECODE['TO'], $this->Query);
 		}
-	}#m iconv_query
-
+	}
 	abstract protected function collectDebugInfo($errNo, $server_message, $server_messageS = '', $d_backtrace);
 
 	/**
@@ -196,18 +180,15 @@ abstract class Database extends SettingsGet {
 	*/
 	public function getError(){
 		return $this->Error;
-	}#m getError
-
+	}
 	/**
 	* Return last (current) SQL string
 	* @return
 	*/
 	public function getSQL(){
 		return $this->Query;
-	}#m getSQL
-
+	}
 	public function __wakeup(){
 		$this->db_connect();
-	}#m __wakeup
-}#c database
-?>
+	}
+}

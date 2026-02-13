@@ -26,4 +26,3 @@ $i=0;
 
 	if ($res) return $res;
 }
-?>

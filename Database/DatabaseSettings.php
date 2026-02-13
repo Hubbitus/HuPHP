@@ -23,4 +23,4 @@ class DatabaseSettings extends Settings {
             // Here may be overwritten defaults settings. {@see HuLOG_text_settings}
         ]
     ];
-}#c
+}

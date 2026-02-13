@@ -37,8 +37,7 @@ array(10) { (В скобках примеры, а не длины формато
 	protected function logoForm(){
 		$tmpl = new template('logoForm.tmpl');
 		$tmpl->scheme();
-	}#m logoForm
-
+	}
 	/*
 	$p = Это собственно параметры, переданные от дрыгания картинки,
 	должен быть массив следующего формата (внимание, даны примерные значения, а не длины форматов!):
@@ -72,8 +71,7 @@ array(10) { (В скобках примеры, а не длины формато
 
 		//Собственно главный ресайз, когда уже все рассчитано!
 		$this->resize($this->srcimg, $this->pp['dst_x'], $this->pp['dst_y'], $this->pp['src_x'], $this->pp['src_y'], $this->pp['dst_w'], $this->pp['dst_h'], $this->pp['src_w'], $this->pp['src_h']);
-	}#m savePic
-
+	}
 	protected function calcDimensions(){
 		//СЧИТАЕМ все размеры, включая заходы рамок
 		$this->gp['wratio'] = $this->gp['pswidth'] / $this->srcimg->width();	//Коррекция, если изображение пользователю представлено
@@ -128,9 +126,7 @@ array(10) { (В скобках примеры, а не длины формато
 		//\Теперь СЧИТАЕМ все размеры, включая заходы рамок
 
 		if ($this->DEBUG) dump($this->pp,'','Параметры ресайза конечные:');
-	}#m calcDimensions
-
+	}
 	protected function upLoadUserImg($color){
-	}#m upLoadUserImg
-}#c logo
-?>
+	}
+}

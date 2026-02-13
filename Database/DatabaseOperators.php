@@ -60,5 +60,4 @@ class DatabaseOperators {
 	static $operatorsFlow = array(
 		'CASE',
 	);
-}#c
-?>
+}

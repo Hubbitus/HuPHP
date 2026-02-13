@@ -40,8 +40,7 @@ class FileBase {
 	**/
 	public function __construct($filename = ''){
 		if ($filename) $this->setPath($filename);
-	}#__c
-
+	}
 	/**
 	* Write all pendings write if it wasn't be done manually before. This is to avoid data loss.
 	**/
@@ -74,8 +73,7 @@ class FileBase {
 		}
 		else $this->filename = $realpath;
 		return $this;
-	}#m setPath
-
+	}
 	/**
 	* Return curent path
 	*
@@ -83,8 +81,7 @@ class FileBase {
 	**/
 	public function path(){
 		return $this->filename;
-	}#m path
-
+	}
 	/**
 	* Return curent RAW (what wich be passed into the {@see setPath()}, without any transformation) path.
 	*
@@ -92,8 +89,7 @@ class FileBase {
 	**/
 	public function rawPath(){
 		return $this->rawFilename;
-	}#m rawPath
-
+	}
 	/**
 	* Return true if current set path is exists.
 	*
@@ -102,8 +98,7 @@ class FileBase {
 	public function isExists(){
 		// Very strange: file_exists('') === true!!!
 		return ('' != $this->path() and file_exists($this->path()));
-	}#m isExists
-
+	}
 	/**
 	* Return true, if file on current path is readable.
 	*
@@ -111,8 +106,7 @@ class FileBase {
 	**/
 	public function isReadable(){
 		return is_readable($this->path());
-	}#m isReadable
-
+	}
 	/**
 	* Unlink (delete) file
 	*
@@ -120,8 +114,7 @@ class FileBase {
 	**/
 	public function unlink(){
 		return unlink($this->path());
-	}#m unlink
-
+	}
 	/**
 	* Return directory part of current path (file must not be exist!).
 	*
@@ -129,8 +122,7 @@ class FileBase {
 	**/
 	public function getDir(){
 		return dirname($this->path());
-	}#m getDir
-
+	}
 	/**
 	* Clear pending writes.
 	*
@@ -139,8 +131,7 @@ class FileBase {
 	public function &clearPendingWrite(){
 		$this->_writePending = false;
 		return $this;
-	}#m clearPendingWrite
-
+	}
 	/**
 	* Set content for write.
 	*
@@ -152,8 +143,7 @@ class FileBase {
 		$this->content = REQUIRED_NOT_NULL($string);
 		$this->_writePending = true;
 		return $this;
-	}#m setContentFromString
-
+	}
 	/**
 	* Append string to pending write buffer.
 	*
@@ -165,8 +155,7 @@ class FileBase {
 		$this->content += REQUIRED_VAR($string);
 		$this->_writePending = true;
 		return $this;
-	}#m appendString
-
+	}
 	/**
 	* Write whole content to file (filename may be set via ->setPath('NewFileName'))
 	*
@@ -182,8 +171,7 @@ class FileBase {
 
 		$this->_writePending = false;
 		return $count;
-	}#m writeContent
-
+	}
 	/// private functions ///
 
 	protected function checkOpenError($succ){
@@ -192,6 +180,5 @@ class FileBase {
 			if (!$this->isReadable()) throw new FileNotReadableException('File not readable. Check permissions.', $this->path());
 			throw new FileNotReadableException('Unknown error operate on file.', $this->path());
 		}
-	}#m checkOpenError
-}#c
-?>
+	}
+}

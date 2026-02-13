@@ -15,8 +15,7 @@ declare(strict_types=1);
 **/
 
 class DatabaseSettingsMySQL extends DatabaseSettings {
-}#c
-
+}
 class DatabaseMySQL extends Database{
 	public $db_type = 'mysql';
 
@@ -25,7 +24,7 @@ class DatabaseMySQL extends Database{
 		$sets = null	// mysql_database_settings or array
 		,$dontConnect = false ){
 	parent::__construct($sets, $dontConnect);
-	}#c
+	}
 */
 
 	public function db_connect(){
@@ -47,8 +46,7 @@ class DatabaseMySQL extends Database{
 				throw $cedbe;
 			}
 		}
-	}#m db_connect
-
+	}
 	public function query($query, $print_query = false, $last_id = false){
 		$this->Fields = null;
 		$this->Query = $query;
@@ -75,20 +73,18 @@ class DatabaseMySQL extends Database{
 		$this->result = $res;
 		// For bakward compatibility only. Return deprecated
 		return $res;
-	}//m query
+	}
 
 	public function query_limit($query, $from, $amount, $print_query = false){
 		if (!empty($from) or ! empty($amount)) $query .= ' LIMIT '.(int)$from.','.(int)$amount;
 		return $this->query($query, $print_query);
-	}#m query_limit
-
+	}
 	/**
 	* In MySQL not needed - implement as stub
 	**/
 	public function ToBlob($str){
 		return $str;
-	}#m ToBlob
-
+	}
 	/**
 	* MySQL does not support multiple recordset. This is possible in mysqli only.
 	**/
@@ -96,8 +92,7 @@ class DatabaseMySQL extends Database{
 
 	public function sql_escape_string(&$string_to_escape){
 		return mysql_escape_string($string_to_escape);
-	}#m sql_escape_string
-
+	}
 	/**
 	* TOTAL rows for query, Without LIMIT effect
 	* In case MySQL to work it properly and DO NOT slow all, insert
@@ -107,8 +102,7 @@ class DatabaseMySQL extends Database{
 	public function rowsTotal(){
 		$this->query('SELECT FOUND_ROWS()');
 		return current($this->sql_fetch_row());
-	}#m rowsTotal
-
+	}
 	protected function collectDebugInfo($errNo, $server_message, $server_messageS = '', $d_backtrace){
 		$this->Error->clear();
 		$this->Error->mergeSettingsArray(
@@ -124,5 +118,4 @@ class DatabaseMySQL extends Database{
 			)
 		);
 	}
-}#c mysql_database
-?>
+}

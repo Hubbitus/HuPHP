@@ -25,18 +25,10 @@ function myErrorHandler($errno, $errstr, $errfile, $errline /*, $errcontext */ )
 
 class DatabaseSettingsMSSQL extends DatabaseSettings {
 	public const int INT_STR_LENGTH = 10; // STRING-length of int, to coding in MSSQL-"array"
-}#c mssql_database_settings
+}
 
-class mssql_database extends Database{
+class mssql_database extends Database {
 	public string $db_type = 'mssql';
-
-/* Only parent, nothing more
-	function __construct(
-		$sets = null	// mssql_database_settings or array
-		,$dontConnect = false ){
-	parent::__construct($sets, $dontConnect);
-	}#c
-*/
 
 	public function db_connect(){
 		if (!is_resource($this->db_link)){//Establish connection
@@ -61,8 +53,7 @@ class mssql_database extends Database{
 			mssql_min_error_severity(1);
 			mssql_min_message_severity(1);
 		}
-	}#m db_connect
-
+	}
 	public function query($query, $print_query = false, $last_id = false){
 		$this->Fields = null;
 		$this->Query = $query;
@@ -103,7 +94,7 @@ class mssql_database extends Database{
 		$this->result = $res;
 		// For backward compatibility only. Return deprecated
 		return $res;
-	}//m query
+	}
 
 	public function query_limit($query, $from, $amount, $print_query = false){
 		// Replaceqoutes: ' and " by ''
@@ -114,23 +105,19 @@ class mssql_database extends Database{
 		$this->sql_next_result($this->result);
 		$this->rowsTotal = current($this->sql_fetch_row());
 		$this->sql_next_result($this->result);
-	}#m query_limit
-
+	}
 	public function ToBlob($str){
 		$str = @unpack("H*hex", $str);
 		$str = '0x'.$str['hex'];
 		return $str;
-	}#m ToBlob
-
+	}
 	final public function sql_next_result(){
 		return mssql_next_result($this->result);
-	}#m sql_next_result
-
+	}
 	public function sql_escape_string(&$string_to_escape){
 		$replaced_string = str_replace("'", "''", $string_to_escape);
 		return $replaced_string;
-	}#m sql_escape_string
-
+	}
 	/**
 	* To coding into MSSQL pseudo "array" (which are not supported)
 	* Result string, which will be splited into items by fixed length of item.
@@ -148,8 +135,7 @@ class mssql_database extends Database{
 	**/
 	protected final function int_fixed_length($itm){
 		return sprintf('%'.DatabaseSettingsMSSQL::INT_STR_LENGTH.'s', $itm);
-	}#m int_fixed_length
-
+	}
 	protected function collectDebugInfo($errNo, $server_message, $server_messageS = '', $d_backtrace){
 		$this->Error->clear();
 		$this->Error->mergeSettingsArray(
@@ -191,6 +177,5 @@ class mssql_database extends Database{
 
 		$this->iconv_result();
 		return $this->RES;
-	}#m sql_fetch_array
-}#c mssql_database
-?>
+	}
+}

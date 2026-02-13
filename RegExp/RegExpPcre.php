@@ -24,8 +24,7 @@ class RegExpPcre extends RegExp_base {
 	**/
 	public function test(){
 		return ($this->matchCount = preg_match($this->RegExp, $this->sourceText));
-	}#m test
-
+	}
 	/**
 	* {@inheritdoc}
 	**/
@@ -35,8 +34,7 @@ class RegExpPcre extends RegExp_base {
 			return $toQuote;
 		}
 		else return preg_quote($toQuote, $delimeter);
-	}#m quote
-
+	}
 	/**
 	* {@inheritdoc}
 	**/
@@ -45,8 +43,7 @@ class RegExpPcre extends RegExp_base {
 		$this->matchesValid = true;
 		//Now must be called manually, if needed! $this->convertOffsetToChars($flags);
 		return $this;
-	}#m doMatch
-
+	}
 	/**
 	* {@inheritdoc}
 	**/
@@ -55,8 +52,7 @@ class RegExpPcre extends RegExp_base {
 		$this->matchesValid = true;
 		//Now must be called manually, if needed! $this->convertOffsetToChars($flags);
 		return $this;
-	}#m doMatchAll
-
+	}
 	/**
 	* Conversion bytes offsets to characters.
 	*
@@ -96,8 +92,7 @@ class RegExpPcre extends RegExp_base {
 				}
 			}
 		}
-	}#m convertOffsetToChars
-
+	}
 	/**
 	* {@inheritdoc}
 	* Description see {@link http://php.net/preg_replace}
@@ -112,8 +107,7 @@ class RegExpPcre extends RegExp_base {
 			$this->replaceValid = true;
 		}
 		return $this->replaceRes;
-	}#m replace
-
+	}
 	/**
 	* Split by regexp.
 	*
@@ -127,5 +121,5 @@ class RegExpPcre extends RegExp_base {
 		$this->matches = preg_split($this->RegExp, $this->sourceText, $limit, $flags);
 		$this->matchesValid = true;
 		return $this;
-	}#m split
-}#c RegExp_pcre
+	}
+}

@@ -39,18 +39,14 @@ class OutExtraDataDOMnode extends OutExtraDataCommon {
 		$this->_var->appendChild($this->_var->importNode($var, true));
 		$this->_var->preserveWhiteSpace = false;
 		$this->_var->formatOutput = true;
-	}#__c
-
+	}
 	public function strToConsole($format = null){
 		return Dump::c(trim($this->_var->saveXML()), null, true);
-	}#m strToConsole
-
+	}
 	public function strToFile($format = null){
 		return Dump::log(trim($this->_var->saveXML()), false, true);
-	}#m strToFile
-
+	}
 	public function strToWeb($format = null){
 		return Dump::w(trim($this->_var->saveXML()), false, true);
-	}#m strToWeb
-}#c huFormatOutExtraData
-?>
+	}
+}

@@ -7,4 +7,3 @@ Dump::a('Just test');
 
 $bt = Backtrace::create();
 $bt->printout();
-?>

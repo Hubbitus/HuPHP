@@ -14,7 +14,6 @@ declare(strict_types=1);
 * @created 2009-06-29
 **/
 
-
 /**
 * Extended variant of settings_check, with check possible options.
 * You may easy add any amount of "filters" on get/set property operations
@@ -44,8 +43,7 @@ class SettingsFilter extends SettingsCheckStatic {
 			$filt->apply($name, $value);
 		}
 		if (!is_null($name)) parent::setSetting($name, $value);
-	}#m setSetting
-
+	}
 	/**
 	* Apply all desired filters and return value.
 	* Result not cached!
@@ -57,8 +55,7 @@ class SettingsFilter extends SettingsCheckStatic {
 			$filt->apply($name, $val);
 		}
 		return $val;
-	}#m getProperty
-
+	}
 	/**
 	* Reimplemnt in more generic form for automatic handle all get/set transformations.
 	* @inheritdoc
@@ -67,8 +64,7 @@ class SettingsFilter extends SettingsCheckStatic {
 		$this->__SETS = array();
 		// For our realisation just foreach all, now we can simple invoke mergeSettingsArray()
 		$this->mergeSettingsArray($setArr);
-	}#m setSettingsArray
-
+	}
 	/**
 	* Reimplemnt in more generic form for automatic handle all get/set transformations.
 	* @inheritdoc
@@ -80,8 +76,7 @@ class SettingsFilter extends SettingsCheckStatic {
 		**/
 		foreach (REQUIRED_VAR($setArr) as $key => $value)
 			$this->setSetting($key, $value);
-	}#m mergeSettingsArray
-
+	}
 	/**
 	* Add filter into property Get filters queue.
 	*
@@ -92,8 +87,7 @@ class SettingsFilter extends SettingsCheckStatic {
 		$q = $this->getFilterGet($filt->propName);
 		$q->push($filt);
 		return ($q->count() - 1);
-	}#m addFilterGet
-
+	}
 	/**
 	* Add filter into property Set filters queue.
 	*
@@ -104,8 +98,7 @@ class SettingsFilter extends SettingsCheckStatic {
 		$q = $this->getFilterSet($filt->propName);
 		$q->push($filt);
 		return ($q->count() - 1);
-	}#m addFilterSet
-
+	}
 	/**
 	* Base variant of search feilter. Compare just by full name of property.
 	* Extend class and reimplement getFilterGet()/getFilterSet() methods may be good idea to provide select,
@@ -117,8 +110,7 @@ class SettingsFilter extends SettingsCheckStatic {
 	protected function &getFilterGet($name){
 		if (!isset($this->__filt_get[$name])) $this->__filt_get[$name] = new SplDoublyLinkedList();
 		return $this->__filt_get[$name];
-	}#m getFilterGet
-
+	}
 	/**
 	* Base variant of search feilter. Compare just by full name of property.
 	* Extend class and reimplement getFilterGet()/getFilterSet() methods may be good idea to provide select,
@@ -130,14 +122,13 @@ class SettingsFilter extends SettingsCheckStatic {
 	protected function &getFilterSet($name){
 		if (!isset($this->__filt_set[$name])) $this->__filt_set[$name] = new SplDoublyLinkedList();
 		return $this->__filt_set[$name];
-	}#m getFilterSet
-
+	}
 	/** @TODO. Implement RAW-functionality in child class
 	* If for property registered at least one filter vith private flag, all property turn to private, and
 	*	requesting its raw value caused exception
 	public function getRaw($name){
 		if(!)
-	}#m getRaw
+	}
 	**/
 
 	/**
@@ -150,8 +141,7 @@ class SettingsFilter extends SettingsCheckStatic {
 	public function &delFilterGet($propName, $filterId){
 		$this->getFilterGet($propName)->offsetUnset($filterId);;
 		return $this;
-	}#m delFilterGet
-
+	}
 	/**
 	* Delete Set filter property from filters queue.
 	*
@@ -165,6 +155,5 @@ class SettingsFilter extends SettingsCheckStatic {
 	public function &delFilterSet($propName, $filterId){
 		$this->getFilterSet($propName)->offsetUnset($filterId);;
 		return $this;
-	}#m delFilterSet
-}#c settings_filter
-?>
+	}
+}

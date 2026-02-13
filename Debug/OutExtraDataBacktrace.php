@@ -18,14 +18,11 @@ declare(strict_types=1);
 class OutExtraDataBacktrace extends OutExtraDataCommon{
 	public function strToConsole($format = nul){
 		return $this->_var->printout(true, null, OS::OUT_TYPE_CONSOLE);
-	}#m strToConsole
-
+	}
 	public function strToFile($format = null){
 		return $this->_var->printout(true, null, OS::OUT_TYPE_FILE);
-	}#m strToFile
-
+	}
 	public function strToWeb($format = null){
 		return $this->_var->printout(true, null, OS::OUT_TYPE_BROWSER);
-	}#m strToWeb
-}#c
-?>
+	}
+}

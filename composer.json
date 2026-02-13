@@ -1,0 +1,37 @@
+{
+    "name": "hubbitus/huphp",
+    "description": "Modern PHP framework supporting PHP 8.0+ for common tasks like dumps, logging and so on",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hubbitus Framework",
+            "email": "Pahan@Hubbitus.info"
+        }
+    ],
+    "require": {
+        "php": ">=8.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hubbitus\\HuPHP\\": "./"
+        },
+        "files": [
+            "HuPHP.autoload.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hubbitus\\HuPHP\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "build": "echo 'Build completed'"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -28,8 +28,7 @@ class Settings extends HuClass {
 	**/
 	function __construct(?array $array = null){
 		if ($array) $this->mergeSettingsArray($array);
-	}#__c
-
+	}
 	/**
 	* Set setting by its name.
 	*
@@ -40,8 +39,7 @@ class Settings extends HuClass {
 	public function &setSetting($name, $value){
 		$this->__SETS[$name] = $value;
 		return $this;
-	}#m setSetting
-
+	}
 	/**
 	* Rewrite ALL settings. To change only needed - use {@see ::setSetting()} method
 	*
@@ -52,8 +50,7 @@ class Settings extends HuClass {
 	**/
 	public function setSettingsArray(array $setArr){
 		$this->__SETS = REQUIRED_VAR($setArr);
-	}#m setSettingsArray
-
+	}
 	/**
 	* Rewrite provided settings by its values. To change single setting you may use {@see ::setSetting()}
 	*
@@ -72,8 +69,7 @@ class Settings extends HuClass {
 		foreach (REQUIRED_VAR($setArr) as $key => $val){
 			$this->__SETS[$key] = $val;
 		}
-	}#m mergeSettingsArray
-
+	}
 	/**
 	* Return requested property by name. For more useful access see {@see ::__get()} method.
 	*
@@ -82,8 +78,7 @@ class Settings extends HuClass {
 	**/
 	public function &getProperty($name){
 		return $this->__SETS[REQUIRED_NOT_NULL($name)];
-	}#m getProperty
-
+	}
 	/**
 	* useful alias of {@see ::setSetting()} to provide easy access in style of $obj->PropertyName = 'Some new value';
 	*
@@ -94,8 +89,7 @@ class Settings extends HuClass {
 	public function &__set($name, $value){
 		$this->setSetting($name, $value);
 		return $this;
-	}#m __set
-
+	}
 	/**
 	* useful alias of {@see ::getProperty()} to provide easy access in style of $obj->PropertyName
 	*
@@ -104,8 +98,7 @@ class Settings extends HuClass {
 	**/
 	public function &__get($name){
 		return $this->getProperty($name);
-	}#m __get
-
+	}
 	/**
 	* Check isset of requested property. See http://php.net/isset comment of "phpnotes dot 20 dot zsh at spamgourmet dot com"
 	*
@@ -114,8 +107,7 @@ class Settings extends HuClass {
 	**/
 	public function __isset($name) {
 		return isset($this->__SETS[REQUIRED_NOT_NULL($name)]);
-	}#m __isset
-
+	}
 	/**
 	* Return string in what merged settings by provided format.
 	*
@@ -130,8 +122,7 @@ class Settings extends HuClass {
 			$str .= $this->formatField($field);
 		}
 		return $str;
-	}#m getString
-
+	}
 	/**
 	* Format Field Primarily for {@see ::getString}, but may be used and separatly
 	* $field one of:
@@ -161,8 +152,7 @@ class Settings extends HuClass {
 		else{
 			return EMPTY_STR(@$this->getProperty($field), $field); // Or by name if it just text
 		}
-	}#m formatField
-
+	}
 	/**
 	* Clear all settings
 	*
@@ -171,8 +161,7 @@ class Settings extends HuClass {
 	public function &clear(){
 		$this->__SETS = array();
 		return $this;
-	}#m clear
-
+	}
 	/**
 	* Return amount of settings.
 	*
@@ -180,5 +169,5 @@ class Settings extends HuClass {
 	**/
 	public function length(){
 		return sizeof($this->__SETS);
-	}#m length
-}#c
+	}
+}

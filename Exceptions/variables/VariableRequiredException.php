@@ -17,8 +17,7 @@ class VariableRequiredException extends VariableException {
 		$this->var= $varname;
 
 		parent::__construct($message, $code);
-	}#c
-
+	}
 	/**
 	* Return varname
 	*

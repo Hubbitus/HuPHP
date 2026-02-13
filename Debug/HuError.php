@@ -70,8 +70,7 @@ class HuErrorSettings extends Settings{
 	*	),
 	* );
 	**/
-}#c HuError_settings
-
+}
 class HuError extends Settings implements OutExtraData {
 	/** Self settings. **/
 	protected /* settings */ $_sets = null;
@@ -79,8 +78,7 @@ class HuError extends Settings implements OutExtraData {
 
 	public function __construct(?HuErrorSettings $sets = null){
 		$this->_sets = EMPTY_VAR($sets, new HuErrorSettings);
-	}#__c
-
+	}
 	/**
 	* Due to absent multiple inheritance in PHP, just copy/paste from class {@see SettingsGet} @TODO switch to use traits.
 	* Overloading to provide ref on settings without change possibility.
@@ -108,8 +106,7 @@ class HuError extends Settings implements OutExtraData {
 			$t = $this->getProperty($name);
 			return $t;
 		}
-	}#m __get
-
+	}
 	/**
 	* String to print into file.
 	*
@@ -122,8 +119,7 @@ class HuError extends Settings implements OutExtraData {
 		$this->_curTypeOut = OS::OUT_TYPE_FILE;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_FILE)) return $this->getString($format);
 		else return Dump::log($this->__SETS, null, true);
-	}#m strToFile
-
+	}
 	/**
 	* String to print into user browser.
 	*
@@ -136,8 +132,7 @@ class HuError extends Settings implements OutExtraData {
 		$this->_curTypeOut = OS::OUT_TYPE_BROWSER;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_WEB)) return $this->getString($format);
 		else return Dump::w($this->__SETS, null, true);
-	}#m strToWeb
-
+	}
 	/**
 	* String to print on console.
 	*
@@ -150,8 +145,7 @@ class HuError extends Settings implements OutExtraData {
 		$this->_curTypeOut = OS::OUT_TYPE_CONSOLE;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_CONSOLE)) return $this->getString($format);
 		else return Dump::c($this->__SETS, null, true);
-	}#m strToConsole
-
+	}
 	/**
 	* String to print. automatically detect Web or Console. Detect by {@link OS::getOutType()}
 	*	and invoke appropriate ::strToWeb() or ::strToConsole()
@@ -162,8 +156,7 @@ class HuError extends Settings implements OutExtraData {
 	**/
 	public function strToPrint($format = null){
 		return __outExtraData__common_implementation::strToPrint($this, $format);
-	}#m strToPrint
-
+	}
 	/**
 	* Convert to string by type.
 	*
@@ -175,8 +168,7 @@ class HuError extends Settings implements OutExtraData {
 	**/
 	public function strByOutType($type, $format = null){
 		return __outExtraData__common_implementation::strByOutType($this, $type, $format);
-	}#m strByOutType
-
+	}
 	/**
 	* Detect appropriate print (to Web or Console) and return correct form
 	*
@@ -184,8 +176,7 @@ class HuError extends Settings implements OutExtraData {
 	**/
 	public function __toString(){
 		return $this->strToPrint();
-	}#m __toString
-
+	}
 	/**
 	* Overload settings::setSetting() to handle autodate
 	*
@@ -195,8 +186,7 @@ class HuError extends Settings implements OutExtraData {
 		parent::setSetting($name, $value);
 
 		$this->updateDate();
-	}#m setSetting
-
+	}
 	/**
 	* Overload settings::setSettingsArray() to handle autodate
 	*
@@ -209,8 +199,7 @@ class HuError extends Settings implements OutExtraData {
 		//Insert after update data
 		$this->updateDate();
 		return $this;
-	}#m setSettingsArray
-
+	}
 	/**
 	* Just alias for ::setSettingsArray()
 	*
@@ -219,8 +208,7 @@ class HuError extends Settings implements OutExtraData {
 	**/
 	public function setFromArray(array $setArr){
 		return $this->setSettingsArray($setArr);
-	}#m setFromArray
-
+	}
 	/**
 	* Overload settings::mergeSettingsArray() to handle autodate
 	*
@@ -231,8 +219,7 @@ class HuError extends Settings implements OutExtraData {
 		$this->updateDate();
 
 		parent::mergeSettingsArray($setArr);
-	}#m mergeSettingsArray
-
+	}
 	/**
 	* Just alias for ::mergeSettingsArray()
 	*
@@ -241,8 +228,7 @@ class HuError extends Settings implements OutExtraData {
 	**/
 	public function mergeFromArray(array $setArr){
 		$this->mergeSettingsArray($setArr);
-	}#m mergeFromArray
-
+	}
 	/**
 	* If settings->AUTO_DATE == true and settings->DATE_FORMAT correctly provided - update current
 	* date in ->date
@@ -257,8 +243,7 @@ class HuError extends Settings implements OutExtraData {
 			$this->settings->DATE_FORMAT
 		)
 			parent::setSetting('date', date($this->settings->DATE_FORMAT));
-	}#m updateDate
-
+	}
 	/**
 	* Overloading getString to separetly handle 'extra'
 	*
@@ -281,6 +266,5 @@ class HuError extends Settings implements OutExtraData {
 			return NON_EMPTY_STR(@$fieldValue->printout(true, null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
 		}
 		else return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]);
-	}#m formatField
-}#c HuError
-?>
+	}
+}

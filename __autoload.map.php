@@ -115,4 +115,3 @@ $GLOBALS['__CONFIG']['__autoload_map'] = array(
 	'm'	=> 'HuPHP.autoload.php',
 	'SplDoublyLinkedList'	=> '.backward.compatibility/SplDoublyLinkedList.php',
 );
-?>

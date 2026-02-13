@@ -27,4 +27,3 @@ catch(DatabaseException $dbe){
 catch(Exception $e){
 	Single::def('HuLOG')->toLog('UNKNOWN Exception' . $e, 'ERR', 'unkn');
 }
-?>

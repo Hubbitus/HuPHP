@@ -28,4 +28,3 @@ Dump::a(TIDY_NODETYPE_STARTEND);
 Dump::a(Consts::getNameByValue(TIDY_NODETYPE_STARTEND, '', '/^TIDY/', true));
 Dump::a(Consts::getNameByValue(TIDY_NODETYPE_STARTEND, '', '/^TIDY/', false));
 Dump::a(Consts::getNameByValue(366, '', '/^TIDY/', false));
-?>

@@ -24,4 +24,3 @@ declare(strict_types=1);
 function unicode_ucfirst($str, $enc = 'UTF-8'){
 	return preg_replace('/^./ue', "mb_strtoupper('\\0', '$enc')", $str);
 }#f unicode_ucfirst
-?>

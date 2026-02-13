@@ -36,28 +36,22 @@ class Process_state{
 
 	public function getCwd(){
 		return $this->cwd;
-	}#m getCwd
-
+	}
 	public function setCwd($newCwd){
 		$this->cwd = $newCwd;
-	}#m setCwd
-
+	}
 	public function getEnv(){
 		return $this->env;
-	}#m getEnv
-
+	}
 	public function setEnv(array $env){
 		$this->env = $env;
-	}#m setEnv
-
+	}
 	public function getResult(){
 		return $this->retval;
-	}#m getResult
-
+	}
 	public function getError(){
 		return trim($this->error);
-	}#m getError
-
+	}
 	public function describe(){
 		return log_dump(
 			array(
@@ -71,9 +65,8 @@ class Process_state{
 				'nonBlockTimeout'	=> $this->nonBlockTimeout
 			)
 		);
-	}#m describe
-}#c Process_state
-
+	}
+}
 class Process{
 	const STDIN = 0;
 	const STDOUT = 1;
@@ -93,16 +86,13 @@ class Process{
 	function __construct(Process_state $state, $doNOTopen = false){
 		$this->setState($state);
 		if ($this->state->CMD and !$doNOTopen ) $this->open();
-	}#__c
-
+	}
 	public function &getState(){
 		return $this->state;
-	}#m getState
-
+	}
 	public function setState($state){
 		$this->state = $state;
-	}#m setState
-
+	}
 	public function open(){
 		$this->resource = proc_open($this->state->CMD, $this->descriptorspec, $this->pipes, $this->state->getCwd(), $this->state->getEnv());
 
@@ -119,8 +109,7 @@ class Process{
 			stream_set_blocking($this->pipes[self::STDOUT], false);
 			stream_set_blocking($this->pipes[self::STDERR], false);
 		}
-	}#m setNonBlockingMode
-
+	}
 	public function writeIn($inStr = false, $noWait = false){
 		// By dafault saved data write
 		if ($inStr) $this->state->writeData = $inStr;
@@ -128,19 +117,16 @@ class Process{
 		fflush($this->pipes[self::STDIN]);
 		if (! $this->state->nonBlockingMode) fclose($this->pipes[self::STDIN]);
 		elseif ($this->state->nonBlockingMode and ! $noWait) usleep ($this->state->nonBlockTimeout);
-	}#m writeIn
-
+	}
 	public function readOut(){
 		$this->state->retval = stream_get_contents($this->pipes[self::STDOUT]);
 		fflush($this->pipes[self::STDOUT]);
 		if (! $this->state->nonBlockingMode) fclose($this->pipes[self::STDOUT]);
-	}#m readOut
-
+	}
 	public function readErr(){
 		$this->state->error = stream_get_contents($this->pipes[self::STDERR]);
 		if (! $this->state->nonBlockingMode) fclose($this->pipes[self::STDERR]);
-	}#m readErr
-
+	}
 	public function closeAll(){
 		if ($this->state->nonBlockingMode){
 			@fclose($this->pipes[self::STDIN]);
@@ -149,16 +135,14 @@ class Process{
 		}
 		$this->state->exit_code = proc_close($this->resource);
 		if ($this->state->exit_code) throw new ProcessException('Ended with non 0 status! - '.$this->state->exit_code."\n".$this->state->describe(), 0, $this->getState());
-	}#m run
-
+	}
 	public function execute(){
 		$this->readErr();
 		$this->readOut();
 		$this->closeAll();
 		if ($this->state->getError()) throw new ProcessException($this->state->getError().$this->state->describe(), 0, $this->getState());
 		return $this->state->getResult();
-	}#m execute
-
+	}
 	public static function exec($command, $cwd = null, array $env = null, $writeData = null){
 		if (! $command instanceof Process_state){
 			$state = new Process_state();
@@ -174,8 +158,7 @@ class Process{
 		$prcs = new Process($state);
 		$prcs->writeIn();
 		return $prcs->execute();
-	}#m exec
-
+	}
 /*
 function __destruct(){
 	if ($this->pipes[self::STDIN]) fclose($this->pipes[self::STDIN]);
@@ -183,8 +166,7 @@ function __destruct(){
 	if ($this->pipes[self::STDERR]) fclose($this->pipes[self::STDERR]);
 }#__d
 */
-}#c Process
-
+}
 /*
 EXAMPLES
 try{

@@ -55,8 +55,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 		$this->_writePending = false;
 		fclose($tfd);
 		return $count;
-	}#m writeContent
-
+	}
 	/// Self introduced methods ///
 
 	/**
@@ -78,8 +77,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 		);
 		$this->lineContent = array();
 		$this->content = '';
-	}#m open
-
+	}
 	/**
 	* Get next line from stream.
 	*
@@ -90,8 +88,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	public function getline($length = null){
 		++$this->_line_no;
 		return $length ? fgets(REQUIRED_VAR($this->fd), $length) : fgets(REQUIRED_VAR($this->fd));
-	}#m getline
-
+	}
 	/**
 	* Return current line number in getline() mode access.
 	*
@@ -102,8 +99,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	**/
 	function lineNo(){
 		return $this->_line_no;;
-	}#m lineNo
-
+	}
 	/**
 	* Return tail of stream as string.
 	*
@@ -115,6 +111,5 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	**/
 	public function getTail ($maxlength = -1, $offset = 0){
 		return stream_get_contents($this->fd, $maxlength, $offset);
-	}#m getTail
-}#c file_read
-?>
+	}
+}

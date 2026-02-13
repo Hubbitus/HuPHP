@@ -48,6 +48,5 @@ class SplDoublyLinkedList implements Iterator{
 	public function count(){
 		return count($this->var);
 	}
-}#c SplDoublyLinkedList
 }
-?>
+}

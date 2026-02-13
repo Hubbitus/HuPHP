@@ -31,4 +31,3 @@ function unichr($dec) {
 	}
 return $utf;
 }
-?>

@@ -15,4 +15,3 @@ $GLOBALS['__CONFIG']['HuLOG'] = array(
 		'EXTRA_HEADER' => null, // NOT false!
 	),
 );
-?>

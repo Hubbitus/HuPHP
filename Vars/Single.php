@@ -59,8 +59,7 @@ class Single {
 		}
 
 		return self::$instance[$hash];
-	}#m singleton
-
+	}
 	/**
 	* The default configured. Short alias for {@see ::singleton()}
 	*
@@ -68,8 +67,7 @@ class Single {
 	**/
 	public static function &def($className){
 		return self::singleton($className, CONF()->getRaw($className, true));
-	}#m def
-
+	}
 	/**
 	* Try include
 	*
@@ -85,15 +83,13 @@ class Single {
 
 		// Check again
 		if (!class_exists($className)) throw new ClassNotExistsException($className . ' NOT exist!'. (!@$GLOBALS['__CONFIG'][$className]['class_file'] ? '' : ' And, additionaly include provided path ['.$GLOBALS['__CONFIG'][$className]['class_file'].'] not helped in this!'));
-	}#m tryIncludeByClassName
-
+	}
 	/**
 	* Prevent users to clone the instance
 	**/
 	public function __clone(){
 		trigger_error('Clone is not allowed.', E_USER_ERROR);
-	}#m __clone
-
+	}
 	/**
 	 * Provide simple way of hashing objects and array
 	 *
@@ -102,9 +98,8 @@ class Single {
 	 */
 	public static function hash($param){
 		return md5(http_build_query($param));
-	}#m hash
-}#c Single
-
+	}
+}
 /**
 * @example
 * This will always retrieve a single instance of the class

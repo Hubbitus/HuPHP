@@ -26,7 +26,7 @@ class DatabaseError extends HuError{
 		}
 		elseif($sets) $this->_sets = $sets;
 		else $this->_sets = new DBError_settings();// default
-	}#__c
+	}
 }
 
 class DBError_settings extends HuErrorSettings{
@@ -77,5 +77,4 @@ class DBError_settings extends HuErrorSettings{
 			array('bt', "\n")
 		),
 	);
-}#c DBError_settings
-?>
+}

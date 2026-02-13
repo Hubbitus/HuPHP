@@ -14,7 +14,6 @@ include('autoload.php');
 //include('Debug/Phar/HuDebug.phar');
 //include_once('autoload.php');
 
-
 ################################################################################################
 /*
 //БАГ с обращением к строке по ключу
@@ -40,8 +39,8 @@ dump($ttt);
 
 include_once('RegExp/RegExp_pcre.php');
 $r = RegExp_pcre::create('/\.(.*)/', $_ENV['LANG']);
-dump::a($r->match(1));
-dump::a(RegExp_pcre::create('/\.(.*)/', $_ENV['LANG'], 'QAZ')->replace());
+Dump::a($r->match(1));
+Dump::a(RegExp_pcre::create('/\.(.*)/', $_ENV['LANG'], 'QAZ')->replace());
 //c_dump(RegExp_pcre::getMatch('/\.(.*)/', $_ENV['LANG'], 1));
 */
 ################################################################################################
@@ -139,8 +138,7 @@ class A{
 	function method($arg){
 	callParams();
 	}
-}#c A
-
+}
 //A::staticmethod();
 //$a = new A;
 //$a->method(@$methodArg);
@@ -196,12 +194,12 @@ catch(VariableRequiredException $vre){
 //Direct output:
 
 #Work:
-#dump::a($vre->varName());
+#Dump::a($vre->varName());
 #$vre->bt->printout();
 
 #(Was!) NOT work:
 #$vre->bt->printout();
-#dump::a($vre->varName());
+#Dump::a($vre->varName());
 #exit();
 
 //Direct output without logging and only in 1 presentation:
@@ -217,27 +215,27 @@ exit();
 */
 ################################################################################################
 //include_once('Tokenizer.php');
-//dump::c(Tokenizer::trimQuotes('"Test text\''), 'Test Tokenizer::trimQuotes');
+//Dump::c(Tokenizer::trimQuotes('"Test text\''), 'Test Tokenizer::trimQuotes');
 ################################################################################################
 /*
-dump::auto('Test', 'TEST');
+Dump::auto('Test', 'TEST');
 $ttt = 'QWERTY';
-dump::auto('Test2');
-dump::auto($ttt);
+Dump::auto('Test2');
+Dump::auto($ttt);
 #c_dump($ttt);#NOT correct in this form. Do NOT use old shorthands.
 $tt = array('arg0' => 0, '1' => 'arg1');
-echo dump::log($tt);
-echo dump::log($tt, 'eto $tt');
-dump::a($tt);
+echo Dump::log($tt);
+echo Dump::log($tt, 'eto $tt');
+Dump::a($tt);
 */
 ################################################################################################
-//dump::c(mb_strlen('Test'));
+//Dump::c(mb_strlen('Test'));
 ################################################################################################
 /*
-dump::a(php_sapi_name());
-dump::a(PHP_SAPI);
-dump::a(@$_SERVER['HTTP_USER_AGENT']);
-dump::a(@get_browser());
+Dump::a(php_sapi_name());
+Dump::a(PHP_SAPI);
+Dump::a(@$_SERVER['HTTP_USER_AGENT']);
+Dump::a(@get_browser());
 */
 ################################################################################################
 /*
@@ -264,7 +262,7 @@ $e->setFromArray(
 //echo $e->strToWeb()."\n";
 //echo $e->strToFile()."\n";
 //echo $e->strToPrint()."\n";
-//dump::a($e->Beda);
+//Dump::a($e->Beda);
 //echo $e;
 */
 ################################################################################################
@@ -283,13 +281,13 @@ return $this->t($a1, $a2, $a3);
 }
 
 protected function t($arg1, $tt, $t3 = null, $t4 = null){
-dump::a($arg1);
+Dump::a($arg1);
 
-dump::a(func_num_args());
-dump::a(func_get_args());
-dump::a(@func_get_arg(0));
-//dump::a(func_get_arg(1));
-//dump::a(func_get_arg(2));
+Dump::a(func_num_args());
+Dump::a(func_get_args());
+Dump::a(@func_get_arg(0));
+//Dump::a(func_get_arg(1));
+//Dump::a(func_get_arg(2));
 }
 //$b = new backtrace();
 //$b = backtrace::create();
@@ -343,11 +341,11 @@ $b = new B;
 $c = new C;
 $d = new D;
 
-dump::a($a instanceof A);	#true
-dump::a($a instanceof E);	#false
-dump::a($b instanceof A);	#true
-dump::a($c instanceof A);	#true
-dump::a($d instanceof X);	#true
+Dump::a($a instanceof A);	#true
+Dump::a($a instanceof E);	#false
+Dump::a($b instanceof A);	#true
+Dump::a($c instanceof A);	#true
+Dump::a($d instanceof X);	#true
 */
 ################################################################################################
 /*
@@ -372,20 +370,20 @@ try{
 catch (Exception $e){ echo 'Esceprion catched!'."\n"; }
 
 $t = 'string';
-dump::a($t instanceof A); //Not, and without errors and warnings
+Dump::a($t instanceof A); //Not, and without errors and warnings
 
 //var_dump(spl_object_hash(new stdClass()), spl_object_hash(new stdClass()));
 */
 ################################################################################################
 /*
-//dump::a(DIRECTORY_SEPARATOR);
+//Dump::a(DIRECTORY_SEPARATOR);
 include_once('System/OS.php');
 
 echo "temp.php 0\n";
 //include('Not existent file');
-//dump::a(@require('include.php'));
-//dump::a(@include('include.php'));
-dump::a(OS::is_includeable('include.php', false));
+//Dump::a(@require('include.php'));
+//Dump::a(@include('include.php'));
+Dump::a(OS::is_includeable('include.php', false));
 echo "temp.php 1\n";
 //echo TTT;
 */
@@ -409,10 +407,10 @@ public $t = 'tt';
 }
 
 $a = new A;
-dump::a($a->t);
-dump::a($a->None);
-dump::a($a->{1});
-dump::a($a->{'Это русский текст в качестве propertyname'});
+Dump::a($a->t);
+Dump::a($a->None);
+Dump::a($a->{1});
+Dump::a($a->{'Это русский текст в качестве propertyname'});
 */
 ################################################################################################
 /*
@@ -423,7 +421,6 @@ $val = array(
 	'text' => 'Test text',
 	'string' =>'<b>bold text</b>'
 );
-
 
 $f = array(
 	'string'	=> array(
@@ -446,12 +443,12 @@ $bt->printout();
 $t = array('one', 'two');
 $tt = array('one' => 'ONE', 'two' => 'TWO');
 $ttt = array();
-dump::a($t[0]);
-dump::a(@$tt[0]);
-dump::a(@$ttt[0]);
-dump::a($t[key($t)]);
-dump::a($tt[key($tt)]);
-dump::a(@$ttt[key($ttt)]);
+Dump::a($t[0]);
+Dump::a(@$tt[0]);
+Dump::a(@$ttt[0]);
+Dump::a($t[key($t)]);
+Dump::a($tt[key($tt)]);
+Dump::a(@$ttt[key($ttt)]);
 */
 ################################################################################################
 /*
@@ -460,7 +457,7 @@ include_once('System/Class.php');
 class A extends HuClass{
 const className = 'A';
 	function aa(){
-	dump::a('Method ' . __METHOD__);
+	Dump::a('Method ' . __METHOD__);
 	}
 }
 
@@ -476,7 +473,6 @@ class B extends HuClass{
 //$a = new A();
 //$a->aa();
 
-
 //(new A)->aa();
 //A::__construct()->aa();
 //A::A()->aa();
@@ -487,9 +483,9 @@ B::create();
 ################################################################################################
 /*
 function test($t){
-dump::a((boolean)@$t);
-dump::a(is_null(@$t));
-dump::a(empty($t));
+Dump::a((boolean)@$t);
+Dump::a(is_null(@$t));
+Dump::a(empty($t));
 }
 
 echo "''\n";
@@ -503,7 +499,7 @@ test('0');
 */
 ################################################################################################
 /*
-dump::a($argv);
+Dump::a($argv);
 
 include_once('Vars/HuArray.php');
 //$arg = '--what="Test text"';
@@ -518,14 +514,14 @@ $re = new RegExp_pcre(
 	')(=|\b)(.*)/' ),
 	$arg);
 $re->doMatch();
-dump::a($reg);
-dump::a($re->getMatches());
-dump::a($re->match(0));
+Dump::a($reg);
+Dump::a($re->getMatches());
+Dump::a($re->match(0));
 
-// dump::a($re->match(0)[1]); //Error!
-//dump::a(HuArray::create($re->match(0))->{0});
-//dump::a(RegExp_pcre::quote($arr));
-//dump::a(RegExp_pcre::quote($arr[2]));
+// Dump::a($re->match(0)[1]); //Error!
+//Dump::a(HuArray::create($re->match(0))->{0});
+//Dump::a(RegExp_pcre::quote($arr));
+//Dump::a(RegExp_pcre::quote($arr[2]));
 */
 ################################################################################################
 /*
@@ -546,7 +542,7 @@ function f_or(){
 return ( ($r =& f1()) ? $r : f2());
 }
 
-dump::a(f_or());
+Dump::a(f_or());
 */
 ################################################################################################
 /*
@@ -558,54 +554,52 @@ public $publicvar = '7';
 	}
 
 	function &__get($var){
-	dump::a($var);
+	Dump::a($var);
 		if ('_last_' == $var) return $this->publicvar;
-	}#m __get
-
+	}
 	function __set($var, $value){
-	dump::a($var, '__set');
+	Dump::a($var, '__set');
 		if ('_last_' == $var){
 		//$this->publicvar = $value;
 		$ref =& $this->getRef();
 		$ref = 78;
 		}
-	}#m __set
-}#c A
-
+	}
+}
 $a = new A;
-dump::a($a);
-dump::a($a->_last_);
+Dump::a($a);
+Dump::a($a->_last_);
 $ttt = $a->_last_ = 77;
 //$a->qwerty = 777;
 //$a->publicvar = 88;
-dump::a($a);
-dump::a($a->_last_);
-dump::a($ttt);
+Dump::a($a);
+Dump::a($a->_last_);
+Dump::a($ttt);
 */
 ################################################################################################
 /*
-dump::a($argv);
+Dump::a($argv);
 $cont = file_get_contents('php://stdin');
-dump::a($cont);
+Dump::a($cont);
 
 $ttt = array($argv[4]);
-dump::a($ttt);
+Dump::a($ttt);
 array_walk($ttt, create_function('&$v', 'eval(\'$v ="\' . addcslashes($v, \'"\') . \'";\');'));
-dump::a($ttt);
+Dump::a($ttt);
 
 eval('$to = "'.addcslashes($ttt[0], '"').'";');
-dump::a($to);
+Dump::a($to);
 
 //$res = preg_replace($argv[2], $argv[4], $cont);
 $res = preg_replace($argv[2], $to, $cont);
-dump::a($res);
+Dump::a($res);
 //#For string-eval esape characters like \n, \t, \r and other!
 //eval('$nRes = "'.addcslashes($res, '"').'";');
-//dump::a($nRes);
+//Dump::a($nRes);
 
 //$t = 'n';
 //$tt = "=\\$t=";
-//dump::a($tt);
+//Dump::a($tt);
 */
 ################################################################################################
 /*
@@ -617,7 +611,7 @@ $srcArr = array (
 	"show_perms"	=> "*",
 	"download_perms" => ""
 );
-dump::a($srcArr);
+Dump::a($srcArr);
 
 xdebug_var_dump($srcArr);
 */
@@ -626,20 +620,20 @@ xdebug_var_dump($srcArr);
 $length = 10000;
 
 $direct = str_pad('', $length, '-=').'END';
-//dump::a($direct);
+//Dump::a($direct);
 eval('$evalresult = str_pad("", '.$length.', "-=")."END";');
-//dump::a($evalresult);
+//Dump::a($evalresult);
 
 //$ttt = 'LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPQ==';
-//dump::a($ttt);
-//dump::a(base64_decode($ttt));
+//Dump::a($ttt);
+//Dump::a(base64_decode($ttt));
 */
 ################################################################################################
 /*
 phpinfo();
-dump::a(0 | 2);
-dump::a(ini_get('xdebug.overload_var_dumpQ'));
-dump::a((bool)ini_get('xdebug.overload_var_dumpQ'));
+Dump::a(0 | 2);
+Dump::a(ini_get('xdebug.overload_var_dumpQ'));
+Dump::a((bool)ini_get('xdebug.overload_var_dumpQ'));
 */
 ################################################################################################
 /*
@@ -671,16 +665,16 @@ echo iconv_charset_convert::conv($testText, 'CP1251_TTT') . "\n";
 include_once('macroses/IS_SET.php');
 
 $str = "Some text, NOT array";
-dump::a(isset($str["qwerty"]));	//Always TRUE!!!
-dump::a(is_set('qwerty', $str));	//Always TRUE!!!
-dump::a(isset($str[5]));		//Work
-dump::a(is_set(5, $str));	//Work
-dump::a(isset($str[500]));	//Work
-dump::a(is_set(500, $str));	//Work
-dump::a(isset($str[-5]));	//Work
-dump::a(is_set(-5, $str));	//Work
-dump::a(isset($str{5}));		//Work
-dump::a(isset($str{-5}));	//Work
+Dump::a(isset($str["qwerty"]));	//Always TRUE!!!
+Dump::a(is_set('qwerty', $str));	//Always TRUE!!!
+Dump::a(isset($str[5]));		//Work
+Dump::a(is_set(5, $str));	//Work
+Dump::a(isset($str[500]));	//Work
+Dump::a(is_set(500, $str));	//Work
+Dump::a(isset($str[-5]));	//Work
+Dump::a(is_set(-5, $str));	//Work
+Dump::a(isset($str{5}));		//Work
+Dump::a(isset($str{-5}));	//Work
 */
 ################################################################################################
 //$argv[1] = '/var/www/_SHARED_/template/template_class_2.1.php';
@@ -696,11 +690,11 @@ $ha = new HuArray(
 		,'arr' => array(0, 11, 22, 777)
 	)
 );
-dump::a($ha->one);
-dump::a($ha->arr);					// Result Array (raw, as is)!
-dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
-dump::a($ha->hu('arr')->hu(2));		// Property access. Alse as any HuArray methods like walk(), filter() and any other.
-dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternate method. Fully equivalent of line before. Just another form.
+Dump::a($ha->one);
+Dump::a($ha->arr);					// Result Array (raw, as is)!
+Dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
+Dump::a($ha->hu('arr')->hu(2));		// Property access. Alse as any HuArray methods like walk(), filter() and any other.
+Dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternate method. Fully equivalent of line before. Just another form.
 */
 ################################################################################################
 //include_once('Vars/HuArray.php');

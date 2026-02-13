@@ -40,8 +40,7 @@ class Consts { // constants
 		}
 
 		return $new_consts;
-	}#m get_regexp
-
+	}
 	/**
 	* Return pair Constant-name and it values
 	*
@@ -50,8 +49,7 @@ class Consts { // constants
 	*/
 	public static function get($const){
 		return array($const => constant($const));
-	}#m get
-
+	}
 	/**
 	* Locate constant-name by its value.
 	*
@@ -73,9 +71,8 @@ class Consts { // constants
 			}
 			return array_filter($constants);
 		}
-	}#m getNameByValue
-}#c consts
-
+	}
+}
 /*
 * Due to:
 * PHP Fatal error:  Class declarations may not be nested in ...
@@ -86,10 +83,8 @@ class const_value_filter{
 
 	function __construct(&$val){
 		$this->_val =& $val;
-	}#__c
-
+	}
 	function cmp(&$item){
 		return ($this->_val == $item);
-	}#m cmp
-}#c
-?>
+	}
+}

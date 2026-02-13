@@ -18,4 +18,3 @@ class BaseException extends Exception{
 }
 
 class NotImplementedException extends BaseException{};
-?>

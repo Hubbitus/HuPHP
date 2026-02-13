@@ -23,8 +23,7 @@ protected /* settings */ $_sets = null;
 	**/
 	public function &__get ($name){
 		if ('settings' == $name) return $this->_sets;
-	}#m __get
-
+	}
 	/**
 	* Return settings object
 	*
@@ -32,5 +31,5 @@ protected /* settings */ $_sets = null;
 	**/
 	public function &sets(){
 		return $this->_sets;
-	}#m sets
-}#c
+	}
+}

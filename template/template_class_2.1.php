@@ -88,8 +88,7 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 		$this->_gentime = new Gentime;
 		$this->_gentime->start();
 		}
-	}#m constructor
-
+	}
 	#$subdir это для модулей, будем искать тамже, где и все, но в поддиректории TEMPLATE_MODULES_SUBDIR (modules/)
 	function find_path ($filename, $subdir = ''){
 	$finded = 0;	#Не найдено, не изменялось пути
@@ -128,8 +127,7 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 	function load_file($filename){
 	($this->content_file = @file_get_contents($this->find_path($filename), true)) or (exit($this->error[] = "FATAL ERROR: Не могу прочесть файл $filename"));
 	return $filename;	#Возвращаем полное имя файла, что включили!
-	}#m load_file
-
+	}
 	function string_template($string){
 	$this->content_file = $string;
 	}
@@ -137,13 +135,11 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 	function assign($var_name, $var_value, $filename = null){
 		if ($filename == null) $filename = $this->filename;	#Имя файла шаблона необязательно.
 	$this->assigned[$filename][$var_name] = $var_value;
-	}#m assign
-
+	}
 	function assignByRef($var_name, &$var_value, $filename = null){
 		if ($filename == null) $filename = $this->filename;	#Имя файла шаблона необязательно.
 	$this->assigned[$filename][$var_name] = $var_value;
-	}#m assignByRef
-
+	}
 	/**
 	* Assign from array.
 	*
@@ -156,8 +152,7 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 		$this->assign($key, $value, $filename);
 		}
 	return $this;
-	}#m assignByRef
-
+	}
 	function include_file(&$match){//Включение файлов
 		#Сначала проверяем на доступность и обрабатываем ошибки
 		if ( !($include_filename = $this->find_path($match[2][0]))){
@@ -189,8 +184,7 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 		$include = file_get_contents($include_filename);
 		$this->result($match[0], $include);
 		}
-	}#m include_file
-
+	}
 	function varrrs($filename, &$match, $ret = false){//Заменяем простые переменные
 		if ($ret){#В этом случае, вызов для ПОЛУЧЕНИЯ значиния
 		# и в $match будет СТРОКА!, тогда приведем к общему виду:
@@ -220,8 +214,7 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 
 		if ($ret) return $rep_value;
 		else $this->result($match[0], $rep_value);
-	}#m varrrs
-
+	}
 	function set(&$match){
 		if (!$match[2][0]) $this->error[] = "ERROR: не задано имя переменной в SET!";
 		if (!$match[3][0]) $this->error[] = "WARNING: Значение переменной в SET пустое или не задано";
@@ -229,8 +222,7 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 		if ($match[2][0] != $this->varrrs($this->filename, $match[2][0], true)) $this->error[] = "WARNING: Значение существующей переменной {$match[2][0]} перезаписано на $val в шаблоне!";
 	$this->assigned[$this->filename][$match[2][0]] = $val;
 	$this->result($match[0], $tt='');	#А заменям в шаблоне на пустое!
-	}#m set
-
+	}
 	function cycle(&$match){
 	$cont_cycle = '';//Контейнер для содержимого цикла
 		switch ($match[2][0]){
@@ -357,13 +349,11 @@ public $_top = null;	#Будет ссылка на ВЕРХНЕГО родите
 		}//switch
 
 	$this->result($match[0], $cont_cycle);//Замена собственно на содержимое
-	}#m cycle
-
+	}
 	//Для выполнения локальных замен без долгой обработки шаблона.
 	function replace($what, $to){//Например для быстрого внесения изменений в кучу одинаковых файлов.
 	$this->content_file = str_replace($what, $to, $this->content_file);
-	}#m replace
-
+	}
 	function esli(&$match){
 $reg = '/
 \s*{else\s*(?:'.preg_quote($match[2][0]).')?\s*(?:'.preg_quote($match[3][0]).')?}
@@ -378,8 +368,7 @@ $reg = '/
 	$ccl->parse(false);
 	$this->result($match[0], $ccl->content_file);//Замена собственно на содержимое
 	unset($ccl);
-	}#m esli
-
+	}
 	function alt(&$match){
 		#Вычисляем, только если в третьем аргументе не указано что-то,
 		#явно отменяющее это для скорости!
@@ -416,8 +405,7 @@ $reg = '/
 		$ccl->parse(false);
 		$this->result($match[0], $ccl->content_file);//Замена собственно на содержимое
 		unset($ccl);
-	}#m esli
-
+	}
 	function evalute($what, $mode = false){//Функция вычисления параметра из строки
 	#Глобализуем (для функции) все требующиеся переменные, чтобы проверить автоматически условие
 	preg_match_all("#\\$([a-z][\w\d]*)#i", $what, $globalize, PREG_PATTERN_ORDER);
@@ -451,8 +439,7 @@ $reg = '/
 	error_reporting ($error_level);//Возвращаем уровень вывода ошибок в предыдущее значение
 
 	return @$evalute_result;
-	}#m evalute
-
+	}
 	function get_var($txt_var, $txt_arr){
 	//$txt_var - текстовое представление переменной, ex: $var['name']
 	//$txt_arr - текст имени массива из которого ее нужно получить, ex: $this->assigned['var']['name']
@@ -461,8 +448,7 @@ $reg = '/
 	$vr[2] = preg_replace('#\$[^\'\"\[\s]*?\[[^\]]*\](?:\[[^\]]*?\])?(?:\[[^\]]*?\])?#i', '{\\0}', $vr[2]);//" Теперь в оставшейся части все массивы заключаем в {}. Максимум третьей размерности.
 	$var = $txt_arr.'["'.$vr[1].'"]'.$this->evalute($vr[2], 'string');//Собственно компануем
 	return $var;
-	}#m get_var
-
+	}
 	function WYSIWYG(&$match){
 	#$name, $style = 'styles.css'
 	#$num - Номер размещаемого редактора: 0 - первый и единственный, 1 - первый, 2 - второй...
@@ -553,11 +539,10 @@ $reg = '/
 		";
 		}
 	$this->result($match[0], $rep_value);
-	}#m WYSIWYG
-
+	}
 	function _(&$match){//Комментарии  - их просто нужно убрать из результирующего кода
 	$this->result($match[0], $ttt = '');#Там ссылка треба
-	}#m _
+	}
 	#Функция собственно разбирающая шаблон.
 	#Основная рабочая лошадка
 	function parse($printout = true){
@@ -599,8 +584,7 @@ $rega = "#{
 
 		if (TEMPLATE_GENTIMECALC) $this->gentime = $this->_gentime->stop();
 		if ($printout) $this->printout();//Выводим результат сразу, если это задано
-	}#m parse
-
+	}
 	function printout(){
 	echo $this->content_file;
 		if (TEMPLATE_DEBUG){
@@ -610,8 +594,7 @@ $rega = "#{
 			}
 			if (TEMPLATE_GENTIMECALC) echo '<p style="color:green; text-align: center">Время обработки шаблона: '.$this->gentime.' сек.</p>';
 		}
-	}#m printout
-
+	}
 	function scheme($printout = true, $scheme = TEMPLATE_DEFAULT_SCHEME){
 		if (TEMPLATE_DEFAULT_SCHEME_DIR) $schemeDir = TEMPLATE_DEFAULT_SCHEME_DIR;
 		else $schemeDir = dirname($this->filename);
@@ -629,21 +612,18 @@ $rega = "#{
 
 		if (TEMPLATE_GENTIMECALC) $this->gentime = $this->_gentime->stop();
 		if ($printout)	$this->printout();
-	}#m scheme
-
+	}
 	function message($message, $printout = true, $scheme = TEMPLATE_DEFAULT_SCHEME){
 	$this->filename = $this->load_file(TEMPLATE_MESSAGE);
 	$this->assign('MESSAGE', $message);
 	$this->scheme($printout, $scheme);
-	}#m message
-
+	}
 	#Заменям результат выполнения всех функций
 	function result(&$match, &$towhat){
 	$this->content_file = substr_replace($this->content_file, $towhat, $match[1] + $this->_padRes, $firstLen = strlen($match[0]));
 	#Корректируем сдвиг
 	$this->_padRes += strlen($towhat) - $firstLen;
-	}#m result
-
+	}
 	function RTESafe($strText){//Для WYSIWYG
 	//returns safe code for preloading in the RTE
 	$tmpString = trim($strText);
@@ -666,8 +646,7 @@ $rega = "#{
 	//пробелы кода в пробелы "СВОИ"
 	$tmpString = preg_replace('/ {2,}/ie', "'<sps n='.strlen('\\0').'></sps> '", $tmpString);
 	return $tmpString;
-	}#m RTESafe
-
+	}
 	function RTEShortHTML($src){//Чистка кода и приведение его в "нормальный", приемлемый вид
 	$src = stripslashes($src);
 	$tmp = preg_replace("[<br>\r*?\n(</.*?>)*?</p>]si","$1",$src);
@@ -693,8 +672,8 @@ $rega = "#{
 
 	$tmp = preg_replace("[</nn>]six","",$tmp);//Это некоторые пролазят из-за моих манипуляций со структурой исходников
 	return $tmp;
-	}#m RTEShortHTML
-}//c template
+	}
+}
 
 ##Для совместимости с более ранними версиями, эмуляция:
 	if (!function_exists('file_get_contents')){
@@ -704,4 +683,3 @@ $rega = "#{
 		return $str;
 		}
 	}
-?>

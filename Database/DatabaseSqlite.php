@@ -15,8 +15,7 @@ declare(strict_types=1);
 **/
 
 class DatabaseSettingsSqlite extends DatabaseSettings{
-}#c
-
+}
 /**
 * Implementation over PDO_sqlite3
 **/
@@ -45,14 +44,12 @@ class DatabaseSqlite extends Database{
 					throw $cedbe;
 			}
 		}
-	}#m db_connect
-
+	}
 	/**
 	* For sqlite in file only one database may be placed and select do not implemented
 	**/
 	public function db_select(){
-	}#m db_select
-
+	}
 	public function query($query, $print_query = false, $last_id = false){
 		$this->Fields = null;
 		$this->Query = $query;
@@ -82,28 +79,25 @@ class DatabaseSqlite extends Database{
 
 		// For backward compatibility only. Return deprecated
 		return $this->result;
-	}//m query
+	}
 
 	public function query_limit($query, $from, $amount, $print_query = false){
 		if (!empty($from) or ! empty($amount)) $query .= ' LIMIT '.(int)$from.','.(int)$amount;
 		return $this->query($query, $print_query);
-	}#m query_limit
-
+	}
 	/**
 	* In sqlite3 does not needed
 	**/
 	public function ToBlob($str){
 		return $str;
-	}#m ToBlob
-
+	}
 	public function sql_next_result(){
 		return $this->db_link->nextRowset();
 	}
 
 	public function sql_escape_string(&$string_to_escape){
 		return $this->db_link->quote($string_to_escape);
-	}#m sql_escape_string
-
+	}
 	/**
 	* TOTAL rows for query, Without LIMIT effect
 	* In case sqlite3 to work it properly and DO NOT slow all, insert
@@ -113,8 +107,7 @@ class DatabaseSqlite extends Database{
 	public function rowsTotal(){
 		$this->query('SELECT FOUND_ROWS()');
 		return current($this->sql_fetch_row());
-	}#m rowsTotal
-
+	}
 	protected function collectDebugInfo($errNo, $server_message, $server_messageS = '', $d_backtrace){
 		$this->Error->clear();
 		$this->Error->mergeSettingsArray(
@@ -133,16 +126,13 @@ class DatabaseSqlite extends Database{
 
 	public function &sql_fetch_field($offset = 0){
 		return $this->result->getColumnMeta($offset);
-	}#m sql_fetch_field
-
+	}
 	public function &sql_fetch_assoc(){
 		return $this->sql_fetch_array(PDO::FETCH_ASSOC);
-	}#m sql_fetch_assoc
-
+	}
 	public function &sql_fetch_row(){
 		return $this->sql_fetch_array(PDO::FETCH_NUM);
-	}#m sql_fetch_row
-
+	}
 	/**
 	* http://ru2.php.net/manual/en/pdostatement.fetch.php
 	*
@@ -154,22 +144,18 @@ class DatabaseSqlite extends Database{
 		$this->RES = $this->result->fetch($fetch_style, $cursor_orientation, $cursor_offset);
 		$this->iconv_result();
 		return $this->RES;
-	}#m sql_fetch_array
-
+	}
 	public function &sql_fetch_object($className = 'stdClass', array $params = array()){
 		$this->RES = $this->result->fetchObject($className, $params);
 		$this->iconv_result();
 		return $this->RES;
-	}#m sql_fetch_object
-
+	}
 	public function sql_free_result(){
 		$this->result->closeCursor();
 		$this->result = null;
 		return true;
-	}#m sql_free_result
-
+	}
 	final public function sql_num_rows(){
 		return $this->result->rowCount();
-	}#m sql_num_rows
-}#c sqlite3_database
-?>
+	}
+}

@@ -27,8 +27,7 @@ const huScheme = 'hu://';
 	**/
 	function __construct(/*(array)*/ $array = null){
 		parent::__construct((array)$array);
-	}#__c
-
+	}
 	/**
 	* Push values.
 	*
@@ -43,8 +42,7 @@ const huScheme = 'hu://';
 		$args = func_get_args();
 		call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $args));
 		return $this;
-	}#m push
-
+	}
 	/**
 	* Push array of values.
 	*
@@ -55,8 +53,7 @@ const huScheme = 'hu://';
 		if ($arr)
 			call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $arr));
 		return $this;
-	}#m pushArray
-
+	}
 	/**
 	* Push values from Object(HuArray).
 	*
@@ -65,8 +62,7 @@ const huScheme = 'hu://';
 	**/
 	public function &pushHuArray(HuArray $arr){
 		return $this->pushArray($arr->getArray());
-	}#m pushHuArray
-
+	}
 	/**
 	* Return last element in array. Reference, direct-editable!!
 	*
@@ -75,8 +71,7 @@ const huScheme = 'hu://';
 	public function &last(){
 		end($this->__SETS);
 		return $this->__SETS[key($this->__SETS)];
-	}#m last
-
+	}
 	/**
 	* Return Array representation (cast to (array)).
 	*
@@ -84,8 +79,7 @@ const huScheme = 'hu://';
 	**/
 	public function getArray(){
 		return $this->__SETS;
-	}#m getArray
-
+	}
 	/**
 	* {@see http://php.net/array_slice}
 	*
@@ -99,8 +93,7 @@ const huScheme = 'hu://';
 	**/
 	public function getSlice($offset, $length = null, $preserve_keys = false){
 		return new HuArray(array_slice($this->__SETS, $offset, EMPTY_VAR($length, sizeof($this->__SETS)), $preserve_keys));
-	}#m getSlice
-
+	}
 	/**
 	* Overload to return reference.
 	*
@@ -110,8 +103,7 @@ const huScheme = 'hu://';
 	**/
 	public function &getProperty($name){
 		return $this->__SETS[REQUIRED_NOT_NULL($name)];
-	}#m getProperty
-
+	}
 	/**
 	* @var	&mixed	->_last_
 	**/
@@ -137,8 +129,7 @@ const huScheme = 'hu://';
 		elseif( self::huScheme == substr($name, 0, strlen(self::huScheme)) ) return $this->hu( substr($name, strlen(self::huScheme)) );
 		else
 			return $this->getProperty($name);
-	}#m __get
-
+	}
 	/**
 	* Like standard {@see __get()}, but if returned value is regular array, convert it into HuArray and return reference to it.
 	* @example:
@@ -163,8 +154,7 @@ const huScheme = 'hu://';
 	function &hu($name){
 		if (is_array($this->$name)) $this->$name = new HuArray($this->$name);
 		return $this->getProperty($name);
-	}#m hu
-
+	}
 	/**
 	* Allow change value by short direct form->settingName = 'qwerty';
 	*
@@ -184,8 +174,7 @@ const huScheme = 'hu://';
 			$ref =& $this->getProperty($name);
 		}
 		$ref = $value;
-	}#m __set
-
+	}
 	/**
 	* Apply callback function to each element.
 	*
@@ -195,8 +184,7 @@ const huScheme = 'hu://';
 	public function walk($callback){
 		array_walk($this->__SETS, $callback);
 		return $this;
-	}#m walk
-
+	}
 	/**
 	* Filter array, using callback. If the callback function returns true, the current value from input is returned into the result
 	* array. Array keys are preserved.
@@ -207,8 +195,7 @@ const huScheme = 'hu://';
 	public function &filter($callback){
 		$this->__SETS = array_filter($this->__SETS, $callback);
 		return $this;
-	}#m filter
-
+	}
 	/**
 	* Filter array by keys and leave only mentioned in $keys array
 	*
@@ -218,8 +205,7 @@ const huScheme = 'hu://';
 	public function &filterByKeys(array $keys){
 		$this->__SETS = array_diff_key( $this->__SETS, array_flip(  array_intersect(   array_keys($this->__SETS), $keys   )  ) );
 		return $this;
-	}#m filterByKeys
-
+	}
 	/**
 	* Filter array by keys and leave only NOT mentioned in $keys array (opposite to method {@see ::filterByKeys()})
 	*
@@ -231,8 +217,7 @@ const huScheme = 'hu://';
 	public function &filterOutByKeys(array $keys){
 		$this->__SETS = array_diff_key( $this->__SETS, array_flip($keys) );
 		return $this;
-	}#m filterOutByKeys
-
+	}
 	/**
 	* Similar to {@see ::filer()} except of operate by keys instead of values.
 	*
@@ -244,8 +229,7 @@ const huScheme = 'hu://';
 		$keys->filter($callback);
 		$this->filterByKeys($keys->getArray());
 		return $this;
-	}#m filterKeysCallback
-
+	}
 	/**
 	* Implode to the string using provided delimiter.
 	*
@@ -254,8 +238,7 @@ const huScheme = 'hu://';
 	**/
 	public function implode($delim = ''){
 		return implode($delim, $this->__SETS);
-	}#m implode
-
+	}
 	/**
 	* Return number of elements
 	*
@@ -263,8 +246,7 @@ const huScheme = 'hu://';
 	**/
 	public function count(){
 		return count($this->__SETS);
-	}#m count
-
+	}
 	/**
 	* Iteratively reduce the array to a single value using a callback function.
 	* @link http://ru.php.net/array_reduce
@@ -275,27 +257,22 @@ const huScheme = 'hu://';
 	**/
 	public function reduce($callback, $initial = 0){
 		return array_reduce($this->__SETS, $callback, $initial);
-	}#m reduce
-
+	}
 	/// From interface Iterator ///
 
 	public function rewind(): void {
 		reset($this->__SETS);
-	}#m rewind
-
+	}
 	public function current(): mixed {
 		return /* $var = */ current($this->__SETS);
-	}#m current
-
+	}
 	public function key(): int|string|null {
 		return /* $var = */ key($this->__SETS);
-	}#m key
-
+	}
 	public function next(): void {
-		return /* $var =*/ next($this->__SETS);
-	}#m next
-
+		next($this->__SETS);
+	}
 	public function valid(): bool {
 		return ($this->current() !== false);
-	}#m valid
-}#c HuArray
+	}
+}

@@ -41,8 +41,7 @@ class HuLOGSettings extends Settings{
 		)
 		*/
 	];
-}#c HuLOG_settings
-
+}
 class HuLOG_text extends HuError{
 	/**
 	* Constructor.
@@ -58,9 +57,8 @@ class HuLOG_text extends HuError{
 		}
 		elseif($sets) $this->_sets = $sets;
 		else $this->_sets = new HuLOG_text_settings();//default
-	}#__c
-}#c HuLOG_text
-
+	}
+}
 class HuLOG_text_settings extends HuErrorSettings{
 	protected $__SETS = array(
 		/**
@@ -98,8 +96,7 @@ class HuLOG_text_settings extends HuErrorSettings{
 			"\n"
 		)
 	);
-}#c HuLOG_text_settings
-
+}
 class HuLOG extends SettingsGet {//HubbitusLOG :) log занял давно, для совместимости старого кода не заменяю имя!
 	public $_level = 0;//Для установки уровней вложенности логовых сообщений в файле
 
@@ -122,12 +119,10 @@ class HuLOG extends SettingsGet {//HubbitusLOG :) log занял давно, д�
 			$this->lastLogText->strToFile($this->lastLogText->settings->FORMAT_FILE),
 			FILE_APPEND
 		);
-	}#m log_to_file
-
+	}
 	private function log_print(){
 		echo $this->lastLogText->strToPrint();
-	}#m log_print
-
+	}
 	protected function makeLogString($log_string, $file, $type, $extra){
 		$this->lastLogTime = time();
 		$this->lastLogText->setSettingsArray(
@@ -175,11 +170,9 @@ class HuLOG extends SettingsGet {//HubbitusLOG :) log занял давно, д�
 		$func_num_args = func_num_args();
 		$this->makeLogString($log_string, $file, $type, ($func_num_args > 3 ? $extra : new NullClass) );
 		$this->writeLogs($to, $file);
-	}#m toLog
-
+	}
 	protected function writeLogs($to, $file){
 		if ( $to & HuLOGSettings::LOG_TO_FILE ) $this->log_to_file($file);
 		if ( $to & HuLOGSettings::LOG_TO_PRINT ) $this->log_print();
-	}#m writeLogs
-}//c HuLOG
-?>
+	}
+}

@@ -39,8 +39,7 @@ abstract class UserBase extends SettingsGet {
 	**/
 	final private function __construct(UserSettings $sets){
 		$this->_sets = $sets;
-	}#__c
-
+	}
 	/**
 	* Authentication
 	* Until we have not LSB, the ::authentication method must be defined in derived class!
@@ -64,7 +63,7 @@ abstract class UserBase extends SettingsGet {
 			$_SESSION['user'] =& $retUser;
 			return $retUser;
 		}
-	}#m authentification
+	}
 	//abstract public static function authentification(user_settings $sets = null, $data = null);
 
 	/**
@@ -82,8 +81,7 @@ abstract class UserBase extends SettingsGet {
 		);
 		Single::def(__db)->query('SELECT ID, Login, Name FROM Companies '.$where->getSQL());
 		return Single::def(__db)->sql_fetch_object();
-	}#m autentificate
-
+	}
 	/**
 	* Stub! Values IS EXAMPLE! Fill it in real case.
 	* @return &$this
@@ -93,8 +91,7 @@ abstract class UserBase extends SettingsGet {
 		$this->_name = $data->Name;
 		$this->_login = $data->Login;
 		return $this;
-	}#m authorization
-
+	}
 	/**
 	* User logout
 	*
@@ -103,27 +100,22 @@ abstract class UserBase extends SettingsGet {
 	public static function logout(){
 		@session_start();
 		unset($_SESSION['user']);
-	}#m logout
-
+	}
 	public function getID(){
 		return $this->_id;
-	}#m getID
-
+	}
 	public function getName(){
 		return $this->_name;
-	}#m getName
-
+	}
 	public function getLogin(){
 		return $this->_login;
-	}#m getLogin
-
+	}
 	public function getLogoBlob(){
 		if (!$this->_foto) $this->_foto = current(Single::def(__db)->query('SELECT Logo FROM Companies WHERE ID = '.$this->getID()));
 		return $this->_foto;
-	}#m getFotoBlob
-
+	}
 	public function __wakeup(){
 		$this->_messages = null; //Must be realy DB queryd. DB-Cache not implemented now.
 		/** @todo Implement DB_cache **/
     }
-}#c user
+}

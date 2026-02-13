@@ -44,8 +44,7 @@ class HuGetoptOption extends SettingsCheck {
 		foreach (array('Opt', 'Sep', 'Val', '=', 'OptT') as $k){
 			if ( !isset($this->{$k}) ) $this->setSetting($k, new HuArray);
 		}
-	}#__c
-
+	}
 	/**
 	* Add parsed option in values HuArrays (Opt, Sep, Val, =, OptT)
 	*
@@ -57,10 +56,8 @@ class HuGetoptOption extends SettingsCheck {
 			$this->{$k}->pushHuArray($toAdd->{$k});
 		}
 		return $this;
-	}#m add
-
-}#c
-
+	}
+}
 /**
 * @example of use HuGetopt.example.php
 **/
@@ -77,8 +74,7 @@ class HuGetoptSettings extends Settings {
 			'=', 'OptT'
 		)
 	);
-}#c
-
+}
 /**
 * First there was a try to use http://pear.php.net/Console_getopt. Created Hu_Console_Getopt
 * extending pear class. But it is very limited:
@@ -148,8 +144,7 @@ class HuGetopt extends SettingsGet {
 		$this->_sets = EMPTY_VAR($sets, new HuGetoptSettings);
 		$this->setOpts($opts);
 		$this->_nonopts = new HuArray();
-	}#__c
-
+	}
 	/**
 	* Set allowed options to parse.
 	* $opts array of options, which have format:
@@ -182,8 +177,7 @@ class HuGetopt extends SettingsGet {
 				$this->_optsL[$opt[1]]	= $k;
 		}
 		return $this;
-	}#m setOpts
-
+	}
 	/**
 	* Return Object(HuGetopt_option) by its string 'w', or 'what'
 	*
@@ -210,8 +204,7 @@ class HuGetopt extends SettingsGet {
 				break;
 		}
 		return $this->_opts[ $type [$str] ];
-	}#m getOptByStr
-
+	}
 	/**
 	* Main Horse!!! Doing most work.
 	*
@@ -252,8 +245,7 @@ class HuGetopt extends SettingsGet {
 				$o->Val->_last_ = $optarg;
 			}
 		}
-	}#m parseArgs
-
+	}
 	/**
 	* Move internal pointer to next arg, and return it.
 	*
@@ -269,8 +261,7 @@ class HuGetopt extends SettingsGet {
 			return $this->argv[$this->_curArgv];
 		}
 		else return false;
-	}#m nextArg
-
+	}
 	/**
 	* Return current argument
 	*
@@ -283,8 +274,7 @@ class HuGetopt extends SettingsGet {
 			return $tmp;
 		}
 		else return $this->argv[$this->_curArgv];
-	}#m currentArg
-
+	}
 	/**
 	* Return option or not $arg.
 	*
@@ -293,8 +283,7 @@ class HuGetopt extends SettingsGet {
 	**/
 	protected function isOpt($arg){
 		return ( ($r =& $this->isShortOpt($arg)) ? $r : $this->isLongOpt($arg) );
-	}#m isOpt
-
+	}
 	/**
 	* Check if arg is short option.
 	*
@@ -335,8 +324,7 @@ class HuGetopt extends SettingsGet {
 			}
 		}
 		return false;
-	}#m isShortOpt
-
+	}
 	/**
 	* Check if arg is long option
 	*	But, BE CAREFULL ->Val will be filled in only one case: See additional
@@ -369,8 +357,7 @@ class HuGetopt extends SettingsGet {
 			);
 		}
 		return false;
-	}#m isLongOpt
-
+	}
 	/**
 	* Set new array of arguments
 	*
@@ -380,8 +367,7 @@ class HuGetopt extends SettingsGet {
 	public function &setArgv(array $argv){
 		$this->argv = $argv;
 		return $this;
-	}#m setArgv
-
+	}
 	/**
 	* Short alias for {@see ::getOptByStr()}
 	*
@@ -391,8 +377,7 @@ class HuGetopt extends SettingsGet {
 	**/
 	public function get($opt, $type = 'a'){
 		return $this->getOptByStr($opt, $type);
-	}#m get
-
+	}
 	/**
 	* Object(HuArray) of NonOption arguments. all, 0 - by default is name of self script!
 	*
@@ -401,8 +386,7 @@ class HuGetopt extends SettingsGet {
 	**/
 	public function getNonOpts($from = 0){
 		return $this->_nonopts->getSlice($from);
-	}#m getNonOpts
-
+	}
 	/**
 	 * Return array known (defined for parsing, not parsed!) short options.
 	 *
@@ -410,8 +394,7 @@ class HuGetopt extends SettingsGet {
 	 */
 	public function getListShortOpts(){
 		return $this->_optsS;
-	}#m getListShortOpts
-
+	}
 	/**
 	 * Return array known (defined for parsing, not parsed!) long options.
 	 *
@@ -419,8 +402,7 @@ class HuGetopt extends SettingsGet {
 	 */
 	public function getListLongOpts(){
 		return $this->_optsL;
-	}#m getListLongOpts
-
+	}
 	/**
 	* Idea (and method name) got from PEAR Console_getopt and adopted, modified.
 	* Safely read the $argv PHP array across different PHP configurations.
@@ -438,5 +420,5 @@ class HuGetopt extends SettingsGet {
 		else throw new VariableEmptyException("readPHPArgv(): Could not read cmd args (register_argc_argv=Off?)");
 
 		return $this;
-	}#m readPHPargv
-}#c HuGetopt
+	}
+}

@@ -29,4 +29,3 @@ $i=0;
 
 	if ($res) return $classname;
 }
-?>

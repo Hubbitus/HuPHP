@@ -16,5 +16,5 @@ public $state = null;
 
 		// make sure everything is assigned properly
 		parent::__construct($message, $code);
-	}#c
+	}
 };

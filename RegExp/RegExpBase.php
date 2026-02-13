@@ -60,8 +60,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 	**/
 	public function __construct($regexp = null, $text = null, $replaceTo = null){
 		$this->set($regexp, $text, $replaceTo);
-	}#__c
-
+	}
 	/**
 	* Return N-th single match
 	*
@@ -73,8 +72,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 			$this->doMatch();
 
 		return $this->matches[$Number];
-	}#m match
-
+	}
 	/**
 	* Return regexp string.
 	*
@@ -82,8 +80,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 	**/
 	public function getRegExp(){
 		return $this->RegExp;
-	}#m getRegExp
-
+	}
 	/**
 	* Set RegExp from string.
 	*
@@ -95,8 +92,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 		$this->RegExp = REQUIRED_NOT_NULL($regexp);
 		$this->matchesValid = false;
 		return $this;
-	}#m setRegExp
-
+	}
 	/**
 	* Return current text.
 	*
@@ -104,8 +100,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 	**/
 	public function getText(){
 		return $this->sourceText;
-	}#m getText
-
+	}
 	/**
 	* Set text to match from string.
 	*
@@ -117,8 +112,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 		$this->sourceText = REQUIRED_NOT_NULL($text);
 		$this->matchesValid = false;
 		return $this;
-	}#m setText
-
+	}
 	/**
 	* Equivalent of {@see ->&setText()}, but assign text by ref. Be very carefully!
 	*
@@ -129,8 +123,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 		$this->sourceText =& $text;
 		$this->matchesValid = false;
 		return $this;
-	}#m setTextRef
-
+	}
 	/**
 	* Set ReplaceTo
 	*
@@ -142,8 +135,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 		$this->replaceTo = REQUIRED_NOT_NULL($text);
 		$this->replaceValid = $this->matchesValid = false;
 		return $this;
-	}#m setReplaceTo
-
+	}
 	/**
 	* Return count of matches. If matches not valid - by default do ::doMatchAll() first
 	*
@@ -153,8 +145,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 		if (!$this->matchesValid) // May be throw Exception???
 			$this->doMatchAll();
 		return $this->matchCount;
-	}#m MatchCount
-
+	}
 	/**
 	* Set Pattern, text, raplacement. Shorthand to appropriate methods.
 	*
@@ -168,13 +159,11 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 			if ($$v) $this->{"set$v"} ($$v);
 		}
 		return $this;
-	}#m set
-
+	}
 	/**
 	* Do test, faster then doMatch, don't filling ->matches, ->matchCount and other.
 	**/
-	abstract public function test();#m test
-
+	abstract public function test();
 	/**
 	* Description of $flags and $offset see on http://www.php.net/preg_match_all
 	* Called by default, in ->match()!
@@ -200,8 +189,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 		$item = is_null($item) ? 0 : $item;
 		if (is_array($this->RegExp)) return $this->RegExp[$item][0];
 		else return $this->RegExp[0];
-	}#m getRegExpDelimiterStart
-
+	}
 	/**
 	* Return endDelimiter
 	*
@@ -213,8 +201,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 			return $this->paireddelimeters[$this->getRegExpDelimiterStart($item)];
 		else
 			return $this->getRegExpDelimiterStart($item);
-	}#m getRegExpDelimiterEnd
-
+	}
 	/**
 	* Assume RegExp correct. Do not check it.
 	*
@@ -225,8 +212,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 		$item = is_null($item) ? 0 : $item;
 		if (is_array($this->RegExp)) return substr($this->RegExp[$item], 1, strrpos($this->RegExp[$item], $this->getRegExpDelimiterEnd($item)) - 1);
 		else return substr($this->RegExp, 1, strrpos($this->RegExp, $this->getRegExpDelimiterEnd()) - 1);
-	}#m getRegExpBody
-
+	}
 	/**
 	* Return RegExpModifiers
 	*
@@ -237,8 +223,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 		$item = is_null($item) ? 0 : $item;
 		if (is_array($this->RegExp)) return (string)substr($this->RegExp[$item], strrpos($this->RegExp[$item], $this->getRegExpDelimiterEnd($item)) + 1 );
 		else return (string)substr($this->RegExp, strrpos($this->RegExp, $this->getRegExpDelimiterEnd()) + 1 );
-	}#m getRegExpModifiers
-
+	}
 	/**
 	* Description see {@link http://php.net/preg_replace}
 	*
@@ -267,8 +252,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 	public function getMatches($n = null){
 		if (is_null($n)) return $this->matches;
 		else return $this->matches[$n];
-	}#m getMatches
-
+	}
 	/**
 	* Full equivalent of {@see getMatches()) except of result returned as Object(HuArray) instead of regular array.
 	*
@@ -277,9 +261,8 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 	**/
 	public function getHuMatches($n = null){
 		return new HuArray($this->getMatches($n));
-	}#m getHuMatches
-}#c RegExp_base_base
-
+	}
+}
 	/**
 	* Require late-static-bindings future, so, it is available only in PHP version >= 5.3.0-dev
 	**/
@@ -305,7 +288,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 			$tmpR = new $className($regexp, $text);
 			$tmpR->doMatch();
 			return $tmpR->match($N);
-			}#m getMatch
+			}
 		}
 	    '
 	);

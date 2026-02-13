@@ -35,36 +35,31 @@ class GDimage {
 
 	function __construct (){
 		$this->getCapabs();
-	}#__c
-
+	}
 	protected function getCapabs(){
 		$this->capabs = gd_info();
 		//Вычленение версии из строки типа 'bundled (2.0.28 compatible)'
 		preg_match('/[^\d]*(\d+)(\.\d+)?(\.\d+)?/i', $this->capabs['GD Version'], $m);
 		unset($m[0]);
 		$this->capabs['GD Version'] = implode('', $m);
-	}#m getCapabs
-
+	}
 	public function createTrueColor($width, $height){
 		if (!($this->img = imageCreateTrueColor($width, $height))){
 			throw new ImageException('ERROR: Не удалось создать изображение!');
 		}
 		$this->PARAM['w'] = $width;
 		$this->PARAM['h'] = $height;
-	}#m createTrueColor
-
+	}
 	public function getFile($file){
 		if (!($this->string = @file_get_contents($file))){
 			throw new FileException('ERROR: Получить картинку из файла не удалось!!', $file);
 		}
 	return $this->imgINIT();
-	}#m getFile
-
+	}
 	public function imgFromString($string){
 		$this->string = $string;
 		$this->imgINIT();
-	}#m imgFromString
-
+	}
 	/**
 	* $srcobj - объект класса GDimage (или производных)
 	* Остальные параметры как у imagecopyresized:
@@ -85,8 +80,7 @@ class GDimage {
 			$this->PARAM['h'] = $dst_h;
 		}
 		else throw new ImageException('ERROR: Изменить размеры картинки не удалось!!');
-	}#m resize
-
+	}
 	/**
 	* Ака resize, только всей картинки, и с соблюдением пропорций
 	**/
@@ -101,8 +95,7 @@ class GDimage {
 		}
 
 		$this->resize($this,0,0,0,0,$dst_width,$dst_height);
-	}#m preview
-
+	}
 	/**
 	* Будем разбирать заданный цвет для данного изображения, его
 	* НЕОБХОДИМО получать для конкретного изображения:
@@ -113,8 +106,7 @@ class GDimage {
 	protected function parseUserColor($color){
 		if (strlen($color) == 7) $color = substr($color, 1, 6);
 		return hexdec($color);
-	}#m parseUserColor
-
+	}
 	/**
 	* $color строка вида FF10BB
 	**/
@@ -122,8 +114,7 @@ class GDimage {
 		if (!imagefill($this->img, $x, $y, $this->parseUserColor($color))){
 			throw new ImageException('ERROR: Не удалось залить изображение!');
 		}
-	}#m fill
-
+	}
 	/**
 	* $type одно из 'GIF', 'JPG', 'PNG', 'WBMP', 'XBM' больше GD вроде ничего не поддерживает :)
 	**/
@@ -149,8 +140,7 @@ class GDimage {
 			}
 		}
 		$this->TYPE = $type;
-	}#m convertTo
-
+	}
 	/**
 	* Делает все проверки, и инициализирует картинку из ПОСТ-запроса пользователя.
 	* Параметры проверки в public $this->UPLcheck. Если нужно что-то вместо дефолтных, то нужно сначала инициализировать этот массив
@@ -195,8 +185,7 @@ class GDimage {
 			}
 		chmod($path, $mode);
 		return true;
-	}#m putFile
-
+	}
 	/**
 	* возвращаем строку, например для БД или самостоятельной записи вовне.
 	**/
@@ -204,8 +193,7 @@ class GDimage {
 		// Синхронизация, превращение в строку
 		$this->convertTo($type);
 		return $this->string;
-	}#m getString
-
+	}
 	/**
 	* Это необходимый пережиток процедурного GD - некоторые функции
 	* требуют 2 ресурса при одном вызове, например imagecopy, приходится
@@ -213,8 +201,7 @@ class GDimage {
 	**/
 	public function getResource(){
 		return $this->img;
-	}#m getResource
-
+	}
 	/**
 	* Увеличивает картинку, до указанных размеров.
 	* Само изображение не масштабируется.
@@ -285,8 +272,7 @@ class GDimage {
 		imagecopy($this->img,$tmpimg->getResource(), $newWidth['leftImg'], $newHeight['topImg'], 0, 0, $tmpimg->PARAM['w'], $tmpimg->PARAM['h']);
 		$tmpimg = null;
 		unset($tmpimg);
-	}#m enlarge
-
+	}
 	//////////////////SHARED methods////////////////////
 	protected function imgINIT(){
 		if (!($this->img = @imagecreatefromstring($this->string))){
@@ -295,19 +281,15 @@ class GDimage {
 		$this->PARAM['w'] = imagesx($this->img);
 		$this->PARAM['h'] = imagesy($this->img);
 		return true;
-	}#m imgINIT
-
+	}
 	public function imgFREE(){
 		$this->img = null;
 		$this->PARAM = null;
-	}#m imgFREE
-
+	}
 	public function width(){
 		return $this->PARAM['w'];
-	}#m width
-
+	}
 	public function height(){
 		return $this->PARAM['h'];
-	}#m height
-}#c GDimage
-?>
+	}
+}

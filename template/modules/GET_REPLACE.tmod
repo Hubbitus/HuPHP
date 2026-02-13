@@ -1,16 +1,16 @@
 <?php
 /*
-� ���-������ �������� �������� ����������. ������ ���������� (�� $matches[1][0]) �� ��� ���� ���
-������� �������� ���� page, ���� � �������� ����� ������� �����������, ����: name[1][test][]...[]
+Функция для замены GET-параметров в строке запроса. Основная идея (из $matches[1][0]) на все что касается
+обработки строки запроса page, а также в дочерних элементах где происходят замены параметров, например: name[1][test][]...[]
 
-���� ����������� �������� �� ���� - ��� �����������.
+Все манипуляции с параметрами производятся через эту функцию - для корректной обработки.
 */
 
 function GET_REPLACE(&$parent, &$matches){
 $ret = $_SERVER['QUERY_STRING'];
 
 $i = 2;
-	while ( !empty($matches[$i][0]) ){#������� ����
+	while ( !empty($matches[$i][0]) ){//обработка параметров
 	$ret = __GET_REPLACE_replacer ($ret, $matches[$i][0], $parent->varrrs($parent->filename, $matches[$i+1][0], true));
 	$i += 2;
 	}
@@ -18,24 +18,22 @@ $i = 2;
 return $ret;
 }
 
-//���� ������.
+//функция замены.
 function __GET_REPLACE_replacer (&$GET_str, &$name, &$value){
-#��������� � ������
+//разбор строки
 parse_str($GET_str, $arr);
 //$arr[$name] = $value;
 //eval("\$arr['arr']['t1'] = '$value';");
 
-#����������� ������� ����������� $name ����� ������������. ������ � ������ name � name[1][test][]...[]
+//разбор структуры параметра $name на составляющие. Например для name и name[1][test][]...[]
 parse_str($name, $what);
 $evalstr = '$arr';
-	while ( $key = array_keys((array)$what) and isset($what[$key[0]]) ){#� ��� ����������, ������ ��� ������ array_keys($)[0] ������������
+	while ( $key = array_keys((array)$what) and isset($what[$key[0]]) ){//в цикле разбора, где ключ array_keys($)[0] недоступен
 	$evalstr .= "['" . $key[0] . "']";
-	$what = $what[$key[0]];//��� ��������� ��������
+	$what = $what[$key[0]];//для следующего уровня вложенности
 	}
 $evalstr .= " = '$value';";
 eval($evalstr);
 
 return '?' . http_build_query($arr);
 }
-
-?>
