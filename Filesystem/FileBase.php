@@ -17,8 +17,13 @@ declare(strict_types=1);
 * @uses OS
 **/
 
-include_once('macroses/REQUIRED_VAR.php');
-include_once('macroses/REQUIRED_NOT_NULL.php');
+namespace Hubbitus\HuPHP\Filesystem;
+
+use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
+use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException;
+use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
 
 /**
 * Base class for most file-related operations.
@@ -152,7 +157,7 @@ class FileBase {
 	* @Throw(VariableRequiredException)
 	**/
 	public function &appendString($string){
-		$this->content += REQUIRED_VAR($string);
+		$this->content .= REQUIRED_VAR($string);
 		$this->_writePending = true;
 		return $this;
 	}

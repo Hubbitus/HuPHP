@@ -174,8 +174,8 @@ class GDimage {
 				}
 			}
 		}
-	return true;//Все ОК
-	}#f getUpload
+		return true; //Все ОК
+	}
 
 	public function putFile($path, $type, $mode=0660){
 		// Синхронизация, превращение в строку

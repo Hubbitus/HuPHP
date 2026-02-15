@@ -2,6 +2,8 @@
 <?php
 declare(strict_types=1);
 
+use Hubbitus\HuPHP\Debug\Dump;
+
 /*
 $p = new Phar('HuDebug.phar', 0, 'HuDebug.phar');
 dump::a($p);
@@ -14,22 +16,24 @@ dump::a($p);
 	}
 */
 
-//var_dump(ini_get('include_path'));exit();
-//include_once('phar://HuDebug.phar/Debug/debug.php');
+// Load the PHAR file using path relative to this script
+$pharPath = __DIR__ . '/build/HuPHP.phar';
 
-define('AUTOLOAD_DEBUG', true);
-
-require('config.php');
-require(FILEPATH_PHAR);
-
-Dump::a('Just test');
-
-Dump::a(ini_get('include_path'));
-Dump::a(ini_set('include_path', '---')); // For the clear results in the experiment!
-Dump::a(ini_get('include_path'));
-
-function f(){
-	Backtrace::create()->printout();
+if (!file_exists($pharPath)) {
+    fwrite(STDERR, "Error: PHAR file does not exist at path: " . $pharPath . "\n");
+    exit(1);
 }
 
-f();
+// Attempt to require the PHAR file and handle any errors
+try {
+    require_once($pharPath);
+
+    // The PHAR should have the autoloader built-in, so now we can use the classes
+    Dump::a('Just test');
+    $testString = 'some';
+    Dump::a($testString);
+    echo "PHAR test completed successfully!" . PHP_EOL;
+} catch (Throwable $e) {
+    fwrite(STDERR, "Error loading or executing PHAR: " . $e->getMessage() . "\n");
+    exit(1);
+}

@@ -10,6 +10,11 @@ declare(strict_types=1);
 * Common implementation will be present in comments near after declaration.
 **/
 
+namespace Hubbitus\HuPHP\Vars;
+
+use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+
 interface IOutExtraData {
 	//public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide format (parts) and need known for what
 

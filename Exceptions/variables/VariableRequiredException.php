@@ -1,7 +1,12 @@
 <?php
 declare(strict_types=1);
 
-class VariableException extends BaseException {}
+namespace Hubbitus\HuPHP\Exceptions\Variables;
+
+use Hubbitus\HuPHP\Debug\Tokenizer;
+use Hubbitus\HuPHP\Debug\Backtrace;
+
+class VariableException extends \Hubbitus\HuPHP\Exceptions\BaseException {}
 
 /**
 * @TODO Rewrite to use internal Exception backtrace

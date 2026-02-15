@@ -28,7 +28,7 @@ function getRTE(name){
 function initRTE(imgPath, incPath, css) {
 	//set browser vars
 	var ua = navigator.userAgent.toLowerCase();
-	isIE = ((ua.indexOf("msie") != -1) && (ua.indexOf("opera") == -1) && (ua.indexOf("webtv") == -1)); 
+	isIE = ((ua.indexOf("msie") != -1) && (ua.indexOf("opera") == -1) && (ua.indexOf("webtv") == -1));
 	isGecko = (ua.indexOf("gecko") != -1);
 	isSafari = (ua.indexOf("safari") != -1);
 
@@ -269,82 +269,82 @@ function toggleHTMLSrc(rte) {
 
 //Функция для конвертации и сохранения форматирования исходников
 function toSource(src){
-//alert(src);
-src = src.replace(/&lt;nn&gt;/gmi, "<br n>");
-////Пробелы
-src = src.replace(/&lt;sps\sn=["]*(\d+)["]*&gt;&lt;\/sps&gt;\s?/gmi
-	,function (spaces, amount){
-	var str = '';
-		while (str.length < amount*6) str = '&nbsp;' + str;
-	return '<sps n=' + amount + '>' + str + '</sps>';
-	}
-);
-src = src.replace(/&amp;#39;/gmi, String.fromCharCode(39));//Это коррекция одинарных кавычек. Функцией для сжатия.
-src = src.replace(/\&lt\;\/nn\&gt\;/gmi, '');//Мусор в виде </nn>, вставляемый браузером автоматически - удаляем
-//Непонятно откуда взявшиеся <br> тоже чистим
-src = src.replace(/<br>/gmi, '');
-//alert(src);
-return src;
-}//f to_source
+	//alert(src);
+	src = src.replace(/&lt;nn&gt;/gmi, "<br n>");
+	////Пробелы
+	src = src.replace(/&lt;sps\sn=["]*(\d+)["]*&gt;&lt;\/sps&gt;\s?/gmi
+		,function (spaces, amount){
+		var str = '';
+			while (str.length < amount*6) str = '&nbsp;' + str;
+		return '<sps n=' + amount + '>' + str + '</sps>';
+		}
+	);
+	src = src.replace(/&amp;#39;/gmi, String.fromCharCode(39));//Это коррекция одинарных кавычек. Функцией для сжатия.
+	src = src.replace(/\&lt\;\/nn\&gt\;/gmi, '');//Мусор в виде </nn>, вставляемый браузером автоматически - удаляем
+	//Непонятно откуда взявшиеся <br> тоже чистим
+	src = src.replace(/<br>/gmi, '');
+	//alert(src);
+	return src;
+}
 
 function toHTML(src){
-//alert(src);
-////Заменяем "началы строк"
-src = src.replace(/<br>\n?/gmi, '<nn>');//Заменяем новые "началы строк"
-	if (isIE){
-	//Заменяем пустые строки
-	src = src.replace(/<\/P>\r\n<P>&nbsp;<\/P>/gmi, '<nn>');
-	src = src.replace(/<P>&nbsp;<\/P>\r\n<P>/gmi, '<nn>');
+	//alert(src);
+	////Заменяем "начало строк"
+	src = src.replace(/<br>\n?/gmi, '<nn>');//Заменяем новые "началы строк"
+		if (isIE){
+		//Заменяем пустые строки
+		src = src.replace(/<\/P>\r\n<P>&nbsp;<\/P>/gmi, '<nn>');
+		src = src.replace(/<P>&nbsp;<\/P>\r\n<P>/gmi, '<nn>');
 
-	src = src.replace(/<\/p>[\r\n]+<p>/gmi, '<nn>');//Заменяем новые "началы строк"
+		src = src.replace(/<\/p>[\r\n]+<p>/gmi, '<nn>');//Заменяем новые "началы строк"
 
-	src = src.replace(/<p>/gmi, '');//Автомусор <p>
-	src = src.replace(/<\/p>/gmi, '');//и </p>
-	}
-src = src.replace(/\r?\n/gmi, ' ');//Мусор
-src = src.replace(/\<br\sn[=""]*>/gmi, '<nn>'); // Заменяем старые ("" вместо " только для подсветки синтаксиса правильного)
-////Заменяем пробелы
-src = src.replace(/\&nbsp;/gmi, ' ');//Сначала заменим все &nbsp; на пробелы чтобы привести к общему виду строку "&nbsp;&nbsp; "
-src = src.replace(/<sps.*?>/gmi, '');//Теперь удаляем все уже существующие
-src = src.replace(/<\/sps>/gmi, '');// теги <sps n=\d> </sps>
-// **1** Ниже именно new RegExp, пробел должен быть в кавычках!!! ИЗ-ЗА сжатия скрипта проблема эта!
-src = src.replace(new RegExp(' {2,}', 'gmi')
-	,function (spaces){ //теперь общая замена...
-	return '<sps n=' + spaces.length + '></sps> ';
-	}
-);
-// **1** См. выше
-src = src.replace(new RegExp('<nn> ', 'gmi'), '<nn><sps n=1></sps> ');//Пробел в начале строки почему-то игнорируется, заменяем отдельно
-src = src.replace(/<(?!(nn)|(br)|(\/?sps)).*?>/gmi, ''); //BUG BUG BUG IE по автоматической конвертации ссылок, и вообще все автоматические теги НАФИГ
-////Ну и приводим HTML в соответствие
-src = src.replace(/\&lt\;/gmi, '<');
-src = src.replace(/\&gt\;/gmi, '>');
-src = src.replace(/\&amp\;/gmi, '&');
+		src = src.replace(/<p>/gmi, '');//Автомусор <p>
+		src = src.replace(/<\/p>/gmi, '');//и </p>
+		}
+	src = src.replace(/\r?\n/gmi, ' ');//Мусор
+	src = src.replace(/\<br\sn[=""]*>/gmi, '<nn>'); // Заменяем старые ("" вместо " только для подсветки синтаксиса правильного)
+	////Заменяем пробелы
+	src = src.replace(/\&nbsp;/gmi, ' ');//Сначала заменим все &nbsp; на пробелы чтобы привести к общему виду строку "&nbsp;&nbsp; "
+	src = src.replace(/<sps.*?>/gmi, '');//Теперь удаляем все уже существующие
+	src = src.replace(/<\/sps>/gmi, '');// теги <sps n=\d> </sps>
+	// **1** Ниже именно new RegExp, пробел должен быть в кавычках!!! ИЗ-ЗА сжатия скрипта проблема эта!
+	src = src.replace(new RegExp(' {2,}', 'gmi')
+		,function (spaces){ //теперь общая замена...
+		return '<sps n=' + spaces.length + '></sps> ';
+		}
+	);
+	// **1** См. выше
+	src = src.replace(new RegExp('<nn> ', 'gmi'), '<nn><sps n=1></sps> ');//Пробел в начале строки почему-то игнорируется, заменяем отдельно
+	src = src.replace(/<(?!(nn)|(br)|(\/?sps)).*?>/gmi, ''); //BUG BUG BUG IE по автоматической конвертации ссылок, и вообще все автоматические теги НАФИГ
+	////Ну и приводим HTML в соответствие
+	src = src.replace(/\&lt\;/gmi, '<');
+	src = src.replace(/\&gt\;/gmi, '>');
+	src = src.replace(/\&amp\;/gmi, '&');
 
-	if (isIE){//Если <script...> первый он в ИЕ исчезает
-	src = src.replace(/(&nbsp;)*<script/gmi, '&nbsp;<script');
-	}
-//alert(src);
-return src;
-}//f toHTML
+		if (isIE){//Если <script...> первый он в ИЕ исчезает
+		src = src.replace(/(&nbsp;)*<script/gmi, '&nbsp;<script');
+		}
+	//alert(src);
+	return src;
+}
 
 //Конечная обработка для отправки, все подчищаем
 function finalHTML(src){
-//alert(src);
-src = src.replace(/\r?\n/gmi, ' ');//Это для ИЕ нужно, от некоторых "косяков" неучтенных
-src = src.replace(/<nn>/gmi, '\n');
-src = src.replace(/<\/nn>/gmi, '');
-////Пробелы
-src = src.replace(/<sps\sn=["]*(\d+)["]*><\/sps>/gmi
-	,function (spaces, amount){
-	var str = '';
-		while (str.length < amount-1) str = ' ' + str;
-	return str;
-	}
-);
-//alert(src);
-return src;
-}//f finalHTML
+	//alert(src);
+	src = src.replace(/\r?\n/gmi, ' ');//Это для ИЕ нужно, от некоторых "косяков" неучтенных
+	src = src.replace(/<nn>/gmi, '\n');
+	src = src.replace(/<\/nn>/gmi, '');
+	////Пробелы
+	src = src.replace(/<sps\sn=["]*(\d+)["]*><\/sps>/gmi
+		,function (spaces, amount){
+		var str = '';
+			while (str.length < amount-1) str = ' ' + str;
+		return str;
+		}
+	);
+	//alert(src);
+	return src;
+}
 
 //Function to format text in the text box
 function FormatText(rte, command, option) {
@@ -354,7 +354,7 @@ function FormatText(rte, command, option) {
 		oRTE = frames[rte];
 
 		//get current selected range
-		var selection = oRTE.document.selection; 
+		var selection = oRTE.document.selection;
 		if (selection != null) {
 			rng = selection.createRange();
 		}
@@ -415,7 +415,7 @@ function setColor(color) {
 	var parentCommand = parent.command;
 	if (document.all) {
 		//retrieve selected range
-		var sel = oRTE.document.selection; 
+		var sel = oRTE.document.selection;
 		if (parentCommand == "hilitecolor") parentCommand = "backcolor";
 		if (sel != null) {
 			var newRng = sel.createRange();
@@ -438,7 +438,7 @@ function AddImage(rte) {
 		oRTE = frames[rte];
 
 		//get current selected range
-		var selection = oRTE.document.selection; 
+		var selection = oRTE.document.selection;
 		if (selection != null) {
 			rng = selection.createRange();
 		}
@@ -504,7 +504,7 @@ function Select(rte, selectname) {
 		oRTE = frames[rte];
 
 		//get current selected range
-		var selection = oRTE.document.selection; 
+		var selection = oRTE.document.selection;
 		if (selection != null) {
 			rng = selection.createRange();
 		}
@@ -515,7 +515,7 @@ function Select(rte, selectname) {
 		var selection = oRTE.getSelection();
 		rng = selection.getRangeAt(selection.rangeCount - 1).cloneRange();
 	}
-	
+
 	var idx = document.getElementById(selectname).selectedIndex;
 	// First one is always a label
 	if (idx != 0) {
@@ -559,9 +559,8 @@ function kb_handler(evt) {
 * @license GPLv2+
 **/
 function msWordNastyClean(h){
-//alert('msWordNastyClean()');
 	each = function(o, cb, s){
-	var n, l;
+		var n, l;
 
 		if (!o){return 0;}
 
@@ -582,7 +581,7 @@ function msWordNastyClean(h){
 		}
 
 		return 1;
-	}//f each
+	}
 
 	function process(items){
 		each(items, function(v) {

@@ -20,7 +20,12 @@ declare(strict_types=1);
 * @uses outExtraData.interface
 **/
 
-include_once('macroses/EMPTY_VAR.php');
+namespace Hubbitus\HuPHP\Debug;
+
+use Hubbitus\HuPHP\Vars\Settings\Settings;
+use Hubbitus\HuPHP\System\OS;
+use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
+use Hubbitus\HuPHP\Vars\IOutExtraData;
 
 class HuErrorSettings extends Settings{
 	// Defaults
@@ -71,7 +76,8 @@ class HuErrorSettings extends Settings{
 	* );
 	**/
 }
-class HuError extends Settings implements OutExtraData {
+
+class HuError extends Settings implements IOutExtraData {
 	/** Self settings. **/
 	protected /* settings */ $_sets = null;
 	public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide format (parts) and need known for what

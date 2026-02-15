@@ -15,6 +15,11 @@ declare(strict_types=1);
 * @uses backtrace
 **/
 
+namespace Hubbitus\HuPHP\Macroses;
+
+use \Hubbitus\HuPHP\Exceptions\variables\VariableRequiredException;
+use \Hubbitus\HuPHP\Debug\Backtrace;
+
 /**
 * Throws {@see VariableRequiredException) if !$var ({@link http://ru2.php.net/manual/ru/types.comparisons.php}).
 * In constructor of VariableRequiredException passed object(backtrace).
@@ -29,7 +34,7 @@ declare(strict_types=1);
 **/
 function &REQUIRED_VAR($var, $varname = null){
 	if (!$var){
-		throw new VariableRequiredException(
+		throw new VariableRequiredException (
 			new Backtrace(),
 			$varname,
 			'Variable required'

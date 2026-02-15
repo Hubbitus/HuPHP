@@ -103,7 +103,7 @@ class HuConfig extends SettingsCheck{
 * CONF()->config_value
 *
 * Furthermore most often use of that will: Single::def('HuConfig')->className->setting.
-* So, class name put to optioal parameter to allow like:
+* So, class name put to optional parameter to allow like:
 * CONF('className')->desiredClassOption
 *
 * @param	string(null)	$className Optional class name
@@ -121,13 +121,13 @@ function &CONF($className = null, $nothrow = false){
 	**/
 	/*
 	* We want use HuConfig in singleton::def. It is produce cycle dependency.
-	* So, rely on HuConfig do not take any settings in constructor, we may sefely call Single::singleton directly
+	* So, rely on HuConfig do not take any settings in constructor, we may safely call Single::singleton directly
  	if ($className) return Single::def('HuConfig')->__get($className);
 	else return Single::def('HuConfig');
 	**/
 	if ($className) return Single::singleton('HuConfig')->__get($className);
 	else return Single::singleton('HuConfig');
-}#f CONF
+}
 
 /**
 * @example

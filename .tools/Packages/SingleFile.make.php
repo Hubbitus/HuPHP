@@ -17,8 +17,12 @@ declare(strict_types=1);
 * @uses file_inmem
 **/
 
-require('autoload.php');
+require_once __DIR__ . '/../../vendor/autoload.php';
 require('config.php');
+
+use Hubbitus\HuPHP\Vars\HuArray;
+use Hubbitus\HuPHP\Filesystem\FileInMemory;
+use Hubbitus\HuPHP\RegExp\RegExpPcre;
 
 //$includes = get_included_files();
 //unset($includes[0]); //Self
@@ -26,8 +30,9 @@ require('config.php');
 //Manually include
 //array_push($includes, BASE_DIR . 'Debug/_HuFormat.defaults/backtrace::printout.php');
 
-new HuArray();// Any class to load auto-include map
-$includes = array_unique(array_values($GLOBALS['__CONFIG']['__autoload_map']));
+// Load the autoloader map by including the autoloader file directly
+require_once __DIR__ . '/../../HuPHP.autoload.php';
+$includes = array_unique(array_values($GLOBALS['__CONFIG']['__autoload_map'] ?? []));
 sort($includes); // Re-numerate keys
 
 $filesIncluded = [];

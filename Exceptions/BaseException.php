@@ -9,11 +9,13 @@ declare(strict_types=1);
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
-class BaseException extends Exception{
-	// $pos = false - at end, else - in begining
-	public function ADDMessage($addmess, $pos = false){
-		if (!$pos) $this->message .= $addmess;
-		else $this->message = $addmess.$this->message;
+namespace Hubbitus\HuPHP\Exceptions;
+
+class BaseException extends \Exception {
+	// $pos = false - at end, else - in beginning
+	public function ADDMessage($addonMessage, $pos = false): void {
+		if (!$pos) $this->message .= $addonMessage;
+		else $this->message = $addonMessage . $this->message;
 	}
 }
 

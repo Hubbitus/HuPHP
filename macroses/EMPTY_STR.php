@@ -11,14 +11,16 @@ declare(strict_types=1);
 * @created ?2009-03-13 12:18 ver 1.0 to 2.0
 **/
 
+namespace Hubbitus\HuPHP\Macroses;
+
 /**
 * Return first NON-empty string if present. Silent return empty string "" otherwise.
 *
 * WARNING! This macros operate by *strings*. In particular case it means are:
-*	1) What null/false and even *TRUE* values threated as EMPTY *STRINGS* and default
+*	1) What null/false and even *TRUE* values treated as EMPTY *STRINGS* and default
 *		value will be returned!
 *	2) Opposite it, integer 0 fails this check end go to default value, what it also
-*		is not what was prefered. We handle "0" correctly too as "NON EMPTY STRING"
+*		is not what was preferred. We handle "0" correctly too as "NON EMPTY STRING"
 *	3) Macros do not intended to use with arrays, but PHP has internal support conversion its
 *		to 'Array' string. It is useful. BUT, nevertheless unfortunately empty
 *		array() converted into empty string! To cast into single form, all arrays
@@ -26,11 +28,11 @@ declare(strict_types=1);
 *
 * @example EMPTY_STR.example.php
 *
-* @params	variable amount of arguments.
-* @return	string
+* @param array variable amount of arguments.
+* @return string
 **/
-function EMPTY_STR(){
-	$numargs = func_num_args();
+function EMPTY_STR(mixed ...$params){
+	$numArgs = func_num_args();
 	$i = 0;
 	$str = null;
 
@@ -38,7 +40,7 @@ function EMPTY_STR(){
 		$str = func_get_arg($i++);
 	}
 	while (
-		!(//Most comples check. See explanation in PhpDoc
+		!(//Most complex check. See explanation in PhpDoc
 			(//It must be first check, because non-empty array simple check evaluated into true.
 				is_array($str) //Explicit check, even it is EMPTY array
 				and
@@ -56,21 +58,21 @@ function EMPTY_STR(){
 					)
 			)
 			or
-			0 === $str		// Integer 0 is string "0" but evaluated in empty by previous check
+			0 === $str	// Integer 0 is string "0" but evaluated in empty by previous check
 			or
-			$str				// Last generick check after all special cases!
+			$str	// Last generic check after all special cases!
 		)
 		and
-		$i < $numargs //In do-wile it must be last
+		$i < $numArgs //In do-wile it must be last
 	);
 	return (string)$str;
-}#f EMPTY_STR
+}
 
 /**
 * If provided argument $str is not empty *string* then return "$prefix.$str.$suffix" otherwise $defValue
 *
 * WARNING! this macros operate by *STRINGS*, so, it is handle several values such as 0, true, Array() by special way.
-* To determine of string "empting" it is fully relyed on {@see EMPTY_STR()}. Please se it for more details.
+* To determine of string "emptying" it is fully relied on {@see EMPTY_STR()}. Please se it for more details.
 *
 * @example EMPTY_STR.example.php
 *
@@ -82,4 +84,4 @@ function EMPTY_STR(){
 **/
 function NON_EMPTY_STR(&$str, $prefix='', $suffix='', $defValue=''){
 	return ( strlen(($str = EMPTY_STR($str))) > 0 ? $prefix.$str.$suffix : $defValue);
-}#f NON_EMPTY_STR
+}

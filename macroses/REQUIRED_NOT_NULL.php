@@ -14,21 +14,26 @@ declare(strict_types=1);
 * @uses VariableIsNullException
 **/
 
+namespace Hubbitus\HuPHP\Macroses;
+
+use Hubbitus\HuPHP\Exceptions\variables\VariableIsNullException;
+use \Hubbitus\HuPHP\Debug\Backtrace;
+
 /**
-* Thows {@see VariableIsNullException) if is_null($var)
+* Throw {@see VariableIsNullException) if is_null($var)
 * In constructor of VariableIsNullException passed object(backtrace).
 * Otherwise return ref to var (&ref).
 * This is useful in direct operations like assignment, or other. F.e:
 *	$this->settings = REQUIRED_VAR($settings);
 *
-* @param	&mixed	$var	Variable to test.
-* @param	string	$varname	If present, initialize them arg of Tokenizer, else real parse.
+* @param  &mixed	$var	Variable to test.
+* @param  string	$varname	If present, initialize them arg of Tokenizer, else real parse.
 * @return &mixed
-* @Throws(VariableIsNullException)
+* @thrown VariableIsNullException
 **/
-function &REQUIRED_NOT_NULL(&$var, $varname = null){
+function &REQUIRED_NOT_NULL(&$var, $varname = null): mixed {
 	if (is_null($var)){
-		throw new VariableIsNullException(
+		throw new VariableIsNullException (
 			new Backtrace(),
 			$varname,
 			'Variable required'

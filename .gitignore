@@ -1,1 +1,4 @@
-.tools/regenerate.all.log
+/.tools/regenerate.all.log
+/.tools/Packages/build/
+/vendor/
+*.log

@@ -8,6 +8,10 @@ declare(strict_types=1);
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
+namespace Hubbitus\HuPHP\Exceptions\Filesystem;
+
+use Hubbitus\HuPHP\Exceptions\BaseException;
+
 class FileException extends BaseException {
 	protected $fullPath = '';
 

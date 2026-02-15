@@ -15,8 +15,10 @@ declare(strict_types=1);
 * @created 2008-05-30 23:19
 **/
 
-include_once('macroses/EMPTY_STR.php');
-include_once('Vars/HuClass.php'); // Static method ::create()
+namespace Hubbitus\HuPHP\Vars\Settings;
+
+use Hubbitus\HuPHP\Vars\HuClass;
+use Hubbitus\HuPHP\Macroses\EMPTY_STR;
 
 class Settings extends HuClass {
 	protected $__SETS = array(); // Array of settings itself

@@ -294,7 +294,7 @@ Dump::a(@func_get_arg(0));
 //backtrace::create(null, 0)->dump();
 //backtrace::create()->dump();
 
-}#f
+}
 $a = new A;
 $a->tt('arg1', 'arg2', null);
 */

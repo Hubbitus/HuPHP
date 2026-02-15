@@ -2,8 +2,18 @@
 <?php
 declare(strict_types=1);
 
-require('autoload.php');
+// The script is run from .tools directory, so go up to main directory
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Hubbitus\HuPHP\Debug\Dump;
+use Hubbitus\HuPHP\Debug\Backtrace;
+
 Dump::a('Just test');
 
-$bt = Backtrace::create();
-$bt->printout();
+function f(){
+    $bt = Backtrace::create();
+    $bt->printout();
+}
+f();
+
+echo "Raw test completed successfully!\n";

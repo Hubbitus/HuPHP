@@ -2,31 +2,34 @@
 
 # Regenerate all generated stuff: auto-includes, Docs, Packages (Phar, OneFile)
 
+cd $(dirname $0)
+
 {
+set -xe
 rm -rf "./Packages/build/*"
 
-echo '1) Create Phar distribution:'
-./Packages/Phar.make.php
-echo '1.1) Simple test run PHAR:';
-./Packages/Phar.test.php
+echo '1) Simple test run unpackaged (raw):';
+php ./Packages/Raw.test.php
 
-echo '2) Create SingleFile distribution:'
-./Packages/SingleFile.make.php
-echo '2.1) Simple test run SingleFile:';
-./Packages/SingleFile.test.php
+echo '2) Create Phar distribution:'
+php ./Packages/Phar.make.php
+echo '2.1) Simple test run PHAR:';
+php ./Packages/Phar.test.php
 
-echo '3) Simple test run UNPACKED (raw):';
-./Packages/Raw.test.php
+echo '3) Create SingleFile distribution:'
+php ./Packages/SingleFile.make.php
+echo '3.1) Simple test run SingleFile:';
+php ./Packages/SingelFile.test.php
 
-
-echo '4) Generate PHPDoc documentation):'
+echo '4) Generate PHPDoc documentation:'
 # This command in: https://github.com/Hubbitus/shell.scripts
 #huPhpDoc .
-phpdoc -d "../.." -t _phpdocs --undocumentedelements on \
+# Check if phpdoc is available, if not skip this step
+phpdoc -d ".." -t ../_phpdocs --undocumentedelements on \
     --title "Pavel Alexeev aka Pahan-Hubbitus HuPHP framework documentation" \
     --customtags 'changelog' --sourcecode on \
     --ignore '_phpdocs,.git,.svn,_phpdocs.log' \
     -s -o HTML:Smarty:PHP 2>&1 \
-        | tee _phpdocs.log
+        | tee ../_phpdocs.log
 
-} | tee regenerate.all.log
+} 2>&1 | tee ../regenerate.all.log

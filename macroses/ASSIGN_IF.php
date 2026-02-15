@@ -10,6 +10,8 @@ declare(strict_types=1);
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
+namespace Hubbitus\HuPHP\Macroses;
+
 /**
 * Assign value of variable if value not (bool)false.
 * @param	&mixed	$var
@@ -18,4 +20,4 @@ declare(strict_types=1);
 **/
 function ASSIGN_IF(&$var, &$value){
 	if ($value) $var = $value;
-}#f ASSIGN_IF
+}

@@ -1,6 +1,22 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Debug;
+
+use function Hubbitus\HuPHP\macroses\ASSIGN_IF;
+use function Hubbitus\HuPHP\macroses\EMPTY_VAR;
+use function Hubbitus\HuPHP\macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\Debug\HuFormat;
+use Hubbitus\HuPHP\Debug\Dump;
+use Hubbitus\HuPHP\Exceptions\BaseException;
+use Hubbitus\HuPHP\Exceptions\variables\VariableEmptyException;
+use Hubbitus\HuPHP\Exceptions\variables\VariableArrayInconsistentException;
+use Hubbitus\HuPHP\Exceptions\variables\VariableRangeException;
+use Hubbitus\HuPHP\Exceptions\variables\VariableRequiredException;
+use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
+use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
+
 /**
 * Debug and backtrace toolkit.
 *
@@ -22,10 +38,6 @@ declare(strict_types=1);
 * @uses ClassPropertyNotExistsException
 * @uses HuFormat
 **/
-
-include_once('macroses/ASSIGN_IF.php');
-include_once('macroses/EMPTY_VAR.php');
-include_once('macroses/REQUIRED_VAR.php');
 
 class BacktraceEmptyException extends VariableEmptyException{}
 
@@ -50,7 +62,7 @@ class BacktraceEmptyException extends VariableEmptyException{}
 *
 * implements Iterator by example from main description http://php.net/manual/ru/language.oop5.iterations.php
 **/
-class BacktraceNode implements Iterator{
+class BacktraceNode implements \Iterator{
 	static public $properties = array(
 		'file',
 		'line',
@@ -187,7 +199,7 @@ class BacktraceNode implements Iterator{
 				,@$GLOBALS['__CONFIG']['backtrace::printout'][$OutType]['argtypes']
 				,
 					// Trying include. Conditional ternary operator only for doing include in-place. Parentheses () around include is mandatory!!!
-					( (include_once('Debug/_HuFormat.defaults/backtrace::printout.php')) || true )
+					( (PrintoutDefault::configure()) || true )
 					?
 					// Again provide its value. If it now present - cool, if not - REQUIRED_VAR thor exception
 					@$GLOBALS['__CONFIG']['backtrace::printout'][$OutType]['argtypes']
@@ -219,7 +231,7 @@ class BacktraceNode implements Iterator{
 /**
 * @uses dump
 **/
-class Backtrace implements Iterator {
+class Backtrace implements \Iterator {
 	private $_bt = array();
 
 	private $_curNode = 0;
@@ -390,7 +402,7 @@ class Backtrace implements Iterator {
 				,@$GLOBALS['__CONFIG']['backtrace::printout'][$OutType]
 				,(
 					// Trying include. Conditional ternary operator only for doing include in-place. Parentheses () around include is mandatory!!!
-					( (include_once('Debug/_HuFormat.defaults/backtrace::printout.php')) || true )
+					( (PrintoutDefault::configure()) || true )
 					?
 					// Again provide its value. If it now present - cool, if not - REQUIRED_VAR thor exception
 					@$GLOBALS['__CONFIG']['backtrace::printout'][$OutType]

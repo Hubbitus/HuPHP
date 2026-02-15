@@ -21,4 +21,4 @@ declare(strict_types=1);
 **/
 function eecho($str){
 	return file_put_contents('php://stderr', $str);
-}#f eecho
+}

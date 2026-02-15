@@ -16,6 +16,8 @@ declare(strict_types=1);
 * @uses ClassUnknownException
 **/
 
+namespace Hubbitus\HuPHP\Vars;
+
 abstract class HuClass {
 	/**
 	* This is just wrapper for system construction 'clone'. Objects in PHP implicitly returned by

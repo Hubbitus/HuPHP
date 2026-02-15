@@ -11,12 +11,14 @@ declare(strict_types=1);
 * @created ?2009-02-11 13:41 ver 2.1 to 2.1.1
 **/
 
-include_once('RegExp/RegExp_base.php'); //Must be explicit, because there used eval-hack to define some subclas and it excluded from autoload
+namespace Hubbitus\HuPHP\RegExp;
+
+use Hubbitus\HuPHP\Vars\HuArray;
 
 /**
 * @uses RegExp_base
 **/
-class RegExpPcre extends RegExp_base {
+class RegExpPcre extends RegExpBase {
 	const string className = 'RegExp_pcre';
 
 	/**

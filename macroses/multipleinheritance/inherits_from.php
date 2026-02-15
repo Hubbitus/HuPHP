@@ -12,4 +12,4 @@ function inherits_from($destClassName, array $srcClassNameList) {
 	foreach ($srcClassNameList as $s) {
 		@runkit_class_adopt($destClassName,$s);
 	}
-}#f inherits_from
+}

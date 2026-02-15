@@ -24,7 +24,7 @@ Dump::a(EMPTY_STR($var));
 Dump::a(NON_EMPTY_STR($var, '<', '>'));
 
 Dump::a('===================================');
-}#f test_EMPTY_NONEMPTY_STR
+}
 
 $t = true;
 test_EMPTY_NONEMPTY_STR($t);	// ''; ''

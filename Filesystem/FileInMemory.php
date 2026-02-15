@@ -10,12 +10,14 @@ declare(strict_types=1);
 * @version 2.0.1b
 * @created ?2009-03-25 13:51 ver 2.0b
 *
-* @uses REQUIRED_VAR
 * @uses VariableRequiredException
 * @uses file_base
 **/
 
-include_once('file_base.php');
+namespace Hubbitus\HuPHP\Filesystem;
+
+use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
 
 class FileInMemory extends FileBase{
 private $lineContent = null;
@@ -39,11 +41,12 @@ private $_linesOffsets = array();	// Cache For ->getLineByOffset and ->getOffset
 	public function &loadContent($use_include_path = false, $resource_context = null, $offset = null, $maxlen = null){
 		$this->checkOpenError(
 			false !== (
-				$maxlen
-				?
-				($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset, $maxlen))
-				:
-				($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset))
+				($maxlen !== null && $offset !== null)
+					? ($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset, $maxlen))
+					: (($offset !== null)
+						? ($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset))
+						: ($this->content = file_get_contents($this->path(), $use_include_path, $resource_context))
+					)
 			)
 		);
 		$this->lineContent = array();
@@ -56,7 +59,7 @@ private $_linesOffsets = array();	// Cache For ->getLineByOffset and ->getOffset
 	public function &setContentFromString($string){
 		$this->lineContent = array();
 		$this->_linesOffsets = array();
-		return parent::setContentFromString($string);
+		return parent::setContentFromString(REQUIRED_NOT_NULL($string));
 	}
 	/**
 	* Partial write not supported, reset full string to resplit by lines it in future.
@@ -76,7 +79,7 @@ private $_linesOffsets = array();	// Cache For ->getLineByOffset and ->getOffset
 	public function writeContent($flags = null, $resource_context = null, $implodeWith = null, $updateLineSep = true){
 		$this->checkOpenError(
 			// $this->rawFilename because may be file generally not exists!
-			false !==  ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags, $resource_context))
+			false !==  ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags ?? 0, $resource_context))
 		);
 		$this->_writePending = false;
 		return $count;

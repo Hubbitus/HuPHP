@@ -10,20 +10,18 @@ declare(strict_types=1);
 * @copyright Copyright (c) 2014, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2008-05-29
 *
-* @uses REQUIRED_NOT_NULL()
 * @uses VariableIsNullException
 * @uses HuClass
 * @uses HuArray
 **/
 
-include_once('Vars/HuClass.php');
-include_once('macroses/EMPTY_STR.php');
-include_once('macroses/REQUIRED_NOT_NULL.php');
+namespace Hubbitus\HuPHP\RegExp;
 
-abstract class RegExpBase extends HuClass implements IRegExp{
-	// MUST be defined properly in children until late static binding
-	const className = 'RegExp_base';
+use Hubbitus\HuPHP\Vars\HuClass;
+use Hubbitus\HuPHP\Vars\HuArray;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
 
+abstract class RegExpBase extends HuClass implements IRegExp {
 	protected $sourceText;
 	protected $RegExp;
 
@@ -86,9 +84,9 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 	*
 	* @param string|array	$regexp
 	* @return &$this
-	* @Throws(VariableIsNullException)
+	* @thrown VariableIsNullException
 	**/
-	public function &setRegExp($regexp){
+	public function &setRegExp($regexp): static {
 		$this->RegExp = REQUIRED_NOT_NULL($regexp);
 		$this->matchesValid = false;
 		return $this;
@@ -106,7 +104,6 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 	*
 	* @param string	$text
 	* @return &$this
-	* @Throws(VariableIsNullException)
 	**/
 	public function &setText($text){
 		$this->sourceText = REQUIRED_NOT_NULL($text);
@@ -129,7 +126,6 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 	*
 	* @param string|array	$text
 	* @return &$this
-	* @Throws(VariableIsNullException)
 	**/
 	public function &setReplaceTo($text){
 		$this->replaceTo = REQUIRED_NOT_NULL($text);
@@ -147,7 +143,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 		return $this->matchCount;
 	}
 	/**
-	* Set Pattern, text, raplacement. Shorthand to appropriate methods.
+	* Set Pattern, text, replacement. Shorthand to appropriate methods.
 	*
 	* @param string|array	$regexp
 	* @param string		$Text
@@ -173,7 +169,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 	abstract public function &doMatch($flags = null, $offset = null);
 
 	/**
-	* {@see ->doMatch()}. But match all occurences.
+	* {@see ->doMatch()}. But match all occurrences.
 	*
 	* @return &$this
 	**/
@@ -182,7 +178,7 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 	/**
 	* Return startDelimiter
 	*
-	* @param integer $item. If not null - pount to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
+	* @param integer $item. If not null - point to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	* @return string
 	**/
 	public function getRegExpDelimiterStart($item = null){
@@ -263,40 +259,3 @@ abstract class RegExpBase extends HuClass implements IRegExp{
 		return new HuArray($this->getMatches($n));
 	}
 }
-	/**
-	* Require late-static-bindings future, so, it is available only in PHP version >= 5.3.0-dev
-	**/
-	if (version_compare(PHP_VERSION, '5.3.0-dev', '>=')){
-	//eval to avoid fatal error on earlier versions
-	eval ( '
-		abstract class RegExp_base extends RegExp_base_base{
-		/** Return string, matching Regexp
-		* $N - No of sub-pattern of regexp, 0 mean - match all regular expression
-		* for fast static call
-		**/
-			public static function getMatch($regexp, $text, $N=0){
-			/**
-			* Require using static:: instead of self::. See
-			* http://ru2.php.net/manual/ru/language.oop5.static.php single
-			* comment from "gabe at mudbugmedia dot com" and also
-			* http://www.colder.ch/news/08-24-2007/28/late-static-bindings-expl.html
-			* This only works on PHP vrom version 5.3.0
-			**/
-			//Additionally new static::className($regexp, $text); DO NOT work, so using one more variable
-			//$tmpR = new static::className($regexp, $text);
-			$className = static::className;
-			$tmpR = new $className($regexp, $text);
-			$tmpR->doMatch();
-			return $tmpR->match($N);
-			}
-		}
-	    '
-	);
-	}
-	else{
-		abstract class RegExp_base extends RegExpBase{
-			public static function getMatch($regexp, $text, $N=0){
-			throw new ClassMethodException ('RegExp_base::getMatch not implemented for this version of PHP!');
-			}
-		}
-	}

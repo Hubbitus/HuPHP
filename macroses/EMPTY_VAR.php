@@ -10,6 +10,8 @@ declare(strict_types=1);
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
+namespace Hubbitus\HuPHP\Macroses;
+
 /**
 * Return first NON-empty var if present. Nothing return otherwise (yes, warning will).
 * @params	variable amount of arguments.

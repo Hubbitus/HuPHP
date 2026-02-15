@@ -11,6 +11,8 @@ declare(strict_types=1);
 * @created 21.06.2014 14:56:24
 **/
 
+namespace Hubbitus\HuPHP\RegExp;
+
 /**
 * After PHP 5.2.0 get error defining abstract static methods: Strict standards: Static function RegExp_base_base::quote() should not be abstract :
 * http://www.php.net//manual/ru/migration52.incompatible.php , So introduce interface as workaround ( as per http://stackoverflow.com/questions/13494807/strict-standards-static-function-modeltablestruct-should-not-be-abstract-in )

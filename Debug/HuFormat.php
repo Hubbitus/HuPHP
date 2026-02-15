@@ -24,9 +24,16 @@ declare(strict_types=1);
 * @uses OS
 **/
 
-include_once('macroses/EMPTY_STR.php');
-include_once('macroses/ASSIGN_IF.php');
-include_once('macroses/REQUIRED_VAR.php');
+namespace Hubbitus\HuPHP\Debug;
+
+use Hubbitus\HuPHP\Macroses\EMPTY_STR;
+use Hubbitus\HuPHP\Macroses\ASSIGN_IF;
+use Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
+use Hubbitus\HuPHP\Exceptions\Classes\ClassMethodException;
 
 class HuFormatException extends VariableException {}
 
@@ -201,9 +208,10 @@ class HuFormat extends HuError {
 	/**
 	* Construct and return string to represent provided value according given format.
 	*
+	* @param array|null $fields Fields to include in the string representation (for compatibility with parent class)
 	* @return string
 	**/
-	public function getString(){
+	public function getString(?array $fields = null){
 		if (!$this->_resStr){
 		$this->_resStr = '';
 
@@ -455,7 +463,8 @@ class HuFormat extends HuError {
 	* @return string
 	**/
 	protected function mod_II(){
-		$hf = new self($this->_format, $t = false, $this->_key);
+		$t = false; // Create variable first
+		$hf = new self($this->_format, $t, $this->_key);
 		$ret = '';
 
 		foreach ($this->getValue() as $key => $v){

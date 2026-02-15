@@ -15,9 +15,12 @@ declare(strict_types=1);
 * @uses settings
 **/
 
-include_once('macroses/REQUIRED_VAR.php');
+namespace Hubbitus\HuPHP\Vars;
 
-class HuArray extends Settings implements Iterator {
+use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\Vars\Settings\Settings;
+
+class HuArray extends Settings implements \Iterator {
 const huScheme = 'hu://';
 
 	/**

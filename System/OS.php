@@ -10,6 +10,8 @@ declare(strict_types=1);
 * @created ?2008-11-05 00:47 ver 2.0b to 2.0.1
 **/
 
+namespace Hubbitus\HuPHP\System;
+
 /**
 * Class OS has mainly (all) static methods, to determine system-environments, like OS or type of out.
 * Was System, but it is registered in PEAR, change to OS
