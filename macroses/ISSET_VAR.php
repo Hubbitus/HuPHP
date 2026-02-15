@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Macroses;
+
 /**
 * Toolkit of small functions aka "macroses".
 *
@@ -10,6 +12,8 @@ declare(strict_types=1);
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2009-01-30 15:10
 **/
+
+use function Hubbitus\HuPHP\macroses\is_set;
 
 /**
 * Return value of SCALAR variable if it defined without notices and error-handling.
@@ -34,9 +38,7 @@ function &ISSET_VAR(&$var){
 }
 
 function &IS_SET_VAR($what, &$where){
-	include_once('macroses/IS_SET.php');//MUST be explicit. It used in autoload.php, so, autoloading is not present yet!
-
-	if (is_set($what, $where)) return $where[$what];
+	if (IS_SET($what, $where)) return $where[$what];
 	else{
 		$t = null; //To do not fire error "Only variables can be passed by reference in ..."
 		return $t;

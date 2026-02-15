@@ -11,6 +11,8 @@ declare(strict_types=1);
 * @created 2009-10-22 19:03
 **/
 
+namespace Hubbitus\HuPHP\Macroses;
+
 /**
 * wordwrap standard function wrap by amount *bytes*, not *chars*!
 * Idea got from http://ru.php.net/manual/en/function.wordwrap.php#92577 but its implementation
@@ -22,7 +24,7 @@ declare(strict_types=1);
 * @param	boolean=false	$cut	Cut words or not (Default false, to wrap by word boundary).
 * @return	string
 **/
-function unicode_wordwrap($str, $len = 75, $break = "\n", $cut = false){
+function unicode_wordwrap($str, $len = 75, $break = "\n", $cut = false): string {
 	/*
 	* {{ - one treated by PHP
 	* "|.{1,$len}$" part to add $break also to end of string, because another regexp always do that and we just will cut it

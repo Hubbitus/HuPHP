@@ -35,7 +35,6 @@ require_once __DIR__ . '/../../macroses/EMPTY_INT.php';
 	if (Phar::canWrite()) {
 		$p = new Phar(\FILEPATH_PHAR, 0, \FILENAME_PHAR);
 
-//		$includes[] = BASE_DIR . '/Debug/_HuFormat.defaults/backtrace::printout.php';
 		// Generate list of files to include by scanning the directory structure
 		$files = new RecursiveIteratorIterator(
 			new RecursiveDirectoryIterator(__DIR__ . '/../../', RecursiveDirectoryIterator::SKIP_DOTS)
@@ -65,8 +64,8 @@ require_once __DIR__ . '/../../macroses/EMPTY_INT.php';
 			$p[$inc] = $file->getBLOB();
 		}
 
-		//With BZIP2 compression you may have trouble on other systems, where Phar not working, and load 100% of CPU
-		//And futhermore, GZIP give me _MORE_ compression than bzip2 (39017 byte opposite 41110)
+		// With BZIP2 compression you may have trouble on other systems, where Phar not working, and load 100% of CPU
+		// And furthermore, GZIP give me _MORE_ compression than bzip2 (39017 byte opposite 41110)
 		try{//Try GZIP
 			$p->compressFiles(Phar::GZ);
 		}
@@ -74,12 +73,10 @@ require_once __DIR__ . '/../../macroses/EMPTY_INT.php';
 			fwrite(STDERR, 'Warning: GZip compression is not supported too.'."\n");
 		}
 
-		$p->setStub('<?php 
-			Phar::mapPhar("' . FILENAME_PHAR . '");
-			// Load the project autoloader that handles class mappings
-			require_once "phar://' . FILENAME_PHAR . '/HuPHP.autoload.php";
-			__HALT_COMPILER(); 
-		?>');
+		$p->setStub('<?php
+Phar::mapPhar("' . FILENAME_PHAR . '");
+require_once "phar://' . FILENAME_PHAR . '/HuPHP.autoload.php";
+__HALT_COMPILER();');
 		fwrite(STDERR, 'PHAR file created successfully: ' . FILEPATH_PHAR . PHP_EOL);
 	} else {
 		fwrite(STDERR, 'Warning: Phar write is not possible! Create a new phar - phar.readonly must be 0 in php.ini. Option phar.readonly is enabled by default for security reasons. On production servers, Phars need never be created, only executed.' . PHP_EOL);

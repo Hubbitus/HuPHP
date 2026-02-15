@@ -14,6 +14,10 @@ declare(strict_types=1);
 * @uses settings
 **/
 
+namespace Hubbitus\HuPHP\Database;
+
+use Hubbitus\HuPHP\Vars\Settings\SettingsGet;
+
 abstract class Database extends SettingsGet {
 	protected $_sets /* DB_settings */ = null;
 

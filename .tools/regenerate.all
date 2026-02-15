@@ -16,11 +16,6 @@ php ./Packages/Phar.make.php
 echo '2.1) Simple test run PHAR:';
 php ./Packages/Phar.test.php
 
-echo '3) Create SingleFile distribution:'
-php ./Packages/SingleFile.make.php
-echo '3.1) Simple test run SingleFile:';
-php ./Packages/SingelFile.test.php
-
 echo '4) Generate PHPDoc documentation:'
 # This command in: https://github.com/Hubbitus/shell.scripts
 #huPhpDoc .

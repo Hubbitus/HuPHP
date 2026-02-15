@@ -10,16 +10,18 @@ declare(strict_types=1);
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
+namespace Hubbitus\HuPHP\Macroses;
+
 /**
 * Swap values of two vars
-* @param	&$one	First var
-* @param	&$two	Second var
+* @param        &$one   First var
+* @param        &$two   Second var
 *
-* @return	void
+* @return       void
 **/
 function SWAP(&$one, &$two){
-$_tmp = $two;
+    $_tmp = $two;
 
-$two = $one;
-$one = $_tmp;
+    $two = $one;
+    $one = $_tmp;
 }

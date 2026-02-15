@@ -122,7 +122,7 @@ private $_linesOffsets = array();	// Cache For ->getLineByOffset and ->getOffset
 	protected function implodeLines($implodeWith = null, $updateLineSep = true){
 		if ($implodeWith and $updateLineSep) $this->setLineSep($implodeWith);
 		$this->_linesOffsets = array();
-		return ($this->content = implode($implodeWith, $this->lineContent)); //Set or not, implode as requested.
+		return ($this->content = implode($implodeWith ?? $this->_lineSep, $this->lineContent)); //Set or not, implode as requested.
 	}
 	/**
 	* Return string of content
