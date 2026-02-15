@@ -3,6 +3,7 @@
 # Regenerate all generated stuff: auto-includes, Docs, Packages (Phar, OneFile)
 
 cd $(dirname $0)
+PROJECT_ROOT="$(pwd)/.."
 
 {
 set -xe
@@ -18,13 +19,6 @@ php ./Packages/Phar.test.php
 
 echo '4) Generate PHPDoc documentation:'
 # This command in: https://github.com/Hubbitus/shell.scripts
-#huPhpDoc .
-# Check if phpdoc is available, if not skip this step
-phpdoc -d ".." -t ../_phpdocs --undocumentedelements on \
-    --title "Pavel Alexeev aka Pahan-Hubbitus HuPHP framework documentation" \
-    --customtags 'changelog' --sourcecode on \
-    --ignore '_phpdocs,.git,.svn,_phpdocs.log' \
-    -s -o HTML:Smarty:PHP 2>&1 \
-        | tee ../_phpdocs.log
+./generate-phpdoc.sh
 
-} 2>&1 | tee ../regenerate.all.log
+} 2>&1 | tee ${PROJECT_ROOT}/.tools/regenerate.all.log

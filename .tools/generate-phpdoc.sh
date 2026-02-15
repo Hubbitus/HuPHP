@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Generate PHPDoc documentation for HuPHP framework
+# Compatible with phpdocumentor v3
+
+cd "$(dirname "$0")"
+PROJECT_ROOT="$(pwd)/.."
+
+echo "Generating PHPDoc documentation..."
+
+# Remove any problematic config files
+rm -f "$PROJECT_ROOT/phpdoc.xml" "$PROJECT_ROOT/phpdoc.xml.dist" "$PROJECT_ROOT/.phpdoc.php"
+
+# Use phpdocumentor v3 with minimal working options
+if [ -x "$PROJECT_ROOT/vendor/bin/phpdoc" ]; then
+    # Try the most compatible command for v3
+    php "$PROJECT_ROOT/vendor/bin/phpdoc" project:run \
+        --directory "$PROJECT_ROOT" \
+        --target "$PROJECT_ROOT/@phpdocs" \
+        --title "Pavel Alexeev aka Pahan-Hubbitus HuPHP framework documentation" \
+        --visibility public \
+        --parseprivate \
+        --sourcecode \
+        --template default \
+        --ignore @phpdocs,.git,.svn,phpdocs.log 2>&1 | tee "$PROJECT_ROOT/.tools/phpdocs.log"
+    
+    echo "PHPDoc generation completed"
+else
+    echo "ERROR: phpdocumentor not found at $PROJECT_ROOT/vendor/bin/phpdoc"
+    exit 1
+fi
