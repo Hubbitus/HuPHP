@@ -1,4 +1,6 @@
 <?php
 declare(strict_types=1);
 
-class ClassNotExistsException extends ClassException{}
+namespace Hubbitus\HuPHP\Exceptions\Classes;
+
+class ClassNotExistsException extends ClassException {}

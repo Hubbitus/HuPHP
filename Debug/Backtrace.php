@@ -9,7 +9,6 @@ use function Hubbitus\HuPHP\macroses\REQUIRED_VAR;
 use Hubbitus\HuPHP\Debug\HuFormat;
 use Hubbitus\HuPHP\Debug\Dump;
 use Hubbitus\HuPHP\Exceptions\BaseException;
-use Hubbitus\HuPHP\Exceptions\variables\VariableEmptyException;
 use Hubbitus\HuPHP\Exceptions\variables\VariableArrayInconsistentException;
 use Hubbitus\HuPHP\Exceptions\variables\VariableRangeException;
 use Hubbitus\HuPHP\Exceptions\variables\VariableRequiredException;
@@ -39,8 +38,6 @@ use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
 * @uses HuFormat
 **/
 
-class BacktraceEmptyException extends VariableEmptyException{}
-
 /**
 * BackTraceNode. In array converted to like this. Otherwise each member accessible separately.
 * Structure example:
@@ -62,8 +59,8 @@ class BacktraceEmptyException extends VariableEmptyException{}
 *
 * implements Iterator by example from main description http://php.net/manual/ru/language.oop5.iterations.php
 **/
-class BacktraceNode implements \Iterator{
-	static public $properties = array(
+class BacktraceNode implements \Iterator {
+	public static array $properties = [
 		'file',
 		'line',
 		'function',
@@ -72,7 +69,7 @@ class BacktraceNode implements \Iterator{
 		'type',
 		'args',
 		'N'
-	);
+	];
 
 	private $_btn = null;
 
@@ -111,7 +108,7 @@ class BacktraceNode implements \Iterator{
 	* @return	mixed	Reference on property value
 	* @throws ClassPropertyNotExistsException
 	**/
-	public function &__get($name){
+	public function &__get($name): mixed {
 		if (!in_array($name, BacktraceNode::$properties)) throw new ClassPropertyNotExistsException('Property "'.$name.'" does NOT exist!');
 
 		return $this->_btn[$name];
@@ -122,7 +119,7 @@ class BacktraceNode implements \Iterator{
 	* @param	string	$name	Name of required property
 	* @return	boolean
 	**/
-	public function __isset($name) {
+	public function __isset($name): bool {
 		if (!in_array($name, BacktraceNode::$properties)) throw new ClassPropertyNotExistsException('Property <'.$name.'> does NOT exist!');
 
 		return isset($this->_btn[$name]);

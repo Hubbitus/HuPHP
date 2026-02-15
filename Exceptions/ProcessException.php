@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Exceptions;
+
 /**
 * ProcessException
 * @package Exceptions
@@ -8,7 +10,7 @@ declare(strict_types=1);
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
-class ProcessException extends BaseException{
+class ProcessException extends BaseException {
 public $state = null;
 
 	public function __construct($message = null, $code = 0, $pr) {
@@ -17,4 +19,4 @@ public $state = null;
 		// make sure everything is assigned properly
 		parent::__construct($message, $code);
 	}
-};
+}

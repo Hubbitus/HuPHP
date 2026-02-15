@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\System;
+
 /**
 * Manipulate processes on *NIX-like systems.
 *
@@ -13,61 +15,7 @@ declare(strict_types=1);
 * @uses ProcessException
 **/
 
-include_once('Debug/log_dump.php'); //Function used. Must be included explicit.
-
-/* Aka struct of data */
-class Process_state{
-	/*All this members was private on Process class, so, now will be public,
-	if we do not provides complex of get/set method to each */
-	public $writeData;
-
-	public $exit_code;
-
-	private $cwd = null;
-	private $env = array();
-
-	public $nonBlockingMode = false;
-	public $nonBlockTimeout = 500000;// microseconds
-
-	public $retval;
-	public $error;
-
-	public $CMD;
-
-	public function getCwd(){
-		return $this->cwd;
-	}
-	public function setCwd($newCwd){
-		$this->cwd = $newCwd;
-	}
-	public function getEnv(){
-		return $this->env;
-	}
-	public function setEnv(array $env){
-		$this->env = $env;
-	}
-	public function getResult(){
-		return $this->retval;
-	}
-	public function getError(){
-		return trim($this->error);
-	}
-	public function describe(){
-		return log_dump(
-			array(
-				'writeData'	=> $this->writeData,
-				'retval'		=> $this->getResult(),
-				'error'		=> $this->getError(),
-				'exit_code'	=> $this->exit_code,
-				'cwd'		=> $this->getCwd(),
-				'env'		=> trim(log_dump($this->getEnv())),
-				'nonBlockingMode'	=> $this->nonBlockingMode,
-				'nonBlockTimeout'	=> $this->nonBlockTimeout
-			)
-		);
-	}
-}
-class Process{
+class Process {
 	const STDIN = 0;
 	const STDOUT = 1;
 	const STDERR = 2;
@@ -83,7 +31,7 @@ class Process{
 
 	private $state;
 
-	function __construct(Process_state $state, $doNOTopen = false){
+	function __construct(ProcessState $state, $doNOTopen = false){
 		$this->setState($state);
 		if ($this->state->CMD and !$doNOTopen ) $this->open();
 	}
@@ -111,7 +59,7 @@ class Process{
 		}
 	}
 	public function writeIn($inStr = false, $noWait = false){
-		// By dafault saved data write
+		// By default saved data write
 		if ($inStr) $this->state->writeData = $inStr;
 		fwrite($this->pipes[self::STDIN], $this->state->writeData);
 		fflush($this->pipes[self::STDIN]);
@@ -144,8 +92,8 @@ class Process{
 		return $this->state->getResult();
 	}
 	public static function exec($command, $cwd = null, array $env = null, $writeData = null){
-		if (! $command instanceof Process_state){
-			$state = new Process_state();
+		if (! $command instanceof ProcessState){
+			$state = new ProcessState();
 			$state->CMD = $command;
 			if ($cwd) $state->setCwd($cwd);
 			if ($env) $state->setEnv($env);

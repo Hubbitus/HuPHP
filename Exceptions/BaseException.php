@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Exceptions;
+
 /**
 * BaseException
 *
@@ -9,8 +11,6 @@ declare(strict_types=1);
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
-namespace Hubbitus\HuPHP\Exceptions;
-
 class BaseException extends \Exception {
 	// $pos = false - at end, else - in beginning
 	public function ADDMessage($addonMessage, $pos = false): void {
@@ -18,5 +18,3 @@ class BaseException extends \Exception {
 		else $this->message = $addonMessage . $this->message;
 	}
 }
-
-class NotImplementedException extends BaseException{};
