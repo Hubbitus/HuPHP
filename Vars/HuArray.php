@@ -23,7 +23,7 @@ use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
 use Hubbitus\HuPHP\Exceptions\variables\VariableIsNullException;
 
 class HuArray extends Settings implements \Iterator {
-const huScheme = 'hu://';
+	private const string HU_SCHEME = 'hu://';
 
 	/**
 	* Constructor.
@@ -131,7 +131,7 @@ const huScheme = 'hu://';
 		* $obj->hu('varName')->hu(0);
 		* As you like
 		**/
-		elseif( self::huScheme == substr($name, 0, strlen(self::huScheme)) ) return $this->hu( substr($name, strlen(self::huScheme)) );
+		elseif( self::HU_SCHEME == substr($name, 0, strlen(self::HU_SCHEME)) ) return $this->hu( substr($name, strlen(self::HU_SCHEME)) );
 		else
 			return $this->getProperty($name);
 	}
@@ -174,7 +174,7 @@ const huScheme = 'hu://';
 		if ('_last_' == $name){
 			$ref =& $this->last();
 		}
-		elseif( self::huScheme == substr($name, 0, strlen(self::huScheme)) ) $ref =& $this->hu( substr($name, strlen(self::huScheme)) );
+		elseif( self::HU_SCHEME == substr($name, 0, strlen(self::HU_SCHEME)) ) $ref =& $this->hu( substr($name, strlen(self::HU_SCHEME)) );
 		else{
 			$ref =& $this->getProperty($name);
 		}

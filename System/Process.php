@@ -67,7 +67,7 @@ class Process {
 		elseif ($this->state->nonBlockingMode and ! $noWait) usleep ($this->state->nonBlockTimeout);
 	}
 	public function readOut(){
-		$this->state->retval = stream_get_contents($this->pipes[self::STDOUT]);
+		$this->state->retVal = stream_get_contents($this->pipes[self::STDOUT]);
 		fflush($this->pipes[self::STDOUT]);
 		if (! $this->state->nonBlockingMode) fclose($this->pipes[self::STDOUT]);
 	}

@@ -236,10 +236,67 @@ See `@examples/` directory for updated code examples.
 
 MIT License. See LICENSE file for details.
 
+## Testing
+
+The framework includes comprehensive PHPUnit tests to ensure reliability and maintainability.
+
+### Running Tests
+
+To run all tests:
+
+```bash
+./tests/run-tests.sh
+```
+
+This script runs PHPUnit with coverage reporting enabled.
+
+### Coverage Reporting
+
+After running tests, coverage reports are generated in the `build/` directory:
+- `build/coverage/` - HTML coverage report (open `build/coverage/index.html` in browser)
+- `build/coverage.txt` - Text-based coverage summary
+
+### Requirements for Testing
+
+- PHP 8.3+ with Xdebug extension enabled
+- Composer dependencies installed (`composer install`)
+
+### Writing Tests
+
+Tests should be placed in `tests/Hubbitus/HuPHP/` following the PSR-4 structure matching the source code.
+
+Example test file structure:
+```
+tests/
+└── Hubbitus/
+    └── HuPHP/
+        ├── Vars/
+        │   └── NullClassTest.php
+        ├── Debug/
+        │   └── BacktraceTest.php
+        └── RegExp/
+            └── IRegExpTest.php
+```
+
+Each test class should extend `PHPUnit\Framework\TestCase` and use strict types declaration.
+
+### Current Coverage Status
+
+As of this version, the framework has basic test coverage for core classes. To achieve 100% coverage by classes and ≥80% by lines, additional tests need to be written for all classes and functions.
+
+### Test Script Options
+
+The `tests/run-tests.sh` script supports the following options:
+- `--help` - Show help information
+- `--no-coverage` - Skip coverage report generation
+- `--verbose` - Enable verbose output
+
+Example:
+```bash
+./tests/run-tests.sh --verbose
+```
+
 ## Contributing
 
 Issues and pull requests are welcome on GitHub.
 
----
-
-**Note:** Some parts of the framework (like the old template engine) are deprecated but kept for backward compatibility. Consider them for future removal.

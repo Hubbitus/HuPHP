@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\System;
+use Hubbitus\HuPHP\Debug\Dump;
 
 /* Aka struct of data */
 class ProcessState {
@@ -17,41 +18,47 @@ class ProcessState {
 	public $nonBlockingMode = false;
 	public $nonBlockTimeout = 500000;// microseconds
 
-	public $retval;
+	public $retVal;
 	public $error;
 
 	public $CMD;
 
-	public function getCwd(){
+	public function getCwd(): mixed {
 		return $this->cwd;
 	}
-	public function setCwd($newCwd){
+
+	public function setCwd($newCwd): void {
 		$this->cwd = $newCwd;
 	}
-	public function getEnv(){
+
+	public function getEnv(): array {
 		return $this->env;
 	}
-	public function setEnv(array $env){
+
+	public function setEnv(array $env): void {
 		$this->env = $env;
 	}
-	public function getResult(){
-		return $this->retval;
+
+	public function getResult(): mixed {
+		return $this->retVal;
 	}
-	public function getError(){
+
+	public function getError(): string {
 		return trim($this->error);
 	}
-	public function describe(){
-		return log_dump(
-			array(
+
+	public function describe(): mixed {
+		return Dump::log(
+			[
 				'writeData'	=> $this->writeData,
-				'retval'		=> $this->getResult(),
+				'retVal'	=> $this->getResult(),
 				'error'		=> $this->getError(),
 				'exit_code'	=> $this->exit_code,
 				'cwd'		=> $this->getCwd(),
-				'env'		=> trim(log_dump($this->getEnv())),
+				'env'		=> trim(Dump::log($this->getEnv())),
 				'nonBlockingMode'	=> $this->nonBlockingMode,
 				'nonBlockTimeout'	=> $this->nonBlockTimeout
-			)
+			]
 		);
 	}
 }

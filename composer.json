@@ -30,7 +30,8 @@
         }
     },
     "scripts": {
-        "test": "phpunit",
+        "test": "tests/run-tests.sh",
+        "clean": "rm -rvf .phpunit.result.cache .tools/regenerate.all.log .tools/Packages/build/* build/* .phpunit.result.cache *.log",
         "build": "echo 'Build completed'"
     },
     "minimum-stability": "stable",

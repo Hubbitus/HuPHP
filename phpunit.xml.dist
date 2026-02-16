@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="HuPHP Tests">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage>
+        <include>
+            <directory suffix=".php">./Database</directory>
+            <directory suffix=".php">./Debug</directory>
+            <directory suffix=".php">./Exceptions</directory>
+            <directory suffix=".php">./Filesystem</directory>
+            <directory suffix=".php">./images</directory>
+            <directory suffix=".php">./RegExp</directory>
+            <directory suffix=".php">./System</directory>
+            <directory suffix=".php">./User</directory>
+            <directory suffix=".php">./Vars</directory>
+        </include>
+        <report>
+            <html outputDirectory="build/coverage"/>
+            <text outputFile="build/coverage.txt" showUncoveredFiles="true"/>
+        </report>
+    </coverage>
+</phpunit>

@@ -39,8 +39,6 @@ foreach ($macroFiles as $file) {
     }
 }
 
-
-
 // Register the autoloader
 spl_autoload_register(function ($class) {
     // Handle classes in the Hubbitus\HuPHP namespace using PSR-4

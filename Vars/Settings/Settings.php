@@ -1,6 +1,14 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Vars\Settings;
+
+use Hubbitus\HuPHP\Vars\HuClass;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
+use function Hubbitus\HuPHP\Macroses\EMPTY_STR;
+use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
+
 /**
 * Provide easy to use settings-class for many purpose. Similar array
 * of settings, but provide several addition methods, and magic methods
@@ -14,23 +22,18 @@ declare(strict_types=1);
 * @version 1.0.5
 * @created 2008-05-30 23:19
 **/
-
-namespace Hubbitus\HuPHP\Vars\Settings;
-
-use Hubbitus\HuPHP\Vars\HuClass;
-use function Hubbitus\HuPHP\Macroses\EMPTY_STR;
-
 class Settings extends HuClass {
-	protected $__SETS = array(); // Array of settings itself
+	protected $__SETS = []; // Array of settings itself
 
 	/**
 	* Constructor.
 	*
-	* @param array=null $array
+	* @param array $array
 	**/
-	function __construct(?array $array = null){
+	public function __construct(array $array = []){
 		if ($array) $this->mergeSettingsArray($array);
 	}
+
 	/**
 	* Set setting by its name.
 	*
@@ -38,10 +41,11 @@ class Settings extends HuClass {
 	* @param	mixed	$value
 	* @return	&$this
 	**/
-	public function &setSetting($name, $value){
+	public function &setSetting($name, $value): static {
 		$this->__SETS[$name] = $value;
 		return $this;
 	}
+
 	/**
 	* Rewrite ALL settings. To change only needed - use {@see ::setSetting()} method
 	*
@@ -50,9 +54,10 @@ class Settings extends HuClass {
 	* @param	array	$setArr
 	* @return	void
 	**/
-	public function setSettingsArray(array $setArr){
+	public function setSettingsArray(array $setArr): void {
 		$this->__SETS = REQUIRED_VAR($setArr);
 	}
+
 	/**
 	* Rewrite provided settings by its values. To change single setting you may use {@see ::setSetting()}
 	*
@@ -60,7 +65,7 @@ class Settings extends HuClass {
 	*
 	* @param	array	$setArr
 	**/
-	public function mergeSettingsArray(array $setArr){
+	public function mergeSettingsArray(array $setArr): void {
 		/**
 		* @internal
 		* We don't use array_merge there because want preserve keys, even numerical:
@@ -72,53 +77,55 @@ class Settings extends HuClass {
 			$this->__SETS[$key] = $val;
 		}
 	}
+
 	/**
 	* Return requested property by name. For more useful access see {@see ::__get()} method.
 	*
-	* @param	string	$name
-	* @return	mixed
+	* @param        string  $name
+	* @return       mixed
 	**/
 	public function &getProperty($name){
-		return $this->__SETS[REQUIRED_NOT_NULL($name)];
+			return $this->__SETS[REQUIRED_NOT_NULL($name)];
 	}
+
 	/**
 	* useful alias of {@see ::setSetting()} to provide easy access in style of $obj->PropertyName = 'Some new value';
 	*
-	* @param	string	$name
-	* @param	mixed	$value
-	* @return	&$this
+	* @param        string  $name
+	* @param        mixed   $value
+	* @return       &$this
 	**/
-	public function &__set($name, $value){
-		$this->setSetting($name, $value);
-		return $this;
+	public function &__set($name, $value) {
+			$this->setSetting($name, $value);
+			return $this;
 	}
 	/**
 	* useful alias of {@see ::getProperty()} to provide easy access in style of $obj->PropertyName
 	*
-	* @param	string	$name
-	* @return	mixed
+	* @param        string  $name
+	* @return       mixed
 	**/
 	public function &__get($name){
-		return $this->getProperty($name);
+			return $this->getProperty($name);
 	}
+
 	/**
 	* Check isset of requested property. See http://php.net/isset comment of "phpnotes dot 20 dot zsh at spamgourmet dot com"
 	*
-	* @param	string	$name	Name of requested property
-	* @return	boolean
+	* @param        string  $name   Name of requested property
+	* @return       boolean
 	**/
-	public function __isset($name) {
-		return isset($this->__SETS[REQUIRED_NOT_NULL($name)]);
+	public function __isset($name): bool {
+			return isset($this->__SETS[REQUIRED_NOT_NULL($name)]);
 	}
+
 	/**
-	* Return string in what merged settings by provided format.
-	*
-	* Description of elements $fields {@see ::formatField()} method
-	*
+	* Get string representation of settings.
+	* @see ::formatField()
 	* @param	array	$fields
 	* @return	string
 	**/
-	public function getString(array $fields){
+	public function getString(array $fields): string {
 		$str = '';
 		foreach (REQUIRED_VAR($fields) as $field){
 			$str .= $this->formatField($field);
@@ -126,7 +133,7 @@ class Settings extends HuClass {
 		return $str;
 	}
 	/**
-	* Format Field Primarily for {@see ::getString}, but may be used and separatly
+	* Format Field Primarily for {@see ::getString}, but may be used and separately
 	* $field one of:
 	*	1) Именем настройки. Если найдена такая настройка и она не пуста, подставляется она
 	*	2) Просто константной строкой, тогда выводится как есть
@@ -146,7 +153,7 @@ class Settings extends HuClass {
 	* @param	array|string	$field
 	* @return string
 	**/
-	public function formatField($field){
+	public function formatField($field): string {
 		if (is_array($field)){
 			if (!isset($field[0])) $field = array_values($field);
 			return NON_EMPTY_STR(@$this->getProperty($field[0]), @$field[1], @$field[2], @$field[3]);
@@ -155,21 +162,23 @@ class Settings extends HuClass {
 			return EMPTY_STR(@$this->getProperty($field), $field); // Or by name if it just text
 		}
 	}
+
 	/**
 	* Clear all settings
 	*
 	* @return &$this
 	**/
-	public function &clear(){
-		$this->__SETS = array();
+	public function &clear(): static {
+		$this->__SETS = [];
 		return $this;
 	}
+
 	/**
 	* Return amount of settings.
 	*
 	* @return integer
 	**/
-	public function length(){
-		return sizeof($this->__SETS);
+	public function length(): int {
+		return \sizeof($this->__SETS);
 	}
 }

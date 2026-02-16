@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Vars\Settings;
 
 /**
-* Extended variant of settings_check to handle "uncleared" fields.
+* Extended variant of {@see SettingsCheck} to handle "uncleared" fields.
 *
 * @package settings
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
@@ -17,13 +17,13 @@ namespace Hubbitus\HuPHP\Vars\Settings;
 * Extended variant of settings_check to handle "uncleared" fields.
 **/
 class SettingsCheckStatic extends SettingsCheck {
-protected $static_settings = array();
+	protected $static_settings = [];
 	/**
 	* Clear all except uncleared items.
 	**/
-	public function clear(){
+	public function clear(): void {
 		foreach ($this->getRegularKeys() as $key => $sets){
-		$this->__SETS[$key] = null;
+			$this->__SETS[$key] = null;
 		}
 	}
 	/**
@@ -31,7 +31,7 @@ protected $static_settings = array();
 	*
 	* @return	array
 	**/
-	public function getRegularKeys(){
-	return array_diff(array_keys($this->__SETS), $this->static_settings);
+	public function getRegularKeys(): array {
+		return array_diff(array_keys($this->__SETS), $this->static_settings);
 	}
 }
