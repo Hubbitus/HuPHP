@@ -14,6 +14,8 @@ declare(strict_types=1);
 * @uses database
 **/
 
+namespace Hubbitus\HuPHP\Database;
+
 class DatabaseSettingsMySQL extends DatabaseSettings {
 }
 class DatabaseMySQL extends Database{

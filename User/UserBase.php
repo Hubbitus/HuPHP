@@ -13,8 +13,15 @@
 * @uses settings
 **/
 
-include_once('macroses/EMPTY_VAR.php');
-include_once('template/template_class_2.1.php');
+namespace Hubbitus\HuPHP\User;
+
+use Hubbitus\HuPHP\Vars\Settings\Settings;
+use Hubbitus\HuPHP\Vars\Settings\SettingsGet;
+use Hubbitus\HuPHP\Exceptions\BaseException;
+use Hubbitus\HuPHP\Template\template;
+use Hubbitus\HuPHP\Database\DatabaseWhere;
+use Hubbitus\HuPHP\Vars\Single;
+use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
 
 class UserSettings extends Settings {}
 

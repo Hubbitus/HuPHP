@@ -1,6 +1,14 @@
 <?php
 declare(strict_types=1);
 
+
+namespace Hubbitus\HuPHP\Database;
+
+use Hubbitus\HuPHP\Exceptions\Database\DatabaseSelectException;
+use Hubbitus\HuPHP\Vars\Settings\SettingsGet;
+use Hubbitus\HuPHP\Database\DatabaseError;
+use Hubbitus\HuPHP\Database\DatabaseErrorSettings;
+
 /**
 * Database abstraction layer.
 * Documented AFTER creation, in progress.
@@ -13,12 +21,7 @@ declare(strict_types=1);
 *
 * @uses settings
 **/
-
-namespace Hubbitus\HuPHP\Database;
-
-use Hubbitus\HuPHP\Vars\Settings\SettingsGet;
-
-abstract class Database extends SettingsGet {
+abstract class Database extends SettingsGet implements IDatabase {
 	protected $_sets /* DB_settings */ = null;
 
 	protected $db_link = null;
@@ -37,11 +40,11 @@ abstract class Database extends SettingsGet {
 	* @param DatabaseSettings|array	$sets	Initial settings.
 	*/
 	public function __construct( /* DB_settings | array */ $sets, bool $doNotConnect = false) {
-		if (is_array($sets)) $this->_sets = new DatabaseSettings((array)$sets);
+		if (\is_array($sets)) $this->_sets = new DatabaseSettings((array)$sets);
 		elseif($sets) $this->_sets = $sets;
 		else $this->_sets = new DatabaseSettings(); //Default
 
-		$this->Error = new DatabaseError(new DBError_settings($this->settings->DBError_settings));
+		$this->Error = new DatabaseError(new DatabaseErrorSettings($this->settings->DBError_settings));
 
 		if (!$doNotConnect) {
 			$this->db_connect();
@@ -180,7 +183,7 @@ abstract class Database extends SettingsGet {
 	abstract protected function collectDebugInfo($errNo, $server_message, $server_messageS = '', $d_backtrace);
 
 	/**
-	* @return Object(DBError)
+	* @return DatabaseError
 	*/
 	public function getError(){
 		return $this->Error;

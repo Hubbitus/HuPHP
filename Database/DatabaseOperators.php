@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Database;
+
 class DatabaseOperators {
 	/** Unary operators **/
 	static $operators1 = array(

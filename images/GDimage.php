@@ -17,6 +17,8 @@ declare(strict_types=1);
 * @uses FilesystemException
 **/
 
+namespace Hubbitus\HuPHP\Images;
+
 class GDimage {
 	protected $capabs = array();
 	protected $string;	// saved image to string

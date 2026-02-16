@@ -95,7 +95,7 @@ class Settings extends HuClass {
 	* @param        mixed   $value
 	* @return       &$this
 	**/
-	public function &__set($name, $value) {
+	public function &__set($name, $value): static {
 			$this->setSetting($name, $value);
 			return $this;
 	}

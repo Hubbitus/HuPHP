@@ -10,106 +10,30 @@ declare(strict_types=1);
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2008-05-30 23:19
-*
-* @uses settings
-* @uses NullClass
-* @uses commonOutExtraData
-* @uses HuError
-* @uses OS
 **/
 
-include_once('macroses/REQUIRED_VAR.php');
-include_once('macroses/EMPTY_STR.php');
+namespace Hubbitus\HuPHP\Debug;
 
-class HuLOGSettings extends Settings{
-	const LOG_TO_FILE	= OS::OUT_TYPE_FILE; // To file
-	const LOG_TO_PRINT	= OS::OUT_TYPE_PRINT; // To stdout (print, echo)
-	// Unfortunately PHP does NOT support computed value of constants
-	//const LOG_TO_BOTH	= OS::OUT_TYPE_FILE + OS::OUT_TYPE_PRINT;	//to both
-	const LOG_TO_BOTH	= 12; // to both
+use Hubbitus\HuPHP\Debug\HuLOGSettings;
+use Hubbitus\HuPHP\Debug\HuLOGText;
+use Hubbitus\HuPHP\Vars\NullClass;
+use Hubbitus\HuPHP\Vars\IOutExtraData;
+use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
+use Hubbitus\HuPHP\Vars\Settings\SettingsGet;
 
-	protected $__SETS = [
-		'FILE_PREFIX'		=> 'log_',
-		'LOG_FILE_DIR'		=> './log/',
+class HuLOG extends SettingsGet {//HubbitusLOG
+	public $_level = 0;
 
-		'LOG_TO_ACS'		=> self::LOG_TO_BOTH,
-		'LOG_TO_ERR'		=> self::LOG_TO_BOTH,
-
-		/** In SUBarray in order not to generate extra Entity
-		'HuLOG_Text_settings' => array(
-			// Here may be overwritten defaults settings. {@see HuLOG_text_settings}
-		)
-		*/
-	];
-}
-class HuLOG_text extends HuError{
-	/**
-	* Constructor.
-	*
-	* @param Object(HuLOG_text_settings)|array	$sets	Initial settings.
-	*	If HuLOG_text_settings assigned AS IS, if array MERGED with defaults and overwrite
-	*	presented settings!
-	**/
-	public function __construct( /* HuLOG_text_settings | array */ $sets){
-		if (is_array($sets) and !empty($sets)){ //MERGE, NOT overwrite!
-			$this->_sets = new HuLOG_text_settings();
-			$this->_sets->mergeSettingsArray($sets);
-		}
-		elseif($sets) $this->_sets = $sets;
-		else $this->_sets = new HuLOG_text_settings();//default
-	}
-}
-class HuLOG_text_settings extends HuErrorSettings{
-	protected $__SETS = array(
-		/**
-		* @see HuError::updateDate()
-		*/
-		'AUTO_DATE'		=> true,
-		'DATE_FORMAT'		=> 'Y-m-d H:i:s:',
-
-		/** Header for 'extra'-data, which may be present */
-		'EXTRA_HEADER'		=> 'Extra info',
-
-		/** In format {@link settings::getString()} */
-		'FORMAT_CONSOLE'	=> array(	//Формат вывода для отладки
-			array('date', "\033[36m", "\033[0m"),
-			'level',
-			array('type', "\033[1m", "\033[0m: ", ''),//Bold
-			'logText',
-			array('extra', "\n"),
-			"\n"
-		),
-		'FORMAT_WEB'		=> array(
-			array('date', "<b>", "</b>"),
-			'level',
-			array('type', "<b>", "</b>: ", ''),
-			'logText',
-			array('extra', "<br\\>\n"),
-			"<br\\>\n"
-		),
-		'FORMAT_FILE'		=> array(
-			'date',
-			'level',
-			array('type', '', ': ', ''),
-			'logText',
-			array('extra', "\n"),
-			"\n"
-		)
-	);
-}
-class HuLOG extends SettingsGet {//HubbitusLOG :) log занял давно, для совместимости старого кода не заменяю имя!
-	public $_level = 0;//Для установки уровней вложенности логовых сообщений в файле
-
-	protected $lastLogText /*HuLOG_text*/= null;
+	protected HuLOGText $lastLogText = null;
 	protected $lastLogTime = null;
 
 	protected $_sets = null;
 
-	function __construct (/* HuLOG_settings OR array*/ $sets = null){
-		if (is_array($sets)) $this->_sets = new HuLOGSettings((array)$sets);
+	public function __construct (HuLOGSettings|array $sets = null){
+		if (\is_array($sets)) $this->_sets = new HuLOGSettings((array)$sets);
 		elseif($sets) $this->_sets = $sets;
 		else $this->_sets = new HuLOGSettings();//Default
-		$this->lastLogText = new HuLOG_text ($this->settings->HuLOG_Text_settings);
+		$this->lastLogText = new HuLOGText ($this->settings->HuLOG_Text_settings);
 	}
 
 	private function log_to_file($file='ERR'){
@@ -140,7 +64,7 @@ class HuLOG extends SettingsGet {//HubbitusLOG :) log занял давно, д�
 				'level'	=> sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	//Отступ
 				'type'	=> $type,			//Type-prefix
 				'logText'	=> $log_string,	//Main text!
-				'extra'	=> ( ($extra instanceof OutExtraData) ? $extra : new OutExtraDataCommon($extra))	//Additional extra data
+				'extra'	=> ( ($extra instanceof IOutExtraData) ? $extra : new OutExtraDataCommon($extra))	//Additional extra data
 			)
 		);
 	}
@@ -159,7 +83,7 @@ class HuLOG extends SettingsGet {//HubbitusLOG :) log занял давно, д�
 			//От себя (HuLOG) пишем в лог
 			$to = HuLOGSettings::LOG_TO_BOTH;
 			$file = 'ERR';
-			$this->makeLogString('НЕ задан файл, куда логгить и как!', $file, 'HuLOG', null);
+			$this->makeLogString('Does not provided file for log and flavour!', $file, 'HuLOG', null);
 			$this->writeLogs($to, $file);
 		}
 

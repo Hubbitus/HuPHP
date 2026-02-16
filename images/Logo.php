@@ -13,6 +13,8 @@
 * @uses GDimage
 **/
 
+namespace Hubbitus\HuPHP\Images;
+
 class Logo extends GDimage{
 	public $DEBUG = false;
 	public $gp = null; //Gett Parameters

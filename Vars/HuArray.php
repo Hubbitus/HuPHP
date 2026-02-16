@@ -166,7 +166,7 @@ class HuArray extends Settings implements \Iterator {
 	* @param	string	$name
 	* @param	mixed	$value
 	**/
-	function &__set($name, $value){
+	public function &__set($name, $value): void {
 		/**
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233

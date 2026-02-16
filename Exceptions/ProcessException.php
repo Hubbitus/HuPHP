@@ -17,6 +17,6 @@ public $state = null;
 		$this->state = $pr;
 
 		// make sure everything is assigned properly
-		parent::__construct($message, $code);
+		parent::__construct((string)$message, $code);
 	}
 }

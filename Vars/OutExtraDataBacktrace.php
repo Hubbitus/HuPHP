@@ -1,12 +1,17 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Vars;
+
+use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
+
 /**
 * Debug and backtrace toolkit.
 * Class to provide convenient backtrace logging.
 *
 * @package Debug
-* @subpackage Bactrace
+* @subpackage Backtrace
 * @version 1.0
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
@@ -15,7 +20,7 @@ declare(strict_types=1);
 * @uses commonOutExtraData
 **/
 
-class OutExtraDataBacktrace extends OutExtraDataCommon{
+class OutExtraDataBacktrace extends OutExtraDataCommon {
 	public function strToConsole($format = nul){
 		return $this->_var->printout(true, null, OS::OUT_TYPE_CONSOLE);
 	}

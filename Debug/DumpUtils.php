@@ -11,6 +11,8 @@ declare(strict_types=1);
 * @created 2008-06-26 03:58
 **/
 
+namespace Hubbitus\HuPHP\Debug;
+
 class DumpUtils {
 	/**
 	* Transform string, which is text-representation of requested var into more well formatted form.

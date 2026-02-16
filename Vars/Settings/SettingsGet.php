@@ -3,11 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars\Settings;
 
-/**
-* It's Before declaration of VariableRequiredException may produce cycle of includes...
-**/
-include_once('macroses/REQUIRED_VAR.php');
-include_once('macroses/REQUIRED_NOT_NULL.php');
+use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
 
 /**
 * Parent class for more useful using in parents who want be "customizable". Convenient nesting.

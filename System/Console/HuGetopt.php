@@ -15,8 +15,15 @@ declare(strict_types=1);
 * @uses VariableRequiredException
 **/
 
-include_once('macroses/REQUIRED_VAR.php');
-include_once('macroses/EMPTY_VAR.php');
+namespace Hubbitus\HuPHP\System\Console;
+
+use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
+use Hubbitus\HuPHP\Vars\Settings\Settings;
+use Hubbitus\HuPHP\Vars\HuArray;
+use Hubbitus\HuPHP\Vars\Settings\SettingsGet;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
 
 class HuGetoptArgumentRequiredException extends VariableRequiredException{}
 

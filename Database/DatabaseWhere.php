@@ -15,6 +15,8 @@ declare(strict_types=1);
 * @uses database_operators
 **/
 
+namespace Hubbitus\HuPHP\Database;
+
 class DatabaseWhere{
 	private $_whereArr = array();
 	private $_whereStr = '';

@@ -12,6 +12,10 @@ declare(strict_types=1);
 *
 * @uses HuError
 **/
+namespace Hubbitus\HuPHP\Database;
+
+use Hubbitus\HuPHP\Debug\HuError;
+
 class DatabaseError extends HuError{
 	/**
 	* Constructor.
@@ -20,61 +24,11 @@ class DatabaseError extends HuError{
 	*	presented settings!
 	**/
 	public function __construct(DatabaseError|array $sets){
-		if (is_array($sets) and !empty($sets)){ // MERGE, NOT overwrite!
-			$this->_sets = new DBError_settings();
+		if (\is_array($sets) and !empty($sets)){ // MERGE, NOT overwrite!
+			$this->_sets = new DatabaseErrorSettings();
 			$this->_sets->mergeSettingsArray($sets);
 		}
 		elseif($sets) $this->_sets = $sets;
-		else $this->_sets = new DBError_settings();// default
+		else $this->_sets = new DatabaseErrorSettings();// default
 	}
-}
-
-class DBError_settings extends HuErrorSettings{
-	//Defaults
-	protected $__SETS = array(
-		//Aka-Constants
-		'TXT_queryFailed' 	=> 'SQL Query failed',
-		'TXT_cantConnect'	=> 'Could not connect to DB',
-		'TXT_noDBselected'	=> 'Can not change database',
-
-		/**
-		* @see HuError::updateDate()
-		*/
-		'AUTO_DATE'		=> true,
-		'DATE_FORMAT'		=> 'Y-m-d H:i:s: ',
-
-		/** Header for 'extra'-data, which may be present */
-		'EXTRA_HEADER'		=> 'Extra info',
-		// In format settings::getString(array)
-		// To out in Browser
-		'FORMAT_WEB'	=> array (
-			array('TXT_queryFailed', "\n<br \><u><b>", "</b></u>:\n<br \>", ''),
-			'server_message',
-			array('errNo', ' (', ')'),
-			array ('server_messageS', "<br \>\n<b>", '</b>'),
-			"\n<br><u>On query:</u> ",
-			array('Query', '<pre style="color: red">', '</pre>'),
-			array('bt', "<br \>\n")
-		),
-		// In CLI-mode
-		'FORMAT_CONSOLE'	=> array (
-			array('TXT_queryFailed', "\033[1m", "\033[0m:\n", ''),
-			'server_message',
-			array('errNo', '(', ')'),
-			array('server_messageS', "\n\033[31;1m", "\033[0m"),
-			"\n\033[4;1mOn query:\033[0m ",
-			array('Query', "\033[31m", "\033[0m"),
-			array('bt', "\n")
-		),
-		// Primarily for logs (files)
-		'FORMAT_FILE'	=> array (
-			array('TXT_queryFailed', '', ":\n"),
-			'server_message',
-			array('errNo', '(', ')'),
-			array('server_messageS', "\n", ""),
-			"\nOn query:",
-			array('Query', "=>", "<="),
-			array('bt', "\n")
-		),
-	);
 }

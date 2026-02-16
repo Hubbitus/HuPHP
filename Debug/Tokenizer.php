@@ -47,7 +47,13 @@ declare(strict_types=1);
 * @uses file_inmem
 **/
 
-include_once('macroses/REQUIRED_VAR.php');
+namespace Hubbitus\HuPHP\Debug;
+
+use Hubbitus\HuPHP\Debug\BacktraceNode;
+use Hubbitus\HuPHP\RegExp\RegExpPcre;
+use Hubbitus\HuPHP\Filesystem\FileInMemory;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
 
 	if (!defined('T_ML_COMMENT')) {
 		define('T_ML_COMMENT', T_COMMENT);

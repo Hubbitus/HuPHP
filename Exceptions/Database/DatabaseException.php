@@ -16,12 +16,12 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Exceptions\Database;
 
 use Hubbitus\HuPHP\Exceptions\BaseException;
-use Database;
+use Hubbitus\HuPHP\Database\IDatabase;
 
 class DatabaseException extends BaseException {
 	public $db;
 
-	public function __construct($message, Database &$db){
+	public function __construct($message, IDatabase &$db){
 		parent::__construct($message);
 		$this->db = $db;
 	}

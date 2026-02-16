@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Database;
+
+use Hubbitus\HuPHP\Vars\Settings\Settings;
+
 class DatabaseSettings extends Settings {
 	// Defaults
 	protected $__SETS = [

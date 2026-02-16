@@ -11,6 +11,8 @@ declare(strict_types=1);
 * @created ???
 **/
 
+namespace Hubbitus\HuPHP\Debug;
+
 class Gentime {
 	var $time_start;
 

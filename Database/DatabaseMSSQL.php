@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
 * Database abstraction layer.
 * Driver for MSSQL database server
@@ -12,10 +14,16 @@
 * @uses database
 **/
 
+namespace Hubbitus\HuPHP\Database;
+
+use Hubbitus\HuPHP\Debug\Backtrace;
+use Hubbitus\HuPHP\Exceptions\Database\DatabaseConnectErrorException;
+use Hubbitus\HuPHP\Exceptions\Database\DatabaseQueryFailedException;
+
 $__MSSQL_Error = ''; // Global variable. I don't known other way :(
-function myErrorHandler($errno, $errstr, $errfile, $errline /*, $errcontext */ ){
+function mssqlErrorHandler($errno, $errstr, $errFile, $errLine /*, $errContext */ ){
 	global $__MSSQL_Error;
-	if (stristr($errstr, 'mssql')){ //This hack only fo MSSQL errors
+	if (\stristr($errstr, 'mssql')){ //This hack only for MSSQL errors
 		$__MSSQL_Error .= $errstr;
 		/* Don't execute PHP internal error handler */
 		return true;
@@ -23,35 +31,32 @@ function myErrorHandler($errno, $errstr, $errfile, $errline /*, $errcontext */ )
 		else return false; // Default error-handler
 }
 
-class DatabaseSettingsMSSQL extends DatabaseSettings {
-	public const int INT_STR_LENGTH = 10; // STRING-length of int, to coding in MSSQL-"array"
-}
 
-class mssql_database extends Database {
+class DatabaseMSSQL extends Database {
 	public string $db_type = 'mssql';
 
 	public function db_connect(){
-		if (!is_resource($this->db_link)){//Establish connection
-			if (!($this->db_link = @call_user_func($this->db_type.'_'.($this->settings->persistent ? 'p' : '') .'connect', $this->settings->hostname, $this->settings->username, $this->settings->password))){
+		if (!\is_resource($this->db_link)){//Establish connection
+			if (!($this->db_link = @\call_user_func($this->db_type.'_'.($this->settings->persistent ? 'p' : '') .'connect', $this->settings->hostname, $this->settings->username, $this->settings->password))){
 			$this->Query = '[' . $this->db_type.'_'.($this->settings->persistent ? 'p' : '') .'connect' . ']';
 				if ($this->settings->DEBUG){
 				global $__MSSQL_Error;
 				$this->collectDebugInfo(
 					-1,
-					mssql_get_last_message(),
+					\mssql_get_last_message(),
 					$__MSSQL_Error,
 					debug_backtrace()
 				);
 				}
 
-			// It often called from constructor. So, object is not istantiated to future cal to it getError()
+			// It often called from constructor. So, object is not instantiated to future cal to it getError()
 			$cedbe = new DatabaseConnectErrorException($this->Error->settings->TXT_cantConnect, $this);
 			$cedbe->DBError =& $this->Error;
 			throw $cedbe;
 			}
 
-			mssql_min_error_severity(1);
-			mssql_min_message_severity(1);
+			\mssql_min_error_severity(1);
+			\mssql_min_message_severity(1);
 		}
 	}
 	public function query($query, $print_query = false, $last_id = false){
@@ -73,12 +78,12 @@ class mssql_database extends Database {
 			$__MSSQL_Error = '';
 		}
 
-		if (!($res=mssql_query($query.($last_id ? ' ; SELECT @@IDENTITY as last_id' : ''), $this->db_link))){
+		if (!($res=\mssql_query($query.($last_id ? ' ; SELECT @@IDENTITY as last_id' : ''), $this->db_link))){
 			if ($this->settings->DEBUG){
 				global $__MSSQL_Error;
 				$this->collectDebugInfo(
 					-1,
-					mssql_get_last_message(),
+					\mssql_get_last_message(),
 					$__MSSQL_Error,
 					debug_backtrace()
 				);
@@ -88,7 +93,7 @@ class mssql_database extends Database {
 
 		// In case INSERT statement, and if required - return Last_insert_id
 		if ($last_id){
-			list($res) = mssql_fetch_row($res);
+			list($res) = \mssql_fetch_row($res);
 		}
 
 		$this->result = $res;
@@ -97,14 +102,14 @@ class mssql_database extends Database {
 	}
 
 	public function query_limit($query, $from, $amount, $print_query = false){
-		// Replaceqoutes: ' and " by ''
+		// Replace quotes: ' and " by ''
 		$query = preg_replace('/[\'"]/', "''", $query);
 		$this->query("EXEC proclimit '$query', $from, $amount", $print_query);
-		// Errors handled before, if it occures.
-		// Empty recorset. See stored Procedure proclimit and its description
-		$this->sql_next_result($this->result);
+		// Errors handled before, if it occurs.
+		// Empty record set. See stored Procedure proclimit and its description
+		$this->sql_next_result();
 		$this->rowsTotal = current($this->sql_fetch_row());
-		$this->sql_next_result($this->result);
+		$this->sql_next_result();
 	}
 	public function ToBlob($str){
 		$str = @unpack("H*hex", $str);
@@ -112,7 +117,7 @@ class mssql_database extends Database {
 		return $str;
 	}
 	final public function sql_next_result(){
-		return mssql_next_result($this->result);
+		return \mssql_next_result($this->result);
 	}
 	public function sql_escape_string(&$string_to_escape){
 		$replaced_string = str_replace("'", "''", $string_to_escape);
@@ -163,7 +168,7 @@ class mssql_database extends Database {
 		*
 		* So, in this page, below, i found next fine workaraound (see comment and example of "trithaithus at tibiahumor dot net")
 		**/
-		$this->RES = mssql_fetch_object($this->result);
+		$this->RES = \mssql_fetch_object($this->result);
 
 		if ($className != 'stdClass'){//This is hack, and take overhead, do not made perfom without necessary.
 			$this->RES = unserialize(

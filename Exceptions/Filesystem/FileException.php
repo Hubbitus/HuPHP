@@ -20,8 +20,17 @@ class FileException extends BaseException {
 		parent::__construct($message);
 	}
 
+	/**
+	* Get the full path
+	* @return string
+	**/
+	public function getFullPath(): string {
+		return $this->fullPath;
+	}
+
 	// custom string representation of object
 	public function __toString(): string {
 		return __CLASS__ . ": [{$this->fullPath}]: {$this->message}\n";
 	}
 }
+

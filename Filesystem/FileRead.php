@@ -16,7 +16,10 @@ declare(strict_types=1);
 * @uses VariableStream
 **/
 
-include_once('macroses/REQUIRED_VAR.php');
+namespace Hubbitus\HuPHP\Filesystem;
+
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
 
 class FileRead extends FileBase {
 private $fd = null;
@@ -34,7 +37,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	* @return	integer	Count of written bytes
 	**/
 	public function writeContent($flags = null, $resource_context = null){
-		if (!$this->fd) $this->open('w', ( $flags & FILE_USE_INCLUDE_PATH ), $resource_context);
+		if (!$this->fd) $this->open('w', ($flags & \FILE_USE_INCLUDE_PATH), $resource_context);
 
 		/*
 		* To provide consistence API and do not fake incoming method parameters we must use streams.
@@ -43,13 +46,13 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 		* I not found standard way to map variable on stream, so, use VariableStream in conditional of global temp variable
 		*
 		* Another possible way, may be using 'php://memory' or 'php://temp' (http://mikenaberezny.com/2008/10/17/php-temporary-streams/),
-		* but in this case full variable data must be explicid copyed in this stream.
-		* VariableStream with variable reference give mor migick on my opinion.
+		* but in this case full variable data must be explicitly copied in this stream.
+		* VariableStream with variable reference give more magic on my opinion.
 		*/
 		$GLOBALS['__tmp_content_var_stream'] =& $this->content;
 		$this->checkOpenError(
 			// $this->rawFilename because may be file generally not exists!
-			(bool)( $count = @stream_copy_to_stream($this->fd, ($tfd = fopen('var://__tmp_content_var_stream'))) )
+			(bool)( $count = @stream_copy_to_stream($this->fd, ($tfd = \fopen('var://__tmp_content_var_stream'))) )
 		);
 
 		$this->_writePending = false;
@@ -81,9 +84,9 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	/**
 	* Get next line from stream.
 	*
-	* @param	integer $length. Optional - maximum length of string. If null - all string returned (by default).
-	* @return	string
-	* @Throws(VariableRequiredException)
+	* @param  integer $length. Optional - maximum length of string. If null - all string returned (by default).
+	* @return string
+	* @throws VariableRequiredException
 	**/
 	public function getline($length = null){
 		++$this->_line_no;
