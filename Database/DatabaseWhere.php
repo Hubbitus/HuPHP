@@ -17,6 +17,9 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Database;
 
+use function Hubbitus\HuPHP\Macroses\EMPTY_STR;
+use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
+
 class DatabaseWhere{
 	private $_whereArr = array();
 	private $_whereStr = '';

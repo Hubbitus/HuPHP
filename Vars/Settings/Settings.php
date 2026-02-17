@@ -93,11 +93,9 @@ class Settings extends HuClass {
 	*
 	* @param        string  $name
 	* @param        mixed   $value
-	* @return       &$this
 	**/
-	public function &__set($name, $value): static {
+	public function __set($name, $value): void {
 			$this->setSetting($name, $value);
-			return $this;
 	}
 	/**
 	* useful alias of {@see ::getProperty()} to provide easy access in style of $obj->PropertyName

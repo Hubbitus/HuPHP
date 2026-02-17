@@ -22,6 +22,7 @@ $macroFiles = [
     'macroses/INT_CHECK_RANGE.php',
     'macroses/ISSET_VAR.php',
     'macroses/IS_SET.php',
+    'macroses/NON_EMPTY_STR.php',
     'macroses/REQUIRED_NOT_NULL.php',
     'macroses/REQUIRED_VAR.php',
     'macroses/SWAP.php',

@@ -1,0 +1,78 @@
+<?php
+declare(strict_types=1);
+
+namespace Hubbitus\Tests\HuPHP\Vars\Settings;
+
+use Hubbitus\HuPHP\Vars\Settings\SettingsCheckStatic;
+use PHPUnit\Framework\TestCase;
+
+class SettingsCheckStaticTest extends TestCase
+{
+	public function testConstructor(): void
+	{
+		$possibles = ['name', 'age'];
+		$settings = new SettingsCheckStatic($possibles);
+		$this->assertInstanceOf(SettingsCheckStatic::class, $settings);
+	}
+
+	public function testClearRegularSettings(): void
+	{
+		$possibles = ['name', 'age', 'email'];
+		$settings = new SettingsCheckStatic($possibles);
+		$settings->setSetting('name', 'John');
+		$settings->setSetting('age', 30);
+		$settings->setSetting('email', 'john@example.com');
+
+		// Mark email as static
+		$settings->static_settings = ['email'];
+
+		$settings->clear();
+
+		$this->assertNull($settings->name);
+		$this->assertNull($settings->age);
+		// Email should remain unchanged
+		$this->assertEquals('john@example.com', $settings->email);
+	}
+
+	public function testGetRegularKeys(): void
+	{
+		$possibles = ['name', 'age', 'email'];
+		$settings = new SettingsCheckStatic($possibles);
+		$settings->setSetting('name', 'John');
+		$settings->setSetting('age', 30);
+		$settings->setSetting('email', 'john@example.com');
+
+		$settings->static_settings = ['email'];
+
+		$regularKeys = $settings->getRegularKeys();
+		$this->assertIsArray($regularKeys);
+		$this->assertContains('name', $regularKeys);
+		$this->assertContains('age', $regularKeys);
+		$this->assertNotContains('email', $regularKeys);
+	}
+
+	public function testGetRegularKeysEmpty(): void
+	{
+		$possibles = ['email'];
+		$settings = new SettingsCheckStatic($possibles);
+		$settings->setSetting('email', 'john@example.com');
+		$settings->static_settings = ['email'];
+
+		$regularKeys = $settings->getRegularKeys();
+		$this->assertIsArray($regularKeys);
+		$this->assertEmpty($regularKeys);
+	}
+
+	public function testClearWithNoStaticSettings(): void
+	{
+		$possibles = ['name', 'age'];
+		$settings = new SettingsCheckStatic($possibles);
+		$settings->setSetting('name', 'John');
+		$settings->setSetting('age', 30);
+
+		$settings->clear();
+
+		$this->assertNull($settings->name);
+		$this->assertNull($settings->age);
+	}
+}

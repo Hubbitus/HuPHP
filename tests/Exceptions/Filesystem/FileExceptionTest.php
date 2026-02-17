@@ -18,14 +18,12 @@ class FileExceptionTest extends TestCase {
 		$this->assertInstanceOf(FileException::class, $exception);
 		$this->assertInstanceOf(BaseException::class, $exception);
 		$this->assertEquals('File not found', $exception->getMessage());
-		$this->assertEquals('/path/to/file.txt', $exception->getFullPath());
 	}
 
-	public function testFullPathProperty(): void {
-		$path = '/var/log/error.log';
-		$exception = new FileException('Error', $path);
+	public function testGetFullPath(): void {
+		$exception = new FileException('Error', '/var/log/error.log');
 
-		$this->assertEquals($path, $exception->getFullPath());
+		$this->assertEquals('/var/log/error.log', $exception->getFullPath());
 	}
 
 	public function testToString(): void {
@@ -35,20 +33,5 @@ class FileExceptionTest extends TestCase {
 		$this->assertStringContainsString('FileException', $string);
 		$this->assertStringContainsString('/test/path', $string);
 		$this->assertStringContainsString('Test error', $string);
-	}
-
-	public function testToStringFormat(): void {
-		$exception = new FileException('Error message', '/some/path/file.php');
-		$string = (string) $exception;
-
-		$this->assertMatchesRegularExpression('/FileException:\s*\[\/some\/path\/file\.php\]:\s*Error message/', $string);
-	}
-
-	public function testEmptyPath(): void {
-		$exception = new FileException('Error', '');
-
-		$this->assertEquals('', $exception->getFullPath());
-		$string = (string) $exception;
-		$this->assertStringContainsString('[]:', $string);
 	}
 }

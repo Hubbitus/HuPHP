@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars\Settings;
 
+use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use function Hubbitus\HuPHP\Macroses\EMPTY_STR;
 
 /**
 * Extended variant of {@see Settings}, with check possible options.
@@ -35,6 +37,7 @@ class SettingsCheck extends Settings {
 	**/
 	public function &setSetting($name, $value): static {
 		parent::setSetting($this->checkNamePossible($name, __METHOD__), $value);
+		return $this;
 	}
 
 	/**
@@ -62,7 +65,8 @@ class SettingsCheck extends Settings {
 	* @inheritdoc
 	**/
 	public function setSettingsArray(array $setArr): void {
-		array_walk(array_keys(REQUIRED_VAR($setArr)), array($this, 'checkNamePossible'), __METHOD__);
+		$keys = array_keys(REQUIRED_VAR($setArr));
+		array_walk($keys, array($this, 'checkNamePossible'), __METHOD__);
 		parent::setSettingsArray($setArr);
 	}
 

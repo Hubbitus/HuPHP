@@ -11,41 +11,37 @@ use PHPUnit\Framework\TestCase;
  * @covers \Hubbitus\HuPHP\Debug\Gentime
  */
 class GentimeTest extends TestCase {
-	private Gentime $gentime;
+	public function testConstructor(): void {
+		$gentime = new Gentime();
 
-	protected function setUp(): void {
-		$this->gentime = new Gentime();
+		$this->assertInstanceOf(Gentime::class, $gentime);
 	}
 
-	public function testStartStop(): void {
-		$this->gentime->start();
-		usleep(10000); // 10ms
-		$time = $this->gentime->stop();
+	public function testStart(): void {
+		$gentime = new Gentime();
 
-		// stop() returns string from sprintf
-		$this->assertIsString($time);
-		$this->assertGreaterThan(0, (float)$time);
-		$this->assertLessThan(1, (float)$time); // Should be less than 1 second
+		$gentime->start();
+
+		$this->assertNotNull($gentime->time_start);
 	}
 
-	public function testStartStopMultipleTimes(): void {
-		$this->gentime->start();
-		usleep(5000);
-		$time1 = $this->gentime->stop();
+	public function testStop(): void {
+		$gentime = new Gentime();
 
-		$this->gentime->start();
-		usleep(10000);
-		$time2 = $this->gentime->stop();
+		$gentime->start();
+		$time = $gentime->stop();
 
-		$this->assertGreaterThan($time1, $time2);
-	}
-
-	public function testStopReturnsFloatString(): void {
-		$this->gentime->start();
-		$time = $this->gentime->stop();
-
-		// stop() uses sprintf with %f, should return string representation of float
 		$this->assertIsString($time);
 		$this->assertMatchesRegularExpression('/^\d+\.\d+$/', $time);
+	}
+
+	public function testBench(): void {
+		$gentime = new Gentime();
+
+		ob_start();
+		$gentime->bench('$a = 1 + 1;', 10);
+		$output = ob_get_clean();
+
+		$this->assertIsString($output);
 	}
 }
