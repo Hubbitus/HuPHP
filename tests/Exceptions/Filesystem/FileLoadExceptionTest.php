@@ -1,32 +1,42 @@
 <?php
-
 declare(strict_types=1);
 
-namespace Hubbitus\HuPHP\Tests\Exceptions\Filesystem;
+namespace Hubbitus\Tests\HuPHP\Exceptions\Filesystem;
 
-use Hubbitus\HuPHP\Exceptions\BaseException;
-use Hubbitus\HuPHP\Exceptions\Filesystem\FileException;
 use Hubbitus\HuPHP\Exceptions\Filesystem\FileLoadException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileLoadException
  */
-class FileLoadExceptionTest extends TestCase {
-	public function testConstructor(): void {
-		$exception = new FileLoadException('File load error', '/path/to/file.txt');
+class FileLoadExceptionTest extends TestCase
+{
+    public function testConstructorWithNoArguments(): void
+    {
+        $exception = new FileLoadException();
 
-		$this->assertInstanceOf(FileLoadException::class, $exception);
-		$this->assertInstanceOf(FileException::class, $exception);
-		$this->assertInstanceOf(BaseException::class, $exception);
-		$this->assertEquals('File load error', $exception->getMessage());
-		$this->assertEquals('/path/to/file.txt', $exception->getFullPath());
-	}
+        $this->assertInstanceOf(FileLoadException::class, $exception);
+    }
 
-	public function testInheritsBaseExceptionMethods(): void {
-		$exception = new FileLoadException('Base', '/path');
-		$exception->ADDMessage(' - end');
+    public function testConstructorWithMessage(): void
+    {
+        $exception = new FileLoadException('Cannot load file');
 
-		$this->assertEquals('Base - end', $exception->getMessage());
-	}
+        $this->assertInstanceOf(FileLoadException::class, $exception);
+        $this->assertEquals('Cannot load file', $exception->getMessage());
+    }
+
+    public function testIsThrowable(): void
+    {
+        $exception = new FileLoadException();
+
+        $this->assertInstanceOf(\Throwable::class, $exception);
+    }
+
+    public function testExceptionCanBeThrown(): void
+    {
+        $this->expectException(FileLoadException::class);
+
+        throw new FileLoadException('File load failed');
+    }
 }

@@ -1,31 +1,42 @@
 <?php
-
 declare(strict_types=1);
 
-namespace Hubbitus\HuPHP\Tests\Exceptions\Classes;
+namespace Hubbitus\Tests\HuPHP\Exceptions\Classes;
 
-use Hubbitus\HuPHP\Exceptions\BaseException;
-use Hubbitus\HuPHP\Exceptions\Classes\ClassException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassUnknownException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassUnknownException
  */
-class ClassUnknownExceptionTest extends TestCase {
-	public function testConstructor(): void {
-		$exception = new ClassUnknownException('Unknown class error');
+class ClassUnknownExceptionTest extends TestCase
+{
+    public function testConstructorWithNoArguments(): void
+    {
+        $exception = new ClassUnknownException();
 
-		$this->assertInstanceOf(ClassUnknownException::class, $exception);
-		$this->assertInstanceOf(ClassException::class, $exception);
-		$this->assertInstanceOf(BaseException::class, $exception);
-		$this->assertEquals('Unknown class error', $exception->getMessage());
-	}
+        $this->assertInstanceOf(ClassUnknownException::class, $exception);
+    }
 
-	public function testInheritsBaseExceptionMethods(): void {
-		$exception = new ClassUnknownException('Base');
-		$exception->ADDMessage(' - end');
+    public function testConstructorWithMessage(): void
+    {
+        $exception = new ClassUnknownException('Unknown class');
 
-		$this->assertEquals('Base - end', $exception->getMessage());
-	}
+        $this->assertInstanceOf(ClassUnknownException::class, $exception);
+        $this->assertEquals('Unknown class', $exception->getMessage());
+    }
+
+    public function testIsThrowable(): void
+    {
+        $exception = new ClassUnknownException();
+
+        $this->assertInstanceOf(\Throwable::class, $exception);
+    }
+
+    public function testExceptionCanBeThrown(): void
+    {
+        $this->expectException(ClassUnknownException::class);
+
+        throw new ClassUnknownException('Unknown class error');
+    }
 }

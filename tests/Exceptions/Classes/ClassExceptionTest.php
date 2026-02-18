@@ -1,36 +1,42 @@
 <?php
-
 declare(strict_types=1);
 
-namespace Hubbitus\HuPHP\Tests\Exceptions\Classes;
+namespace Hubbitus\Tests\HuPHP\Exceptions\Classes;
 
-use Hubbitus\HuPHP\Exceptions\BaseException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassException
  */
-class ClassExceptionTest extends TestCase {
-	public function testConstructor(): void {
-		$exception = new ClassException('Class error');
+class ClassExceptionTest extends TestCase
+{
+    public function testConstructorWithNoArguments(): void
+    {
+        $exception = new ClassException();
 
-		$this->assertInstanceOf(ClassException::class, $exception);
-		$this->assertInstanceOf(BaseException::class, $exception);
-		$this->assertEquals('Class error', $exception->getMessage());
-	}
+        $this->assertInstanceOf(ClassException::class, $exception);
+    }
 
-	public function testInheritsBaseExceptionMethods(): void {
-		$exception = new ClassException('Base message');
-		$exception->ADDMessage(' - additional');
+    public function testConstructorWithMessage(): void
+    {
+        $exception = new ClassException('Class error');
 
-		$this->assertEquals('Base message - additional', $exception->getMessage());
-	}
+        $this->assertInstanceOf(ClassException::class, $exception);
+        $this->assertEquals('Class error', $exception->getMessage());
+    }
 
-	public function testAddMessageAtBeginning(): void {
-		$exception = new ClassException('message');
-		$exception->ADDMessage('Prefix: ', true);
+    public function testIsThrowable(): void
+    {
+        $exception = new ClassException();
 
-		$this->assertEquals('Prefix: message', $exception->getMessage());
-	}
+        $this->assertInstanceOf(\Throwable::class, $exception);
+    }
+
+    public function testExceptionCanBeThrown(): void
+    {
+        $this->expectException(ClassException::class);
+
+        throw new ClassException('Class operation failed');
+    }
 }

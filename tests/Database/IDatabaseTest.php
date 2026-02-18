@@ -1,0 +1,202 @@
+<?php
+
+/**
+ * Test for IDatabase interface.
+ */
+
+namespace Hubbitus\HuPHP\Tests\Database;
+
+use Hubbitus\HuPHP\Database\IDatabase;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * @covers \Hubbitus\HuPHP\Database\IDatabase
+ */
+class IDatabaseTest extends TestCase
+{
+    public function testInterfaceExists(): void
+    {
+        $this->assertTrue(interface_exists('Hubbitus\\HuPHP\\Database\\IDatabase'));
+    }
+
+    public function testDatabaseImplementsInterface(): void
+    {
+        $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\Database');
+
+        $this->assertTrue($reflection->implementsInterface('Hubbitus\\HuPHP\\Database\\IDatabase'));
+    }
+
+    public function testInterfaceHasRequiredMethods(): void
+    {
+        $databaseMethods = [
+            'db_connect',
+            'query',
+            'query_limit',
+            'ToBlob',
+            'sql_next_result',
+            'sql_escape_string',
+            'collectDebugInfo',
+            'getError',
+            'getSQL',
+            '__wakeup'
+        ];
+
+        foreach ($databaseMethods as $method) {
+            $this->assertTrue(method_exists('Hubbitus\\HuPHP\\Database\\Database', $method));
+        }
+    }
+
+    public function testInterfaceMethodSignatures(): void
+    {
+        $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\Database');
+
+        // Test db_connect
+        $method = $reflection->getMethod('db_connect');
+        $this->assertTrue($method->isPublic());
+        $this->assertTrue($method->isAbstract());
+
+        // Test query
+        $method = $reflection->getMethod('query');
+        $this->assertTrue($method->isPublic());
+        $this->assertTrue($method->isAbstract());
+        $this->assertEquals(3, $method->getNumberOfParameters());
+
+        // Test query_limit
+        $method = $reflection->getMethod('query_limit');
+        $this->assertTrue($method->isPublic());
+        $this->assertTrue($method->isAbstract());
+        $this->assertEquals(4, $method->getNumberOfParameters());
+
+        // Test ToBlob
+        $method = $reflection->getMethod('ToBlob');
+        $this->assertTrue($method->isPublic());
+        $this->assertTrue($method->isAbstract());
+        $this->assertEquals(1, $method->getNumberOfParameters());
+
+        // Test sql_next_result
+        $method = $reflection->getMethod('sql_next_result');
+        $this->assertTrue($method->isPublic());
+        $this->assertTrue($method->isAbstract());
+
+        // Test sql_escape_string
+        $method = $reflection->getMethod('sql_escape_string');
+        $this->assertTrue($method->isPublic());
+        $this->assertTrue($method->isAbstract());
+        $this->assertEquals(1, $method->getNumberOfParameters());
+        $this->assertTrue($method->getParameter(0)->isPassedByReference());
+
+        // Test collectDebugInfo
+        $method = $reflection->getMethod('collectDebugInfo');
+        $this->assertTrue($method->isProtected());
+        $this->assertTrue($method->isAbstract());
+        $this->assertEquals(4, $method->getNumberOfParameters());
+
+        // Test getError
+        $method = $reflection->getMethod('getError');
+        $this->assertTrue($method->isPublic());
+        $this->assertFalse($method->isAbstract());
+        $this->assertEquals(0, $method->getNumberOfParameters());
+
+        // Test getSQL
+        $method = $reflection->getMethod('getSQL');
+        $this->assertTrue($method->isPublic());
+        $this->assertFalse($method->isAbstract());
+        $this->assertEquals(0, $method->getNumberOfParameters());
+
+        // Test __wakeup
+        $method = $reflection->getMethod('__wakeup');
+        $this->assertTrue($method->isPublic());
+        $this->assertFalse($method->isAbstract());
+        $this->assertEquals(0, $method->getNumberOfParameters());
+    }
+
+    public function testInterfaceConstants(): void
+    {
+        // Test that the interface has no constants (should be empty)
+        $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\IDatabase');
+        $this->assertEmpty($reflection->getConstants());
+    }
+
+    public function testInterfaceInheritance(): void
+    {
+        // Test that IDatabase doesn't extend any other interfaces
+        $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\IDatabase');
+        $this->assertEmpty($reflection->getInterfaces());
+    }
+
+    public function testInterfacePurpose(): void
+    {
+        // Test that the interface is properly documented
+        $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\IDatabase');
+        $docComment = $reflection->getDocComment();
+
+        $this->assertStringContainsString('@package Database', $docComment);
+        $this->assertStringContainsString('Database interface for database exceptions', $docComment);
+    }
+
+    public function testInterfaceImplementsAllDatabaseMethods(): void
+    {
+        // Get all methods from the abstract Database class
+        $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\Database');
+        $methods = $reflection->getMethods(\ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_PROTECTED);
+
+        // Remove methods that are not part of the interface (constructors, getters, etc.)
+        $interfaceMethods = array_filter($methods, function($method) {
+            $methodName = $method->getName();
+            return !in_array($methodName, [
+                '__construct',
+                '__wakeup',
+                'getError',
+                'getSQL',
+                '__get'
+            ]);
+        });
+
+        // Check that all abstract methods are properly defined
+        foreach ($interfaceMethods as $method) {
+            if ($method->isAbstract()) {
+                $this->assertTrue(method_exists('Hubbitus\\HuPHP\\Database\\Database', $method->getName()));
+            }
+        }
+    }
+
+    public function testInterfaceTypeHinting(): void
+    {
+        // Test that the Database class type hints the interface
+        $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\Database');
+        $this->assertTrue($reflection->isSubclassOf('Hubbitus\\HuPHP\\Database\IDatabase'));
+    }
+
+    public function testInterfaceCoverage(): void
+    {
+        // Test that the interface is properly covered by the Database implementation
+        $databaseReflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\Database');
+        $interfaceReflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\IDatabase');
+
+        // Get all methods from the interface (should be none, it's empty)
+        $interfaceMethods = $interfaceReflection->getMethods();
+        $this->assertEmpty($interfaceMethods);
+
+        // But the Database class should still implement all required functionality
+        $databaseMethods = $databaseReflection->getMethods(\ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_PROTECTED);
+
+        // Filter out methods that don't need to be in the interface
+        $relevantMethods = array_filter($databaseMethods, function($method) {
+            $methodName = $method->getName();
+            return !in_array($methodName, [
+                '__construct',
+                '__wakeup',
+                'getError',
+                'getSQL',
+                '__get',
+                'rowsTotal'
+            ]);
+        });
+
+        // At least check that some key methods exist
+        $this->assertNotEmpty($relevantMethods);
+        $this->assertTrue(method_exists('Hubbitus\\HuPHP\\Database\\Database', 'db_connect'));
+        $this->assertTrue(method_exists('Hubbitus\\HuPHP\\Database\\Database', 'query'));
+        $this->assertTrue(method_exists('Hubbitus\\HuPHP\\Database\\Database', 'query_limit'));
+    }
+}

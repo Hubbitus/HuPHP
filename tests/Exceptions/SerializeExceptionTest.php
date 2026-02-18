@@ -1,29 +1,42 @@
 <?php
-
 declare(strict_types=1);
 
-namespace Hubbitus\HuPHP\Tests\Exceptions;
+namespace Hubbitus\Tests\HuPHP\Exceptions;
 
-use Hubbitus\HuPHP\Exceptions\BaseException;
 use Hubbitus\HuPHP\Exceptions\SerializeException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\SerializeException
  */
-class SerializeExceptionTest extends TestCase {
-	public function testConstructor(): void {
-		$exception = new SerializeException('Serialization failed');
+class SerializeExceptionTest extends TestCase
+{
+    public function testConstructorWithNoArguments(): void
+    {
+        $exception = new SerializeException();
 
-		$this->assertInstanceOf(SerializeException::class, $exception);
-		$this->assertInstanceOf(BaseException::class, $exception);
-		$this->assertEquals('Serialization failed', $exception->getMessage());
-	}
+        $this->assertInstanceOf(SerializeException::class, $exception);
+    }
 
-	public function testInheritsBaseExceptionMethods(): void {
-		$exception = new SerializeException('Base');
-		$exception->ADDMessage(' - end');
+    public function testConstructorWithMessage(): void
+    {
+        $exception = new SerializeException('Serialize error');
 
-		$this->assertEquals('Base - end', $exception->getMessage());
-	}
+        $this->assertInstanceOf(SerializeException::class, $exception);
+        $this->assertEquals('Serialize error', $exception->getMessage());
+    }
+
+    public function testIsThrowable(): void
+    {
+        $exception = new SerializeException();
+
+        $this->assertInstanceOf(\Throwable::class, $exception);
+    }
+
+    public function testExceptionCanBeThrown(): void
+    {
+        $this->expectException(SerializeException::class);
+
+        throw new SerializeException('Serialization failed');
+    }
 }

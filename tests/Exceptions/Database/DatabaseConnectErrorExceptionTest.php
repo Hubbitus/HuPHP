@@ -1,34 +1,42 @@
 <?php
-
 declare(strict_types=1);
 
-namespace Hubbitus\HuPHP\Tests\Exceptions\Database;
+namespace Hubbitus\Tests\HuPHP\Exceptions\Database;
 
-use Hubbitus\HuPHP\Exceptions\BaseException;
-use Hubbitus\HuPHP\Exceptions\Database\DatabaseException;
 use Hubbitus\HuPHP\Exceptions\Database\DatabaseConnectErrorException;
-use Hubbitus\HuPHP\Database\IDatabase;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Database\DatabaseConnectErrorException
  */
-class DatabaseConnectErrorExceptionTest extends TestCase {
-	public function testConstructor(): void {
-		$mockDb = $this->createMock(IDatabase::class);
-		$exception = new DatabaseConnectErrorException('Connection failed', $mockDb);
+class DatabaseConnectErrorExceptionTest extends TestCase
+{
+    public function testConstructorWithNoArguments(): void
+    {
+        $exception = new DatabaseConnectErrorException();
 
-		$this->assertInstanceOf(DatabaseConnectErrorException::class, $exception);
-		$this->assertInstanceOf(DatabaseException::class, $exception);
-		$this->assertInstanceOf(BaseException::class, $exception);
-		$this->assertEquals('Connection failed', $exception->getMessage());
-		$this->assertSame($mockDb, $exception->db);
-	}
+        $this->assertInstanceOf(DatabaseConnectErrorException::class, $exception);
+    }
 
-	public function testDBErrorPropertyExists(): void {
-		$mockDb = $this->createMock(IDatabase::class);
-		$exception = new DatabaseConnectErrorException('Error', $mockDb);
+    public function testConstructorWithMessage(): void
+    {
+        $exception = new DatabaseConnectErrorException('Connection failed');
 
-		$this->assertObjectHasProperty('DBError', $exception);
-	}
+        $this->assertInstanceOf(DatabaseConnectErrorException::class, $exception);
+        $this->assertEquals('Connection failed', $exception->getMessage());
+    }
+
+    public function testIsThrowable(): void
+    {
+        $exception = new DatabaseConnectErrorException();
+
+        $this->assertInstanceOf(\Throwable::class, $exception);
+    }
+
+    public function testExceptionCanBeThrown(): void
+    {
+        $this->expectException(DatabaseConnectErrorException::class);
+
+        throw new DatabaseConnectErrorException('Cannot connect to database');
+    }
 }

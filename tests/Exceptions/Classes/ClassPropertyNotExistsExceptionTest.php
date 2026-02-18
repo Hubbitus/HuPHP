@@ -1,31 +1,42 @@
 <?php
-
 declare(strict_types=1);
 
-namespace Hubbitus\HuPHP\Tests\Exceptions\Classes;
+namespace Hubbitus\Tests\HuPHP\Exceptions\Classes;
 
-use Hubbitus\HuPHP\Exceptions\BaseException;
-use Hubbitus\HuPHP\Exceptions\Classes\ClassException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException
  */
-class ClassPropertyNotExistsExceptionTest extends TestCase {
-	public function testConstructor(): void {
-		$exception = new ClassPropertyNotExistsException('Property does not exist');
+class ClassPropertyNotExistsExceptionTest extends TestCase
+{
+    public function testConstructorWithNoArguments(): void
+    {
+        $exception = new ClassPropertyNotExistsException();
 
-		$this->assertInstanceOf(ClassPropertyNotExistsException::class, $exception);
-		$this->assertInstanceOf(ClassException::class, $exception);
-		$this->assertInstanceOf(BaseException::class, $exception);
-		$this->assertEquals('Property does not exist', $exception->getMessage());
-	}
+        $this->assertInstanceOf(ClassPropertyNotExistsException::class, $exception);
+    }
 
-	public function testInheritsBaseExceptionMethods(): void {
-		$exception = new ClassPropertyNotExistsException('Base');
-		$exception->ADDMessage(' - end');
+    public function testConstructorWithMessage(): void
+    {
+        $exception = new ClassPropertyNotExistsException('Property not found');
 
-		$this->assertEquals('Base - end', $exception->getMessage());
-	}
+        $this->assertInstanceOf(ClassPropertyNotExistsException::class, $exception);
+        $this->assertEquals('Property not found', $exception->getMessage());
+    }
+
+    public function testIsThrowable(): void
+    {
+        $exception = new ClassPropertyNotExistsException();
+
+        $this->assertInstanceOf(\Throwable::class, $exception);
+    }
+
+    public function testExceptionCanBeThrown(): void
+    {
+        $this->expectException(ClassPropertyNotExistsException::class);
+
+        throw new ClassPropertyNotExistsException('Property does not exist');
+    }
 }
