@@ -6,8 +6,6 @@ namespace Hubbitus\HuPHP\Exceptions\Variables;
 use Hubbitus\HuPHP\Debug\Tokenizer;
 use Hubbitus\HuPHP\Debug\Backtrace;
 
-class VariableException extends \Hubbitus\HuPHP\Exceptions\BaseException {}
-
 /**
 * @TODO Rewrite to use internal Exception backtrace
 **/
@@ -17,11 +15,11 @@ class VariableRequiredException extends VariableException {
 
 	private $tok_ = null;
 
-	public function __construct(Backtrace $bt, $varname = null, ?string $message = null, int $code = 0) {
+	public function __construct(?Backtrace $bt = null, $varname = null, ?string $message = null, int $code = 0) {
 		$this->bt = $bt;
 		$this->var= $varname;
 
-		parent::__construct($message, $code);
+		parent::__construct($message ?? '', $code);
 	}
 	/**
 	* Return varname

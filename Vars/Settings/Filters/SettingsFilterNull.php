@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
 * Null - filter. Return value "AS IS".
 *
@@ -10,6 +11,10 @@
 * @created 2010-11-18 13:43
 **/
 
+namespace Hubbitus\HuPHP\Vars\Settings\Filters;
+
+use Hubbitus\HuPHP\Vars\Settings\SettingsFilterBase;
+
 /**
 * Null - filter. Return value "AS IS".
 **/
@@ -17,10 +22,10 @@ class SettingsFilterNull extends SettingsFilterBase{
 	/**
 	* Only one argument required.
 	**/
-	public function __construct($propName){
-	parent::__construct($propName, null);
+	public function __construct(string $propName){
+		parent::__construct($propName, null);
 	}
-	public function apply(&$name, &$value){
-	return null;
+	public function apply(&$name, &$value): mixed{
+		return null;
 	}
 }

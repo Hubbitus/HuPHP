@@ -15,6 +15,8 @@ declare(strict_types=1);
 * @created ?2009-09-29 13:55 ver 1.0 to 1.1
 **/
 
+namespace Hubbitus\HuPHP\Vars\Settings;
+
 /**
 * Entity of "filter". In most cases only calling $callback on provided pair references $name/$value in method apply().
 * But it is quite powerful. Children of this basic class may provide any service such as: non-deterministic
@@ -22,12 +24,12 @@ declare(strict_types=1);
 *	on any global environment etc...
 **/
 class SettingsFilterBase {
-public $propName;
-private $callback_;
+	public $propName;
+	private $callback_;
 
-	public function __construct($propName, $callback){
-	$this->propName = $propName;
-	$this->callback_ = $callback;
+	public function __construct(string $propName, $callback){
+		$this->propName = $propName;
+		$this->callback_ = $callback;
 	}
 	/**
 	* In simplest variant - just direct apply provided callback.
@@ -39,11 +41,11 @@ private $callback_;
 	* @param	&mixed	$value	Reference to new value of option
 	* @return	mixed	Returns what user callback return.
 	**/
-	public function apply(&$name, &$value){
+	public function apply(&$name, &$value): mixed {
 	/*
 	* call_user_func_array to pass reference, what is not allowed in call_user_func.
 	* Solution found in man, see Example1 http://ru2.php.net/call_user_func
 	**/
-	return call_user_func_array( $this->callback_, array(&$name, &$value) );
+		return call_user_func_array( $this->callback_, array(&$name, &$value) );
 	}
 }

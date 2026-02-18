@@ -44,7 +44,7 @@ class ProcessState {
 	}
 
 	public function getError(): string {
-		return trim($this->error);
+		return trim($this->error ?? '');
 	}
 
 	public function describe(): mixed {
@@ -55,7 +55,7 @@ class ProcessState {
 				'error'		=> $this->getError(),
 				'exit_code'	=> $this->exit_code,
 				'cwd'		=> $this->getCwd(),
-				'env'		=> trim(Dump::log($this->getEnv())),
+				'env'		=> $this->getEnv(),
 				'nonBlockingMode'	=> $this->nonBlockingMode,
 				'nonBlockTimeout'	=> $this->nonBlockTimeout
 			]

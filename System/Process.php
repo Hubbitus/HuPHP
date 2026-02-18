@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\System;
 
+use Hubbitus\HuPHP\Exceptions\ProcessException;
+
 /**
 * Manipulate processes on *NIX-like systems.
 *
@@ -20,7 +22,7 @@ class Process {
 	const STDOUT = 1;
 	const STDERR = 2;
 
-	private $descriptorspec = array(
+	private $descriptorSpec = array(
 		0 => array('pipe', 'r'),
 		1 => array('pipe', 'w'),
 		2 => array('pipe', 'w')
@@ -42,7 +44,7 @@ class Process {
 		$this->state = $state;
 	}
 	public function open(){
-		$this->resource = proc_open($this->state->CMD, $this->descriptorspec, $this->pipes, $this->state->getCwd(), $this->state->getEnv());
+		$this->resource = proc_open($this->state->CMD, $this->descriptorSpec, $this->pipes, $this->state->getCwd(), $this->state->getEnv());
 
 		if (!is_resource($this->resource)){
 			throw new ProcessException ('Can\'t open process!'.$this->state->describe(), 0, $this->getState());
@@ -61,7 +63,9 @@ class Process {
 	public function writeIn($inStr = false, $noWait = false){
 		// By default saved data write
 		if ($inStr) $this->state->writeData = $inStr;
-		fwrite($this->pipes[self::STDIN], $this->state->writeData);
+		if ($this->state->writeData !== null) {
+			fwrite($this->pipes[self::STDIN], (string)$this->state->writeData);
+		}
 		fflush($this->pipes[self::STDIN]);
 		if (! $this->state->nonBlockingMode) fclose($this->pipes[self::STDIN]);
 		elseif ($this->state->nonBlockingMode and ! $noWait) usleep ($this->state->nonBlockTimeout);
@@ -103,9 +107,9 @@ class Process {
 			$state = $command;
 		}
 
-		$prcs = new Process($state);
-		$prcs->writeIn();
-		return $prcs->execute();
+		$process = new Process($state);
+		$process->writeIn();
+		return $process->execute();
 	}
 /*
 function __destruct(){
@@ -119,29 +123,29 @@ function __destruct(){
 EXAMPLES
 try{
 //Standalone Usage
-$prcs = new Process('enca');
-$prcs->writeIn(file_get_contents('t1'));
-$prcs->readOut();
-$prcs->closeAll();
-c_dump($prcs->getResult());
+$process = new Process('enca');
+$process->writeIn(file_get_contents('t1'));
+$process->readOut();
+$process->closeAll();
+c_dump($process->getResult());
 //\standalone
 
 //Non Blocking mode of descriptors. Allow execute more than one command!
-$prcs = new Process('bash');
-$prcs->setNonBlockingMode(true, 50000);
-$prcs->writeIn("ls -1\n");
-$prcs->readErr(); c_dump($prcs->getError());
-$prcs->readOut(); c_dump($prcs->getResult());
+$process = new Process('bash');
+$process->setNonBlockingMode(true, 50000);
+$process->writeIn("ls -1\n");
+$process->readErr(); c_dump($process->getError());
+$process->readOut(); c_dump($process->getResult());
 
-$prcs->writeIn("date\n");
-$prcs->readErr(); c_dump($prcs->getError());
-$prcs->readOut(); c_dump($prcs->getResult());
-$prcs->closeAll();
+$process->writeIn("date\n");
+$process->readErr(); c_dump($process->getError());
+$process->readOut(); c_dump($process->getResult());
+$process->closeAll();
 //\non blocking
 
 //Simple usage
-$prcs = new Process('df -h');
-echo $prcs->execute();
+$process = new Process('df -h');
+echo $process->execute();
 //\simple
 
 //Static call

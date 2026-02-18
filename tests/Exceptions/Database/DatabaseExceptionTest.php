@@ -50,7 +50,7 @@ class DatabaseExceptionTest extends TestCase
     public function testDatabaseExceptionWithPrevious(): void
     {
         $previous = new \Exception('Previous error');
-        $exception = new DatabaseException('Database error', 0, $previous);
+        $exception = new DatabaseException('Database error', 0, null, $previous);
         $this->assertSame($previous, $exception->getPrevious());
     }
 
@@ -221,8 +221,8 @@ class DatabaseExceptionTest extends TestCase
     public function testDatabaseExceptionChain(): void
     {
         $exception1 = new DatabaseException('First error');
-        $exception2 = new DatabaseException('Second error', 0, $exception1);
-        
+        $exception2 = new DatabaseException('Second error', 0, null, $exception1);
+
         $this->assertSame($exception1, $exception2->getPrevious());
     }
 
@@ -232,7 +232,7 @@ class DatabaseExceptionTest extends TestCase
             try {
                 throw new DatabaseException('Inner error');
             } catch (DatabaseException $e) {
-                throw new DatabaseException('Outer error', 0, $e);
+                throw new DatabaseException('Outer error', 0, null, $e);
             }
         } catch (DatabaseException $e) {
             $this->assertInstanceOf(DatabaseException::class, $e);

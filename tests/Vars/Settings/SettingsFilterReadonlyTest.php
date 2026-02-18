@@ -4,16 +4,17 @@ declare(strict_types=1);
 namespace Hubbitus\Tests\HuPHP\Vars\Settings;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException;
+use Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterReadonly;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \settings_filter_readOnly
+ * @covers \Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterReadonly
  */
 class SettingsFilterReadonlyTest extends TestCase
 {
     public function testConstructorStoresPropName(): void
     {
-        $filter = new settings_filter_readOnly('testProp');
+        $filter = new SettingsFilterReadonly('testProp');
 
         $this->assertEquals('testProp', $filter->propName);
     }
@@ -22,7 +23,7 @@ class SettingsFilterReadonlyTest extends TestCase
     {
         $this->expectException(VariableReadOnlyException::class);
 
-        $filter = new settings_filter_readOnly('testProp');
+        $filter = new SettingsFilterReadonly('testProp');
 
         $name = 'testProp';
         $value = 'any_value';
@@ -34,7 +35,7 @@ class SettingsFilterReadonlyTest extends TestCase
     {
         $this->expectException(VariableReadOnlyException::class);
 
-        $filter = new settings_filter_readOnly('testProp');
+        $filter = new SettingsFilterReadonly('testProp');
 
         $name = 'testProp';
         $value = 'important_value';
@@ -52,7 +53,7 @@ class SettingsFilterReadonlyTest extends TestCase
     {
         $this->expectException(VariableReadOnlyException::class);
 
-        $filter = new settings_filter_readOnly('testProp');
+        $filter = new SettingsFilterReadonly('testProp');
 
         $name = 'testProp';
         $value = 'any_value';
@@ -70,7 +71,7 @@ class SettingsFilterReadonlyTest extends TestCase
     {
         $this->expectException(VariableReadOnlyException::class);
 
-        $filter = new settings_filter_readOnly('testProp');
+        $filter = new SettingsFilterReadonly('testProp');
 
         $name = 'testProp';
         $value = null;
@@ -82,7 +83,7 @@ class SettingsFilterReadonlyTest extends TestCase
     {
         $this->expectException(VariableReadOnlyException::class);
 
-        $filter = new settings_filter_readOnly('testProp');
+        $filter = new SettingsFilterReadonly('testProp');
 
         $name = 'testProp';
         $value = ['key' => 'value'];
@@ -94,7 +95,7 @@ class SettingsFilterReadonlyTest extends TestCase
     {
         $this->expectException(VariableReadOnlyException::class);
 
-        $filter = new settings_filter_readOnly('specificProp');
+        $filter = new SettingsFilterReadonly('specificProp');
 
         $name = 'specificProp';
         $value = 'value1';

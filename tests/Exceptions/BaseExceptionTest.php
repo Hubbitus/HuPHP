@@ -216,7 +216,7 @@ class BaseExceptionTest extends TestCase
     public function testAddMessageWithBooleanFalse(): void
     {
         $exception = new BaseException('Test');
-        $exception->ADDMessage(false ? ' Yes' : ' No', true);
+        $exception->ADDMessage('No ', true);
         $this->assertEquals('No Test', $exception->getMessage());
     }
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
 * Ignore - filter. Ignore all value and always return null.
 *
@@ -10,15 +11,19 @@
 * @created 2010-11-18 13:43
 **/
 
+namespace Hubbitus\HuPHP\Vars\Settings\Filters;
+
+use Hubbitus\HuPHP\Vars\Settings\SettingsFilterBase;
+
 /**
 * Ignore - filter. Ignore all value and always return null.
 **/
 class SettingsFilterIgnore extends SettingsFilterBase{
-	public function __construct($propName){
-	parent::__construct($propName, null);
+	public function __construct(string $propName){
+		parent::__construct($propName, null);
 	}
-	public function apply(&$name, &$value){
-	$name = null;
-	return null;
+	public function apply(&$name, &$value): mixed{
+		$name = null;
+		return null;
 	}
 }

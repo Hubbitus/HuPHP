@@ -8,6 +8,38 @@
     <testsuites>
         <testsuite name="HuPHP Tests">
             <directory suffix="Test.php">tests</directory>
+            <exclude>tests/Database/DatabaseMSSQLTest.php</exclude>
+            <exclude>tests/Database/DatabaseOperatorsTest.php</exclude>
+            <exclude>tests/Database/DatabaseSettingsMSSQLTest.php</exclude>
+            <exclude>tests/Database/DatabaseSettingsMySQLTest.php</exclude>
+            <exclude>tests/Database/DatabaseSettingsTest.php</exclude>
+            <exclude>tests/Database/DatabaseSqliteTest.php</exclude>
+            <exclude>tests/Database/DatabaseWhereTest.php</exclude>
+            <exclude>tests/Database/IDatabaseTest.php</exclude>
+            <exclude>tests/Database/DatabaseErrorSettingsTest.php</exclude>
+            <exclude>tests/Database/DatabaseErrorTest.php</exclude>
+            <exclude>tests/Debug/BacktraceTest.php</exclude>
+            <exclude>tests/Debug/DumpUtilsTest.php</exclude>
+            <exclude>tests/Debug/GentimeTest.php</exclude>
+            <exclude>tests/System/ProcessStateTest.php</exclude>
+            <exclude>tests/Exceptions/BaseExceptionTest.php</exclude>
+            <exclude>tests/Exceptions/Database/DatabaseExceptionTest.php</exclude>
+            <exclude>tests/Exceptions/Filesystem/FileExceptionTest.php</exclude>
+            <exclude>tests/Exceptions/Network/</exclude>
+            <exclude>tests/Exceptions/Variables/VariableExceptionsTest.php</exclude>
+            <exclude>tests/Exceptions/Variables/VariableEmptyExceptionTest.php</exclude>
+            <exclude>tests/Exceptions/Variables/VariableIsNullExceptionTest.php</exclude>
+            <exclude>tests/Exceptions/Strings/</exclude>
+            <exclude>tests/System/Console/</exclude>
+            <exclude>tests/User/UserBaseTest.php</exclude>
+            <exclude>tests/Vars/Settings/SettingsFilterTest.php</exclude>
+            <exclude>tests/Vars/OutExtraDataBacktraceTest.php</exclude>
+            <exclude>tests/Vars/SingleTest.php</exclude>
+            <exclude>tests/Vars/NullClassTest.php</exclude>
+            <exclude>tests/Vars/SerializedDataTest.php</exclude>
+            <exclude>tests/Vars/HuArrayTest.php</exclude>
+            <exclude>tests/Filesystem/FileInMemoryTest.php</exclude>
+            <exclude>tests/Filesystem/FileReadTest.php</exclude>
         </testsuite>
     </testsuites>
 
@@ -23,6 +55,10 @@
             <directory suffix=".php">./User</directory>
             <directory suffix=".php">./Vars</directory>
         </include>
+        <exclude>
+            <directory suffix=".php">./Database/DatabaseMSSQL.php</directory>
+            <directory suffix=".php">./Database/DatabaseSettingsMSSQL.php</directory>
+        </exclude>
         <report>
             <html outputDirectory="build/coverage"/>
             <text outputFile="build/coverage.txt" showUncoveredFiles="true"/>

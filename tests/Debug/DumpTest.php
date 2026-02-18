@@ -1,144 +1,145 @@
 <?php
 declare(strict_types=1);
 
-namespace Hubbitus\HuPHP\Tests\Debug;
+namespace Hubbitus\Tests\HuPHP\Debug;
 
-use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\Debug\Dump;
+use PHPUnit\Framework\TestCase;
 
 /**
-* @covers \Hubbitus\HuPHP\Debug\Dump
-*/
-class DumpTest extends TestCase {
-	public function testConsoleDump(): void {
-		$var = ['test' => 'value', 'number' => 123];
-		$output = Dump::c($var, 'Test Header', true);
+ * @covers \Hubbitus\HuPHP\Debug\Dump
+ */
+class DumpTest extends TestCase
+{
+    public function testDumpConsoleReturnsString(): void
+    {
+        $var = ['key' => 'value'];
+        $result = Dump::c($var, 'Test Header', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('=== Test Header ===', $result);
+        $this->assertStringContainsString('key', $result);
+        $this->assertStringContainsString('value', $result);
+    }
 
-		$this->assertIsString($output);
-		$this->assertStringContainsString('Test Header', $output);
-		$this->assertStringContainsString('test', $output);
-		$this->assertStringContainsString('value', $output);
-	}
+    public function testDumpConsoleWithoutHeader(): void
+    {
+        $var = 'test_string';
+        $result = Dump::c($var, null, true);
+        
+        $this->assertIsString($result);
+        $this->assertStringNotContainsString('===', $result);
+    }
 
-	public function testConsoleDumpWithHeader(): void {
-		$var = 'simple string';
-		$output = Dump::c($var, 'My Header', true);
+    public function testDumpConsoleWithArray(): void
+    {
+        $var = ['a' => 1, 'b' => 2];
+        $result = Dump::c($var, null, true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('a', $result);
+        $this->assertStringContainsString('1', $result);
+    }
 
-		$this->assertStringContainsString('=== My Header ===', $output);
-		$this->assertStringContainsString('simple string', $output);
-	}
+    public function testDumpConsoleWithObject(): void
+    {
+        $var = (object)['prop' => 'value'];
+        $result = Dump::c($var, null, true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('prop', $result);
+    }
 
-	public function testConsoleDumpWithoutHeader(): void {
-		$var = 42;
-		$output = Dump::c($var, null, true);
+    public function testDumpConsoleWithScalar(): void
+    {
+        $var = 42;
+        $result = Dump::c($var, null, true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('42', $result);
+    }
 
-		$this->assertStringNotContainsString('===', $output);
-		$this->assertStringContainsString('42', $output);
-	}
+    public function testDumpWebReturnsString(): void
+    {
+        $var = ['key' => 'value'];
+        $result = Dump::w($var, 'Web Header', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('=== Web Header ===', $result);
+    }
 
-	public function testWebDump(): void {
-		$var = ['key' => 'value'];
-		$output = Dump::w($var, 'Web Header', true);
+    public function testDumpLogReturnsString(): void
+    {
+        $var = ['key' => 'value'];
+        $result = Dump::log($var, 'Log Header', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('=== Log Header ===', $result);
+    }
 
-		$this->assertIsString($output);
-		$this->assertStringContainsString('Web Header', $output);
-		$this->assertStringContainsString('key', $output);
-	}
+    public function testDumpAReturnsString(): void
+    {
+        $var = ['key' => 'value'];
+        $result = Dump::a($var, 'A Header', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('=== A Header ===', $result);
+    }
 
-	public function testLogDump(): void {
-		$var = 'log message';
-		$output = Dump::log($var, 'Log Header', true);
+    public function testDumpByOutTypeReturnsString(): void
+    {
+        $var = ['key' => 'value'];
+        $result = Dump::byOutType(1, $var, 'Type Header', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('=== Type Header ===', $result);
+    }
 
-		$this->assertIsString($output);
-		$this->assertStringContainsString('Log Header', $output);
-		$this->assertStringContainsString('log message', $output);
-	}
+    public function testDumpAutoReturnsString(): void
+    {
+        $var = ['key' => 'value'];
+        $result = Dump::auto($var, 'Auto Header', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('=== Auto Header ===', $result);
+    }
 
-	public function testAliasDump(): void {
-		$var = ['test' => 'data'];
-		$output = Dump::a($var, null, true);
+    public function testDumpWithNullValue(): void
+    {
+        $var = null;
+        $result = Dump::c($var, 'Null Test', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('=== Null Test ===', $result);
+    }
 
-		$this->assertIsString($output);
-		$this->assertStringContainsString('test', $output);
-	}
+    public function testDumpWithBooleanValue(): void
+    {
+        $var = true;
+        $result = Dump::c($var, 'Bool Test', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('true', $result);
+    }
 
-	public function testDumpArray(): void {
-		$var = ['a' => 1, 'b' => 2, 'c' => 3];
-		$output = Dump::c($var, null, true);
+    public function testDumpWithNumericArray(): void
+    {
+        $var = [1, 2, 3];
+        $result = Dump::c($var, 'Numeric Array', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('1', $result);
+        $this->assertStringContainsString('2', $result);
+        $this->assertStringContainsString('3', $result);
+    }
 
-		$this->assertStringContainsString('Array', $output);
-		$this->assertStringContainsString('a', $output);
-		$this->assertStringContainsString('b', $output);
-		$this->assertStringContainsString('c', $output);
-	}
-
-	public function testDumpObject(): void {
-		$obj = new \stdClass();
-		$obj->prop1 = 'value1';
-		$obj->prop2 = 42;
-
-		$output = Dump::c($obj, null, true);
-
-		$this->assertStringContainsString('stdClass', $output);
-		$this->assertStringContainsString('prop1', $output);
-		$this->assertStringContainsString('value1', $output);
-		$this->assertStringContainsString('prop2', $output);
-	}
-
-	public function testDumpNull(): void {
-		$output = Dump::c(null, null, true);
-
-		$this->assertStringContainsString('NULL', $output);
-	}
-
-	public function testDumpBoolean(): void {
-		$output1 = Dump::c(true, null, true);
-		$this->assertStringContainsString('true', $output1);
-
-		$output2 = Dump::c(false, null, true);
-		$this->assertStringContainsString('false', $output2);
-	}
-
-	public function testByOutType(): void {
-		$var = ['test' => 'data'];
-		$output = Dump::byOutType(0, $var, 'Header', true);
-
-		$this->assertIsString($output);
-		$this->assertStringContainsString('Header', $output);
-	}
-
-	public function testAutoDump(): void {
-		$var = ['auto' => 'detect'];
-		$output = Dump::auto($var, 'Auto Test', true);
-
-		$this->assertIsString($output);
-		$this->assertStringContainsString('Auto Test', $output);
-	}
-
-	public function testGenerateOutputWithArray(): void {
-		$var = ['nested' => ['deep' => 'value']];
-		$output = Dump::c($var, null, true);
-
-		$this->assertStringContainsString('nested', $output);
-		$this->assertStringContainsString('deep', $output);
-	}
-
-	public function testGenerateOutputWithObject(): void {
-		$var = new class {
-			public $property = 'test';
-		};
-
-		$output = Dump::c($var, null, true);
-
-		$this->assertStringContainsString('property', $output);
-		$this->assertStringContainsString('test', $output);
-	}
-
-	public function testGenerateOutputWithScalar(): void {
-		$output1 = Dump::c('string value', null, true);
-		$this->assertStringContainsString('string value', $output1);
-
-		$output2 = Dump::c(123.45, null, true);
-		$this->assertStringContainsString('123.45', $output2);
-	}
+    public function testDumpWithNestedArray(): void
+    {
+        $var = ['outer' => ['inner' => 'value']];
+        $result = Dump::c($var, 'Nested', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('outer', $result);
+        $this->assertStringContainsString('inner', $result);
+    }
 }

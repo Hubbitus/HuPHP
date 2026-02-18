@@ -240,4 +240,46 @@ class HuError extends Settings implements IOutExtraData {
 		}
 		else return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]);
 	}
+
+	/** @var array Extra data storage */
+	protected array $_extraData = [];
+
+	/**
+	* Add extra data to the error object.
+	*
+	* @param string $key Key for the extra data
+	* @param mixed $value Value to store
+	* @return void
+	**/
+	public function addExtra(string $key, mixed $value): void {
+		$this->_extraData[$key] = $value;
+	}
+
+	/**
+	* Get extra data by key.
+	*
+	* @param string $key Key to retrieve
+	* @return mixed|null Extra data value or null if not found
+	**/
+	public function getExtra(string $key): mixed {
+		return $this->_extraData[$key] ?? null;
+	}
+
+	/**
+	* Clear all extra data.
+	*
+	* @return void
+	**/
+	public function clearExtra(): void {
+		$this->_extraData = [];
+	}
+
+	/**
+	* Get all extra data.
+	*
+	* @return array All extra data
+	**/
+	public function getAllExtra(): array {
+		return $this->_extraData;
+	}
 }

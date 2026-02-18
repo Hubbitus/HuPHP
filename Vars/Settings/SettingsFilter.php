@@ -14,6 +14,11 @@ declare(strict_types=1);
 * @created 2009-06-29
 **/
 
+namespace Hubbitus\HuPHP\Vars\Settings;
+
+use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+
+
 /**
 * Extended variant of settings_check, with check possible options.
 * You may easy add any amount of "filters" on get/set property operations
@@ -32,18 +37,19 @@ declare(strict_types=1);
 * @example settings_filter.example.php
 **/
 class SettingsFilter extends SettingsCheckStatic {
-	protected $__filt_set = array();
-	protected $__filt_get = array();
+	protected $__filter_set = [];
+	protected $__filter_get = [];
 
 	/**
 	* Apply all desired filters and set value.
 	**/
-	public function setSetting($name, $value){
+	public function setSetting($name, $value): void {
 		foreach ($this->getFilterSet($name) as $filt){
 			$filt->apply($name, $value);
 		}
 		if (!is_null($name)) parent::setSetting($name, $value);
 	}
+
 	/**
 	* Apply all desired filters and return value.
 	* Result not cached!
@@ -56,20 +62,22 @@ class SettingsFilter extends SettingsCheckStatic {
 		}
 		return $val;
 	}
+
 	/**
-	* Reimplemnt in more generic form for automatic handle all get/set transformations.
+	* Reimplement in more generic form for automatic handle all get/set transformations.
 	* @inheritdoc
 	**/
-	public function setSettingsArray(array $setArr){
+	public function setSettingsArray(array $setArr): void {
 		$this->__SETS = array();
-		// For our realisation just foreach all, now we can simple invoke mergeSettingsArray()
+		// For our realization just foreach all, now we can simple invoke mergeSettingsArray()
 		$this->mergeSettingsArray($setArr);
 	}
+
 	/**
-	* Reimplemnt in more generic form for automatic handle all get/set transformations.
+	* Reimplement in more generic form for automatic handle all get/set transformations.
 	* @inheritdoc
 	**/
-	public function mergeSettingsArray(array $setArr){
+	public function mergeSettingsArray(array $setArr): void {
 		/*
 		* This may be done also through array_walk, but in it required intermediate function to swap arguments.
 		* I think direct cycle will be faster.
@@ -77,54 +85,58 @@ class SettingsFilter extends SettingsCheckStatic {
 		foreach (REQUIRED_VAR($setArr) as $key => $value)
 			$this->setSetting($key, $value);
 	}
+
 	/**
 	* Add filter into property Get filters queue.
 	*
-	* @param	Object(settings_filter_base)	$filt. Filter to add.
+	* @param	SettingsFilterBase	$filter. Filter to add.
 	* @return	integer.	FilterId to allow delete it later.
 	**/
-	public function addFilterGet(SettingsFilterBase $filt){
-		$q = $this->getFilterGet($filt->propName);
-		$q->push($filt);
+	public function addFilterGet(SettingsFilterBase $filter): int {
+		$q = $this->getFilterGet($filter->propName);
+		$q->push($filter);
 		return ($q->count() - 1);
 	}
+
 	/**
 	* Add filter into property Set filters queue.
 	*
-	* @param	Object(settings_filter_base)	$filt. Filter to add.
+	* @param	SettingsFilterBase	$filter. Filter to add.
 	* @return	integer.	FilterId to allow delete it later.
 	**/
-	public function addFilterSet(SettingsFilterBase $filt){
-		$q = $this->getFilterSet($filt->propName);
-		$q->push($filt);
+	public function addFilterSet(SettingsFilterBase $filter): int {
+		$q = $this->getFilterSet($filter->propName);
+		$q->push($filter);
 		return ($q->count() - 1);
 	}
+
 	/**
-	* Base variant of search feilter. Compare just by full name of property.
-	* Extend class and reimplement getFilterGet()/getFilterSet() methods may be good idea to provide select,
-	*	say by part of name, by start, pattern or even by regular expression!
-	*
-	* @param	string	$name Name ofproperty for what filter search.
-	* @return	&Object(SplDoublyLinkedList) Queue of required filters (may be empty).
-	**/
-	protected function &getFilterGet($name){
-		if (!isset($this->__filt_get[$name])) $this->__filt_get[$name] = new SplDoublyLinkedList();
-		return $this->__filt_get[$name];
-	}
-	/**
-	* Base variant of search feilter. Compare just by full name of property.
+	* Base variant of search filter. Compare just by full name of property.
 	* Extend class and reimplement getFilterGet()/getFilterSet() methods may be good idea to provide select,
 	*	say by part of name, by start, pattern or even by regular expression!
 	*
 	* @param	string	$name Name of property for what filter search.
 	* @return	&Object(SplDoublyLinkedList) Queue of required filters (may be empty).
 	**/
-	protected function &getFilterSet($name){
-		if (!isset($this->__filt_set[$name])) $this->__filt_set[$name] = new SplDoublyLinkedList();
-		return $this->__filt_set[$name];
+	protected function &getFilterGet($name): \SplDoublyLinkedList {
+		if (!isset($this->__filter_get[$name])) $this->__filter_get[$name] = new \SplDoublyLinkedList();
+		return $this->__filter_get[$name];
+	}
+
+	/**
+	* Base variant of search filter. Compare just by full name of property.
+	* Extend class and reimplement getFilterGet()/getFilterSet() methods may be good idea to provide select,
+	*	say by part of name, by start, pattern or even by regular expression!
+	*
+	* @param	string	$name Name of property for what filter search.
+	* @return	&\SplDoublyLinkedList Queue of required filters (may be empty).
+	**/
+	protected function &getFilterSet($name): \SplDoublyLinkedList{
+		if (!isset($this->__filter_set[$name])) $this->__filter_set[$name] = new \SplDoublyLinkedList();
+		return $this->__filter_set[$name];
 	}
 	/** @TODO. Implement RAW-functionality in child class
-	* If for property registered at least one filter vith private flag, all property turn to private, and
+	* If for property registered at least one filter with private flag, all property turn to private, and
 	*	requesting its raw value caused exception
 	public function getRaw($name){
 		if(!)

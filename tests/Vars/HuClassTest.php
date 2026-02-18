@@ -1,71 +1,114 @@
 <?php
-
 declare(strict_types=1);
 
-namespace Hubbitus\HuPHP\Tests\Vars;
+namespace Hubbitus\Tests\HuPHP\Vars;
 
 use Hubbitus\HuPHP\Vars\HuClass;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * Test class for casting
+ */
+class TestClassForCast {
+    public $data;
+}
+
+/**
  * @covers \Hubbitus\HuPHP\Vars\HuClass
  */
-class HuClassTest extends TestCase {
-	public function testCloning(): void {
-		$obj = new \stdClass();
-		$obj->value = 'test';
-		$obj->array = [1, 2, 3];
+class HuClassTest extends TestCase
+{
+    public function testClassExists(): void
+    {
+        $this->assertTrue(class_exists(HuClass::class));
+    }
 
-		$cloned = HuClass::cloning($obj);
+    public function testClassIsAbstract(): void
+    {
+        $reflection = new \ReflectionClass(HuClass::class);
+        $this->assertTrue($reflection->isAbstract());
+    }
 
-		$this->assertIsObject($cloned);
-		$this->assertEquals($obj, $cloned);
-		$this->assertNotSame($obj, $cloned); // Different instances
-	}
+    public function testCloningMethodExists(): void
+    {
+        $this->assertTrue(method_exists(HuClass::class, 'cloning'));
+    }
 
-	public function testCloningModifiesCloneNotOriginal(): void {
-		$obj = new \stdClass();
-		$obj->value = 'original';
+    public function testCloningCreatesCopy(): void
+    {
+        $obj = new \stdClass();
+        $obj->value = 'original';
+        
+        $clone = HuClass::cloning($obj);
+        
+        $this->assertEquals($obj->value, $clone->value);
+        $this->assertNotSame($obj, $clone);
+    }
 
-		$cloned = HuClass::cloning($obj);
-		$cloned->value = 'modified';
+    public function testCloningModifiesCloneIndependently(): void
+    {
+        $obj = new \stdClass();
+        $obj->value = 'original';
+        
+        $clone = HuClass::cloning($obj);
+        $clone->value = 'modified';
+        
+        $this->assertEquals('original', $obj->value);
+        $this->assertEquals('modified', $clone->value);
+    }
 
-		$this->assertEquals('original', $obj->value);
-		$this->assertEquals('modified', $cloned->value);
-	}
+    public function testCloningPreservesAllProperties(): void
+    {
+        $obj = new \stdClass();
+        $obj->prop1 = 'value1';
+        $obj->prop2 = 'value2';
+        $obj->prop3 = ['a', 'b', 'c'];
+        
+        $clone = HuClass::cloning($obj);
+        
+        $this->assertEquals('value1', $clone->prop1);
+        $this->assertEquals('value2', $clone->prop2);
+        $this->assertEquals(['a', 'b', 'c'], $clone->prop3);
+    }
 
-	public function testReinterpretCast(): void {
-		$source = new \stdClass();
-		$source->value = 'test';
+    public function testReinterpretCastMethodExists(): void
+    {
+        $this->assertTrue(method_exists(HuClass::class, 'reinterpret_cast'));
+    }
 
-		$result = HuClass::reinterpret_cast(\stdClass::class, $source);
+    public function testReinterpretCastChangesClassName(): void
+    {
+        $source = new \stdClass();
+        $source->value = 'test';
+        
+        // Cast stdClass to a different class
+        $casted = HuClass::reinterpret_cast(\stdClass::class, $source);
+        
+        $this->assertInstanceOf(\stdClass::class, $casted);
+        $this->assertEquals('test', $casted->value);
+    }
 
-		$this->assertIsObject($result);
-		$this->assertEquals('test', $result->value);
-	}
+    public function testReinterpretCastPreservesProperties(): void
+    {
+        $source = new \stdClass();
+        $source->prop1 = 'value1';
+        $source->prop2 = 42;
+        
+        $casted = HuClass::reinterpret_cast(\stdClass::class, $source);
+        
+        $this->assertEquals('value1', $casted->prop1);
+        $this->assertEquals(42, $casted->prop2);
+    }
 
-	public function testReinterpretCastToDifferentClass(): void {
-		// Create a simple test class to cast to
-		$source = new \stdClass();
-		$source->value = 'test';
-
-		// Use stdClass to stdClass (same structure)
-		$result = HuClass::reinterpret_cast(\stdClass::class, $source);
-
-		$this->assertInstanceOf(\stdClass::class, $result);
-		$this->assertEquals('test', $result->value);
-	}
-
-	public function testCloningWithArray(): void {
-		$obj = new \stdClass();
-		$obj->items = ['a', 'b', 'c'];
-
-		$cloned = HuClass::cloning($obj);
-
-		$this->assertEquals($obj->items, $cloned->items);
-		// Arrays are copied by value in PHP, so modifying clone won't affect original
-		$cloned->items[] = 'd';
-		$this->assertCount(3, $obj->items);
-		$this->assertCount(4, $cloned->items);
-	}
+    public function testReinterpretCastWithCustomClass(): void
+    {
+        $source = new \stdClass();
+        $source->data = 'test data';
+        
+        // Cast to a custom class
+        $casted = HuClass::reinterpret_cast(TestClassForCast::class, $source);
+        
+        $this->assertInstanceOf(TestClassForCast::class, $casted);
+        $this->assertEquals('test data', $casted->data);
+    }
 }

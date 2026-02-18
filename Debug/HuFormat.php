@@ -58,7 +58,7 @@ class HuFormat extends HuError {
 	*
 	* @var array
 	**/
-	public static public $MODS = [
+	public static array $MODS = [
 		'A'	=> 1,	//ALL. Exclusive, all other modifiers not processed. Each process as HuFormat.
 		's'	=> 2,	//Setting
 		'a'	=> 4,	//Array
@@ -439,9 +439,9 @@ class HuFormat extends HuError {
 	/**
 	* Evaluate full! Evaluate all as full result.
 	*
-	* @return string
+	* @return mixed
 	**/
-	protected function mod_EE(): void {
+	protected function mod_EE(): mixed {
 		${self::evaluate_var} = $this->getValue();
 		eval('$ret = '.$this->_format[0].';');
 		return $ret;

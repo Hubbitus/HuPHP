@@ -19,16 +19,23 @@ use Hubbitus\HuPHP\Debug\HuError;
 class DatabaseError extends HuError{
 	/**
 	* Constructor.
-	* @param DatabaseError|array	$sets	Initial settings.
+	* @param DatabaseError|array|DatabaseErrorSettings	$sets	Initial settings.
 	*	If DBError_settings assigned AS IS, if array MERGED with defaults and overwrite
 	*	presented settings!
 	**/
-	public function __construct(DatabaseError|array $sets){
+	public function __construct(DatabaseError|array|DatabaseErrorSettings $sets){
 		if (\is_array($sets) and !empty($sets)){ // MERGE, NOT overwrite!
 			$this->_sets = new DatabaseErrorSettings();
 			$this->_sets->mergeSettingsArray($sets);
 		}
-		elseif($sets) $this->_sets = $sets;
-		else $this->_sets = new DatabaseErrorSettings();// default
+		elseif($sets instanceof DatabaseErrorSettings) {
+			$this->_sets = $sets;
+		}
+		elseif($sets instanceof DatabaseError) {
+			$this->_sets = $sets->_sets;
+		}
+		else {
+			$this->_sets = new DatabaseErrorSettings();// default
+		}
 	}
 }

@@ -17,4 +17,8 @@ class BaseException extends \Exception {
 		if (!$pos) $this->message .= $addonMessage;
 		else $this->message = $addonMessage . $this->message;
 	}
+	
+	public function __clone() {
+		// Clone is allowed, Exception handles message/code/previous automatically
+	}
 }

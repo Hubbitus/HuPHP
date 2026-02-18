@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars\Settings;
 
+use Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterDefault;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \SettingsFilterDefault
+ * @covers \Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterDefault
  */
 class SettingsFilterDefaultTest extends TestCase
 {

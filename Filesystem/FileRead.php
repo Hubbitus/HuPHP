@@ -37,7 +37,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	* @return	integer	Count of written bytes
 	**/
 	public function writeContent($flags = null, $resource_context = null){
-		if (!$this->fd) $this->open('w', ($flags & \FILE_USE_INCLUDE_PATH), $resource_context);
+		if (!$this->fd) $this->open('w', (bool)($flags & \FILE_USE_INCLUDE_PATH), $resource_context);
 
 		/*
 		* To provide consistence API and do not fake incoming method parameters we must use streams.
@@ -66,14 +66,14 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	*
 	* @param	string	$mode. See {@link http://php.net/fopen}
 	* @param	boolean	$use_include_path
-	* @param	resource	$zcontext  See {@link http://php.net/fopen}
+	* @param	resource	$zContext  See {@link http://php.net/fopen}
 	**/
-	public function open($mode, $use_include_path = false , $zcontext = null){
+	public function open(string $mode, bool $use_include_path = false, $zContext = null): void {
 		$this->checkOpenError(
 			(bool)(
-				$zcontext
+				$zContext
 				?
-				($this->fd = fopen($this->path(), $mode, $use_include_path, $zcontext))
+				($this->fd = fopen($this->path(), $mode, $use_include_path, $zContext))
 				:
 				($this->fd = fopen($this->path(), $mode, $use_include_path))
 			)
