@@ -223,7 +223,7 @@ class HuError extends Settings implements IOutExtraData {
 	**/
 	public function formatField($field): string {
 		if (\is_array($field)){
-			 if(!\isset($field[0])) $field = \array_values($field);
+			 if(!isset($field[0])) $field = \array_values($field);
 			$fieldValue = @$this->{$field[0]};
 		}
 		else{

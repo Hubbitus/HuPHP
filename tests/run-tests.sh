@@ -4,7 +4,7 @@
 # Usage: ./run-tests.sh [--verbose] [--coverage]
 
 # Определяем корень проекта (директория, где находится этот скрипт)
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" #"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 PHPUNIT="$PROJECT_ROOT/vendor/bin/phpunit"
@@ -76,8 +76,10 @@ echo "Tests completed successfully."
 
 # Показать информацию о покрытии
 if [[ "$COVERAGE" == true ]]; then
-    echo ""
-    echo "Code coverage report generated:"
+    echo ''
+    echo 'Code coverage report generated:'
     echo "  - HTML: file://$PROJECT_ROOT/build/coverage/index.html"
     echo "  - Text: $PROJECT_ROOT/build/coverage.txt"
+    echo ''
+    grep -C3 'Summary:' "$PROJECT_ROOT/build/coverage.txt"
 fi

@@ -10,31 +10,26 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Vars\HuConfig
  */
-class HuConfigTest extends TestCase
-{
-    protected function setUp(): void
-    {
+class HuConfigTest extends TestCase {
+    protected function setUp(): void {
         // Initialize global config for tests
         if (!isset($GLOBALS['__CONFIG'])) {
             $GLOBALS['__CONFIG'] = [];
         }
     }
 
-    protected function tearDown(): void
-    {
+    protected function tearDown(): void {
         // Clean up global config after tests
         $GLOBALS['__CONFIG'] = [];
     }
 
-    public function testConstructorInitializesWithEmptyConfig(): void
-    {
+    public function testConstructorInitializesWithEmptyConfig(): void {
         $config = new HuConfig();
 
         $this->assertInstanceOf(HuConfig::class, $config);
     }
 
-    public function testConstructorInitializesWithConfigData(): void
-    {
+    public function testConstructorInitializesWithConfigData(): void {
         $GLOBALS['__CONFIG'] = [
             'test_key' => 'test_value',
             'another_key' => 123
@@ -45,8 +40,7 @@ class HuConfigTest extends TestCase
         $this->assertInstanceOf(HuConfig::class, $config);
     }
 
-    public function testGetRawReturnsPropertyValue(): void
-    {
+    public function testGetRawReturnsPropertyValue(): void {
         $GLOBALS['__CONFIG'] = [
             'test_key' => 'test_value'
         ];
@@ -57,10 +51,9 @@ class HuConfigTest extends TestCase
         $this->assertEquals('test_value', $value);
     }
 
-    public function testGetRawThrowsExceptionForNonExistentProperty(): void
-    {
+    public function testGetRawThrowsExceptionForNonExistentProperty(): void {
         $this->expectException(\Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException::class);
-        
+
         $GLOBALS['__CONFIG'] = ['existing_key' => 'value'];
 
         $config = new HuConfig();
@@ -69,16 +62,14 @@ class HuConfigTest extends TestCase
         $config->getRaw('non_existent_key');
     }
 
-    public function testGetRawWithNoThrowReturnsNullForNonExistentProperty(): void
-    {
+    public function testGetRawWithNoThrowReturnsNullForNonExistentProperty(): void {
         $config = new HuConfig();
         $value = $config->getRaw('non_existent_key', true);
 
         $this->assertNull($value);
     }
 
-    public function testMagicGetReturnsPropertyValue(): void
-    {
+    public function testMagicGetReturnsPropertyValue(): void {
         $GLOBALS['__CONFIG'] = [
             'test_key' => 'test_value'
         ];
@@ -89,8 +80,7 @@ class HuConfigTest extends TestCase
         $this->assertEquals('test_value', $value);
     }
 
-    public function testMagicGetReturnsHuArrayForArrayValues(): void
-    {
+    public function testMagicGetReturnsHuArrayForArrayValues(): void {
         $GLOBALS['__CONFIG'] = [
             'test_array' => ['key1' => 'value1', 'key2' => 'value2']
         ];
@@ -101,8 +91,7 @@ class HuConfigTest extends TestCase
         $this->assertInstanceOf(HuArray::class, $value);
     }
 
-    public function testMagicGetAllowsPropertyAccessSyntax(): void
-    {
+    public function testMagicGetAllowsPropertyAccessSyntax(): void {
         $GLOBALS['__CONFIG'] = [
             'test_key' => 'test_value'
         ];
@@ -113,8 +102,7 @@ class HuConfigTest extends TestCase
         $this->assertEquals('test_value', $value);
     }
 
-    public function testGetPropertyReturnsValue(): void
-    {
+    public function testGetPropertyReturnsValue(): void {
         $GLOBALS['__CONFIG'] = [
             'test_key' => 'test_value'
         ];
@@ -125,10 +113,9 @@ class HuConfigTest extends TestCase
         $this->assertEquals('test_value', $value);
     }
 
-    public function testGetPropertyThrowsExceptionForNonExistentProperty(): void
-    {
+    public function testGetPropertyThrowsExceptionForNonExistentProperty(): void {
         $this->expectException(\Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException::class);
-        
+
         $GLOBALS['__CONFIG'] = ['existing_key' => 'value'];
 
         $config = new HuConfig();
@@ -140,7 +127,7 @@ class HuConfigTest extends TestCase
     public function testGetPropertyWithNoThrowReturnsNullForNonExistentProperty(): void
     {
         $config = new HuConfig();
-        $value = $config->getProperty('non_existent_key', false);
+        $value = $config->getProperty('non_existent_key', true);
 
         $this->assertNull($value);
     }

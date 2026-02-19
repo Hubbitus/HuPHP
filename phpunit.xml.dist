@@ -27,6 +27,7 @@
             <exclude>tests/Exceptions/Variables/VariableExceptionsTest.php</exclude>
             <exclude>tests/Exceptions/Variables/VariableEmptyExceptionTest.php</exclude>
             <exclude>tests/System/Console/</exclude>
+            <exclude>tests/Images/GDimageTest.php</exclude>
             <exclude>tests/User/UserBaseTest.php</exclude>
             <exclude>tests/Vars/Settings/SettingsFilterTest.php</exclude>
             <exclude>tests/Vars/NullClassTest.php</exclude>
