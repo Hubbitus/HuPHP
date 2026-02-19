@@ -29,9 +29,7 @@
             <exclude>tests/System/Console/</exclude>
             <exclude>tests/User/UserBaseTest.php</exclude>
             <exclude>tests/Vars/Settings/SettingsFilterTest.php</exclude>
-            <exclude>tests/Vars/SingleTest.php</exclude>
             <exclude>tests/Vars/NullClassTest.php</exclude>
-            <exclude>tests/Vars/SerializedDataTest.php</exclude>
             <exclude>tests/Vars/HuArrayTest.php</exclude>
             <exclude>tests/Filesystem/FileInMemoryTest.php</exclude>
         </testsuite>

@@ -117,7 +117,8 @@ class SingleTest extends TestCase
 
     public function testSingletonWithMultipleDifferentArguments(): void
     {
-        $instance = Single::singleton(\DateTime::class, '2024-01-01', 'UTC');
+        $timezone = new \DateTimeZone('UTC');
+        $instance = Single::singleton(\DateTime::class, '2024-01-01', $timezone);
         $this->assertInstanceOf(\DateTime::class, $instance);
     }
 
