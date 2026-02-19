@@ -21,7 +21,6 @@ use Hubbitus\HuPHP\Exceptions\BaseException;
 use Hubbitus\HuPHP\Template\template;
 use Hubbitus\HuPHP\Database\DatabaseWhere;
 use Hubbitus\HuPHP\Vars\Single;
-use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
 
 class UserSettings extends Settings {}
 

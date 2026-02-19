@@ -21,8 +21,8 @@ use Hubbitus\HuPHP\Vars\IOutExtraData;
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 use Hubbitus\HuPHP\Vars\Settings\SettingsGet;
 
-class HuLOG extends SettingsGet{//HubbitusLOG :) log занял давно, для совместимости старого кода не заменяю имя!
-	public $_level = 0;//Для установки уровней вложенности логовых сообщений в файле
+class HuLOG extends SettingsGet{//HubbitusLOG
+	public $_level = 0;
 
 	protected ?HuLOGText $lastLogText = null;
 	protected $lastLogTime = null;

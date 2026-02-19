@@ -46,7 +46,7 @@ interface IOutExtraData {
 	* String to print. automatically detect (by {@link OS::getOutType()}) Web or Console and
 	*	invoke appropriate ::strToWeb() or ::strToConsole()
 	*
-	* @param string $format	If @format not-empty use it for formating result. "Format of $format"
+	* @param string $format	If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
 	**/

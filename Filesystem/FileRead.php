@@ -24,42 +24,45 @@ use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
 class FileRead extends FileBase {
 private $fd = null;
 
-protected $_line_no = 0; //Current line number. Read only. For getline() access.
+protected int $_line_no = 0; //Current line number. Read only. For getline() access.
 
 	/**
 	* If file opened before, content will be written in current position of file.
 	* If it wasn't opened - open occurred.
 	* @inheritdoc
 	*
-	* @param	integer	Append by default if descriptor opened.	FILE_USE_INCLUDE_PATH supported if fd not opened en we open new.
+	* @param	int	Append by default if descriptor opened.	FILE_USE_INCLUDE_PATH supported if fd not opened en we open new.
 	* @param	resource	$resource_context See {@link http://php.net/stream-context-create}.
 	*	Used only if file opened here (was NOT opened before)
-	* @return	integer	Count of written bytes
+	* @return	int	Count of written bytes
 	**/
-	public function writeContent($flags = null, $resource_context = null){
-		if (!$this->fd) $this->open('w', (bool)($flags & \FILE_USE_INCLUDE_PATH), $resource_context);
+	public function writeContent($flags = null, $resource_context = null): int {
+		// If file was opened, write via file descriptor
+		if ($this->fd) {
+			// Truncate file to write from beginning
+			ftruncate($this->fd, 0);
+			rewind($this->fd);
+			$result = fwrite($this->fd, $this->content);
+			fflush($this->fd);
 
-		/*
-		* To provide consistence API and do not fake incoming method parameters we must use streams.
-		* There present function stream_get_contents, but I not found opposite, which can write string to stream.
-		* My decision to use stream_copy_to_stream() function, but for that I must have another stream to copy from.
-		* I not found standard way to map variable on stream, so, use VariableStream in conditional of global temp variable
-		*
-		* Another possible way, may be using 'php://memory' or 'php://temp' (http://mikenaberezny.com/2008/10/17/php-temporary-streams/),
-		* but in this case full variable data must be explicitly copied in this stream.
-		* VariableStream with variable reference give more magic on my opinion.
-		*/
-		$GLOBALS['__tmp_content_var_stream'] =& $this->content;
-		$this->checkOpenError(
-			// $this->rawFilename because may be file generally not exists!
-			(bool)( $count = @stream_copy_to_stream($this->fd, ($tfd = \fopen('var://__tmp_content_var_stream'))) )
-		);
+			if ($result === false) {
+				throw new \RuntimeException('Failed to write content to file');
+			}
+
+			$this->_writePending = false;
+			return (int)$result;
+		}
+
+		// Otherwise use direct file write
+		$result = @file_put_contents($this->path(), $this->content, $flags ?? 0, $resource_context);
+
+		if ($result === false) {
+			throw new \RuntimeException('Failed to write content to file: ' . $this->path());
+		}
 
 		$this->_writePending = false;
-		fclose($tfd);
-		return $count;
+		return (int)$result;
 	}
-	/// Self introduced methods ///
 
 	/**
 	* Open file for reading/writing (according to $mode)
@@ -69,50 +72,68 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	* @param	resource	$zContext  See {@link http://php.net/fopen}
 	**/
 	public function open(string $mode, bool $use_include_path = false, $zContext = null): void {
-		$this->checkOpenError(
-			(bool)(
-				$zContext
-				?
-				($this->fd = fopen($this->path(), $mode, $use_include_path, $zContext))
-				:
-				($this->fd = fopen($this->path(), $mode, $use_include_path))
-			)
-		);
-		$this->lineContent = array();
+		$result = $zContext
+			? ($this->fd = \fopen($this->path(), $mode, $use_include_path, $zContext))
+			: ($this->fd = \fopen($this->path(), $mode, $use_include_path));
+
+		// For write modes, just check if fopen succeeded
+		if (\strpos($mode, 'w') !== false || \strpos($mode, 'a') !== false || \strpos($mode, 'x') !== false) {
+			if ($result === false) {
+				throw new \RuntimeException('Failed to open file for writing: ' . $this->path());
+			}
+		} else {
+			// For read modes, use checkOpenError
+			$this->checkOpenError((bool)$result);
+		}
+
+		$this->lineContent = [];
 		$this->content = '';
 	}
+
 	/**
 	* Get next line from stream.
 	*
-	* @param  integer $length. Optional - maximum length of string. If null - all string returned (by default).
-	* @return string
+	* @param  int $length. Optional - maximum length of string. If null - all string returned (by default).
+	* @return string|false
 	* @throws VariableRequiredException
 	**/
-	public function getline($length = null){
+	public function getline(?int $length = null): string|false {
 		++$this->_line_no;
-		return $length ? fgets(REQUIRED_VAR($this->fd), $length) : fgets(REQUIRED_VAR($this->fd));
+		if ($length === 0 || $length < 0) return '';
+		return $length ? \fgets(REQUIRED_VAR($this->fd), $length) : \fgets(REQUIRED_VAR($this->fd));
 	}
+
 	/**
 	* Return current line number in getline() mode access.
 	*
 	* WARNING! Please keep in mind, it is not provide reliable interface to calculate real lines.
 	* In current implementation by the fact it reflect count of invokes method ::getline() only!!!
 	*
-	* @return	integer
+	* @return	int
 	**/
-	function lineNo(){
-		return $this->_line_no;;
+	public function lineNo(): int {
+		return $this->_line_no;
 	}
+
 	/**
 	* Return tail of stream as string.
 	*
 	* {@link http://php.net/stream-get-contents}
 	*
-	* @param	integer	$maxlength
-	* @param	offset	$offset
+	* @param	int	$maxlength
+	* @param	int	$offset
 	* @return	string
 	**/
-	public function getTail ($maxlength = -1, $offset = 0){
+	public function getTail (int $maxlength = -1, int $offset = 0): bool|string {
 		return stream_get_contents($this->fd, $maxlength, $offset);
+	}
+
+	/**
+	* Convert file content to string.
+	*
+	* @return	string
+	**/
+	public function __toString(): string {
+		return $this->content ?? '';
 	}
 }

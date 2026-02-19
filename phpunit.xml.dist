@@ -19,17 +19,13 @@
             <exclude>tests/Database/DatabaseErrorSettingsTest.php</exclude>
             <exclude>tests/Database/DatabaseErrorTest.php</exclude>
             <exclude>tests/Debug/BacktraceTest.php</exclude>
-            <exclude>tests/Debug/DumpUtilsTest.php</exclude>
-            <exclude>tests/Debug/GentimeTest.php</exclude>
-            <exclude>tests/System/ProcessStateTest.php</exclude>
             <exclude>tests/Exceptions/BaseExceptionTest.php</exclude>
             <exclude>tests/Exceptions/Database/DatabaseExceptionTest.php</exclude>
             <exclude>tests/Exceptions/Filesystem/FileExceptionTest.php</exclude>
             <exclude>tests/Exceptions/Network/</exclude>
+            <exclude>tests/Exceptions/Strings/</exclude>
             <exclude>tests/Exceptions/Variables/VariableExceptionsTest.php</exclude>
             <exclude>tests/Exceptions/Variables/VariableEmptyExceptionTest.php</exclude>
-            <exclude>tests/Exceptions/Variables/VariableIsNullExceptionTest.php</exclude>
-            <exclude>tests/Exceptions/Strings/</exclude>
             <exclude>tests/System/Console/</exclude>
             <exclude>tests/User/UserBaseTest.php</exclude>
             <exclude>tests/Vars/Settings/SettingsFilterTest.php</exclude>
@@ -39,7 +35,6 @@
             <exclude>tests/Vars/SerializedDataTest.php</exclude>
             <exclude>tests/Vars/HuArrayTest.php</exclude>
             <exclude>tests/Filesystem/FileInMemoryTest.php</exclude>
-            <exclude>tests/Filesystem/FileReadTest.php</exclude>
         </testsuite>
     </testsuites>
 

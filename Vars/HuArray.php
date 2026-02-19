@@ -156,8 +156,8 @@ class HuArray extends Settings implements \Iterator {
 	* @param	mixed	$name
 	* @return	&mixed
 	**/
-	function &hu($name){
-		if (is_array($this->$name)) $this->$name = new HuArray($this->$name);
+	public function &hu($name){
+		if (\is_array($this->$name)) $this->$name = new HuArray($this->$name);
 		return $this->getProperty($name);
 	}
 	/**

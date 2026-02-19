@@ -27,7 +27,7 @@ class DumpUtils {
 					'/Array\n\s*\(/',
 					'/Object\n\s*\(/',
 					'/\["(.+)"\]=>\n /',
-					'/Array(0){\s+}/',
+					'/Array\(0\){\s+}/',
 				),
 				array(
 					'Array(',
@@ -39,6 +39,7 @@ class DumpUtils {
 			)
 		);
 	}
+
 	/**
 	* Transform string, which is text-representation of requested var into more well formatted form.
 	* var_dump variant
@@ -51,8 +52,8 @@ class DumpUtils {
 			preg_replace(
 				array(
 					'/array(\(\d+\))\s+({)/i',
-					'/Object\n\s*\(/',
-					'/\["?(.+?)"?\]=>\n\s*/',
+					'/object\([^)]+\)\s+\(/',
+					'/\["?(.+?)"?\]=>/',
 				),
 				array(
 					'Array\1\2',
@@ -63,4 +64,4 @@ class DumpUtils {
 			)
 		);
 	}
-};
+}

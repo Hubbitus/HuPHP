@@ -32,10 +32,21 @@ class FileReadTest extends TestCase
 
     protected function tearDown(): void
     {
-        if (file_exists($this->testFile)) {
-            unlink($this->testFile);
-        }
+        // Remove all test files recursively
         if (is_dir($this->testDir)) {
+            $files = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($this->testDir, \RecursiveDirectoryIterator::SKIP_DOTS),
+                \RecursiveIteratorIterator::CHILD_FIRST
+            );
+            
+            foreach ($files as $fileinfo) {
+                if ($fileinfo->isDir()) {
+                    rmdir($fileinfo->getRealPath());
+                } else {
+                    unlink($fileinfo->getRealPath());
+                }
+            }
+            
             rmdir($this->testDir);
         }
     }

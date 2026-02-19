@@ -77,7 +77,7 @@ class HuFormat extends HuError {
 	private $_modStr;				//Modifiers.
 	private $_mod;					//Integer of present mods
 	private $_modArr = array();		//Array of present mods
-	private $_value;				//Value, what processed in this formating.
+	private $_value;				//Value, what processed in this formatting.
 	private $_realValue;			//If modified (part) in mod_s, mod_a
 	private $_realValued = false;		//Flag, to allow pipe through several mods (like as s. a, e)
 	private $_name;

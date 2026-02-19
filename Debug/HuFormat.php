@@ -106,7 +106,7 @@ class HuFormat extends HuError {
 	*
 	* @param	array|string	$format. If === null, skipped to allow set other
 	*	parts. To clear you may use false/true or any else such as empty string.
-	* @param	&mixed	$value.	{@see ::setValue()} Skiped if === null. You
+	* @param	&mixed	$value.	{@see ::setValue()} Skipped if === null. You
 	*	may call {@see ::setValue()} to do that
 	* @param	mixed	$key	Key of iteration in mod_I and/or mod_A.
 	* @return	&$this

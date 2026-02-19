@@ -26,8 +26,8 @@ use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 use Hubbitus\HuPHP\Vars\Settings\Settings;
 use Hubbitus\HuPHP\System\OS;
 use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
-use Hubbitus\HuPHP\Vars\IOutExtraData;
 use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
+use Hubbitus\HuPHP\Vars\IOutExtraData;
 
 
 class HuError extends Settings implements IOutExtraData {
@@ -71,7 +71,7 @@ class HuError extends Settings implements IOutExtraData {
 	/**
 	* String to print into file.
 	*
-	* @param string $format If @format not-empty use it for formating result. "Format of $format"
+	* @param string $format If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. If empty string, FORMAT_FILE setting used.
 	*	And if it settings empty (or not exists) too, just using dump::log() for all filled fields.
 	* @return string
@@ -85,7 +85,7 @@ class HuError extends Settings implements IOutExtraData {
 	/**
 	* String to print into user browser.
 	*
-	* @param string $format If @format not-empty use it for formating result. "Format of $format"
+	* @param string $format If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. If empty string, FORMAT_WEB setting used.
 	*	And if it settings empty (or not exists) too, just using dump::w() for all filled fields.
 	* @return string
@@ -114,7 +114,7 @@ class HuError extends Settings implements IOutExtraData {
 	* String to print. automatically detect Web or Console. Detect by {@link OS::getOutType()}
 	*	and invoke appropriate ::strToWeb() or ::strToConsole()
 	*
-	* @param string $format	If @format not-empty use it for formating result. "Format of $format"
+	* @param string $format	If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
 	**/
@@ -126,7 +126,7 @@ class HuError extends Settings implements IOutExtraData {
 	* Convert to string by type.
 	*
 	* @param integer $type	One of OS::OUT_TYPE_* constant. {@link OS::OUT_TYPE_BROWSER}
-	* @param string $format	If @format not-empty use it for formating result. "Format of $format"
+	* @param string $format	If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
 	* @Throw(VariableRangeException)
@@ -204,8 +204,6 @@ class HuError extends Settings implements IOutExtraData {
 	/**
 	* If settings->AUTO_DATE == true and settings->DATE_FORMAT correctly provided - update current
 	* date in ->date
-	*
-	* @return
 	**/
 	public function updateDate(): void {
 		if (
@@ -220,7 +218,7 @@ class HuError extends Settings implements IOutExtraData {
 	/**
 	* Overloading getString to separately handle 'extra'
 	*
-	* @inheritdocs
+	* @inheritdoc
 	**/
 	public function formatField($field): string {
 		if (is_array($field)){

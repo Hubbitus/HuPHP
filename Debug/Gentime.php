@@ -14,23 +14,23 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Debug;
 
 class Gentime {
-	var $time_start;
+	private string $time_start;
 
-	function start(){
+	public function start(){
 		$mtime = microtime();
 		$mtime = explode(" ",$mtime);
-		$mtime = $mtime[1] + $mtime[0];
+		$mtime = $mtime[1] . $mtime[0];
 		$this->time_start = $mtime;
 	}
 
-	function stop(){
+	private function stop(){
 		$mtime = microtime();
 		$mtime = explode(" ",$mtime);
 		$mtime = $mtime[1] + $mtime[0];
 		return sprintf ("%f", ($mtime - $this->time_start));// Seconds
 	}
 
-	function bench($code, $iteration = 1000){
+	public function bench($code, $iteration = 1000){
 		ob_start();
 		$sum_time = 0;
 		$min_time = 100;
@@ -47,6 +47,7 @@ class Gentime {
 
 		ob_end_clean();
 		eval($code); // to out
-		printf ("<br>Максимальное время %f секунд<br><b>Среднее время %f</b><br>Минимальное время %f<br>", $max_time, $sum_time/$iteration, $min_time);
+		$avg = $iteration > 0 ? $sum_time / $iteration : 0;
+		\printf ("<br>Maximum time seconds: %f<br><b>Average time: %f</b><br>Minimum: %f<br>", $max_time, $avg, $min_time);
 	}
 }

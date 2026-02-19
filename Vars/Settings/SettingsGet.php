@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars\Settings;
 
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
-
 /**
 * Parent class for more useful using in parents who want be "customizable". Convenient nesting.
 **/

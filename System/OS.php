@@ -68,6 +68,7 @@ class OS {
 	public static function phpSapiName(): bool|string {
 		return php_sapi_name();
 	}
+
 	/**
 	* Check if file is includeable. I can't just use if (@include($file)). Or, more exactly i can, but
 	*	it is have small different meaning:

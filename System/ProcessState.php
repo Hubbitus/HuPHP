@@ -47,7 +47,7 @@ class ProcessState {
 		return trim($this->error ?? '');
 	}
 
-	public function describe(): mixed {
+	public function describe(): string {
 		return Dump::log(
 			[
 				'writeData'	=> $this->writeData,
@@ -58,7 +58,9 @@ class ProcessState {
 				'env'		=> $this->getEnv(),
 				'nonBlockingMode'	=> $this->nonBlockingMode,
 				'nonBlockTimeout'	=> $this->nonBlockTimeout
-			]
+			],
+			null,
+			true // return output instead of printing
 		);
 	}
 }

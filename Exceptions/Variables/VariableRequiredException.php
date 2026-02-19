@@ -17,7 +17,7 @@ class VariableRequiredException extends VariableException {
 
 	public function __construct(?Backtrace $bt = null, $varname = null, ?string $message = null, int $code = 0) {
 		$this->bt = $bt;
-		$this->var= $varname;
+		$this->var = $varname;
 
 		parent::__construct($message ?? '', $code);
 	}
