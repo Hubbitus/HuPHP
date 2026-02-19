@@ -20,8 +20,8 @@
             <exclude>tests/Database/DatabaseErrorTest.php</exclude>
             <exclude>tests/Debug/BacktraceTest.php</exclude>
             <exclude>tests/Exceptions/BaseExceptionTest.php</exclude>
-            <exclude>tests/Exceptions/Database/DatabaseExceptionTest.php</exclude>
             <exclude>tests/Exceptions/Filesystem/FileExceptionTest.php</exclude>
+            <exclude>tests/Exceptions/Database/DatabaseExceptionTest.php</exclude>
             <exclude>tests/Exceptions/Network/</exclude>
             <exclude>tests/Exceptions/Strings/</exclude>
             <exclude>tests/Exceptions/Variables/VariableExceptionsTest.php</exclude>
@@ -29,7 +29,6 @@
             <exclude>tests/System/Console/</exclude>
             <exclude>tests/User/UserBaseTest.php</exclude>
             <exclude>tests/Vars/Settings/SettingsFilterTest.php</exclude>
-            <exclude>tests/Vars/OutExtraDataBacktraceTest.php</exclude>
             <exclude>tests/Vars/SingleTest.php</exclude>
             <exclude>tests/Vars/NullClassTest.php</exclude>
             <exclude>tests/Vars/SerializedDataTest.php</exclude>

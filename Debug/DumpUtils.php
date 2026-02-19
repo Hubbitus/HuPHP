@@ -20,21 +20,21 @@ class DumpUtils {
 	* @param string $dump String returned by print_r
 	* @return string. Transformed, well-formatted.
 	**/
-	public static function transformCorrect_print_r($dump){
-		return trim(
-			preg_replace(
-				array(
+	public static function transformCorrect_print_r($dump): string {
+		return \trim(
+			\preg_replace(
+				[
 					'/Array\n\s*\(/',
 					'/Object\n\s*\(/',
-					'/\["(.+)"\]=>\n /',
+					'/\["(.+)"\]=>/',
 					'/Array\(0\){\s+}/',
-				),
-				array(
+				],
+				[
 					'Array(',
 					'Object(',
 					'[\1]=>',
 					'Array(0){}',
-				),
+				],
 				$dump
 			)
 		);

@@ -14,40 +14,44 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Debug;
 
 class Gentime {
-	private string $time_start;
+	public ?float $time_start = null;
 
-	public function start(){
-		$mtime = microtime();
-		$mtime = explode(" ",$mtime);
-		$mtime = $mtime[1] . $mtime[0];
-		$this->time_start = $mtime;
+	public function start(): void {
+		$mtime = \microtime();
+		$mtime = \explode(' ', $mtime);
+		$this->time_start = (float)$mtime[1] + (float)$mtime[0];
 	}
 
-	private function stop(){
-		$mtime = microtime();
-		$mtime = explode(" ",$mtime);
-		$mtime = $mtime[1] + $mtime[0];
-		return sprintf ("%f", ($mtime - $this->time_start));// Seconds
+	public function stop(string $mode = ''): string {
+		$mtime = \microtime();
+		$mtime = \explode(' ', $mtime);
+		$time_end = (float)$mtime[1] + (float)$mtime[0];
+		return \sprintf('%f', ($time_end - $this->time_start));
 	}
 
-	public function bench($code, $iteration = 1000){
-		ob_start();
-		$sum_time = 0;
-		$min_time = 100;
-		$max_time = 0;
+	public function bench(string $code, int $iteration = 1000): void {
+		\ob_start();
+		$sum_time = 0.0;
+		$min_time = 100.0;
+		$max_time = 0.0;
 
-		for ($i=0; $i<$iteration; $i++){
+		for ($i = 0; $i < $iteration; $i++) {
 			$this->start();
 			eval($code);
-			$cur_time = $this->stop('noprint');
+			$cur_time = (float)$this->stop();
 			$sum_time += $cur_time;
-			if ($cur_time > $max_time) $max_time = $cur_time;
-			if ($cur_time < $min_time) $min_time = $cur_time;
+			if ($cur_time > $max_time) {
+				$max_time = $cur_time;
+			}
+			if ($cur_time < $min_time) {
+				$min_time = $cur_time;
+			}
 		}
+		\ob_end_clean();
 
-		ob_end_clean();
-		eval($code); // to out
-		$avg = $iteration > 0 ? $sum_time / $iteration : 0;
-		\printf ("<br>Maximum time seconds: %f<br><b>Average time: %f</b><br>Minimum: %f<br>", $max_time, $avg, $min_time);
+		eval($code); // Single time again for output
+
+		$avg = $iteration > 0 ? $sum_time / $iteration : 0.0;
+		\printf('<br>Максимальное время %f секунд<br><b>Среднее время %f</b><br>Минимальное время %f<br>', $max_time, $avg, $min_time);\printf ("<br>Maximum time seconds: %f<br><b>Average time: %f</b><br>Minimum: %f<br>", $max_time, $avg, $min_time);
 	}
 }

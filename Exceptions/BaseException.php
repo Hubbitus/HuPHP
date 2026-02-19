@@ -13,12 +13,15 @@ namespace Hubbitus\HuPHP\Exceptions;
 
 class BaseException extends \Exception {
 	// $pos = false - at end, else - in beginning
-	public function ADDMessage($addonMessage, $pos = false): void {
+	public function ADDMessage(string $addonMessage, bool $pos = false): void {
 		if (!$pos) $this->message .= $addonMessage;
 		else $this->message = $addonMessage . $this->message;
 	}
-	
-	public function __clone() {
-		// Clone is allowed, Exception handles message/code/previous automatically
+
+	/**
+	* Clone the exception
+	**/
+	public function __clone(): void {
+		// Exception base properties (message, code, previous) are cloned automatically
 	}
 }

@@ -31,6 +31,7 @@
 
 # Автотесты
 Продолжаем писать и включать тесты.
+Конечно продолжаем включать отключенные тесты.
 
 Для файлов, которые требуют изменений и рефакторинга, не стесняемся, делаем это активно:
 1. Для методов где не указано, выводим и добавляем:
@@ -40,5 +41,5 @@
 2. Также для констант - указываем модификаторы, типы
 3. Если видно что код был написан для совместимости с PHP версии ниже 7 - смело удаляем! Разумеется, сохраняя логику.
 4. All call to global functions must be denoted by "\", like `\is_array()`.
-5. Follow other instructions and code-style from @AGENTS.md too!
-6. CHECK and update all PHPDoc for th modified (refactored method), update it accordingly. Especially tags `@param`, `@return`, `@throws`
+5. CHECK and update all PHPDoc for th modified (refactored method), update it accordingly. Especially tags `@param`, `@return`, `@throws`
+6. Follow other instructions and code-style from @AGENTS.md too!

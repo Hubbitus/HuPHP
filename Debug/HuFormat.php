@@ -217,17 +217,28 @@ class HuFormat extends HuError {
 	**/
 	public function getString(?array $fields = null): string {
 		if (!$this->_resStr){
-		$this->_resStr = '';
+			$this->_resStr = '';
 
 			foreach ($this->_modArr as $mod){
-				if (ctype_upper($mod)){
-				$this->_resStr .= call_user_func(array($this, 'mod_'.$mod.$mod));
+				if (\ctype_upper($mod)){
+					$result = \call_user_func([$this, 'mod_'.$mod.$mod]);
+					if ($result !== null) {
+						$this->_resStr .= $result;
+					}
 				}
-				else $this->_resStr .= call_user_func(array($this, 'mod_'.$mod));
+				else {
+					$result = \call_user_func([$this, 'mod_'.$mod]);
+					if ($result !== null) {
+						$this->_resStr .= $result;
+					}
+				}
 			}
 
 			//If all mod_* are only evaluate value and not produce out.
-			if (!$this->_resStr) return $this->getValue();
+			if (!$this->_resStr) {
+				$value = $this->getValue();
+				return $value !== null ? (string)$value : '';
+			}
 		}
 
 		return $this->_resStr;
@@ -253,7 +264,7 @@ class HuFormat extends HuError {
 	*	If '*' - invert.
 	*	If absent - equal to '+'
 	* @return &$this
-	* @Throw(VariableRangeException)
+	* @throws VariableRangeException
 	**/
 	public function &changeModsStr($mods): static {
 		for($i=0; $i < strlen($mods); $i++){
@@ -377,27 +388,28 @@ class HuFormat extends HuError {
 	/**
 	* Treat ->_name as property-name
 	*
-	* @return void
+	* @return string
 	**/
-	protected function mod_s(): void {
+	protected function mod_s(): string {
 		if (!$this->_realValued){
 			$this->_realValue = @$this->_value->{$this->_name};
 			$this->_realValued = true;
 		}
 		else $this->_realValue = $this->_value->{$this->_realValue};
+		return (string)$this->_realValue;
 	}
 
 	/**
 	* Tread ->_name as index in ->_value
 	*
-	* @return void
+	* @return string
 	**/
-	protected function mod_a(): void {
+	protected function mod_a(): string {
 		if (!$this->_realValued){
 			$this->_realValue = $this->_value[$this->_name];
 			$this->_realValued = true;
 		}
-		else $this->_realValue = $this->_value[$this->_realValue];
+		return (string)$this->_realValue;
 	}
 
 	/**
@@ -406,7 +418,8 @@ class HuFormat extends HuError {
 	* @return string
 	**/
 	protected function mod_n(): string {
-		return NON_EMPTY_STR($this->getValue(), @$this->_format[0], @$this->_format[1], @$this->_format[2]);
+		$result = NON_EMPTY_STR($this->getValue(), @$this->_format[0], @$this->_format[1], @$this->_format[2]);
+		return (string)$result;
 	}
 
 	/**
@@ -426,14 +439,15 @@ class HuFormat extends HuError {
 	/**
 	* Evaluate. Evaluated only ->_value
 	*
-	* @return void
+	* @return string
 	**/
-	protected function mod_e(): void {
+	protected function mod_e(): string {
 		if (!$this->_realValued){
 			eval('$this->_realValue = '.$this->_name.';');
 			$this->_realValued = true;
 		}
 		else eval('$this->_realValue = '.$this->_realValue.';');
+		return (string)$this->_realValue;
 	}
 
 	/**
@@ -450,9 +464,9 @@ class HuFormat extends HuError {
 	/**
 	* Value instead name
 	*
-	* @return void
+	* @return string
 	**/
-	protected function mod_v(): void {
+	protected function mod_v(): string {
 		if (!$this->_realValued){
 			$this->_realValue = $this->_value;
 			$this->_realValued = true;
@@ -460,6 +474,7 @@ class HuFormat extends HuError {
 		else{
 			throw new HuFormatException('Got conflicted format modifiers!');
 		}
+		return (string)$this->_realValue;
 	}
 
 	/**
@@ -487,20 +502,29 @@ class HuFormat extends HuError {
 		$hf = new self($this->_format, $t, $this->_key);
 		$ret = '';
 
-		foreach ($this->getValue() as $key => $v){
-			$hf->setValue($v);
-			$hf->_key = $key; //Only for I useful
-			$ret .= $hf->getString();
+		$value = $this->getValue();
+		if (\is_iterable($value)) {
+			foreach ($value as $key => $v){
+				$hf->setValue($v);
+				$hf->_key = $key; //Only for I useful
+				$result = $hf->getString();
+				if ($result !== null) {
+					$ret .= $result;
+				}
+			}
 		}
 		return $ret;
 	}
 
 	/**
 	* Get Key of current iteration of I:::.
+	*
+	* @return string
 	**/
-	protected function mod_k(): void {
+	protected function mod_k(): string {
 		$this->_realValue = $this->_key;
 		$this->_realValued = true;
+		return (string)$this->_realValue;
 	}
 	/**
 	* As we overload getString() without arguments, implementation from HuError

@@ -22,15 +22,15 @@ use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 
 class OutExtraDataBacktrace extends OutExtraDataCommon {
 	public function strToConsole($format = null): mixed {
-		return $this->_var->printout(true, null, OS::OUT_TYPE_CONSOLE);
+		return $this->_var->printFormat(null, OS::OUT_TYPE_CONSOLE);
 	}
 
 	public function strToFile($format = null): mixed {
-		return $this->_var->printout(true, null, OS::OUT_TYPE_FILE);
+		return $this->_var->printFormat(null, OS::OUT_TYPE_FILE);
 	}
 
 	public function strToWeb($format = null): mixed {
-		return $this->_var->printout(true, null, OS::OUT_TYPE_BROWSER);
+		return $this->_var->printFormat(null, OS::OUT_TYPE_BROWSER);
 	}
 
 	public function __toString(): string {

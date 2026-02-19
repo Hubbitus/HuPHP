@@ -13,25 +13,29 @@ namespace Hubbitus\HuPHP\Exceptions\Filesystem;
 use Hubbitus\HuPHP\Exceptions\BaseException;
 
 class FileException extends BaseException {
-	public $filename = '';
-	protected $fullPath = '';
+	public string $filename = '';
+	protected string $fullPath = '';
 
-	public function __construct($message = '', $filename = '', int $code = 0, ?\Throwable $previous = null){
+	public function __construct(string $message = '', string $filename = '', int $code = 0, ?\Throwable $previous = null){
 		$this->filename = $filename;
-		$this->fullPath = $filename;
+		$this->fullPath = $filename ?? '';
 		parent::__construct($message, $code, $previous);
 	}
 
-	public function __clone() {
-		// Clone is allowed, Exception handles message/code/previous automatically
-	}
-	
 	/**
 	* Get the full path
 	* @return string
 	**/
 	public function getFullPath(): string {
 		return $this->fullPath;
+	}
+
+	/**
+	* Clone the exception including custom properties
+	**/
+	public function __clone(): void {
+		// Exception base properties (message, code, previous) are cloned automatically
+		// Custom properties need explicit handling if they are objects
 	}
 
 	// custom string representation of object

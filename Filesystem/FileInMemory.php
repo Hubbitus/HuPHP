@@ -112,9 +112,16 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	* @param	boolean $updateLineSep if true - update lineSep by presented in whole content.
 	**/
 	protected function explodeLines(bool $updateLineSep = true): void {
-		preg_match_all('/(.*?)([\n\r]|\z)/', $this->content, $this->lineContent, PREG_PATTERN_ORDER);
-		if ($updateLineSep) $this->_lineSep = $this->lineContent[2][0];
-		$this->lineContent = $this->lineContent[1];
+		\preg_match_all('/(.*?)([\n\r]|\z)/', $this->content, $matches, PREG_PATTERN_ORDER);
+		if ($updateLineSep && isset($matches[2][0])) {
+			$this->_lineSep = $matches[2][0];
+		}
+		// Remove last empty element if present
+		$lines = $matches[1];
+		if (\count($lines) > 0 && \end($lines) === '') {
+			\array_pop($lines);
+		}
+		$this->lineContent = $lines;
 		$this->_linesOffsets = [];
 	}
 
@@ -311,5 +318,34 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	public function &enconv(string $lang = 'russian', string $toEnc = 'UTF-8'): static {
 		$this->setContentFromString(Process::exec("enconv -L $lang -x $toEnc", null, null, $this->getBLOB()));
 		return $this;
+	}
+
+	/**
+	* Get content length in bytes.
+	*
+	* @return	int
+	**/
+	public function getContentLength(): int {
+		return \strlen($this->getBLOB());
+	}
+
+	/**
+	* Get first line of content.
+	*
+	* @return	string|null
+	**/
+	public function getFirstLine(): ?string {
+		$lines = $this->getLines();
+		return $lines[0] ?? null;
+	}
+
+	/**
+	* Get last line of content.
+	*
+	* @return	string|null
+	**/
+	public function getLastLine(): ?string {
+		$lines = $this->getLines();
+		return $lines[\count($lines) - 1] ?? null;
 	}
 }
