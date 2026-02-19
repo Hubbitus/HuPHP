@@ -159,7 +159,7 @@ class HuGetopt extends SettingsGet {
 	*
 	* @param	array	$opts. Options to set.
 	* @return	&$this
-	* @Throws(VariableRequiredException)
+	* @throws VariableRequiredException
 	**/
 	public function &setOpts(array $opts){
 		$this->_optsS = $this->_optsL = $this->_opts = array();
@@ -209,7 +209,7 @@ class HuGetopt extends SettingsGet {
 	* Main Horse!!! Doing most work.
 	*
 	* @return nothing
-	* @Throws(HuGetoptArgumentRequiredException)
+	* @throws HuGetoptArgumentRequiredException
 	**/
 	public function parseArgs(){
 		$this->_nonopts->push($this->currentArg());
@@ -409,7 +409,7 @@ class HuGetopt extends SettingsGet {
 	* Will take care on register_globals and register_argc_argv ini directives
 	*
 	* @return &this;
-	* @Throw(VariableEmptyException)
+	* @throws VariableEmptyException
 	**/
 	public function &readPHPArgv(){
 		global $argv;

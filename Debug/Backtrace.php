@@ -195,7 +195,7 @@ class Backtrace implements \Iterator {
 	*	If null, trying from format set in {@see ::setPrintoutFormat()}, and finally
 	*		get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::printout']
 	* @param	integer(null)	$OutType	If present - determine type of format from $format (passed or default). Must be index in $format.
-	* @Throws(VariableRequiredException, BacktraceEmptyException)
+	* @throws VariableRequiredException, BacktraceEmptyException
 	**/
 	public function printFormat(?array $format = null, ?int $outType = null): mixed {
 		$outType ??= OS::getOutType();
@@ -235,7 +235,7 @@ class Backtrace implements \Iterator {
 	*
 	* @param	array	$format
 	* @return	&$this
-	* @Throws(VariableRequiredException)
+	* @throws VariableRequiredException
 	**/
 	public function &setPrintoutFormat($format){
 		$this->_format = REQUIRED_VAR($format);

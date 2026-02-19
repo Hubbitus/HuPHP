@@ -170,7 +170,7 @@ class HuError extends Settings implements IOutExtraData {
 	* @param string $format	If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
-	* @Throw(VariableRangeException)
+	* @throws VariableRangeException
 	**/
 	public function strByOutType($type, $format = null){
 		return __outExtraData__common_implementation::strByOutType($this, $type, $format);

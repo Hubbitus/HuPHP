@@ -129,8 +129,13 @@ class FileBaseTest extends TestCase
 
 	public function testAppendString(): void
 	{
-		// Test skipped - FileBase class has issues with null flags handling
-		$this->markTestSkipped('FileBase class has issues with null flags handling');
+		$file = new FileBase($this->testFile);
+		$file->setContentFromString('test content');
+		$file->appendString(' appended');
+		// Content is protected, verify by writing and reading
+		$file->writeContent();
+		$this->assertEquals('test content appended', file_get_contents($this->testFile));
+		unset($file);
 	}
 
 	public function testWriteContent(): void
@@ -155,13 +160,18 @@ class FileBaseTest extends TestCase
 
 	public function testDestructWritesPending(): void
 	{
-		// Test skipped - FileBase class has issues with null flags handling in __destruct
-		$this->markTestSkipped('FileBase class has issues with null flags handling in __destruct');
+		$file = new FileBase($this->testFile);
+		$file->setContentFromString('test content');
+		// __destruct should write pending content
+		unset($file);
+		$this->assertEquals('test content', file_get_contents($this->testFile));
 	}
 
 	public function testWriteContentToNonExistingDirectory(): void
 	{
-		// Test skipped - FileBase class has issues with null flags handling
-		$this->markTestSkipped('FileBase class has issues with null flags handling');
+		$this->expectException(\Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException::class);
+		$file = new FileBase('/nonexistent/dir/file.txt');
+		$file->setContentFromString('test');
+		$file->writeContent();
 	}
 }

@@ -55,7 +55,7 @@ interface IOutExtraData {
 	* @param integer $type	One of OS::OUT_TYPE_* constant. {@link OS::OUT_TYPE_BROWSER}
 	* @param mixed(null)	$format Any useful helper information to format
 	* @return string
-	* @Throw(VariableRangeException)
+	* @throws VariableRangeException
 	**/
 	public function strByOutType($type, $format = null);
 }

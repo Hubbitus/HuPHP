@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
 
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 use Hubbitus\HuPHP\Vars\Settings\Settings;
 use Hubbitus\HuPHP\System\OS;
@@ -129,7 +130,7 @@ class HuError extends Settings implements IOutExtraData {
 	* @param string $format	If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
-	* @Throw(VariableRangeException)
+	* @throws VariableRangeException
 	**/
 	public function strByOutType($type, $format = null){
 		return OutExtraDataCommon::strByOutTypeBase($this, $type, $format);
@@ -209,10 +210,10 @@ class HuError extends Settings implements IOutExtraData {
 		if (
 			$this->settings->AUTO_DATE
 			and
-			/** Parent::setSetting instead $this-> to aviod infinity recursion */
+			/** Parent::setSetting instead $this-> to avoid infinity recursion */
 			$this->settings->DATE_FORMAT
 		)
-		parent::setSetting('date', date($this->settings->DATE_FORMAT));
+		parent::setSetting('date', \date($this->settings->DATE_FORMAT));
 	}
 
 	/**
@@ -221,8 +222,8 @@ class HuError extends Settings implements IOutExtraData {
 	* @inheritdoc
 	**/
 	public function formatField($field): string {
-		if (is_array($field)){
-			 if(!isset($field[0])) $field = array_values($field);
+		if (\is_array($field)){
+			 if(!\isset($field[0])) $field = \array_values($field);
 			$fieldValue = @$this->{$field[0]};
 		}
 		else{

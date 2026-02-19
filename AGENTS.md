@@ -18,7 +18,7 @@
 3. Почти у каждого метода в конце есть комментарий: "#m methodName" bkb "//c methodName", а у классов "#c className" или "//c className", а у конструкторов ещё иногда встречаются "#__c" - убери их, пожалуйста.
 4. Old PHP style code (`array()` instead of `[]`) should be modernized.
 5. In comments and documentation found "typos" cases where no doubt in meaning like "formating" instead of "formatting" must be fixed automatically!
-6. Old fashion `call_user_func`/`call_user_func_array` should be refactored to use `Closure`, and `arrow functions` (`fn() => ...`) where possible.
+6. Old fashion `call_user_func`/`call_user_func_array`/`create_function` should be refactored to use `Closure`, and `arrow functions` (`fn() => ...`) where possible.
 
 
 # Code style
@@ -28,6 +28,7 @@
 5. All PHP files must use full open tag "<?php" and should not use close tag "?>"
 6. PHP files must have last empty single line
 7. All variables, method input parameters and output results must have type specification!
+8. All conditions if/else must have body with braces `{}`
 
 # Автотесты
 Продолжаем писать и включать тесты.

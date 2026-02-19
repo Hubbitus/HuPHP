@@ -61,7 +61,7 @@ interface IOutExtraData {
 	* @param integer $type	One of OS::OUT_TYPE_* constant. {@link OS::OUT_TYPE_BROWSER}
 	* @param mixed(null)	$format Any useful helper information to format
 	* @return string
-	* @Throw(VariableRangeException)
+	* @throws VariableRangeException
 	**/
 	public function strByOutType($type, $format = null);/*{Now common solution is (see description on begin abput Multiple Inheritance):
 	return __outExtraData__common_implementation::strByOutType($this, $type, $format);

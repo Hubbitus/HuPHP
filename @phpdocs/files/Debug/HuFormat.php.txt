@@ -247,7 +247,7 @@ class HuFormat extends HuError {
 	*	If '*' - invert.
 	*	If absent - equal to '+'
 	* @return &$this
-	* @Throw(VariableRangeException)
+	* @throws VariableRangeException
 	**/
 	public function &changeModsStr($mods){
 		for($i=0; $i < strlen($mods); $i++){
@@ -286,7 +286,7 @@ class HuFormat extends HuError {
 	*
 	* @param string	$modstr	String of modifiers.
 	* @return &$this
-	* @Throws(VariableRequiredException)
+	* @throws VariableRequiredException
 	**/
 	protected function &setModsStr($modstr){
 		$this->_modStr = REQUIRED_VAR($modstr);
@@ -329,7 +329,7 @@ class HuFormat extends HuError {
 	*	True	- from string $this->_modStr
 	*	False	- from integer $this-_mod
 	* @return &this
-	* @Throw(VariableRangeException)
+	* @throws VariableRangeException
 	**/
 	protected function &parseMods($direction = true){
 		if ($direction){

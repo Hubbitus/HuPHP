@@ -154,7 +154,7 @@ class Tokenizer{
 	* Search full text of call in src php-file
 	*
 	* @return $this
-	* @Throws(VariableRequiredException)
+	* @throws VariableRequiredException
 	**/
 	protected function findTextCall(){
 		$this->_filePhpSrc = new FileInMemory(REQUIRED_VAR($this->_debugBacktrace->file));

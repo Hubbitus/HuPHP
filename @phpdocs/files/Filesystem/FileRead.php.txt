@@ -83,7 +83,7 @@ protected $_line_no = 0; //Current line number. Read only. For getline() access.
 	*
 	* @param	integer $length. Optional - maximum length of string. If null - all string returned (by default).
 	* @return	string
-	* @Throws(VariableRequiredException)
+	* @throws VariableRequiredException
 	**/
 	public function getline($length = null){
 		++$this->_line_no;

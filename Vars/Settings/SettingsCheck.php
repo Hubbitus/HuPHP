@@ -44,7 +44,7 @@ class SettingsCheck extends Settings {
 	* Reimplement extended variant to check setting name possibility.
 	* @inheritdoc
 	**/
-	public function &getProperty($name){
+	public function &getProperty($name): mixed {
 		return parent::getProperty($this->checkNamePossible($name, __METHOD__));
 	}
 
@@ -55,7 +55,7 @@ class SettingsCheck extends Settings {
 	* @param	mixed	$value
 	* @return	void
 	**/
-	public function addSetting($name, $value){
+	public function addSetting($name, $value): void {
 		$this->properties[] = $name;
 		parent::setSetting($name, $value);
 	}
@@ -97,9 +97,9 @@ class SettingsCheck extends Settings {
 	* @param	string	$method. To Exception - caller method name.
 	* @param	string	$walkmethod. Only for array_walk compatibility - it is must be 3d parameter.
 	* @return	string	$name
-	* @Throws	(ClassPropertyNotExistsException)
+	* @throws ClassPropertyNotExistsException
 	**/
-	protected function checkNamePossible($name, $method, $walkmethod = null){
+	protected function checkNamePossible($name, $method, $walkmethod = null): string {
 		if (!in_array($name, $this->properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist in ' . get_class($this) . '!');
 		return	$name;
 	}
@@ -116,7 +116,7 @@ class SettingsCheck extends Settings {
 	*
 	* So, method MUST be called explicitly. No any magic here!!!
 	**/
-	public function nesting(){
+	public function nesting(): void {
 		//We can't use here nor operator + (union), nor array_merge function. We need ADD elements.
 		array_splice($this->properties, count($this->properties), 1, $this->properties_addon);
 	}

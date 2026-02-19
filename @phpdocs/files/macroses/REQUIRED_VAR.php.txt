@@ -30,7 +30,7 @@ use \Hubbitus\HuPHP\Debug\Backtrace;
 * @param	&mixed	$var	Variable to test.
 * @param	string	$varname	If present, initialize them arg of Tokenizer, else real parse.
 * @return &mixed
-* @Throws(VariableRequiredException)
+* @throws VariableRequiredException
 **/
 function &REQUIRED_VAR($var, $varname = null){
 	if (!$var){

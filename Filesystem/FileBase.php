@@ -19,6 +19,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Filesystem;
 
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
 use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
 use Hubbitus\HuPHP\System\OS;
@@ -29,9 +30,8 @@ use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
 * Base class for most file-related operations.
 **/
 class FileBase {
-	private $filename = '';
-	private $rawFilename = ''; //Filename to try open. For error-reports.
-	private $dir = '';
+	private string $filename = '';
+	private string $rawFilename = ''; //Filename to try open. For error-reports.
 
 	protected $_writePending = false;
 
@@ -41,17 +41,18 @@ class FileBase {
 	/**
 	* Construct new object with provided (optional) path (URL).
 	*
-	* @param	string	$filename
+	* @param string $filename
 	**/
 	public function __construct($filename = ''){
 		if ($filename) $this->setPath($filename);
 	}
+
 	/**
-	* Write all pendings write if it wasn't be done manually before. This is to avoid data loss.
+	* Write all pending write if it wasn't be done manually before. This is to avoid data loss.
 	**/
 	public function __destruct(){
 		if ($this->_writePending) $this->writeContent();
-	}#__d
+	}
 
 	/**
 	* Set new path. For example to writing new file.
@@ -59,108 +60,120 @@ class FileBase {
 	* @param	string	$filename	New filename
 	* @return	&$this
 	**/
-	public function &setPath($filename){
+	public function &setPath($filename): static {
 		$this->filename = $this->rawFilename = $filename;
 		/**
 		* And we MUST set full path in ->filename because after f.e. chdir(...) relative path may change sense.
 		* Additionally, in __destruct call to getcwd return '/'!!! {@See http://bugs.php.net/bug.php?id=30210}
 		**/
 		// We can't direct use $this->filename instead of $realpath because if it ! we not always want null it!
-		if (!($realpath = realpath($this->rawFilename))){
+		if (!($realpath = \realpath($this->rawFilename))){
 			/**
 			* Realpath may fail because file not found. But we can't agree with that,
 			* because setPath may be invoked to set path for write new (create) file!
 			* So, we try manually construct current full path (see abowe why we should do it)
 			**/
-			if (! OS::isPathAbsolute($this->rawFilename)){
+			if (!OS::isPathAbsolute($this->rawFilename)){
 				$this->filename = getcwd() . DIRECTORY_SEPARATOR . $this->rawFilename;
 			}
 		}
-		else $this->filename = $realpath;
+		else {
+			$this->filename = $realpath;
+		}
 		return $this;
 	}
+
 	/**
-	* Return curent path
+	* Return current path
 	*
 	* @return	string
 	**/
-	public function path(){
+	public function path(): string {
 		return $this->filename;
 	}
+
 	/**
-	* Return curent RAW (what wich be passed into the {@see setPath()}, without any transformation) path.
+	* Return current RAW (what which be passed into the {@see setPath()}, without any transformation) path.
 	*
 	* @return	string
 	**/
-	public function rawPath(){
+	public function rawPath(): string {
 		return $this->rawFilename;
 	}
+
 	/**
 	* Return true if current set path is exists.
 	*
 	* @return	boolean
 	**/
-	public function isExists(){
+	public function isExists(): bool {
 		// Very strange: file_exists('') === true!!!
-		return ('' != $this->path() and file_exists($this->path()));
+		return ('' != $this->path() and \file_exists($this->path()));
 	}
+
 	/**
 	* Return true, if file on current path is readable.
 	*
 	* @return	boolean
 	**/
-	public function isReadable(){
-		return is_readable($this->path());
+	public function isReadable(): bool {
+		return \is_readable($this->path());
 	}
+
 	/**
 	* Unlink (delete) file
 	*
 	* @return boolean
 	**/
-	public function unlink(){
+	public function unlink(): bool {
 		return unlink($this->path());
 	}
+
 	/**
 	* Return directory part of current path (file must not be exist!).
 	*
 	* @return	string
 	**/
-	public function getDir(){
+	public function getDir(): string {
 		return dirname($this->path());
 	}
+
 	/**
 	* Clear pending writes.
 	*
 	* @return	&$this
 	**/
-	public function &clearPendingWrite(){
+	public function &clearPendingWrite(): static {
 		$this->_writePending = false;
 		return $this;
 	}
+
 	/**
 	* Set content for write.
 	*
 	* @param string	$string. String to set from.
 	* @return &$this
-	* @Throws(VariableRequiredException)
+	* @throws VariableRequiredException
 	**/
-	public function &setContentFromString($string){
+	public function &setContentFromString($string): static {
 		$this->content = REQUIRED_NOT_NULL($string);
 		$this->_writePending = true;
 		return $this;
 	}
+
 	/**
 	* Append string to pending write buffer.
 	*
 	* @param	string	$string. String to append from.
 	* @return	&$this
-	* @Throw(VariableRequiredException)
+	* @throws VariableRequiredException
 	**/
-	public function &appendString($string){
+	public function &appendString($string): static {
 		$this->content .= REQUIRED_VAR($string);
 		$this->_writePending = true;
 		return $this;
 	}
+
 	/**
 	* Write whole content to file (filename may be set via ->setPath('NewFileName'))
 	*
@@ -168,18 +181,17 @@ class FileBase {
 	* @param	resource	$resource_context See {@link http://php.net/stream-context-create}
 	* @return	integer	Count of written bytes
 	**/
-	public function writeContent($flags = null, $resource_context = null){
+	public function writeContent($flags = 0, $resource_context = null): int {
 		$this->checkOpenError(
 			// $this->rawFilename because may be file generally not exists!
-			false !== ($count = @file_put_contents($this->path(), $this->content, $flags, $resource_context))
+			false !== ($count = @\file_put_contents($this->path(), $this->content, $flags ?? 0, $resource_context))
 		);
 
 		$this->_writePending = false;
-		return $count;
+		return $count ?? 0;
 	}
-	/// private functions ///
 
-	protected function checkOpenError($succ){
+	protected function checkOpenError($succ): void {
 		if ( ! $succ ){
 			if (!$this->isExists()) throw new FileNotExistsException('File not found', $this->path());
 			if (!$this->isReadable()) throw new FileNotReadableException('File not readable. Check permissions.', $this->path());

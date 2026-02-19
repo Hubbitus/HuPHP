@@ -75,26 +75,35 @@ class RegExpPcreTest extends TestCase
 
 	public function testDoMatch(): void
 	{
-		// Test skipped - RegExpPcre has issues with null flags handling
-		$this->markTestSkipped('RegExpPcre has issues with null flags handling');
+		$regexp = new RegExpPcre('/test/', 'this is a test');
+		$regexp->doMatch();
+		$matches = $regexp->getMatches();
+		// preg_match returns [0 => full match, 1..n => groups]
+		$this->assertIsArray($matches);
 	}
 
 	public function testDoMatchAll(): void
 	{
-		// Test skipped - RegExpPcre has issues with null flags handling
-		$this->markTestSkipped('RegExpPcre has issues with null flags handling');
+		$regexp = new RegExpPcre('/test/', 'test test test');
+		$regexp->doMatchAll();
+		$matches = $regexp->getMatches();
+		// preg_match_all returns [0 => [all full matches], 1..n => [groups]]
+		$this->assertCount(3, $matches[0]);
 	}
 
 	public function testMatch(): void
 	{
-		// Test skipped - RegExpPcre has issues with null flags handling
-		$this->markTestSkipped('RegExpPcre has issues with null flags handling');
+		$regexp = new RegExpPcre('/test/', 'this is a test');
+		$result = $regexp->match(0);
+		$this->assertIsArray($result);
 	}
 
 	public function testMatchCount(): void
 	{
-		// Test skipped - RegExpPcre has issues with null flags handling
-		$this->markTestSkipped('RegExpPcre has issues with null flags handling');
+		$regexp = new RegExpPcre('/test/', 'test test test');
+		$regexp->doMatchAll();
+		$matches = $regexp->getMatches();
+		$this->assertCount(3, $matches[0]);
 	}
 
 	public function testReplace(): void
@@ -113,26 +122,33 @@ class RegExpPcreTest extends TestCase
 
 	public function testSplit(): void
 	{
-		// Test skipped - RegExpPcre has issues with null flags handling
-		$this->markTestSkipped('RegExpPcre has issues with null flags handling');
+		$regexp = new RegExpPcre('/,/', 'a,b,c');
+		$result = $regexp->split(-1, 0);
+		$this->assertEquals(['a', 'b', 'c'], $result->getMatches());
 	}
 
 	public function testSplitWithLimit(): void
 	{
-		// Test skipped - RegExpPcre has issues with null flags handling
-		$this->markTestSkipped('RegExpPcre has issues with null flags handling');
+		$regexp = new RegExpPcre('/,/', 'a,b,c,d');
+		$result = $regexp->split(3, 0);
+		$this->assertEquals(['a', 'b', 'c,d'], $result->getMatches());
 	}
 
 	public function testGetMatches(): void
 	{
-		// Test skipped - RegExpPcre has issues with null flags handling
-		$this->markTestSkipped('RegExpPcre has issues with null flags handling');
+		$regexp = new RegExpPcre('/\btest\b/', 'test text test');
+		$regexp->doMatchAll();
+		$matches = $regexp->getMatches();
+		$this->assertIsArray($matches);
+		$this->assertCount(2, $matches[0]);
 	}
 
 	public function testGetMatchesWithIndex(): void
 	{
-		// Test skipped - RegExpPcre has issues with null flags handling
-		$this->markTestSkipped('RegExpPcre has issues with null flags handling');
+		$regexp = new RegExpPcre('/(test)/', 'test text test');
+		$regexp->doMatchAll();
+		$matches = $regexp->getMatches(1);
+		$this->assertIsArray($matches);
 	}
 
 	public function testGetRegExpDelimiterStart(): void
@@ -177,7 +193,9 @@ class RegExpPcreTest extends TestCase
 
 	public function testQuoteArray(): void
 	{
-		// Test skipped - RegExpPcre uses deprecated create_function for arrays
-		$this->markTestSkipped('RegExpPcre uses deprecated create_function for arrays');
+		$toQuote = ['test.', 'hello+', 'world*'];
+		$result = RegExpPcre::quote($toQuote);
+		$this->assertIsArray($result);
+		$this->assertContains('test\.', $result);
 	}
 }

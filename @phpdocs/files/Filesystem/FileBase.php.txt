@@ -80,7 +80,7 @@ class FileBase {
 		return $this;
 	}
 	/**
-	* Return curent path
+	* Return current path
 	*
 	* @return	string
 	**/
@@ -88,7 +88,7 @@ class FileBase {
 		return $this->filename;
 	}
 	/**
-	* Return curent RAW (what wich be passed into the {@see setPath()}, without any transformation) path.
+	* Return current RAW (what which be passed into the {@see setPath()}, without any transformation) path.
 	*
 	* @return	string
 	**/
@@ -142,7 +142,7 @@ class FileBase {
 	*
 	* @param string	$string. String to set from.
 	* @return &$this
-	* @Throws(VariableRequiredException)
+	* @throws VariableRequiredException
 	**/
 	public function &setContentFromString($string){
 		$this->content = REQUIRED_NOT_NULL($string);
@@ -154,7 +154,7 @@ class FileBase {
 	*
 	* @param	string	$string. String to append from.
 	* @return	&$this
-	* @Throw(VariableRequiredException)
+	* @throws VariableRequiredException
 	**/
 	public function &appendString($string){
 		$this->content .= REQUIRED_VAR($string);

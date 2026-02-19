@@ -304,7 +304,7 @@ class HuFormat extends HuError {
 	*
 	* @param string	$modStr	String of modifiers.
 	* @return &$this
-	* @Throws(VariableRequiredException)
+	* @throws VariableRequiredException
 	**/
 	protected function &setModsStr($modStr): static {
 		$this->_modStr = REQUIRED_VAR($modStr);

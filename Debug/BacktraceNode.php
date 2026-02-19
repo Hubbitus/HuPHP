@@ -163,7 +163,7 @@ class BacktraceNode implements \Iterator {
 	*		get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::printout']
 	* @param	integer		$outType	If present - determine type of format from $format (passed or default). Must be index in $format.
 	* @return	string
-	* @Throws(VariableArrayInconsistentException, VariableRequiredException)
+	* @throws VariableArrayInconsistentException, VariableRequiredException
 	**/
 	public function formatArgs(?array $format = null, ?int $outType = null): string {
 		$outType ??= OS::getOutType();
