@@ -14,115 +14,83 @@ use PHPUnit\Framework\TestCase;
  */
 class ProcessTest extends TestCase
 {
-    public function testClassHasConstants(): void
-    {
+    public function testClassHasConstants(): void {
         $this->assertEquals(0, Process::STDIN);
         $this->assertEquals(1, Process::STDOUT);
         $this->assertEquals(2, Process::STDERR);
     }
 
-    public function testConstructorWithProcessState(): void
-    {
+    public function testConstructorWithProcessState(): void {
         $state = new ProcessState();
         $process = new Process($state, true); // doNOTopen = true to prevent execution
-        
+
         $this->assertInstanceOf(Process::class, $process);
     }
 
-    public function testGetStateReturnsProcessState(): void
-    {
+    public function testGetStateReturnsProcessState(): void {
         $state = new ProcessState();
         $process = new Process($state, true);
-        
+
         $returnedState = $process->getState();
-        
+
         $this->assertInstanceOf(ProcessState::class, $returnedState);
         $this->assertSame($state, $returnedState);
     }
 
-    public function testSetStateChangesState(): void
-    {
+    public function testSetStateChangesState(): void {
         $state1 = new ProcessState();
         $state2 = new ProcessState();
         $process = new Process($state1, true);
-        
+
         $process->setState($state2);
-        
+
         $this->assertSame($state2, $process->getState());
     }
 
-    public function testExecStaticMethod(): void
-    {
-        // Test with a simple command that should work on Linux
-        if (PHP_OS_FAMILY === 'Linux') {
-            $result = Process::exec('echo "test"');
-            
-            $this->assertIsString($result);
-            $this->assertStringContainsString('test', $result);
-        } else {
-            $this->markTestSkipped('Process execution tests only on Linux');
-        }
+    public function testExec(): void {
+        $result = Process::exec('echo "test"');
+
+        $this->assertIsString($result);
+        $this->assertStringContainsString('test', $result);
     }
 
-    public function testExecWithProcessState(): void
-    {
-        if (PHP_OS_FAMILY === 'Linux') {
-            $state = new ProcessState();
-            $state->CMD = 'echo "hello"';
-            
-            $result = Process::exec($state);
-            
-            $this->assertIsString($result);
-            $this->assertStringContainsString('hello', $result);
-        } else {
-            $this->markTestSkipped('Process execution tests only on Linux');
-        }
+    public function testExecWithProcessState(): void {
+        $state = new ProcessState();
+        $state->CMD = 'echo "hello"';
+
+        $result = Process::exec($state);
+
+        $this->assertIsString($result);
+        $this->assertStringContainsString('hello', $result);
     }
 
-    public function testExecWithCwd(): void
-    {
-        if (PHP_OS_FAMILY === 'Linux') {
-            $result = Process::exec('pwd', '/tmp');
-            
-            $this->assertIsString($result);
-            $this->assertStringContainsString('/tmp', $result);
-        } else {
-            $this->markTestSkipped('Process execution tests only on Linux');
-        }
+    public function testExecWithCwd(): void {
+        $result = Process::exec('pwd', '/tmp');
+
+        $this->assertIsString($result);
+        $this->assertStringContainsString('/tmp', $result);
     }
 
-    public function testExecWithEnv(): void
-    {
-        if (PHP_OS_FAMILY === 'Linux') {
-            $result = Process::exec('echo $TEST_VAR', null, ['TEST_VAR' => 'custom_value']);
-            
-            $this->assertIsString($result);
-            $this->assertStringContainsString('custom_value', $result);
-        } else {
-            $this->markTestSkipped('Process execution tests only on Linux');
-        }
+    public function testExecWithEnv(): void {
+        $result = Process::exec('echo $TEST_VAR', null, ['TEST_VAR' => 'custom_value']);
+
+        $this->assertIsString($result);
+        $this->assertStringContainsString('custom_value', $result);
     }
 
-    public function testExecWithWriteData(): void
-    {
-        if (PHP_OS_FAMILY === 'Linux') {
-            // Test with cat command which echoes input
-            $result = Process::exec('cat', null, null, 'test input');
-            
-            $this->assertIsString($result);
-            $this->assertStringContainsString('test input', $result);
-        } else {
-            $this->markTestSkipped('Process execution tests only on Linux');
-        }
+    public function testExecWithWriteData(): void {
+        // Test with cat command which echoes input
+        $result = Process::exec('cat', null, null, 'test input');
+
+        $this->assertIsString($result);
+        $this->assertStringContainsString('test input', $result);
     }
 
-    public function testProcessStateExists(): void
-    {
+    public function testProcessStateExists(): void {
         $this->assertTrue(class_exists(ProcessState::class));
     }
 
-    public function testProcessExceptionExists(): void
-    {
+    public function testProcessExceptionExists(): void {
         $this->assertTrue(class_exists(ProcessException::class));
     }
 }

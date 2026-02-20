@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Hubbitus\Tests\HuPHP\Debug;
 
 use Hubbitus\HuPHP\Debug\Tokenizer;
-use Hubbitus\HuPHP\Debug\Backtrace;
+use Hubbitus\HuPHP\Debug\BacktraceNode;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,22 +19,26 @@ class TokenizerTest extends TestCase
 
     public function testCreateWithBacktrace(): void
     {
-        $backtrace = Backtrace::create();
-        $node = $backtrace->getNode(0);
-        
-        if ($node) {
-            $tokenizer = Tokenizer::create($node);
-            $this->assertInstanceOf(Tokenizer::class, $tokenizer);
-        } else {
-            // Skip if no backtrace node available
-            $this->markTestSkipped('No backtrace node available for testing');
-        }
+        // Create a backtrace node manually with test data
+        $nodeData = [
+            'file' => __FILE__,
+            'line' => __LINE__,
+            'function' => 'testCreateWithBacktrace',
+            'class' => self::class,
+            'type' => '->',
+            'args' => [],
+            'N' => 0
+        ];
+        $node = BacktraceNode::create($nodeData, 0);
+
+        $tokenizer = Tokenizer::create($node);
+        $this->assertInstanceOf(Tokenizer::class, $tokenizer);
     }
 
     public function testInstanceHasExpectedMethods(): void
     {
         $methods = get_class_methods(Tokenizer::class);
-        
+
         $this->assertContains('create', $methods);
         $this->assertContains('clear', $methods);
         $this->assertContains('getArg', $methods);
@@ -44,16 +48,27 @@ class TokenizerTest extends TestCase
 
     public function testGetArgWithInvalidIndex(): void
     {
-        // Create tokenizer and test getArg with invalid index
-        $backtrace = Backtrace::create();
-        $node = $backtrace->getNode(0);
-        
-        if ($node) {
-            $tokenizer = Tokenizer::create($node);
-            // Just check method exists and can be called
-            $this->assertTrue(method_exists($tokenizer, 'getArg'));
-        } else {
-            $this->markTestSkipped('No backtrace node available for testing');
-        }
+        // Create a backtrace node manually with test data
+        $nodeData = [
+            'file' => __FILE__,
+            'line' => __LINE__,
+            'function' => 'testGetArgWithInvalidIndex',
+            'class' => self::class,
+            'type' => '->',
+            'args' => ['arg1', 'arg2'],
+            'N' => 0
+        ];
+        $node = BacktraceNode::create($nodeData, 0);
+        $tokenizer = Tokenizer::create($node);
+
+        // Check method exists
+        $this->assertTrue(method_exists($tokenizer, 'getArg'));
+
+        // Test that getArg method is callable
+        $this->assertIsCallable([$tokenizer, 'getArg']);
+
+        // Test getArgs returns array (may be empty if parsing failed)
+        $args = $tokenizer->getArgs();
+        $this->assertIsArray($args);
     }
 }
