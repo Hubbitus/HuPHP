@@ -44,8 +44,7 @@ class ParseException extends RuntimeException
     /**
      * Gets the snippet of code near the error.
      */
-    public function getSnippet(): string
-    {
+    public function getSnippet(): string {
         return $this->snippet;
     }
 
@@ -66,8 +65,7 @@ class ParseException extends RuntimeException
      *
      * This method returns null if a string is parsed.
      */
-    public function getParsedFile(): string
-    {
+    public function getParsedFile(): string {
         return $this->parsedFile;
     }
 
@@ -86,8 +84,7 @@ class ParseException extends RuntimeException
     /**
      * Gets the line where the error occurred.
      */
-    public function getParsedLine(): int
-    {
+    public function getParsedLine(): int {
         return $this->parsedLine;
     }
 
@@ -103,8 +100,7 @@ class ParseException extends RuntimeException
         $this->updateRepr();
     }
 
-    private function updateRepr(): void
-    {
+    private function updateRepr(): void {
         $this->message = $this->rawMessage;
 
         $dot = false;

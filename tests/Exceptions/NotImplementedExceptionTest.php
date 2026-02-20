@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class NotImplementedExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new NotImplementedException();
 
         $this->assertInstanceOf(NotImplementedException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new NotImplementedException('Not implemented');
 
         $this->assertInstanceOf(NotImplementedException::class, $exception);
         $this->assertEquals('Not implemented', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new NotImplementedException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(NotImplementedException::class);
 
         throw new NotImplementedException('Feature not implemented');

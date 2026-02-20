@@ -117,8 +117,7 @@ class Factory
         $this->customComparators = [];
     }
 
-    private function registerDefaultComparators(): void
-    {
+    private function registerDefaultComparators(): void {
         $this->registerDefaultComparator(new MockObjectComparator);
         $this->registerDefaultComparator(new DateTimeComparator);
         $this->registerDefaultComparator(new DOMNodeComparator);

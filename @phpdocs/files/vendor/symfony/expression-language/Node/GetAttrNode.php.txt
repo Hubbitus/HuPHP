@@ -134,13 +134,11 @@ class GetAttrNode extends Node
         }
     }
 
-    private function isShortCircuited(): bool
-    {
+    private function isShortCircuited(): bool {
         return $this->attributes['is_short_circuited'] || ($this->nodes['node'] instanceof self && $this->nodes['node']->isShortCircuited());
     }
 
-    public function toArray(): array
-    {
+    public function toArray(): array {
         $nullSafe = $this->nodes['attribute'] instanceof ConstantNode && $this->nodes['attribute']->isNullSafe;
         switch ($this->attributes['type']) {
             case self::PROPERTY_CALL:

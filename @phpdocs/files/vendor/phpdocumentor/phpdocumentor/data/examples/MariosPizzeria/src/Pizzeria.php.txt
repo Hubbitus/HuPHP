@@ -49,16 +49,14 @@ final class Pizzeria implements \JsonSerializable
      * @return false Demonstrate that 'false' is a valid return type in an DocBlock to indicate it won't just return any
      *      boolean; it will _always_ be false.
      */
-    private final function doOldOrder(): bool
-    {
+    private final function doOldOrder(): bool {
         return false;
     }
 
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): array
-    {
+    public function jsonSerialize(): array {
         return [];
     }
 

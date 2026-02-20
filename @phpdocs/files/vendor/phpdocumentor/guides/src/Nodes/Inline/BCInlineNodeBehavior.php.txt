@@ -19,8 +19,7 @@ use function is_string;
 
 trait BCInlineNodeBehavior
 {
-    public function getValue(): string
-    {
+    public function getValue(): string {
         Deprecation::trigger(
             'phpdocumentor/guides',
             'https://github.com/phpDocumentor/guides/issues/1161',

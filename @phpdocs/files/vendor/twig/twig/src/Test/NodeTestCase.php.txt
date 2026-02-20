@@ -37,8 +37,7 @@ abstract class NodeTestCase extends TestCase
     /**
      * @return iterable<array{0: Node, 1: string, 2?: Environment|null, 3?: bool}>
      */
-    public static function provideTests(): iterable
-    {
+    public static function provideTests(): iterable {
         trigger_deprecation('twig/twig', '3.13', 'Not implementing "%s()" in "%s" is deprecated. This method will be abstract in 4.0.', __METHOD__, static::class);
 
         return [];
@@ -89,8 +88,7 @@ abstract class NodeTestCase extends TestCase
         return $this->currentEnv ??= static::createEnvironment();
     }
 
-    protected static function createEnvironment(): Environment
-    {
+    protected static function createEnvironment(): Environment {
         return new Environment(new ArrayLoader());
     }
 
@@ -125,15 +123,13 @@ abstract class NodeTestCase extends TestCase
         return self::createAttributeGetter();
     }
 
-    final protected static function createAttributeGetter(): string
-    {
+    final protected static function createAttributeGetter(): string {
         return 'CoreExtension::getAttribute($this->env, $this->source, ';
     }
 
     /** @beforeClass */
     #[BeforeClass]
-    final public static function checkDataProvider(): void
-    {
+    final public static function checkDataProvider(): void {
         $r = new \ReflectionMethod(static::class, 'getTests');
         if (self::class !== $r->getDeclaringClass()->getName()) {
             trigger_deprecation('twig/twig', '3.13', 'Implementing "%s::getTests()" in "%s" is deprecated, implement "provideTests()" instead.', self::class, static::class);

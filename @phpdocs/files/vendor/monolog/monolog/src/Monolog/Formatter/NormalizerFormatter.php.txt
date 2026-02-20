@@ -67,8 +67,7 @@ class NormalizerFormatter implements FormatterInterface
         return $records;
     }
 
-    public function getDateFormat(): string
-    {
+    public function getDateFormat(): string {
         return $this->dateFormat;
     }
 
@@ -82,8 +81,7 @@ class NormalizerFormatter implements FormatterInterface
     /**
      * The maximum number of normalization levels to go through
      */
-    public function getMaxNormalizeDepth(): int
-    {
+    public function getMaxNormalizeDepth(): int {
         return $this->maxNormalizeDepth;
     }
 
@@ -97,8 +95,7 @@ class NormalizerFormatter implements FormatterInterface
     /**
      * The maximum number of items to normalize per level
      */
-    public function getMaxNormalizeItemCount(): int
-    {
+    public function getMaxNormalizeItemCount(): int {
         return $this->maxNormalizeItemCount;
     }
 

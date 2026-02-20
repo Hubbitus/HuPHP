@@ -76,18 +76,15 @@ final class WrappedListener
         return $this->listener;
     }
 
-    public function wasCalled(): bool
-    {
+    public function wasCalled(): bool {
         return $this->called;
     }
 
-    public function stoppedPropagation(): bool
-    {
+    public function stoppedPropagation(): bool {
         return $this->stoppedPropagation;
     }
 
-    public function getPretty(): string
-    {
+    public function getPretty(): string {
         return $this->pretty;
     }
 

@@ -14,8 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseOperatorsTest extends TestCase
 {
-    public function testClassPropertiesAreArrays(): void
-    {
+    public function testClassPropertiesAreArrays(): void {
         $this->assertIsArray(DatabaseOperators::$operators1);
         $this->assertIsArray(DatabaseOperators::$operators2);
         $this->assertIsArray(DatabaseOperators::$operators3);
@@ -23,8 +22,7 @@ class DatabaseOperatorsTest extends TestCase
         $this->assertIsArray(DatabaseOperators::$operatorsFlow);
     }
 
-    public function testUnaryOperators(): void
-    {
+    public function testUnaryOperators(): void {
         $expectedOperators1 = [
             'BINARY',
             'COLLATE',
@@ -38,8 +36,7 @@ class DatabaseOperatorsTest extends TestCase
         $this->assertContains('BINARY', DatabaseOperators::$operators1);
     }
 
-    public function testBinaryOperators(): void
-    {
+    public function testBinaryOperators(): void {
         $expectedOperators2 = [
             '>>',
             '*',
@@ -79,8 +76,7 @@ class DatabaseOperatorsTest extends TestCase
         $this->assertContains('IS NOT NULL', DatabaseOperators::$operators2);
     }
 
-    public function testTernaryOperators(): void
-    {
+    public function testTernaryOperators(): void {
         $expectedOperators3 = [
             'BETWEEN',
             'NOT BETWEEN' // '! BETWEEN' is incorrect!
@@ -91,8 +87,7 @@ class DatabaseOperatorsTest extends TestCase
         $this->assertContains('NOT BETWEEN', DatabaseOperators::$operators3);
     }
 
-    public function testLogicalOperators(): void
-    {
+    public function testLogicalOperators(): void {
         $expectedOperatorsLogical = [
             'AND', '&&',
             'XOR',
@@ -105,8 +100,7 @@ class DatabaseOperatorsTest extends TestCase
         $this->assertContains('XOR', DatabaseOperators::$operatorsLogical);
     }
 
-    public function testFlowOperators(): void
-    {
+    public function testFlowOperators(): void {
         $expectedOperatorsFlow = [
             'CASE'
         ];
@@ -115,8 +109,7 @@ class DatabaseOperatorsTest extends TestCase
         $this->assertContains('CASE', DatabaseOperators::$operatorsFlow);
     }
 
-    public function testOperatorCategoriesAreDistinct(): void
-    {
+    public function testOperatorCategoriesAreDistinct(): void {
         // Ensure no operator is duplicated across categories
         $allOperators = array_merge(
             DatabaseOperators::$operators1,
@@ -130,8 +123,7 @@ class DatabaseOperatorsTest extends TestCase
         $this->assertEquals(count($allOperators), count($uniqueOperators));
     }
 
-    public function testOperatorArrayCounts(): void
-    {
+    public function testOperatorArrayCounts(): void {
         $this->assertCount(4, DatabaseOperators::$operators1);
         $this->assertCount(24, DatabaseOperators::$operators2);
         $this->assertCount(2, DatabaseOperators::$operators3);
@@ -139,16 +131,14 @@ class DatabaseOperatorsTest extends TestCase
         $this->assertCount(1, DatabaseOperators::$operatorsFlow);
     }
 
-    public function testOperatorCaseSensitivity(): void
-    {
+    public function testOperatorCaseSensitivity(): void {
         // Test that operators are case-sensitive as expected
         $this->assertNotContains('and', DatabaseOperators::$operatorsLogical);
         $this->assertNotContains('or', DatabaseOperators::$operatorsLogical);
         $this->assertNotContains('is null', DatabaseOperators::$operators2);
     }
 
-    public function testOperatorSyntax(): void
-    {
+    public function testOperatorSyntax(): void {
         // Test that operators have correct syntax
         $this->assertStringContainsString('<<', DatabaseOperators::$operators2[34]);
         $this->assertStringContainsString('<=', DatabaseOperators::$operators2[35]);
@@ -156,16 +146,14 @@ class DatabaseOperatorsTest extends TestCase
         $this->assertStringContainsString('=', DatabaseOperators::$operators2[28]);
     }
 
-    public function testOperatorComments(): void
-    {
+    public function testOperatorComments(): void {
         // Test that operators have appropriate comments where needed
         $this->assertStringContainsString('Change the sign of the argument', DatabaseOperators::$operators1[3]);
         $this->assertStringContainsString('Minus operator', DatabaseOperators::$operators2[3]);
         $this->assertStringContainsString('"! BETWEEN" is incorrect!', DatabaseOperators::$operators3[1]);
     }
 
-    public function testOperatorArrayIsStatic(): void
-    {
+    public function testOperatorArrayIsStatic(): void {
         // Test that operators are static properties
         $this->assertTrue(defined('Hubbitus\\HuPHP\\Database\\DatabaseOperators::$operators1'));
         $this->assertTrue(defined('Hubbitus\\HuPHP\\Database\\DatabaseOperators::$operators2'));

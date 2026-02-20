@@ -62,18 +62,15 @@ final class Delimiter implements DelimiterInterface
         $this->index          = $index;
     }
 
-    public function canClose(): bool
-    {
+    public function canClose(): bool {
         return $this->canClose;
     }
 
-    public function canOpen(): bool
-    {
+    public function canOpen(): bool {
         return $this->canOpen;
     }
 
-    public function isActive(): bool
-    {
+    public function isActive(): bool {
         return $this->active;
     }
 
@@ -82,8 +79,7 @@ final class Delimiter implements DelimiterInterface
         $this->active = $active;
     }
 
-    public function getChar(): string
-    {
+    public function getChar(): string {
         return $this->char;
     }
 
@@ -102,8 +98,7 @@ final class Delimiter implements DelimiterInterface
         $this->next = $next;
     }
 
-    public function getLength(): int
-    {
+    public function getLength(): int {
         return $this->length;
     }
 
@@ -112,13 +107,11 @@ final class Delimiter implements DelimiterInterface
         $this->length = $length;
     }
 
-    public function getOriginalLength(): int
-    {
+    public function getOriginalLength(): int {
         return $this->originalLength;
     }
 
-    public function getInlineNode(): AbstractStringContainer
-    {
+    public function getInlineNode(): AbstractStringContainer {
         return $this->inlineNode;
     }
 

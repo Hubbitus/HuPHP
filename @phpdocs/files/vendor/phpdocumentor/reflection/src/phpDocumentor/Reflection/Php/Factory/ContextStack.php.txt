@@ -50,8 +50,7 @@ final class ContextStack
         return $this->typeContext;
     }
 
-    public function getProject(): Project
-    {
+    public function getProject(): Project {
         return $this->project;
     }
 

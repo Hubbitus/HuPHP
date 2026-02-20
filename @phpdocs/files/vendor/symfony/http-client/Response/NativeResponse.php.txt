@@ -115,8 +115,7 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
         }
     }
 
-    private function open(): void
-    {
+    private function open(): void {
         $url = $this->url;
 
         set_error_handler(function ($type, $msg) use (&$url) {
@@ -205,8 +204,7 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
         $this->multi->hosts[$host] = 1 + ($this->multi->hosts[$host] ?? 0);
     }
 
-    private function close(): void
-    {
+    private function close(): void {
         $this->canary->cancel();
         $this->handle = $this->buffer = $this->inflate = $this->onProgress = null;
     }

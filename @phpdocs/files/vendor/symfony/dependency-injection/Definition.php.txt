@@ -72,8 +72,7 @@ class Definition
     /**
      * Returns all changes tracked for the Definition object.
      */
-    public function getChanges(): array
-    {
+    public function getChanges(): array {
         return $this->changes;
     }
 
@@ -213,8 +212,7 @@ class Definition
     /**
      * Gets the properties to define when creating the service.
      */
-    public function getProperties(): array
-    {
+    public function getProperties(): array {
         return $this->properties;
     }
 
@@ -283,8 +281,7 @@ class Definition
     /**
      * Gets the arguments to pass to the service constructor/factory method.
      */
-    public function getArguments(): array
-    {
+    public function getArguments(): array {
         return $this->arguments;
     }
 
@@ -371,8 +368,7 @@ class Definition
     /**
      * Gets the methods to call after service initialization.
      */
-    public function getMethodCalls(): array
-    {
+    public function getMethodCalls(): array {
         return $this->calls;
     }
 
@@ -395,8 +391,7 @@ class Definition
      *
      * @return ChildDefinition[]
      */
-    public function getInstanceofConditionals(): array
-    {
+    public function getInstanceofConditionals(): array {
         return $this->instanceof;
     }
 
@@ -414,8 +409,7 @@ class Definition
         return $this;
     }
 
-    public function isAutoconfigured(): bool
-    {
+    public function isAutoconfigured(): bool {
         return $this->autoconfigured;
     }
 
@@ -434,8 +428,7 @@ class Definition
     /**
      * Returns all tags.
      */
-    public function getTags(): array
-    {
+    public function getTags(): array {
         return $this->tags;
     }
 
@@ -484,8 +477,7 @@ class Definition
      *
      * @return $this
      */
-    public function clearTags(): static
-    {
+    public function clearTags(): static {
         $this->tags = [];
 
         return $this;
@@ -530,8 +522,7 @@ class Definition
     /**
      * Whether this service is shared.
      */
-    public function isShared(): bool
-    {
+    public function isShared(): bool {
         return $this->shared;
     }
 
@@ -552,16 +543,14 @@ class Definition
     /**
      * Whether this service is public facing.
      */
-    public function isPublic(): bool
-    {
+    public function isPublic(): bool {
         return $this->public;
     }
 
     /**
      * Whether this service is private.
      */
-    public function isPrivate(): bool
-    {
+    public function isPrivate(): bool {
         return !$this->public;
     }
 
@@ -582,8 +571,7 @@ class Definition
     /**
      * Whether this service is lazy.
      */
-    public function isLazy(): bool
-    {
+    public function isLazy(): bool {
         return $this->lazy;
     }
 
@@ -608,8 +596,7 @@ class Definition
      * Whether this definition is synthetic, that is not constructed by the
      * container, but dynamically injected.
      */
-    public function isSynthetic(): bool
-    {
+    public function isSynthetic(): bool {
         return $this->synthetic;
     }
 
@@ -630,8 +617,7 @@ class Definition
      * Whether this definition is abstract, that means it merely serves as a
      * template for other definitions.
      */
-    public function isAbstract(): bool
-    {
+    public function isAbstract(): bool {
         return $this->abstract;
     }
 
@@ -669,8 +655,7 @@ class Definition
      * Whether this definition is deprecated, that means it should not be called
      * anymore.
      */
-    public function isDeprecated(): bool
-    {
+    public function isDeprecated(): bool {
         return (bool) $this->deprecation;
     }
 
@@ -719,8 +704,7 @@ class Definition
     /**
      * Is the definition autowired?
      */
-    public function isAutowired(): bool
-    {
+    public function isAutowired(): bool {
         return $this->autowired;
     }
 
@@ -743,8 +727,7 @@ class Definition
      *
      * @return BoundArgument[]
      */
-    public function getBindings(): array
-    {
+    public function getBindings(): array {
         return $this->bindings;
     }
 
@@ -793,8 +776,7 @@ class Definition
     /**
      * Returns any errors that occurred while building this Definition.
      */
-    public function getErrors(): array
-    {
+    public function getErrors(): array {
         foreach ($this->errors as $i => $error) {
             if ($error instanceof \Closure) {
                 $this->errors[$i] = (string) $error();
@@ -806,8 +788,7 @@ class Definition
         return $this->errors;
     }
 
-    public function hasErrors(): bool
-    {
+    public function hasErrors(): bool {
         return (bool) $this->errors;
     }
 }

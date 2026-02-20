@@ -42,8 +42,7 @@ trait HasProperties
     }
 
     /** @return Collection<PropertyInterface> */
-    public function getProperties(): Collection
-    {
+    public function getProperties(): Collection {
         if (! isset($this->properties)) {
             $this->properties = Collection::fromInterfaceString(PropertyInterface::class);
         }
@@ -56,8 +55,7 @@ trait HasProperties
      *
      * @todo check whether this function works properly, the business logic feels off somehow
      */
-    public function getInheritedProperties(): Collection
-    {
+    public function getInheritedProperties(): Collection {
         $inheritedProperties = Collection::fromInterfaceString(PropertyInterface::class);
 
         if (method_exists($this, 'getUsedTraits')) {
@@ -89,8 +87,7 @@ trait HasProperties
     }
 
     /** @return Collection<PropertyInterface> */
-    public function getMagicProperties(): Collection
-    {
+    public function getMagicProperties(): Collection {
         $tags = $this->getTags();
         /** @var Collection<Tag\PropertyDescriptor> $propertyTags */
         $propertyTags = $tags->fetch('property', new Collection())->filter(Tag\PropertyDescriptor::class)

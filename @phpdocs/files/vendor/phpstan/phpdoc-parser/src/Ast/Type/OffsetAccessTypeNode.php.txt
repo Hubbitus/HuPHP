@@ -19,8 +19,7 @@ class OffsetAccessTypeNode implements TypeNode
 		$this->offset = $offset;
 	}
 
-	public function __toString(): string
-	{
+	public function __toString(): string {
 		if (
 			$this->type instanceof CallableTypeNode
 			|| $this->type instanceof NullableTypeNode

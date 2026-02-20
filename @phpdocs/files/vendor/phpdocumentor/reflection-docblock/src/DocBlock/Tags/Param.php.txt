@@ -135,24 +135,21 @@ final class Param extends TagWithType implements Factory\StaticMethod
     /**
      * Returns whether this tag is variadic.
      */
-    public function isVariadic(): bool
-    {
+    public function isVariadic(): bool {
         return $this->isVariadic;
     }
 
     /**
      * Returns whether this tag is passed by reference.
      */
-    public function isReference(): bool
-    {
+    public function isReference(): bool {
         return $this->isReference;
     }
 
     /**
      * Returns a string representation for this tag.
      */
-    public function __toString(): string
-    {
+    public function __toString(): string {
         if ($this->description) {
             $description = $this->description->render();
         } else {

@@ -52,21 +52,18 @@ final class DocReferenceNode extends AbstractLinkInlineNode implements CrossRefe
         parent::__construct(self::TYPE, $targetDocument, $children);
     }
 
-    public function getInterlinkDomain(): string
-    {
+    public function getInterlinkDomain(): string {
         return $this->interlinkDomain;
     }
 
     /** @return array<string, string> */
-    public function getDebugInformation(): array
-    {
+    public function getDebugInformation(): array {
         return array_merge(parent::getDebugInformation(), [
             'interlinkDomain' => $this->getInterlinkDomain(),
         ]);
     }
 
-    public function getInterlinkGroup(): string
-    {
+    public function getInterlinkGroup(): string {
         return 'std:doc';
     }
 }

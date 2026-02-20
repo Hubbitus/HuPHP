@@ -46,8 +46,7 @@ class ConditionalExpression extends AbstractExpression implements OperatorEscape
         }
     }
 
-    public function getOperandNamesToEscape(): array
-    {
+    public function getOperandNamesToEscape(): array {
         return ['expr2', 'expr3'];
     }
 }

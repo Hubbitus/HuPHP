@@ -55,23 +55,19 @@ final class CallableParameter
         return $this->name;
     }
 
-    public function getType(): Type
-    {
+    public function getType(): Type {
         return $this->type;
     }
 
-    public function isReference(): bool
-    {
+    public function isReference(): bool {
         return $this->isReference;
     }
 
-    public function isVariadic(): bool
-    {
+    public function isVariadic(): bool {
         return $this->isVariadic;
     }
 
-    public function isOptional(): bool
-    {
+    public function isOptional(): bool {
         return $this->isOptional;
     }
 }

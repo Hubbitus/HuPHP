@@ -41,8 +41,7 @@ abstract class WriterAbstract implements Stringable
      *
      * @codeCoverageIgnore
      */
-    public function checkRequirements(): void
-    {
+    public function checkRequirements(): void {
         // empty body since most writers do not have requirements
     }
 
@@ -58,8 +57,7 @@ abstract class WriterAbstract implements Stringable
         DocumentationSetDescriptor $documentationSet,
     ): void;
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return static::class;
     }
 }

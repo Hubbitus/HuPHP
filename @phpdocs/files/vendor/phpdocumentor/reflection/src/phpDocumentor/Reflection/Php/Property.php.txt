@@ -102,8 +102,7 @@ final class Property implements Element, MetaDataContainerInterface, AttributeCo
     /**
      * Returns true when this method is static. Otherwise returns false.
      */
-    public function isStatic(): bool
-    {
+    public function isStatic(): bool {
         return $this->static;
     }
 
@@ -112,8 +111,7 @@ final class Property implements Element, MetaDataContainerInterface, AttributeCo
      *
      * @return string[]
      */
-    public function getTypes(): array
-    {
+    public function getTypes(): array {
         return $this->types;
     }
 
@@ -137,8 +135,7 @@ final class Property implements Element, MetaDataContainerInterface, AttributeCo
      * Returns the Fqsen of the element.
      */
     #[Override]
-    public function getFqsen(): Fqsen
-    {
+    public function getFqsen(): Fqsen {
         return $this->fqsen;
     }
 
@@ -146,8 +143,7 @@ final class Property implements Element, MetaDataContainerInterface, AttributeCo
      * Returns the name of the element.
      */
     #[Override]
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->fqsen->getName();
     }
 
@@ -159,13 +155,11 @@ final class Property implements Element, MetaDataContainerInterface, AttributeCo
         return $this->docBlock;
     }
 
-    public function getLocation(): Location
-    {
+    public function getLocation(): Location {
         return $this->location;
     }
 
-    public function getEndLocation(): Location
-    {
+    public function getEndLocation(): Location {
         return $this->endLocation;
     }
 
@@ -174,14 +168,12 @@ final class Property implements Element, MetaDataContainerInterface, AttributeCo
         return $this->type;
     }
 
-    public function isReadOnly(): bool
-    {
+    public function isReadOnly(): bool {
         return $this->readOnly;
     }
 
     /** @return PropertyHook[] */
-    public function getHooks(): array
-    {
+    public function getHooks(): array {
         return $this->hooks;
     }
 
@@ -190,8 +182,7 @@ final class Property implements Element, MetaDataContainerInterface, AttributeCo
      *
      * A virtual property is one where no defined hook references the property itself.
      */
-    public function isVirtual(): bool
-    {
+    public function isVirtual(): bool {
         return $this->virtual;
     }
 }

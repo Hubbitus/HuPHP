@@ -30,8 +30,7 @@ class ListItem extends AbstractBlock
         $this->listData = $listData;
     }
 
-    public function getListData(): ListData
-    {
+    public function getListData(): ListData {
         return $this->listData;
     }
 }

@@ -25,8 +25,7 @@ final class AddressNode extends MetadataNode
         parent::__construct($body);
     }
 
-    public function getBody(): string
-    {
+    public function getBody(): string {
         return $this->body;
     }
 }

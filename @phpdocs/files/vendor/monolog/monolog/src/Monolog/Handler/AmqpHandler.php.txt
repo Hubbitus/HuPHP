@@ -33,8 +33,7 @@ class AmqpHandler extends AbstractProcessingHandler
     /**
      * @return array<string, mixed>
      */
-    public function getExtraAttributes(): array
-    {
+    public function getExtraAttributes(): array {
         return $this->extraAttributes;
     }
 
@@ -164,8 +163,7 @@ class AmqpHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface
-    {
+    protected function getDefaultFormatter(): FormatterInterface {
         return new JsonFormatter(JsonFormatter::BATCH_MODE_JSON, false);
     }
 }

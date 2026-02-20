@@ -17,8 +17,7 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseSqliteTest extends TestCase
 {
-    public function testClassExtendsDatabase(): void
-    {
+    public function testClassExtendsDatabase(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -29,8 +28,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertEquals('sqlite3', $db->db_type);
     }
 
-    public function testDbConnectSuccess(): void
-    {
+    public function testDbConnectSuccess(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -41,8 +39,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertInstanceOf(PDO::class, $db->db_link);
     }
 
-    public function testDbConnectFailureThrowsException(): void
-    {
+    public function testDbConnectFailureThrowsException(): void {
         $this->expectException(DatabaseConnectErrorException::class);
 
         $settings = new DatabaseSettingsSqlite([
@@ -52,8 +49,7 @@ class DatabaseSqliteTest extends TestCase
         $db = new DatabaseSqlite($settings);
     }
 
-    public function testDbSelectIsStub(): void
-    {
+    public function testDbSelectIsStub(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -65,8 +61,7 @@ class DatabaseSqliteTest extends TestCase
         $db->db_select();
     }
 
-    public function testQuerySuccess(): void
-    {
+    public function testQuerySuccess(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -87,8 +82,7 @@ class DatabaseSqliteTest extends TestCase
         ], $row);
     }
 
-    public function testQueryFailureThrowsException(): void
-    {
+    public function testQueryFailureThrowsException(): void {
         $this->expectException(DatabaseQueryFailedException::class);
 
         $settings = new DatabaseSettingsSqlite([
@@ -100,8 +94,7 @@ class DatabaseSqliteTest extends TestCase
         $db->query('SELECT * FROM non_existent_table');
     }
 
-    public function testQueryLimitMethod(): void
-    {
+    public function testQueryLimitMethod(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -125,8 +118,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertEquals('2', $rows[1]['id']);
     }
 
-    public function testToBlobMethod(): void
-    {
+    public function testToBlobMethod(): void {
         $db = new DatabaseSqlite(new DatabaseSettingsSqlite());
 
         $testString = "test string";
@@ -134,16 +126,14 @@ class DatabaseSqliteTest extends TestCase
         $this->assertEquals($testString, $result);
     }
 
-    public function testSqlNextResultMethod(): void
-    {
+    public function testSqlNextResultMethod(): void {
         $db = new DatabaseSqlite(new DatabaseSettingsSqlite());
 
         $this->assertTrue(method_exists($db, 'sql_next_result'));
         $this->assertTrue((new \ReflectionMethod($db, 'sql_next_result'))->isPublic());
     }
 
-    public function testSqlEscapeStringMethod(): void
-    {
+    public function testSqlEscapeStringMethod(): void {
         $db = new DatabaseSqlite(new DatabaseSettingsSqlite());
 
         $testString = "O'Connor";
@@ -151,8 +141,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertStringContainsString("O'Connor", $result);
     }
 
-    public function testRowsTotalMethod(): void
-    {
+    public function testRowsTotalMethod(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -169,16 +158,14 @@ class DatabaseSqliteTest extends TestCase
         $this->assertEquals(3, $result);
     }
 
-    public function testCollectDebugInfoMethod(): void
-    {
+    public function testCollectDebugInfoMethod(): void {
         $db = new DatabaseSqlite(new DatabaseSettingsSqlite());
 
         $this->assertTrue(method_exists($db, 'collectDebugInfo'));
         $this->assertEquals(4, (new \ReflectionMethod($db, 'collectDebugInfo'))->getNumberOfParameters());
     }
 
-    public function testSqlFetchFieldMethod(): void
-    {
+    public function testSqlFetchFieldMethod(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -197,8 +184,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertArrayHasKey('table', $fieldMeta);
     }
 
-    public function testSqlFetchAssocMethod(): void
-    {
+    public function testSqlFetchAssocMethod(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -217,8 +203,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertArrayHasKey('name', $row);
     }
 
-    public function testSqlFetchRowMethod(): void
-    {
+    public function testSqlFetchRowMethod(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -236,8 +221,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertCount(2, $row);
     }
 
-    public function testSqlFetchArrayMethod(): void
-    {
+    public function testSqlFetchArrayMethod(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -257,8 +241,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertArrayHasKey('name', $row);
     }
 
-    public function testSqlFetchObjectMethod(): void
-    {
+    public function testSqlFetchObjectMethod(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -277,8 +260,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertObjectHasAttribute('name', $object);
     }
 
-    public function testSqlFreeResultMethod(): void
-    {
+    public function testSqlFreeResultMethod(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -296,8 +278,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertNull($db->result);
     }
 
-    public function testSqlNumRowsMethod(): void
-    {
+    public function testSqlNumRowsMethod(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -314,8 +295,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertEquals(3, $rowCount);
     }
 
-    public function testSettingsInheritance(): void
-    {
+    public function testSettingsInheritance(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:',
             'DEBUG' => true,
@@ -333,8 +313,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertEquals('ISO-8859-1', $db->settings->CHARSET_RECODE['TO']);
     }
 
-    public function testConstructorParameters(): void
-    {
+    public function testConstructorParameters(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -345,22 +324,19 @@ class DatabaseSqliteTest extends TestCase
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\Database', $db);
     }
 
-    public function testDatabaseTypeProperty(): void
-    {
+    public function testDatabaseTypeProperty(): void {
         $db = new DatabaseSqlite(new DatabaseSettingsSqlite());
 
         $this->assertEquals('sqlite3', $db->db_type);
     }
 
-    public function testErrorHandling(): void
-    {
+    public function testErrorHandling(): void {
         $db = new DatabaseSqlite(new DatabaseSettingsSqlite());
 
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\DatabaseError', $db->getError());
     }
 
-    public function testMagicMethods(): void
-    {
+    public function testMagicMethods(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'
         ]);
@@ -370,8 +346,7 @@ class DatabaseSqliteTest extends TestCase
         $this->assertEquals(':memory:', $db->settings->db_file);
     }
 
-    public function testWakeupMethod(): void
-    {
+    public function testWakeupMethod(): void {
         $db = new DatabaseSqlite(new DatabaseSettingsSqlite());
 
         $this->assertTrue(method_exists($db, '__wakeup'));

@@ -169,8 +169,7 @@ class TraceableAdapter implements AdapterInterface, CacheInterface, PruneableInt
         }
     }
 
-    public function commit(): bool
-    {
+    public function commit(): bool {
         $event = $this->start(__FUNCTION__);
         try {
             return $event->result = $this->pool->commit();
@@ -179,8 +178,7 @@ class TraceableAdapter implements AdapterInterface, CacheInterface, PruneableInt
         }
     }
 
-    public function prune(): bool
-    {
+    public function prune(): bool {
         if (!$this->pool instanceof PruneableInterface) {
             return false;
         }
@@ -230,8 +228,7 @@ class TraceableAdapter implements AdapterInterface, CacheInterface, PruneableInt
         $this->calls = [];
     }
 
-    public function getPool(): AdapterInterface
-    {
+    public function getPool(): AdapterInterface {
         return $this->pool;
     }
 

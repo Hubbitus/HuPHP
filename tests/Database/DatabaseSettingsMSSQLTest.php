@@ -14,16 +14,14 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseSettingsMSSQLTest extends TestCase
 {
-    public function testClassExtendsDatabaseSettings(): void
-    {
+    public function testClassExtendsDatabaseSettings(): void {
         $settings = new DatabaseSettingsMSSQL();
 
         $this->assertInstanceOf(DatabaseSettingsMSSQL::class, $settings);
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\DatabaseSettings', $settings);
     }
 
-    public function testConstructorWithDefaultSettings(): void
-    {
+    public function testConstructorWithDefaultSettings(): void {
         $settings = new DatabaseSettingsMSSQL();
 
         $this->assertInstanceOf(DatabaseSettingsMSSQL::class, $settings);
@@ -32,8 +30,7 @@ class DatabaseSettingsMSSQLTest extends TestCase
         $this->assertFalse($settings->DEBUG);
     }
 
-    public function testConstructorWithCustomSettings(): void
-    {
+    public function testConstructorWithCustomSettings(): void {
         $customSettings = [
             'hostname' => 'localhost',
             'username' => 'root',
@@ -65,8 +62,7 @@ class DatabaseSettingsMSSQLTest extends TestCase
         $this->assertEquals('error', $settings->DBError_settings['level']);
     }
 
-    public function testGettersAndSetters(): void
-    {
+    public function testGettersAndSetters(): void {
         $settings = new DatabaseSettingsMSSQL();
 
         // Test default getters
@@ -98,8 +94,7 @@ class DatabaseSettingsMSSQLTest extends TestCase
         $this->assertEquals('debug', $settings->DBError_settings['level']);
     }
 
-    public function testDefaultSettingsStructure(): void
-    {
+    public function testDefaultSettingsStructure(): void {
         $settings = new DatabaseSettingsMSSQL();
 
         // Test that all expected default settings are present
@@ -124,8 +119,7 @@ class DatabaseSettingsMSSQLTest extends TestCase
         }
     }
 
-    public function testInheritanceFromDatabaseSettings(): void
-    {
+    public function testInheritanceFromDatabaseSettings(): void {
         $settings = new DatabaseSettingsMSSQL();
 
         // Test that it inherits methods from DatabaseSettings
@@ -136,8 +130,7 @@ class DatabaseSettingsMSSQLTest extends TestCase
         $this->assertTrue(method_exists($settings, 'offsetUnset'));
     }
 
-    public function testArrayAccess(): void
-    {
+    public function testArrayAccess(): void {
         $settings = new DatabaseSettingsMSSQL();
 
         // Test ArrayAccess interface
@@ -149,8 +142,7 @@ class DatabaseSettingsMSSQLTest extends TestCase
         $this->assertFalse(isset($settings['hostname']));
     }
 
-    public function testSettingsMerging(): void
-    {
+    public function testSettingsMerging(): void {
         $defaultSettings = [
             'hostname' => 'localhost',
             'username' => 'root',
@@ -175,8 +167,7 @@ class DatabaseSettingsMSSQLTest extends TestCase
         $this->assertTrue($settings->persistent);
     }
 
-    public function testClassConstants(): void
-    {
+    public function testClassConstants(): void {
         $reflection = new \ReflectionClass(DatabaseSettingsMSSQL::class);
 
         // Test that the class has the INT_STR_LENGTH constant
@@ -187,8 +178,7 @@ class DatabaseSettingsMSSQLTest extends TestCase
         $this->assertIsInt($reflection->getConstant('INT_STR_LENGTH'));
     }
 
-    public function testConstantUsage(): void
-    {
+    public function testConstantUsage(): void {
         $settings = new DatabaseSettingsMSSQL();
 
         // Test that the constant can be accessed statically
@@ -201,8 +191,7 @@ class DatabaseSettingsMSSQLTest extends TestCase
         $this->assertTrue($constant->isFinal());
     }
 
-    public function testConstructorWithArrayAndConstant(): void
-    {
+    public function testConstructorWithArrayAndConstant(): void {
         $customSettings = [
             'hostname' => 'localhost',
             'username' => 'root',
@@ -218,8 +207,7 @@ class DatabaseSettingsMSSQLTest extends TestCase
         $this->assertEquals(10, DatabaseSettingsMSSQL::INT_STR_LENGTH);
     }
 
-    public function testParentClassConstants(): void
-    {
+    public function testParentClassConstants(): void {
         $reflection = new \ReflectionClass(DatabaseSettingsMSSQL::class);
 
         // Test that parent class constants are inherited
@@ -228,24 +216,21 @@ class DatabaseSettingsMSSQLTest extends TestCase
         $this->assertInstanceOf('ReflectionClass', $parentReflection);
     }
 
-    public function testEmptyConstructor(): void
-    {
+    public function testEmptyConstructor(): void {
         $settings = new DatabaseSettingsMSSQL();
 
         $this->assertInstanceOf(DatabaseSettingsMSSQL::class, $settings);
         $this->assertEmpty($settings->getArrayCopy());
     }
 
-    public function testNullConstructor(): void
-    {
+    public function testNullConstructor(): void {
         $settings = new DatabaseSettingsMSSQL(null);
 
         $this->assertInstanceOf(DatabaseSettingsMSSQL::class, $settings);
         $this->assertEmpty($settings->getArrayCopy());
     }
 
-    public function testInvalidConstructor(): void
-    {
+    public function testInvalidConstructor(): void {
         $settings = new DatabaseSettingsMSSQL('invalid');
 
         $this->assertInstanceOf(DatabaseSettingsMSSQL::class, $settings);

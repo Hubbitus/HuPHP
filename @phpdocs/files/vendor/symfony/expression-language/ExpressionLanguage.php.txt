@@ -164,18 +164,15 @@ class ExpressionLanguage
         ));
     }
 
-    private function getLexer(): Lexer
-    {
+    private function getLexer(): Lexer {
         return $this->lexer ??= new Lexer();
     }
 
-    private function getParser(): Parser
-    {
+    private function getParser(): Parser {
         return $this->parser ??= new Parser($this->functions);
     }
 
-    private function getCompiler(): Compiler
-    {
+    private function getCompiler(): Compiler {
         $this->compiler ??= new Compiler($this->functions);
 
         return $this->compiler->reset();

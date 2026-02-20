@@ -78,13 +78,11 @@ class LinkRenderer implements LinkRendererInterface
     }
 
     /** @deprecated use {@see getDocumentationSet()} */
-    public function getProject(): ProjectDescriptor
-    {
+    public function getProject(): ProjectDescriptor {
         return $this->project;
     }
 
-    public function getDocumentationSet(): DocumentationSetDescriptor
-    {
+    public function getDocumentationSet(): DocumentationSetDescriptor {
         return $this->documentationSet;
     }
 
@@ -109,8 +107,7 @@ class LinkRenderer implements LinkRendererInterface
     /**
      * Returns the target directory relative to the Project's Root.
      */
-    public function getDestination(): string
-    {
+    public function getDestination(): string {
         return $this->destination;
     }
 
@@ -143,8 +140,7 @@ class LinkRenderer implements LinkRendererInterface
     }
 
     /** @return array<array-key, LinkRendererInterface> */
-    private function createAdapters(): array
-    {
+    private function createAdapters(): array {
         // TODO: Because the renderer uses an immutable pattern to change itself; the $this references
         // below get lost. For now we solved it in __clone(), but as soon as we move these dependencies
         // to the container that won't work anymore..

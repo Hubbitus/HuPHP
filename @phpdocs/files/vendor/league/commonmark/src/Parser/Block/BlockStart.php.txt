@@ -44,8 +44,7 @@ final class BlockStart
     /**
      * @return BlockContinueParserInterface[]
      */
-    public function getBlockParsers(): iterable
-    {
+    public function getBlockParsers(): iterable {
         return $this->blockParsers;
     }
 
@@ -54,16 +53,14 @@ final class BlockStart
         return $this->cursorState;
     }
 
-    public function isReplaceActiveBlockParser(): bool
-    {
+    public function isReplaceActiveBlockParser(): bool {
         return $this->replaceActiveBlockParser;
     }
 
     /**
      * @internal
      */
-    public function isAborting(): bool
-    {
+    public function isAborting(): bool {
         return $this->isAborting;
     }
 
@@ -84,8 +81,7 @@ final class BlockStart
      *
      * @return $this
      */
-    public function replaceActiveBlockParser(): self
-    {
+    public function replaceActiveBlockParser(): self {
         $this->replaceActiveBlockParser = true;
 
         return $this;
@@ -114,8 +110,7 @@ final class BlockStart
      *
      * @internal
      */
-    public static function abort(): self
-    {
+    public static function abort(): self {
         $ret             = new self();
         $ret->isAborting = true;
 

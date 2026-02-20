@@ -232,8 +232,7 @@ EOF
         }
     }
 
-    private function getParser(): Parser
-    {
+    private function getParser(): Parser {
         return $this->parser ??= new Parser();
     }
 
@@ -269,8 +268,7 @@ EOF
         }
     }
 
-    private function getAvailableFormatOptions(): array
-    {
+    private function getAvailableFormatOptions(): array {
         return ['txt', 'json', 'github'];
     }
 }

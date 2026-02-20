@@ -30,8 +30,7 @@ final class MenuDefinitionLineNode extends AbstractNode implements Stringable
         $this->value = $reference;
     }
 
-    public function getReference(): string
-    {
+    public function getReference(): string {
         return $this->reference;
     }
 
@@ -40,8 +39,7 @@ final class MenuDefinitionLineNode extends AbstractNode implements Stringable
         return $this->title;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->reference;
     }
 }

@@ -95,21 +95,18 @@ abstract class Driver
         return (new Selector)->forLineAndPathCoverage($filter);
     }
 
-    public function canCollectBranchAndPathCoverage(): bool
-    {
+    public function canCollectBranchAndPathCoverage(): bool {
         return false;
     }
 
-    public function collectsBranchAndPathCoverage(): bool
-    {
+    public function collectsBranchAndPathCoverage(): bool {
         return $this->collectBranchAndPathCoverage;
     }
 
     /**
      * @throws BranchAndPathCoverageNotSupportedException
      */
-    public function enableBranchAndPathCoverage(): void
-    {
+    public function enableBranchAndPathCoverage(): void {
         if (!$this->canCollectBranchAndPathCoverage()) {
             throw new BranchAndPathCoverageNotSupportedException(
                 sprintf(
@@ -122,26 +119,22 @@ abstract class Driver
         $this->collectBranchAndPathCoverage = true;
     }
 
-    public function disableBranchAndPathCoverage(): void
-    {
+    public function disableBranchAndPathCoverage(): void {
         $this->collectBranchAndPathCoverage = false;
     }
 
-    public function canDetectDeadCode(): bool
-    {
+    public function canDetectDeadCode(): bool {
         return false;
     }
 
-    public function detectsDeadCode(): bool
-    {
+    public function detectsDeadCode(): bool {
         return $this->detectDeadCode;
     }
 
     /**
      * @throws DeadCodeDetectionNotSupportedException
      */
-    public function enableDeadCodeDetection(): void
-    {
+    public function enableDeadCodeDetection(): void {
         if (!$this->canDetectDeadCode()) {
             throw new DeadCodeDetectionNotSupportedException(
                 sprintf(
@@ -154,8 +147,7 @@ abstract class Driver
         $this->detectDeadCode = true;
     }
 
-    public function disableDeadCodeDetection(): void
-    {
+    public function disableDeadCodeDetection(): void {
         $this->detectDeadCode = false;
     }
 

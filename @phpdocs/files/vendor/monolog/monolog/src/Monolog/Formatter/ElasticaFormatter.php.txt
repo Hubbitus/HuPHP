@@ -55,16 +55,14 @@ class ElasticaFormatter extends NormalizerFormatter
         return $this->getDocument($record);
     }
 
-    public function getIndex(): string
-    {
+    public function getIndex(): string {
         return $this->index;
     }
 
     /**
      * @deprecated since Elastica 7 type has no effect
      */
-    public function getType(): string
-    {
+    public function getType(): string {
         /** @phpstan-ignore-next-line */
         return $this->type;
     }

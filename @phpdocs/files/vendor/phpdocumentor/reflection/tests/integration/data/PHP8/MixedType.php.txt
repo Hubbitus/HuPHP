@@ -8,8 +8,7 @@ class MixedType
 {
     public mixed $property;
 
-    public function getProperty(): mixed
-    {
+    public function getProperty(): mixed {
         return $this->property;
     }
 

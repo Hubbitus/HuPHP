@@ -30,14 +30,12 @@ final class GenericReferenceTextRole extends AbstractReferenceTextRole
     ) {
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'ref';
     }
 
     /** @inheritDoc */
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return array_keys($this->genericLinkProvider->getTextRoleLinkTypeMapping());
     }
 

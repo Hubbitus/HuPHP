@@ -119,8 +119,7 @@ class PdoAdapter extends AbstractAdapter implements PruneableInterface
         $this->getConnection()->exec($sql);
     }
 
-    public function prune(): bool
-    {
+    public function prune(): bool {
         $deleteSql = "DELETE FROM $this->table WHERE $this->lifetimeCol + $this->timeCol <= :time";
 
         if ('' !== $this->namespace) {
@@ -371,13 +370,11 @@ class PdoAdapter extends AbstractAdapter implements PruneableInterface
         return $this->conn;
     }
 
-    private function getDriver(): string
-    {
+    private function getDriver(): string {
         return $this->driver ??= $this->getConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME);
     }
 
-    private function getServerVersion(): string
-    {
+    private function getServerVersion(): string {
         return $this->serverVersion ??= $this->getConnection()->getAttribute(\PDO::ATTR_SERVER_VERSION);
     }
 

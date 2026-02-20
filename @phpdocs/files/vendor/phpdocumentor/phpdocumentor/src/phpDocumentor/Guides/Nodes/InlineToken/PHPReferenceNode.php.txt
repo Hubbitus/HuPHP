@@ -20,18 +20,15 @@ final class PHPReferenceNode extends InlineNode
         parent::__construct('phpref', $text ?? (string) $fqsen);
     }
 
-    public function getText(): string
-    {
+    public function getText(): string {
         return $this->text ?? (string) $this->fqsen;
     }
 
-    public function getNodeType(): string
-    {
+    public function getNodeType(): string {
         return $this->nodeType;
     }
 
-    public function getFqsen(): Fqsen
-    {
+    public function getFqsen(): Fqsen {
         return $this->fqsen;
     }
 
@@ -48,8 +45,7 @@ final class PHPReferenceNode extends InlineNode
         return $this->descriptor;
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         return $this->fqsen->getName();
     }
 }

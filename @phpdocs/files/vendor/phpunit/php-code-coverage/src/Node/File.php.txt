@@ -138,81 +138,66 @@ final class File extends AbstractNode
         $this->calculateStatistics($classes, $traits, $functions);
     }
 
-    public function count(): int
-    {
+    public function count(): int {
         return 1;
     }
 
-    public function lineCoverageData(): array
-    {
+    public function lineCoverageData(): array {
         return $this->lineCoverageData;
     }
 
-    public function functionCoverageData(): array
-    {
+    public function functionCoverageData(): array {
         return $this->functionCoverageData;
     }
 
-    public function testData(): array
-    {
+    public function testData(): array {
         return $this->testData;
     }
 
-    public function classes(): array
-    {
+    public function classes(): array {
         return $this->classes;
     }
 
-    public function traits(): array
-    {
+    public function traits(): array {
         return $this->traits;
     }
 
-    public function functions(): array
-    {
+    public function functions(): array {
         return $this->functions;
     }
 
     /**
      * @psalm-return array{linesOfCode: int, commentLinesOfCode: int, nonCommentLinesOfCode: int}
      */
-    public function linesOfCode(): array
-    {
+    public function linesOfCode(): array {
         return $this->linesOfCode;
     }
 
-    public function numberOfExecutableLines(): int
-    {
+    public function numberOfExecutableLines(): int {
         return $this->numExecutableLines;
     }
 
-    public function numberOfExecutedLines(): int
-    {
+    public function numberOfExecutedLines(): int {
         return $this->numExecutedLines;
     }
 
-    public function numberOfExecutableBranches(): int
-    {
+    public function numberOfExecutableBranches(): int {
         return $this->numExecutableBranches;
     }
 
-    public function numberOfExecutedBranches(): int
-    {
+    public function numberOfExecutedBranches(): int {
         return $this->numExecutedBranches;
     }
 
-    public function numberOfExecutablePaths(): int
-    {
+    public function numberOfExecutablePaths(): int {
         return $this->numExecutablePaths;
     }
 
-    public function numberOfExecutedPaths(): int
-    {
+    public function numberOfExecutedPaths(): int {
         return $this->numExecutedPaths;
     }
 
-    public function numberOfClasses(): int
-    {
+    public function numberOfClasses(): int {
         if ($this->numClasses === null) {
             $this->numClasses = 0;
 
@@ -230,13 +215,11 @@ final class File extends AbstractNode
         return $this->numClasses;
     }
 
-    public function numberOfTestedClasses(): int
-    {
+    public function numberOfTestedClasses(): int {
         return $this->numTestedClasses;
     }
 
-    public function numberOfTraits(): int
-    {
+    public function numberOfTraits(): int {
         if ($this->numTraits === null) {
             $this->numTraits = 0;
 
@@ -254,13 +237,11 @@ final class File extends AbstractNode
         return $this->numTraits;
     }
 
-    public function numberOfTestedTraits(): int
-    {
+    public function numberOfTestedTraits(): int {
         return $this->numTestedTraits;
     }
 
-    public function numberOfMethods(): int
-    {
+    public function numberOfMethods(): int {
         if ($this->numMethods === null) {
             $this->numMethods = 0;
 
@@ -284,8 +265,7 @@ final class File extends AbstractNode
         return $this->numMethods;
     }
 
-    public function numberOfTestedMethods(): int
-    {
+    public function numberOfTestedMethods(): int {
         if ($this->numTestedMethods === null) {
             $this->numTestedMethods = 0;
 
@@ -311,13 +291,11 @@ final class File extends AbstractNode
         return $this->numTestedMethods;
     }
 
-    public function numberOfFunctions(): int
-    {
+    public function numberOfFunctions(): int {
         return count($this->functions);
     }
 
-    public function numberOfTestedFunctions(): int
-    {
+    public function numberOfTestedFunctions(): int {
         if ($this->numTestedFunctions === null) {
             $this->numTestedFunctions = 0;
 

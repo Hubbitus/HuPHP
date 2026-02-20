@@ -64,18 +64,15 @@ abstract class AbstractTwigCallable implements TwigCallableInterface
         }
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return \sprintf('%s(%s)', static::class, $this->name);
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function getDynamicName(): string
-    {
+    public function getDynamicName(): string {
         return $this->dynamicName;
     }
 
@@ -87,23 +84,19 @@ abstract class AbstractTwigCallable implements TwigCallableInterface
         return $this->callable;
     }
 
-    public function getNodeClass(): string
-    {
+    public function getNodeClass(): string {
         return $this->options['node_class'];
     }
 
-    public function needsCharset(): bool
-    {
+    public function needsCharset(): bool {
         return $this->options['needs_charset'];
     }
 
-    public function needsEnvironment(): bool
-    {
+    public function needsEnvironment(): bool {
         return $this->options['needs_environment'];
     }
 
-    public function needsContext(): bool
-    {
+    public function needsContext(): bool {
         return $this->options['needs_context'];
     }
 
@@ -130,18 +123,15 @@ abstract class AbstractTwigCallable implements TwigCallableInterface
         $this->arguments = $arguments;
     }
 
-    public function getArguments(): array
-    {
+    public function getArguments(): array {
         return $this->arguments;
     }
 
-    public function isVariadic(): bool
-    {
+    public function isVariadic(): bool {
         return $this->options['is_variadic'];
     }
 
-    public function isDeprecated(): bool
-    {
+    public function isDeprecated(): bool {
         return (bool) $this->options['deprecation_info'];
     }
 
@@ -153,8 +143,7 @@ abstract class AbstractTwigCallable implements TwigCallableInterface
     /**
      * @deprecated since Twig 3.15
      */
-    public function getDeprecatingPackage(): string
-    {
+    public function getDeprecatingPackage(): string {
         trigger_deprecation('twig/twig', '3.15', 'The "%s" method is deprecated, use "%s::triggerDeprecation()" instead.', __METHOD__, static::class);
 
         return $this->options['deprecating_package'];
@@ -163,8 +152,7 @@ abstract class AbstractTwigCallable implements TwigCallableInterface
     /**
      * @deprecated since Twig 3.15
      */
-    public function getDeprecatedVersion(): string
-    {
+    public function getDeprecatedVersion(): string {
         trigger_deprecation('twig/twig', '3.15', 'The "%s" method is deprecated, use "%s::triggerDeprecation()" instead.', __METHOD__, static::class);
 
         return \is_bool($this->options['deprecated']) ? '' : $this->options['deprecated'];
@@ -180,8 +168,7 @@ abstract class AbstractTwigCallable implements TwigCallableInterface
         return $this->options['alternative'];
     }
 
-    public function getMinimalNumberOfRequiredArguments(): int
-    {
+    public function getMinimalNumberOfRequiredArguments(): int {
         return ($this->options['needs_charset'] ? 1 : 0) + ($this->options['needs_environment'] ? 1 : 0) + ($this->options['needs_context'] ? 1 : 0) + \count($this->arguments);
     }
 }

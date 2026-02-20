@@ -28,18 +28,15 @@ final class ImageInlineNode extends InlineNode
         parent::__construct(self::TYPE, $url);
     }
 
-    public function getUrl(): string
-    {
+    public function getUrl(): string {
         return $this->url;
     }
 
-    public function getAltText(): string
-    {
+    public function getAltText(): string {
         return $this->altText;
     }
 
-    public function getTitle(): string
-    {
+    public function getTitle(): string {
         return $this->title ?? '';
     }
 }

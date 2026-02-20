@@ -30,16 +30,14 @@ class ObjectType extends Type
     ) {
     }
 
-    public function getTypeIdentifier(): TypeIdentifier
-    {
+    public function getTypeIdentifier(): TypeIdentifier {
         return TypeIdentifier::OBJECT;
     }
 
     /**
      * @return T
      */
-    public function getClassName(): string
-    {
+    public function getClassName(): string {
         return $this->className;
     }
 
@@ -71,8 +69,7 @@ class ObjectType extends Type
         return $value instanceof $this->className;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->className;
     }
 }

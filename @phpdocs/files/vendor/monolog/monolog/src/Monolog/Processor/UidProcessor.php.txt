@@ -42,8 +42,7 @@ class UidProcessor implements ProcessorInterface, ResettableInterface
         return $record;
     }
 
-    public function getUid(): string
-    {
+    public function getUid(): string {
         return $this->uid;
     }
 

@@ -43,18 +43,15 @@ final class ConstantCollection implements Countable, IteratorAggregate
     /**
      * @return Constant[]
      */
-    public function asArray(): array
-    {
+    public function asArray(): array {
         return $this->constants;
     }
 
-    public function count(): int
-    {
+    public function count(): int {
         return count($this->constants);
     }
 
-    public function getIterator(): ConstantCollectionIterator
-    {
+    public function getIterator(): ConstantCollectionIterator {
         return new ConstantCollectionIterator($this);
     }
 }

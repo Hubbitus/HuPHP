@@ -136,8 +136,7 @@ final class ErrorHandler
         }
     }
 
-    public function register(): void
-    {
+    public function register(): void {
         if ($this->registered) {
             return;
         }
@@ -153,8 +152,7 @@ final class ErrorHandler
         $this->registered = true;
     }
 
-    public function unregister(): void
-    {
+    public function unregister(): void {
         if (!$this->registered) {
             return;
         }

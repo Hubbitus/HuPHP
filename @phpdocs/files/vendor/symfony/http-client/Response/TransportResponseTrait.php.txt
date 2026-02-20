@@ -47,8 +47,7 @@ trait TransportResponseTrait
     private ?array $finalInfo = null;
     private ?LoggerInterface $logger = null;
 
-    public function getStatusCode(): int
-    {
+    public function getStatusCode(): int {
         if ($this->initializer) {
             self::initialize($this);
         }
@@ -69,8 +68,7 @@ trait TransportResponseTrait
         return $this->headers;
     }
 
-    public function cancel(): void
-    {
+    public function cancel(): void {
         $this->info['canceled'] = true;
         $this->info['error'] = 'Response has been canceled.';
         $this->close();
@@ -79,8 +77,7 @@ trait TransportResponseTrait
     /**
      * Closes the response and all its network handles.
      */
-    protected function close(): void
-    {
+    protected function close(): void {
         $this->canary->cancel();
         $this->inflate = null;
     }
@@ -123,8 +120,7 @@ trait TransportResponseTrait
     /**
      * Ensures the request is always sent and that the response code was checked.
      */
-    private function doDestruct(): void
-    {
+    private function doDestruct(): void {
         $this->shouldBuffer = true;
 
         if ($this->initializer && null === $this->info['error']) {

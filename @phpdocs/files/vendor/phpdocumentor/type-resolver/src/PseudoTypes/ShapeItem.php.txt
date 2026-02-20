@@ -30,18 +30,15 @@ abstract class ShapeItem
         return $this->key;
     }
 
-    public function getValue(): Type
-    {
+    public function getValue(): Type {
         return $this->value;
     }
 
-    public function isOptional(): bool
-    {
+    public function isOptional(): bool {
         return $this->optional;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         if ($this->key !== null && $this->key !== '') {
             return sprintf(
                 '%s%s: %s',

@@ -101,8 +101,7 @@ class Table
     /**
      * Gets the current table style.
      */
-    public function getStyle(): TableStyle
-    {
+    public function getStyle(): TableStyle {
         return $this->style;
     }
 
@@ -709,8 +708,7 @@ class Table
         });
     }
 
-    private function calculateRowCount(): int
-    {
+    private function calculateRowCount(): int {
         $numberOfRows = \count(iterator_to_array($this->buildTableRows(array_merge($this->headers, [new TableSeparator()], $this->rows))));
 
         if ($this->headers) {
@@ -877,8 +875,7 @@ class Table
         }
     }
 
-    private function getColumnSeparatorWidth(): int
-    {
+    private function getColumnSeparatorWidth(): int {
         return Helper::width(\sprintf($this->style->getBorderFormat(), $this->style->getBorderChars()[3]));
     }
 
@@ -900,8 +897,7 @@ class Table
     /**
      * Called after rendering to cleanup cache data.
      */
-    private function cleanup(): void
-    {
+    private function cleanup(): void {
         $this->effectiveColumnWidths = [];
         unset($this->numberOfColumns);
     }
@@ -909,8 +905,7 @@ class Table
     /**
      * @return array<string, TableStyle>
      */
-    private static function initStyles(): array
-    {
+    private static function initStyles(): array {
         $borderless = new TableStyle();
         $borderless
             ->setHorizontalBorderChars('=')

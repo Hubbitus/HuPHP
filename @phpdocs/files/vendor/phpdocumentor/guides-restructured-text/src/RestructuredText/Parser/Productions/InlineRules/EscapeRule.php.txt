@@ -43,8 +43,7 @@ final class EscapeRule extends ReferenceRule
         return new PlainTextInlineNode($char);
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 1000;
     }
 }

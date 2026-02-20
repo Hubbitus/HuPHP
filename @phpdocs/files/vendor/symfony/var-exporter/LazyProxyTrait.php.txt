@@ -85,8 +85,7 @@ trait LazyProxyTrait
     /**
      * Forces initialization of a lazy object and returns it.
      */
-    public function initializeLazyObject(): parent
-    {
+    public function initializeLazyObject(): parent {
         if ($state = $this->lazyObjectState ?? null) {
             return $state->realInstance ??= ($state->initializer)();
         }
@@ -97,8 +96,7 @@ trait LazyProxyTrait
     /**
      * @return bool Returns false when the object cannot be reset, ie when it's not a lazy object
      */
-    public function resetLazyObject(): bool
-    {
+    public function resetLazyObject(): bool {
         if (!isset($this->lazyObjectState) || Registry::$noInitializerState === $this->lazyObjectState->initializer) {
             return false;
         }
@@ -287,8 +285,7 @@ trait LazyProxyTrait
         }
     }
 
-    public function __clone(): void
-    {
+    public function __clone(): void {
         if (!isset($this->lazyObjectState)) {
             if ((Registry::$parentMethods[self::class] ??= Registry::getParentMethods(self::class))['clone']) {
                 parent::__clone();
@@ -300,8 +297,7 @@ trait LazyProxyTrait
         $this->lazyObjectState = clone $this->lazyObjectState;
     }
 
-    public function __serialize(): array
-    {
+    public function __serialize(): array {
         $class = self::class;
         $state = $this->lazyObjectState ?? null;
 

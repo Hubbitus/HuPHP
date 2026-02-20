@@ -836,8 +836,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      *
      * @throws SyntaxError if the URI is in an invalid state, according to RFC3986
      */
-    private function assertValidRfc3986Uri(): void
-    {
+    private function assertValidRfc3986Uri(): void {
         if (null !== $this->authority && ('' !== $this->path && '/' !== $this->path[0])) {
             throw new SyntaxError('If an authority is present the path must be empty or start with a `/`.');
         }
@@ -866,8 +865,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      *
      * @throws SyntaxError if the URI is in an invalid state, according to scheme-specific rules
      */
-    private function assertValidState(): void
-    {
+    private function assertValidState(): void {
         $scheme = UriScheme::tryFrom((string) $this->scheme);
         if (null === $scheme) {
             return;
@@ -915,8 +913,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
         } || throw new SyntaxError('The uri `'.$this->uriAsciiString.'` is invalid for the `'.$this->scheme.'` scheme.');
     }
 
-    private function isValidBlob(): bool
-    {
+    private function isValidBlob(): bool {
         static $regexpUuidRfc4122 = '/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i';
 
         if (!$this->isUriWithSchemeAndPathOnly()
@@ -945,8 +942,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
         }
     }
 
-    private function isValidMailto(): bool
-    {
+    private function isValidMailto(): bool {
         if (null !== $this->authority || null !== $this->fragment || str_contains((string) $this->query, '?')) {
             return false;
         }
@@ -1049,8 +1045,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
     /**
      * URI validation for URI schemes which allows only scheme and path components.
      */
-    private function isUriWithSchemeAndPathOnly(): bool
-    {
+    private function isUriWithSchemeAndPathOnly(): bool {
         return null === $this->authority
             && null === $this->query
             && null === $this->fragment;
@@ -1059,8 +1054,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
     /**
      * URI validation for URI schemes which allows only scheme, host and path components.
      */
-    private function isUriWithSchemeHostAndPathOnly(): bool
-    {
+    private function isUriWithSchemeHostAndPathOnly(): bool {
         return null === $this->userInfo
             && null === $this->port
             && null === $this->query
@@ -1071,8 +1065,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
     /**
      * URI validation for URI schemes which disallow the empty '' host.
      */
-    private function isNonEmptyHostUri(): bool
-    {
+    private function isNonEmptyHostUri(): bool {
         return '' !== $this->host
             && !(null !== $this->scheme && null === $this->host);
     }
@@ -1081,8 +1074,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      * URI validation for URIs schemes which disallow the empty '' host
      * and forbids the fragment component.
      */
-    private function isNonEmptyHostUriWithoutFragment(): bool
-    {
+    private function isNonEmptyHostUriWithoutFragment(): bool {
         return $this->isNonEmptyHostUri() && null === $this->fragment;
     }
 
@@ -1090,13 +1082,11 @@ final class Uri implements Conditionable, UriInterface, Transformable
      * URI validation for URIs schemes which disallow the empty '' host
      * and forbids fragment and query components.
      */
-    private function isNonEmptyHostUriWithoutFragmentAndQuery(): bool
-    {
+    private function isNonEmptyHostUriWithoutFragmentAndQuery(): bool {
         return $this->isNonEmptyHostUri() && null === $this->fragment && null === $this->query;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->toString();
     }
 
@@ -1106,8 +1096,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      * @see http://tools.ietf.org/html/rfc3986#section-4.1
      * @see ::toString
      */
-    public function jsonSerialize(): string
-    {
+    public function jsonSerialize(): string {
         return $this->toString();
     }
 
@@ -1116,8 +1105,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      *
      * @see http://tools.ietf.org/html/rfc3986#section-4.1
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         return $this->toAsciiString();
     }
 
@@ -1126,8 +1114,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      *
      * @see http://tools.ietf.org/html/rfc3986#section-4.1
      */
-    public function toAsciiString(): string
-    {
+    public function toAsciiString(): string {
         return $this->uriAsciiString;
     }
 
@@ -1136,8 +1123,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      *
      * The host is converted to its UNICODE representation if available
      */
-    public function toUnicodeString(): string
-    {
+    public function toUnicodeString(): string {
         return $this->uriUnicodeString;
     }
 
@@ -1146,8 +1132,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      *
      * @see https://datatracker.ietf.org/doc/html/rfc3987
      */
-    public function toDisplayString(): string
-    {
+    public function toDisplayString(): string {
         return UriString::toIriString($this->toString());
     }
 
@@ -1277,8 +1262,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      *
      * @return ComponentMap
      */
-    public function toComponents(): array
-    {
+    public function toComponents(): array {
         return [
             'scheme' => $this->scheme,
             'user' => $this->user,
@@ -1340,33 +1324,27 @@ final class Uri implements Conditionable, UriInterface, Transformable
         return $host;
     }
 
-    public function isIpv4Host(): bool
-    {
+    public function isIpv4Host(): bool {
         return HostRecord::isIpv4($this->host);
     }
 
-    public function isIpv6Host(): bool
-    {
+    public function isIpv6Host(): bool {
         return HostRecord::isIpv6($this->host);
     }
 
-    public function isIpvFutureHost(): bool
-    {
+    public function isIpvFutureHost(): bool {
         return HostRecord::isIpvFuture($this->host);
     }
 
-    public function isIpHost(): bool
-    {
+    public function isIpHost(): bool {
         return HostRecord::isIp($this->host);
     }
 
-    public function isRegisteredNameHost(): bool
-    {
+    public function isRegisteredNameHost(): bool {
         return HostRecord::isRegisteredName($this->host);
     }
 
-    public function isDomainHost(): bool
-    {
+    public function isDomainHost(): bool {
         return HostRecord::isDomain($this->host);
     }
 
@@ -1375,8 +1353,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
         return $this->port;
     }
 
-    public function getPath(): string
-    {
+    public function getPath(): string {
         return $this->path;
     }
 
@@ -1525,8 +1502,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
     /**
      * Tells whether the `file` scheme base URI represents a local file.
      */
-    public function isLocalFile(): bool
-    {
+    public function isLocalFile(): bool {
         return match (true) {
             'file' !== $this->scheme => false,
             in_array($this->authority, ['', null, 'localhost'], true) => true,
@@ -1540,8 +1516,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      * A URI is opaque if and only if it is absolute
      * and does not have an authority path.
      */
-    public function isOpaque(): bool
-    {
+    public function isOpaque(): bool {
         return null === $this->authority
             && null !== $this->scheme;
     }
@@ -1571,16 +1546,14 @@ final class Uri implements Conditionable, UriInterface, Transformable
     /**
      * Tells whether the URI is absolute.
      */
-    public function isAbsolute(): bool
-    {
+    public function isAbsolute(): bool {
         return null !== $this->scheme;
     }
 
     /**
      * Tells whether the URI is a network path.
      */
-    public function isNetworkPath(): bool
-    {
+    public function isNetworkPath(): bool {
         return null === $this->scheme
             && null !== $this->authority;
     }
@@ -1588,8 +1561,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
     /**
      * Tells whether the URI is an absolute path.
      */
-    public function isAbsolutePath(): bool
-    {
+    public function isAbsolutePath(): bool {
         return null === $this->scheme
             && null === $this->authority
             && '/' === ($this->path[0] ?? '');
@@ -1598,8 +1570,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
     /**
      * Tells whether the URI is a relative path.
      */
-    public function isRelativePath(): bool
-    {
+    public function isRelativePath(): bool {
         return null === $this->scheme
             && null === $this->authority
             && '/' !== ($this->path[0] ?? '');
@@ -1640,8 +1611,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      * Normalize a URI by applying non-destructive and destructive normalization
      * rules as defined in RFC3986 and RFC3987.
      */
-    public function normalize(): static
-    {
+    public function normalize(): static {
         $uriString = $this->toString();
         if ('' === $uriString) {
             return $this;
@@ -1792,8 +1762,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
     /**
      * @return ComponentMap
      */
-    public function __debugInfo(): array
-    {
+    public function __debugInfo(): array {
         return $this->toComponents();
     }
 
@@ -1835,8 +1804,7 @@ final class Uri implements Conditionable, UriInterface, Transformable
      * @return ComponentMap
      */
     #[Deprecated(message:'use League\Uri\Uri::toComponents() instead', since:'league/uri:7.5.0')]
-    public function getComponents(): array
-    {
+    public function getComponents(): array {
         return $this->toComponents();
     }
 

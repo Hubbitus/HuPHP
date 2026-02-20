@@ -50,8 +50,7 @@ final class ListNode extends CompoundNode
         return $this;
     }
 
-    public function isOrdered(): bool
-    {
+    public function isOrdered(): bool {
         return $this->ordered;
     }
 }

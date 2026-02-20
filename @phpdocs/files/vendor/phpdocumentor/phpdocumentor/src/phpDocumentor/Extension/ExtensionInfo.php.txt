@@ -41,33 +41,27 @@ final class ExtensionInfo
         return new self($manifest, $path);
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->manifest->getName()->asString();
     }
 
-    public function getVersion(): string
-    {
+    public function getVersion(): string {
         return $this->manifest->getVersion()->getVersionString();
     }
 
-    public function getExtensionClass(): string
-    {
+    public function getExtensionClass(): string {
         return $this->namespace . $this->name;
     }
 
-    public function getNamespace(): string
-    {
+    public function getNamespace(): string {
         return $this->namespace;
     }
 
-    public function getPath(): string
-    {
+    public function getPath(): string {
         return $this->path;
     }
 
-    public function getManifest(): Manifest
-    {
+    public function getManifest(): Manifest {
         return $this->manifest;
     }
 }

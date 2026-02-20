@@ -64,18 +64,15 @@ final class Matcher
         $this->invocationRule = $rule;
     }
 
-    public function hasMatchers(): bool
-    {
+    public function hasMatchers(): bool {
         return !$this->invocationRule instanceof AnyInvokedCount;
     }
 
-    public function hasMethodNameRule(): bool
-    {
+    public function hasMethodNameRule(): bool {
         return $this->methodNameRule !== null;
     }
 
-    public function getMethodNameRule(): MethodName
-    {
+    public function getMethodNameRule(): MethodName {
         return $this->methodNameRule;
     }
 
@@ -84,8 +81,7 @@ final class Matcher
         $this->methodNameRule = $rule;
     }
 
-    public function hasParametersRule(): bool
-    {
+    public function hasParametersRule(): bool {
         return $this->parametersRule !== null;
     }
 
@@ -214,8 +210,7 @@ final class Matcher
      * @throws InvalidArgumentException
      * @throws MethodNameNotConfiguredException
      */
-    public function verify(): void
-    {
+    public function verify(): void {
         if ($this->methodNameRule === null) {
             throw new MethodNameNotConfiguredException;
         }
@@ -246,8 +241,7 @@ final class Matcher
         }
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         $list = [];
 
         if ($this->invocationRule !== null) {

@@ -79,18 +79,15 @@ final class Xdebug2Driver extends Driver
         $this->pathCoverageIsMixedCoverage = version_compare(phpversion('xdebug'), '2.9.6', '<');
     }
 
-    public function canCollectBranchAndPathCoverage(): bool
-    {
+    public function canCollectBranchAndPathCoverage(): bool {
         return true;
     }
 
-    public function canDetectDeadCode(): bool
-    {
+    public function canDetectDeadCode(): bool {
         return true;
     }
 
-    public function start(): void
-    {
+    public function start(): void {
         $flags = XDEBUG_CC_UNUSED;
 
         if ($this->detectsDeadCode() || $this->collectsBranchAndPathCoverage()) {
@@ -104,8 +101,7 @@ final class Xdebug2Driver extends Driver
         xdebug_start_code_coverage($flags);
     }
 
-    public function stop(): RawCodeCoverageData
-    {
+    public function stop(): RawCodeCoverageData {
         $data = xdebug_get_code_coverage();
 
         xdebug_stop_code_coverage();
@@ -121,8 +117,7 @@ final class Xdebug2Driver extends Driver
         return RawCodeCoverageData::fromXdebugWithoutPathCoverage($data);
     }
 
-    public function nameAndVersion(): string
-    {
+    public function nameAndVersion(): string {
         return 'Xdebug ' . phpversion('xdebug');
     }
 }

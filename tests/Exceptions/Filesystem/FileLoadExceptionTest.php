@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class FileLoadExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new FileLoadException();
 
         $this->assertInstanceOf(FileLoadException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new FileLoadException('Cannot load file');
 
         $this->assertInstanceOf(FileLoadException::class, $exception);
         $this->assertEquals('Cannot load file', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new FileLoadException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(FileLoadException::class);
 
         throw new FileLoadException('File load failed');

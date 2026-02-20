@@ -74,8 +74,7 @@ class RedisCluster6Proxy extends \RedisCluster implements ResetInterface, LazyOb
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->_prefix(...\func_get_args());
     }
 
-    public function _masters(): array
-    {
+    public function _masters(): array {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->_masters(...\func_get_args());
     }
 
@@ -174,8 +173,7 @@ class RedisCluster6Proxy extends \RedisCluster implements ResetInterface, LazyOb
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->lmpop(...\func_get_args());
     }
 
-    public function clearlasterror(): bool
-    {
+    public function clearlasterror(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->clearlasterror(...\func_get_args());
     }
 
@@ -184,8 +182,7 @@ class RedisCluster6Proxy extends \RedisCluster implements ResetInterface, LazyOb
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->client(...\func_get_args());
     }
 
-    public function close(): bool
-    {
+    public function close(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->close(...\func_get_args());
     }
 
@@ -234,8 +231,7 @@ class RedisCluster6Proxy extends \RedisCluster implements ResetInterface, LazyOb
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->del(...\func_get_args());
     }
 
-    public function discard(): bool
-    {
+    public function discard(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->discard(...\func_get_args());
     }
 
@@ -379,8 +375,7 @@ class RedisCluster6Proxy extends \RedisCluster implements ResetInterface, LazyOb
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getlasterror(...\func_get_args());
     }
 
-    public function getmode(): int
-    {
+    public function getmode(): int {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getmode(...\func_get_args());
     }
 
@@ -409,8 +404,7 @@ class RedisCluster6Proxy extends \RedisCluster implements ResetInterface, LazyOb
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->gettransferredbytes(...\func_get_args());
     }
 
-    public function cleartransferredbytes(): void
-    {
+    public function cleartransferredbytes(): void {
         ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->cleartransferredbytes(...\func_get_args());
     }
 
@@ -904,8 +898,7 @@ class RedisCluster6Proxy extends \RedisCluster implements ResetInterface, LazyOb
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->unlink(...\func_get_args());
     }
 
-    public function unwatch(): bool
-    {
+    public function unwatch(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->unwatch(...\func_get_args());
     }
 

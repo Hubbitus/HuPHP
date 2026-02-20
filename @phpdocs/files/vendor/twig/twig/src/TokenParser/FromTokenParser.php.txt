@@ -62,8 +62,7 @@ final class FromTokenParser extends AbstractTokenParser
         return $node;
     }
 
-    public function getTag(): string
-    {
+    public function getTag(): string {
         return 'from';
     }
 }

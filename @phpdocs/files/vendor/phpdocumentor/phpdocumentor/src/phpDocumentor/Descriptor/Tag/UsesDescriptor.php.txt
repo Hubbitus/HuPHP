@@ -49,8 +49,7 @@ final class UsesDescriptor extends TagDescriptor implements Stringable
         $this->reference = $reference;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return (string) $this->reference;
     }
 }

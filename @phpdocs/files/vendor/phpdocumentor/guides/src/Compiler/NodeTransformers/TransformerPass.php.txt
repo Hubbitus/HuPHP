@@ -50,8 +50,7 @@ final class TransformerPass implements CompilerPass
         return array_filter($documents, static fn ($document): bool => $document instanceof DocumentNode);
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return $this->priority;
     }
 }

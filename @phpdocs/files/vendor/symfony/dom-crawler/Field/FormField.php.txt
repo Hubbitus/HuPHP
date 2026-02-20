@@ -77,8 +77,7 @@ abstract class FormField
     /**
      * Returns the name of the field.
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
@@ -103,16 +102,14 @@ abstract class FormField
     /**
      * Returns true if the field should be included in the submitted values.
      */
-    public function hasValue(): bool
-    {
+    public function hasValue(): bool {
         return true;
     }
 
     /**
      * Check if the current field is disabled.
      */
-    public function isDisabled(): bool
-    {
+    public function isDisabled(): bool {
         return $this->node->hasAttribute('disabled');
     }
 

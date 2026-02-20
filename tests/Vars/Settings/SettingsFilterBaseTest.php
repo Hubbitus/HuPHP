@@ -11,16 +11,14 @@ use PHPUnit\Framework\TestCase;
  */
 class SettingsFilterBaseTest extends TestCase
 {
-    public function testConstructorStoresPropName(): void
-    {
+    public function testConstructorStoresPropName(): void {
         $callback = function(&$name, &$value) { return $value; };
         $filter = new SettingsFilterBase('testProp', $callback);
 
         $this->assertEquals('testProp', $filter->propName);
     }
 
-    public function testApplyCallsCallback(): void
-    {
+    public function testApplyCallsCallback(): void {
         $callbackCalled = false;
         $callback = function(&$name, &$value) use (&$callbackCalled) {
             $callbackCalled = true;
@@ -40,8 +38,7 @@ class SettingsFilterBaseTest extends TestCase
         $this->assertEquals('TEST_VALUE', $result);
     }
 
-    public function testApplyCanModifyName(): void
-    {
+    public function testApplyCanModifyName(): void {
         $callback = function(&$name, &$value) {
             $name = 'modified_' . $name;
             return $value;
@@ -57,8 +54,7 @@ class SettingsFilterBaseTest extends TestCase
         $this->assertEquals('modified_originalName', $name);
     }
 
-    public function testApplyCanModifyValue(): void
-    {
+    public function testApplyCanModifyValue(): void {
         $callback = function(&$name, &$value) {
             $value = $value . '_modified';
             return $value;
@@ -74,8 +70,7 @@ class SettingsFilterBaseTest extends TestCase
         $this->assertEquals('original_modified', $value);
     }
 
-    public function testApplyWithComplexCallback(): void
-    {
+    public function testApplyWithComplexCallback(): void {
         $callback = function(&$name, &$value) {
             if ($name === 'uppercase_prop') {
                 $value = strtoupper($value);

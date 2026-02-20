@@ -41,8 +41,7 @@ final class ParserContext
     }
 
     /** @return string[] */
-    public function getDataLines(): array
-    {
+    public function getDataLines(): array {
         return $this->rawDataLines;
     }
 
@@ -52,8 +51,7 @@ final class ParserContext
         $this->currentLineNumber++;
     }
 
-    public function getTableAsString(): string
-    {
+    public function getTableAsString(): string {
         $lines = [];
         $i = 0;
         while (isset($this->separatorLineConfigs[$i]) || isset($this->rawDataLines[$i])) {
@@ -69,19 +67,16 @@ final class ParserContext
         return implode("\n", $lines);
     }
 
-    public function hasErrors(): bool
-    {
+    public function hasErrors(): bool {
         return count($this->errors) > 0;
     }
 
     /** @return string[] */
-    public function getErrors(): array
-    {
+    public function getErrors(): array {
         return $this->errors;
     }
 
-    public function getHeaderRows(): int
-    {
+    public function getHeaderRows(): int {
         return $this->headerRows;
     }
 
@@ -91,8 +86,7 @@ final class ParserContext
     }
 
     /** @return array<int, int> */
-    public function getColumnRanges(): array
-    {
+    public function getColumnRanges(): array {
         $columnRanges = [];
 
         foreach ($this->separatorLineConfigs as $separatorLine) {

@@ -25,8 +25,7 @@ class Parameter
         $this->id = $id;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->id;
     }
 }

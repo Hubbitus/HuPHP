@@ -32,18 +32,15 @@ final class IntMaskOf extends Integer implements PseudoType
         $this->type = $type;
     }
 
-    public function getType(): Type
-    {
+    public function getType(): Type {
         return $this->type;
     }
 
-    public function underlyingType(): Type
-    {
+    public function underlyingType(): Type {
         return new Integer();
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return 'int-mask-of<' . $this->type . '>';
     }
 }

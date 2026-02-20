@@ -29,8 +29,7 @@ abstract class TestCase extends BaseTestCase
 {
     protected Element|MetaDataContainerInterface $fixture;
 
-    public function testLineNumberIsMinusOneWhenNoneIsProvided(): void
-    {
+    public function testLineNumberIsMinusOneWhenNoneIsProvided(): void {
         $this->assertSame(-1, $this->fixture->getLocation()->getLineNumber());
         $this->assertSame(0, $this->fixture->getLocation()->getColumnNumber());
 
@@ -38,8 +37,7 @@ abstract class TestCase extends BaseTestCase
         $this->assertSame(0, $this->fixture->getEndLocation()->getColumnNumber());
     }
 
-    public function testLineAndColumnNumberIsReturnedWhenALocationIsProvided(): void
-    {
+    public function testLineAndColumnNumberIsReturnedWhenALocationIsProvided(): void {
     }
 
     protected function assertLineAndColumnNumberIsReturnedWhenALocationIsProvided(Element|MetaDataContainerInterface $fixture): void

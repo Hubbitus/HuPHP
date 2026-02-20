@@ -45,18 +45,15 @@ final class UnaryOperatorExpressionParser extends AbstractExpressionParser imple
         return new ($this->nodeClass)($parser->parseExpression($this->operandPrecedence ?? $this->precedence), $token->getLine());
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function getDescription(): string
-    {
+    public function getDescription(): string {
         return $this->description ?? '';
     }
 
-    public function getPrecedence(): int
-    {
+    public function getPrecedence(): int {
         return $this->precedence;
     }
 
@@ -65,8 +62,7 @@ final class UnaryOperatorExpressionParser extends AbstractExpressionParser imple
         return $this->precedenceChange;
     }
 
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return $this->aliases;
     }
 }

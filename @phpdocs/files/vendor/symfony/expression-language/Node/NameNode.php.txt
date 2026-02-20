@@ -38,8 +38,7 @@ class NameNode extends Node
         return $values[$this->attributes['name']];
     }
 
-    public function toArray(): array
-    {
+    public function toArray(): array {
         return [$this->attributes['name']];
     }
 }

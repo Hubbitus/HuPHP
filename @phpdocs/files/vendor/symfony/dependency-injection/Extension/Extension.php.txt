@@ -62,8 +62,7 @@ abstract class Extension implements ExtensionInterface, ConfigurationExtensionIn
      *
      * @throws BadMethodCallException When the extension name does not follow conventions
      */
-    public function getAlias(): string
-    {
+    public function getAlias(): string {
         $className = static::class;
         if (!str_ends_with($className, 'Extension')) {
             throw new BadMethodCallException('This extension does not follow the naming convention; you must overwrite the getAlias() method.');
@@ -112,8 +111,7 @@ abstract class Extension implements ExtensionInterface, ConfigurationExtensionIn
     /**
      * @internal
      */
-    final public function getProcessedConfigs(): array
-    {
+    final public function getProcessedConfigs(): array {
         try {
             return $this->processedConfigs;
         } finally {

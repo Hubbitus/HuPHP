@@ -53,8 +53,7 @@ final class Author extends BaseTag implements Factory\StaticMethod
      *
      * @return string The author's name.
      */
-    public function getAuthorName(): string
-    {
+    public function getAuthorName(): string {
         return $this->authorName;
     }
 
@@ -63,16 +62,14 @@ final class Author extends BaseTag implements Factory\StaticMethod
      *
      * @return string The author's email.
      */
-    public function getEmail(): string
-    {
+    public function getEmail(): string {
         return $this->authorEmail;
     }
 
     /**
      * Returns this tag in string form.
      */
-    public function __toString(): string
-    {
+    public function __toString(): string {
         if ($this->authorEmail) {
             $authorEmail = '<' . $this->authorEmail . '>';
         } else {

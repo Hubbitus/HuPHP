@@ -64,8 +64,7 @@ final class NullCoalesceBinary extends AbstractBinary implements OperatorEscapeI
         return $compiler->raw('??');
     }
 
-    public function getOperandNamesToEscape(): array
-    {
+    public function getOperandNamesToEscape(): array {
         return ['left', 'right'];
     }
 }

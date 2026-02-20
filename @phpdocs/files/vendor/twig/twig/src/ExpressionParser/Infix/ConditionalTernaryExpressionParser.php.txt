@@ -40,23 +40,19 @@ final class ConditionalTernaryExpressionParser extends AbstractExpressionParser 
         return new ConditionalTernary($left, $then, $else, $token->getLine());
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return '?';
     }
 
-    public function getDescription(): string
-    {
+    public function getDescription(): string {
         return 'Conditional operator (a ? b : c)';
     }
 
-    public function getPrecedence(): int
-    {
+    public function getPrecedence(): int {
         return 0;
     }
 
-    public function getAssociativity(): InfixAssociativity
-    {
+    public function getAssociativity(): InfixAssociativity {
         return InfixAssociativity::Left;
     }
 }

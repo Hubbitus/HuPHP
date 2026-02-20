@@ -30,13 +30,11 @@ final class TitleNode extends CompoundNode
         return new TitleNode(new InlineCompoundNode([new PlainTextInlineNode($titleString)]), 1, '');
     }
 
-    public static function emptyNode(): self
-    {
+    public static function emptyNode(): self {
         return self::fromString('<Unknown>');
     }
 
-    public function getLevel(): int
-    {
+    public function getLevel(): int {
         return $this->level;
     }
 
@@ -52,8 +50,7 @@ final class TitleNode extends CompoundNode
         $this->target = $target;
     }
 
-    public function getTarget(): string
-    {
+    public function getTarget(): string {
         return $this->target;
     }
 
@@ -62,13 +59,11 @@ final class TitleNode extends CompoundNode
         $this->id = $id;
     }
 
-    public function getId(): string
-    {
+    public function getId(): string {
         return $this->id;
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         $result = '';
         foreach ($this->value as $child) {
             $result .= $child->toString();

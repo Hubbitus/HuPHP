@@ -119,8 +119,7 @@ class Application implements ResetInterface
         $this->commandLoader = $commandLoader;
     }
 
-    public function getSignalRegistry(): SignalRegistry
-    {
+    public function getSignalRegistry(): SignalRegistry {
         if (!$this->signalRegistry) {
             throw new RuntimeException('Signals are not supported. Make sure that the "pcntl" extension is installed and that "pcntl_*" functions are not disabled by your php.ini\'s "disable_functions" directive.');
         }
@@ -345,8 +344,7 @@ class Application implements ResetInterface
     /**
      * Get the helper set associated with the command.
      */
-    public function getHelperSet(): HelperSet
-    {
+    public function getHelperSet(): HelperSet {
         return $this->helperSet ??= $this->getDefaultHelperSet();
     }
 
@@ -361,8 +359,7 @@ class Application implements ResetInterface
     /**
      * Gets the InputDefinition related to this Application.
      */
-    public function getDefinition(): InputDefinition
-    {
+    public function getDefinition(): InputDefinition {
         $this->definition ??= $this->getDefaultInputDefinition();
 
         if ($this->singleCommand) {
@@ -417,16 +414,14 @@ class Application implements ResetInterface
     /**
      * Gets the help message.
      */
-    public function getHelp(): string
-    {
+    public function getHelp(): string {
         return $this->getLongVersion();
     }
 
     /**
      * Gets whether to catch exceptions or not during commands execution.
      */
-    public function areExceptionsCaught(): bool
-    {
+    public function areExceptionsCaught(): bool {
         return $this->catchExceptions;
     }
 
@@ -451,8 +446,7 @@ class Application implements ResetInterface
     /**
      * Gets whether to automatically exit after a command execution or not.
      */
-    public function isAutoExitEnabled(): bool
-    {
+    public function isAutoExitEnabled(): bool {
         return $this->autoExit;
     }
 
@@ -469,8 +463,7 @@ class Application implements ResetInterface
     /**
      * Gets the name of the application.
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
@@ -487,8 +480,7 @@ class Application implements ResetInterface
     /**
      * Gets the application version.
      */
-    public function getVersion(): string
-    {
+    public function getVersion(): string {
         return $this->version;
     }
 
@@ -633,8 +625,7 @@ class Application implements ResetInterface
      *
      * @return string[]
      */
-    public function getNamespaces(): array
-    {
+    public function getNamespaces(): array {
         $namespaces = [];
         foreach ($this->all() as $command) {
             if ($command->isHidden()) {
@@ -1142,8 +1133,7 @@ class Application implements ResetInterface
     /**
      * Gets the default input definition.
      */
-    protected function getDefaultInputDefinition(): InputDefinition
-    {
+    protected function getDefaultInputDefinition(): InputDefinition {
         return new InputDefinition([
             new InputArgument('command', InputArgument::REQUIRED, 'The command to execute'),
             new InputOption('--help', '-h', InputOption::VALUE_NONE, 'Display help for the given command. When no command is given display help for the <info>'.$this->defaultCommand.'</info> command'),
@@ -1160,16 +1150,14 @@ class Application implements ResetInterface
      *
      * @return Command[]
      */
-    protected function getDefaultCommands(): array
-    {
+    protected function getDefaultCommands(): array {
         return [new HelpCommand(), new ListCommand(), new CompleteCommand(), new DumpCompletionCommand()];
     }
 
     /**
      * Gets the default helper set with the helpers that should always be available.
      */
-    protected function getDefaultHelperSet(): HelperSet
-    {
+    protected function getDefaultHelperSet(): HelperSet {
         return new HelperSet([
             new FormatterHelper(),
             new DebugFormatterHelper(),
@@ -1268,8 +1256,7 @@ class Application implements ResetInterface
     /**
      * @internal
      */
-    public function isSingleCommand(): bool
-    {
+    public function isSingleCommand(): bool {
         return $this->singleCommand;
     }
 
@@ -1331,8 +1318,7 @@ class Application implements ResetInterface
         return $namespaces;
     }
 
-    private function init(): void
-    {
+    private function init(): void {
         if ($this->initialized) {
             return;
         }

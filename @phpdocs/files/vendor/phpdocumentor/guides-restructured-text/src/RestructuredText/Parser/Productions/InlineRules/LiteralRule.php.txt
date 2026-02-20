@@ -25,8 +25,7 @@ use function substr;
  */
 final class LiteralRule extends AbstractInlineRule implements CachableInlineRule
 {
-    public function getToken(): int
-    {
+    public function getToken(): int {
         return InlineLexer::LITERAL;
     }
 
@@ -47,8 +46,7 @@ final class LiteralRule extends AbstractInlineRule implements CachableInlineRule
         return new LiteralInlineNode($literal);
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         // Should be executed first as any other rules within may not be interpreted
         return 10_000;
     }

@@ -64,20 +64,17 @@ final class TypeName
         return $this->namespaceName;
     }
 
-    public function simpleName(): string
-    {
+    public function simpleName(): string {
         return $this->simpleName;
     }
 
-    public function qualifiedName(): string
-    {
+    public function qualifiedName(): string {
         return $this->namespaceName === null
              ? $this->simpleName
              : $this->namespaceName . '\\' . $this->simpleName;
     }
 
-    public function isNamespaced(): bool
-    {
+    public function isNamespaced(): bool {
         return $this->namespaceName !== null;
     }
 }

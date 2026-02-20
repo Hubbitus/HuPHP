@@ -62,8 +62,7 @@ class ExampleFinder
     /**
      * Returns the project's root directory where an 'examples' folder can be expected.
      */
-    public function getSourceDirectory(): string
-    {
+    public function getSourceDirectory(): string {
         return $this->sourceDirectory;
     }
 
@@ -82,8 +81,7 @@ class ExampleFinder
      *
      * @return string[]
      */
-    public function getExampleDirectories(): array
-    {
+    public function getExampleDirectories(): array {
         return $this->exampleDirectories;
     }
 

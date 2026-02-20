@@ -71,8 +71,7 @@ class ArrayNode extends BaseNode implements PrototypeNodeInterface
      *
      * @return array<string, NodeInterface>
      */
-    public function getChildren(): array
-    {
+    public function getChildren(): array {
         return $this->children;
     }
 
@@ -93,8 +92,7 @@ class ArrayNode extends BaseNode implements PrototypeNodeInterface
      *
      * @return array an array of the form [[string, string]]
      */
-    public function getXmlRemappings(): array
-    {
+    public function getXmlRemappings(): array {
         return $this->xmlRemappings;
     }
 
@@ -156,8 +154,7 @@ class ArrayNode extends BaseNode implements PrototypeNodeInterface
     /**
      * Returns true when extra keys should be ignored without an exception.
      */
-    public function shouldIgnoreExtraKeys(): bool
-    {
+    public function shouldIgnoreExtraKeys(): bool {
         return $this->ignoreExtraKeys;
     }
 
@@ -169,13 +166,11 @@ class ArrayNode extends BaseNode implements PrototypeNodeInterface
         $this->name = $name;
     }
 
-    public function hasDefaultValue(): bool
-    {
+    public function hasDefaultValue(): bool {
         return $this->addIfNotSet;
     }
 
-    public function getDefaultValue(): mixed
-    {
+    public function getDefaultValue(): mixed {
         if (!$this->hasDefaultValue()) {
             throw new \RuntimeException(\sprintf('The node at path "%s" has no default value.', $this->getPath()));
         }
@@ -395,8 +390,7 @@ class ArrayNode extends BaseNode implements PrototypeNodeInterface
         return $leftSide;
     }
 
-    protected function allowPlaceholders(): bool
-    {
+    protected function allowPlaceholders(): bool {
         return false;
     }
 }

@@ -70,8 +70,7 @@ final class Namespace_ implements Element, MetaDataContainerInterface
      *
      * @return Fqsen[]
      */
-    public function getClasses(): array
-    {
+    public function getClasses(): array {
         return $this->classes;
     }
 
@@ -88,8 +87,7 @@ final class Namespace_ implements Element, MetaDataContainerInterface
      *
      * @return Fqsen[]
      */
-    public function getConstants(): array
-    {
+    public function getConstants(): array {
         return $this->constants;
     }
 
@@ -106,8 +104,7 @@ final class Namespace_ implements Element, MetaDataContainerInterface
      *
      * @return Fqsen[]
      */
-    public function getFunctions(): array
-    {
+    public function getFunctions(): array {
         return $this->functions;
     }
 
@@ -124,8 +121,7 @@ final class Namespace_ implements Element, MetaDataContainerInterface
      *
      * @return Fqsen[]
      */
-    public function getInterfaces(): array
-    {
+    public function getInterfaces(): array {
         return $this->interfaces;
     }
 
@@ -142,8 +138,7 @@ final class Namespace_ implements Element, MetaDataContainerInterface
      *
      * @return Fqsen[]
      */
-    public function getTraits(): array
-    {
+    public function getTraits(): array {
         return $this->traits;
     }
 
@@ -159,8 +154,7 @@ final class Namespace_ implements Element, MetaDataContainerInterface
      * Returns the Fqsen of the element.
      */
     #[\Override]
-    public function getFqsen(): Fqsen
-    {
+    public function getFqsen(): Fqsen {
         return $this->fqsen;
     }
 
@@ -168,8 +162,7 @@ final class Namespace_ implements Element, MetaDataContainerInterface
      * Returns the name of the element.
      */
     #[\Override]
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->fqsen->getName();
     }
 }

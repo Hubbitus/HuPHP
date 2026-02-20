@@ -34,8 +34,7 @@ class ChildDefinition extends Definition
     /**
      * Returns the Definition to inherit from.
      */
-    public function getParent(): string
-    {
+    public function getParent(): string {
         return $this->parent;
     }
 

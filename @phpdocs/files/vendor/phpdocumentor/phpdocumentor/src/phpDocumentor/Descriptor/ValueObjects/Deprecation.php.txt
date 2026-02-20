@@ -12,8 +12,7 @@ final class Deprecation
     {
     }
 
-    public function getDescription(): DescriptionDescriptor
-    {
+    public function getDescription(): DescriptionDescriptor {
         return $this->description;
     }
 

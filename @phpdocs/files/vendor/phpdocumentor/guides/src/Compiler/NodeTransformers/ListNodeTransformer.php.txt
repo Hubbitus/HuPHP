@@ -55,8 +55,7 @@ final class ListNodeTransformer implements NodeTransformer
         return $node instanceof ListNode;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 1000;
     }
 }

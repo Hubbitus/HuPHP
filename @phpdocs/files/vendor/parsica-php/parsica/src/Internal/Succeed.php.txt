@@ -56,40 +56,35 @@ final class Succeed implements ParseResult
     /**
      * @psalm-mutation-free
      */
-    public function remainder(): Stream
-    {
+    public function remainder(): Stream {
         return $this->remainder;
     }
 
     /**
      * @psalm-mutation-free
      */
-    public function isSuccess(): bool
-    {
+    public function isSuccess(): bool {
         return true;
     }
 
     /**
      * @psalm-mutation-free
      */
-    public function isFail(): bool
-    {
+    public function isFail(): bool {
         return !$this->isSuccess();
     }
 
     /**
      * @psalm-mutation-free
      */
-    public function expected(): string
-    {
+    public function expected(): string {
         throw new BadMethodCallException("Can't read the expectation of a succeeded ParseResult.");
     }
 
     /**
      * @psalm-mutation-free
      */
-    public function got(): Stream
-    {
+    public function got(): Stream {
         throw new BadMethodCallException("Can't read the expectation of a succeeded ParseResult.");
     }
 
@@ -169,16 +164,14 @@ final class Succeed implements ParseResult
         return $parser->run($this->remainder);
     }
 
-    public function errorMessage(): string
-    {
+    public function errorMessage(): string {
         throw new BadMethodCallException("A succeeded ParseResult has no error message.");
     }
 
     /**
      * @inheritDoc
      */
-    public function position(): Position
-    {
+    public function position(): Position {
         return $this->remainder->position();
     }
 

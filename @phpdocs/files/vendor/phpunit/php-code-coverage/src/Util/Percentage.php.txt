@@ -37,8 +37,7 @@ final class Percentage
         $this->total    = $total;
     }
 
-    public function asFloat(): float
-    {
+    public function asFloat(): float {
         if ($this->total > 0) {
             return ($this->fraction / $this->total) * 100;
         }
@@ -46,8 +45,7 @@ final class Percentage
         return 100.0;
     }
 
-    public function asString(): string
-    {
+    public function asString(): string {
         if ($this->total > 0) {
             return sprintf('%01.2F%%', $this->asFloat());
         }
@@ -55,8 +53,7 @@ final class Percentage
         return '';
     }
 
-    public function asFixedWidthString(): string
-    {
+    public function asFixedWidthString(): string {
         if ($this->total > 0) {
             return sprintf('%6.2F%%', $this->asFloat());
         }

@@ -65,8 +65,7 @@ final class InlineLexer extends AbstractLexer
     private array $tokenPositions = [];
 
     /** @return string[] */
-    protected function getCatchablePatterns(): array
-    {
+    protected function getCatchablePatterns(): array {
         return [
             '\\\\``', // must be a separate case, as the next pattern would split in "\`" + "`", causing it to become a intepreted text
             '\\\\[\s\S]', // Escaping hell... needs escaped slash in regex, but also in php.
@@ -112,8 +111,7 @@ final class InlineLexer extends AbstractLexer
     }
 
     /** @return string[] */
-    protected function getNonCatchablePatterns(): array
-    {
+    protected function getNonCatchablePatterns(): array {
         return [];
     }
 

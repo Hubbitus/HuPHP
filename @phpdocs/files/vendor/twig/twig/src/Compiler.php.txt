@@ -34,13 +34,11 @@ class Compiler
     ) {
     }
 
-    public function getEnvironment(): Environment
-    {
+    public function getEnvironment(): Environment {
         return $this->env;
     }
 
-    public function getSource(): string
-    {
+    public function getSource(): string {
         return $this->source;
     }
 
@@ -207,8 +205,7 @@ class Compiler
         return $this;
     }
 
-    public function getDebugInfo(): array
-    {
+    public function getDebugInfo(): array {
         ksort($this->debugInfo);
 
         return $this->debugInfo;
@@ -241,8 +238,7 @@ class Compiler
         return $this;
     }
 
-    public function getVarName(): string
-    {
+    public function getVarName(): string {
         return \sprintf('_v%d', $this->varNameSalt++);
     }
 

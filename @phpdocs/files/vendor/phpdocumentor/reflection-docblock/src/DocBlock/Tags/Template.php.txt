@@ -61,8 +61,7 @@ final class Template extends BaseTag
         return null;
     }
 
-    public function getTemplateName(): string
-    {
+    public function getTemplateName(): string {
         return $this->templateName;
     }
 
@@ -76,8 +75,7 @@ final class Template extends BaseTag
         return $this->default;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         $bound = $this->bound !== null ? ' of ' . $this->bound : '';
         $default = $this->default !== null ? ' = ' . $this->default : '';
 

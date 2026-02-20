@@ -300,8 +300,7 @@ abstract class Renderer
         return 'success';
     }
 
-    private function runtimeString(): string
-    {
+    private function runtimeString(): string {
         $runtime = new Runtime;
 
         return sprintf(

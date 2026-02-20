@@ -34,16 +34,14 @@ final class NodesFactoryTest extends TestCase
      * Unfortunately, we cannot actually inspect whether all recommended items were instantiated, so I create an example
      * NodesFactory containing what I expected and this test will verify that no regression took place.
      */
-    public function testThatAFactoryWithRecommendedComponentsCanBeInstantiated(): void
-    {
+    public function testThatAFactoryWithRecommendedComponentsCanBeInstantiated(): void {
         $factory = NodesFactory::createInstance();
 
         $this->assertInstanceOf(NodesFactory::class, $factory);
         $this->assertEquals($this->givenTheExpectedDefaultNodesFactory(), $factory);
     }
 
-    public function testThatCodeGetsConvertedIntoNodes(): void
-    {
+    public function testThatCodeGetsConvertedIntoNodes(): void {
         $parser = $this->prophesize(Parser::class);
         $parser->parse('this is my code')->willReturn(['parsed code']);
 
@@ -57,8 +55,7 @@ final class NodesFactoryTest extends TestCase
         $this->assertSame(['traversed code'], $result);
     }
 
-    private function givenTheExpectedDefaultNodesFactory(): NodesFactory
-    {
+    private function givenTheExpectedDefaultNodesFactory(): NodesFactory {
         $parser = (new ParserFactory())->createForNewestSupportedVersion();
         $traverser = new NodeTraverser();
         $traverser->addVisitor(new NameResolver());

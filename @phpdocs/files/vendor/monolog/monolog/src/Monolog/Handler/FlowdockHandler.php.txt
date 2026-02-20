@@ -82,8 +82,7 @@ class FlowdockHandler extends SocketHandler
     /**
      * Gets the default formatter.
      */
-    protected function getDefaultFormatter(): FormatterInterface
-    {
+    protected function getDefaultFormatter(): FormatterInterface {
         throw new \InvalidArgumentException('The FlowdockHandler must be configured (via setFormatter) with an instance of Monolog\Formatter\FlowdockFormatter to function correctly');
     }
 

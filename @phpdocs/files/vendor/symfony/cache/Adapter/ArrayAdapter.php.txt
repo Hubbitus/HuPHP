@@ -212,8 +212,7 @@ class ArrayAdapter implements AdapterInterface, CacheInterface, LoggerAwareInter
         return $this->save($item);
     }
 
-    public function commit(): bool
-    {
+    public function commit(): bool {
         return true;
     }
 
@@ -241,8 +240,7 @@ class ArrayAdapter implements AdapterInterface, CacheInterface, LoggerAwareInter
     /**
      * Returns all cached values, with cache miss as null.
      */
-    public function getValues(): array
-    {
+    public function getValues(): array {
         if (!$this->storeSerialized) {
             return $this->values;
         }

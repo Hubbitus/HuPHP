@@ -50,8 +50,7 @@ class Transformation
     /**
      * Returns the set query.
      */
-    public function getQuery(): string
-    {
+    public function getQuery(): string {
         if ($this->query === '') {
             return $this->query;
         }
@@ -66,29 +65,25 @@ class Transformation
     /**
      * Returns the class name of the associated writer.
      */
-    public function getWriter(): string
-    {
+    public function getWriter(): string {
         return $this->writer;
     }
 
     /**
      * Returns the name of the source / type used in the transformation process.
      */
-    public function getSource(): string
-    {
+    public function getSource(): string {
         return $this->source;
     }
 
-    public function template(): Template
-    {
+    public function template(): Template {
         return $this->template;
     }
 
     /**
      * Returns the name of the artifact.
      */
-    public function getArtifact(): string
-    {
+    public function getArtifact(): string {
         return $this->artifact;
     }
 
@@ -108,8 +103,7 @@ class Transformation
      *
      * @return Parameter[]
      */
-    public function getParameters(): array
-    {
+    public function getParameters(): array {
         return $this->parameters;
     }
 

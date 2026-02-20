@@ -34,8 +34,7 @@ final class VersionComparisonOperator
     /**
      * @return '!='|'<'|'<='|'<>'|'='|'=='|'>'|'>='|'eq'|'ge'|'gt'|'le'|'lt'|'ne'
      */
-    public function asString(): string
-    {
+    public function asString(): string {
         return $this->operator;
     }
 

@@ -52,28 +52,23 @@ final class TestDirectory
         $this->phpVersionOperator = $phpVersionOperator;
     }
 
-    public function path(): string
-    {
+    public function path(): string {
         return $this->path;
     }
 
-    public function prefix(): string
-    {
+    public function prefix(): string {
         return $this->prefix;
     }
 
-    public function suffix(): string
-    {
+    public function suffix(): string {
         return $this->suffix;
     }
 
-    public function phpVersion(): string
-    {
+    public function phpVersion(): string {
         return $this->phpVersion;
     }
 
-    public function phpVersionOperator(): VersionComparisonOperator
-    {
+    public function phpVersionOperator(): VersionComparisonOperator {
         return $this->phpVersionOperator;
     }
 }

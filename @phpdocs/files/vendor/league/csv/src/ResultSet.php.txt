@@ -134,16 +134,14 @@ class ResultSet implements TabularDataReader, JsonSerializable
      *
      * @return array<string>
      */
-    public function getHeader(): array
-    {
+    public function getHeader(): array {
         return $this->header;
     }
 
     /**
      * @throws SyntaxError
      */
-    public function getIterator(): Iterator
-    {
+    public function getIterator(): Iterator {
         return $this->getRecords();
     }
 
@@ -486,23 +484,19 @@ class ResultSet implements TabularDataReader, JsonSerializable
         };
     }
 
-    public function count(): int
-    {
+    public function count(): int {
         return iterator_count($this->records);
     }
 
-    public function jsonSerialize(): array
-    {
+    public function jsonSerialize(): array {
         return array_values([...$this->records]);
     }
 
-    public function first(): array
-    {
+    public function first(): array {
         return $this->nth(0);
     }
 
-    public function last(): array
-    {
+    public function last(): array {
         $last = [];
         foreach ($this->getRecords() as $last); /* @phpstan-ignore-line */
 

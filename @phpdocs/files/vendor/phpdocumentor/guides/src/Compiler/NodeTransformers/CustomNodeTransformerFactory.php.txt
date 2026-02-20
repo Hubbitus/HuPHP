@@ -28,14 +28,12 @@ final class CustomNodeTransformerFactory implements NodeTransformerFactory
     }
 
     /** @return iterable<NodeTransformer<Node>> */
-    public function getTransformers(): iterable
-    {
+    public function getTransformers(): iterable {
         return $this->transformers;
     }
 
     /** @return int[] */
-    public function getPriorities(): array
-    {
+    public function getPriorities(): array {
         $transformers = [...$this->transformers];
         $priorites = array_map(
             static fn (NodeTransformer $transformer): int => $transformer->getPriority(),

@@ -35,33 +35,27 @@ final class ParseFileCommand
         return $this->origin;
     }
 
-    public function getDirectory(): string
-    {
+    public function getDirectory(): string {
         return $this->directory;
     }
 
-    public function getFile(): string
-    {
+    public function getFile(): string {
         return $this->file;
     }
 
-    public function getExtension(): string
-    {
+    public function getExtension(): string {
         return $this->extension;
     }
 
-    public function getInitialHeaderLevel(): int
-    {
+    public function getInitialHeaderLevel(): int {
         return $this->initialHeaderLevel;
     }
 
-    public function getProjectNode(): ProjectNode
-    {
+    public function getProjectNode(): ProjectNode {
         return $this->projectNode;
     }
 
-    public function isRoot(): bool
-    {
+    public function isRoot(): bool {
         return $this->isRoot;
     }
 }

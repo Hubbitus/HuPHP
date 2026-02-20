@@ -81,13 +81,11 @@ class DescriptorHelper extends Helper
         return $this;
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'descriptor';
     }
 
-    public function getFormats(): array
-    {
+    public function getFormats(): array {
         return array_keys($this->descriptors);
     }
 }

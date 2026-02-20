@@ -29,19 +29,16 @@ final class SectionMenuEntryNode extends MenuEntryNode
         parent::__construct($url, $title, $level);
     }
 
-    public function getDocumentLink(): string
-    {
+    public function getDocumentLink(): string {
         return '/' . $this->url;
     }
 
-    public function getAnchor(): string
-    {
+    public function getAnchor(): string {
         return $this->anchor;
     }
 
     /** @return SectionMenuEntryNode[] */
-    public function getSections(): array
-    {
+    public function getSections(): array {
         return $this->sections;
     }
 
@@ -50,8 +47,7 @@ final class SectionMenuEntryNode extends MenuEntryNode
         $this->sections[] = $section;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->url . '#' . $this->anchor;
     }
 }

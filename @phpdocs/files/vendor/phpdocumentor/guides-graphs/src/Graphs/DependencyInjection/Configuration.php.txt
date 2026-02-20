@@ -21,8 +21,7 @@ use function assert;
 
 final class Configuration implements ConfigurationInterface
 {
-    public function getConfigTreeBuilder(): TreeBuilder
-    {
+    public function getConfigTreeBuilder(): TreeBuilder {
         $treeBuilder = new TreeBuilder('Graphs');
         $rootNode = $treeBuilder->getRootNode();
         assert($rootNode instanceof ArrayNodeDefinition);

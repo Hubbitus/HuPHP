@@ -64,8 +64,7 @@ class AmpBody implements HttpContent, ReadableStream, \IteratorAggregate
         }
     }
 
-    public function getContent(): ReadableStream
-    {
+    public function getContent(): ReadableStream {
         if (null !== $this->uploaded) {
             $this->uploaded = null;
 
@@ -104,18 +103,15 @@ class AmpBody implements HttpContent, ReadableStream, \IteratorAggregate
         return $data;
     }
 
-    public function isReadable(): bool
-    {
+    public function isReadable(): bool {
         return $this->body->isReadable();
     }
 
-    public function close(): void
-    {
+    public function close(): void {
         $this->body->close();
     }
 
-    public function isClosed(): bool
-    {
+    public function isClosed(): bool {
         return $this->body->isClosed();
     }
 

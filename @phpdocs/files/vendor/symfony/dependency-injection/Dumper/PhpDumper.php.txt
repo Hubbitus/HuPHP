@@ -424,13 +424,11 @@ EOF;
     /**
      * Retrieves the currently set proxy dumper or instantiates one.
      */
-    private function getProxyDumper(): DumperInterface
-    {
+    private function getProxyDumper(): DumperInterface {
         return $this->proxyDumper ??= new LazyServiceDumper($this->class);
     }
 
-    private function analyzeReferences(): void
-    {
+    private function analyzeReferences(): void {
         (new AnalyzeServiceReferencesPass(false, $this->hasProxyDumper))->process($this->container);
         $checkedNodes = [];
         $this->circularReferences = [];
@@ -567,8 +565,7 @@ EOF;
         $lineage[$class] = substr($exportedFile, 1, -1);
     }
 
-    private function generateProxyClasses(): array
-    {
+    private function generateProxyClasses(): array {
         $proxyClasses = [];
         $alreadyGenerated = [];
         $definitions = $this->container->getDefinitions();
@@ -1320,13 +1317,11 @@ EOF;
         $code .= <<<EOF
     }
 
-    public function compile(): void
-    {
+    public function compile(): void {
         throw new LogicException('You cannot compile a dumped container that was already compiled.');
     }
 
-    public function isCompiled(): bool
-    {
+    public function isCompiled(): bool {
         return true;
     }
 
@@ -1381,8 +1376,7 @@ EOF;
         return $code;
     }
 
-    private function addSyntheticIds(): string
-    {
+    private function addSyntheticIds(): string {
         $code = '';
         $definitions = $this->container->getDefinitions();
         ksort($definitions);
@@ -1395,8 +1389,7 @@ EOF;
         return $code ? "        \$this->syntheticIds = [\n{$code}        ];\n" : '';
     }
 
-    private function addRemovedIds(): string
-    {
+    private function addRemovedIds(): string {
         $ids = $this->container->getRemovedIds();
         foreach ($this->container->getDefinitions() as $id => $definition) {
             if (!$definition->isPublic()) {
@@ -1424,16 +1417,14 @@ EOF;
 
         return <<<EOF
 
-    public function getRemovedIds(): array
-    {
+    public function getRemovedIds(): array {
         return {$code};
     }
 
 EOF;
     }
 
-    private function addDeprecatedParameters(): string
-    {
+    private function addDeprecatedParameters(): string {
         if (!($bag = $this->container->getParameterBag()) instanceof ParameterBag) {
             return '';
         }
@@ -1450,8 +1441,7 @@ EOF;
         return "    private const DEPRECATED_PARAMETERS = [\n{$code}    ];\n\n";
     }
 
-    private function addMethodMap(): string
-    {
+    private function addMethodMap(): string {
         $code = '';
         $definitions = $this->container->getDefinitions();
         ksort($definitions);
@@ -1472,8 +1462,7 @@ EOF;
         return $code ? "        \$this->methodMap = [\n{$code}        ];\n" : '';
     }
 
-    private function addFileMap(): string
-    {
+    private function addFileMap(): string {
         $code = '';
         $definitions = $this->container->getDefinitions();
         ksort($definitions);
@@ -1486,8 +1475,7 @@ EOF;
         return $code ? "        \$this->fileMap = [\n{$code}        ];\n" : '';
     }
 
-    private function addAliases(): string
-    {
+    private function addAliases(): string {
         if (!$aliases = $this->container->getAliases()) {
             return "\n        \$this->aliases = [];\n";
         }
@@ -1509,8 +1497,7 @@ EOF;
         return $code."        ];\n";
     }
 
-    private function addDeprecatedAliases(): string
-    {
+    private function addDeprecatedAliases(): string {
         $code = '';
         $aliases = $this->container->getAliases();
         foreach ($aliases as $alias => $definition) {
@@ -1582,8 +1569,7 @@ EOF;
         return $code ? \sprintf("\n        \$this->privates['service_container'] = static function (\$container) {%s\n        };\n", $code) : '';
     }
 
-    private function addDefaultParametersMethod(): string
-    {
+    private function addDefaultParametersMethod(): string {
         if (!$this->container->getParameterBag()->all()) {
             return '';
         }
@@ -1645,8 +1631,7 @@ EOF;
         throw new LogicException('Impossible to call set() on a frozen ParameterBag.');
     }
 
-    public function getParameterBag(): ParameterBagInterface
-    {
+    public function getParameterBag(): ParameterBagInterface {
         if (!isset($this->parameterBag)) {
             $parameters = $this->parameters;
             foreach ($this->loadedDynamicParameters as $name => $loaded) {
@@ -1700,8 +1685,7 @@ EOF;
 {$getDynamicParameter}
     }
 
-    protected function getDefaultParameters(): array
-    {
+    protected function getDefaultParameters(): array {
         return $parameters;
     }
 
@@ -1742,8 +1726,7 @@ EOF;
         return \sprintf("[\n%s\n%s]", implode("\n", $php), str_repeat(' ', $indent - 4));
     }
 
-    private function endClass(): string
-    {
+    private function endClass(): string {
         return <<<'EOF'
 }
 
@@ -2120,8 +2103,7 @@ EOF;
         return $methodName;
     }
 
-    private function getNextVariableName(): string
-    {
+    private function getNextVariableName(): string {
         $firstChars = self::FIRST_CHARS;
         $firstCharsLength = \strlen($firstChars);
         $nonFirstChars = self::NON_FIRST_CHARS;
@@ -2153,8 +2135,7 @@ EOF;
         }
     }
 
-    private function getExpressionLanguage(): ExpressionLanguage
-    {
+    private function getExpressionLanguage(): ExpressionLanguage {
         if (!isset($this->expressionLanguage)) {
             if (!class_exists(\Symfony\Component\ExpressionLanguage\ExpressionLanguage::class)) {
                 throw new LogicException('Unable to use expressions as the Symfony ExpressionLanguage component is not installed. Try running "composer require symfony/expression-language".');

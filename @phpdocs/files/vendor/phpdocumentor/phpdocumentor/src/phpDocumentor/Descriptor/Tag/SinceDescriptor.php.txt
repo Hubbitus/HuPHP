@@ -29,8 +29,7 @@ class SinceDescriptor extends TagDescriptor
     /**
      * Returns the version when the associated element was introduced.
      */
-    public function getVersion(): string
-    {
+    public function getVersion(): string {
         return $this->version;
     }
 

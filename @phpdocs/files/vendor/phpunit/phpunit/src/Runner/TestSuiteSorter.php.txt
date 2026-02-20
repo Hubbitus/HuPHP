@@ -160,13 +160,11 @@ final class TestSuiteSorter
         }
     }
 
-    public function getOriginalExecutionOrder(): array
-    {
+    public function getOriginalExecutionOrder(): array {
         return $this->originalExecutionOrder;
     }
 
-    public function getExecutionOrder(): array
-    {
+    public function getExecutionOrder(): array {
         return $this->executionOrder;
     }
 

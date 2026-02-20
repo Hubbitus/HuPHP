@@ -145,8 +145,7 @@ final class CompletionInput extends ArgvInput
      *
      * @return self::TYPE_*
      */
-    public function getCompletionType(): string
-    {
+    public function getCompletionType(): string {
         return $this->completionType;
     }
 
@@ -163,8 +162,7 @@ final class CompletionInput extends ArgvInput
     /**
      * The value already typed by the user (or empty string).
      */
-    public function getCompletionValue(): string
-    {
+    public function getCompletionValue(): string {
         return $this->completionValue;
     }
 
@@ -208,16 +206,14 @@ final class CompletionInput extends ArgvInput
     /**
      * The token of the cursor, or the last token if the cursor is at the end of the input.
      */
-    private function getRelevantToken(): string
-    {
+    private function getRelevantToken(): string {
         return $this->tokens[$this->isCursorFree() ? $this->currentIndex - 1 : $this->currentIndex];
     }
 
     /**
      * Whether the cursor is "free" (i.e. at the end of the input preceded by a space).
      */
-    private function isCursorFree(): bool
-    {
+    private function isCursorFree(): bool {
         $nrOfTokens = \count($this->tokens);
         if ($this->currentIndex > $nrOfTokens) {
             throw new \LogicException('Current index is invalid, it must be the number of input tokens or one more.');

@@ -25,28 +25,23 @@ final class ResponseStream implements ResponseStreamInterface
     ) {
     }
 
-    public function key(): ResponseInterface
-    {
+    public function key(): ResponseInterface {
         return $this->generator->key();
     }
 
-    public function current(): ChunkInterface
-    {
+    public function current(): ChunkInterface {
         return $this->generator->current();
     }
 
-    public function next(): void
-    {
+    public function next(): void {
         $this->generator->next();
     }
 
-    public function rewind(): void
-    {
+    public function rewind(): void {
         $this->generator->rewind();
     }
 
-    public function valid(): bool
-    {
+    public function valid(): bool {
         return $this->generator->valid();
     }
 }

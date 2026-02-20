@@ -63,8 +63,7 @@ class RotatingFileHandler extends StreamHandler
     /**
      * {@inheritDoc}
      */
-    public function close(): void
-    {
+    public function close(): void {
         parent::close();
 
         if (true === $this->mustRotate) {
@@ -133,8 +132,7 @@ class RotatingFileHandler extends StreamHandler
     /**
      * Rotates the files.
      */
-    protected function rotate(): void
-    {
+    protected function rotate(): void {
         // update filename
         $this->url = $this->getTimedFilename();
         $this->nextRotation = new \DateTimeImmutable('tomorrow');
@@ -175,8 +173,7 @@ class RotatingFileHandler extends StreamHandler
         }
     }
 
-    protected function getTimedFilename(): string
-    {
+    protected function getTimedFilename(): string {
         $fileInfo = pathinfo($this->filename);
         $timedFilename = str_replace(
             ['{filename}', '{date}'],
@@ -191,8 +188,7 @@ class RotatingFileHandler extends StreamHandler
         return $timedFilename;
     }
 
-    protected function getGlobPattern(): string
-    {
+    protected function getGlobPattern(): string {
         $fileInfo = pathinfo($this->filename);
         $glob = str_replace(
             ['{filename}', '{date}'],

@@ -171,8 +171,7 @@ class BinaryNode extends Node
         }
     }
 
-    public function toArray(): array
-    {
+    public function toArray(): array {
         return ['(', $this->nodes['left'], ' '.$this->attributes['operator'].' ', $this->nodes['right'], ')'];
     }
 

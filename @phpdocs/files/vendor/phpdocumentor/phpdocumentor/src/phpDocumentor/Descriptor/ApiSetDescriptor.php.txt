@@ -51,8 +51,7 @@ final class ApiSetDescriptor extends DocumentationSetDescriptor
         $this->getIndexes()['elements'] = Collection::fromInterfaceString(ElementInterface::class);
     }
 
-    public function getSettings(): ApiSpecification
-    {
+    public function getSettings(): ApiSpecification {
         return $this->apiSpecification;
     }
 

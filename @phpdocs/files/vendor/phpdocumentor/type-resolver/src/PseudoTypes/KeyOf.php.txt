@@ -32,18 +32,15 @@ final class KeyOf extends ArrayKey implements PseudoType
         $this->type = $type;
     }
 
-    public function getType(): Type
-    {
+    public function getType(): Type {
         return $this->type;
     }
 
-    public function underlyingType(): Type
-    {
+    public function underlyingType(): Type {
         return new ArrayKey();
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return 'key-of<' . $this->type . '>';
     }
 }

@@ -18,21 +18,19 @@ class FileInMemoryTest extends TestCase
     private string $testFile;
     private string $testDir;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->testDir = sys_get_temp_dir() . '/hubbitus_test_' . uniqid();
         $this->testFile = $this->testDir . '/test_file.txt';
 
         if (!is_dir($this->testDir)) {
             mkdir($this->testDir, 0777, true);
         }
-        
+
         // Create test file with content
         file_put_contents($this->testFile, "Line 1\nLine 2\nLine 3\n");
     }
 
-    protected function tearDown(): void
-    {
+    protected function tearDown(): void {
         if (file_exists($this->testFile)) {
             unlink($this->testFile);
         }
@@ -41,42 +39,36 @@ class FileInMemoryTest extends TestCase
         }
     }
 
-    public function testClassInstantiation(): void
-    {
+    public function testClassInstantiation(): void {
         $file = new FileInMemory($this->testFile);
         $this->assertInstanceOf(FileInMemory::class, $file);
     }
 
-    public function testClassExtendsFileBase(): void
-    {
+    public function testClassExtendsFileBase(): void {
         $file = new FileInMemory($this->testFile);
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Filesystem\\FileBase', $file);
     }
 
-    public function testLoadContent(): void
-    {
+    public function testLoadContent(): void {
         $file = new FileInMemory($this->testFile);
         $result = $file->loadContent();
         $this->assertInstanceOf(FileInMemory::class, $result);
         $this->assertEquals("Line 1\nLine 2\nLine 3\n", $file->getBLOB());
     }
 
-    public function testLoadContentWithOffset(): void
-    {
+    public function testLoadContentWithOffset(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent(false, null, 7);
         $this->assertEquals("Line 2\nLine 3\n", $file->getBLOB());
     }
 
-    public function testLoadContentWithOffsetAndMaxLen(): void
-    {
+    public function testLoadContentWithOffsetAndMaxLen(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent(false, null, 0, 6);
         $this->assertEquals("Line 1", $file->getBLOB());
     }
 
-    public function testSetContentFromString(): void
-    {
+    public function testSetContentFromString(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $result = $file->setContentFromString("New content");
@@ -84,8 +76,7 @@ class FileInMemoryTest extends TestCase
         $this->assertEquals("New content", $file->getBLOB());
     }
 
-    public function testAppendString(): void
-    {
+    public function testAppendString(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $result = $file->appendString("Appended");
@@ -93,8 +84,7 @@ class FileInMemoryTest extends TestCase
         $this->assertEquals("Line 1\nLine 2\nLine 3\nAppended", $file->getBLOB());
     }
 
-    public function testGetLines(): void
-    {
+    public function testGetLines(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $lines = $file->getLines();
@@ -105,8 +95,7 @@ class FileInMemoryTest extends TestCase
         $this->assertEquals("Line 3", $lines[2]);
     }
 
-    public function testGetLinesWithSlice(): void
-    {
+    public function testGetLinesWithSlice(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $lines = $file->getLines([0, 2]);
@@ -116,149 +105,132 @@ class FileInMemoryTest extends TestCase
         $this->assertEquals("Line 2", $lines[1]);
     }
 
-    public function testGetLineSep(): void
-    {
+    public function testGetLineSep(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $lineSep = $file->getLineSep();
         $this->assertEquals("\n", $lineSep);
     }
 
-    public function testSetLineSep(): void
-    {
+    public function testSetLineSep(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $file->setLineSep("\r\n");
         $this->assertEquals("\r\n", $file->getLineSep());
     }
 
-    public function testGetBLOB(): void
-    {
+    public function testGetBLOB(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $blob = $file->getBLOB();
         $this->assertEquals("Line 1\nLine 2\nLine 3\n", $blob);
     }
 
-    public function testGetBLOBWithCustomImplode(): void
-    {
+    public function testGetBLOBWithCustomImplode(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $blob = $file->getBLOB(' | ');
         $this->assertEquals("Line 1 | Line 2 | Line 3 | ", $blob);
     }
 
-    public function testWriteContent(): void
-    {
+    public function testWriteContent(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $file->setContentFromString("Modified content");
         $count = $file->writeContent();
         $this->assertEquals(strlen("Modified content"), $count);
-        
+
         // Verify content was written
         $this->assertEquals("Modified content", file_get_contents($this->testFile));
     }
 
-    public function testGetLineByOffset(): void
-    {
+    public function testGetLineByOffset(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $line = $file->getLineByOffset(0);
         $this->assertEquals("Line 1", $line);
     }
 
-    public function testGetOffsetByLine(): void
-    {
+    public function testGetOffsetByLine(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $offset = $file->getOffsetByLine(1);
         $this->assertIsInt($offset);
     }
 
-    public function testGetContentLength(): void
-    {
+    public function testGetContentLength(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $length = $file->getContentLength();
         $this->assertEquals(strlen("Line 1\nLine 2\nLine 3\n"), $length);
     }
 
-    public function testGetFirstLine(): void
-    {
+    public function testGetFirstLine(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $firstLine = $file->getFirstLine();
         $this->assertEquals("Line 1", $firstLine);
     }
 
-    public function testGetLastLine(): void
-    {
+    public function testGetLastLine(): void {
         $file = new FileInMemory($this->testFile);
         $file->loadContent();
         $lastLine = $file->getLastLine();
         $this->assertEquals("Line 3", $lastLine);
     }
 
-    public function testEmptyFile(): void
-    {
+    public function testEmptyFile(): void {
         $emptyFile = $this->testDir . '/empty.txt';
         file_put_contents($emptyFile, '');
-        
+
         $file = new FileInMemory($emptyFile);
         $file->loadContent();
         $this->assertEquals('', $file->getBLOB());
-        
+
         unlink($emptyFile);
     }
 
-    public function testSingleLineFile(): void
-    {
+    public function testSingleLineFile(): void {
         $singleLineFile = $this->testDir . '/single.txt';
         file_put_contents($singleLineFile, 'Single line');
-        
+
         $file = new FileInMemory($singleLineFile);
         $file->loadContent();
         $lines = $file->getLines();
         $this->assertCount(1, $lines);
         $this->assertEquals('Single line', $lines[0]);
-        
+
         unlink($singleLineFile);
     }
 
-    public function testMultipleLineEndings(): void
-    {
+    public function testMultipleLineEndings(): void {
         $multiFile = $this->testDir . '/multi.txt';
         file_put_contents($multiFile, "Line 1\r\nLine 2\r\nLine 3\r\n");
-        
+
         $file = new FileInMemory($multiFile);
         $file->loadContent();
         $lines = $file->getLines();
         $this->assertCount(3, $lines);
-        
+
         unlink($multiFile);
     }
 
-    public function testPathMethod(): void
-    {
+    public function testPathMethod(): void {
         $file = new FileInMemory($this->testFile);
         $this->assertEquals($this->testFile, $file->path());
     }
 
-    public function testRawPathMethod(): void
-    {
+    public function testRawPathMethod(): void {
         $file = new FileInMemory($this->testFile);
         $this->assertEquals($this->testFile, $file->rawPath());
     }
 
-    public function testIsExistsMethod(): void
-    {
+    public function testIsExistsMethod(): void {
         $file = new FileInMemory($this->testFile);
         $this->assertTrue($file->isExists());
     }
 
-    public function testIsReadableMethod(): void
-    {
+    public function testIsReadableMethod(): void {
         $file = new FileInMemory($this->testFile);
         $this->assertTrue($file->isReadable());
     }

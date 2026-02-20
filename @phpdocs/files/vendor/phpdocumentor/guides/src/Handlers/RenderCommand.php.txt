@@ -38,19 +38,16 @@ final class RenderCommand
         );
     }
 
-    public function getOutputFormat(): string
-    {
+    public function getOutputFormat(): string {
         return $this->outputFormat;
     }
 
     /** @return DocumentNode[] $documentArray */
-    public function getDocumentArray(): array
-    {
+    public function getDocumentArray(): array {
         return $this->documentArray;
     }
 
-    public function getDocumentIterator(): DocumentListIterator
-    {
+    public function getDocumentIterator(): DocumentListIterator {
         return $this->documentIterator;
     }
 
@@ -64,13 +61,11 @@ final class RenderCommand
         return $this->destination;
     }
 
-    public function getDestinationPath(): string
-    {
+    public function getDestinationPath(): string {
         return $this->destinationPath;
     }
 
-    public function getProjectNode(): ProjectNode
-    {
+    public function getProjectNode(): ProjectNode {
         return $this->projectNode;
     }
 }

@@ -43,8 +43,7 @@ final class BackedEnumType extends EnumType
     /**
      * @return U
      */
-    public function getBackingType(): BuiltinType
-    {
+    public function getBackingType(): BuiltinType {
         return $this->backingType;
     }
 }

@@ -65,8 +65,7 @@ class Node implements \Countable, \IteratorAggregate
         }
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         $repr = static::class;
 
         if ($this->tag) {
@@ -122,8 +121,7 @@ class Node implements \Countable, \IteratorAggregate
         }
     }
 
-    public function getTemplateLine(): int
-    {
+    public function getTemplateLine(): int {
         return $this->lineno;
     }
 

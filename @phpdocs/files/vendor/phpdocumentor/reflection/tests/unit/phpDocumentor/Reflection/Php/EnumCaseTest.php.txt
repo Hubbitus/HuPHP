@@ -34,8 +34,7 @@ final class EnumCaseTest extends TestCase
     /**
      * Creates a new (empty) fixture object.
      */
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->fqsen    = new Fqsen('\Enum::VALUE');
         $this->docBlock = new DocBlock('');
 
@@ -46,13 +45,11 @@ final class EnumCaseTest extends TestCase
         );
     }
 
-    private function getFixture(): MetaDataContainerInterface
-    {
+    private function getFixture(): MetaDataContainerInterface {
         return $this->fixture;
     }
 
-    public function testGettingName(): void
-    {
+    public function testGettingName(): void {
         $fixture = new EnumCase(
             $this->fqsen,
             $this->docBlock,
@@ -61,8 +58,7 @@ final class EnumCaseTest extends TestCase
         $this->assertSame($this->fqsen->getName(), $fixture->getName());
     }
 
-    public function testGettingFqsen(): void
-    {
+    public function testGettingFqsen(): void {
         $fixture = new EnumCase(
             $this->fqsen,
             $this->docBlock,
@@ -71,8 +67,7 @@ final class EnumCaseTest extends TestCase
         $this->assertSame($this->fqsen, $fixture->getFqsen());
     }
 
-    public function testGettingDocBlock(): void
-    {
+    public function testGettingDocBlock(): void {
         $fixture = new EnumCase(
             $this->fqsen,
             $this->docBlock,
@@ -81,8 +76,7 @@ final class EnumCaseTest extends TestCase
         $this->assertSame($this->docBlock, $fixture->getDocBlock());
     }
 
-    public function testValueCanBeOmitted(): void
-    {
+    public function testValueCanBeOmitted(): void {
         $fixture = new EnumCase(
             $this->fqsen,
             $this->docBlock,
@@ -91,8 +85,7 @@ final class EnumCaseTest extends TestCase
         $this->assertNull($fixture->getValue());
     }
 
-    public function testValueCanBeProvidedAsAnExpression(): void
-    {
+    public function testValueCanBeProvidedAsAnExpression(): void {
         $expression = new Expression('Enum case expression');
         $fixture = new EnumCase(
             $this->fqsen,
@@ -105,8 +98,7 @@ final class EnumCaseTest extends TestCase
         $this->assertSame($expression, $fixture->getValue(false));
     }
 
-    public function testValueCanBeReturnedAsString(): void
-    {
+    public function testValueCanBeReturnedAsString(): void {
         $expression = new Expression('Enum case expression');
         $fixture = new EnumCase(
             $this->fqsen,
@@ -119,8 +111,7 @@ final class EnumCaseTest extends TestCase
         $this->assertSame('Enum case expression', $fixture->getValue(true));
     }
 
-    public function testGetLocationReturnsProvidedValue(): void
-    {
+    public function testGetLocationReturnsProvidedValue(): void {
         $location = new Location(15, 10);
         $fixture = new EnumCase(
             $this->fqsen,
@@ -131,8 +122,7 @@ final class EnumCaseTest extends TestCase
         self::assertSame($location, $fixture->getLocation());
     }
 
-    public function testGetLocationReturnsUnknownByDefault(): void
-    {
+    public function testGetLocationReturnsUnknownByDefault(): void {
         $fixture = new EnumCase(
             $this->fqsen,
             $this->docBlock,
@@ -141,8 +131,7 @@ final class EnumCaseTest extends TestCase
         self::assertEquals(new Location(-1), $fixture->getLocation());
     }
 
-    public function testGetEndLocationReturnsProvidedValue(): void
-    {
+    public function testGetEndLocationReturnsProvidedValue(): void {
         $location = new Location(11, 23);
         $fixture = new EnumCase(
             $this->fqsen,
@@ -154,8 +143,7 @@ final class EnumCaseTest extends TestCase
         self::assertSame($location, $fixture->getEndLocation());
     }
 
-    public function testGetEndLocationReturnsUnknownByDefault(): void
-    {
+    public function testGetEndLocationReturnsUnknownByDefault(): void {
         $fixture = new EnumCase(
             $this->fqsen,
             $this->docBlock,

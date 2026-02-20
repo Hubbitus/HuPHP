@@ -165,8 +165,7 @@ abstract class AbstractTagAwareAdapter implements TagAwareAdapterInterface, TagA
         $this->doDelete($ids);
     }
 
-    public function commit(): bool
-    {
+    public function commit(): bool {
         $ok = true;
         $byLifetime = (self::$mergeByLifetime)($this->deferred, $expiredIds, $this->getId(...), self::TAGS_PREFIX, $this->defaultLifetime);
         $retry = $this->deferred = [];

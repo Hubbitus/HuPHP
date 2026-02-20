@@ -71,8 +71,7 @@ abstract class AbstractCsv implements ByteSequence
     /**
      * Reset dynamic object properties to improve performance.
      */
-    protected function resetProperties(): void
-    {
+    protected function resetProperties(): void {
     }
 
     /**
@@ -112,48 +111,42 @@ abstract class AbstractCsv implements ByteSequence
     /**
      * Returns the current field delimiter.
      */
-    public function getDelimiter(): string
-    {
+    public function getDelimiter(): string {
         return $this->delimiter;
     }
 
     /**
      * Returns the current field enclosure.
      */
-    public function getEnclosure(): string
-    {
+    public function getEnclosure(): string {
         return $this->enclosure;
     }
 
     /**
      * Returns the pathname of the underlying document.
      */
-    public function getPathname(): string
-    {
+    public function getPathname(): string {
         return $this->document->getPathname();
     }
 
     /**
      * Returns the current field escape character.
      */
-    public function getEscape(): string
-    {
+    public function getEscape(): string {
         return $this->escape;
     }
 
     /**
      * Returns the BOM sequence in use on Output methods.
      */
-    public function getOutputBOM(): string
-    {
+    public function getOutputBOM(): string {
         return $this->output_bom?->value ?? '';
     }
 
     /**
      * Returns the BOM sequence of the given CSV.
      */
-    public function getInputBOM(): string
-    {
+    public function getInputBOM(): string {
         if (null === $this->input_bom) {
             $this->document->setFlags(SplFileObject::READ_CSV);
             $this->input_bom = Bom::tryFromSequence($this->document);
@@ -165,8 +158,7 @@ abstract class AbstractCsv implements ByteSequence
     /**
      * Tells whether the stream filter read capabilities can be used.
      */
-    public function supportsStreamFilterOnRead(): bool
-    {
+    public function supportsStreamFilterOnRead(): bool {
         if (!$this->document instanceof Stream) {
             return false;
         }
@@ -179,8 +171,7 @@ abstract class AbstractCsv implements ByteSequence
     /**
      * Tells whether the stream filter write capabilities can be used.
      */
-    public function supportsStreamFilterOnWrite(): bool
-    {
+    public function supportsStreamFilterOnWrite(): bool {
         if (!$this->document instanceof Stream) {
             return false;
         }
@@ -201,8 +192,7 @@ abstract class AbstractCsv implements ByteSequence
     /**
      * Tells whether the BOM can be stripped if presents.
      */
-    public function isInputBOMIncluded(): bool
-    {
+    public function isInputBOMIncluded(): bool {
         return $this->is_input_bom_included;
     }
 
@@ -235,8 +225,7 @@ abstract class AbstractCsv implements ByteSequence
      *
      * @throws Exception If the string representation cannot be returned
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         $raw = '';
         foreach ($this->chunk(8192) as $chunk) {
             $raw .= $chunk;
@@ -353,8 +342,7 @@ abstract class AbstractCsv implements ByteSequence
     /**
      * Enables BOM Stripping.
      */
-    public function skipInputBOM(): static
-    {
+    public function skipInputBOM(): static {
         $this->is_input_bom_included = false;
 
         return $this;
@@ -363,8 +351,7 @@ abstract class AbstractCsv implements ByteSequence
     /**
      * Disables skipping Input BOM.
      */
-    public function includeInputBOM(): static
-    {
+    public function includeInputBOM(): static {
         $this->is_input_bom_included = true;
 
         return $this;
@@ -474,8 +461,7 @@ abstract class AbstractCsv implements ByteSequence
      * Returns the stream filter mode.
      */
     #[Deprecated(message:'use League\Csv\AbstractCsv::supportsStreamFilterOnRead() or League\Csv\AbstractCsv::supportsStreamFilterOnWrite() instead', since:'league/csv:9.7.0')]
-    public function getStreamFilterMode(): int
-    {
+    public function getStreamFilterMode(): int {
         return static::STREAM_FILTER_MODE;
     }
 
@@ -490,8 +476,7 @@ abstract class AbstractCsv implements ByteSequence
      * Tells whether the stream filter capabilities can be used.
      */
     #[Deprecated(message:'use League\Csv\AbstractCsv::supportsStreamFilterOnRead() or League\Csv\AbstractCsv::supportsStreamFilterOnWrite() instead', since:'league/csv:9.7.0')]
-    public function supportsStreamFilter(): bool
-    {
+    public function supportsStreamFilter(): bool {
         return $this->document instanceof Stream;
     }
 
@@ -505,8 +490,7 @@ abstract class AbstractCsv implements ByteSequence
      * @codeCoverageIgnore
      */
     #[Deprecated(message:'use League\Csv\AbstractCsv::toString() instead', since:'league/csv:9.7.0')]
-    public function getContent(): string
-    {
+    public function getContent(): string {
         return $this->toString();
     }
 
@@ -520,8 +504,7 @@ abstract class AbstractCsv implements ByteSequence
      * Retrieves the CSV content
      */
     #[Deprecated(message:'use League\Csv\AbstractCsv::toString() instead', since:'league/csv:9.1.0')]
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->toString();
     }
 

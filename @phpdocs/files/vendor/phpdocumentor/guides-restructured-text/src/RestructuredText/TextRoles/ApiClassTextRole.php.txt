@@ -32,14 +32,12 @@ final class ApiClassTextRole extends AbstractReferenceTextRole
     ) {
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return self::NAME;
     }
 
     /** @inheritDoc */
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return [];
     }
 

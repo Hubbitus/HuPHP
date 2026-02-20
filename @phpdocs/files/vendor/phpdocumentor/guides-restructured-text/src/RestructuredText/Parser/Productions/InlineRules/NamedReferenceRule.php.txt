@@ -30,8 +30,7 @@ use function rtrim;
  */
 final class NamedReferenceRule extends ReferenceRule implements CachableInlineRule
 {
-    public function getToken(): int
-    {
+    public function getToken(): int {
         return InlineLexer::NAMED_REFERENCE;
     }
 
@@ -50,8 +49,7 @@ final class NamedReferenceRule extends ReferenceRule implements CachableInlineRu
         return $node;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 1000;
     }
 }

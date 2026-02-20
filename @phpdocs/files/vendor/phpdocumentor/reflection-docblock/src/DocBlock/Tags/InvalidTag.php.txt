@@ -51,8 +51,7 @@ final class InvalidTag implements Tag
         return $this->throwable;
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
@@ -143,8 +142,7 @@ final class InvalidTag implements Tag
         return $formatter->format($this);
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->body;
     }
 }

@@ -11,8 +11,7 @@ use PHPUnit\Framework\TestCase;
  */
 class HuLOGSettingsTest extends TestCase
 {
-    public function testConstructor(): void
-    {
+    public function testConstructor(): void {
         $settings = new HuLOGSettings();
 
         $this->assertInstanceOf(HuLOGSettings::class, $settings);

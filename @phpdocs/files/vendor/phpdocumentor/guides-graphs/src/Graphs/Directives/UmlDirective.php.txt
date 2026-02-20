@@ -50,8 +50,7 @@ final class UmlDirective extends BaseDirective
     ) {
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'uml';
     }
 

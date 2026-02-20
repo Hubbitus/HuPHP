@@ -31,13 +31,11 @@ final class ListItemNode extends CompoundNode
         parent::__construct($contents);
     }
 
-    public function getPrefix(): string
-    {
+    public function getPrefix(): string {
         return $this->prefix;
     }
 
-    public function isOrdered(): bool
-    {
+    public function isOrdered(): bool {
         return $this->ordered;
     }
 

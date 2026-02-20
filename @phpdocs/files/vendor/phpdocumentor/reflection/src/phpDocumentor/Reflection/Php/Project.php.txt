@@ -49,8 +49,7 @@ final class Project implements ProjectInterface
      * Returns the name of this project.
      */
     #[Override]
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
@@ -59,8 +58,7 @@ final class Project implements ProjectInterface
      *
      * @return File[]
      */
-    public function getFiles(): array
-    {
+    public function getFiles(): array {
         return $this->files;
     }
 
@@ -77,8 +75,7 @@ final class Project implements ProjectInterface
      *
      * @return Namespace_[]
      */
-    public function getNamespaces(): array
-    {
+    public function getNamespaces(): array {
         return $this->namespaces;
     }
 

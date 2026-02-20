@@ -28,8 +28,7 @@ class PhpDocNode implements Node
 	/**
 	 * @return PhpDocTagNode[]
 	 */
-	public function getTags(): array
-	{
+	public function getTags(): array {
 		return array_filter($this->children, static fn (PhpDocChildNode $child): bool => $child instanceof PhpDocTagNode);
 	}
 
@@ -231,8 +230,7 @@ class PhpDocNode implements Node
 	/**
 	 * @return DeprecatedTagValueNode[]
 	 */
-	public function getDeprecatedTagValues(): array
-	{
+	public function getDeprecatedTagValues(): array {
 		return array_filter(
 			array_column($this->getTagsByName('@deprecated'), 'value'),
 			static fn (PhpDocTagValueNode $value): bool => $value instanceof DeprecatedTagValueNode,
@@ -360,8 +358,7 @@ class PhpDocNode implements Node
 		);
 	}
 
-	public function __toString(): string
-	{
+	public function __toString(): string {
 		$children = array_map(
 			static function (PhpDocChildNode $child): string {
 				$s = (string) $child;

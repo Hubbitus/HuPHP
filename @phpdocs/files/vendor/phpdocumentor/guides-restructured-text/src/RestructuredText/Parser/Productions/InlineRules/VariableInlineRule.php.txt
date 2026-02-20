@@ -68,8 +68,7 @@ final class VariableInlineRule extends AbstractInlineRule
         return null;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 200;
     }
 }

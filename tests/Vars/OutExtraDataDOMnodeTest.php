@@ -8,8 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class OutExtraDataDOMnodeTest extends TestCase
 {
-	public function testConstructor(): void
-	{
+	public function testConstructor(): void {
 		$dom = new \DOMDocument('1.0', 'utf-8');
 		$element = $dom->createElement('test', 'value');
 
@@ -17,8 +16,7 @@ class OutExtraDataDOMnodeTest extends TestCase
 		$this->assertInstanceOf(OutExtraDataDOMnode::class, $out);
 	}
 
-	public function testConstructorWithEncoding(): void
-	{
+	public function testConstructorWithEncoding(): void {
 		$dom = new \DOMDocument('1.0', 'utf-8');
 		$element = $dom->createElement('test', 'value');
 
@@ -26,8 +24,7 @@ class OutExtraDataDOMnodeTest extends TestCase
 		$this->assertInstanceOf(OutExtraDataDOMnode::class, $out);
 	}
 
-	public function testStrToConsole(): void
-	{
+	public function testStrToConsole(): void {
 		$dom = new \DOMDocument('1.0', 'utf-8');
 		$element = $dom->createElement('test', 'value');
 
@@ -38,8 +35,7 @@ class OutExtraDataDOMnodeTest extends TestCase
 		$this->assertStringContainsString('value', $result);
 	}
 
-	public function testStrToFile(): void
-	{
+	public function testStrToFile(): void {
 		$dom = new \DOMDocument('1.0', 'utf-8');
 		$element = $dom->createElement('test', 'value');
 
@@ -49,8 +45,7 @@ class OutExtraDataDOMnodeTest extends TestCase
 		$this->assertStringContainsString('<test>', $result);
 	}
 
-	public function testStrToWeb(): void
-	{
+	public function testStrToWeb(): void {
 		$dom = new \DOMDocument('1.0', 'utf-8');
 		$element = $dom->createElement('test', 'value');
 
@@ -60,8 +55,7 @@ class OutExtraDataDOMnodeTest extends TestCase
 		$this->assertStringContainsString('<test>', $result);
 	}
 
-	public function testComplexDomNode(): void
-	{
+	public function testComplexDomNode(): void {
 		$dom = new \DOMDocument('1.0', 'utf-8');
 		$root = $dom->createElement('root');
 		$child1 = $dom->createElement('child1', 'value1');

@@ -31,18 +31,15 @@ final class VersionChangeNode extends CompoundNode
         $this->versionLabel = sprintf($versionLabel, $versionModified);
     }
 
-    public function getType(): string
-    {
+    public function getType(): string {
         return $this->type;
     }
 
-    public function getVersionLabel(): string
-    {
+    public function getVersionLabel(): string {
         return $this->versionLabel;
     }
 
-    public function getVersionModified(): string
-    {
+    public function getVersionModified(): string {
         return $this->versionModified;
     }
 }

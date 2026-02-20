@@ -64,13 +64,11 @@ class Parser
         $this->parsers = $env->getExpressionParsers();
     }
 
-    public function getEnvironment(): Environment
-    {
+    public function getEnvironment(): Environment {
         return $this->env;
     }
 
-    public function getVarName(): string
-    {
+    public function getVarName(): string {
         trigger_deprecation('twig/twig', '3.15', 'The "%s()" method is deprecated.', __METHOD__);
 
         return \sprintf('__internal_parse_%d', $this->varNameSalt++);
@@ -145,8 +143,7 @@ class Parser
         return $node;
     }
 
-    public function shouldIgnoreUnknownTwigCallables(): bool
-    {
+    public function shouldIgnoreUnknownTwigCallables(): bool {
         return $this->ignoreUnknownTwigCallables;
     }
 
@@ -242,8 +239,7 @@ class Parser
         return new Nodes($rv, $lineno);
     }
 
-    public function getBlockStack(): array
-    {
+    public function getBlockStack(): array {
         trigger_deprecation('twig/twig', '3.12', 'Method "%s()" is deprecated.', __METHOD__);
 
         return $this->blockStack;
@@ -257,8 +253,7 @@ class Parser
         return $this->blockStack[\count($this->blockStack) - 1] ?? null;
     }
 
-    public function popBlockStack(): void
-    {
+    public function popBlockStack(): void {
         array_pop($this->blockStack);
     }
 
@@ -307,8 +302,7 @@ class Parser
         $this->traits[] = $trait;
     }
 
-    public function hasTraits(): bool
-    {
+    public function hasTraits(): bool {
         trigger_deprecation('twig/twig', '3.12', 'Method "%s()" is deprecated.', __METHOD__);
 
         return \count($this->traits) > 0;
@@ -344,26 +338,22 @@ class Parser
         return $this->importedSymbols[0][$type][$alias] ?? ($this->importedSymbols[\count($this->importedSymbols) - 1][$type][$alias] ?? null);
     }
 
-    public function isMainScope(): bool
-    {
+    public function isMainScope(): bool {
         return 1 === \count($this->importedSymbols);
     }
 
-    public function pushLocalScope(): void
-    {
+    public function pushLocalScope(): void {
         array_unshift($this->importedSymbols, []);
     }
 
-    public function popLocalScope(): void
-    {
+    public function popLocalScope(): void {
         array_shift($this->importedSymbols);
     }
 
     /**
      * @deprecated since Twig 3.21
      */
-    public function getExpressionParser(): ExpressionParser
-    {
+    public function getExpressionParser(): ExpressionParser {
         trigger_deprecation('twig/twig', '3.21', 'Method "%s()" is deprecated, use "parseExpression()" instead.', __METHOD__);
 
         if (null === $this->expressionParser) {
@@ -423,13 +413,11 @@ class Parser
         $this->parent = $parent;
     }
 
-    public function getStream(): TokenStream
-    {
+    public function getStream(): TokenStream {
         return $this->stream;
     }
 
-    public function getCurrentToken(): Token
-    {
+    public function getCurrentToken(): Token {
         return $this->stream->getCurrent();
     }
 

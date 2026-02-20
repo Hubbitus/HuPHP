@@ -34,8 +34,7 @@ final class NullOutputFormatter implements OutputFormatterInterface
         return false;
     }
 
-    public function isDecorated(): bool
-    {
+    public function isDecorated(): bool {
         return false;
     }
 

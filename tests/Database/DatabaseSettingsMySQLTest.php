@@ -14,16 +14,14 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseSettingsMySQLTest extends TestCase
 {
-    public function testClassExtendsDatabaseSettings(): void
-    {
+    public function testClassExtendsDatabaseSettings(): void {
         $settings = new DatabaseSettingsMySQL();
 
         $this->assertInstanceOf(DatabaseSettingsMySQL::class, $settings);
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\DatabaseSettings', $settings);
     }
 
-    public function testConstructorWithDefaultSettings(): void
-    {
+    public function testConstructorWithDefaultSettings(): void {
         $settings = new DatabaseSettingsMySQL();
 
         $this->assertInstanceOf(DatabaseSettingsMySQL::class, $settings);
@@ -32,8 +30,7 @@ class DatabaseSettingsMySQLTest extends TestCase
         $this->assertFalse($settings->DEBUG);
     }
 
-    public function testConstructorWithCustomSettings(): void
-    {
+    public function testConstructorWithCustomSettings(): void {
         $customSettings = [
             'hostname' => 'localhost',
             'username' => 'root',
@@ -65,8 +62,7 @@ class DatabaseSettingsMySQLTest extends TestCase
         $this->assertEquals('error', $settings->DBError_settings['level']);
     }
 
-    public function testGettersAndSetters(): void
-    {
+    public function testGettersAndSetters(): void {
         $settings = new DatabaseSettingsMySQL();
 
         // Test default getters
@@ -98,8 +94,7 @@ class DatabaseSettingsMySQLTest extends TestCase
         $this->assertEquals('debug', $settings->DBError_settings['level']);
     }
 
-    public function testDefaultSettingsStructure(): void
-    {
+    public function testDefaultSettingsStructure(): void {
         $settings = new DatabaseSettingsMySQL();
 
         // Test that all expected default settings are present
@@ -124,8 +119,7 @@ class DatabaseSettingsMySQLTest extends TestCase
         }
     }
 
-    public function testInheritanceFromDatabaseSettings(): void
-    {
+    public function testInheritanceFromDatabaseSettings(): void {
         $settings = new DatabaseSettingsMySQL();
 
         // Test that it inherits methods from DatabaseSettings
@@ -136,8 +130,7 @@ class DatabaseSettingsMySQLTest extends TestCase
         $this->assertTrue(method_exists($settings, 'offsetUnset'));
     }
 
-    public function testArrayAccess(): void
-    {
+    public function testArrayAccess(): void {
         $settings = new DatabaseSettingsMySQL();
 
         // Test ArrayAccess interface
@@ -149,8 +142,7 @@ class DatabaseSettingsMySQLTest extends TestCase
         $this->assertFalse(isset($settings['hostname']));
     }
 
-    public function testSettingsMerging(): void
-    {
+    public function testSettingsMerging(): void {
         $defaultSettings = [
             'hostname' => 'localhost',
             'username' => 'root',

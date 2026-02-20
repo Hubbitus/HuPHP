@@ -24,8 +24,7 @@ final class ClassDiagram extends DescriptorNode
         return $that;
     }
 
-    public function getCaption(): string
-    {
+    public function getCaption(): string {
         return $this->caption;
     }
 }

@@ -116,13 +116,11 @@ class Type
      *
      * Can be bool, int, float, string, array, object, resource, null, callback or iterable.
      */
-    public function getBuiltinType(): string
-    {
+    public function getBuiltinType(): string {
         return $this->builtinType;
     }
 
-    public function isNullable(): bool
-    {
+    public function isNullable(): bool {
         return $this->nullable;
     }
 
@@ -136,8 +134,7 @@ class Type
         return $this->class;
     }
 
-    public function isCollection(): bool
-    {
+    public function isCollection(): bool {
         return $this->collection;
     }
 
@@ -148,8 +145,7 @@ class Type
      *
      * @return Type[]
      */
-    public function getCollectionKeyTypes(): array
-    {
+    public function getCollectionKeyTypes(): array {
         return $this->collectionKeyType;
     }
 
@@ -160,8 +156,7 @@ class Type
      *
      * @return Type[]
      */
-    public function getCollectionValueTypes(): array
-    {
+    public function getCollectionValueTypes(): array {
         return $this->collectionValueType;
     }
 }

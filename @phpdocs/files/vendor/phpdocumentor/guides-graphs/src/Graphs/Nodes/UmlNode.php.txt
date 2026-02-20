@@ -24,8 +24,7 @@ final class UmlNode extends TextNode
         $this->caption = $caption;
     }
 
-    public function getCaption(): string
-    {
+    public function getCaption(): string {
         return $this->caption;
     }
 }

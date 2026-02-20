@@ -208,8 +208,7 @@ final class Psr18Client implements ClientInterface, RequestFactoryInterface, Str
         throw new \LogicException(\sprintf('You cannot use "%s()" as no PSR-17 factories have been found. Try running "composer require php-http/discovery psr/http-factory-implementation:*".', __METHOD__));
     }
 
-    public function reset(): void
-    {
+    public function reset(): void {
         if ($this->client instanceof ResetInterface) {
             $this->client->reset();
         }
@@ -228,8 +227,7 @@ class Psr18NetworkException extends \RuntimeException implements NetworkExceptio
         parent::__construct($e->getMessage(), 0, $e);
     }
 
-    public function getRequest(): RequestInterface
-    {
+    public function getRequest(): RequestInterface {
         return $this->request;
     }
 }
@@ -246,8 +244,7 @@ class Psr18RequestException extends \InvalidArgumentException implements Request
         parent::__construct($e->getMessage(), 0, $e);
     }
 
-    public function getRequest(): RequestInterface
-    {
+    public function getRequest(): RequestInterface {
         return $this->request;
     }
 }

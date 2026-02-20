@@ -35,8 +35,7 @@ final class FootnoteParser extends AbstractBlockContinueParser
         $this->block = new Footnote($reference);
     }
 
-    public function getBlock(): Footnote
-    {
+    public function getBlock(): Footnote {
         return $this->block;
     }
 
@@ -56,8 +55,7 @@ final class FootnoteParser extends AbstractBlockContinueParser
         return BlockContinue::none();
     }
 
-    public function isContainer(): bool
-    {
+    public function isContainer(): bool {
         return true;
     }
 

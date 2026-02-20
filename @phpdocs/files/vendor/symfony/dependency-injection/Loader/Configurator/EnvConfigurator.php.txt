@@ -25,8 +25,7 @@ class EnvConfigurator extends ParamConfigurator
         $this->stack = explode(':', $name);
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return '%env('.implode(':', $this->stack).')%';
     }
 
@@ -55,8 +54,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function base64(): static
-    {
+    public function base64(): static {
         array_unshift($this->stack, 'base64');
 
         return $this;
@@ -65,8 +63,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function bool(): static
-    {
+    public function bool(): static {
         array_unshift($this->stack, 'bool');
 
         return $this;
@@ -75,8 +72,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function not(): static
-    {
+    public function not(): static {
         array_unshift($this->stack, 'not');
 
         return $this;
@@ -85,8 +81,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function const(): static
-    {
+    public function const(): static {
         array_unshift($this->stack, 'const');
 
         return $this;
@@ -95,8 +90,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function csv(): static
-    {
+    public function csv(): static {
         array_unshift($this->stack, 'csv');
 
         return $this;
@@ -105,8 +99,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function file(): static
-    {
+    public function file(): static {
         array_unshift($this->stack, 'file');
 
         return $this;
@@ -115,8 +108,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function float(): static
-    {
+    public function float(): static {
         array_unshift($this->stack, 'float');
 
         return $this;
@@ -125,8 +117,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function int(): static
-    {
+    public function int(): static {
         array_unshift($this->stack, 'int');
 
         return $this;
@@ -135,8 +126,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function json(): static
-    {
+    public function json(): static {
         array_unshift($this->stack, 'json');
 
         return $this;
@@ -155,8 +145,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function url(): static
-    {
+    public function url(): static {
         array_unshift($this->stack, 'url');
 
         return $this;
@@ -165,8 +154,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function queryString(): static
-    {
+    public function queryString(): static {
         array_unshift($this->stack, 'query_string');
 
         return $this;
@@ -175,8 +163,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function resolve(): static
-    {
+    public function resolve(): static {
         array_unshift($this->stack, 'resolve');
 
         return $this;
@@ -195,8 +182,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function string(): static
-    {
+    public function string(): static {
         array_unshift($this->stack, 'string');
 
         return $this;
@@ -205,8 +191,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function trim(): static
-    {
+    public function trim(): static {
         array_unshift($this->stack, 'trim');
 
         return $this;
@@ -215,8 +200,7 @@ class EnvConfigurator extends ParamConfigurator
     /**
      * @return $this
      */
-    public function require(): static
-    {
+    public function require(): static {
         array_unshift($this->stack, 'require');
 
         return $this;

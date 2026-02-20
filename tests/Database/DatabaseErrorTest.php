@@ -16,24 +16,21 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseErrorTest extends TestCase
 {
-    public function testClassExtendsHuError(): void
-    {
+    public function testClassExtendsHuError(): void {
         $error = new DatabaseError([]);
 
         $this->assertInstanceOf(DatabaseError::class, $error);
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Debug\\HuError', $error);
     }
 
-    public function testConstructorWithDefaultSettings(): void
-    {
+    public function testConstructorWithDefaultSettings(): void {
         $error = new DatabaseError([]);
 
         $this->assertInstanceOf(DatabaseError::class, $error);
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\DatabaseErrorSettings', $error->_sets);
     }
 
-    public function testConstructorWithArraySettings(): void
-    {
+    public function testConstructorWithArraySettings(): void {
         $customSettings = [
             'TXT_queryFailed' => 'Custom query failed message',
             'TXT_cantConnect' => 'Custom connection failed message',
@@ -50,8 +47,7 @@ class DatabaseErrorTest extends TestCase
         $this->assertTrue($error->DEBUG);
     }
 
-    public function testConstructorWithSettingsObject(): void
-    {
+    public function testConstructorWithSettingsObject(): void {
         $settings = new DatabaseErrorSettings();
         $error = new DatabaseError(['custom_setting' => 'value']);
 
@@ -59,16 +55,14 @@ class DatabaseErrorTest extends TestCase
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\DatabaseErrorSettings', $error->_sets);
     }
 
-    public function testConstructorWithNullSettings(): void
-    {
+    public function testConstructorWithNullSettings(): void {
         $error = new DatabaseError([]);
 
         $this->assertInstanceOf(DatabaseError::class, $error);
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\DatabaseErrorSettings', $error->_sets);
     }
 
-    public function testSettingsInheritance(): void
-    {
+    public function testSettingsInheritance(): void {
         $error = new DatabaseError([]);
 
         // Test that it inherits methods from HuError
@@ -78,8 +72,7 @@ class DatabaseErrorTest extends TestCase
         $this->assertTrue(method_exists($error, 'clearExtra'));
     }
 
-    public function testDefaultErrorMessages(): void
-    {
+    public function testDefaultErrorMessages(): void {
         $error = new DatabaseError([]);
 
         $this->assertEquals('SQL Query failed', $error->TXT_queryFailed);
@@ -87,16 +80,14 @@ class DatabaseErrorTest extends TestCase
         $this->assertEquals('Can not change database', $error->TXT_noDBselected);
     }
 
-    public function testAutoDateFormat(): void
-    {
+    public function testAutoDateFormat(): void {
         $error = new DatabaseError([]);
 
         $this->assertTrue($error->AUTO_DATE);
         $this->assertEquals('Y-m-d H:i:s: ', $error->DATE_FORMAT);
     }
 
-    public function testFormatConfigurations(): void
-    {
+    public function testFormatConfigurations(): void {
         $error = new DatabaseError([]);
 
         // Test that format configurations are inherited from HuErrorSettings
@@ -105,8 +96,7 @@ class DatabaseErrorTest extends TestCase
         $this->assertIsArray($error->FORMAT_FILE);
     }
 
-    public function testSettingsModification(): void
-    {
+    public function testSettingsModification(): void {
         $error = new DatabaseError([]);
 
         // Test that we can modify settings
@@ -117,8 +107,7 @@ class DatabaseErrorTest extends TestCase
         $this->assertEquals('Modified query failed message', $error->TXT_queryFailed);
     }
 
-    public function testInheritanceOfHuErrorMethods(): void
-    {
+    public function testInheritanceOfHuErrorMethods(): void {
         $error = new DatabaseError([]);
 
         // Test that inherited methods work correctly

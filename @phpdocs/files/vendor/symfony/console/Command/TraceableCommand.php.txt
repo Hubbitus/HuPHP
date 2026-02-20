@@ -86,8 +86,7 @@ final class TraceableCommand extends Command implements SignalableCommandInterfa
         return $this->command->{$name}(...$arguments);
     }
 
-    public function getSubscribedSignals(): array
-    {
+    public function getSubscribedSignals(): array {
         return $this->command instanceof SignalableCommandInterface ? $this->command->getSubscribedSignals() : [];
     }
 
@@ -126,8 +125,7 @@ final class TraceableCommand extends Command implements SignalableCommandInterfa
      *
      * Calling parent method is required to be used in {@see parent::run()}.
      */
-    public function ignoreValidationErrors(): void
-    {
+    public function ignoreValidationErrors(): void {
         $this->ignoreValidation = true;
         $this->command->ignoreValidationErrors();
 
@@ -154,8 +152,7 @@ final class TraceableCommand extends Command implements SignalableCommandInterfa
         return $this->command->getHelperSet();
     }
 
-    public function isEnabled(): bool
-    {
+    public function isEnabled(): bool {
         return $this->command->isEnabled();
     }
 
@@ -199,13 +196,11 @@ final class TraceableCommand extends Command implements SignalableCommandInterfa
         return $this;
     }
 
-    public function getDefinition(): InputDefinition
-    {
+    public function getDefinition(): InputDefinition {
         return $this->command->getDefinition();
     }
 
-    public function getNativeDefinition(): InputDefinition
-    {
+    public function getNativeDefinition(): InputDefinition {
         return $this->command->getNativeDefinition();
     }
 
@@ -242,13 +237,11 @@ final class TraceableCommand extends Command implements SignalableCommandInterfa
         return $this;
     }
 
-    public function getHelp(): string
-    {
+    public function getHelp(): string {
         return $this->command->getHelp();
     }
 
-    public function getProcessedHelp(): string
-    {
+    public function getProcessedHelp(): string {
         return $this->command->getProcessedHelp();
     }
 
@@ -264,8 +257,7 @@ final class TraceableCommand extends Command implements SignalableCommandInterfa
         return $this;
     }
 
-    public function getUsages(): array
-    {
+    public function getUsages(): array {
         return $this->command->getUsages();
     }
 

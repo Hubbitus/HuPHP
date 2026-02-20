@@ -38,13 +38,11 @@ class LinkDescriptor extends TagDescriptor implements Stringable
     /**
      * Returns the URL where this link points to.
      */
-    public function getLink(): string
-    {
+    public function getLink(): string {
         return $this->link;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return (string) $this->link;
     }
 }

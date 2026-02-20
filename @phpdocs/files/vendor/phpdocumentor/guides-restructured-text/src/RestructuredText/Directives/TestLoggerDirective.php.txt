@@ -35,8 +35,7 @@ final class TestLoggerDirective extends SubDirective
         parent::__construct($startingRule);
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'testlogger';
     }
 

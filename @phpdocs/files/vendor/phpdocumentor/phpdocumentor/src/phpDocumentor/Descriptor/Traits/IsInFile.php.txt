@@ -41,8 +41,7 @@ trait IsInFile
     /**
      * Returns the path to the file containing this element relative to the project's root.
      */
-    public function getPath(): string
-    {
+    public function getPath(): string {
         return $this->fileDescriptor ? $this->fileDescriptor->getPath() : '';
     }
 
@@ -69,8 +68,7 @@ trait IsInFile
      *
      * @deprecated use getStartLocation()->getLineNumber() instead
      */
-    public function getLine(): int
-    {
+    public function getLine(): int {
         if ($this->getStartLocation() === null) {
             return 0;
         }

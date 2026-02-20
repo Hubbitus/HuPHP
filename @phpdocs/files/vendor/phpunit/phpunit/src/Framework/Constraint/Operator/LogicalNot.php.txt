@@ -88,8 +88,7 @@ final class LogicalNot extends UnaryOperator
     /**
      * Returns the name of this operator.
      */
-    public function operator(): string
-    {
+    public function operator(): string {
         return 'not';
     }
 
@@ -98,8 +97,7 @@ final class LogicalNot extends UnaryOperator
      *
      * @see https://www.php.net/manual/en/language.operators.precedence.php
      */
-    public function precedence(): int
-    {
+    public function precedence(): int {
         return 5;
     }
 
@@ -130,8 +128,7 @@ final class LogicalNot extends UnaryOperator
      *
      * See Constraint::reduce() for more.
      */
-    protected function reduce(): Constraint
-    {
+    protected function reduce(): Constraint {
         $constraint = $this->constraint();
 
         if ($constraint instanceof self) {

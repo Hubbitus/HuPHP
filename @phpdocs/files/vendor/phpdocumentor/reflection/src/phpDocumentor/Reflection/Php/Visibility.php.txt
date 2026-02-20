@@ -67,8 +67,7 @@ class Visibility implements Stringable
      * Will return a string representation of visibility.
      */
     #[Override]
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->visibility;
     }
 }

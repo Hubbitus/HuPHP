@@ -46,14 +46,12 @@ final class DefineTest extends TestCase
 
     private ObjectProphecy $docBlockFactory;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->docBlockFactory = $this->prophesize(DocBlockFactoryInterface::class);
         $this->fixture = new Define($this->docBlockFactory->reveal(), new PrettyPrinter());
     }
 
-    public function testMatches(): void
-    {
+    public function testMatches(): void {
         $invalidExpressionType = new Expression(new Exit_());
         $invalidFunctionCall = new Expression(new FuncCall(new Name('print')));
 
@@ -63,8 +61,7 @@ final class DefineTest extends TestCase
         $this->assertTrue($this->fixture->matches(self::createContext(null), $this->buildDefineStub()));
     }
 
-    public function testCreate(): void
-    {
+    public function testCreate(): void {
         $constantStub = $this->buildDefineStub();
         $file = new FileElement('hash', 'path');
         $contextStack = self::createContext(new Context('Space\\MyClass'))->push($file);
@@ -76,8 +73,7 @@ final class DefineTest extends TestCase
         $this->assertConstant($constant, '');
     }
 
-    public function testCreateNamespace(): void
-    {
+    public function testCreateNamespace(): void {
         $constantStub = $this->buildDefineStub('\\OtherSpace\\MyClass');
         $file = new FileElement('hash', 'path');
         $contextStack = self::createContext(new Context('Space\\MyClass'))->push($file);
@@ -89,8 +85,7 @@ final class DefineTest extends TestCase
         $this->assertConstant($constant, '\\OtherSpace\\MyClass');
     }
 
-    public function testCreateGlobal(): void
-    {
+    public function testCreateGlobal(): void {
         $constantStub = $this->buildDefineStub();
         $file = new FileElement('hash', 'path');
         $contextStack = self::createContext()->push($file);
@@ -102,8 +97,7 @@ final class DefineTest extends TestCase
         $this->assertConstant($constant, '');
     }
 
-    public function testCreateWithDocBlock(): void
-    {
+    public function testCreateWithDocBlock(): void {
         $doc = new Doc('Text');
         $docBlock = new DocBlockDescriptor('');
 

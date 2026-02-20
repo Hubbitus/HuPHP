@@ -47,8 +47,7 @@ final class VcsIgnoredFilterIterator extends \FilterIterator
         parent::__construct($iterator);
     }
 
-    public function accept(): bool
-    {
+    public function accept(): bool {
         $file = $this->current();
 
         $fileRealPath = $this->normalizePath($file->getRealPath());

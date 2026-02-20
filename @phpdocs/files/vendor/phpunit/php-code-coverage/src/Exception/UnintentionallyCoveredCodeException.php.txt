@@ -25,13 +25,11 @@ final class UnintentionallyCoveredCodeException extends RuntimeException impleme
         parent::__construct($this->toString());
     }
 
-    public function getUnintentionallyCoveredUnits(): array
-    {
+    public function getUnintentionallyCoveredUnits(): array {
         return $this->unintentionallyCoveredUnits;
     }
 
-    private function toString(): string
-    {
+    private function toString(): string {
         $message = '';
 
         foreach ($this->unintentionallyCoveredUnits as $unit) {

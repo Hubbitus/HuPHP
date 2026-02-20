@@ -43,15 +43,13 @@ final class CallbackStreamFilter extends php_user_filter
     /** @var ?Closure(string, mixed): string */
     private ?Closure $callback;
 
-    public function onCreate(): bool
-    {
+    public function onCreate(): bool {
         $this->callback = self::$filters[$this->filtername] ?? null;
 
         return $this->callback instanceof Closure;
     }
 
-    public function onClose(): void
-    {
+    public function onClose(): void {
         $this->callback = null;
     }
 
@@ -140,8 +138,7 @@ final class CallbackStreamFilter extends php_user_filter
      *
      * @return array<string>
      */
-    public static function registeredFilternames(): array
-    {
+    public static function registeredFilternames(): array {
         return array_keys(self::$filters);
     }
 

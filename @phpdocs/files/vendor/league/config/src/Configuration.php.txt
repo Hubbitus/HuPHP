@@ -145,16 +145,14 @@ final class Configuration implements ConfigurationBuilderInterface, Configuratio
     /**
      * @psalm-mutation-free
      */
-    public function reader(): ConfigurationInterface
-    {
+    public function reader(): ConfigurationInterface {
         return $this->reader;
     }
 
     /**
      * @psalm-external-mutation-free
      */
-    private function invalidate(): void
-    {
+    private function invalidate(): void {
         $this->cache       = [];
         $this->finalConfig = new Data();
     }

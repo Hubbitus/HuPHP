@@ -44,8 +44,7 @@ final class AuthorNode extends AbstractNode
     }
 
     /** @return Node[] */
-    public function getChildren(): array
-    {
+    public function getChildren(): array {
         return $this->children;
     }
 
@@ -54,8 +53,7 @@ final class AuthorNode extends AbstractNode
         return $this->email;
     }
 
-    public function getContext(): string
-    {
+    public function getContext(): string {
         return $this->context;
     }
 }

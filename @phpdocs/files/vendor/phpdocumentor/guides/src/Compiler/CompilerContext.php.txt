@@ -50,13 +50,11 @@ class CompilerContext implements CompilerContextInterface
         );
     }
 
-    public function getProjectNode(): ProjectNode
-    {
+    public function getProjectNode(): ProjectNode {
         return $this->projectNode;
     }
 
-    public function getDocumentNode(): DocumentNode
-    {
+    public function getDocumentNode(): DocumentNode {
         if (!isset($this->shadowTree)) {
             throw new Exception('DocumentNode must be set in compiler context');
         }
@@ -82,8 +80,7 @@ class CompilerContext implements CompilerContextInterface
     }
 
     /** @return TreeNode<Node> */
-    public function getShadowTree(): TreeNode
-    {
+    public function getShadowTree(): TreeNode {
         if (!isset($this->shadowTree)) {
             throw new Exception('DocumentNode must be set in compiler context');
         }
@@ -92,8 +89,7 @@ class CompilerContext implements CompilerContextInterface
     }
 
     /** @return array<string, string> */
-    public function getLoggerInformation(): array
-    {
+    public function getLoggerInformation(): array {
         if (!isset($this->shadowTree)) {
             return [];
         }

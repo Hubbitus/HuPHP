@@ -58,8 +58,7 @@ final class SubInternalMenuEntryNodeTransformer extends AbstractMenuEntryNodeTra
         return [$entryNode];
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         // After MenuEntries are resolved
         return 3000;
     }

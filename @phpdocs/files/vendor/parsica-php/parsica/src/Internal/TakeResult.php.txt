@@ -29,13 +29,11 @@ final class TakeResult
         $this->stream = $stream;
     }
 
-    function chunk(): string
-    {
+    function chunk(): string {
         return $this->chunk;
     }
 
-    function stream(): Stream
-    {
+    function stream(): Stream {
         return $this->stream;
     }
 }

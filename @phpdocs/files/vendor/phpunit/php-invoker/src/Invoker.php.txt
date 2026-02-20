@@ -62,8 +62,7 @@ final class Invoker
         }
     }
 
-    public function canInvokeWithTimeout(): bool
-    {
+    public function canInvokeWithTimeout(): bool {
         return function_exists('pcntl_signal') && function_exists('pcntl_async_signals') && function_exists('pcntl_alarm');
     }
 }

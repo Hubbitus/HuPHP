@@ -90,8 +90,7 @@ final class TestFailure
     /**
      * Returns a short description of the failure.
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         return sprintf(
             '%s: %s',
             $this->testName,
@@ -102,16 +101,14 @@ final class TestFailure
     /**
      * Returns a description for the thrown exception.
      */
-    public function getExceptionAsString(): string
-    {
+    public function getExceptionAsString(): string {
         return self::exceptionToString($this->thrownException);
     }
 
     /**
      * Returns the name of the failing test (including data set, if any).
      */
-    public function getTestName(): string
-    {
+    public function getTestName(): string {
         return $this->testName;
     }
 
@@ -131,16 +128,14 @@ final class TestFailure
     /**
      * Gets the thrown exception.
      */
-    public function thrownException(): Throwable
-    {
+    public function thrownException(): Throwable {
         return $this->thrownException;
     }
 
     /**
      * Returns the exception's message.
      */
-    public function exceptionMessage(): string
-    {
+    public function exceptionMessage(): string {
         return $this->thrownException()->getMessage();
     }
 
@@ -148,8 +143,7 @@ final class TestFailure
      * Returns true if the thrown exception
      * is of type AssertionFailedError.
      */
-    public function isFailure(): bool
-    {
+    public function isFailure(): bool {
         return $this->thrownException() instanceof AssertionFailedError;
     }
 }

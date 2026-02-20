@@ -57,8 +57,7 @@ final class InternalReferenceRule extends ReferenceRule
         return null;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 1000;
     }
 }

@@ -70,8 +70,7 @@ class TaggedIteratorArgument extends IteratorArgument
         return $this->defaultIndexMethod;
     }
 
-    public function needsIndexes(): bool
-    {
+    public function needsIndexes(): bool {
         return $this->needsIndexes;
     }
 
@@ -80,13 +79,11 @@ class TaggedIteratorArgument extends IteratorArgument
         return $this->defaultPriorityMethod;
     }
 
-    public function getExclude(): array
-    {
+    public function getExclude(): array {
         return $this->exclude;
     }
 
-    public function excludeSelf(): bool
-    {
+    public function excludeSelf(): bool {
         return $this->excludeSelf;
     }
 }

@@ -95,16 +95,14 @@ final class Converter
     /**
      * @return non-empty-string
      */
-    public function separator(): string
-    {
+    public function separator(): string {
         return $this->separator;
     }
 
     /**
      * @return array<string, string>
      */
-    public function encodingMap(): array
-    {
+    public function encodingMap(): array {
         return array_combine($this->fromRfc3986, $this->toEncoding);
     }
 

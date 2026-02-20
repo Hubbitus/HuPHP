@@ -52,8 +52,7 @@ final class CyclomaticComplexityCalculatingVisitor extends NodeVisitorAbstract
         }
     }
 
-    public function cyclomaticComplexity(): int
-    {
+    public function cyclomaticComplexity(): int {
         return $this->cyclomaticComplexity;
     }
 }

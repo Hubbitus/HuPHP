@@ -63,8 +63,7 @@ final class ProfilerNodeVisitor implements NodeVisitorInterface
         return $node;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 0;
     }
 }

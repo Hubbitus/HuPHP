@@ -111,23 +111,19 @@ final class ExtensionSet
     /**
      * @return ExtensionInterface[]
      */
-    public function getExtensions(): array
-    {
+    public function getExtensions(): array {
         return $this->extensions;
     }
 
-    public function getSignature(): string
-    {
+    public function getSignature(): string {
         return json_encode(array_keys($this->extensions));
     }
 
-    public function isInitialized(): bool
-    {
+    public function isInitialized(): bool {
         return $this->initialized || $this->runtimeInitialized;
     }
 
-    public function getLastModified(): int
-    {
+    public function getLastModified(): int {
         if (0 !== $this->lastModified) {
             return $this->lastModified;
         }
@@ -178,8 +174,7 @@ final class ExtensionSet
     /**
      * @return TwigFunction[]
      */
-    public function getFunctions(): array
-    {
+    public function getFunctions(): array {
         if (!$this->initialized) {
             $this->initExtensions();
         }
@@ -234,8 +229,7 @@ final class ExtensionSet
     /**
      * @return TwigFilter[]
      */
-    public function getFilters(): array
-    {
+    public function getFilters(): array {
         if (!$this->initialized) {
             $this->initExtensions();
         }
@@ -290,8 +284,7 @@ final class ExtensionSet
     /**
      * @return NodeVisitorInterface[]
      */
-    public function getNodeVisitors(): array
-    {
+    public function getNodeVisitors(): array {
         if (!$this->initialized) {
             $this->initExtensions();
         }
@@ -311,8 +304,7 @@ final class ExtensionSet
     /**
      * @return TokenParserInterface[]
      */
-    public function getTokenParsers(): array
-    {
+    public function getTokenParsers(): array {
         if (!$this->initialized) {
             $this->initExtensions();
         }
@@ -350,8 +342,7 @@ final class ExtensionSet
     /**
      * @return array<string, mixed>
      */
-    public function getGlobals(): array
-    {
+    public function getGlobals(): array {
         if (null !== $this->globals) {
             return $this->globals;
         }
@@ -372,8 +363,7 @@ final class ExtensionSet
         return $globals;
     }
 
-    public function resetGlobals(): void
-    {
+    public function resetGlobals(): void {
         $this->globals = null;
     }
 
@@ -389,8 +379,7 @@ final class ExtensionSet
     /**
      * @return TwigTest[]
      */
-    public function getTests(): array
-    {
+    public function getTests(): array {
         if (!$this->initialized) {
             $this->initExtensions();
         }
@@ -433,8 +422,7 @@ final class ExtensionSet
         $this->testCallbacks[] = $callable;
     }
 
-    public function getExpressionParsers(): ExpressionParsers
-    {
+    public function getExpressionParsers(): ExpressionParsers {
         if (!$this->initialized) {
             $this->initExtensions();
         }
@@ -442,8 +430,7 @@ final class ExtensionSet
         return $this->expressionParsers;
     }
 
-    private function initExtensions(): void
-    {
+    private function initExtensions(): void {
         $this->parsers = [];
         $this->filters = [];
         $this->functions = [];

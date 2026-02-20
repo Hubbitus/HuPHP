@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class FileRemoteGetExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new FileRemoteGetException();
 
         $this->assertInstanceOf(FileRemoteGetException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new FileRemoteGetException('Remote get failed');
 
         $this->assertInstanceOf(FileRemoteGetException::class, $exception);
         $this->assertEquals('Remote get failed', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new FileRemoteGetException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(FileRemoteGetException::class);
 
         throw new FileRemoteGetException('Cannot get remote file');

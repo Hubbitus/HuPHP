@@ -66,8 +66,7 @@ final class EmbedTokenParser extends IncludeTokenParser
         return $token->test('endembed');
     }
 
-    public function getTag(): string
-    {
+    public function getTag(): string {
         return 'embed';
     }
 }

@@ -21,8 +21,7 @@ final class NavMenuNode extends MenuNode
     /** @var string[] */
     private array $rootlinePaths = [];
 
-    public function getDepth(): int
-    {
+    public function getDepth(): int {
         if ($this->hasOption('depth') && is_scalar($this->getOption('depth'))) {
             return (int) $this->getOption('depth');
         }
@@ -34,8 +33,7 @@ final class NavMenuNode extends MenuNode
         return self::DEFAULT_DEPTH;
     }
 
-    public function isPageLevelOnly(): bool
-    {
+    public function isPageLevelOnly(): bool {
         return true;
     }
 
@@ -62,8 +60,7 @@ final class NavMenuNode extends MenuNode
     }
 
     /** @return string[] */
-    public function getRootlinePaths(): array
-    {
+    public function getRootlinePaths(): array {
         return $this->rootlinePaths;
     }
 }

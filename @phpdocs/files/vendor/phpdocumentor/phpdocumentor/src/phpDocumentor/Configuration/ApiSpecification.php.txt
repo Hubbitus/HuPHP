@@ -86,8 +86,7 @@ final class ApiSpecification implements ArrayAccess
         );
     }
 
-    public static function createDefault(): ApiSpecification
-    {
+    public static function createDefault(): ApiSpecification {
         return new self(
             new Source(
                 Dsn::createFromString('./'),
@@ -127,8 +126,7 @@ final class ApiSpecification implements ArrayAccess
     }
 
     /** @return string[] */
-    public function getIgnoredTags(): array
-    {
+    public function getIgnoredTags(): array {
         $tags =  $this->ignoreTags;
         if ($this->ignorePackages) {
             $tags[] = 'package';
@@ -137,8 +135,7 @@ final class ApiSpecification implements ArrayAccess
         return $tags;
     }
 
-    public function calculateVisiblity(): int
-    {
+    public function calculateVisiblity(): int {
         $visibility = 0;
 
         foreach ($this->visibility as $item) {
@@ -178,13 +175,11 @@ final class ApiSpecification implements ArrayAccess
         return (bool) ($visibilityAllowed & $visibility);
     }
 
-    public function source(): Source
-    {
+    public function source(): Source {
         return $this->source;
     }
 
-    public function ignorePackages(): bool
-    {
+    public function ignorePackages(): bool {
         return $this->ignorePackages;
     }
 }

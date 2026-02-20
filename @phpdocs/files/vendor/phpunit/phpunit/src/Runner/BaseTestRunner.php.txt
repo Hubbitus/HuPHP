@@ -71,8 +71,7 @@ abstract class BaseTestRunner
     /**
      * Returns the loader to be used.
      */
-    public function getLoader(): TestSuiteLoader
-    {
+    public function getLoader(): TestSuiteLoader {
         return new StandardTestSuiteLoader;
     }
 
@@ -149,8 +148,7 @@ abstract class BaseTestRunner
     /**
      * Clears the status message.
      */
-    protected function clearStatus(): void
-    {
+    protected function clearStatus(): void {
     }
 
     /**

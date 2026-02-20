@@ -38,8 +38,7 @@ final class DocumentEntryNode extends EntryNode
     ) {
     }
 
-    public function getTitle(): TitleNode
-    {
+    public function getTitle(): TitleNode {
         return $this->titleNode;
     }
 
@@ -49,8 +48,7 @@ final class DocumentEntryNode extends EntryNode
     }
 
     /** @return array<DocumentEntryNode> */
-    public function getChildren(): array
-    {
+    public function getChildren(): array {
         // Filter the entries array to only include DocumentEntryNode instances
         $documentEntries = array_filter($this->entries, static function ($entry) {
             return $entry instanceof DocumentEntryNode;
@@ -61,8 +59,7 @@ final class DocumentEntryNode extends EntryNode
     }
 
     /** @return array<DocumentEntryNode|ExternalEntryNode> */
-    public function getMenuEntries(): array
-    {
+    public function getMenuEntries(): array {
         return $this->entries;
     }
 
@@ -73,8 +70,7 @@ final class DocumentEntryNode extends EntryNode
     }
 
     /** @return SectionEntryNode[] */
-    public function getSections(): array
-    {
+    public function getSections(): array {
         return $this->sections;
     }
 
@@ -83,13 +79,11 @@ final class DocumentEntryNode extends EntryNode
         $this->sections[] = $section;
     }
 
-    public function getFile(): string
-    {
+    public function getFile(): string {
         return $this->file;
     }
 
-    public function isRoot(): bool
-    {
+    public function isRoot(): bool {
         return $this->isRoot;
     }
 
@@ -116,8 +110,7 @@ final class DocumentEntryNode extends EntryNode
         return $this->additionalData[$key] ?? null;
     }
 
-    public function isOrphan(): bool
-    {
+    public function isOrphan(): bool {
         return $this->orphan;
     }
 

@@ -49,14 +49,12 @@ final class Enum_Test extends TestCase
 
     private ObjectProphecy $docblockFactory;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->docblockFactory = $this->prophesize(DocBlockFactoryInterface::class);
         $this->fixture = new Enum_($this->docblockFactory->reveal());
     }
 
-    public function testMatches(): void
-    {
+    public function testMatches(): void {
         self::assertFalse($this->fixture->matches(self::createContext(null), new stdClass()));
         self::assertTrue(
             $this->fixture->matches(
@@ -66,8 +64,7 @@ final class Enum_Test extends TestCase
         );
     }
 
-    public function testSimpleCreate(): void
-    {
+    public function testSimpleCreate(): void {
         $containerMock = m::mock(StrategyContainer::class);
         $enumMock     = $this->buildEnumMock();
         $enumMock->shouldReceive('getDocComment')->andReturnNull();
@@ -78,8 +75,7 @@ final class Enum_Test extends TestCase
         self::assertEquals('\Space\MyEnum', (string) $result->getFqsen());
     }
 
-    public function testBackedEnumTypeIsSet(): void
-    {
+    public function testBackedEnumTypeIsSet(): void {
         $containerMock = m::mock(StrategyContainer::class);
         $enumMock     = $this->buildEnumMock();
         $enumMock->shouldReceive('getDocComment')->andReturnNull();
@@ -92,8 +88,7 @@ final class Enum_Test extends TestCase
         self::assertEquals(new String_(), $result->getBackedType());
     }
 
-    public function testClassImplementingInterface(): void
-    {
+    public function testClassImplementingInterface(): void {
         $containerMock = m::mock(StrategyContainer::class);
         $enumMock     = $this->buildEnumMock();
         $enumMock->shouldReceive('getDocComment')->andReturnNull();
@@ -113,8 +108,7 @@ final class Enum_Test extends TestCase
         );
     }
 
-    public function testIteratesStatements(): void
-    {
+    public function testIteratesStatements(): void {
         $method1           = new ClassMethod('MyEnum::method1');
         $method1Descriptor = new MethodElement(new Fqsen('\MyEnum::method1'));
         $strategyMock      = $this->prophesize(ProjectFactoryStrategy::class);
@@ -144,8 +138,7 @@ final class Enum_Test extends TestCase
         );
     }
 
-    public function testCreateWithDocBlock(): void
-    {
+    public function testCreateWithDocBlock(): void {
         $doc       = new Doc('Text');
         $enumMock = $this->buildEnumMock();
         $enumMock->shouldReceive('getDocComment')->andReturn($doc);

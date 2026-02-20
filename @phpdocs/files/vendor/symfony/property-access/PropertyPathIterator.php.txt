@@ -27,13 +27,11 @@ class PropertyPathIterator extends \ArrayIterator implements PropertyPathIterato
         parent::__construct($path->getElements());
     }
 
-    public function isIndex(): bool
-    {
+    public function isIndex(): bool {
         return $this->path->isIndex($this->key());
     }
 
-    public function isProperty(): bool
-    {
+    public function isProperty(): bool {
         return $this->path->isProperty($this->key());
     }
 }

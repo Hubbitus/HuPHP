@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class WrongStringDateExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new WrongStringDateException();
 
         $this->assertInstanceOf(WrongStringDateException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new WrongStringDateException('Invalid date format');
 
         $this->assertInstanceOf(WrongStringDateException::class, $exception);
         $this->assertEquals('Invalid date format', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new WrongStringDateException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(WrongStringDateException::class);
 
         throw new WrongStringDateException('Wrong date string');

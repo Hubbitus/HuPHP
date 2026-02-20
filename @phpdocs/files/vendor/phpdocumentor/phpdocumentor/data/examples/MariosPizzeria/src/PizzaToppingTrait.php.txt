@@ -14,8 +14,7 @@ trait PizzaToppingTrait
 
     protected array $toppings = ['Cheese', 'Mushroom', 'Pepperoni'];
 
-    public function getToppings(): array
-    {
+    public function getToppings(): array {
         return $this->toppings;
     }
 

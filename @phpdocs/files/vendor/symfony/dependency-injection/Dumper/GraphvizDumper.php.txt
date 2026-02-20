@@ -82,8 +82,7 @@ class GraphvizDumper extends Dumper
         return $this->container->resolveEnvPlaceholders($this->startDot().$this->addNodes().$this->addEdges().$this->endDot(), '__ENV_%s__');
     }
 
-    private function addNodes(): string
-    {
+    private function addNodes(): string {
         $code = '';
         foreach ($this->nodes as $id => $node) {
             $aliases = $this->getAliases($id);
@@ -94,8 +93,7 @@ class GraphvizDumper extends Dumper
         return $code;
     }
 
-    private function addEdges(): string
-    {
+    private function addEdges(): string {
         $code = '';
         foreach ($this->edges as $id => $edges) {
             foreach ($edges as $edge) {
@@ -146,8 +144,7 @@ class GraphvizDumper extends Dumper
         return array_merge([], ...$edges);
     }
 
-    private function findNodes(): array
-    {
+    private function findNodes(): array {
         $nodes = [];
 
         $container = $this->cloneContainer();
@@ -181,8 +178,7 @@ class GraphvizDumper extends Dumper
         return $nodes;
     }
 
-    private function cloneContainer(): ContainerBuilder
-    {
+    private function cloneContainer(): ContainerBuilder {
         $parameterBag = new ParameterBag($this->container->getParameterBag()->all());
 
         $container = new ContainerBuilder($parameterBag);
@@ -196,8 +192,7 @@ class GraphvizDumper extends Dumper
         return $container;
     }
 
-    private function startDot(): string
-    {
+    private function startDot(): string {
         return \sprintf("digraph sc {\n  %s\n  node [%s];\n  edge [%s];\n\n",
             $this->addOptions($this->options['graph']),
             $this->addOptions($this->options['node']),
@@ -205,8 +200,7 @@ class GraphvizDumper extends Dumper
         );
     }
 
-    private function endDot(): string
-    {
+    private function endDot(): string {
         return "}\n";
     }
 

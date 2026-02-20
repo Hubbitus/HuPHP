@@ -43,8 +43,7 @@ final class DataProviderTestSuite extends TestSuite
     /**
      * @return list<ExecutionOrderDependency>
      */
-    public function provides(): array
-    {
+    public function provides(): array {
         if ($this->providedTests === null) {
             $this->providedTests = [new ExecutionOrderDependency($this->getName())];
         }
@@ -55,8 +54,7 @@ final class DataProviderTestSuite extends TestSuite
     /**
      * @return list<ExecutionOrderDependency>
      */
-    public function requires(): array
-    {
+    public function requires(): array {
         // A DataProviderTestSuite does not have to traverse its child tests
         // as these are inherited and cannot reference dataProvider rows directly
         return $this->dependencies;
@@ -67,8 +65,7 @@ final class DataProviderTestSuite extends TestSuite
      *
      * @throws InvalidArgumentException
      */
-    public function getSize(): int
-    {
+    public function getSize(): int {
         [$className, $methodName] = explode('::', $this->getName());
 
         return TestUtil::getSize($className, $methodName);

@@ -32,8 +32,7 @@ final class PropertyHookDescriptor implements Descriptor, PropertyHookInterface
     }
 
     /** @return Collection<ArgumentInterface> */
-    public function getArguments(): Collection
-    {
+    public function getArguments(): Collection {
         return $this->arguments;
     }
 }

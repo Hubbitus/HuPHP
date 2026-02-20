@@ -148,8 +148,7 @@ class CodePointString extends AbstractUnicodeString
         return false === $i ? null : $i;
     }
 
-    public function length(): int
-    {
+    public function length(): int {
         return mb_strlen($this->string, 'UTF-8');
     }
 

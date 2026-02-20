@@ -14,8 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseSettingsTest extends TestCase
 {
-    public function testConstructorWithDefaultSettings(): void
-    {
+    public function testConstructorWithDefaultSettings(): void {
         $settings = new DatabaseSettings();
 
         $this->assertInstanceOf(DatabaseSettings::class, $settings);
@@ -24,8 +23,7 @@ class DatabaseSettingsTest extends TestCase
         $this->assertFalse($settings->DEBUG);
     }
 
-    public function testConstructorWithCustomSettings(): void
-    {
+    public function testConstructorWithCustomSettings(): void {
         $customSettings = [
             'hostname' => 'localhost',
             'username' => 'root',
@@ -57,8 +55,7 @@ class DatabaseSettingsTest extends TestCase
         $this->assertEquals('error', $settings->DBError_settings['level']);
     }
 
-    public function testGettersAndSetters(): void
-    {
+    public function testGettersAndSetters(): void {
         $settings = new DatabaseSettings();
 
         // Test default getters
@@ -90,8 +87,7 @@ class DatabaseSettingsTest extends TestCase
         $this->assertEquals('debug', $settings->DBError_settings['level']);
     }
 
-    public function testDefaultSettingsStructure(): void
-    {
+    public function testDefaultSettingsStructure(): void {
         $settings = new DatabaseSettings();
 
         // Test that all expected default settings are present
@@ -116,8 +112,7 @@ class DatabaseSettingsTest extends TestCase
         }
     }
 
-    public function testInheritanceFromSettings(): void
-    {
+    public function testInheritanceFromSettings(): void {
         $settings = new DatabaseSettings();
 
         // Test that it inherits methods from Settings class
@@ -128,8 +123,7 @@ class DatabaseSettingsTest extends TestCase
         $this->assertTrue(method_exists($settings, 'offsetUnset'));
     }
 
-    public function testArrayAccess(): void
-    {
+    public function testArrayAccess(): void {
         $settings = new DatabaseSettings();
 
         // Test ArrayAccess interface
@@ -141,8 +135,7 @@ class DatabaseSettingsTest extends TestCase
         $this->assertFalse(isset($settings['hostname']));
     }
 
-    public function testSettingsMerging(): void
-    {
+    public function testSettingsMerging(): void {
         $defaultSettings = [
             'hostname' => 'localhost',
             'username' => 'root',

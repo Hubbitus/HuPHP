@@ -64,8 +64,7 @@ final class ProjectFactory implements ProjectFactoryInterface
     /**
      * Creates a new instance of this factory. With all default strategies.
      */
-    public static function createInstance(): self
-    {
+    public static function createInstance(): self {
         $docblockFactory = DocBlockFactory::createInstance();
         $expressionPrinter = new ExpressionPrinter();
 

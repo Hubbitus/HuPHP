@@ -48,8 +48,7 @@ final class EnvironmentBuilder
         $this->environment->addGlobal('env', $context);
     }
 
-    public function getTwigEnvironment(): Environment
-    {
+    public function getTwigEnvironment(): Environment {
         return $this->environment;
     }
 }

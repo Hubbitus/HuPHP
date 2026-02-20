@@ -39,8 +39,7 @@ class GetAttrExpression extends AbstractExpression implements SupportDefinedTest
         parent::__construct($nodes, ['type' => $type, 'ignore_strict_check' => false, 'optimizable' => !$nullSafe, 'null_safe' => $nullSafe], $lineno);
     }
 
-    public function enableDefinedTest(): void
-    {
+    public function enableDefinedTest(): void {
         $this->definedTest = true;
         $this->changeIgnoreStrictCheck($this);
     }

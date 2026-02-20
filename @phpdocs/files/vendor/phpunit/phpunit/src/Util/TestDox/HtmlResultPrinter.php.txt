@@ -109,8 +109,7 @@ EOT;
     /**
      * Handler for 'start run' event.
      */
-    protected function startRun(): void
-    {
+    protected function startRun(): void {
         $this->write(self::PAGE_HEADER);
     }
 
@@ -152,8 +151,7 @@ EOT;
     /**
      * Handler for 'end run' event.
      */
-    protected function endRun(): void
-    {
+    protected function endRun(): void {
         $this->write(self::PAGE_FOOTER);
     }
 }

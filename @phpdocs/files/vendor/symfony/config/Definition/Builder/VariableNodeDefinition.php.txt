@@ -24,13 +24,11 @@ class VariableNodeDefinition extends NodeDefinition
     /**
      * Instantiate a Node.
      */
-    protected function instantiateNode(): VariableNode
-    {
+    protected function instantiateNode(): VariableNode {
         return new VariableNode($this->name, $this->parent, $this->pathSeparator);
     }
 
-    protected function createNode(): NodeInterface
-    {
+    protected function createNode(): NodeInterface {
         $node = $this->instantiateNode();
 
         if (isset($this->normalization)) {

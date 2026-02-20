@@ -31,13 +31,11 @@ class Compiler
         $this->serviceReferenceGraph = new ServiceReferenceGraph();
     }
 
-    public function getPassConfig(): PassConfig
-    {
+    public function getPassConfig(): PassConfig {
         return $this->passConfig;
     }
 
-    public function getServiceReferenceGraph(): ServiceReferenceGraph
-    {
+    public function getServiceReferenceGraph(): ServiceReferenceGraph {
         return $this->serviceReferenceGraph;
     }
 
@@ -63,8 +61,7 @@ class Compiler
         $this->log[] = $pass::class.': '.$message;
     }
 
-    public function getLog(): array
-    {
+    public function getLog(): array {
         return $this->log;
     }
 

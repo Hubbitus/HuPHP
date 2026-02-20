@@ -30,13 +30,11 @@ final class PreTransformationEvent extends Event
         return new self($subject, $transformation);
     }
 
-    public function getTransformation(): Transformation
-    {
+    public function getTransformation(): Transformation {
         return $this->transformation;
     }
 
-    public function getSubject(): object
-    {
+    public function getSubject(): object {
         return $this->subject;
     }
 }

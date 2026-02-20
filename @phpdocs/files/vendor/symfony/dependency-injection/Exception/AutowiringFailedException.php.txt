@@ -46,8 +46,7 @@ class AutowiringFailedException extends RuntimeException
                 $this->messageCallback = &$messageCallback;
             }
 
-            public function __toString(): string
-            {
+            public function __toString(): string {
                 $messageCallback = $this->messageCallback;
                 $this->messageCallback = null;
 

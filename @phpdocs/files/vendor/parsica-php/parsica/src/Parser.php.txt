@@ -61,8 +61,7 @@ final class Parser
      * @api
      * @psalm-pure
      */
-    public static function recursive(): Parser
-    {
+    public static function recursive(): Parser {
         return new Parser(
         // Make a placeholder parser that will throw when you try to run it.
             static function (Stream $_): ParseResult {
@@ -142,8 +141,7 @@ final class Parser
      * @api
      * @psalm-mutation-free
      */
-    public function optional(): Parser
-    {
+    public function optional(): Parser {
         return optional($this);
     }
 
@@ -382,8 +380,7 @@ final class Parser
      * @internal
      * @psalm-mutation-free
      */
-    public function getLabel(): string
-    {
+    public function getLabel(): string {
         return $this->label;
     }
 
@@ -461,8 +458,7 @@ final class Parser
      * @psalm-return Parser<T>
      * @psalm-mutation-free
      */
-    public function thenEof(): Parser
-    {
+    public function thenEof(): Parser {
         return keepFirst($this, eof());
         // aka $this->thenIgnore(eof());
     }

@@ -178,8 +178,7 @@ final class ExcludeList
      *
      * @return string[]
      */
-    public function getExcludedDirectories(): array
-    {
+    public function getExcludedDirectories(): array {
         $this->initialize();
 
         return self::$directories;
@@ -208,8 +207,7 @@ final class ExcludeList
     /**
      * @throws Exception
      */
-    private function initialize(): void
-    {
+    private function initialize(): void {
         if (self::$initialized) {
             return;
         }

@@ -53,24 +53,21 @@ class ServiceReferenceGraphNode
     /**
      * Checks if the value of this node is an Alias.
      */
-    public function isAlias(): bool
-    {
+    public function isAlias(): bool {
         return $this->value instanceof Alias;
     }
 
     /**
      * Checks if the value of this node is a Definition.
      */
-    public function isDefinition(): bool
-    {
+    public function isDefinition(): bool {
         return $this->value instanceof Definition;
     }
 
     /**
      * Returns the identifier.
      */
-    public function getId(): string
-    {
+    public function getId(): string {
         return $this->id;
     }
 
@@ -79,8 +76,7 @@ class ServiceReferenceGraphNode
      *
      * @return ServiceReferenceGraphEdge[]
      */
-    public function getInEdges(): array
-    {
+    public function getInEdges(): array {
         return $this->inEdges;
     }
 
@@ -89,16 +85,14 @@ class ServiceReferenceGraphNode
      *
      * @return ServiceReferenceGraphEdge[]
      */
-    public function getOutEdges(): array
-    {
+    public function getOutEdges(): array {
         return $this->outEdges;
     }
 
     /**
      * Returns the value of this Node.
      */
-    public function getValue(): mixed
-    {
+    public function getValue(): mixed {
         return $this->value;
     }
 

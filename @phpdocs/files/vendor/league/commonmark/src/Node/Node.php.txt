@@ -119,8 +119,7 @@ abstract class Node
         $this->detach();
     }
 
-    public function detach(): void
-    {
+    public function detach(): void {
         if ($this->previous) {
             $this->previous->next = $this->next;
         } elseif ($this->parent) {
@@ -139,8 +138,7 @@ abstract class Node
         $this->depth    = 0;
     }
 
-    public function hasChildren(): bool
-    {
+    public function hasChildren(): bool {
         return $this->firstChild !== null;
     }
 
@@ -157,8 +155,7 @@ abstract class Node
     /**
      * @return Node[]
      */
-    public function children(): iterable
-    {
+    public function children(): iterable {
         $children = [];
         for ($current = $this->firstChild; $current !== null; $current = $current->next) {
             $children[] = $current;
@@ -195,8 +192,7 @@ abstract class Node
     /**
      * Detaches all child nodes of given node
      */
-    public function detachChildren(): void
-    {
+    public function detachChildren(): void {
         foreach ($this->children() as $children) {
             $children->setParent(null);
         }
@@ -217,13 +213,11 @@ abstract class Node
         }
     }
 
-    public function getDepth(): int
-    {
+    public function getDepth(): int {
         return $this->depth;
     }
 
-    public function walker(): NodeWalker
-    {
+    public function walker(): NodeWalker {
         return new NodeWalker($this);
     }
 

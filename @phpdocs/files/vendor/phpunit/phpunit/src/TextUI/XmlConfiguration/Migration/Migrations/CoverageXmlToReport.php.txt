@@ -16,8 +16,7 @@ use DOMElement;
  */
 final class CoverageXmlToReport extends LogToReportMigration
 {
-    protected function forType(): string
-    {
+    protected function forType(): string {
         return 'coverage-xml';
     }
 

@@ -62,8 +62,7 @@ trait Api
     }
 
     /** @noinspection MagicMethodsValidityInspection */
-    public function __phpunit_getInvocationHandler(): InvocationHandler
-    {
+    public function __phpunit_getInvocationHandler(): InvocationHandler {
         if ($this->__phpunit_invocationMocker === null) {
             $this->__phpunit_invocationMocker = new InvocationHandler(
                 static::$__phpunit_configurableMethods,
@@ -75,8 +74,7 @@ trait Api
     }
 
     /** @noinspection MagicMethodsValidityInspection */
-    public function __phpunit_hasMatchers(): bool
-    {
+    public function __phpunit_hasMatchers(): bool {
         return $this->__phpunit_getInvocationHandler()->hasMatchers();
     }
 

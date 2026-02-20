@@ -38,8 +38,7 @@ final class TwigFunction extends AbstractTwigCallable
         ], $this->options);
     }
 
-    public function getType(): string
-    {
+    public function getType(): string {
         return 'function';
     }
 

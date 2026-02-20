@@ -42,8 +42,7 @@ final class MentionParser implements InlineParserInterface
         $this->mentionGenerator  = $mentionGenerator;
     }
 
-    public function getMatchDefinition(): InlineParserMatch
-    {
+    public function getMatchDefinition(): InlineParserMatch {
         return InlineParserMatch::join(
             InlineParserMatch::string($this->prefix),
             InlineParserMatch::regex($this->identifierPattern)

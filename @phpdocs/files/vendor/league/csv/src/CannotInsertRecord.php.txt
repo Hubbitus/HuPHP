@@ -49,16 +49,14 @@ class CannotInsertRecord extends Exception
     /**
      * Returns the validator name.
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
     /**
      * Returns the invalid data submitted.
      */
-    public function getRecord(): array
-    {
+    public function getRecord(): array {
         return $this->record;
     }
 }

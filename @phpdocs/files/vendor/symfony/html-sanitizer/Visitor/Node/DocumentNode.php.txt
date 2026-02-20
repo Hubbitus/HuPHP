@@ -28,8 +28,7 @@ final class DocumentNode implements NodeInterface
         return null;
     }
 
-    public function render(): string
-    {
+    public function render(): string {
         $rendered = '';
         foreach ($this->children as $child) {
             $rendered .= $child->render();

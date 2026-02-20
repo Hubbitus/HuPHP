@@ -43,8 +43,7 @@ class ConstantNode extends Node
         return $this->attributes['value'];
     }
 
-    public function toArray(): array
-    {
+    public function toArray(): array {
         $array = [];
         $value = $this->attributes['value'];
 

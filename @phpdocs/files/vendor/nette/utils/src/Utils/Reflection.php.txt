@@ -124,8 +124,7 @@ final class Reflection
 	/**
 	 * Finds out if reflection has access to PHPdoc comments. Comments may not be available due to the opcode cache.
 	 */
-	public static function areCommentsAvailable(): bool
-	{
+	public static function areCommentsAvailable(): bool {
 		static $res;
 		return $res ?? $res = (bool) (new \ReflectionMethod(self::class, __FUNCTION__))->getDocComment();
 	}

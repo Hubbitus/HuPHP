@@ -64,8 +64,7 @@ final class ConsecutiveParameters implements ParametersRule
         }
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         return 'with consecutive parameters';
     }
 
@@ -85,8 +84,7 @@ final class ConsecutiveParameters implements ParametersRule
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    public function verify(): void
-    {
+    public function verify(): void {
         foreach ($this->invocations as $callIndex => $invocation) {
             $this->verifyInvocation($invocation, $callIndex);
         }

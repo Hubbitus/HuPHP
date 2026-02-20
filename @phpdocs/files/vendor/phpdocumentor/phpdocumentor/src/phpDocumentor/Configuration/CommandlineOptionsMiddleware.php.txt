@@ -345,13 +345,11 @@ final class CommandlineOptionsMiddleware implements MiddlewareInterface
         return $version;
     }
 
-    private function createDefaultVersionSettings(): VersionSpecification
-    {
+    private function createDefaultVersionSettings(): VersionSpecification {
         return current($this->configFactory->createDefault()['phpdocumentor']['versions']);
     }
 
-    private function createDefaultApiSettings(): ApiSpecification
-    {
+    private function createDefaultApiSettings(): ApiSpecification {
         return current($this->createDefaultVersionSettings()->getApi());
     }
 

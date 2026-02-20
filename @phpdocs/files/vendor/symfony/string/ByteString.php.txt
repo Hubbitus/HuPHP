@@ -100,8 +100,7 @@ class ByteString extends AbstractString
         return $str;
     }
 
-    public function camel(): static
-    {
+    public function camel(): static {
         $str = clone $this;
 
         $parts = explode(' ', trim(ucwords(preg_replace('/[^a-zA-Z0-9\x7f-\xff]++/', ' ', $this->string))));
@@ -158,8 +157,7 @@ class ByteString extends AbstractString
         return $string === $this->string;
     }
 
-    public function folded(): static
-    {
+    public function folded(): static {
         $str = clone $this;
         $str->string = strtolower($str->string);
 
@@ -200,8 +198,7 @@ class ByteString extends AbstractString
         return false === $i ? null : $i;
     }
 
-    public function isUtf8(): bool
-    {
+    public function isUtf8(): bool {
         return '' === $this->string || preg_match('//u', $this->string);
     }
 
@@ -215,13 +212,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
-    public function length(): int
-    {
+    public function length(): int {
         return \strlen($this->string);
     }
 
-    public function lower(): static
-    {
+    public function lower(): static {
         $str = clone $this;
         $str->string = strtolower($str->string);
 
@@ -324,8 +319,7 @@ class ByteString extends AbstractString
         return $str;
     }
 
-    public function reverse(): static
-    {
+    public function reverse(): static {
         $str = clone $this;
         $str->string = strrev($str->string);
 
@@ -340,8 +334,7 @@ class ByteString extends AbstractString
         return $str;
     }
 
-    public function snake(): static
-    {
+    public function snake(): static {
         $str = $this->camel();
         $str->string = strtolower(preg_replace(['/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'], '\1_\2', $str->string));
 
@@ -468,8 +461,7 @@ class ByteString extends AbstractString
         return $str;
     }
 
-    public function upper(): static
-    {
+    public function upper(): static {
         $str = clone $this;
         $str->string = strtoupper($str->string);
 

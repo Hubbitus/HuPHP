@@ -37,8 +37,7 @@ class Alias
      *
      * @return string The target name
      */
-    public function getId(): string
-    {
+    public function getId(): string {
         return $this->id;
     }
 
@@ -74,8 +73,7 @@ class Alias
         return $this;
     }
 
-    public function isDeprecated(): bool
-    {
+    public function isDeprecated(): bool {
         return (bool) $this->deprecation;
     }
 

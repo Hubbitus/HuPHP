@@ -82,8 +82,7 @@ class QuestionHelper extends Helper
         }
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'question';
     }
 
@@ -526,8 +525,7 @@ class QuestionHelper extends Helper
         return $this->resetIOCodepage($cp, $ret);
     }
 
-    private function setIOCodepage(): int
-    {
+    private function setIOCodepage(): int {
         if (\function_exists('sapi_windows_cp_set')) {
             $cp = sapi_windows_cp_get();
             sapi_windows_cp_set(sapi_windows_cp_get('oem'));

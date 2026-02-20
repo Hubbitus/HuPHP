@@ -30,13 +30,11 @@ final class Complexity
         $this->cyclomaticComplexity = $cyclomaticComplexity;
     }
 
-    public function name(): string
-    {
+    public function name(): string {
         return $this->name;
     }
 
-    public function cyclomaticComplexity(): int
-    {
+    public function cyclomaticComplexity(): int {
         return $this->cyclomaticComplexity;
     }
 }

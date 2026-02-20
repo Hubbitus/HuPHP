@@ -34,8 +34,7 @@ class Document extends AbstractBlock
         $this->referenceMap = $referenceMap ?? new ReferenceMap();
     }
 
-    public function getReferenceMap(): ReferenceMapInterface
-    {
+    public function getReferenceMap(): ReferenceMapInterface {
         return $this->referenceMap;
     }
 
@@ -44,8 +43,7 @@ class Document extends AbstractBlock
         return true;
     }
 
-    public function isCode(): bool
-    {
+    public function isCode(): bool {
         return false;
     }
 

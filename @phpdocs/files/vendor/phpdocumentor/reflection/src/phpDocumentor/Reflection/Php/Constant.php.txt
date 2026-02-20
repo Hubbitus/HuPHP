@@ -94,8 +94,7 @@ final class Constant implements Element, MetaDataContainerInterface, AttributeCo
      * Returns the Fqsen of the element.
      */
     #[Override]
-    public function getFqsen(): Fqsen
-    {
+    public function getFqsen(): Fqsen {
         return $this->fqsen;
     }
 
@@ -103,8 +102,7 @@ final class Constant implements Element, MetaDataContainerInterface, AttributeCo
      * Returns the name of the element.
      */
     #[Override]
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->fqsen->getName();
     }
 
@@ -116,23 +114,19 @@ final class Constant implements Element, MetaDataContainerInterface, AttributeCo
         return $this->docBlock;
     }
 
-    public function getLocation(): Location
-    {
+    public function getLocation(): Location {
         return $this->location;
     }
 
-    public function getEndLocation(): Location
-    {
+    public function getEndLocation(): Location {
         return $this->endLocation;
     }
 
-    public function getVisibility(): Visibility
-    {
+    public function getVisibility(): Visibility {
         return $this->visibility;
     }
 
-    public function isFinal(): bool
-    {
+    public function isFinal(): bool {
         return $this->final;
     }
 }

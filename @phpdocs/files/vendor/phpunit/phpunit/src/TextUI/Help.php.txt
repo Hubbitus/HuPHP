@@ -70,8 +70,7 @@ final class Help
     /**
      * Write the help file to the CLI, adapting width and colors to the console.
      */
-    public function writeToConsole(): void
-    {
+    public function writeToConsole(): void {
         if ($this->hasColor) {
             $this->writeWithColor();
         } else {
@@ -79,8 +78,7 @@ final class Help
         }
     }
 
-    private function writePlaintext(): void
-    {
+    private function writePlaintext(): void {
         foreach ($this->elements() as $section => $options) {
             print "{$section}:" . PHP_EOL;
 
@@ -107,8 +105,7 @@ final class Help
         }
     }
 
-    private function writeWithColor(): void
-    {
+    private function writeWithColor(): void {
         foreach ($this->elements() as $section => $options) {
             print Color::colorize('fg-yellow', "{$section}:") . PHP_EOL;
 
@@ -148,8 +145,7 @@ final class Help
     /**
      * @psalm-return array<non-empty-string, non-empty-list<array{text: non-empty-string}|array{arg: non-empty-string, desc: non-empty-string}|array{spacer: ''}>>
      */
-    private function elements(): array
-    {
+    private function elements(): array {
         $elements = [
             'Usage' => [
                 ['text' => 'phpunit [options] UnitTest.php'],

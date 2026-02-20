@@ -34,8 +34,7 @@ final class ReturnArgument implements Stub
         }
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         return sprintf('return argument #%d', $this->argumentIndex);
     }
 }

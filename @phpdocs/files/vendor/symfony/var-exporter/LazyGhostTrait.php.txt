@@ -96,8 +96,7 @@ trait LazyGhostTrait
     /**
      * Forces initialization of a lazy object and returns it.
      */
-    public function initializeLazyObject(): static
-    {
+    public function initializeLazyObject(): static {
         if (!$state = $this->lazyObjectState ?? null) {
             return $this;
         }
@@ -112,8 +111,7 @@ trait LazyGhostTrait
     /**
      * @return bool Returns false when the object cannot be reset, ie when it's not a lazy object
      */
-    public function resetLazyObject(): bool
-    {
+    public function resetLazyObject(): bool {
         if (!$state = $this->lazyObjectState ?? null) {
             return false;
         }
@@ -310,8 +308,7 @@ trait LazyGhostTrait
         }
     }
 
-    public function __clone(): void
-    {
+    public function __clone(): void {
         if ($state = $this->lazyObjectState ?? null) {
             $this->lazyObjectState = clone $state;
         }
@@ -321,8 +318,7 @@ trait LazyGhostTrait
         }
     }
 
-    public function __serialize(): array
-    {
+    public function __serialize(): array {
         $class = self::class;
 
         if ((Registry::$parentMethods[$class] ??= Registry::getParentMethods($class))['serialize']) {

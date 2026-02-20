@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class SocketReadExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new SocketReadException();
 
         $this->assertInstanceOf(SocketReadException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new SocketReadException('Cannot read from socket');
 
         $this->assertInstanceOf(SocketReadException::class, $exception);
         $this->assertEquals('Cannot read from socket', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new SocketReadException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(SocketReadException::class);
 
         throw new SocketReadException('Socket read failed');

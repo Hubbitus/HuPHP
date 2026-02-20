@@ -124,8 +124,7 @@ class HuConfigTest extends TestCase {
         $config->getProperty('non_existent_key');
     }
 
-    public function testGetPropertyWithNoThrowReturnsNullForNonExistentProperty(): void
-    {
+    public function testGetPropertyWithNoThrowReturnsNullForNonExistentProperty(): void {
         $config = new HuConfig();
         $value = $config->getProperty('non_existent_key', true);
 

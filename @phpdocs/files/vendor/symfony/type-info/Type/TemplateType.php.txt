@@ -34,21 +34,18 @@ final class TemplateType extends Type implements WrappingTypeInterface
     ) {
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
     /**
      * @return T
      */
-    public function getBound(): Type
-    {
+    public function getBound(): Type {
         return $this->bound;
     }
 
-    public function getWrappedType(): Type
-    {
+    public function getWrappedType(): Type {
         return $this->bound;
     }
 
@@ -57,8 +54,7 @@ final class TemplateType extends Type implements WrappingTypeInterface
         return $this->getWrappedType()->isSatisfiedBy($specification);
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->name;
     }
 }

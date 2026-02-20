@@ -97,18 +97,15 @@ final class Invocation implements SelfDescribing
         }
     }
 
-    public function getClassName(): string
-    {
+    public function getClassName(): string {
         return $this->className;
     }
 
-    public function getMethodName(): string
-    {
+    public function getMethodName(): string {
         return $this->methodName;
     }
 
-    public function getParameters(): array
-    {
+    public function getParameters(): array {
         return $this->parameters;
     }
 
@@ -261,8 +258,7 @@ final class Invocation implements SelfDescribing
         );
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         $exporter = new Exporter;
 
         return sprintf(
@@ -280,8 +276,7 @@ final class Invocation implements SelfDescribing
         );
     }
 
-    public function getObject(): object
-    {
+    public function getObject(): object {
         return $this->object;
     }
 

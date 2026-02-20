@@ -29,8 +29,7 @@ class ExpressionLanguageProvider implements ExpressionFunctionProviderInterface
         $this->functions = $functions;
     }
 
-    public function getFunctions(): array
-    {
+    public function getFunctions(): array {
         $functions = [];
 
         foreach ($this->functions->getProvidedServices() as $function => $type) {

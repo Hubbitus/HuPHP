@@ -65,8 +65,7 @@ final class Template implements ArrayAccess, Countable, IteratorAggregate
     /**
      * Name for this template.
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
@@ -85,8 +84,7 @@ final class Template implements ArrayAccess, Countable, IteratorAggregate
     /**
      * Returns the name and/or mail address of the author.
      */
-    public function getAuthor(): string
-    {
+    public function getAuthor(): string {
         return $this->author;
     }
 
@@ -103,8 +101,7 @@ final class Template implements ArrayAccess, Countable, IteratorAggregate
     /**
      * Returns the copyright string for this template.
      */
-    public function getCopyright(): string
-    {
+    public function getCopyright(): string {
         return $this->copyright;
     }
 
@@ -150,16 +147,14 @@ final class Template implements ArrayAccess, Countable, IteratorAggregate
      * By combining this in one mount manager it is easier for writers to copy files between destinations (since
      * MountManager's can copy between filesystems) and for writers to read and write from various locations.
      */
-    public function files(): MountManager
-    {
+    public function files(): MountManager {
         return $this->files;
     }
 
     /**
      * Returns the version number for this template.
      */
-    public function getVersion(): string
-    {
+    public function getVersion(): string {
         return $this->version;
     }
 
@@ -177,8 +172,7 @@ final class Template implements ArrayAccess, Countable, IteratorAggregate
     /**
      * Returns the description for this template.
      */
-    public function getDescription(): string
-    {
+    public function getDescription(): string {
         return $this->description;
     }
 
@@ -250,8 +244,7 @@ final class Template implements ArrayAccess, Countable, IteratorAggregate
      * @return int The count as an integer.
      */
     #[ReturnTypeWillChange]
-    public function count(): int
-    {
+    public function count(): int {
         return count($this->transformations);
     }
 
@@ -260,8 +253,7 @@ final class Template implements ArrayAccess, Countable, IteratorAggregate
      *
      * @return Parameter[]
      */
-    public function getParameters(): array
-    {
+    public function getParameters(): array {
         return $this->parameters;
     }
 
@@ -278,8 +270,7 @@ final class Template implements ArrayAccess, Countable, IteratorAggregate
     /**
      * Pushes the parameters of this template into the transformations.
      */
-    public function propagateParameters(): void
-    {
+    public function propagateParameters(): void {
         foreach ($this->transformations as $transformation) {
             $transformation->setParameters(array_merge($transformation->getParameters(), $this->getParameters()));
         }
@@ -287,8 +278,7 @@ final class Template implements ArrayAccess, Countable, IteratorAggregate
 
     /** @return ArrayIterator<int|string, Transformation> */
     #[ReturnTypeWillChange]
-    public function getIterator(): ArrayIterator
-    {
+    public function getIterator(): ArrayIterator {
         return new ArrayIterator($this->transformations);
     }
 

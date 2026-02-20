@@ -66,8 +66,7 @@ class FilesystemLoader implements LoaderInterface
      *
      * @return list<string>
      */
-    public function getNamespaces(): array
-    {
+    public function getNamespaces(): array {
         return array_keys($this->paths);
     }
 

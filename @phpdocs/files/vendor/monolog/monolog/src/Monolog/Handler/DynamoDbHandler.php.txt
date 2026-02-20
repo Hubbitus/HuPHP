@@ -97,8 +97,7 @@ class DynamoDbHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface
-    {
+    protected function getDefaultFormatter(): FormatterInterface {
         return new ScalarFormatter(self::DATE_FORMAT);
     }
 }

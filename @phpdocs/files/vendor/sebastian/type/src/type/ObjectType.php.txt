@@ -49,26 +49,22 @@ final class ObjectType extends Type
         return false;
     }
 
-    public function name(): string
-    {
+    public function name(): string {
         return $this->className->qualifiedName();
     }
 
-    public function allowsNull(): bool
-    {
+    public function allowsNull(): bool {
         return $this->allowsNull;
     }
 
-    public function className(): TypeName
-    {
+    public function className(): TypeName {
         return $this->className;
     }
 
     /**
      * @psalm-assert-if-true ObjectType $this
      */
-    public function isObject(): bool
-    {
+    public function isObject(): bool {
         return true;
     }
 }

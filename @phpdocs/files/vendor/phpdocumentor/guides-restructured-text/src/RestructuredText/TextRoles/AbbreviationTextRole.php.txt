@@ -35,8 +35,7 @@ final class AbbreviationTextRole extends BaseTextRole
     protected string $name = 'abbreviation';
 
     /** @return string[] */
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return ['abbr'];
     }
 

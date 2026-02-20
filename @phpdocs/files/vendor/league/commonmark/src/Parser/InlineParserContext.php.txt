@@ -50,39 +50,33 @@ final class InlineParserContext
         $this->delimiterStack = new DelimiterStack($maxDelimitersPerLine);
     }
 
-    public function getContainer(): AbstractBlock
-    {
+    public function getContainer(): AbstractBlock {
         return $this->container;
     }
 
-    public function getReferenceMap(): ReferenceMapInterface
-    {
+    public function getReferenceMap(): ReferenceMapInterface {
         return $this->referenceMap;
     }
 
-    public function getCursor(): Cursor
-    {
+    public function getCursor(): Cursor {
         return $this->cursor;
     }
 
-    public function getDelimiterStack(): DelimiterStack
-    {
+    public function getDelimiterStack(): DelimiterStack {
         return $this->delimiterStack;
     }
 
     /**
      * @return string The full text that matched the InlineParserMatch definition
      */
-    public function getFullMatch(): string
-    {
+    public function getFullMatch(): string {
         return $this->matches[0];
     }
 
     /**
      * @return int The length of the full match (in characters, not bytes)
      */
-    public function getFullMatchLength(): int
-    {
+    public function getFullMatchLength(): int {
         return \mb_strlen($this->matches[0], 'UTF-8');
     }
 
@@ -91,16 +85,14 @@ final class InlineParserContext
      *
      * @psalm-return non-empty-array<string>
      */
-    public function getMatches(): array
-    {
+    public function getMatches(): array {
         return $this->matches;
     }
 
     /**
      * @return string[]
      */
-    public function getSubMatches(): array
-    {
+    public function getSubMatches(): array {
         return \array_slice($this->matches, 1);
     }
 

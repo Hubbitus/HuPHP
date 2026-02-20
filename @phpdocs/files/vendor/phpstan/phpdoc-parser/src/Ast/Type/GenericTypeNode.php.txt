@@ -35,8 +35,7 @@ class GenericTypeNode implements TypeNode
 		$this->variances = $variances;
 	}
 
-	public function __toString(): string
-	{
+	public function __toString(): string {
 		$genericTypes = [];
 
 		foreach ($this->genericTypes as $index => $type) {

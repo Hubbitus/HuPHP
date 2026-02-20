@@ -21,8 +21,7 @@ final class FigureNode extends AbstractNode
         $this->value = $image;
     }
 
-    public function getImage(): ImageNode
-    {
+    public function getImage(): ImageNode {
         return $this->value;
     }
 

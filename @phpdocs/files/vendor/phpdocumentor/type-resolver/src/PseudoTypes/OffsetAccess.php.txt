@@ -37,23 +37,19 @@ final class OffsetAccess extends Mixed_ implements PseudoType
         $this->offset = $offset;
     }
 
-    public function getType(): Type
-    {
+    public function getType(): Type {
         return $this->type;
     }
 
-    public function getOffset(): Type
-    {
+    public function getOffset(): Type {
         return $this->offset;
     }
 
-    public function underlyingType(): Type
-    {
+    public function underlyingType(): Type {
         return new Mixed_();
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         if (
             $this->type instanceof Callable_
             || $this->type instanceof ConstExpression

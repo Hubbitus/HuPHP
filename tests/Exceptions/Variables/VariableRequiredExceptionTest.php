@@ -12,8 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 class VariableRequiredExceptionTest extends TestCase
 {
-    public function testConstructorWithBacktrace(): void
-    {
+    public function testConstructorWithBacktrace(): void {
         $backtrace = new Backtrace();
         $exception = new VariableRequiredException($backtrace);
 
@@ -21,16 +20,14 @@ class VariableRequiredExceptionTest extends TestCase
         $this->assertInstanceOf(\Hubbitus\HuPHP\Exceptions\Variables\VariableException::class, $exception);
     }
 
-    public function testConstructorWithBacktraceAndVarName(): void
-    {
+    public function testConstructorWithBacktraceAndVarName(): void {
         $backtrace = new Backtrace();
         $exception = new VariableRequiredException($backtrace, 'testVariable');
 
         $this->assertInstanceOf(VariableRequiredException::class, $exception);
     }
 
-    public function testConstructorWithAllArguments(): void
-    {
+    public function testConstructorWithAllArguments(): void {
         $backtrace = new Backtrace();
         $exception = new VariableRequiredException($backtrace, 'testVariable', 'Custom message');
 
@@ -38,32 +35,28 @@ class VariableRequiredExceptionTest extends TestCase
         $this->assertStringContainsString('Custom message', $exception->getMessage());
     }
 
-    public function testGetMessage(): void
-    {
+    public function testGetMessage(): void {
         $backtrace = new Backtrace();
         $exception = new VariableRequiredException($backtrace, 'testVar', 'Variable is required');
 
         $this->assertStringContainsString('Variable is required', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $backtrace = new Backtrace();
         $exception = new VariableRequiredException($backtrace);
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(VariableRequiredException::class);
         $this->expectExceptionMessage('Test exception');
 
         throw new VariableRequiredException(new Backtrace(), 'testVar', 'Test exception');
     }
 
-    public function testExceptionCanBeCaught(): void
-    {
+    public function testExceptionCanBeCaught(): void {
         $backtrace = new Backtrace();
         try {
             throw new VariableRequiredException($backtrace, 'testVar', 'Test exception');
@@ -73,16 +66,14 @@ class VariableRequiredExceptionTest extends TestCase
         }
     }
 
-    public function testVarName(): void
-    {
+    public function testVarName(): void {
         $backtrace = new Backtrace();
         $exception = new VariableRequiredException($backtrace, 'myVariable', 'Variable is required');
 
         $this->assertEquals('myVariable', $exception->varName(true));
     }
 
-    public function testBacktraceProperty(): void
-    {
+    public function testBacktraceProperty(): void {
         $backtrace = new Backtrace();
         $exception = new VariableRequiredException($backtrace, 'testVar');
 

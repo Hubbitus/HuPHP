@@ -40,14 +40,12 @@ final class Graph extends WriterAbstract implements ProjectDescriptor\WithCustom
     ) {
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'Graph';
     }
 
     /** @return array<string, bool> */
-    public function getDefaultSettings(): array
-    {
+    public function getDefaultSettings(): array {
         return ['graphs.enabled' => false];
     }
 

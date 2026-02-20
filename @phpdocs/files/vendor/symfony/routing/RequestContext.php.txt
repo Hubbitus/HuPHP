@@ -84,8 +84,7 @@ class RequestContext
     /**
      * Gets the base URL.
      */
-    public function getBaseUrl(): string
-    {
+    public function getBaseUrl(): string {
         return $this->baseUrl;
     }
 
@@ -104,8 +103,7 @@ class RequestContext
     /**
      * Gets the path info.
      */
-    public function getPathInfo(): string
-    {
+    public function getPathInfo(): string {
         return $this->pathInfo;
     }
 
@@ -126,8 +124,7 @@ class RequestContext
      *
      * The method is always an uppercased string.
      */
-    public function getMethod(): string
-    {
+    public function getMethod(): string {
         return $this->method;
     }
 
@@ -148,8 +145,7 @@ class RequestContext
      *
      * The host is always lowercased because it must be treated case-insensitive.
      */
-    public function getHost(): string
-    {
+    public function getHost(): string {
         return $this->host;
     }
 
@@ -168,8 +164,7 @@ class RequestContext
     /**
      * Gets the HTTP scheme.
      */
-    public function getScheme(): string
-    {
+    public function getScheme(): string {
         return $this->scheme;
     }
 
@@ -188,8 +183,7 @@ class RequestContext
     /**
      * Gets the HTTP port.
      */
-    public function getHttpPort(): int
-    {
+    public function getHttpPort(): int {
         return $this->httpPort;
     }
 
@@ -208,8 +202,7 @@ class RequestContext
     /**
      * Gets the HTTPS port.
      */
-    public function getHttpsPort(): int
-    {
+    public function getHttpsPort(): int {
         return $this->httpsPort;
     }
 
@@ -228,8 +221,7 @@ class RequestContext
     /**
      * Gets the query string without the "?".
      */
-    public function getQueryString(): string
-    {
+    public function getQueryString(): string {
         return $this->queryString;
     }
 
@@ -249,8 +241,7 @@ class RequestContext
     /**
      * Returns the parameters.
      */
-    public function getParameters(): array
-    {
+    public function getParameters(): array {
         return $this->parameters;
     }
 
@@ -296,8 +287,7 @@ class RequestContext
         return $this;
     }
 
-    public function isSecure(): bool
-    {
+    public function isSecure(): bool {
         return 'https' === $this->scheme;
     }
 }

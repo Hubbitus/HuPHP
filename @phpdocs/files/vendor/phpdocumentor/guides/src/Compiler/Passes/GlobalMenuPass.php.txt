@@ -41,8 +41,7 @@ final class GlobalMenuPass implements CompilerPass
     ) {
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 20; // must be run very late
     }
 

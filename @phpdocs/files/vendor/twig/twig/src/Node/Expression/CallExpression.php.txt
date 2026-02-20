@@ -326,8 +326,7 @@ abstract class CallExpression extends AbstractExpression
      *
      * To be removed in 4.0 and replace by $this->getAttribute('twig_callable').
      */
-    private function getTwigCallable(): TwigCallableInterface
-    {
+    private function getTwigCallable(): TwigCallableInterface {
         $current = $this->getAttribute('twig_callable');
 
         $this->setAttribute('twig_callable', match ($this->getAttribute('type')) {

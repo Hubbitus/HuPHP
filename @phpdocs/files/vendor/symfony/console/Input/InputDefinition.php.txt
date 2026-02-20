@@ -160,32 +160,28 @@ class InputDefinition
      *
      * @return InputArgument[]
      */
-    public function getArguments(): array
-    {
+    public function getArguments(): array {
         return $this->arguments;
     }
 
     /**
      * Returns the number of InputArguments.
      */
-    public function getArgumentCount(): int
-    {
+    public function getArgumentCount(): int {
         return null !== $this->lastArrayArgument ? \PHP_INT_MAX : \count($this->arguments);
     }
 
     /**
      * Returns the number of required InputArguments.
      */
-    public function getArgumentRequiredCount(): int
-    {
+    public function getArgumentRequiredCount(): int {
         return $this->requiredCount;
     }
 
     /**
      * @return array<string|bool|int|float|array|null>
      */
-    public function getArgumentDefaults(): array
-    {
+    public function getArgumentDefaults(): array {
         $values = [];
         foreach ($this->arguments as $argument) {
             $values[$argument->getName()] = $argument->getDefault();
@@ -291,8 +287,7 @@ class InputDefinition
      *
      * @return InputOption[]
      */
-    public function getOptions(): array
-    {
+    public function getOptions(): array {
         return $this->options;
     }
 
@@ -323,8 +318,7 @@ class InputDefinition
     /**
      * @return array<string|bool|int|float|array|null>
      */
-    public function getOptionDefaults(): array
-    {
+    public function getOptionDefaults(): array {
         $values = [];
         foreach ($this->options as $option) {
             $values[$option->getName()] = $option->getDefault();

@@ -20,18 +20,15 @@ class GenericTextRoleInlineNode extends InlineNode
         parent::__construct($role, $content);
     }
 
-    public function getRole(): string
-    {
+    public function getRole(): string {
         return $this->role;
     }
 
-    public function getContent(): string
-    {
+    public function getContent(): string {
         return $this->content;
     }
 
-    public function getClass(): string
-    {
+    public function getClass(): string {
         return $this->class;
     }
 }

@@ -14,18 +14,15 @@ use InvalidArgumentException;
 /**
  * @covers \Hubbitus\HuPHP\Database\DatabaseErrorSettings
  */
-class DatabaseErrorSettingsTest extends TestCase
-{
-    public function testClassExtendsHuErrorSettings(): void
-    {
+class DatabaseErrorSettingsTest extends TestCase {
+    public function testClassExtendsHuErrorSettings(): void {
         $settings = new DatabaseErrorSettings();
 
         $this->assertInstanceOf(DatabaseErrorSettings::class, $settings);
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Debug\\HuErrorSettings', $settings);
     }
 
-    public function testDefaultErrorMessages(): void
-    {
+    public function testDefaultErrorMessages(): void {
         $settings = new DatabaseErrorSettings();
 
         $this->assertEquals('SQL Query failed', $settings->TXT_queryFailed);
@@ -33,23 +30,20 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertEquals('Can not change database', $settings->TXT_noDBselected);
     }
 
-    public function testAutoDateFormat(): void
-    {
+    public function testAutoDateFormat(): void {
         $settings = new DatabaseErrorSettings();
 
         $this->assertTrue($settings->AUTO_DATE);
         $this->assertEquals('Y-m-d H:i:s: ', $settings->DATE_FORMAT);
     }
 
-    public function testExtraHeader(): void
-    {
+    public function testExtraHeader(): void {
         $settings = new DatabaseErrorSettings();
 
         $this->assertEquals('Extra info', $settings->EXTRA_HEADER);
     }
 
-    public function testFormatConfigurations(): void
-    {
+    public function testFormatConfigurations(): void {
         $settings = new DatabaseErrorSettings();
 
         $this->assertIsArray($settings->FORMAT_WEB);
@@ -61,8 +55,7 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertNotEmpty($settings->FORMAT_FILE);
     }
 
-    public function testWebFormatStructure(): void
-    {
+    public function testWebFormatStructure(): void {
         $settings = new DatabaseErrorSettings();
 
         $webFormat = $settings->FORMAT_WEB;
@@ -99,8 +92,7 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertEquals('</pre>', $webFormat[5][2]);
     }
 
-    public function testConsoleFormatStructure(): void
-    {
+    public function testConsoleFormatStructure(): void {
         $settings = new DatabaseErrorSettings();
 
         $consoleFormat = $settings->FORMAT_CONSOLE;
@@ -139,8 +131,7 @@ class DatabaseErrorSettingsTest extends TestCase
         );
     }
 
-    public function testFileFormatStructure(): void
-    {
+    public function testFileFormatStructure(): void {
         $settings = new DatabaseErrorSettings();
 
         $fileFormat = $settings->FORMAT_FILE;
@@ -167,8 +158,7 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertEquals('<=', $fileFormat[5][2]);
     }
 
-    public function testSettingsInheritance(): void
-    {
+    public function testSettingsInheritance(): void {
         $settings = new DatabaseErrorSettings();
 
         // Test that it inherits methods from HuErrorSettings
@@ -176,8 +166,7 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertTrue(method_exists($settings, '__SETS'));
     }
 
-    public function testSettingsMerging(): void
-    {
+    public function testSettingsMerging(): void {
         $customSettings = [
             'TXT_queryFailed' => 'Custom query failed message',
             'TXT_cantConnect' => 'Custom connection failed message',
@@ -197,14 +186,12 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertEquals('<strong>', $settings->FORMAT_WEB[0][1]);
     }
 
-    public function testArrayAccess(): void
-    {
+    public function testArrayAccess(): void {
         // DatabaseErrorSettings does not implement ArrayAccess interface
         $this->assertTrue(true);
     }
 
-    public function testDefaultSettingsStructure(): void
-    {
+    public function testDefaultSettingsStructure(): void {
         $settings = new DatabaseErrorSettings();
 
         // Test that all expected default settings are present
@@ -222,8 +209,7 @@ class DatabaseErrorSettingsTest extends TestCase
         }
     }
 
-    public function testImmutabilityOfConstants(): void
-    {
+    public function testImmutabilityOfConstants(): void {
         $reflection = new \ReflectionClass(DatabaseErrorSettings::class);
 
         // Test that constants are properly defined
@@ -231,8 +217,7 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertIsArray($constants);
     }
 
-    public function testSettingsCloning(): void
-    {
+    public function testSettingsCloning(): void {
         $original = new DatabaseErrorSettings();
         $clone = clone $original;
 
@@ -240,8 +225,7 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertEquals($original->FORMAT_WEB, $clone->FORMAT_WEB);
     }
 
-    public function testSettingsSerialization(): void
-    {
+    public function testSettingsSerialization(): void {
         $settings = new DatabaseErrorSettings();
         $serialized = serialize($settings);
         $unserialized = unserialize($serialized);
@@ -250,8 +234,7 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertEquals($settings->TXT_queryFailed, $unserialized->TXT_queryFailed);
     }
 
-    public function testParentClassProperties(): void
-    {
+    public function testParentClassProperties(): void {
         $settings = new DatabaseErrorSettings();
 
         // Test that parent class properties are inherited
@@ -259,31 +242,27 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertInstanceOf(HuErrorSettings::class, $settings);
     }
 
-    public function testEmptyConstructor(): void
-    {
+    public function testEmptyConstructor(): void {
         $settings = new DatabaseErrorSettings();
 
         $this->assertInstanceOf(DatabaseErrorSettings::class, $settings);
         $this->assertNotEmpty($settings->__SETS);
     }
 
-    public function testInvalidConstructor(): void
-    {
+    public function testInvalidConstructor(): void {
         // DatabaseErrorSettings does not support constructor parameters
         $settings = new DatabaseErrorSettings();
         $this->assertInstanceOf(DatabaseErrorSettings::class, $settings);
     }
 
-    public function testToStringMethod(): void
-    {
+    public function testToStringMethod(): void {
         $settings = new DatabaseErrorSettings();
 
         $this->assertTrue(method_exists($settings, '__toString'));
         $this->assertIsString((string)$settings);
     }
 
-    public function testCountableInterface(): void
-    {
+    public function testCountableInterface(): void {
         $settings = new DatabaseErrorSettings();
 
         $this->assertTrue(method_exists($settings, 'length'));
@@ -291,8 +270,7 @@ class DatabaseErrorSettingsTest extends TestCase
         $this->assertGreaterThan(0, $settings->length());
     }
 
-    public function testIteratorInterface(): void
-    {
+    public function testIteratorInterface(): void {
         $settings = new DatabaseErrorSettings();
 
         $this->assertTrue(method_exists($settings, 'getIterator'));

@@ -130,8 +130,7 @@ class ProcessHelper extends Helper
         return str_replace('<', '\\<', $str);
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'process';
     }
 }

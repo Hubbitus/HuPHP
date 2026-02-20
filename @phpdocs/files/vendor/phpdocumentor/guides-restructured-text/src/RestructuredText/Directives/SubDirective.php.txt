@@ -35,7 +35,7 @@ abstract class SubDirective extends BaseDirective
     public function __construct(protected Rule $startingRule)
     {
     }
-    
+
     /** {@inheritDoc} */
     final public function process(
         BlockContext $blockContext,
@@ -57,8 +57,7 @@ abstract class SubDirective extends BaseDirective
     }
 
     /** @return Rule<CollectionNode> */
-    protected function getStartingRule(): Rule
-    {
+    protected function getStartingRule(): Rule {
         return $this->startingRule;
     }
 

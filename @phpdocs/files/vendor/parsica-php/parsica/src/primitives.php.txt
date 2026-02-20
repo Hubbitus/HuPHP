@@ -131,8 +131,7 @@ function takeWhile1(callable $predicate): Parser
  * @psalm-return Parser<T>
  * @psalm-pure
  */
-function anySingle(): Parser
-{
+function anySingle(): Parser {
     return satisfy(
     /** @psalm-param mixed $_ */
         fn($_) => true
@@ -146,8 +145,7 @@ function anySingle(): Parser
  * @psalm-return Parser<string>
  * @psalm-pure
  */
-function anything(): Parser
-{
+function anything(): Parser {
     return satisfy(fn(string $_) => true)->label("anything");
 }
 
@@ -245,8 +243,7 @@ function noneOfS(string $chars): Parser
  * @template T
  * @psalm-pure
  */
-function takeRest(): Parser
-{
+function takeRest(): Parser {
     return takeWhile(fn(string $_): bool => true);
 }
 
@@ -260,8 +257,7 @@ function takeRest(): Parser
  * @api
  * @psalm-pure
  */
-function nothing(): Parser
-{
+function nothing(): Parser {
     /** @psalm-var pure-callable(Stream):ParseResult<null> $result */
     $result = fn(Stream $input) : ParseResult => new Succeed(null, $input);
     $parser = Parser::make("<nothing>", $result);
@@ -274,8 +270,7 @@ function nothing(): Parser
  * @api
  * @psalm-pure
  */
-function everything(): Parser
-{
+function everything(): Parser {
     return Parser::make("<everything>", fn(Stream $input) => new Succeed((string)$input, new StringStream("")));
 }
 
@@ -285,8 +280,7 @@ function everything(): Parser
  * @api
  * @psalm-pure
  */
-function succeed(): Parser
-{
+function succeed(): Parser {
     return Parser::make("<always succeed>", fn(Stream $input) => new Succeed(null, $input));
 }
 
@@ -310,8 +304,7 @@ function fail(string $label): Parser
  * @template T
  * @psalm-pure
  */
-function eof(): Parser
-{
+function eof(): Parser {
     $label = "<EOF>";
     return Parser::make($label, fn(Stream $input): ParseResult => $input->isEOF()
         ? new Succeed("", $input)

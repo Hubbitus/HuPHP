@@ -76,8 +76,7 @@ final class charactersTest extends TestCase
         $this->assertRemainder($input, $parser, "!!1!");
     }
 
-    public function characterParsers(): array
-    {
+    public function characterParsers(): array {
         $tests = [
             // dataSet => [Parser, example character]
             'controlChar' => [controlChar(), mb_chr(0x05)],

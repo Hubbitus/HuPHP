@@ -84,8 +84,7 @@ final class Dsn implements Stringable
     /**
      * Returns a string representation of the DSN.
      */
-    public function __toString(): string
-    {
+    public function __toString(): string {
         if ($this->getScheme() === 'phar' && $this->isWindowsLocalPath()) {
             return 'phar://' . $this->getPath();
         }
@@ -104,8 +103,7 @@ final class Dsn implements Stringable
     /**
      * Returns the host part of the DSN
      */
-    public function getHost(): string
-    {
+    public function getHost(): string {
         return $this->uri->getHost() ?? '';
     }
 
@@ -129,24 +127,21 @@ final class Dsn implements Stringable
     /**
      * Returns the username part of the DSN
      */
-    public function getUsername(): string
-    {
+    public function getUsername(): string {
         return explode(':', $this->uri->getUserInfo() ?? '')[0];
     }
 
     /**
      * Returns the password part of the DSN
      */
-    public function getPassword(): string
-    {
+    public function getPassword(): string {
         return explode(':', $this->uri->getUserInfo() ?? '')[1] ?? '';
     }
 
     /**
      * Returns the path part of the DSN
      */
-    public function getPath(): Path
-    {
+    public function getPath(): Path {
         if ($this->isWindowsLocalPath()) {
             return new Path(ltrim($this->uri->getPath(), '/'));
         }
@@ -154,8 +149,7 @@ final class Dsn implements Stringable
         return new Path($this->uri->getPath() ?: '/');
     }
 
-    public function isWindowsLocalPath(): bool
-    {
+    public function isWindowsLocalPath(): bool {
         $path = ltrim($this->uri->getPath(), '/');
 
         return preg_match(UriFactory::WINDOWS_URI_FORMAT, $path) === 1;
@@ -166,8 +160,7 @@ final class Dsn implements Stringable
      *
      * @return string[]
      */
-    public function getQuery(): array
-    {
+    public function getQuery(): array {
         $result = [];
         parse_str($this->uri->getQuery() ?? '', $result);
 
@@ -179,8 +172,7 @@ final class Dsn implements Stringable
      *
      * @return string[]
      */
-    public function getParameters(): array
-    {
+    public function getParameters(): array {
         return $this->parameters;
     }
 

@@ -36,8 +36,7 @@ trait MetadataContainer
     }
 
     /** @return Metadata[] */
-    public function getMetadata(): array
-    {
+    public function getMetadata(): array {
         return $this->metadata;
     }
 }

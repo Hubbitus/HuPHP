@@ -32,31 +32,26 @@ class ParserBuilderTest extends TestCase
 {
     private Parser $parser;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->parser = (new ParserBuilder())->build();
     }
 
-    public function testRootNodeIsParsed(): void
-    {
+    public function testRootNodeIsParsed(): void {
         $result = $this->parser->tryString('$');
         self::assertEquals(new RootNode(), $result->output());
     }
 
-    public function testCurrentNodeIsParsed(): void
-    {
+    public function testCurrentNodeIsParsed(): void {
         $result = $this->parser->tryString('@');
         self::assertEquals(new CurrentNode(), $result->output());
     }
 
-    public function testCurrentNodeChildren(): void
-    {
+    public function testCurrentNodeChildren(): void {
         $result = $this->parser->tryString('@.*');
         self::assertEquals(new Path([new CurrentNode(), new FieldAccess(new Wildcard())]), $result->output());
     }
 
-    public function testRootFieldAccess(): void
-    {
+    public function testRootFieldAccess(): void {
         $result = $this->parser->tryString('$.store');
 
         self::assertEquals(
@@ -70,8 +65,7 @@ class ParserBuilderTest extends TestCase
         );
     }
 
-    public function testRootFieldAccessArrayLike(): void
-    {
+    public function testRootFieldAccessArrayLike(): void {
         $result = $this->parser->tryString('$[\'store\']');
 
         self::assertEquals(
@@ -85,8 +79,7 @@ class ParserBuilderTest extends TestCase
         );
     }
 
-    public function testRootFieldChildAccess(): void
-    {
+    public function testRootFieldChildAccess(): void {
         $result = $this->parser->tryString('$.store.address');
 
         self::assertEquals(
@@ -134,8 +127,7 @@ class ParserBuilderTest extends TestCase
     }
 
     /** @return Generator<string, string> */
-    public static function operatorProvider(): Generator
-    {
+    public static function operatorProvider(): Generator {
         $operators = [
             '==',
             '!=',
@@ -147,8 +139,7 @@ class ParserBuilderTest extends TestCase
         }
     }
 
-    public function testFilterExpressionCurrentObjectProperyWildCard(): void
-    {
+    public function testFilterExpressionCurrentObjectProperyWildCard(): void {
         $result = $this->parser->tryString('$.store.books[?(@.* == "phpDoc")]');
         self::assertEquals(
             new Path([
@@ -176,8 +167,7 @@ class ParserBuilderTest extends TestCase
         );
     }
 
-    public function testFilterExpressionCurrentObjectTypeEquals(): void
-    {
+    public function testFilterExpressionCurrentObjectTypeEquals(): void {
         $result = $this->parser->tryString('$.store.books[?(type(@) == "api")]');
         self::assertEquals(
             new Path([
@@ -205,8 +195,7 @@ class ParserBuilderTest extends TestCase
         );
     }
 
-    public function testFilterExpressionCurrentObjectChildrenTypeEquals(): void
-    {
+    public function testFilterExpressionCurrentObjectChildrenTypeEquals(): void {
         $result = $this->parser->tryString('$.store.books[?(type(@.*) == "api")]');
         self::assertEquals(
             new Path([
@@ -237,8 +226,7 @@ class ParserBuilderTest extends TestCase
         );
     }
 
-    public function testFilterExpressionWildcard(): void
-    {
+    public function testFilterExpressionWildcard(): void {
         $result = $this->parser->tryString('$.store.books_title[*]');
         self::assertEquals(
             new Path([
@@ -257,8 +245,7 @@ class ParserBuilderTest extends TestCase
         );
     }
 
-    public function testFilterExpressionWildcardNested(): void
-    {
+    public function testFilterExpressionWildcardNested(): void {
         $result = $this->parser->tryString('$.store.books_title.*[*]');
         self::assertEquals(
             new Path([

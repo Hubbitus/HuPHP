@@ -27,8 +27,7 @@ final class InlineParserMatch
         $this->caseSensitive = $caseSensitive;
     }
 
-    public function caseSensitive(): self
-    {
+    public function caseSensitive(): self {
         $this->caseSensitive = true;
 
         return $this;
@@ -39,8 +38,7 @@ final class InlineParserMatch
      *
      * @psalm-return non-empty-string
      */
-    public function getRegex(): string
-    {
+    public function getRegex(): string {
         return '/' . $this->regex . '/' . ($this->caseSensitive ? '' : 'i');
     }
 

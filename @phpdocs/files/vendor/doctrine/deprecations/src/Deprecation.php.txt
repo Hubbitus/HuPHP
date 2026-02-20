@@ -222,14 +222,12 @@ class Deprecation
         return substr($filename, $pos + 1);
     }
 
-    public static function enableTrackingDeprecations(): void
-    {
+    public static function enableTrackingDeprecations(): void {
         self::$type  = self::$type ?? self::getTypeFromEnv();
         self::$type |= self::TYPE_TRACK_DEPRECATIONS;
     }
 
-    public static function enableWithTriggerError(): void
-    {
+    public static function enableWithTriggerError(): void {
         self::$type  = self::$type ?? self::getTypeFromEnv();
         self::$type |= self::TYPE_TRIGGER_ERROR;
     }
@@ -241,13 +239,11 @@ class Deprecation
         self::$logger = $logger;
     }
 
-    public static function withoutDeduplication(): void
-    {
+    public static function withoutDeduplication(): void {
         self::$deduplication = false;
     }
 
-    public static function disable(): void
-    {
+    public static function disable(): void {
         self::$type          = self::TYPE_NONE;
         self::$logger        = null;
         self::$deduplication = true;
@@ -270,8 +266,7 @@ class Deprecation
         }
     }
 
-    public static function getUniqueTriggeredDeprecationsCount(): int
-    {
+    public static function getUniqueTriggeredDeprecationsCount(): int {
         return array_reduce(self::$triggeredDeprecations, static function (int $carry, int $count) {
             return $carry + $count;
         }, 0);
@@ -282,14 +277,12 @@ class Deprecation
      *
      * @return array<string,int>
      */
-    public static function getTriggeredDeprecations(): array
-    {
+    public static function getTriggeredDeprecations(): array {
         return self::$triggeredDeprecations;
     }
 
     /** @return int-mask-of<self::TYPE_*> */
-    private static function getTypeFromEnv(): int
-    {
+    private static function getTypeFromEnv(): int {
         switch ($_SERVER['DOCTRINE_DEPRECATIONS'] ?? $_ENV['DOCTRINE_DEPRECATIONS'] ?? null) {
             case 'trigger':
                 self::$type = self::TYPE_TRIGGER_ERROR;

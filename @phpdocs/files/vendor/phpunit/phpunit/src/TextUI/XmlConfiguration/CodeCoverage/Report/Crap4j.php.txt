@@ -34,13 +34,11 @@ final class Crap4j
         $this->threshold = $threshold;
     }
 
-    public function target(): File
-    {
+    public function target(): File {
         return $this->target;
     }
 
-    public function threshold(): int
-    {
+    public function threshold(): int {
         return $this->threshold;
     }
 }

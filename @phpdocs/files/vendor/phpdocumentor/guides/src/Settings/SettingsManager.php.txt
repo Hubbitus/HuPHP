@@ -20,8 +20,7 @@ class SettingsManager
     ) {
     }
 
-    public function getProjectSettings(): ProjectSettings
-    {
+    public function getProjectSettings(): ProjectSettings {
         return $this->projectSettings;
     }
 

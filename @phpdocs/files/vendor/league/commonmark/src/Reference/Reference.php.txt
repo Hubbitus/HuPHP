@@ -37,18 +37,15 @@ final class Reference implements ReferenceInterface
         $this->title       = $title;
     }
 
-    public function getLabel(): string
-    {
+    public function getLabel(): string {
         return $this->label;
     }
 
-    public function getDestination(): string
-    {
+    public function getDestination(): string {
         return $this->destination;
     }
 
-    public function getTitle(): string
-    {
+    public function getTitle(): string {
         return $this->title;
     }
 }

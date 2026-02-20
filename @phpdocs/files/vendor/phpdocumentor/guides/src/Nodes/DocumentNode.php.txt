@@ -83,8 +83,7 @@ final class DocumentNode extends CompoundNode
         parent::__construct([]);
     }
 
-    public function getFilePath(): string
-    {
+    public function getFilePath(): string {
         return $this->filePath;
     }
 
@@ -148,13 +147,11 @@ final class DocumentNode extends CompoundNode
     }
 
     /** @return MetadataNode[] */
-    public function getHeaderNodes(): array
-    {
+    public function getHeaderNodes(): array {
         return $this->headerNodes;
     }
 
-    public function getHash(): string
-    {
+    public function getHash(): string {
         return $this->hash;
     }
 
@@ -186,8 +183,7 @@ final class DocumentNode extends CompoundNode
         return $this->links[strtolower(trim($name))] ?? null;
     }
 
-    public function isTitleFound(): bool
-    {
+    public function isTitleFound(): bool {
         return $this->titleFound;
     }
 
@@ -197,16 +193,14 @@ final class DocumentNode extends CompoundNode
     }
 
     /** @return array<string, string> */
-    public function getLoggerInformation(): array
-    {
+    public function getLoggerInformation(): array {
         return [
             'rst-file' => $this->filePath . '.rst',
         ];
     }
 
     /** @return array<string, Node[]> */
-    public function getDocumentPartNodes(): array
-    {
+    public function getDocumentPartNodes(): array {
         return $this->documentPartNodes;
     }
 
@@ -227,8 +221,7 @@ final class DocumentNode extends CompoundNode
     }
 
     /** @return TocNode[] */
-    public function getTocNodes(): array
-    {
+    public function getTocNodes(): array {
         return $this->tocNodes;
     }
 
@@ -279,8 +272,7 @@ final class DocumentNode extends CompoundNode
         return null;
     }
 
-    public function getDocumentEntry(): DocumentEntryNode
-    {
+    public function getDocumentEntry(): DocumentEntryNode {
         if ($this->documentEntry === null) {
             throw new Exception('DocumentEntry may not be accessed before initialization');
         }
@@ -305,8 +297,7 @@ final class DocumentNode extends CompoundNode
         $this->rootSectionEntry = $rootSectionEntry;
     }
 
-    public function isRoot(): bool
-    {
+    public function isRoot(): bool {
         return $this->isRoot;
     }
 
@@ -318,8 +309,7 @@ final class DocumentNode extends CompoundNode
         return $node;
     }
 
-    public function isOrphan(): bool
-    {
+    public function isOrphan(): bool {
         return $this->orphan;
     }
 

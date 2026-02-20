@@ -46,8 +46,7 @@ class ApplicationDescription
         $this->showHidden = $showHidden;
     }
 
-    public function getNamespaces(): array
-    {
+    public function getNamespaces(): array {
         if (!isset($this->namespaces)) {
             $this->inspectApplication();
         }
@@ -58,8 +57,7 @@ class ApplicationDescription
     /**
      * @return Command[]
      */
-    public function getCommands(): array
-    {
+    public function getCommands(): array {
         if (!isset($this->commands)) {
             $this->inspectApplication();
         }
@@ -79,8 +77,7 @@ class ApplicationDescription
         return $this->commands[$name] ?? $this->aliases[$name];
     }
 
-    private function inspectApplication(): void
-    {
+    private function inspectApplication(): void {
         $this->commands = [];
         $this->namespaces = [];
 

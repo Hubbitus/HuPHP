@@ -29,8 +29,7 @@ class VersionDescriptor extends TagDescriptor
     /**
      * Returns the current version for the associated element.
      */
-    public function getVersion(): string
-    {
+    public function getVersion(): string {
         return $this->version;
     }
 

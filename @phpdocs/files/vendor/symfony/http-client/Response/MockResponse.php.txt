@@ -76,24 +76,21 @@ class MockResponse implements ResponseInterface, StreamableInterface
     /**
      * Returns the options used when doing the request.
      */
-    public function getRequestOptions(): array
-    {
+    public function getRequestOptions(): array {
         return $this->requestOptions;
     }
 
     /**
      * Returns the URL used when doing the request.
      */
-    public function getRequestUrl(): string
-    {
+    public function getRequestUrl(): string {
         return $this->requestUrl;
     }
 
     /**
      * Returns the method used when doing the request.
      */
-    public function getRequestMethod(): string
-    {
+    public function getRequestMethod(): string {
         return $this->requestMethod;
     }
 
@@ -102,8 +99,7 @@ class MockResponse implements ResponseInterface, StreamableInterface
         return null !== $type ? $this->info[$type] ?? null : $this->info;
     }
 
-    public function cancel(): void
-    {
+    public function cancel(): void {
         $this->info['canceled'] = true;
         $this->info['error'] = 'Response has been canceled.';
         try {
@@ -122,8 +118,7 @@ class MockResponse implements ResponseInterface, StreamableInterface
         $this->doDestruct();
     }
 
-    protected function close(): void
-    {
+    protected function close(): void {
         $this->inflate = null;
         $this->body = [];
     }

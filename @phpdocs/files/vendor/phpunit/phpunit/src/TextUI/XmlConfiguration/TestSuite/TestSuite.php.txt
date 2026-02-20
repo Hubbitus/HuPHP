@@ -44,23 +44,19 @@ final class TestSuite
         $this->exclude     = $exclude;
     }
 
-    public function name(): string
-    {
+    public function name(): string {
         return $this->name;
     }
 
-    public function directories(): TestDirectoryCollection
-    {
+    public function directories(): TestDirectoryCollection {
         return $this->directories;
     }
 
-    public function files(): TestFileCollection
-    {
+    public function files(): TestFileCollection {
         return $this->files;
     }
 
-    public function exclude(): FileCollection
-    {
+    public function exclude(): FileCollection {
         return $this->exclude;
     }
 }

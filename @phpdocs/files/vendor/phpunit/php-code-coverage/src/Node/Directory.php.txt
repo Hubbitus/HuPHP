@@ -129,8 +129,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
      */
     private $numTestedFunctions = -1;
 
-    public function count(): int
-    {
+    public function count(): int {
         if ($this->numFiles === -1) {
             $this->numFiles = 0;
 
@@ -142,8 +141,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numFiles;
     }
 
-    public function getIterator(): RecursiveIteratorIterator
-    {
+    public function getIterator(): RecursiveIteratorIterator {
         return new RecursiveIteratorIterator(
             new Iterator($this),
             RecursiveIteratorIterator::SELF_FIRST
@@ -169,23 +167,19 @@ final class Directory extends AbstractNode implements IteratorAggregate
         $this->numExecutedLines   = -1;
     }
 
-    public function directories(): array
-    {
+    public function directories(): array {
         return $this->directories;
     }
 
-    public function files(): array
-    {
+    public function files(): array {
         return $this->files;
     }
 
-    public function children(): array
-    {
+    public function children(): array {
         return $this->children;
     }
 
-    public function classes(): array
-    {
+    public function classes(): array {
         if ($this->classes === null) {
             $this->classes = [];
 
@@ -200,8 +194,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->classes;
     }
 
-    public function traits(): array
-    {
+    public function traits(): array {
         if ($this->traits === null) {
             $this->traits = [];
 
@@ -216,8 +209,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->traits;
     }
 
-    public function functions(): array
-    {
+    public function functions(): array {
         if ($this->functions === null) {
             $this->functions = [];
 
@@ -235,8 +227,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
     /**
      * @psalm-return array{linesOfCode: int, commentLinesOfCode: int, nonCommentLinesOfCode: int}
      */
-    public function linesOfCode(): array
-    {
+    public function linesOfCode(): array {
         if ($this->linesOfCode === null) {
             $this->linesOfCode = [
                 'linesOfCode'           => 0,
@@ -256,8 +247,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->linesOfCode;
     }
 
-    public function numberOfExecutableLines(): int
-    {
+    public function numberOfExecutableLines(): int {
         if ($this->numExecutableLines === -1) {
             $this->numExecutableLines = 0;
 
@@ -269,8 +259,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numExecutableLines;
     }
 
-    public function numberOfExecutedLines(): int
-    {
+    public function numberOfExecutedLines(): int {
         if ($this->numExecutedLines === -1) {
             $this->numExecutedLines = 0;
 
@@ -282,8 +271,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numExecutedLines;
     }
 
-    public function numberOfExecutableBranches(): int
-    {
+    public function numberOfExecutableBranches(): int {
         if ($this->numExecutableBranches === -1) {
             $this->numExecutableBranches = 0;
 
@@ -295,8 +283,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numExecutableBranches;
     }
 
-    public function numberOfExecutedBranches(): int
-    {
+    public function numberOfExecutedBranches(): int {
         if ($this->numExecutedBranches === -1) {
             $this->numExecutedBranches = 0;
 
@@ -308,8 +295,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numExecutedBranches;
     }
 
-    public function numberOfExecutablePaths(): int
-    {
+    public function numberOfExecutablePaths(): int {
         if ($this->numExecutablePaths === -1) {
             $this->numExecutablePaths = 0;
 
@@ -321,8 +307,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numExecutablePaths;
     }
 
-    public function numberOfExecutedPaths(): int
-    {
+    public function numberOfExecutedPaths(): int {
         if ($this->numExecutedPaths === -1) {
             $this->numExecutedPaths = 0;
 
@@ -334,8 +319,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numExecutedPaths;
     }
 
-    public function numberOfClasses(): int
-    {
+    public function numberOfClasses(): int {
         if ($this->numClasses === -1) {
             $this->numClasses = 0;
 
@@ -347,8 +331,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numClasses;
     }
 
-    public function numberOfTestedClasses(): int
-    {
+    public function numberOfTestedClasses(): int {
         if ($this->numTestedClasses === -1) {
             $this->numTestedClasses = 0;
 
@@ -360,8 +343,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numTestedClasses;
     }
 
-    public function numberOfTraits(): int
-    {
+    public function numberOfTraits(): int {
         if ($this->numTraits === -1) {
             $this->numTraits = 0;
 
@@ -373,8 +355,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numTraits;
     }
 
-    public function numberOfTestedTraits(): int
-    {
+    public function numberOfTestedTraits(): int {
         if ($this->numTestedTraits === -1) {
             $this->numTestedTraits = 0;
 
@@ -386,8 +367,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numTestedTraits;
     }
 
-    public function numberOfMethods(): int
-    {
+    public function numberOfMethods(): int {
         if ($this->numMethods === -1) {
             $this->numMethods = 0;
 
@@ -399,8 +379,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numMethods;
     }
 
-    public function numberOfTestedMethods(): int
-    {
+    public function numberOfTestedMethods(): int {
         if ($this->numTestedMethods === -1) {
             $this->numTestedMethods = 0;
 
@@ -412,8 +391,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numTestedMethods;
     }
 
-    public function numberOfFunctions(): int
-    {
+    public function numberOfFunctions(): int {
         if ($this->numFunctions === -1) {
             $this->numFunctions = 0;
 
@@ -425,8 +403,7 @@ final class Directory extends AbstractNode implements IteratorAggregate
         return $this->numFunctions;
     }
 
-    public function numberOfTestedFunctions(): int
-    {
+    public function numberOfTestedFunctions(): int {
         if ($this->numTestedFunctions === -1) {
             $this->numTestedFunctions = 0;
 

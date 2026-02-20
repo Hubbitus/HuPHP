@@ -70,8 +70,7 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
         $this->context = $context;
     }
 
-    public function getContext(): RequestContext
-    {
+    public function getContext(): RequestContext {
         return $this->context;
     }
 

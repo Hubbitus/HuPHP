@@ -87,8 +87,7 @@ final class Linker extends ApiDocumentationPass
      *
      * @return string[][]
      */
-    public function getSubstitutions(): array
-    {
+    public function getSubstitutions(): array {
         return $this->substitutions;
     }
 

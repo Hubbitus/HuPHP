@@ -44,24 +44,21 @@ class TableCell
     /**
      * Returns the cell value.
      */
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->value;
     }
 
     /**
      * Gets number of colspan.
      */
-    public function getColspan(): int
-    {
+    public function getColspan(): int {
         return (int) $this->options['colspan'];
     }
 
     /**
      * Gets number of rowspan.
      */
-    public function getRowspan(): int
-    {
+    public function getRowspan(): int {
         return (int) $this->options['rowspan'];
     }
 

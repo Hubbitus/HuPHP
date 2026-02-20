@@ -119,8 +119,7 @@ abstract class ResultPrinter extends Printer implements ResultPrinterInterface
     /**
      * Flush buffer and close output.
      */
-    public function flush(): void
-    {
+    public function flush(): void {
         $this->doEndClass();
         $this->endRun();
 
@@ -266,8 +265,7 @@ abstract class ResultPrinter extends Printer implements ResultPrinterInterface
         $this->currentTestMethodPrettified = null;
     }
 
-    protected function doEndClass(): void
-    {
+    protected function doEndClass(): void {
         foreach ($this->tests as $test) {
             $this->onTest($test[0], $test[1] === BaseTestRunner::STATUS_PASSED);
         }
@@ -278,8 +276,7 @@ abstract class ResultPrinter extends Printer implements ResultPrinterInterface
     /**
      * Handler for 'start run' event.
      */
-    protected function startRun(): void
-    {
+    protected function startRun(): void {
     }
 
     /**
@@ -306,8 +303,7 @@ abstract class ResultPrinter extends Printer implements ResultPrinterInterface
     /**
      * Handler for 'end run' event.
      */
-    protected function endRun(): void
-    {
+    protected function endRun(): void {
     }
 
     private function isOfInterest(Test $test): bool

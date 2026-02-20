@@ -41,14 +41,12 @@ final class CodeBlockDirective extends BaseDirective
     ) {
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'code-block';
     }
 
     /** {@inheritDoc} */
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return ['code', 'parsed-literal'];
     }
 

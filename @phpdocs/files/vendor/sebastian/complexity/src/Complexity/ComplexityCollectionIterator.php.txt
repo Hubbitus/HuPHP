@@ -28,28 +28,23 @@ final class ComplexityCollectionIterator implements Iterator
         $this->items = $items->asArray();
     }
 
-    public function rewind(): void
-    {
+    public function rewind(): void {
         $this->position = 0;
     }
 
-    public function valid(): bool
-    {
+    public function valid(): bool {
         return isset($this->items[$this->position]);
     }
 
-    public function key(): int
-    {
+    public function key(): int {
         return $this->position;
     }
 
-    public function current(): Complexity
-    {
+    public function current(): Complexity {
         return $this->items[$this->position];
     }
 
-    public function next(): void
-    {
+    public function next(): void {
         $this->position++;
     }
 }

@@ -48,8 +48,7 @@ final class CurlClientState extends ClientState
         unset($this->handle, $this->share);
     }
 
-    public function reset(): void
-    {
+    public function reset(): void {
         foreach ($this->pushedResponses as $url => $response) {
             $this->logger?->debug(\sprintf('Unused pushed response: "%s"', $url));
             curl_multi_remove_handle($this->handle, $response->handle);

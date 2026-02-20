@@ -66,23 +66,20 @@ final class ReferenceParser
     /** @psalm-readonly-allow-private-mutation */
     private bool $referenceValid = false;
 
-    public function getParagraphContent(): string
-    {
+    public function getParagraphContent(): string {
         return $this->paragraph;
     }
 
     /**
      * @return ReferenceInterface[]
      */
-    public function getReferences(): iterable
-    {
+    public function getReferences(): iterable {
         $this->finishReference();
 
         return $this->references;
     }
 
-    public function hasReferences(): bool
-    {
+    public function hasReferences(): bool {
         return $this->references !== [];
     }
 
@@ -306,8 +303,7 @@ final class ReferenceParser
         return true;
     }
 
-    private function finishReference(): void
-    {
+    private function finishReference(): void {
         if (! $this->referenceValid) {
             return;
         }

@@ -75,24 +75,21 @@ final class TypeContext
     /**
      * @return class-string
      */
-    public function getDeclaringClass(): string
-    {
+    public function getDeclaringClass(): string {
         return $this->declaringClassName;
     }
 
     /**
      * @return class-string
      */
-    public function getCalledClass(): string
-    {
+    public function getCalledClass(): string {
         return $this->calledClassName;
     }
 
     /**
      * @return class-string
      */
-    public function getParentClass(): string
-    {
+    public function getParentClass(): string {
         $declaringClassName = $this->getDeclaringClass();
 
         if (false === $parentClass = get_parent_class($declaringClassName)) {

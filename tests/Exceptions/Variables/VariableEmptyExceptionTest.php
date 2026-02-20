@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class VariableEmptyExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new VariableEmptyException();
 
         $this->assertInstanceOf(VariableEmptyException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new VariableEmptyException('Variable is empty');
 
         $this->assertInstanceOf(VariableEmptyException::class, $exception);
         $this->assertEquals('Variable is empty', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new VariableEmptyException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(VariableEmptyException::class);
 
         throw new VariableEmptyException('Variable is empty');

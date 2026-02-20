@@ -31,13 +31,11 @@ final class InvokedCount extends InvocationOrder
         $this->expectedCount = $expectedCount;
     }
 
-    public function isNever(): bool
-    {
+    public function isNever(): bool {
         return $this->expectedCount === 0;
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         return 'invoked ' . $this->expectedCount . ' time(s)';
     }
 
@@ -52,8 +50,7 @@ final class InvokedCount extends InvocationOrder
      *
      * @throws ExpectationFailedException
      */
-    public function verify(): void
-    {
+    public function verify(): void {
         $count = $this->getInvocationCount();
 
         if ($count !== $this->expectedCount) {

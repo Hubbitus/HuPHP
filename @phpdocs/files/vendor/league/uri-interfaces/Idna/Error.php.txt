@@ -30,8 +30,7 @@ enum Error: int
     case CONTEXTO_PUNCTUATION   = 0x2000;
     case CONTEXTO_DIGITS        = 0x4000;
 
-    public function description(): string
-    {
+    public function description(): string {
         return match ($this) {
             self::NONE => 'No error has occurred',
             self::EMPTY_LABEL => 'a non-final domain name label (or the whole domain name) is empty',

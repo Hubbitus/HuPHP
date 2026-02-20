@@ -73,8 +73,7 @@ class StreamWrapper
         return fopen(strtr(__CLASS__, '\\', '-').'://'.$response->getInfo('url'), 'r', false, stream_context_create(['symfony' => $context]));
     }
 
-    public function getResponse(): ResponseInterface
-    {
+    public function getResponse(): ResponseInterface {
         return $this->response;
     }
 
@@ -204,13 +203,11 @@ class StreamWrapper
         return true;
     }
 
-    public function stream_tell(): int
-    {
+    public function stream_tell(): int {
         return $this->offset ?? 0;
     }
 
-    public function stream_eof(): bool
-    {
+    public function stream_eof(): bool {
         return $this->eof && !\is_string($this->content);
     }
 
@@ -280,8 +277,7 @@ class StreamWrapper
         return false;
     }
 
-    public function stream_stat(): array
-    {
+    public function stream_stat(): array {
         try {
             $headers = $this->response->getHeaders(false);
         } catch (ExceptionInterface $e) {

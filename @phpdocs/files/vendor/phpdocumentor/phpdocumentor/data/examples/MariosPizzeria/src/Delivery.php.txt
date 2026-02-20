@@ -19,8 +19,7 @@ enum Delivery: string
     case PICKUP = 'pickup';
     case DELIVER = 'deliver';
 
-    public function isDeliver(): bool
-    {
+    public function isDeliver(): bool {
         return false;
     }
 }

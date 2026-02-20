@@ -46,16 +46,14 @@ class ConsoleEvent extends Event
     /**
      * Gets the input instance.
      */
-    public function getInput(): InputInterface
-    {
+    public function getInput(): InputInterface {
         return $this->input;
     }
 
     /**
      * Gets the output instance.
      */
-    public function getOutput(): OutputInterface
-    {
+    public function getOutput(): OutputInterface {
         return $this->output;
     }
 }

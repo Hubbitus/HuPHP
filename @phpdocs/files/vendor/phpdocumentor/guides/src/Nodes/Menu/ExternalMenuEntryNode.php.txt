@@ -25,8 +25,7 @@ final class ExternalMenuEntryNode extends MenuEntryNode
         parent::__construct($url, $title, $level);
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->getUrl();
     }
 }

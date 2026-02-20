@@ -19,8 +19,7 @@ final class FilterPayload
         return $this->filterable;
     }
 
-    public function getApiSpecification(): ApiSpecification
-    {
+    public function getApiSpecification(): ApiSpecification {
         return $this->apiSpecification;
     }
 }

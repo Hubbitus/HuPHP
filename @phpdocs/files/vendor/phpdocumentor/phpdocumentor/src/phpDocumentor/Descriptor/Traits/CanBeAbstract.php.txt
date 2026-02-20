@@ -24,8 +24,7 @@ trait CanBeAbstract
         $this->abstract = $abstract;
     }
 
-    public function isAbstract(): bool
-    {
+    public function isAbstract(): bool {
         return $this->abstract;
     }
 }

@@ -41,8 +41,7 @@ class FloatNode extends NumericNode
         }
     }
 
-    protected function getValidPlaceholderTypes(): array
-    {
+    protected function getValidPlaceholderTypes(): array {
         return ['float'];
     }
 }

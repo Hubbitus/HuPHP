@@ -35,8 +35,7 @@ abstract class AbstractStringContainer extends AbstractInline implements StringC
         }
     }
 
-    public function getLiteral(): string
-    {
+    public function getLiteral(): string {
         return $this->literal;
     }
 

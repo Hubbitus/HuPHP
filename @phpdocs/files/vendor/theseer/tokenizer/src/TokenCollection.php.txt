@@ -19,8 +19,7 @@ class TokenCollection implements IteratorAggregate, ArrayAccess, Countable {
         $this->tokens[] = $token;
     }
 
-    public function getIterator(): Iterator
-    {
+    public function getIterator(): Iterator {
         return new ArrayIterator($this->tokens);
     }
 

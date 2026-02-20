@@ -50,8 +50,7 @@ final class BinaryOperator
      * @psalm-return Parser<TSymbol>
      * @psalm-mutation-free
      */
-    function symbol(): Parser
-    {
+    function symbol(): Parser {
         return $this->symbol;
     }
 
@@ -59,16 +58,14 @@ final class BinaryOperator
      * @psalm-return pure-callable(TExpressionAST, TExpressionAST):TExpressionAST
      * @psalm-mutation-free
      */
-    function transform(): callable
-    {
+    function transform(): callable {
         return $this->transform;
     }
 
     /**
      * @psalm-mutation-free
      */
-    function label(): string
-    {
+    function label(): string {
         return $this->label;
     }
 

@@ -38,8 +38,7 @@ final class StringContains extends Constraint
     /**
      * Returns a string representation of the constraint.
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         if ($this->ignoreCase) {
             $string = mb_strtolower($this->string, 'UTF-8');
         } else {

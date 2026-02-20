@@ -51,24 +51,20 @@ final class ProjectSettings
         $this->excludes = new Exclude();
     }
 
-    public function getTitle(): string
-    {
+    public function getTitle(): string {
         return $this->title;
     }
 
-    public function getVersion(): string
-    {
+    public function getVersion(): string {
         return $this->version;
     }
 
     /** @return array<string, string> */
-    public function getInventories(): array
-    {
+    public function getInventories(): array {
         return $this->inventories;
     }
 
-    public function getTheme(): string
-    {
+    public function getTheme(): string {
         return $this->theme;
     }
 
@@ -93,8 +89,7 @@ final class ProjectSettings
         $this->theme = $theme;
     }
 
-    public function getInput(): string
-    {
+    public function getInput(): string {
         return $this->input;
     }
 
@@ -103,8 +98,7 @@ final class ProjectSettings
         $this->input = $input;
     }
 
-    public function getOutput(): string
-    {
+    public function getOutput(): string {
         return $this->output;
     }
 
@@ -113,8 +107,7 @@ final class ProjectSettings
         $this->output = $output;
     }
 
-    public function getInputFormat(): string
-    {
+    public function getInputFormat(): string {
         return $this->inputFormat;
     }
 
@@ -123,8 +116,7 @@ final class ProjectSettings
         $this->inputFormat = $inputFormat;
     }
 
-    public function getLogPath(): string
-    {
+    public function getLogPath(): string {
         return $this->logPath;
     }
 
@@ -133,8 +125,7 @@ final class ProjectSettings
         $this->logPath = $logPath;
     }
 
-    public function isFailOnError(): bool
-    {
+    public function isFailOnError(): bool {
         return $this->failOnError !== null;
     }
 
@@ -150,8 +141,7 @@ final class ProjectSettings
         $this->failOnError = $logLevel;
     }
 
-    public function isShowProgressBar(): bool
-    {
+    public function isShowProgressBar(): bool {
         return $this->showProgressBar;
     }
 
@@ -161,8 +151,7 @@ final class ProjectSettings
     }
 
     /** @return string[] */
-    public function getOutputFormats(): array
-    {
+    public function getOutputFormats(): array {
         return $this->outputFormats;
     }
 
@@ -172,8 +161,7 @@ final class ProjectSettings
         $this->outputFormats = $outputFormats;
     }
 
-    public function isLinksRelative(): bool
-    {
+    public function isLinksRelative(): bool {
         return $this->linksRelative;
     }
 
@@ -187,13 +175,11 @@ final class ProjectSettings
         $this->defaultCodeLanguage = $defaultCodeLanguage;
     }
 
-    public function getDefaultCodeLanguage(): string
-    {
+    public function getDefaultCodeLanguage(): string {
         return $this->defaultCodeLanguage;
     }
 
-    public function getInputFile(): string
-    {
+    public function getInputFile(): string {
         return $this->inputFile;
     }
 
@@ -202,8 +188,7 @@ final class ProjectSettings
         $this->inputFile = $inputFile;
     }
 
-    public function getRelease(): string
-    {
+    public function getRelease(): string {
         return $this->release;
     }
 
@@ -212,8 +197,7 @@ final class ProjectSettings
         $this->release = $release;
     }
 
-    public function getCopyright(): string
-    {
+    public function getCopyright(): string {
         return $this->copyright;
     }
 
@@ -222,8 +206,7 @@ final class ProjectSettings
         $this->copyright = $copyright;
     }
 
-    public function getMaxMenuDepth(): int
-    {
+    public function getMaxMenuDepth(): int {
         return $this->maxMenuDepth;
     }
 
@@ -235,8 +218,7 @@ final class ProjectSettings
     }
 
     /** @return string[] */
-    public function getIgnoredDomains(): array
-    {
+    public function getIgnoredDomains(): array {
         return $this->ignoredDomains;
     }
 
@@ -246,8 +228,7 @@ final class ProjectSettings
         $this->ignoredDomains = $ignoredDomains;
     }
 
-    public function getIndexName(): string
-    {
+    public function getIndexName(): string {
         return $this->indexName;
     }
 
@@ -258,8 +239,7 @@ final class ProjectSettings
         return $this;
     }
 
-    public function isAutomaticMenu(): bool
-    {
+    public function isAutomaticMenu(): bool {
         return $this->automaticMenu;
     }
 
@@ -275,8 +255,7 @@ final class ProjectSettings
         $this->excludes = $exclude;
     }
 
-    public function getExcludes(): Exclude
-    {
+    public function getExcludes(): Exclude {
         return $this->excludes;
     }
 }

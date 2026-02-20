@@ -38,8 +38,7 @@ final class Variable
         $this->force = $force;
     }
 
-    public function name(): string
-    {
+    public function name(): string {
         return $this->name;
     }
 
@@ -48,8 +47,7 @@ final class Variable
         return $this->value;
     }
 
-    public function force(): bool
-    {
+    public function force(): bool {
         return $this->force;
     }
 }

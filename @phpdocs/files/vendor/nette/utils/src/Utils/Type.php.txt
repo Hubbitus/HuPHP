@@ -150,8 +150,7 @@ final readonly class Type
 	}
 
 
-	public function __toString(): string
-	{
+	public function __toString(): string {
 		$multi = count($this->types) > 1;
 		if ($this->singleName !== null) {
 			return ($multi ? '?' : '') . $this->singleName;
@@ -186,8 +185,7 @@ final readonly class Type
 	 * Returns the array of subtypes that make up the compound type as strings.
 	 * @return list<string|array<string|array<mixed>>>
 	 */
-	public function getNames(): array
-	{
+	public function getNames(): array {
 		return array_map(fn($t) => $t instanceof self ? $t->getNames() : $t, $this->types);
 	}
 
@@ -196,8 +194,7 @@ final readonly class Type
 	 * Returns the array of subtypes that make up the compound type as Type objects.
 	 * @return list<self>
 	 */
-	public function getTypes(): array
-	{
+	public function getTypes(): array {
 		return array_map(fn($t) => $t instanceof self ? $t : new self([$t]), $this->types);
 	}
 
@@ -214,8 +211,7 @@ final readonly class Type
 	/**
 	 * Returns true whether it is a union type.
 	 */
-	public function isUnion(): bool
-	{
+	public function isUnion(): bool {
 		return $this->kind === '|';
 	}
 
@@ -223,8 +219,7 @@ final readonly class Type
 	/**
 	 * Returns true whether it is an intersection type.
 	 */
-	public function isIntersection(): bool
-	{
+	public function isIntersection(): bool {
 		return $this->kind === '&';
 	}
 
@@ -232,15 +227,13 @@ final readonly class Type
 	/**
 	 * Returns true whether it is a simple type. Single nullable types are also considered to be simple types.
 	 */
-	public function isSimple(): bool
-	{
+	public function isSimple(): bool {
 		return $this->singleName !== null;
 	}
 
 
 	#[\Deprecated('use isSimple()')]
-	public function isSingle(): bool
-	{
+	public function isSingle(): bool {
 		return $this->singleName !== null;
 	}
 
@@ -248,8 +241,7 @@ final readonly class Type
 	/**
 	 * Returns true whether the type is both a simple and a PHP built-in type.
 	 */
-	public function isBuiltin(): bool
-	{
+	public function isBuiltin(): bool {
 		return $this->singleName !== null && Validators::isBuiltinType($this->singleName);
 	}
 
@@ -257,8 +249,7 @@ final readonly class Type
 	/**
 	 * Returns true whether the type is both a simple and a class name.
 	 */
-	public function isClass(): bool
-	{
+	public function isClass(): bool {
 		return $this->singleName !== null && !Validators::isBuiltinType($this->singleName);
 	}
 
@@ -266,8 +257,7 @@ final readonly class Type
 	/**
 	 * Determines if type is special class name self/parent/static.
 	 */
-	public function isClassKeyword(): bool
-	{
+	public function isClassKeyword(): bool {
 		return $this->singleName !== null && Validators::isClassKeyword($this->singleName);
 	}
 

@@ -78,8 +78,7 @@ class Finder implements \IteratorAggregate, \Countable
     /**
      * Creates a new Finder.
      */
-    public static function create(): static
-    {
+    public static function create(): static {
         return new static();
     }
 
@@ -88,8 +87,7 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * @return $this
      */
-    public function directories(): static
-    {
+    public function directories(): static {
         $this->mode = Iterator\FileTypeFilterIterator::ONLY_DIRECTORIES;
 
         return $this;
@@ -100,8 +98,7 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * @return $this
      */
-    public function files(): static
-    {
+    public function files(): static {
         $this->mode = Iterator\FileTypeFilterIterator::ONLY_FILES;
 
         return $this;
@@ -438,8 +435,7 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * @see SortableIterator
      */
-    public function sortByExtension(): static
-    {
+    public function sortByExtension(): static {
         $this->sort = SortableIterator::SORT_BY_EXTENSION;
 
         return $this;
@@ -486,8 +482,7 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * @see SortableIterator
      */
-    public function sortBySize(): static
-    {
+    public function sortBySize(): static {
         $this->sort = SortableIterator::SORT_BY_SIZE;
 
         return $this;
@@ -502,8 +497,7 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * @see SortableIterator
      */
-    public function sortByType(): static
-    {
+    public function sortByType(): static {
         $this->sort = SortableIterator::SORT_BY_TYPE;
 
         return $this;
@@ -520,8 +514,7 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * @see SortableIterator
      */
-    public function sortByAccessedTime(): static
-    {
+    public function sortByAccessedTime(): static {
         $this->sort = SortableIterator::SORT_BY_ACCESSED_TIME;
 
         return $this;
@@ -532,8 +525,7 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * @return $this
      */
-    public function reverseSorting(): static
-    {
+    public function reverseSorting(): static {
         $this->reverseSorting = true;
 
         return $this;
@@ -552,8 +544,7 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * @see SortableIterator
      */
-    public function sortByChangedTime(): static
-    {
+    public function sortByChangedTime(): static {
         $this->sort = SortableIterator::SORT_BY_CHANGED_TIME;
 
         return $this;
@@ -570,8 +561,7 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * @see SortableIterator
      */
-    public function sortByModifiedTime(): static
-    {
+    public function sortByModifiedTime(): static {
         $this->sort = SortableIterator::SORT_BY_MODIFIED_TIME;
 
         return $this;
@@ -607,8 +597,7 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * @return $this
      */
-    public function followLinks(): static
-    {
+    public function followLinks(): static {
         $this->followLinks = true;
 
         return $this;
@@ -723,8 +712,7 @@ class Finder implements \IteratorAggregate, \Countable
     /**
      * Check if any results were found.
      */
-    public function hasResults(): bool
-    {
+    public function hasResults(): bool {
         foreach ($this->getIterator() as $_) {
             return true;
         }
@@ -735,8 +723,7 @@ class Finder implements \IteratorAggregate, \Countable
     /**
      * Counts all the results collected by the iterators.
      */
-    public function count(): int
-    {
+    public function count(): int {
         return iterator_count($this->getIterator());
     }
 

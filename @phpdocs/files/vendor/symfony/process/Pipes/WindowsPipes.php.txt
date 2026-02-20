@@ -88,8 +88,7 @@ class WindowsPipes extends AbstractPipes
         parent::__construct($input);
     }
 
-    public function __serialize(): array
-    {
+    public function __serialize(): array {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 
@@ -103,8 +102,7 @@ class WindowsPipes extends AbstractPipes
         $this->close();
     }
 
-    public function getDescriptors(): array
-    {
+    public function getDescriptors(): array {
         if (!$this->haveReadSupport) {
             $nullstream = fopen('NUL', 'c');
 
@@ -125,8 +123,7 @@ class WindowsPipes extends AbstractPipes
         ];
     }
 
-    public function getFiles(): array
-    {
+    public function getFiles(): array {
         return $this->files;
     }
 
@@ -162,18 +159,15 @@ class WindowsPipes extends AbstractPipes
         return $read;
     }
 
-    public function haveReadSupport(): bool
-    {
+    public function haveReadSupport(): bool {
         return $this->haveReadSupport;
     }
 
-    public function areOpen(): bool
-    {
+    public function areOpen(): bool {
         return $this->pipes && $this->fileHandles;
     }
 
-    public function close(): void
-    {
+    public function close(): void {
         parent::close();
         foreach ($this->fileHandles as $type => $handle) {
             ftruncate($handle, 0);

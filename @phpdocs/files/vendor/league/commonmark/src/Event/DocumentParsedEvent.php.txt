@@ -28,8 +28,7 @@ final class DocumentParsedEvent extends AbstractEvent
         $this->document = $document;
     }
 
-    public function getDocument(): Document
-    {
+    public function getDocument(): Document {
         return $this->document;
     }
 }

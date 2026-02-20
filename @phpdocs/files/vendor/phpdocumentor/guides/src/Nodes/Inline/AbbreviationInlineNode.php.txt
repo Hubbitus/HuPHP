@@ -22,13 +22,11 @@ final class AbbreviationInlineNode extends GenericTextRoleInlineNode
         parent::__construct(self::TYPE, $term);
     }
 
-    public function getTerm(): string
-    {
+    public function getTerm(): string {
         return $this->term;
     }
 
-    public function getDefinition(): string
-    {
+    public function getDefinition(): string {
         return $this->definition;
     }
 }

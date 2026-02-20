@@ -92,8 +92,7 @@ class OutputFormatter implements WrappableOutputFormatterInterface
         $this->decorated = $decorated;
     }
 
-    public function isDecorated(): bool
-    {
+    public function isDecorated(): bool {
         return $this->decorated;
     }
 
@@ -177,8 +176,7 @@ class OutputFormatter implements WrappableOutputFormatterInterface
         return strtr($output, ["\0" => '\\', '\\<' => '<', '\\>' => '>']);
     }
 
-    public function getStyleStack(): OutputFormatterStyleStack
-    {
+    public function getStyleStack(): OutputFormatterStyleStack {
         return $this->styleStack;
     }
 

@@ -93,13 +93,11 @@ final class Stream implements SeekableIterator
         unset($this->stream);
     }
 
-    public function __clone(): void
-    {
+    public function __clone(): void {
         throw UnavailableStream::dueToForbiddenCloning(self::class);
     }
 
-    public function __debugInfo(): array
-    {
+    public function __debugInfo(): array {
         return stream_get_meta_data($this->stream) + [
             'delimiter' => $this->delimiter,
             'enclosure' => $this->enclosure,
@@ -111,8 +109,7 @@ final class Stream implements SeekableIterator
     /**
      * Returns the actual mode used to open the resource stream.
      */
-    public function getMode(): string
-    {
+    public function getMode(): string {
         return stream_get_meta_data($this->stream)['mode'];
     }
 
@@ -163,8 +160,7 @@ final class Stream implements SeekableIterator
      *
      * @see https://www.php.net/manual/en/splfileinfo.getpathname.php
      */
-    public function getPathname(): string
-    {
+    public function getPathname(): string {
         return stream_get_meta_data($this->stream)['uri'];
     }
 
@@ -236,8 +232,7 @@ final class Stream implements SeekableIterator
      *
      * @return array<string>
      */
-    public function getCsvControl(): array
-    {
+    public function getCsvControl(): array {
         return [$this->delimiter, $this->enclosure, $this->escape];
     }
 
@@ -272,8 +267,7 @@ final class Stream implements SeekableIterator
      *
      * @see https://www.php.net/manual/en/splfileobject.key.php
      */
-    public function key(): int
-    {
+    public function key(): int {
         return $this->offset;
     }
 
@@ -282,8 +276,7 @@ final class Stream implements SeekableIterator
      *
      * @see https://www.php.net/manual/en/splfileobject.next.php
      */
-    public function next(): void
-    {
+    public function next(): void {
         $this->value = false;
         $this->offset++;
     }
@@ -296,8 +289,7 @@ final class Stream implements SeekableIterator
      * @throws Exception if the stream resource is not seekable
      * @throws RuntimeException if rewinding the stream fails.
      */
-    public function rewind(): void
-    {
+    public function rewind(): void {
         $this->is_seekable || throw UnavailableFeature::dueToMissingStreamSeekability();
         false !== rewind($this->stream) || throw new RuntimeException('Unable to rewind the document.');
 
@@ -313,8 +305,7 @@ final class Stream implements SeekableIterator
      *
      * @see https://www.php.net/manual/en/splfileobject.valid.php
      */
-    public function valid(): bool
-    {
+    public function valid(): bool {
         return match (true) {
             SplFileObject::READ_AHEAD === ($this->flags & SplFileObject::READ_AHEAD) => false !== $this->current(),
             default => !feof($this->stream),
@@ -326,8 +317,7 @@ final class Stream implements SeekableIterator
      *
      * @see https://www.php.net/manual/en/splfileobject.current.php
      */
-    public function current(): mixed
-    {
+    public function current(): mixed {
         if (false !== $this->value) {
             return $this->value;
         }
@@ -366,8 +356,7 @@ final class Stream implements SeekableIterator
      *
      * @see https://www.php.net/manual/en/splfileobject.getmaxlinelen.php
      */
-    public function getMaxLineLen(): int
-    {
+    public function getMaxLineLen(): int {
         return $this->maxLength;
     }
 
@@ -376,8 +365,7 @@ final class Stream implements SeekableIterator
      *
      * @see https://www.php.net/manual/en/splfileobject.eof.php
      */
-    public function eof(): bool
-    {
+    public function eof(): bool {
         return feof($this->stream);
     }
 
@@ -500,8 +488,7 @@ final class Stream implements SeekableIterator
      *
      * @see https://www.php.net/manual/en/splfileobject.fflush.php
      */
-    public function fflush(): bool
-    {
+    public function fflush(): bool {
         return fflush($this->stream);
     }
 

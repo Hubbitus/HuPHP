@@ -32,23 +32,19 @@ final class Groups
         $this->exclude = $exclude;
     }
 
-    public function hasInclude(): bool
-    {
+    public function hasInclude(): bool {
         return !$this->include->isEmpty();
     }
 
-    public function include(): GroupCollection
-    {
+    public function include(): GroupCollection {
         return $this->include;
     }
 
-    public function hasExclude(): bool
-    {
+    public function hasExclude(): bool {
         return !$this->exclude->isEmpty();
     }
 
-    public function exclude(): GroupCollection
-    {
+    public function exclude(): GroupCollection {
         return $this->exclude;
     }
 }

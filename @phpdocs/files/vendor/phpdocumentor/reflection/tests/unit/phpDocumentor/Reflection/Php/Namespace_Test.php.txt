@@ -38,21 +38,18 @@ class Namespace_Test extends TestCase
     /**
      * Creates a new (emoty) fixture object.
      */
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->fqsen    = new Fqsen('\MySpace');
         $this->docBlock = new DocBlock('');
 
         $this->fixture = new Namespace_($this->fqsen, $this->docBlock);
     }
 
-    private function getFixture(): MetaDataContainerInterface
-    {
+    private function getFixture(): MetaDataContainerInterface {
         return $this->fixture;
     }
 
-    public function testAddAndGetClasses(): void
-    {
+    public function testAddAndGetClasses(): void {
         $this->assertEmpty($this->fixture->getClasses());
 
         $class = new Fqsen('\MySpace\MyClass');
@@ -61,8 +58,7 @@ class Namespace_Test extends TestCase
         $this->assertEquals(['\MySpace\MyClass' => $class], $this->fixture->getClasses());
     }
 
-    public function testAddAndGetConstants(): void
-    {
+    public function testAddAndGetConstants(): void {
         $this->assertEmpty($this->fixture->getConstants());
 
         $constant = new Fqsen('\MySpace::MY_CONSTANT');
@@ -71,8 +67,7 @@ class Namespace_Test extends TestCase
         $this->assertEquals(['\MySpace::MY_CONSTANT' => $constant], $this->fixture->getConstants());
     }
 
-    public function testAddAndGetFunctions(): void
-    {
+    public function testAddAndGetFunctions(): void {
         $this->assertEmpty($this->fixture->getFunctions());
 
         $function = new Fqsen('\MySpace\MyFunction()');
@@ -81,8 +76,7 @@ class Namespace_Test extends TestCase
         $this->assertEquals(['\MySpace\MyFunction()' => $function], $this->fixture->getFunctions());
     }
 
-    public function testAddAndGetInterfaces(): void
-    {
+    public function testAddAndGetInterfaces(): void {
         $this->assertEmpty($this->fixture->getInterfaces());
 
         $interface = new Fqsen('\MySpace\MyInterface');
@@ -91,8 +85,7 @@ class Namespace_Test extends TestCase
         $this->assertEquals(['\MySpace\MyInterface' => $interface], $this->fixture->getInterfaces());
     }
 
-    public function testAddAndGetTraits(): void
-    {
+    public function testAddAndGetTraits(): void {
         $this->assertEmpty($this->fixture->getTraits());
 
         $trait = new Fqsen('\MySpace\MyTrait');
@@ -101,8 +94,7 @@ class Namespace_Test extends TestCase
         $this->assertEquals(['\MySpace\MyTrait' => $trait], $this->fixture->getTraits());
     }
 
-    public function testGetFqsen(): void
-    {
+    public function testGetFqsen(): void {
         $this->assertSame($this->fqsen, $this->fixture->getFqsen());
         $this->assertEquals($this->fqsen->getName(), $this->fixture->getName());
     }

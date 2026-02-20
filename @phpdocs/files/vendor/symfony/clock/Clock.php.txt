@@ -34,8 +34,7 @@ final class Clock implements ClockInterface
      * Note that you should prefer injecting a ClockInterface or using
      * ClockAwareTrait when possible instead of using this method.
      */
-    public static function get(): ClockInterface
-    {
+    public static function get(): ClockInterface {
         return self::$globalClock ??= new NativeClock();
     }
 
@@ -44,8 +43,7 @@ final class Clock implements ClockInterface
         self::$globalClock = $clock instanceof ClockInterface ? $clock : new self($clock);
     }
 
-    public function now(): DatePoint
-    {
+    public function now(): DatePoint {
         $now = ($this->clock ?? self::get())->now();
 
         if (!$now instanceof DatePoint) {

@@ -37,14 +37,12 @@ final class MathDirective extends BaseDirective
     ) {
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'math';
     }
 
     /** {@inheritDoc} */
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return [];
     }
 

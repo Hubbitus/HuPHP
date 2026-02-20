@@ -65,8 +65,7 @@ final class VariableInlineNodeTransformer implements NodeTransformer
         return $node instanceof VariableInlineNode;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         // Late, other replacements should already have happened
         return 30_000;
     }

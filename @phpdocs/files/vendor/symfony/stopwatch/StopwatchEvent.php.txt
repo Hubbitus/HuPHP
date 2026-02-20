@@ -51,16 +51,14 @@ class StopwatchEvent
     /**
      * Gets the category.
      */
-    public function getCategory(): string
-    {
+    public function getCategory(): string {
         return $this->category;
     }
 
     /**
      * Gets the origin in milliseconds.
      */
-    public function getOrigin(): float
-    {
+    public function getOrigin(): float {
         return $this->origin;
     }
 
@@ -69,8 +67,7 @@ class StopwatchEvent
      *
      * @return $this
      */
-    public function start(): static
-    {
+    public function start(): static {
         $this->started[] = $this->getNow();
 
         return $this;
@@ -83,8 +80,7 @@ class StopwatchEvent
      *
      * @throws \LogicException When stop() is called without a matching call to start()
      */
-    public function stop(): static
-    {
+    public function stop(): static {
         if (!\count($this->started)) {
             throw new \LogicException('stop() called but start() has not been called before.');
         }
@@ -97,8 +93,7 @@ class StopwatchEvent
     /**
      * Checks if the event was started.
      */
-    public function isStarted(): bool
-    {
+    public function isStarted(): bool {
         return !empty($this->started);
     }
 
@@ -107,8 +102,7 @@ class StopwatchEvent
      *
      * @return $this
      */
-    public function lap(): static
-    {
+    public function lap(): static {
         return $this->stop()->start();
     }
 
@@ -129,8 +123,7 @@ class StopwatchEvent
      *
      * @return StopwatchPeriod[]
      */
-    public function getPeriods(): array
-    {
+    public function getPeriods(): array {
         return $this->periods;
     }
 
@@ -183,8 +176,7 @@ class StopwatchEvent
     /**
      * Gets the max memory usage of all periods in bytes.
      */
-    public function getMemory(): int
-    {
+    public function getMemory(): int {
         $memory = 0;
         foreach ($this->periods as $period) {
             if ($period->getMemory() > $memory) {
@@ -198,8 +190,7 @@ class StopwatchEvent
     /**
      * Return the current time relative to origin in milliseconds.
      */
-    protected function getNow(): float
-    {
+    protected function getNow(): float {
         return $this->formatTime(microtime(true) * 1000 - $this->origin);
     }
 
@@ -214,13 +205,11 @@ class StopwatchEvent
     /**
      * Gets the event name.
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return \sprintf('%s/%s: %.2F MiB - %d ms', $this->getCategory(), $this->getName(), $this->getMemory() / 1024 / 1024, $this->getDuration());
     }
 }

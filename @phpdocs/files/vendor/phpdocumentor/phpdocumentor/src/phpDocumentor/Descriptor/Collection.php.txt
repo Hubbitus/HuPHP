@@ -127,8 +127,7 @@ class Collection implements Countable, IteratorAggregate, ArrayAccess
      *
      * @return array<T>
      */
-    public function getAll(): array
-    {
+    public function getAll(): array {
         return $this->items;
     }
 
@@ -138,8 +137,7 @@ class Collection implements Countable, IteratorAggregate, ArrayAccess
      * @return ArrayIterator<array-key, T>
      */
     #[ReturnTypeWillChange]
-    public function getIterator(): ArrayIterator
-    {
+    public function getIterator(): ArrayIterator {
         return new ArrayIterator($this->items);
     }
 
@@ -147,16 +145,14 @@ class Collection implements Countable, IteratorAggregate, ArrayAccess
      * Returns a count of the number of elements in this collection.
      */
     #[ReturnTypeWillChange]
-    public function count(): int
-    {
+    public function count(): int {
         return count($this->items);
     }
 
     /**
      * Empties the collection.
      */
-    public function clear(): void
-    {
+    public function clear(): void {
         $this->items = [];
     }
 

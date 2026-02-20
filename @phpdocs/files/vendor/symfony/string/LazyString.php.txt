@@ -79,8 +79,7 @@ class LazyString implements \Stringable, \JsonSerializable
         return $value;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         if (\is_string($this->value)) {
             return $this->value;
         }
@@ -101,15 +100,13 @@ class LazyString implements \Stringable, \JsonSerializable
         }
     }
 
-    public function __sleep(): array
-    {
+    public function __sleep(): array {
         $this->__toString();
 
         return ['value'];
     }
 
-    public function jsonSerialize(): string
-    {
+    public function jsonSerialize(): string {
         return $this->__toString();
     }
 

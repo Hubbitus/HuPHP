@@ -61,8 +61,7 @@ final class SandboxTokenParser extends AbstractTokenParser
         return $token->test('endsandbox');
     }
 
-    public function getTag(): string
-    {
+    public function getTag(): string {
         return 'sandbox';
     }
 }

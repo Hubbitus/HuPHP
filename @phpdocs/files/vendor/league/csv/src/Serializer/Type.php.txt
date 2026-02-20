@@ -56,8 +56,7 @@ enum Type: string
         return in_array($this, $types, true);
     }
 
-    public function filterFlag(): int
-    {
+    public function filterFlag(): int {
         return match ($this) {
             self::Bool,
             self::True,

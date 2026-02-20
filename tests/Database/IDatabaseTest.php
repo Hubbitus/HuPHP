@@ -14,20 +14,17 @@ use PHPUnit\Framework\TestCase;
  */
 class IDatabaseTest extends TestCase
 {
-    public function testInterfaceExists(): void
-    {
+    public function testInterfaceExists(): void {
         $this->assertTrue(interface_exists('Hubbitus\\HuPHP\\Database\\IDatabase'));
     }
 
-    public function testDatabaseImplementsInterface(): void
-    {
+    public function testDatabaseImplementsInterface(): void {
         $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\Database');
 
         $this->assertTrue($reflection->implementsInterface('Hubbitus\\HuPHP\\Database\\IDatabase'));
     }
 
-    public function testInterfaceHasRequiredMethods(): void
-    {
+    public function testInterfaceHasRequiredMethods(): void {
         $databaseMethods = [
             'db_connect',
             'query',
@@ -46,8 +43,7 @@ class IDatabaseTest extends TestCase
         }
     }
 
-    public function testInterfaceMethodSignatures(): void
-    {
+    public function testInterfaceMethodSignatures(): void {
         $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\Database');
 
         // Test db_connect
@@ -110,22 +106,19 @@ class IDatabaseTest extends TestCase
         $this->assertEquals(0, $method->getNumberOfParameters());
     }
 
-    public function testInterfaceConstants(): void
-    {
+    public function testInterfaceConstants(): void {
         // Test that the interface has no constants (should be empty)
         $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\IDatabase');
         $this->assertEmpty($reflection->getConstants());
     }
 
-    public function testInterfaceInheritance(): void
-    {
+    public function testInterfaceInheritance(): void {
         // Test that IDatabase doesn't extend any other interfaces
         $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\IDatabase');
         $this->assertEmpty($reflection->getInterfaces());
     }
 
-    public function testInterfacePurpose(): void
-    {
+    public function testInterfacePurpose(): void {
         // Test that the interface is properly documented
         $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\IDatabase');
         $docComment = $reflection->getDocComment();
@@ -134,8 +127,7 @@ class IDatabaseTest extends TestCase
         $this->assertStringContainsString('Database interface for database exceptions', $docComment);
     }
 
-    public function testInterfaceImplementsAllDatabaseMethods(): void
-    {
+    public function testInterfaceImplementsAllDatabaseMethods(): void {
         // Get all methods from the abstract Database class
         $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\Database');
         $methods = $reflection->getMethods(\ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_PROTECTED);
@@ -160,15 +152,13 @@ class IDatabaseTest extends TestCase
         }
     }
 
-    public function testInterfaceTypeHinting(): void
-    {
+    public function testInterfaceTypeHinting(): void {
         // Test that the Database class type hints the interface
         $reflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\Database');
         $this->assertTrue($reflection->isSubclassOf('Hubbitus\\HuPHP\\Database\IDatabase'));
     }
 
-    public function testInterfaceCoverage(): void
-    {
+    public function testInterfaceCoverage(): void {
         // Test that the interface is properly covered by the Database implementation
         $databaseReflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\Database');
         $interfaceReflection = new \ReflectionClass('Hubbitus\\HuPHP\\Database\\IDatabase');

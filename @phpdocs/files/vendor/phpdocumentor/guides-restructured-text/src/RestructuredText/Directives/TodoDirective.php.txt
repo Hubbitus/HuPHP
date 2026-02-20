@@ -21,8 +21,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
  */
 final class TodoDirective extends ActionDirective
 {
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'todo';
     }
 

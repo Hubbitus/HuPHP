@@ -46,28 +46,23 @@ final class Extension
     /**
      * @psalm-return class-string
      */
-    public function className(): string
-    {
+    public function className(): string {
         return $this->className;
     }
 
-    public function hasSourceFile(): bool
-    {
+    public function hasSourceFile(): bool {
         return $this->sourceFile !== '';
     }
 
-    public function sourceFile(): string
-    {
+    public function sourceFile(): string {
         return $this->sourceFile;
     }
 
-    public function hasArguments(): bool
-    {
+    public function hasArguments(): bool {
         return !empty($this->arguments);
     }
 
-    public function arguments(): array
-    {
+    public function arguments(): array {
         return $this->arguments;
     }
 }

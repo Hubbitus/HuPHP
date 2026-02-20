@@ -41,13 +41,11 @@ final class ExtensionCollection implements IteratorAggregate
     /**
      * @return Extension[]
      */
-    public function asArray(): array
-    {
+    public function asArray(): array {
         return $this->extensions;
     }
 
-    public function getIterator(): ExtensionCollectionIterator
-    {
+    public function getIterator(): ExtensionCollectionIterator {
         return new ExtensionCollectionIterator($this);
     }
 }

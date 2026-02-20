@@ -48,8 +48,7 @@ final class PropertyIterator implements Iterator
     /**
      * returns true when the current property is public.
      */
-    public function isPublic(): bool
-    {
+    public function isPublic(): bool {
         return $this->property->isPublic();
     }
 
@@ -58,8 +57,7 @@ final class PropertyIterator implements Iterator
      *
      * This method will return the same value as {@see self::isPublic()} when your phpparser version is < 5.2
      */
-    public function isPublicSet(): bool
-    {
+    public function isPublicSet(): bool {
         if ($this->isAsymmetric() === false) {
             return $this->isPublic();
         }
@@ -70,8 +68,7 @@ final class PropertyIterator implements Iterator
     /**
      * returns true when the current property is protected.
      */
-    public function isProtected(): bool
-    {
+    public function isProtected(): bool {
         return $this->property->isProtected();
     }
 
@@ -80,8 +77,7 @@ final class PropertyIterator implements Iterator
      *
      * This method will return the same value as {@see self::isProtected()} when your phpparser version is < 5.2
      */
-    public function isProtectedSet(): bool
-    {
+    public function isProtectedSet(): bool {
         if ($this->isAsymmetric() === false) {
             return $this->isProtected();
         }
@@ -92,8 +88,7 @@ final class PropertyIterator implements Iterator
     /**
      * returns true when the current property is private.
      */
-    public function isPrivate(): bool
-    {
+    public function isPrivate(): bool {
         return $this->property->isPrivate();
     }
 
@@ -102,8 +97,7 @@ final class PropertyIterator implements Iterator
      *
      * This method will return the same value as {@see self::isPrivate()} when your phpparser version is < 5.2
      */
-    public function isPrivateSet(): bool
-    {
+    public function isPrivateSet(): bool {
         if ($this->isAsymmetric() === false) {
             return $this->isPrivate();
         }
@@ -116,8 +110,7 @@ final class PropertyIterator implements Iterator
      *
      * This method will always return false when your phpparser version is < 5.2
      */
-    public function isAsymmetric(): bool
-    {
+    public function isAsymmetric(): bool {
         if (method_exists($this->property, 'isPrivateSet') === false) {
             return false;
         }
@@ -128,32 +121,28 @@ final class PropertyIterator implements Iterator
     /**
      * returns true when the current property is static.
      */
-    public function isStatic(): bool
-    {
+    public function isStatic(): bool {
         return $this->property->isStatic();
     }
 
     /**
      * returns true when the current property is readonly.
      */
-    public function isReadOnly(): bool
-    {
+    public function isReadOnly(): bool {
         return $this->property->isReadOnly();
     }
 
     /**
      * Gets line the node started in.
      */
-    public function getLine(): int
-    {
+    public function getLine(): int {
         return $this->property->getLine();
     }
 
     /**
      * Gets line the node started in.
      */
-    public function getEndLine(): int
-    {
+    public function getEndLine(): int {
         return $this->property->getEndLine();
     }
 
@@ -183,8 +172,7 @@ final class PropertyIterator implements Iterator
     /**
      * returns the name of the current property.
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return (string) $this->property->props[$this->index]->name;
     }
 
@@ -199,14 +187,12 @@ final class PropertyIterator implements Iterator
     /**
      * Returns the fqsen of the current property.
      */
-    public function getFqsen(): Fqsen
-    {
+    public function getFqsen(): Fqsen {
         return $this->property->props[$this->index]->getAttribute('fqsen');
     }
 
     /** @return PropertyHook[] */
-    public function getHooks(): array
-    {
+    public function getHooks(): array {
         if (property_exists($this->property, 'hooks') === false) {
             return [];
         }
@@ -216,15 +202,13 @@ final class PropertyIterator implements Iterator
 
     /** @link http://php.net/manual/en/iterator.current.php */
     #[Override]
-    public function current(): self
-    {
+    public function current(): self {
         return $this;
     }
 
     /** @link http://php.net/manual/en/iterator.next.php */
     #[Override]
-    public function next(): void
-    {
+    public function next(): void {
         ++$this->index;
     }
 
@@ -237,15 +221,13 @@ final class PropertyIterator implements Iterator
 
     /** @link http://php.net/manual/en/iterator.valid.php */
     #[Override]
-    public function valid(): bool
-    {
+    public function valid(): bool {
         return isset($this->property->props[$this->index]);
     }
 
     /** @link http://php.net/manual/en/iterator.rewind.php */
     #[Override]
-    public function rewind(): void
-    {
+    public function rewind(): void {
         $this->index = 0;
     }
 }

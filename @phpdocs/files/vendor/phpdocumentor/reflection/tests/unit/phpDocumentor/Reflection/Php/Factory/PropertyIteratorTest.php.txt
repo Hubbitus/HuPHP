@@ -24,8 +24,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(PropertyIterator::class)]
 class PropertyIteratorTest extends MockeryTestCase
 {
-    public function testIterateProps(): void
-    {
+    public function testIterateProps(): void {
         $prop1 = new PropertyProperty('prop1');
         $prop2 = new PropertyProperty('prop2');
 
@@ -38,8 +37,7 @@ class PropertyIteratorTest extends MockeryTestCase
         }
     }
 
-    public function testKey(): void
-    {
+    public function testKey(): void {
         $propertyMock = m::mock(PropertyNode::class);
 
         $fixture = new PropertyIterator($propertyMock);
@@ -49,8 +47,7 @@ class PropertyIteratorTest extends MockeryTestCase
         $this->assertEquals(1, $fixture->key());
     }
 
-    public function testProxyMethods(): void
-    {
+    public function testProxyMethods(): void {
         $propertyMock = m::mock(PropertyNode::class);
         $propertyMock->shouldReceive('isPublic')->once()->andReturn(true);
         $propertyMock->shouldReceive('isProtected')->once()->andReturn(true);
@@ -69,8 +66,7 @@ class PropertyIteratorTest extends MockeryTestCase
         $this->assertEquals(10, $fixture->getLine());
     }
 
-    public function testGetDefault(): void
-    {
+    public function testGetDefault(): void {
         $prop = m::mock(PropertyProperty::class);
         $prop->default = new String_('myDefault');
         $property = new PropertyNode(1, [$prop]);
@@ -80,8 +76,7 @@ class PropertyIteratorTest extends MockeryTestCase
         $this->assertEquals(new String_('myDefault'), $fixture->getDefault());
     }
 
-    public function testGetDocCommentPropFirst(): void
-    {
+    public function testGetDocCommentPropFirst(): void {
         $prop = m::mock(PropertyProperty::class);
         $propertyNode = m::mock(PropertyNode::class);
         $propertyNode->props = [$prop];
@@ -94,8 +89,7 @@ class PropertyIteratorTest extends MockeryTestCase
         $this->assertEquals('test', $fixture->getDocComment()->getText());
     }
 
-    public function testGetDocComment(): void
-    {
+    public function testGetDocComment(): void {
         $prop = m::mock(PropertyProperty::class);
         $propertyNode = m::mock(PropertyNode::class);
         $propertyNode->props = [$prop];

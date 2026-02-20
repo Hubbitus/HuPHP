@@ -42,41 +42,34 @@ final class AttributeSetterMethodReflection implements MethodReflection
         $this->attributeType   = $attributeType;
     }
 
-    public function getDeclaringClass(): ClassReflection
-    {
+    public function getDeclaringClass(): ClassReflection {
         return $this->classReflection;
     }
 
-    public function isStatic(): bool
-    {
+    public function isStatic(): bool {
         return false;
     }
 
-    public function isPrivate(): bool
-    {
+    public function isPrivate(): bool {
         return false;
     }
 
-    public function isPublic(): bool
-    {
+    public function isPublic(): bool {
         return true;
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function getPrototype(): ClassMemberReflection
-    {
+    public function getPrototype(): ClassMemberReflection {
         return $this;
     }
 
     /**
      * @return ParametersAcceptor[]
      */
-    public function getVariants(): array
-    {
+    public function getVariants(): array {
         return [
             new FunctionVariant(
                 TemplateTypeMap::createEmpty(),
@@ -95,8 +88,7 @@ final class AttributeSetterMethodReflection implements MethodReflection
         return null;
     }
 
-    public function isDeprecated(): TrinaryLogic
-    {
+    public function isDeprecated(): TrinaryLogic {
         return TrinaryLogic::createNo();
     }
 
@@ -105,13 +97,11 @@ final class AttributeSetterMethodReflection implements MethodReflection
         return null;
     }
 
-    public function isFinal(): TrinaryLogic
-    {
+    public function isFinal(): TrinaryLogic {
         return TrinaryLogic::createNo();
     }
 
-    public function isInternal(): TrinaryLogic
-    {
+    public function isInternal(): TrinaryLogic {
         return TrinaryLogic::createNo();
     }
 
@@ -120,8 +110,7 @@ final class AttributeSetterMethodReflection implements MethodReflection
         return new ObjectType(AttributeNotFound::class);
     }
 
-    public function hasSideEffects(): TrinaryLogic
-    {
+    public function hasSideEffects(): TrinaryLogic {
         return TrinaryLogic::createYes();
     }
 }

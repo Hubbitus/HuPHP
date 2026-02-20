@@ -42,8 +42,7 @@ class BooleanNode extends ScalarNode
         return false;
     }
 
-    protected function getValidPlaceholderTypes(): array
-    {
+    protected function getValidPlaceholderTypes(): array {
         return ['bool'];
     }
 }

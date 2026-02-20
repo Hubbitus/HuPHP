@@ -116,18 +116,15 @@ class CollectionType extends Type implements WrappingTypeInterface
         return \count($normalizedTypes) > 1 ? self::union(...$normalizedTypes) : $normalizedTypes[0];
     }
 
-    public function getWrappedType(): Type
-    {
+    public function getWrappedType(): Type {
         return $this->type;
     }
 
-    public function isList(): bool
-    {
+    public function isList(): bool {
         return $this->isList;
     }
 
-    public function getCollectionKeyType(): Type
-    {
+    public function getCollectionKeyType(): Type {
         $defaultCollectionKeyType = self::arrayKey();
 
         if ($this->type instanceof GenericType) {
@@ -141,8 +138,7 @@ class CollectionType extends Type implements WrappingTypeInterface
         return $defaultCollectionKeyType;
     }
 
-    public function getCollectionValueType(): Type
-    {
+    public function getCollectionValueType(): Type {
         $defaultCollectionValueType = self::mixed();
 
         if ($this->type instanceof GenericType) {
@@ -186,8 +182,7 @@ class CollectionType extends Type implements WrappingTypeInterface
         return true;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         if ($this->isList && $this->type->isIdentifiedBy(TypeIdentifier::ARRAY)) {
             return 'list<'.$this->getCollectionValueType().'>';
         }

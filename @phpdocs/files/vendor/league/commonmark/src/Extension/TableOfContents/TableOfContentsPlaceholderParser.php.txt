@@ -34,8 +34,7 @@ final class TableOfContentsPlaceholderParser extends AbstractBlockContinueParser
         $this->block = new TableOfContentsPlaceholder();
     }
 
-    public function getBlock(): TableOfContentsPlaceholder
-    {
+    public function getBlock(): TableOfContentsPlaceholder {
         return $this->block;
     }
 
@@ -44,8 +43,7 @@ final class TableOfContentsPlaceholderParser extends AbstractBlockContinueParser
         return BlockContinue::none();
     }
 
-    public static function blockStartParser(): BlockStartParserInterface
-    {
+    public static function blockStartParser(): BlockStartParserInterface {
         return new class () implements BlockStartParserInterface, ConfigurationAwareInterface {
             /** @psalm-readonly-allow-private-mutation */
             private ConfigurationInterface $config;

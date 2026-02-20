@@ -127,8 +127,7 @@ class HtmlSanitizerConfig
      * All scripts will be removed but the output may still contain other dangerous
      * behaviors like CSS injection (click-jacking), CSS expressions, ...
      */
-    public function allowStaticElements(): static
-    {
+    public function allowStaticElements(): static {
         $elements = array_merge(
             array_keys(W3CReference::HEAD_ELEMENTS),
             array_keys(W3CReference::BODY_ELEMENTS)
@@ -147,8 +146,7 @@ class HtmlSanitizerConfig
      *
      * All scripts will be removed, as well as other dangerous behaviors like CSS injection.
      */
-    public function allowSafeElements(): static
-    {
+    public function allowSafeElements(): static {
         $attributes = [];
         foreach (W3CReference::ATTRIBUTES as $attribute => $isSafe) {
             if ($isSafe) {
@@ -445,53 +443,46 @@ class HtmlSanitizerConfig
         return $clone;
     }
 
-    public function getMaxInputLength(): int
-    {
+    public function getMaxInputLength(): int {
         return $this->maxInputLength;
     }
 
-    public function getDefaultAction(): HtmlSanitizerAction
-    {
+    public function getDefaultAction(): HtmlSanitizerAction {
         return $this->defaultAction;
     }
 
     /**
      * @return array<string, array<string, true>>
      */
-    public function getAllowedElements(): array
-    {
+    public function getAllowedElements(): array {
         return $this->allowedElements;
     }
 
     /**
      * @return array<string, true>
      */
-    public function getBlockedElements(): array
-    {
+    public function getBlockedElements(): array {
         return $this->blockedElements;
     }
 
     /**
      * @return array<string, true>
      */
-    public function getDroppedElements(): array
-    {
+    public function getDroppedElements(): array {
         return $this->droppedElements;
     }
 
     /**
      * @return array<string, array<string, string>>
      */
-    public function getForcedAttributes(): array
-    {
+    public function getForcedAttributes(): array {
         return $this->forcedAttributes;
     }
 
     /**
      * @return list<string>
      */
-    public function getAllowedLinkSchemes(): array
-    {
+    public function getAllowedLinkSchemes(): array {
         return $this->allowedLinkSchemes;
     }
 
@@ -503,16 +494,14 @@ class HtmlSanitizerConfig
         return $this->allowedLinkHosts;
     }
 
-    public function getAllowRelativeLinks(): bool
-    {
+    public function getAllowRelativeLinks(): bool {
         return $this->allowRelativeLinks;
     }
 
     /**
      * @return list<string>
      */
-    public function getAllowedMediaSchemes(): array
-    {
+    public function getAllowedMediaSchemes(): array {
         return $this->allowedMediaSchemes;
     }
 
@@ -524,21 +513,18 @@ class HtmlSanitizerConfig
         return $this->allowedMediaHosts;
     }
 
-    public function getAllowRelativeMedias(): bool
-    {
+    public function getAllowRelativeMedias(): bool {
         return $this->allowRelativeMedias;
     }
 
-    public function getForceHttpsUrls(): bool
-    {
+    public function getForceHttpsUrls(): bool {
         return $this->forceHttpsUrls;
     }
 
     /**
      * @return list<AttributeSanitizerInterface>
      */
-    public function getAttributeSanitizers(): array
-    {
+    public function getAttributeSanitizers(): array {
         return $this->attributeSanitizers;
     }
 }

@@ -73,8 +73,7 @@ final class ForTokenParser extends AbstractTokenParser
         return $token->test('endfor');
     }
 
-    public function getTag(): string
-    {
+    public function getTag(): string {
         return 'for';
     }
 }

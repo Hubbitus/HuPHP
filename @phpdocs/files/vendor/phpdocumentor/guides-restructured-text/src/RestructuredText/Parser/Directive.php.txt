@@ -35,24 +35,20 @@ final class Directive
     {
     }
 
-    public function getVariable(): string
-    {
+    public function getVariable(): string {
         return $this->variable;
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function getData(): string
-    {
+    public function getData(): string {
         return $this->data;
     }
 
     /** @return DirectiveOption[] */
-    public function getOptions(): array
-    {
+    public function getOptions(): array {
         return $this->options;
     }
 
@@ -60,7 +56,7 @@ final class Directive
     {
         $this->options[$value->getName()] = $value;
     }
-    
+
     public function hasOption(string $name): bool
     {
         return isset($this->options[$name]);

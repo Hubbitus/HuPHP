@@ -47,8 +47,7 @@ class FactoryCommandLoader implements CommandLoaderInterface
         return $factory();
     }
 
-    public function getNames(): array
-    {
+    public function getNames(): array {
         return array_keys($this->factories);
     }
 }

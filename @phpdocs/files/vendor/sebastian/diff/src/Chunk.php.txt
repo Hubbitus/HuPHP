@@ -45,31 +45,26 @@ final class Chunk
         $this->lines      = $lines;
     }
 
-    public function getStart(): int
-    {
+    public function getStart(): int {
         return $this->start;
     }
 
-    public function getStartRange(): int
-    {
+    public function getStartRange(): int {
         return $this->startRange;
     }
 
-    public function getEnd(): int
-    {
+    public function getEnd(): int {
         return $this->end;
     }
 
-    public function getEndRange(): int
-    {
+    public function getEndRange(): int {
         return $this->endRange;
     }
 
     /**
      * @return Line[]
      */
-    public function getLines(): array
-    {
+    public function getLines(): array {
         return $this->lines;
     }
 

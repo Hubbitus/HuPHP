@@ -147,8 +147,7 @@ class Environment
     /**
      * @internal
      */
-    public function useYield(): bool
-    {
+    public function useYield(): bool {
         return $this->useYield;
     }
 
@@ -603,8 +602,7 @@ class Environment
         $this->loader = $loader;
     }
 
-    public function getLoader(): LoaderInterface
-    {
+    public function getLoader(): LoaderInterface {
         return $this->loader;
     }
 
@@ -621,8 +619,7 @@ class Environment
         $this->charset = $charset;
     }
 
-    public function getCharset(): string
-    {
+    public function getCharset(): string {
         return $this->charset;
     }
 
@@ -704,8 +701,7 @@ class Environment
     /**
      * @return ExtensionInterface[] An array of extensions (keys are for internal usage only and should not be relied on)
      */
-    public function getExtensions(): array
-    {
+    public function getExtensions(): array {
         return $this->extensionSet->getExtensions();
     }
 
@@ -722,8 +718,7 @@ class Environment
      *
      * @internal
      */
-    public function getTokenParsers(): array
-    {
+    public function getTokenParsers(): array {
         return $this->extensionSet->getTokenParsers();
     }
 
@@ -756,8 +751,7 @@ class Environment
      *
      * @internal
      */
-    public function getNodeVisitors(): array
-    {
+    public function getNodeVisitors(): array {
         return $this->extensionSet->getNodeVisitors();
     }
 
@@ -796,8 +790,7 @@ class Environment
      *
      * @internal
      */
-    public function getFilters(): array
-    {
+    public function getFilters(): array {
         return $this->extensionSet->getFilters();
     }
 
@@ -814,8 +807,7 @@ class Environment
      *
      * @internal
      */
-    public function getTests(): array
-    {
+    public function getTests(): array {
         return $this->extensionSet->getTests();
     }
 
@@ -870,8 +862,7 @@ class Environment
      *
      * @internal
      */
-    public function getFunctions(): array
-    {
+    public function getFunctions(): array {
         return $this->extensionSet->getFunctions();
     }
 
@@ -901,8 +892,7 @@ class Environment
     /**
      * @return array<string, mixed>
      */
-    public function getGlobals(): array
-    {
+    public function getGlobals(): array {
         if ($this->extensionSet->isInitialized()) {
             if (null === $this->resolvedGlobals) {
                 $this->resolvedGlobals = array_merge($this->extensionSet->getGlobals(), $this->globals);
@@ -914,8 +904,7 @@ class Environment
         return array_merge($this->extensionSet->getGlobals(), $this->globals);
     }
 
-    public function resetGlobals(): void
-    {
+    public function resetGlobals(): void {
         $this->resolvedGlobals = null;
         $this->extensionSet->resetGlobals();
     }
@@ -933,13 +922,11 @@ class Environment
     /**
      * @internal
      */
-    public function getExpressionParsers(): ExpressionParsers
-    {
+    public function getExpressionParsers(): ExpressionParsers {
         return $this->extensionSet->getExpressionParsers();
     }
 
-    private function updateOptionsHash(): void
-    {
+    private function updateOptionsHash(): void {
         $this->optionsHash = implode(':', [
             $this->extensionSet->getSignature(),
             \PHP_MAJOR_VERSION,

@@ -12,8 +12,7 @@ use phpDocumentor\Guides\Nodes\ParagraphNode;
 /** @extends DescriptorNode<ElementInterface> */
 final class ElementSummary extends DescriptorNode
 {
-    public function getChildren(): array
-    {
+    public function getChildren(): array {
         if ($this->descriptor === null) {
             return [];
         }
@@ -25,8 +24,7 @@ final class ElementSummary extends DescriptorNode
         ];
     }
 
-    public function getValue(): array
-    {
+    public function getValue(): array {
         return $this->getChildren();
     }
 }

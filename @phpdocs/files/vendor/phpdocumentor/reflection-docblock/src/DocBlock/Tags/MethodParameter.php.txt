@@ -47,23 +47,19 @@ final class MethodParameter
         $this->defaultValue = $defaultValue;
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function getType(): Type
-    {
+    public function getType(): Type {
         return $this->type;
     }
 
-    public function isReference(): bool
-    {
+    public function isReference(): bool {
         return $this->isReference;
     }
 
-    public function isVariadic(): bool
-    {
+    public function isVariadic(): bool {
         return $this->isVariadic;
     }
 
@@ -76,8 +72,7 @@ final class MethodParameter
         return (new MethodParameterFactory())->format($this->defaultValue);
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->getType() . ' ' .
             ($this->isReference() ? '&' : '') .
             ($this->isVariadic() ? '...' : '') .

@@ -35,18 +35,15 @@ final class CacheItem implements ItemInterface
     protected ?string $poolHash = null;
     protected bool $isTaggable = false;
 
-    public function getKey(): string
-    {
+    public function getKey(): string {
         return $this->key;
     }
 
-    public function get(): mixed
-    {
+    public function get(): mixed {
         return $this->value;
     }
 
-    public function isHit(): bool
-    {
+    public function isHit(): bool {
         return $this->isHit;
     }
 
@@ -116,8 +113,7 @@ final class CacheItem implements ItemInterface
         return $this;
     }
 
-    public function getMetadata(): array
-    {
+    public function getMetadata(): array {
         return $this->metadata;
     }
 
@@ -163,8 +159,7 @@ final class CacheItem implements ItemInterface
         }
     }
 
-    private function pack(): mixed
-    {
+    private function pack(): mixed {
         if (!$m = $this->newMetadata) {
             return $this->value;
         }
@@ -173,8 +168,7 @@ final class CacheItem implements ItemInterface
         return new $valueWrapper($this->value, $m + ['expiry' => $this->expiry]);
     }
 
-    private function unpack(): bool
-    {
+    private function unpack(): bool {
         $v = $this->value;
         $valueWrapper = self::VALUE_WRAPPER;
 

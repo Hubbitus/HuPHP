@@ -160,23 +160,19 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
         return null !== ($uri = Uri::parse($uri, $baseUri)) ? new self($uri) : null;
     }
 
-    public function getScheme(): string
-    {
+    public function getScheme(): string {
         return $this->uri->getScheme() ?? '';
     }
 
-    public function getAuthority(): string
-    {
+    public function getAuthority(): string {
         return $this->uri->getAuthority() ?? '';
     }
 
-    public function getUserInfo(): string
-    {
+    public function getUserInfo(): string {
         return $this->uri->getUserInfo() ?? '';
     }
 
-    public function getHost(): string
-    {
+    public function getHost(): string {
         return $this->uri->getHost() ?? '';
     }
 
@@ -185,8 +181,7 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
         return $this->uri->getPort();
     }
 
-    public function getPath(): string
-    {
+    public function getPath(): string {
         $path = $this->uri->getPath();
 
         return match (true) {
@@ -195,23 +190,19 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
         };
     }
 
-    public function getQuery(): string
-    {
+    public function getQuery(): string {
         return $this->uri->getQuery() ?? '';
     }
 
-    public function getFragment(): string
-    {
+    public function getFragment(): string {
         return $this->uri->getFragment() ?? '';
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->uri->toString();
     }
 
-    public function jsonSerialize(): string
-    {
+    public function jsonSerialize(): string {
         return $this->uri->toString();
     }
 

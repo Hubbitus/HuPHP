@@ -43,8 +43,7 @@ final class ClassConstantIterator implements Iterator
      *
      * @return int Line
      */
-    public function getLine(): int
-    {
+    public function getLine(): int {
         return $this->classConstants->getLine();
     }
 
@@ -53,48 +52,42 @@ final class ClassConstantIterator implements Iterator
      *
      * @return int Line
      */
-    public function getEndLine(): int
-    {
+    public function getEndLine(): int {
         return $this->classConstants->getEndLine();
     }
 
     /**
      * Returns the name of the current constant.
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return (string) $this->classConstants->consts[$this->index]->name;
     }
 
     /**
      * Returns the fqsen of the current constant.
      */
-    public function getFqsen(): Fqsen
-    {
+    public function getFqsen(): Fqsen {
         return $this->classConstants->consts[$this->index]->getAttribute('fqsen');
     }
 
     /**
      * returns true when the current property is public.
      */
-    public function isPublic(): bool
-    {
+    public function isPublic(): bool {
         return $this->classConstants->isPublic();
     }
 
     /**
      * returns true when the current property is protected.
      */
-    public function isProtected(): bool
-    {
+    public function isProtected(): bool {
         return $this->classConstants->isProtected();
     }
 
     /**
      * returns true when the current property is private.
      */
-    public function isPrivate(): bool
-    {
+    public function isPrivate(): bool {
         return $this->classConstants->isPrivate();
     }
 
@@ -113,27 +106,23 @@ final class ClassConstantIterator implements Iterator
         return $docComment;
     }
 
-    public function getValue(): Expr
-    {
+    public function getValue(): Expr {
         return $this->classConstants->consts[$this->index]->value;
     }
 
-    public function isFinal(): bool
-    {
+    public function isFinal(): bool {
         return $this->classConstants->isFinal();
     }
 
     /** @link http://php.net/manual/en/iterator.current.php */
     #[Override]
-    public function current(): self
-    {
+    public function current(): self {
         return $this;
     }
 
     /** @link http://php.net/manual/en/iterator.next.php */
     #[Override]
-    public function next(): void
-    {
+    public function next(): void {
         ++$this->index;
     }
 
@@ -146,15 +135,13 @@ final class ClassConstantIterator implements Iterator
 
     /** @link http://php.net/manual/en/iterator.valid.php */
     #[Override]
-    public function valid(): bool
-    {
+    public function valid(): bool {
         return isset($this->classConstants->consts[$this->index]);
     }
 
     /** @link http://php.net/manual/en/iterator.rewind.php */
     #[Override]
-    public function rewind(): void
-    {
+    public function rewind(): void {
         $this->index = 0;
     }
 }

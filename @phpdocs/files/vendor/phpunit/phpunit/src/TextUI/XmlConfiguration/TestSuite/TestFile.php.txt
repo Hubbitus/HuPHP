@@ -40,18 +40,15 @@ final class TestFile
         $this->phpVersionOperator = $phpVersionOperator;
     }
 
-    public function path(): string
-    {
+    public function path(): string {
         return $this->path;
     }
 
-    public function phpVersion(): string
-    {
+    public function phpVersion(): string {
         return $this->phpVersion;
     }
 
-    public function phpVersionOperator(): VersionComparisonOperator
-    {
+    public function phpVersionOperator(): VersionComparisonOperator {
         return $this->phpVersionOperator;
     }
 }

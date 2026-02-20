@@ -32,8 +32,7 @@ final class DescriptionContinueParser extends AbstractBlockContinueParser
         $this->indentation = $indentation;
     }
 
-    public function getBlock(): Description
-    {
+    public function getBlock(): Description {
         return $this->block;
     }
 
@@ -59,8 +58,7 @@ final class DescriptionContinueParser extends AbstractBlockContinueParser
         return BlockContinue::none();
     }
 
-    public function isContainer(): bool
-    {
+    public function isContainer(): bool {
         return true;
     }
 

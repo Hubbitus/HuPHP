@@ -17,16 +17,14 @@ class OutExtraDataHuFormatTest extends TestCase
         'FORMAT_FILE' => 'plain',
     ];
 
-    public function testConstructorStoresVarAndFormat(): void
-    {
+    public function testConstructorStoresVarAndFormat(): void {
         $var = ['key' => 'value'];
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
         $this->assertInstanceOf(OutExtraDataHuFormat::class, $format);
     }
 
-    public function testStrToConsoleReturnsString(): void
-    {
+    public function testStrToConsoleReturnsString(): void {
         $var = 'test_value';
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
@@ -36,8 +34,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testStrToConsoleWithCustomFormat(): void
-    {
+    public function testStrToConsoleWithCustomFormat(): void {
         $var = 'test_value';
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
@@ -47,8 +44,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testStrToWebReturnsString(): void
-    {
+    public function testStrToWebReturnsString(): void {
         $var = 'test_value';
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
@@ -58,8 +54,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testStrToWebWithCustomFormat(): void
-    {
+    public function testStrToWebWithCustomFormat(): void {
         $var = 'test_value';
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
@@ -69,8 +64,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testStrToFileReturnsString(): void
-    {
+    public function testStrToFileReturnsString(): void {
         $var = 'test_value';
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
@@ -80,8 +74,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testStrToFileWithCustomFormat(): void
-    {
+    public function testStrToFileWithCustomFormat(): void {
         $var = 'test_value';
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
@@ -91,8 +84,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testWithArrayVariable(): void
-    {
+    public function testWithArrayVariable(): void {
         $var = ['key1' => 'value1', 'key2' => 'value2'];
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
@@ -103,8 +95,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertStringContainsString('value1', $result);
     }
 
-    public function testWithObjectVariable(): void
-    {
+    public function testWithObjectVariable(): void {
         $obj = new \stdClass();
         $obj->property = 'test_value';
         $format = new OutExtraDataHuFormat($obj, $this->testFormats);
@@ -115,8 +106,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testWithNullVariable(): void
-    {
+    public function testWithNullVariable(): void {
         $var = null;
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
@@ -125,8 +115,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertIsString($result);
     }
 
-    public function testWithBooleanVariable(): void
-    {
+    public function testWithBooleanVariable(): void {
         $var = true;
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
@@ -136,8 +125,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertStringContainsString('true', $result);
     }
 
-    public function testWithNumericVariable(): void
-    {
+    public function testWithNumericVariable(): void {
         $var = 42;
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
@@ -147,8 +135,7 @@ class OutExtraDataHuFormatTest extends TestCase
         $this->assertStringContainsString('42', $result);
     }
 
-    public function testDifferentFormatsProduceDifferentOutput(): void
-    {
+    public function testDifferentFormatsProduceDifferentOutput(): void {
         $var = ['key' => 'value'];
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 

@@ -24,8 +24,7 @@ use function strtolower;
  */
 final class CitationNode extends AnnotationNode
 {
-    public function getAnchor(): string
-    {
+    public function getAnchor(): string {
         return 'citation-' . strtolower($this->getName());
     }
 }

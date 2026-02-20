@@ -41,8 +41,7 @@ final class TocNodeTransformer implements NodeTransformer
         return $node instanceof TocNode;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 1000;
     }
 }

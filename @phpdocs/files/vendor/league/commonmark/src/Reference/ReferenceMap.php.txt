@@ -78,8 +78,7 @@ final class ReferenceMap implements ReferenceMapInterface
         }
     }
 
-    public function count(): int
-    {
+    public function count(): int {
         return \count($this->references);
     }
 }

@@ -46,8 +46,7 @@ final class DotenvDumpCommand extends Command
         parent::__construct();
     }
 
-    protected function configure(): void
-    {
+    protected function configure(): void {
         $this
             ->setDefinition([
                 new InputArgument('env', null === $this->defaultEnv ? InputArgument::REQUIRED : InputArgument::OPTIONAL, 'The application environment to dump .env files for - e.g. "prod".'),

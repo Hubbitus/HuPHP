@@ -53,8 +53,7 @@ class SymfonyConfigFactory
     }
 
     /** @return ConfigurationMap */
-    public function createDefault(): array
-    {
+    public function createDefault(): array {
         return $this->generateConfiguration([
             self::FIELD_CONFIG_VERSION => (string) array_key_last($this->configurationDefinitions),
         ]);

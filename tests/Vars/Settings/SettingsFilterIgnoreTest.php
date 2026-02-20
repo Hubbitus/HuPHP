@@ -9,17 +9,14 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterIgnore
  */
-class SettingsFilterIgnoreTest extends TestCase
-{
-    public function testConstructorStoresPropName(): void
-    {
+class SettingsFilterIgnoreTest extends TestCase {
+    public function testConstructorStoresPropName(): void {
         $filter = new SettingsFilterIgnore('testProp');
 
         $this->assertEquals('testProp', $filter->propName);
     }
 
-    public function testApplySetsNameToNull(): void
-    {
+    public function testApplySetsValueToNull(): void {
         $filter = new SettingsFilterIgnore('testProp');
 
         $name = 'testProp';
@@ -27,11 +24,10 @@ class SettingsFilterIgnoreTest extends TestCase
 
         $result = $filter->apply($name, $value);
 
-        $this->assertNull($name);
+        $this->assertNull($value);
     }
 
-    public function testApplyReturnsNull(): void
-    {
+    public function testApplyReturnsNull(): void {
         $filter = new SettingsFilterIgnore('testProp');
 
         $name = 'testProp';
@@ -42,8 +38,7 @@ class SettingsFilterIgnoreTest extends TestCase
         $this->assertNull($result);
     }
 
-    public function testApplyIgnoresOriginalValue(): void
-    {
+    public function testApplyIgnoresOriginalValue(): void {
         $filter = new SettingsFilterIgnore('testProp');
 
         $name = 'testProp';
@@ -51,12 +46,11 @@ class SettingsFilterIgnoreTest extends TestCase
 
         $filter->apply($name, $value);
 
-        // Value should remain unchanged (filter ignores it)
-        $this->assertEquals('important_value', $value);
+        // Value should be nulled (filter ignores it)
+        $this->assertNull($value);
     }
 
-    public function testApplyWithDifferentPropNames(): void
-    {
+    public function testApplyWithDifferentPropNames(): void {
         $filter = new SettingsFilterIgnore('specificProp');
 
         $name = 'specificProp';
@@ -64,7 +58,7 @@ class SettingsFilterIgnoreTest extends TestCase
 
         $filter->apply($name, $value);
 
-        $this->assertNull($name);
+        $this->assertNull($value);
 
         // Test with different name
         $name2 = 'otherProp';
@@ -72,11 +66,10 @@ class SettingsFilterIgnoreTest extends TestCase
 
         $filter->apply($name2, $value2);
 
-        $this->assertNull($name2);
+        $this->assertNull($value2);
     }
 
-    public function testApplyWithComplexValue(): void
-    {
+    public function testApplyWithComplexValue(): void {
         $filter = new SettingsFilterIgnore('testProp');
 
         $name = 'testProp';
@@ -84,7 +77,7 @@ class SettingsFilterIgnoreTest extends TestCase
 
         $filter->apply($name, $value);
 
-        $this->assertNull($name);
+        $this->assertNull($value);
         $this->assertNull($filter->apply($name, $value));
     }
 }

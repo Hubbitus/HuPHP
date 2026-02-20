@@ -153,8 +153,7 @@ class LogglyHandler extends AbstractProcessingHandler
         Curl\Util::execute($ch, 5, false);
     }
 
-    protected function getDefaultFormatter(): FormatterInterface
-    {
+    protected function getDefaultFormatter(): FormatterInterface {
         return new LogglyFormatter();
     }
 }

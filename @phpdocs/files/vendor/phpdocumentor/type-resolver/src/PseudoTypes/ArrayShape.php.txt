@@ -35,18 +35,15 @@ class ArrayShape implements PseudoType
     /**
      * @return ArrayShapeItem[]
      */
-    public function getItems(): array
-    {
+    public function getItems(): array {
         return $this->items;
     }
 
-    public function underlyingType(): Type
-    {
+    public function underlyingType(): Type {
         return new Array_(new Mixed_(), new ArrayKey());
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return 'array{' . implode(', ', $this->items) . '}';
     }
 }

@@ -65,14 +65,12 @@ class ConstantDescriptor extends DescriptorAbstract implements
         $this->value = $value;
     }
 
-    public function getValue(): Expression
-    {
+    public function getValue(): Expression {
         return $this->value;
     }
 
     /** @return Collection<VarDescriptor> */
-    public function getVar(): Collection
-    {
+    public function getVar(): Collection {
         /** @var Collection<VarDescriptor> $var */
         $var = $this->getTags()->fetch('var', new Collection());
         if ($var->count() !== 0) {
@@ -90,8 +88,7 @@ class ConstantDescriptor extends DescriptorAbstract implements
     /**
      * Returns the file associated with the parent class, interface or trait when inside a container.
      */
-    public function getFile(): FileInterface
-    {
+    public function getFile(): FileInterface {
         $file = parent::getFile() ?? $this->getParent()->getFile();
 
         Assert::notNull($file);

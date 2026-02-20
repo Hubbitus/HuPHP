@@ -61,18 +61,15 @@ final class GroupingExpressionParser extends AbstractExpressionParser implements
         return new ListExpression($names, $token->getLine());
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return '(';
     }
 
-    public function getDescription(): string
-    {
+    public function getDescription(): string {
         return 'Explicit group expression (a)';
     }
 
-    public function getPrecedence(): int
-    {
+    public function getPrecedence(): int {
         return 0;
     }
 }

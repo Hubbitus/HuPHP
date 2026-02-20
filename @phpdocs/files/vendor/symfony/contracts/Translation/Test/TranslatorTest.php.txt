@@ -35,19 +35,16 @@ class TranslatorTest extends TestCase
 {
     private string $defaultLocale;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->defaultLocale = \Locale::getDefault();
         \Locale::setDefault('en');
     }
 
-    protected function tearDown(): void
-    {
+    protected function tearDown(): void {
         \Locale::setDefault($this->defaultLocale);
     }
 
-    public function getTranslator(): TranslatorInterface
-    {
+    public function getTranslator(): TranslatorInterface {
         return new class implements TranslatorInterface {
             use TranslatorTrait;
         };
@@ -332,8 +329,7 @@ class TranslatorTest extends TestCase
      *
      * As it is impossible to have this ever complete we should try as hard as possible to have it almost complete.
      */
-    public static function successLangcodes(): array
-    {
+    public static function successLangcodes(): array {
         return [
             ['1', ['ay', 'bo', 'cgg', 'dz', 'id', 'ja', 'jbo', 'ka', 'kk', 'km', 'ko', 'ky']],
             ['2', ['nl', 'fr', 'en', 'de', 'de_GE', 'hy', 'hy_AM', 'en_US_POSIX']],
@@ -351,8 +347,7 @@ class TranslatorTest extends TestCase
      *
      * @return array with nplural together with langcodes
      */
-    public static function failingLangcodes(): array
-    {
+    public static function failingLangcodes(): array {
         return [
             ['1', ['fa']],
             ['2', ['jbo']],

@@ -45,13 +45,11 @@ class MissingMandatoryParametersException extends \InvalidArgumentException impl
     /**
      * @return string[]
      */
-    public function getMissingParameters(): array
-    {
+    public function getMissingParameters(): array {
         return $this->missingParameters;
     }
 
-    public function getRouteName(): string
-    {
+    public function getRouteName(): string {
         return $this->routeName;
     }
 }

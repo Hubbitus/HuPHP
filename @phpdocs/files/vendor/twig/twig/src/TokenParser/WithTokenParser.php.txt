@@ -49,8 +49,7 @@ final class WithTokenParser extends AbstractTokenParser
         return $token->test('endwith');
     }
 
-    public function getTag(): string
-    {
+    public function getTag(): string {
         return 'with';
     }
 }

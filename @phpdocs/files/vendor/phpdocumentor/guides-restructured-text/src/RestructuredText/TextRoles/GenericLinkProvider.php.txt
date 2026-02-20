@@ -40,8 +40,7 @@ final class GenericLinkProvider
     }
 
     /** @return string[] */
-    public function getTextRoleLinkTypeMapping(): array
-    {
+    public function getTextRoleLinkTypeMapping(): array {
         return $this->textRoleLinkTypeMapping;
     }
 

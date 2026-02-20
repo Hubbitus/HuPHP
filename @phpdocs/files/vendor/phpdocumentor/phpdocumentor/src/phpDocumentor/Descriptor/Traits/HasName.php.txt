@@ -30,8 +30,7 @@ trait HasName
     /**
      * Returns the name for this element.
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 }

@@ -15,8 +15,7 @@ class GuideSpecification implements ArrayAccess
     {
     }
 
-    public function source(): Source
-    {
+    public function source(): Source {
         return $this->source;
     }
 
@@ -28,13 +27,11 @@ class GuideSpecification implements ArrayAccess
         return $clone;
     }
 
-    public function getOutput(): string
-    {
+    public function getOutput(): string {
         return $this->output;
     }
 
-    public function getFormat(): string
-    {
+    public function getFormat(): string {
         return $this->format;
     }
 }

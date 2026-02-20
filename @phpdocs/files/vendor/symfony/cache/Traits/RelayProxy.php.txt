@@ -79,13 +79,11 @@ class RelayProxy extends \Relay\Relay implements ResetInterface, LazyObjectInter
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->pconnect(...\func_get_args());
     }
 
-    public function close(): bool
-    {
+    public function close(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->close(...\func_get_args());
     }
 
-    public function pclose(): bool
-    {
+    public function pclose(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->pclose(...\func_get_args());
     }
 
@@ -154,13 +152,11 @@ class RelayProxy extends \Relay\Relay implements ResetInterface, LazyObjectInter
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->readTimeout(...\func_get_args());
     }
 
-    public function getBytes(): array
-    {
+    public function getBytes(): array {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getBytes(...\func_get_args());
     }
 
-    public function bytes(): array
-    {
+    public function bytes(): array {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->bytes(...\func_get_args());
     }
 
@@ -169,8 +165,7 @@ class RelayProxy extends \Relay\Relay implements ResetInterface, LazyObjectInter
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getHost(...\func_get_args());
     }
 
-    public function isConnected(): bool
-    {
+    public function isConnected(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->isConnected(...\func_get_args());
     }
 
@@ -179,13 +174,11 @@ class RelayProxy extends \Relay\Relay implements ResetInterface, LazyObjectInter
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getPort(...\func_get_args());
     }
 
-    public function getAuth(): mixed
-    {
+    public function getAuth(): mixed {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getAuth(...\func_get_args());
     }
 
-    public function getDbNum(): mixed
-    {
+    public function getDbNum(): mixed {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getDbNum(...\func_get_args());
     }
 
@@ -229,8 +222,7 @@ class RelayProxy extends \Relay\Relay implements ResetInterface, LazyObjectInter
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getLastError(...\func_get_args());
     }
 
-    public function clearLastError(): bool
-    {
+    public function clearLastError(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->clearLastError(...\func_get_args());
     }
 
@@ -944,8 +936,7 @@ class RelayProxy extends \Relay\Relay implements ResetInterface, LazyObjectInter
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->unwatch(...\func_get_args());
     }
 
-    public function discard(): bool
-    {
+    public function discard(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->discard(...\func_get_args());
     }
 
@@ -954,8 +945,7 @@ class RelayProxy extends \Relay\Relay implements ResetInterface, LazyObjectInter
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getMode(...\func_get_args());
     }
 
-    public function clearBytes(): void
-    {
+    public function clearBytes(): void {
         ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->clearBytes(...\func_get_args());
     }
 

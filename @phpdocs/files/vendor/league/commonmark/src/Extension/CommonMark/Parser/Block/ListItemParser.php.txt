@@ -31,13 +31,11 @@ final class ListItemParser extends AbstractBlockContinueParser
         $this->block = new ListItem($listData);
     }
 
-    public function getBlock(): ListItem
-    {
+    public function getBlock(): ListItem {
         return $this->block;
     }
 
-    public function isContainer(): bool
-    {
+    public function isContainer(): bool {
         return true;
     }
 
@@ -70,8 +68,7 @@ final class ListItemParser extends AbstractBlockContinueParser
         return BlockContinue::none();
     }
 
-    public function closeBlock(): void
-    {
+    public function closeBlock(): void {
         if (($lastChild = $this->block->lastChild()) instanceof AbstractBlock) {
             $this->block->setEndLine($lastChild->getEndLine());
         } else {

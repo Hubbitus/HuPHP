@@ -12,15 +12,13 @@ use PHPUnit\Framework\TestCase;
  */
 class SerializedDataTest extends TestCase
 {
-    public function testConstructorCreatesEmptyContainer(): void
-    {
+    public function testConstructorCreatesEmptyContainer(): void {
         $data = new SerializedData();
 
         $this->assertIsObject($data);
     }
 
-    public function testConstructorWithValidSerializedString(): void
-    {
+    public function testConstructorWithValidSerializedString(): void {
         $original = ['key1' => 'value1', 'key2' => 'value2'];
         $serialized = \serialize($original);
 
@@ -30,16 +28,14 @@ class SerializedDataTest extends TestCase
         $this->assertEquals('value2', $data->key2);
     }
 
-    public function testConstructorThrowsExceptionForInvalidSerializedString(): void
-    {
+    public function testConstructorThrowsExceptionForInvalidSerializedString(): void {
         $this->expectException(SerializeException::class);
 
         $invalidSerialized = 'not_a_valid_serialized_string';
         new SerializedData($invalidSerialized);
     }
 
-    public function testMagicGetReturnsPropertyValue(): void
-    {
+    public function testMagicGetReturnsPropertyValue(): void {
         $original = ['test_key' => 'test_value'];
         $serialized = \serialize($original);
 
@@ -49,16 +45,14 @@ class SerializedDataTest extends TestCase
         $this->assertEquals('test_value', $value);
     }
 
-    public function testMagicSetAddsProperty(): void
-    {
+    public function testMagicSetAddsProperty(): void {
         $data = new SerializedData();
         $data->new_key = 'new_value';
 
         $this->assertEquals('new_value', $data->new_key);
     }
 
-    public function testMagicSetUpdatesExistingProperty(): void
-    {
+    public function testMagicSetUpdatesExistingProperty(): void {
         $original = ['existing_key' => 'old_value'];
         $serialized = \serialize($original);
 
@@ -68,8 +62,7 @@ class SerializedDataTest extends TestCase
         $this->assertEquals('new_value', $data->existing_key);
     }
 
-    public function testToStringReturnsSerializedData(): void
-    {
+    public function testToStringReturnsSerializedData(): void {
         $original = ['key1' => 'value1', 'key2' => 'value2'];
         $serialized = \serialize($original);
 
@@ -79,8 +72,7 @@ class SerializedDataTest extends TestCase
         $this->assertEquals($serialized, $result);
     }
 
-    public function testToStringMethodReturnsSerializedData(): void
-    {
+    public function testToStringMethodReturnsSerializedData(): void {
         $original = ['key1' => 'value1', 'key2' => 'value2'];
         $serialized = \serialize($original);
 
@@ -90,8 +82,7 @@ class SerializedDataTest extends TestCase
         $this->assertEquals($serialized, $result);
     }
 
-    public function testRoundTripSerialization(): void
-    {
+    public function testRoundTripSerialization(): void {
         $original = ['key1' => 'value1', 'key2' => 'value2', 'nested' => ['subkey' => 'subvalue']];
         $serialized = \serialize($original);
 
@@ -102,8 +93,7 @@ class SerializedDataTest extends TestCase
         $this->assertEquals($original, $restored);
     }
 
-    public function testMagicSetAndToStringCombined(): void
-    {
+    public function testMagicSetAndToStringCombined(): void {
         $data = new SerializedData();
         $data->key1 = 'value1';
         $data->key2 = 'value2';

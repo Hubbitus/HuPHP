@@ -117,8 +117,7 @@ final class InternalMenuEntryNodeTransformer extends AbstractMenuEntryNodeTransf
         return $absoluteExpectedFile === $actualFile;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         // After DocumentEntryTransformer
         return 4500;
     }

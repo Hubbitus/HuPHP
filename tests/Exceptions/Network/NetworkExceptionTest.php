@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class NetworkExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new NetworkException();
 
         $this->assertInstanceOf(NetworkException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new NetworkException('Network error');
 
         $this->assertInstanceOf(NetworkException::class, $exception);
         $this->assertEquals('Network error', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new NetworkException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(NetworkException::class);
 
         throw new NetworkException('Network operation failed');

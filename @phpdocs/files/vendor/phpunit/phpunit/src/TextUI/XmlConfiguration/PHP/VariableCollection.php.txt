@@ -43,18 +43,15 @@ final class VariableCollection implements Countable, IteratorAggregate
     /**
      * @return Variable[]
      */
-    public function asArray(): array
-    {
+    public function asArray(): array {
         return $this->variables;
     }
 
-    public function count(): int
-    {
+    public function count(): int {
         return count($this->variables);
     }
 
-    public function getIterator(): VariableCollectionIterator
-    {
+    public function getIterator(): VariableCollectionIterator {
         return new VariableCollectionIterator($this);
     }
 }

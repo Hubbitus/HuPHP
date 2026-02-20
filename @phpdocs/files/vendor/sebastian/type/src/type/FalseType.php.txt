@@ -22,21 +22,18 @@ final class FalseType extends Type
               $other->value() === false;
     }
 
-    public function name(): string
-    {
+    public function name(): string {
         return 'false';
     }
 
-    public function allowsNull(): bool
-    {
+    public function allowsNull(): bool {
         return false;
     }
 
     /**
      * @psalm-assert-if-true FalseType $this
      */
-    public function isFalse(): bool
-    {
+    public function isFalse(): bool {
         return true;
     }
 }

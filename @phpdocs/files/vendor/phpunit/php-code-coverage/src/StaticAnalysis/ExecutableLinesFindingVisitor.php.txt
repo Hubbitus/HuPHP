@@ -376,8 +376,7 @@ final class ExecutableLinesFindingVisitor extends NodeVisitorAbstract
         );
     }
 
-    public function executableLinesGroupedByBranch(): array
-    {
+    public function executableLinesGroupedByBranch(): array {
         return $this->executableLinesGroupedByBranch;
     }
 

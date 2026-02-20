@@ -22,14 +22,12 @@ final class Message
     ) {
     }
 
-    public function getMessage(): string
-    {
+    public function getMessage(): string {
         return $this->message;
     }
 
     /** @return mixed[] */
-    public function getDebugInfo(): array
-    {
+    public function getDebugInfo(): array {
         return $this->debugInfo;
     }
 }

@@ -192,8 +192,7 @@ class Finder implements \IteratorAggregate
 	/**
 	 * Sorts files in each directory naturally by name.
 	 */
-	public function sortByName(): static
-	{
+	public function sortByName(): static {
 		$this->sort = fn(FileInfo $a, FileInfo $b): int => strnatcmp($a->getBasename(), $b->getBasename());
 		return $this;
 	}
@@ -324,8 +323,7 @@ class Finder implements \IteratorAggregate
 	 * Returns an array with all found files and directories.
 	 * @return list<FileInfo>
 	 */
-	public function collect(): array
-	{
+	public function collect(): array {
 		return iterator_to_array($this->getIterator(), preserve_keys: false);
 	}
 
@@ -446,8 +444,7 @@ class Finder implements \IteratorAggregate
 
 
 	/** @return array<string, array<object{pattern: string, mode: string, recursive: bool}>> */
-	private function buildPlan(): array
-	{
+	private function buildPlan(): array {
 		$plan = $dirCache = [];
 		foreach ($this->find as [$mask, $mode]) {
 			$splits = [];

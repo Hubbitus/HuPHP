@@ -60,8 +60,7 @@ final class CallbackCasting implements TypeCasting
         $this->info = TypeCastingInfo::fromAccessor($reflectionProperty);
     }
 
-    public function info(): TypeCastingInfo
-    {
+    public function info(): TypeCastingInfo {
         return $this->info;
     }
 
@@ -156,8 +155,7 @@ final class CallbackCasting implements TypeCasting
         return true;
     }
 
-    public static function unregisterTypes(): void
-    {
+    public static function unregisterTypes(): void {
         self::$types = [];
     }
 
@@ -180,13 +178,11 @@ final class CallbackCasting implements TypeCasting
         return false;
     }
 
-    public static function unregisterAliases(): void
-    {
+    public static function unregisterAliases(): void {
         self::$aliases = [];
     }
 
-    public static function unregisterAll(): void
-    {
+    public static function unregisterAll(): void {
         self::unregisterTypes();
         self::unregisterAliases();
     }
@@ -214,16 +210,14 @@ final class CallbackCasting implements TypeCasting
     /**
      * @return array<string>
      */
-    public static function types(): array
-    {
+    public static function types(): array {
         return array_keys(self::$types);
     }
 
     /**
      * @return array<string, string>
      */
-    public static function aliases(): array
-    {
+    public static function aliases(): array {
         $res = [];
         foreach (self::$aliases as $registeredType => $aliases) {
             foreach ($aliases as $registeredAlias => $__) {

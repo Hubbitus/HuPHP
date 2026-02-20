@@ -25,8 +25,7 @@ final class SchemaFinder
     /**
      * @psalm-return non-empty-list<non-empty-string>
      */
-    public function available(): array
-    {
+    public function available(): array {
         $result = [Version::series()];
 
         foreach ((new DirectoryIterator($this->path() . 'schema')) as $file) {
@@ -69,8 +68,7 @@ final class SchemaFinder
         return $filename;
     }
 
-    private function path(): string
-    {
+    private function path(): string {
         if (defined('__PHPUNIT_PHAR_ROOT__')) {
             return __PHPUNIT_PHAR_ROOT__ . '/';
         }

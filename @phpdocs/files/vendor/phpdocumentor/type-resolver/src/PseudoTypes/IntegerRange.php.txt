@@ -36,26 +36,22 @@ final class IntegerRange extends Integer implements PseudoType
         $this->maxValue = $maxValue;
     }
 
-    public function underlyingType(): Type
-    {
+    public function underlyingType(): Type {
         return new Integer();
     }
 
-    public function getMinValue(): string
-    {
+    public function getMinValue(): string {
         return $this->minValue;
     }
 
-    public function getMaxValue(): string
-    {
+    public function getMaxValue(): string {
         return $this->maxValue;
     }
 
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return 'int<' . $this->minValue . ', ' . $this->maxValue . '>';
     }
 }

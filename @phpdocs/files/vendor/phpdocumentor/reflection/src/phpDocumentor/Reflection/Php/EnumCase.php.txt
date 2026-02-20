@@ -60,14 +60,12 @@ final class EnumCase implements Element, MetaDataContainerInterface, AttributeCo
     }
 
     #[Override]
-    public function getFqsen(): Fqsen
-    {
+    public function getFqsen(): Fqsen {
         return $this->fqsen;
     }
 
     #[Override]
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->fqsen->getName();
     }
 
@@ -76,13 +74,11 @@ final class EnumCase implements Element, MetaDataContainerInterface, AttributeCo
         return $this->docBlock;
     }
 
-    public function getLocation(): Location
-    {
+    public function getLocation(): Location {
         return $this->location;
     }
 
-    public function getEndLocation(): Location
-    {
+    public function getEndLocation(): Location {
         return $this->endLocation;
     }
 

@@ -66,23 +66,19 @@ final class LinesOfCode
         $this->logicalLinesOfCode    = $logicalLinesOfCode;
     }
 
-    public function linesOfCode(): int
-    {
+    public function linesOfCode(): int {
         return $this->linesOfCode;
     }
 
-    public function commentLinesOfCode(): int
-    {
+    public function commentLinesOfCode(): int {
         return $this->commentLinesOfCode;
     }
 
-    public function nonCommentLinesOfCode(): int
-    {
+    public function nonCommentLinesOfCode(): int {
         return $this->nonCommentLinesOfCode;
     }
 
-    public function logicalLinesOfCode(): int
-    {
+    public function logicalLinesOfCode(): int {
         return $this->logicalLinesOfCode;
     }
 

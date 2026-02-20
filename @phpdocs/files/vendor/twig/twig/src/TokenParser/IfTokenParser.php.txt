@@ -83,8 +83,7 @@ final class IfTokenParser extends AbstractTokenParser
         return $token->test(['endif']);
     }
 
-    public function getTag(): string
-    {
+    public function getTag(): string {
         return 'if';
     }
 }

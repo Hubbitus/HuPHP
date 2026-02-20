@@ -155,16 +155,14 @@ class PHPConsoleHandler extends AbstractProcessingHandler
         return $connector;
     }
 
-    public function getConnector(): Connector
-    {
+    public function getConnector(): Connector {
         return $this->connector;
     }
 
     /**
      * @return array<string, mixed>
      */
-    public function getOptions(): array
-    {
+    public function getOptions(): array {
         return $this->options;
     }
 
@@ -256,8 +254,7 @@ class PHPConsoleHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface
-    {
+    protected function getDefaultFormatter(): FormatterInterface {
         return new LineFormatter('%message%');
     }
 }

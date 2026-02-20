@@ -68,23 +68,19 @@ final class FunctionExpressionParser extends AbstractExpressionParser implements
         return new $class($ready ? $function : $function->getName(), $args, $line);
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return '(';
     }
 
-    public function getDescription(): string
-    {
+    public function getDescription(): string {
         return 'Twig function call';
     }
 
-    public function getPrecedence(): int
-    {
+    public function getPrecedence(): int {
         return 512;
     }
 
-    public function getAssociativity(): InfixAssociativity
-    {
+    public function getAssociativity(): InfixAssociativity {
         return InfixAssociativity::Left;
     }
 }

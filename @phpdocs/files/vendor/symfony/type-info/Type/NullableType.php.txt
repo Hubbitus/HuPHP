@@ -45,8 +45,7 @@ final class NullableType extends UnionType implements WrappingTypeInterface
         parent::__construct(Type::null(), $type);
     }
 
-    public function getWrappedType(): Type
-    {
+    public function getWrappedType(): Type {
         return $this->type;
     }
 
@@ -55,8 +54,7 @@ final class NullableType extends UnionType implements WrappingTypeInterface
         return $this->getWrappedType()->isSatisfiedBy($specification);
     }
 
-    public function isNullable(): bool
-    {
+    public function isNullable(): bool {
         return true;
     }
 

@@ -28,9 +28,7 @@
             <exclude>tests/Exceptions/Variables/VariableEmptyExceptionTest.php</exclude>
             <exclude>tests/System/Console/</exclude>
             <exclude>tests/User/UserBaseTest.php</exclude>
-            <exclude>tests/Vars/Settings/SettingsFilterTest.php</exclude>
-            <exclude>tests/Vars/NullClassTest.php</exclude>
-            <exclude>tests/Vars/HuArrayTest.php</exclude>
+            <exclude>tests/Filesystem/FileBaseTest.php</exclude>
             <exclude>tests/Filesystem/FileInMemoryTest.php</exclude>
         </testsuite>
     </testsuites>

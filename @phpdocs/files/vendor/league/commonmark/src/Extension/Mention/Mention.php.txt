@@ -45,8 +45,7 @@ class Mention extends Link
         return $labelNode->getLiteral();
     }
 
-    public function getIdentifier(): string
-    {
+    public function getIdentifier(): string {
         return $this->identifier;
     }
 
@@ -55,13 +54,11 @@ class Mention extends Link
         return $this->name;
     }
 
-    public function getPrefix(): string
-    {
+    public function getPrefix(): string {
         return $this->prefix;
     }
 
-    public function hasUrl(): bool
-    {
+    public function hasUrl(): bool {
         return $this->url !== '';
     }
 

@@ -178,8 +178,7 @@ final class EscaperNodeVisitor implements NodeVisitorInterface
         return new FilterExpression($node, $filter, $args, $line);
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 0;
     }
 }

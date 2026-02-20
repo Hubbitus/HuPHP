@@ -48,13 +48,11 @@ class FunctionDescriptor extends DescriptorAbstract implements Interfaces\Functi
         $this->arguments = $arguments;
     }
 
-    public function getArguments(): Collection
-    {
+    public function getArguments(): Collection {
         return $this->arguments;
     }
 
-    public function getResponse(): ReturnDescriptor
-    {
+    public function getResponse(): ReturnDescriptor {
         $definedReturn = new ReturnDescriptor('return');
         $definedReturn->setType($this->returnType);
 
@@ -81,8 +79,7 @@ class FunctionDescriptor extends DescriptorAbstract implements Interfaces\Functi
         $this->hasReturnByReference = $hasReturnByReference;
     }
 
-    public function getHasReturnByReference(): bool
-    {
+    public function getHasReturnByReference(): bool {
         return $this->hasReturnByReference;
     }
 }

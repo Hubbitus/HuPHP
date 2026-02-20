@@ -41,16 +41,14 @@ final class GroupCollection implements IteratorAggregate
     /**
      * @return Group[]
      */
-    public function asArray(): array
-    {
+    public function asArray(): array {
         return $this->groups;
     }
 
     /**
      * @return string[]
      */
-    public function asArrayOfStrings(): array
-    {
+    public function asArrayOfStrings(): array {
         $result = [];
 
         foreach ($this->groups as $group) {
@@ -60,13 +58,11 @@ final class GroupCollection implements IteratorAggregate
         return $result;
     }
 
-    public function isEmpty(): bool
-    {
+    public function isEmpty(): bool {
         return empty($this->groups);
     }
 
-    public function getIterator(): GroupCollectionIterator
-    {
+    public function getIterator(): GroupCollectionIterator {
         return new GroupCollectionIterator($this);
     }
 }

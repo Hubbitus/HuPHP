@@ -68,8 +68,7 @@ final class TerminalInputHelper
     /**
      * Waits for input.
      */
-    public function waitForInput(): void
-    {
+    public function waitForInput(): void {
         if ($this->isStdin) {
             $r = [$this->inputStream];
             $w = [];
@@ -88,8 +87,7 @@ final class TerminalInputHelper
     /**
      * Restores terminal state and signal handlers.
      */
-    public function finish(): void
-    {
+    public function finish(): void {
         if (!$this->withStty) {
             return;
         }
@@ -106,8 +104,7 @@ final class TerminalInputHelper
         $this->targetSignals = [];
     }
 
-    private function createSignalHandlers(): void
-    {
+    private function createSignalHandlers(): void {
         if (!\function_exists('pcntl_async_signals') || !\function_exists('pcntl_signal')) {
             return;
         }
@@ -140,8 +137,7 @@ final class TerminalInputHelper
         }
     }
 
-    private function checkForKillSignal(): void
-    {
+    private function checkForKillSignal(): void {
         if (\in_array($this->signalToKill, $this->targetSignals, true)) {
             // Try posix_kill
             if (\function_exists('posix_kill')) {

@@ -9,8 +9,7 @@ use phpDocumentor\Reflection\Metadata\MetaDataContainer as MetaDataContainerInte
 
 trait MetadataContainerTestHelper
 {
-    public function testSetMetaDataForNonExistingKey(): void
-    {
+    public function testSetMetaDataForNonExistingKey(): void {
         $stub = new MetadataStub('stub');
 
         $this->getFixture()->addMetadata($stub);
@@ -18,8 +17,7 @@ trait MetadataContainerTestHelper
         self::assertSame(['stub' => $stub], $this->getFixture()->getMetadata());
     }
 
-    public function testSetMetaDataWithExistingKeyThrows(): void
-    {
+    public function testSetMetaDataWithExistingKeyThrows(): void {
         self::expectException(Exception::class);
 
         $stub = new MetadataStub('stub');

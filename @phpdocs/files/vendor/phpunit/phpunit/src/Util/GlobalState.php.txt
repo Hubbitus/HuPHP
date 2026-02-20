@@ -161,8 +161,7 @@ final class GlobalState
     /**
      * @throws Exception
      */
-    public static function getIncludedFilesAsString(): string
-    {
+    public static function getIncludedFilesAsString(): string {
         return self::processIncludedFilesAsString(get_included_files());
     }
 
@@ -212,8 +211,7 @@ final class GlobalState
         return $result;
     }
 
-    public static function getIniSettingsAsString(): string
-    {
+    public static function getIniSettingsAsString(): string {
         $result = '';
 
         foreach (ini_get_all(null, false) as $key => $value) {
@@ -231,8 +229,7 @@ final class GlobalState
         return $result;
     }
 
-    public static function getConstantsAsString(): string
-    {
+    public static function getConstantsAsString(): string {
         $constants = get_defined_constants(true);
         $result    = '';
 
@@ -250,8 +247,7 @@ final class GlobalState
         return $result;
     }
 
-    public static function getGlobalsAsString(): string
-    {
+    public static function getGlobalsAsString(): string {
         $result = '';
 
         foreach (self::SUPER_GLOBAL_ARRAYS as $superGlobalArray) {

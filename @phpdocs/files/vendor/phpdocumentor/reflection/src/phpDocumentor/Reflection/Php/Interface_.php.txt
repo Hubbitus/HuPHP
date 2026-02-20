@@ -64,8 +64,7 @@ final class Interface_ implements Element, MetaDataContainerInterface, Attribute
      *
      * @return Constant[]
      */
-    public function getConstants(): array
-    {
+    public function getConstants(): array {
         return $this->constants;
     }
 
@@ -82,8 +81,7 @@ final class Interface_ implements Element, MetaDataContainerInterface, Attribute
      *
      * @return Method[]
      */
-    public function getMethods(): array
-    {
+    public function getMethods(): array {
         return $this->methods;
     }
 
@@ -99,8 +97,7 @@ final class Interface_ implements Element, MetaDataContainerInterface, Attribute
      * Returns the Fqsen of the element.
      */
     #[Override]
-    public function getFqsen(): Fqsen
-    {
+    public function getFqsen(): Fqsen {
         return $this->fqsen;
     }
 
@@ -108,8 +105,7 @@ final class Interface_ implements Element, MetaDataContainerInterface, Attribute
      * Returns the name of the element.
      */
     #[Override]
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->fqsen->getName();
     }
 
@@ -126,18 +122,15 @@ final class Interface_ implements Element, MetaDataContainerInterface, Attribute
      *
      * @return Fqsen[]
      */
-    public function getParents(): array
-    {
+    public function getParents(): array {
         return $this->parents;
     }
 
-    public function getLocation(): Location
-    {
+    public function getLocation(): Location {
         return $this->location;
     }
 
-    public function getEndLocation(): Location
-    {
+    public function getEndLocation(): Location {
         return $this->endLocation;
     }
 }

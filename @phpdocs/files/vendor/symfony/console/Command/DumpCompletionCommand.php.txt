@@ -39,8 +39,7 @@ final class DumpCompletionCommand extends Command
 
     private array $supportedShells;
 
-    protected function configure(): void
-    {
+    protected function configure(): void {
         $fullCommand = $_SERVER['PHP_SELF'];
         $commandName = basename($fullCommand);
         $fullCommand = @realpath($fullCommand) ?: $fullCommand;
@@ -121,8 +120,7 @@ EOH
         return 0;
     }
 
-    private static function guessShell(): string
-    {
+    private static function guessShell(): string {
         return basename($_SERVER['SHELL'] ?? '');
     }
 
@@ -141,8 +139,7 @@ EOH
     /**
      * @return string[]
      */
-    private function getSupportedShells(): array
-    {
+    private function getSupportedShells(): array {
         if (isset($this->supportedShells)) {
             return $this->supportedShells;
         }

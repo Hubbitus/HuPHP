@@ -29,8 +29,7 @@ final class PreParseProcess
     ) {
     }
 
-    public function getParseDirectoryCommand(): ParseDirectoryCommand
-    {
+    public function getParseDirectoryCommand(): ParseDirectoryCommand {
         return $this->parseDirectoryCommand;
     }
 

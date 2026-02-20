@@ -74,8 +74,7 @@ class FormatterHelper extends Helper
         return self::substr($message, 0, $length).$suffix;
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'formatter';
     }
 }

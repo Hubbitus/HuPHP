@@ -99,8 +99,7 @@ abstract class AbstractSyslogHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface
-    {
+    protected function getDefaultFormatter(): FormatterInterface {
         return new LineFormatter('%channel%.%level_name%: %message% %context% %extra%');
     }
 }

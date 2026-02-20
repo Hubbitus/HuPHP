@@ -27,13 +27,11 @@ class PrettyVersions
         );
     }
 
-    public static function getRootPackageName(): string
-    {
+    public static function getRootPackageName(): string {
         return InstalledVersions::getRootPackage()['name'];
     }
 
-    public static function getRootPackageVersion(): Version
-    {
+    public static function getRootPackageVersion(): Version {
         return new Version(
             self::getRootPackageName(),
             InstalledVersions::getRootPackage()['pretty_version'],

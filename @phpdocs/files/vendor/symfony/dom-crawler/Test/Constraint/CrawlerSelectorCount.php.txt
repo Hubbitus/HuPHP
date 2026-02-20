@@ -22,8 +22,7 @@ final class CrawlerSelectorCount extends Constraint
     ) {
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         return \sprintf('selector "%s" count is "%d"', $this->selector, $this->count);
     }
 

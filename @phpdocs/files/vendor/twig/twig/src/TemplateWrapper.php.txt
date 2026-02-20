@@ -90,13 +90,11 @@ final class TemplateWrapper
         }
     }
 
-    public function getSourceContext(): Source
-    {
+    public function getSourceContext(): Source {
         return $this->template->getSourceContext();
     }
 
-    public function getTemplateName(): string
-    {
+    public function getTemplateName(): string {
         return $this->template->getTemplateName();
     }
 

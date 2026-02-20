@@ -48,8 +48,7 @@ class ContainerCommandLoader implements CommandLoaderInterface
         return isset($this->commandMap[$name]) && $this->container->has($this->commandMap[$name]);
     }
 
-    public function getNames(): array
-    {
+    public function getNames(): array {
         return array_keys($this->commandMap);
     }
 }

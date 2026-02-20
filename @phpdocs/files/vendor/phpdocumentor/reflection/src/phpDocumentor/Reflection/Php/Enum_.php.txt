@@ -71,14 +71,12 @@ final class Enum_ implements Element, MetaDataContainerInterface, AttributeConta
     }
 
     #[Override]
-    public function getFqsen(): Fqsen
-    {
+    public function getFqsen(): Fqsen {
         return $this->fqsen;
     }
 
     #[Override]
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->fqsen->getName();
     }
 
@@ -87,13 +85,11 @@ final class Enum_ implements Element, MetaDataContainerInterface, AttributeConta
         return $this->docBlock;
     }
 
-    public function getLocation(): Location
-    {
+    public function getLocation(): Location {
         return $this->location;
     }
 
-    public function getEndLocation(): Location
-    {
+    public function getEndLocation(): Location {
         return $this->endLocation;
     }
 
@@ -103,8 +99,7 @@ final class Enum_ implements Element, MetaDataContainerInterface, AttributeConta
     }
 
     /** @return EnumCase[] */
-    public function getCases(): array
-    {
+    public function getCases(): array {
         return $this->cases;
     }
 
@@ -113,8 +108,7 @@ final class Enum_ implements Element, MetaDataContainerInterface, AttributeConta
      *
      * @return Fqsen[]
      */
-    public function getInterfaces(): array
-    {
+    public function getInterfaces(): array {
         return $this->implements;
     }
 
@@ -131,8 +125,7 @@ final class Enum_ implements Element, MetaDataContainerInterface, AttributeConta
      *
      * @return Constant[]
      */
-    public function getConstants(): array
-    {
+    public function getConstants(): array {
         return $this->constants;
     }
 
@@ -149,8 +142,7 @@ final class Enum_ implements Element, MetaDataContainerInterface, AttributeConta
      *
      * @return Method[]
      */
-    public function getMethods(): array
-    {
+    public function getMethods(): array {
         return $this->methods;
     }
 
@@ -167,8 +159,7 @@ final class Enum_ implements Element, MetaDataContainerInterface, AttributeConta
      *
      * @return Fqsen[]
      */
-    public function getUsedTraits(): array
-    {
+    public function getUsedTraits(): array {
         return $this->usedTraits;
     }
 

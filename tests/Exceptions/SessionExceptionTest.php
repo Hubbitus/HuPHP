@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class SessionExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new SessionException();
 
         $this->assertInstanceOf(SessionException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new SessionException('Session error');
 
         $this->assertInstanceOf(SessionException::class, $exception);
         $this->assertEquals('Session error', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new SessionException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(SessionException::class);
 
         throw new SessionException('Session failed');

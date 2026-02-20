@@ -79,8 +79,7 @@ class UnionType extends Type implements CompositeTypeInterface
     /**
      * @return list<T>
      */
-    public function getTypes(): array
-    {
+    public function getTypes(): array {
         return $this->types;
     }
 
@@ -95,8 +94,7 @@ class UnionType extends Type implements CompositeTypeInterface
         return false;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         $string = '';
         $glue = '';
 

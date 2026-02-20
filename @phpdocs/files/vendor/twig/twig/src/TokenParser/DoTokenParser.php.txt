@@ -31,8 +31,7 @@ final class DoTokenParser extends AbstractTokenParser
         return new DoNode($expr, $token->getLine());
     }
 
-    public function getTag(): string
-    {
+    public function getTag(): string {
         return 'do';
     }
 }

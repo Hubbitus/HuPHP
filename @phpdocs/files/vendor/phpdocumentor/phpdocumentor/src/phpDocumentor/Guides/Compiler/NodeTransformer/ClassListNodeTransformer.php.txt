@@ -74,8 +74,7 @@ final class ClassListNodeTransformer implements NodeTransformer
         return $node instanceof ClassList;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 6000;
     }
 }

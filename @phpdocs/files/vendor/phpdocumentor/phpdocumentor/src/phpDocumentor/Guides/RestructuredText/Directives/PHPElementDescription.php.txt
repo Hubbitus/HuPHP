@@ -11,13 +11,11 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 
 final class PHPElementDescription extends BaseDirective
 {
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'phpdoc:element-description';
     }
 
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return ['phpdoc:description'];
     }
 

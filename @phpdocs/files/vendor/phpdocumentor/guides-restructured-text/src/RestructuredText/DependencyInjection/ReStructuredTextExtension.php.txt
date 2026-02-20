@@ -80,8 +80,7 @@ final class ReStructuredTextExtension extends Extension implements
         (new TextRolePass())->process($container);
     }
 
-    public function getConfigTreeBuilder(): TreeBuilder
-    {
+    public function getConfigTreeBuilder(): TreeBuilder {
         $treeBuilder = new TreeBuilder('rst');
         $rootNode = $treeBuilder->getRootNode();
         assert($rootNode instanceof ArrayNodeDefinition);

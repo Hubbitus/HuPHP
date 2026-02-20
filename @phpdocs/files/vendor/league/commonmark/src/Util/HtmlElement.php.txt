@@ -49,8 +49,7 @@ final class HtmlElement implements \Stringable
     }
 
     /** @psalm-immutable */
-    public function getTagName(): string
-    {
+    public function getTagName(): string {
         return $this->tagName;
     }
 
@@ -59,8 +58,7 @@ final class HtmlElement implements \Stringable
      *
      * @psalm-immutable
      */
-    public function getAllAttributes(): array
-    {
+    public function getAllAttributes(): array {
         return $this->attributes;
     }
 
@@ -117,8 +115,7 @@ final class HtmlElement implements \Stringable
     }
 
     /** @psalm-immutable */
-    public function __toString(): string
-    {
+    public function __toString(): string {
         $result = '<' . $this->tagName;
 
         foreach ($this->attributes as $key => $value) {
@@ -145,8 +142,7 @@ final class HtmlElement implements \Stringable
     }
 
     /** @psalm-immutable */
-    private function getContentsAsString(): string
-    {
+    private function getContentsAsString(): string {
         if (\is_string($this->contents)) {
             return $this->contents;
         }

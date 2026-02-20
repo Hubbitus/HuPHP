@@ -33,8 +33,7 @@ final class ReturnReference implements Stub
         return $this->reference;
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         $exporter = new Exporter;
 
         return sprintf(

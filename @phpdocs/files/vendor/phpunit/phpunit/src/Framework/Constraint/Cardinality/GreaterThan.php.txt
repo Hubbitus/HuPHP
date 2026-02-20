@@ -34,8 +34,7 @@ final class GreaterThan extends Constraint
      *
      * @throws InvalidArgumentException
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         return 'is greater than ' . $this->exporter()->export($this->value);
     }
 

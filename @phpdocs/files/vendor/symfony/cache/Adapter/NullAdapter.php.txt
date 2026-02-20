@@ -84,8 +84,7 @@ class NullAdapter implements AdapterInterface, CacheInterface
         return true;
     }
 
-    public function commit(): bool
-    {
+    public function commit(): bool {
         return true;
     }
 

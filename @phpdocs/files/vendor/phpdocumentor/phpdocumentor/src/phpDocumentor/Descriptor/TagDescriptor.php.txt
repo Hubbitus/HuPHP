@@ -38,8 +38,7 @@ class TagDescriptor implements Descriptor, Filterable, Stringable
         $this->setDescription($description);
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return (string) $this->description;
     }
 }

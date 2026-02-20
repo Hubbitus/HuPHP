@@ -80,8 +80,7 @@ class MongoDBHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface
-    {
+    protected function getDefaultFormatter(): FormatterInterface {
         return new MongoDBFormatter;
     }
 }

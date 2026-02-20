@@ -14,18 +14,15 @@ final class Visibility implements Stringable
     ) {
     }
 
-    public function isAsymmetric(): bool
-    {
+    public function isAsymmetric(): bool {
         return $this->write !== null && $this->read !== $this->write;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->read->value;
     }
 
-    public function readModifier(): VisibilityModifier
-    {
+    public function readModifier(): VisibilityModifier {
         return $this->read;
     }
 
@@ -34,8 +31,7 @@ final class Visibility implements Stringable
         return $this->write;
     }
 
-    public function read(): string
-    {
+    public function read(): string {
         return $this->read->value;
     }
 

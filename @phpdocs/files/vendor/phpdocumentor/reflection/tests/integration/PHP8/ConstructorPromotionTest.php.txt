@@ -110,8 +110,7 @@ class ConstructorPromotionTest extends TestCase
         );
     }
 
-    private function expectedConstructorMethod(): Method
-    {
+    private function expectedConstructorMethod(): Method {
         return new Method(
             new Fqsen('\PHP8\ConstructorPromotion::__construct()'),
             new Visibility(Visibility::PUBLIC_),
@@ -136,8 +135,7 @@ class ConstructorPromotionTest extends TestCase
         );
     }
 
-    private function expectedNameProperty(): Property
-    {
+    private function expectedNameProperty(): Property {
         return new Property(
             new Fqsen('\PHP8\ConstructorPromotion::$name'),
             new Visibility(Visibility::PUBLIC_),
@@ -157,8 +155,7 @@ class ConstructorPromotionTest extends TestCase
         );
     }
 
-    private function expectedEmailProperty(): Property
-    {
+    private function expectedEmailProperty(): Property {
         return new Property(
             new Fqsen('\PHP8\ConstructorPromotion::$email'),
             new Visibility(Visibility::PROTECTED_),
@@ -176,8 +173,7 @@ class ConstructorPromotionTest extends TestCase
         );
     }
 
-    private function expectedBirthDateProperty(): Property
-    {
+    private function expectedBirthDateProperty(): Property {
         return new Property(
             new Fqsen('\PHP8\ConstructorPromotion::$birth_date'),
             new Visibility(Visibility::PRIVATE_),
@@ -190,8 +186,7 @@ class ConstructorPromotionTest extends TestCase
         );
     }
 
-    private function expectedCreatedAtProperty(): Property
-    {
+    private function expectedCreatedAtProperty(): Property {
         return new Property(
             new Fqsen('\PHP8\ConstructorPromotion::$created_at'),
             new Visibility(Visibility::PRIVATE_),

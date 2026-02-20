@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class ClassExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new ClassException();
 
         $this->assertInstanceOf(ClassException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new ClassException('Class error');
 
         $this->assertInstanceOf(ClassException::class, $exception);
         $this->assertEquals('Class error', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new ClassException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(ClassException::class);
 
         throw new ClassException('Class operation failed');

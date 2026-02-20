@@ -46,16 +46,14 @@ abstract class BinaryOperator extends Operator
     /**
      * Returns the number of operands (constraints).
      */
-    final public function arity(): int
-    {
+    final public function arity(): int {
         return count($this->constraints);
     }
 
     /**
      * Returns a string representation of the constraint.
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         $reduced = $this->reduce();
 
         if ($reduced !== $this) {
@@ -76,8 +74,7 @@ abstract class BinaryOperator extends Operator
     /**
      * Counts the number of constraint elements.
      */
-    public function count(): int
-    {
+    public function count(): int {
         $count = 0;
 
         foreach ($this->constraints as $constraint) {
@@ -90,8 +87,7 @@ abstract class BinaryOperator extends Operator
     /**
      * Returns the nested constraints.
      */
-    final protected function constraints(): array
-    {
+    final protected function constraints(): array {
         return $this->constraints;
     }
 
@@ -110,8 +106,7 @@ abstract class BinaryOperator extends Operator
      *
      * See Constraint::reduce() for more.
      */
-    protected function reduce(): Constraint
-    {
+    protected function reduce(): Constraint {
         if ($this->arity() === 1 && $this->constraints[0] instanceof Operator) {
             return $this->constraints[0]->reduce();
         }

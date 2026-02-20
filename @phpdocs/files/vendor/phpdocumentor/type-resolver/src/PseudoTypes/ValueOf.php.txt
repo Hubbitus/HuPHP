@@ -32,18 +32,15 @@ final class ValueOf extends Mixed_ implements PseudoType
         $this->type = $type;
     }
 
-    public function getType(): Type
-    {
+    public function getType(): Type {
         return $this->type;
     }
 
-    public function underlyingType(): Type
-    {
+    public function underlyingType(): Type {
         return new Mixed_();
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return 'value-of<' . $this->type . '>';
     }
 }

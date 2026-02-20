@@ -119,8 +119,7 @@ trait CommonResponseTrait
         return $stream;
     }
 
-    public function __serialize(): array
-    {
+    public function __serialize(): array {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 
@@ -158,8 +157,7 @@ trait CommonResponseTrait
         $response->initializer = null;
     }
 
-    private function checkStatusCode(): void
-    {
+    private function checkStatusCode(): void {
         $code = $this->getInfo('http_code');
 
         if (500 <= $code) {

@@ -96,8 +96,7 @@ function isCharCode(array $chars): callable
  * @api
  * @psalm-pure
  */
-function isSpace(): callable
-{
+function isSpace(): callable {
     return isCharCode([9, 10, 11, 12, 13, 32, 160]);
 }
 
@@ -109,8 +108,7 @@ function isSpace(): callable
  * @see isSpace
  * @psalm-pure
  */
-function isHSpace(): callable
-{
+function isHSpace(): callable {
     return isCharCode([9, 11, 12, 32, 160]);
 }
 
@@ -121,8 +119,7 @@ function isHSpace(): callable
  * @api
  * @psalm-pure
  */
-function isDigit(): callable
-{
+function isDigit(): callable {
     return isCharCode(range(0x30, 0x39));
 }
 
@@ -133,8 +130,7 @@ function isDigit(): callable
  * @api
  * @psalm-pure
  */
-function isControl(): callable
-{
+function isControl(): callable {
     return isCharCode(range(0x00, 0x1F) + [0x7F]);
 }
 

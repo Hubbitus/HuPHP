@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class ImageUploadExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new ImageUploadException();
 
         $this->assertInstanceOf(ImageUploadException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new ImageUploadException('Upload failed');
 
         $this->assertInstanceOf(ImageUploadException::class, $exception);
         $this->assertEquals('Upload failed', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new ImageUploadException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(ImageUploadException::class);
 
         throw new ImageUploadException('Image upload failed');

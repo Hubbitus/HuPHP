@@ -106,8 +106,7 @@ final class DelimiterStack
     /**
      * @internal
      */
-    public function removeBracket(): void
-    {
+    public function removeBracket(): void {
         if ($this->brackets === null) {
             return;
         }
@@ -195,8 +194,7 @@ final class DelimiterStack
     /**
      * @internal
      */
-    public function deactivateLinkOpeners(): void
-    {
+    public function deactivateLinkOpeners(): void {
         $opener = $this->brackets;
         while ($opener !== null && $opener->isActive()) {
             $opener->setActive(false);

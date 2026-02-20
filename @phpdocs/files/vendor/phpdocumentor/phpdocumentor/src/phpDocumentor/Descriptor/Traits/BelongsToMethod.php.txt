@@ -28,8 +28,7 @@ trait BelongsToMethod
         $this->method = $method;
     }
 
-    public function getMethod(): MethodInterface
-    {
+    public function getMethod(): MethodInterface {
         $method = $this->method ?? null;
 
         Assert::isInstanceOf($method, MethodInterface::class);

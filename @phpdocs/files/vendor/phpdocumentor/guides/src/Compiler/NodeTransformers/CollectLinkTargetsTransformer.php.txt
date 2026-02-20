@@ -167,8 +167,7 @@ final class CollectLinkTargetsTransformer implements NodeTransformer
         return $node instanceof DocumentNode || $node instanceof AnchorNode || $node instanceof LinkTargetNode;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         // After MetasPass
         return 5000;
     }

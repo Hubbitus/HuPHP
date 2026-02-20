@@ -31,16 +31,14 @@ class BooleanNodeDefinition extends ScalarNodeDefinition
     /**
      * Instantiate a Node.
      */
-    protected function instantiateNode(): BooleanNode
-    {
+    protected function instantiateNode(): BooleanNode {
         return new BooleanNode($this->name, $this->parent, $this->pathSeparator);
     }
 
     /**
      * @throws InvalidDefinitionException
      */
-    public function cannotBeEmpty(): static
-    {
+    public function cannotBeEmpty(): static {
         throw new InvalidDefinitionException('->cannotBeEmpty() is not applicable to BooleanNodeDefinition.');
     }
 }

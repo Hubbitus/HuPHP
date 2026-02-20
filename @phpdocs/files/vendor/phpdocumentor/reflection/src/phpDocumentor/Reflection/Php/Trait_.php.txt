@@ -73,8 +73,7 @@ final class Trait_ implements Element, MetaDataContainerInterface, AttributeCont
      *
      * @return Method[]
      */
-    public function getMethods(): array
-    {
+    public function getMethods(): array {
         return $this->methods;
     }
 
@@ -91,8 +90,7 @@ final class Trait_ implements Element, MetaDataContainerInterface, AttributeCont
      *
      * @return Property[]
      */
-    public function getProperties(): array
-    {
+    public function getProperties(): array {
         return $this->properties;
     }
 
@@ -108,8 +106,7 @@ final class Trait_ implements Element, MetaDataContainerInterface, AttributeCont
      * Returns the Fqsen of the element.
      */
     #[Override]
-    public function getFqsen(): Fqsen
-    {
+    public function getFqsen(): Fqsen {
         return $this->fqsen;
     }
 
@@ -117,8 +114,7 @@ final class Trait_ implements Element, MetaDataContainerInterface, AttributeCont
      * Returns the name of the element.
      */
     #[Override]
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->fqsen->getName();
     }
 
@@ -132,8 +128,7 @@ final class Trait_ implements Element, MetaDataContainerInterface, AttributeCont
      *
      * @return Fqsen[]
      */
-    public function getUsedTraits(): array
-    {
+    public function getUsedTraits(): array {
         return $this->usedTraits;
     }
 
@@ -145,13 +140,11 @@ final class Trait_ implements Element, MetaDataContainerInterface, AttributeCont
         $this->usedTraits[(string) $fqsen] = $fqsen;
     }
 
-    public function getLocation(): Location
-    {
+    public function getLocation(): Location {
         return $this->location;
     }
 
-    public function getEndLocation(): Location
-    {
+    public function getEndLocation(): Location {
         return $this->endLocation;
     }
 
@@ -160,8 +153,7 @@ final class Trait_ implements Element, MetaDataContainerInterface, AttributeCont
      *
      * @return Constant[]
      */
-    public function getConstants(): array
-    {
+    public function getConstants(): array {
         return $this->constants;
     }
 

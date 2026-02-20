@@ -36,8 +36,7 @@ class ExpressionLanguageProvider implements ExpressionFunctionProviderInterface
         $this->getEnv = $getEnv;
     }
 
-    public function getFunctions(): array
-    {
+    public function getFunctions(): array {
         return [
             new ExpressionFunction('service', $this->serviceCompiler ?? fn ($arg) => \sprintf('$container->get(%s)', $arg), fn (array $variables, $value) => $variables['container']->get($value)),
 

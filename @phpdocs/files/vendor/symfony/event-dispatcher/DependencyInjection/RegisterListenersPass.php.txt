@@ -203,8 +203,7 @@ class ExtractingEventDispatcher extends EventDispatcher implements EventSubscrib
         $this->listeners[] = [$eventName, $listener[1], $priority];
     }
 
-    public static function getSubscribedEvents(): array
-    {
+    public static function getSubscribedEvents(): array {
         $events = [];
 
         foreach ([self::$subscriber, 'getSubscribedEvents']() as $eventName => $params) {

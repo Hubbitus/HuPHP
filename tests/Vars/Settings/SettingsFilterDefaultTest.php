@@ -11,15 +11,13 @@ use PHPUnit\Framework\TestCase;
  */
 class SettingsFilterDefaultTest extends TestCase
 {
-    public function testConstructorStoresDefaultValue(): void
-    {
+    public function testConstructorStoresDefaultValue(): void {
         $filter = new SettingsFilterDefault('testProp', 'default_value');
 
         $this->assertEquals('testProp', $filter->propName);
     }
 
-    public function testApplyReturnsDefaultValueForEmptyValue(): void
-    {
+    public function testApplyReturnsDefaultValueForEmptyValue(): void {
         $filter = new SettingsFilterDefault('testProp', 'default_value');
 
         $name = 'testProp';
@@ -30,8 +28,7 @@ class SettingsFilterDefaultTest extends TestCase
         $this->assertEquals('default_value', $value);
     }
 
-    public function testApplyReturnsDefaultValueForNullValue(): void
-    {
+    public function testApplyReturnsDefaultValueForNullValue(): void {
         $filter = new SettingsFilterDefault('testProp', 'default_value');
 
         $name = 'testProp';
@@ -42,8 +39,7 @@ class SettingsFilterDefaultTest extends TestCase
         $this->assertEquals('default_value', $value);
     }
 
-    public function testApplyLeavesNonEmptyValueUnchanged(): void
-    {
+    public function testApplyLeavesNonEmptyValueUnchanged(): void {
         $filter = new SettingsFilterDefault('testProp', 'default_value');
 
         $name = 'testProp';
@@ -54,8 +50,7 @@ class SettingsFilterDefaultTest extends TestCase
         $this->assertEquals('actual_value', $value);
     }
 
-    public function testApplyWithCustomEmptyCallback(): void
-    {
+    public function testApplyWithCustomEmptyCallback(): void {
         $customEmptyCallback = function($var) {
             return $var === 'special_empty';
         };
@@ -70,8 +65,7 @@ class SettingsFilterDefaultTest extends TestCase
         $this->assertEquals('default_value', $value);
     }
 
-    public function testApplyWithCustomEmptyCallbackNonMatching(): void
-    {
+    public function testApplyWithCustomEmptyCallbackNonMatching(): void {
         $customEmptyCallback = function($var) {
             return $var === 'special_empty';
         };
@@ -86,8 +80,7 @@ class SettingsFilterDefaultTest extends TestCase
         $this->assertEquals('normal_value', $value);
     }
 
-    public function testApplyWithNumericDefault(): void
-    {
+    public function testApplyWithNumericDefault(): void {
         $filter = new SettingsFilterDefault('testProp', 42);
 
         $name = 'testProp';
@@ -98,8 +91,7 @@ class SettingsFilterDefaultTest extends TestCase
         $this->assertEquals(42, $value);
     }
 
-    public function testApplyWithArrayDefault(): void
-    {
+    public function testApplyWithArrayDefault(): void {
         $defaultArray = ['key' => 'value'];
         $filter = new SettingsFilterDefault('testProp', $defaultArray);
 
@@ -111,8 +103,7 @@ class SettingsFilterDefaultTest extends TestCase
         $this->assertEquals($defaultArray, $value);
     }
 
-    public function testApplyWithZeroValue(): void
-    {
+    public function testApplyWithZeroValue(): void {
         $filter = new SettingsFilterDefault('testProp', 'default_value');
 
         $name = 'testProp';
@@ -124,8 +115,7 @@ class SettingsFilterDefaultTest extends TestCase
         $this->assertEquals('default_value', $value);
     }
 
-    public function testApplyWithFalseValue(): void
-    {
+    public function testApplyWithFalseValue(): void {
         $filter = new SettingsFilterDefault('testProp', 'default_value');
 
         $name = 'testProp';

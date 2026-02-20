@@ -33,8 +33,7 @@ abstract class TraversableContains extends Constraint
      *
      * @throws InvalidArgumentException
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         return 'contains ' . $this->exporter()->export($this->value);
     }
 

@@ -40,18 +40,15 @@ final class Text
         $this->showOnlySummary    = $showOnlySummary;
     }
 
-    public function target(): File
-    {
+    public function target(): File {
         return $this->target;
     }
 
-    public function showUncoveredFiles(): bool
-    {
+    public function showUncoveredFiles(): bool {
         return $this->showUncoveredFiles;
     }
 
-    public function showOnlySummary(): bool
-    {
+    public function showOnlySummary(): bool {
         return $this->showOnlySummary;
     }
 }

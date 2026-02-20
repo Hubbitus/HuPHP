@@ -42,8 +42,7 @@ final class Interface_Test extends TestCase
     /**
      * Creates a new (empty) fixture object.
      */
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->exampleParents = [
             new Fqsen('\MySpace\MyParent'),
             new Fqsen('\MySpace\MyOtherParent'),
@@ -54,28 +53,23 @@ final class Interface_Test extends TestCase
         $this->fixture  = new Interface_($this->fqsen, $this->exampleParents, $this->docBlock);
     }
 
-    private function getFixture(): MetaDataContainerInterface
-    {
+    private function getFixture(): MetaDataContainerInterface {
         return $this->fixture;
     }
 
-    public function testGetName(): void
-    {
+    public function testGetName(): void {
         $this->assertSame($this->fqsen->getName(), $this->fixture->getName());
     }
 
-    public function testGetFqsen(): void
-    {
+    public function testGetFqsen(): void {
         $this->assertSame($this->fqsen, $this->fixture->getFqsen());
     }
 
-    public function testGetDocblock(): void
-    {
+    public function testGetDocblock(): void {
         $this->assertSame($this->docBlock, $this->fixture->getDocBlock());
     }
 
-    public function testSettingAndGettingConstants(): void
-    {
+    public function testSettingAndGettingConstants(): void {
         $this->assertEquals([], $this->fixture->getConstants());
 
         $constant = new Constant(new Fqsen('\MySpace\MyInterface::MY_CONSTANT'));
@@ -85,8 +79,7 @@ final class Interface_Test extends TestCase
         $this->assertEquals(['\MySpace\MyInterface::MY_CONSTANT' => $constant], $this->fixture->getConstants());
     }
 
-    public function testSettingAndGettingMethods(): void
-    {
+    public function testSettingAndGettingMethods(): void {
         $this->assertEquals([], $this->fixture->getMethods());
 
         $method = new Method(new Fqsen('\MySpace\MyInterface::myMethod()'));
@@ -96,19 +89,16 @@ final class Interface_Test extends TestCase
         $this->assertEquals(['\MySpace\MyInterface::myMethod()' => $method], $this->fixture->getMethods());
     }
 
-    public function testReturningTheParentsOfThisInterface(): void
-    {
+    public function testReturningTheParentsOfThisInterface(): void {
         $this->assertSame($this->exampleParents, $this->fixture->getParents());
     }
 
-    public function testLineAndColumnNumberIsReturnedWhenALocationIsProvided(): void
-    {
+    public function testLineAndColumnNumberIsReturnedWhenALocationIsProvided(): void {
         $fixture = new Interface_($this->fqsen, [], $this->docBlock, new Location(100, 20), new Location(101, 20));
         $this->assertLineAndColumnNumberIsReturnedWhenALocationIsProvided($fixture);
     }
 
-    public function testArrayWithParentsMustBeFqsenObjects(): void
-    {
+    public function testArrayWithParentsMustBeFqsenObjects(): void {
         $this->expectException(InvalidArgumentException::class);
 
         new Interface_(new Fqsen('\MyInterface'), ['InvalidInterface']);

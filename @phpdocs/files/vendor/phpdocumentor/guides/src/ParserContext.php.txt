@@ -34,13 +34,11 @@ class ParserContext
     ) {
     }
 
-    public function getProjectNode(): ProjectNode
-    {
+    public function getProjectNode(): ProjectNode {
         return $this->projectNode;
     }
 
-    public function getInitialHeaderLevel(): int
-    {
+    public function getInitialHeaderLevel(): int {
         return $this->initialHeaderLevel;
     }
 
@@ -53,8 +51,7 @@ class ParserContext
         return $this->currentDirectory . '/' . $this->getDirName() . '/' . ltrim($url, '/');
     }
 
-    public function getDirName(): string
-    {
+    public function getDirName(): string {
         $dirname = dirname($this->currentFileName);
 
         if ($dirname === '.') {
@@ -64,14 +61,12 @@ class ParserContext
         return $dirname;
     }
 
-    public function getCurrentFileName(): string
-    {
+    public function getCurrentFileName(): string {
         return $this->currentFileName;
     }
 
     /** @return array<string, string> */
-    public function getLoggerInformation(): array
-    {
+    public function getLoggerInformation(): array {
         return [
             'rst-file' => $this->currentFileName,
         ];
@@ -82,13 +77,11 @@ class ParserContext
         return $this->origin;
     }
 
-    public function getCurrentDirectory(): string
-    {
+    public function getCurrentDirectory(): string {
         return $this->currentDirectory;
     }
 
-    public function getUrl(): string
-    {
+    public function getUrl(): string {
         return $this->currentFileName;
     }
 
@@ -101,8 +94,7 @@ class ParserContext
      * @see self::setCurrentAbsolutePath() for more information
      * @see self::getOrigin() for the filesystem on which to use this path
      */
-    public function getCurrentAbsolutePath(): string
-    {
+    public function getCurrentAbsolutePath(): string {
         return $this->documentNameResolver->absoluteUrl($this->currentDirectory, $this->currentFileName);
     }
 }

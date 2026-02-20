@@ -529,8 +529,7 @@ class Parser
      *
      * @internal
      */
-    public function getRealCurrentLineNb(): int
-    {
+    public function getRealCurrentLineNb(): int {
         $realCurrentLineNumber = $this->currentLineNb + $this->offset;
 
         foreach ($this->skippedLineNumbers as $skippedLineNumber) {
@@ -544,8 +543,7 @@ class Parser
         return $realCurrentLineNumber;
     }
 
-    private function getCurrentLineIndentation(): int
-    {
+    private function getCurrentLineIndentation(): int {
         if (' ' !== ($this->currentLine[0] ?? '')) {
             return 0;
         }
@@ -658,16 +656,14 @@ class Parser
         return implode("\n", $data);
     }
 
-    private function hasMoreLines(): bool
-    {
+    private function hasMoreLines(): bool {
         return (\count($this->lines) - 1) > $this->currentLineNb;
     }
 
     /**
      * Moves the parser to the next line.
      */
-    private function moveToNextLine(): bool
-    {
+    private function moveToNextLine(): bool {
         if ($this->currentLineNb >= $this->numberOfParsedLines - 1) {
             return false;
         }
@@ -680,8 +676,7 @@ class Parser
     /**
      * Moves the parser to the previous line.
      */
-    private function moveToPreviousLine(): bool
-    {
+    private function moveToPreviousLine(): bool {
         if ($this->currentLineNb < 1) {
             return false;
         }
@@ -925,8 +920,7 @@ class Parser
     /**
      * Returns true if the next line is indented.
      */
-    private function isNextLineIndented(): bool
-    {
+    private function isNextLineIndented(): bool {
         $currentIndentation = $this->getCurrentLineIndentation();
         $movements = 0;
 
@@ -955,26 +949,22 @@ class Parser
         return $ret;
     }
 
-    private function isCurrentLineEmpty(): bool
-    {
+    private function isCurrentLineEmpty(): bool {
         return $this->isCurrentLineBlank() || $this->isCurrentLineComment();
     }
 
-    private function isCurrentLineBlank(): bool
-    {
+    private function isCurrentLineBlank(): bool {
         return '' === $this->currentLine || '' === trim($this->currentLine, ' ');
     }
 
-    private function isCurrentLineComment(): bool
-    {
+    private function isCurrentLineComment(): bool {
         // checking explicitly the first char of the trim is faster than loops or strpos
         $ltrimmedLine = '' !== $this->currentLine && ' ' === $this->currentLine[0] ? ltrim($this->currentLine, ' ') : $this->currentLine;
 
         return '' !== $ltrimmedLine && '#' === $ltrimmedLine[0];
     }
 
-    private function isCurrentLineLastLineInDocument(): bool
-    {
+    private function isCurrentLineLastLineInDocument(): bool {
         return ($this->offset + $this->currentLineNb) >= ($this->totalNumberOfLines - 1);
     }
 
@@ -1009,8 +999,7 @@ class Parser
         return $value;
     }
 
-    private function isNextLineUnIndentedCollection(): bool
-    {
+    private function isNextLineUnIndentedCollection(): bool {
         $currentIndentation = $this->getCurrentLineIndentation();
         $movements = 0;
 
@@ -1035,8 +1024,7 @@ class Parser
         return $ret;
     }
 
-    private function isStringUnIndentedCollectionItem(): bool
-    {
+    private function isStringUnIndentedCollectionItem(): bool {
         return '-' === rtrim($this->currentLine) || str_starts_with($this->currentLine, '- ');
     }
 

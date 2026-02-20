@@ -87,16 +87,14 @@ class ElasticaHandler extends AbstractProcessingHandler
     /**
      * @return mixed[]
      */
-    public function getOptions(): array
-    {
+    public function getOptions(): array {
         return $this->options;
     }
 
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface
-    {
+    protected function getDefaultFormatter(): FormatterInterface {
         return new ElasticaFormatter($this->options['index'], $this->options['type']);
     }
 

@@ -203,8 +203,7 @@ final class HttplugClient implements ClientInterface, HttpAsyncClient, RequestFa
         throw new \LogicException(\sprintf('You cannot use "%s()" as no PSR-17 factories have been found. Try running "composer require php-http/discovery psr/http-factory-implementation:*".', __METHOD__));
     }
 
-    public function __serialize(): array
-    {
+    public function __serialize(): array {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 
@@ -218,8 +217,7 @@ final class HttplugClient implements ClientInterface, HttpAsyncClient, RequestFa
         $this->wait();
     }
 
-    public function reset(): void
-    {
+    public function reset(): void {
         if ($this->client instanceof ResetInterface) {
             $this->client->reset();
         }

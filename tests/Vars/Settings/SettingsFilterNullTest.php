@@ -11,15 +11,13 @@ use PHPUnit\Framework\TestCase;
  */
 class SettingsFilterNullTest extends TestCase
 {
-    public function testConstructorStoresPropName(): void
-    {
+    public function testConstructorStoresPropName(): void {
         $filter = new SettingsFilterNull('testProp');
 
         $this->assertEquals('testProp', $filter->propName);
     }
 
-    public function testApplyReturnsNull(): void
-    {
+    public function testApplyReturnsNull(): void {
         $filter = new SettingsFilterNull('testProp');
 
         $name = 'testProp';
@@ -30,8 +28,7 @@ class SettingsFilterNullTest extends TestCase
         $this->assertNull($result);
     }
 
-    public function testApplyDoesNotModifyName(): void
-    {
+    public function testApplyDoesNotModifyName(): void {
         $filter = new SettingsFilterNull('testProp');
 
         $name = 'testProp';
@@ -42,8 +39,7 @@ class SettingsFilterNullTest extends TestCase
         $this->assertEquals('testProp', $name);
     }
 
-    public function testApplyDoesNotModifyValue(): void
-    {
+    public function testApplyDoesNotModifyValue(): void {
         $filter = new SettingsFilterNull('testProp');
 
         $name = 'testProp';
@@ -54,8 +50,7 @@ class SettingsFilterNullTest extends TestCase
         $this->assertEquals('important_value', $value);
     }
 
-    public function testApplyWithNullValue(): void
-    {
+    public function testApplyWithNullValue(): void {
         $filter = new SettingsFilterNull('testProp');
 
         $name = 'testProp';
@@ -67,8 +62,7 @@ class SettingsFilterNullTest extends TestCase
         $this->assertNull($value);
     }
 
-    public function testApplyWithArrayValue(): void
-    {
+    public function testApplyWithArrayValue(): void {
         $filter = new SettingsFilterNull('testProp');
 
         $name = 'testProp';
@@ -80,8 +74,7 @@ class SettingsFilterNullTest extends TestCase
         $this->assertEquals(['key' => 'value', 'nested' => ['data']], $value);
     }
 
-    public function testApplyWithObjectValue(): void
-    {
+    public function testApplyWithObjectValue(): void {
         $filter = new SettingsFilterNull('testProp');
 
         $name = 'testProp';
@@ -95,8 +88,7 @@ class SettingsFilterNullTest extends TestCase
         $this->assertEquals('test', $value->property);
     }
 
-    public function testApplyWithDifferentPropNames(): void
-    {
+    public function testApplyWithDifferentPropNames(): void {
         $filter = new SettingsFilterNull('specificProp');
 
         $name = 'specificProp';

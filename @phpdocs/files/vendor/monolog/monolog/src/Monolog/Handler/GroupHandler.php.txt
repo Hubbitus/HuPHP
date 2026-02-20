@@ -107,8 +107,7 @@ class GroupHandler extends Handler implements ProcessableHandlerInterface, Reset
         }
     }
 
-    public function close(): void
-    {
+    public function close(): void {
         parent::close();
 
         foreach ($this->handlers as $handler) {

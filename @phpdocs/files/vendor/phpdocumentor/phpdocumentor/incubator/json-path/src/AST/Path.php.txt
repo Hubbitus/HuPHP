@@ -23,8 +23,7 @@ class Path implements QueryNode
     }
 
     /** @return non-empty-list<PathNode>*/
-    public function getNodes(): array
-    {
+    public function getNodes(): array {
         return $this->nodes;
     }
 

@@ -32,8 +32,7 @@ final class CrapIndex
         $this->codeCoverage         = $codeCoverage;
     }
 
-    public function asString(): string
-    {
+    public function asString(): string {
         if ($this->codeCoverage === 0.0) {
             return (string) ($this->cyclomaticComplexity ** 2 + $this->cyclomaticComplexity);
         }

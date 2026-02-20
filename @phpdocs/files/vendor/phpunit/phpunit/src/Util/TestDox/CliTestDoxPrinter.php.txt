@@ -332,16 +332,14 @@ class CliTestDoxPrinter extends TestDoxPrinter
         return $out;
     }
 
-    protected function drawSpinner(): void
-    {
+    protected function drawSpinner(): void {
         if ($this->colors) {
             $id = $this->spinState % count(self::SPINNER_ICONS);
             $this->write(self::SPINNER_ICONS[$id]);
         }
     }
 
-    protected function undrawSpinner(): void
-    {
+    protected function undrawSpinner(): void {
         if ($this->colors) {
             $id = $this->spinState % count(self::SPINNER_ICONS);
             $this->write("\e[1K\e[" . strlen(self::SPINNER_ICONS[$id]) . 'D');

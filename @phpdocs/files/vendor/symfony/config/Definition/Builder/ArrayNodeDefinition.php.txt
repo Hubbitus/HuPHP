@@ -53,8 +53,7 @@ class ArrayNodeDefinition extends NodeDefinition implements ParentNodeDefinition
         $this->nodeBuilder = $builder;
     }
 
-    public function children(): NodeBuilder
-    {
+    public function children(): NodeBuilder {
         return $this->getNodeBuilder();
     }
 
@@ -66,38 +65,31 @@ class ArrayNodeDefinition extends NodeDefinition implements ParentNodeDefinition
         return $this->prototype = $this->getNodeBuilder()->node(null, $type)->setParent($this);
     }
 
-    public function variablePrototype(): VariableNodeDefinition
-    {
+    public function variablePrototype(): VariableNodeDefinition {
         return $this->prototype('variable');
     }
 
-    public function scalarPrototype(): ScalarNodeDefinition
-    {
+    public function scalarPrototype(): ScalarNodeDefinition {
         return $this->prototype('scalar');
     }
 
-    public function booleanPrototype(): BooleanNodeDefinition
-    {
+    public function booleanPrototype(): BooleanNodeDefinition {
         return $this->prototype('boolean');
     }
 
-    public function integerPrototype(): IntegerNodeDefinition
-    {
+    public function integerPrototype(): IntegerNodeDefinition {
         return $this->prototype('integer');
     }
 
-    public function floatPrototype(): FloatNodeDefinition
-    {
+    public function floatPrototype(): FloatNodeDefinition {
         return $this->prototype('float');
     }
 
-    public function arrayPrototype(): self
-    {
+    public function arrayPrototype(): self {
         return $this->prototype('array');
     }
 
-    public function enumPrototype(): EnumNodeDefinition
-    {
+    public function enumPrototype(): EnumNodeDefinition {
         return $this->prototype('enum');
     }
 
@@ -110,8 +102,7 @@ class ArrayNodeDefinition extends NodeDefinition implements ParentNodeDefinition
      *
      * @return $this
      */
-    public function addDefaultsIfNotSet(): static
-    {
+    public function addDefaultsIfNotSet(): static {
         $this->addDefaults = true;
 
         return $this;
@@ -140,8 +131,7 @@ class ArrayNodeDefinition extends NodeDefinition implements ParentNodeDefinition
      *
      * @return $this
      */
-    public function requiresAtLeastOneElement(): static
-    {
+    public function requiresAtLeastOneElement(): static {
         $this->atLeastOne = true;
 
         return $this;
@@ -154,8 +144,7 @@ class ArrayNodeDefinition extends NodeDefinition implements ParentNodeDefinition
      *
      * @return $this
      */
-    public function disallowNewKeysInSubsequentConfigs(): static
-    {
+    public function disallowNewKeysInSubsequentConfigs(): static {
         $this->allowNewKeys = false;
 
         return $this;
@@ -239,8 +228,7 @@ class ArrayNodeDefinition extends NodeDefinition implements ParentNodeDefinition
      *
      * @return $this
      */
-    public function canBeEnabled(): static
-    {
+    public function canBeEnabled(): static {
         $this
             ->addDefaultsIfNotSet()
             ->treatFalseLike(['enabled' => false])
@@ -269,8 +257,7 @@ class ArrayNodeDefinition extends NodeDefinition implements ParentNodeDefinition
      *
      * @return $this
      */
-    public function canBeDisabled(): static
-    {
+    public function canBeDisabled(): static {
         $this
             ->addDefaultsIfNotSet()
             ->treatFalseLike(['enabled' => false])
@@ -289,8 +276,7 @@ class ArrayNodeDefinition extends NodeDefinition implements ParentNodeDefinition
      *
      * @return $this
      */
-    public function performNoDeepMerging(): static
-    {
+    public function performNoDeepMerging(): static {
         $this->performDeepMerging = false;
 
         return $this;
@@ -339,15 +325,13 @@ class ArrayNodeDefinition extends NodeDefinition implements ParentNodeDefinition
     /**
      * Returns a node builder to be used to add children and prototype.
      */
-    protected function getNodeBuilder(): NodeBuilder
-    {
+    protected function getNodeBuilder(): NodeBuilder {
         $this->nodeBuilder ??= new NodeBuilder();
 
         return $this->nodeBuilder->setParent($this);
     }
 
-    protected function createNode(): NodeInterface
-    {
+    protected function createNode(): NodeInterface {
         if (!isset($this->prototype)) {
             $node = new ArrayNode($this->name, $this->parent, $this->pathSeparator);
 
@@ -487,8 +471,7 @@ class ArrayNodeDefinition extends NodeDefinition implements ParentNodeDefinition
     /**
      * @return NodeDefinition[]
      */
-    public function getChildNodeDefinitions(): array
-    {
+    public function getChildNodeDefinitions(): array {
         return $this->children;
     }
 

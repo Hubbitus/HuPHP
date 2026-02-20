@@ -32,16 +32,14 @@ final class Numeric_ extends AggregatedType implements PseudoType
         AggregatedType::__construct([new NumericString(), new Integer(), new Float_()], '|');
     }
 
-    public function underlyingType(): Type
-    {
+    public function underlyingType(): Type {
         return new Compound([new NumericString(), new Integer(), new Float_()]);
     }
 
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return 'numeric';
     }
 }

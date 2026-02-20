@@ -23,7 +23,7 @@ class SettingsFilterIgnore extends SettingsFilterBase{
 		parent::__construct($propName, null);
 	}
 	public function apply(&$name, &$value): mixed{
-		$name = null;
+		$value = null;
 		return null;
 	}
 }

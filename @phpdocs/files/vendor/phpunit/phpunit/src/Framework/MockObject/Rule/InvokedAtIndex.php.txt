@@ -40,8 +40,7 @@ final class InvokedAtIndex extends InvocationOrder
         $this->sequenceIndex = $sequenceIndex;
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         return 'invoked at sequence index ' . $this->sequenceIndex;
     }
 
@@ -58,8 +57,7 @@ final class InvokedAtIndex extends InvocationOrder
      *
      * @throws ExpectationFailedException
      */
-    public function verify(): void
-    {
+    public function verify(): void {
         if ($this->currentIndex < $this->sequenceIndex) {
             throw new ExpectationFailedException(
                 sprintf(

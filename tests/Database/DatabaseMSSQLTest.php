@@ -17,8 +17,7 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseMSSQLTest extends TestCase
 {
-    public function testClassExtendsDatabase(): void
-    {
+    public function testClassExtendsDatabase(): void {
         $settings = new DatabaseSettingsMSSQL();
         $db = new DatabaseMSSQL($settings);
 
@@ -27,8 +26,7 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertEquals('mssql', $db->db_type);
     }
 
-    public function testDbConnectSuccess(): void
-    {
+    public function testDbConnectSuccess(): void {
         // This would require actual MSSQL server connection
         // We'll test the method structure and error handling
         $settings = new DatabaseSettingsMSSQL([
@@ -44,8 +42,7 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertNull($db->db_link);
     }
 
-    public function testDbConnectFailureThrowsException(): void
-    {
+    public function testDbConnectFailureThrowsException(): void {
         $this->expectException(DatabaseConnectErrorException::class);
 
         $settings = new DatabaseSettingsMSSQL([
@@ -58,8 +55,7 @@ class DatabaseMSSQLTest extends TestCase
         $db = new DatabaseMSSQL($settings);
     }
 
-    public function testQuerySuccess(): void
-    {
+    public function testQuerySuccess(): void {
         // This would require actual MSSQL server connection
         // We'll test the method structure and error handling
         $settings = new DatabaseSettingsMSSQL([
@@ -77,8 +73,7 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertEquals(3, (new \ReflectionMethod($db, 'query'))->getNumberOfParameters());
     }
 
-    public function testQueryFailureThrowsException(): void
-    {
+    public function testQueryFailureThrowsException(): void {
         $this->expectException(DatabaseQueryFailedException::class);
 
         $settings = new DatabaseSettingsMSSQL([
@@ -93,8 +88,7 @@ class DatabaseMSSQLTest extends TestCase
         $db->query('SELECT * FROM non_existent_table');
     }
 
-    public function testQueryLimitMethod(): void
-    {
+    public function testQueryLimitMethod(): void {
         $settings = new DatabaseSettingsMSSQL([
             'hostname' => 'localhost',
             'username' => 'testuser',
@@ -109,8 +103,7 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertEquals(4, (new \ReflectionMethod($db, 'query_limit'))->getNumberOfParameters());
     }
 
-    public function testToBlobMethod(): void
-    {
+    public function testToBlobMethod(): void {
         $db = new DatabaseMSSQL(new DatabaseSettingsMSSQL());
 
         $testString = "test string";
@@ -120,16 +113,14 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testSqlNextResultMethod(): void
-    {
+    public function testSqlNextResultMethod(): void {
         $db = new DatabaseMSSQL(new DatabaseSettingsMSSQL());
 
         $this->assertTrue(method_exists($db, 'sql_next_result'));
         $this->assertTrue((new \ReflectionMethod($db, 'sql_next_result'))->isFinal());
     }
 
-    public function testSqlEscapeStringMethod(): void
-    {
+    public function testSqlEscapeStringMethod(): void {
         $db = new DatabaseMSSQL(new DatabaseSettingsMSSQL());
 
         $testString = "O'Connor";
@@ -139,8 +130,7 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testMSSQLintArrayMethod(): void
-    {
+    public function testMSSQLintArrayMethod(): void {
         $db = new DatabaseMSSQL(new DatabaseSettingsMSSQL());
 
         $testArray = [1, 2, 3, 4, 5];
@@ -150,8 +140,7 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testIntFixedLengthHelperMethod(): void
-    {
+    public function testIntFixedLengthHelperMethod(): void {
         $db = new DatabaseMSSQL(new DatabaseSettingsMSSQL());
 
         $reflection = new \ReflectionClass(DatabaseMSSQL::class);
@@ -162,24 +151,21 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertEquals('   42', $result);
     }
 
-    public function testSqlFetchObjectMethod(): void
-    {
+    public function testSqlFetchObjectMethod(): void {
         $db = new DatabaseMSSQL(new DatabaseSettingsMSSQL());
 
         $this->assertTrue(method_exists($db, 'sql_fetch_object'));
         $this->assertEquals(2, (new \ReflectionMethod($db, 'sql_fetch_object'))->getNumberOfParameters());
     }
 
-    public function testCollectDebugInfoMethod(): void
-    {
+    public function testCollectDebugInfoMethod(): void {
         $db = new DatabaseMSSQL(new DatabaseSettingsMSSQL());
 
         $this->assertTrue(method_exists($db, 'collectDebugInfo'));
         $this->assertEquals(4, (new \ReflectionMethod($db, 'collectDebugInfo'))->getNumberOfParameters());
     }
 
-    public function testSettingsInheritance(): void
-    {
+    public function testSettingsInheritance(): void {
         $settings = new DatabaseSettingsMSSQL([
             'hostname' => 'localhost',
             'username' => 'testuser',
@@ -201,8 +187,7 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertTrue($db->settings->DEBUG);
     }
 
-    public function testConstructorParameters(): void
-    {
+    public function testConstructorParameters(): void {
         $settings = new DatabaseSettingsMSSQL([
             'hostname' => 'localhost',
             'username' => 'testuser',
@@ -215,22 +200,19 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\Database', $db);
     }
 
-    public function testDatabaseTypeProperty(): void
-    {
+    public function testDatabaseTypeProperty(): void {
         $db = new DatabaseMSSQL(new DatabaseSettingsMSSQL());
 
         $this->assertEquals('mssql', $db->db_type);
     }
 
-    public function testErrorHandling(): void
-    {
+    public function testErrorHandling(): void {
         $db = new DatabaseMSSQL(new DatabaseSettingsMSSQL());
 
         $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\DatabaseError', $db->getError());
     }
 
-    public function testMagicMethods(): void
-    {
+    public function testMagicMethods(): void {
         $settings = new DatabaseSettingsMSSQL([
             'hostname' => 'localhost'
         ]);
@@ -240,15 +222,13 @@ class DatabaseMSSQLTest extends TestCase
         $this->assertEquals('localhost', $db->settings->hostname);
     }
 
-    public function testWakeupMethod(): void
-    {
+    public function testWakeupMethod(): void {
         $db = new DatabaseMSSQL(new DatabaseSettingsMSSQL());
 
         $this->assertTrue(method_exists($db, '__wakeup'));
     }
 
-    public function testQueryLastId(): void
-    {
+    public function testQueryLastId(): void {
         $settings = new DatabaseSettingsMSSQL([
             'hostname' => 'localhost',
             'username' => 'testuser',
@@ -263,8 +243,7 @@ class DatabaseMSSQLTest extends TestCase
         // This would require actual database connection to test properly
     }
 
-    public function testQueryPrinting(): void
-    {
+    public function testQueryPrinting(): void {
         $settings = new DatabaseSettingsMSSQL([
             'hostname' => 'localhost',
             'username' => 'testuser',

@@ -396,8 +396,7 @@ class CachingHttpClient implements HttpClientInterface, ResetInterface
         return str_replace('/', '_', base64_encode(hash('sha256', $toHash, true)));
     }
 
-    private static function generateChunkKey(): string
-    {
+    private static function generateChunkKey(): string {
         return str_replace('/', '_', base64_encode(random_bytes(6)));
     }
 

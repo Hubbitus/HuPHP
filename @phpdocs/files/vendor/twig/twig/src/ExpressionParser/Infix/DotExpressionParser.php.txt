@@ -78,28 +78,23 @@ final class DotExpressionParser extends AbstractExpressionParser implements Infi
         return new GetAttrExpression($expr, $attribute, $arguments, $type, $lineno, $nullSafe);
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return '.';
     }
 
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return ['?.'];
     }
 
-    public function getDescription(): string
-    {
+    public function getDescription(): string {
         return 'Get an attribute on a variable';
     }
 
-    public function getPrecedence(): int
-    {
+    public function getPrecedence(): int {
         return 512;
     }
 
-    public function getAssociativity(): InfixAssociativity
-    {
+    public function getAssociativity(): InfixAssociativity {
         return InfixAssociativity::Left;
     }
 }

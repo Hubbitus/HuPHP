@@ -26,8 +26,7 @@ final class DelimiterParser implements InlineParserInterface
         $this->collection = $collection;
     }
 
-    public function getMatchDefinition(): InlineParserMatch
-    {
+    public function getMatchDefinition(): InlineParserMatch {
         return InlineParserMatch::oneOf(...$this->collection->getDelimiterCharacters());
     }
 

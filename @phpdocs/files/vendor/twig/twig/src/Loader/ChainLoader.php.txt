@@ -49,8 +49,7 @@ final class ChainLoader implements LoaderInterface
     /**
      * @return LoaderInterface[]
      */
-    public function getLoaders(): array
-    {
+    public function getLoaders(): array {
         if (!\is_array($this->loaders)) {
             $this->loaders = iterator_to_array($this->loaders, false);
         }

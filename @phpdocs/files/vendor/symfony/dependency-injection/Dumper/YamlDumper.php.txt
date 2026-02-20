@@ -192,8 +192,7 @@ class YamlDumper extends Dumper
         return \sprintf("    %s:\n        alias: %s\n%s", $alias, $id, $deprecated);
     }
 
-    private function addServices(): string
-    {
+    private function addServices(): string {
         if (!$this->container->getDefinitions()) {
             return '';
         }
@@ -214,8 +213,7 @@ class YamlDumper extends Dumper
         return $code;
     }
 
-    private function addParameters(): string
-    {
+    private function addParameters(): string {
         if (!$this->container->getParameterBag()->all()) {
             return '';
         }

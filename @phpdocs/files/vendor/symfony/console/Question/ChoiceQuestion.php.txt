@@ -46,8 +46,7 @@ class ChoiceQuestion extends Question
     /**
      * @return array<string|bool|int|float|\Stringable>
      */
-    public function getChoices(): array
-    {
+    public function getChoices(): array {
         return $this->choices;
     }
 
@@ -69,16 +68,14 @@ class ChoiceQuestion extends Question
     /**
      * Returns whether the choices are multiselect.
      */
-    public function isMultiselect(): bool
-    {
+    public function isMultiselect(): bool {
         return $this->multiselect;
     }
 
     /**
      * Gets the prompt for choices.
      */
-    public function getPrompt(): string
-    {
+    public function getPrompt(): string {
         return $this->prompt;
     }
 
@@ -109,8 +106,7 @@ class ChoiceQuestion extends Question
         return $this;
     }
 
-    private function getDefaultValidator(): callable
-    {
+    private function getDefaultValidator(): callable {
         $choices = $this->choices;
         $errorMessage = $this->errorMessage;
         $multiselect = $this->multiselect;

@@ -53,8 +53,7 @@ class TableCellStyle
         $this->options = array_merge($this->options, $options);
     }
 
-    public function getOptions(): array
-    {
+    public function getOptions(): array {
         return $this->options;
     }
 
@@ -63,8 +62,7 @@ class TableCellStyle
      *
      * @return string[]
      */
-    public function getTagOptions(): array
-    {
+    public function getTagOptions(): array {
         return array_filter(
             $this->getOptions(),
             fn ($key) => \in_array($key, self::TAG_OPTIONS) && isset($this->options[$key]),
@@ -72,8 +70,7 @@ class TableCellStyle
         );
     }
 
-    public function getPadByAlign(): int
-    {
+    public function getPadByAlign(): int {
         return self::ALIGN_MAP[$this->getOptions()['align']];
     }
 

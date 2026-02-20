@@ -62,13 +62,11 @@ class Error extends \Exception
         $this->updateRepr();
     }
 
-    public function getRawMessage(): string
-    {
+    public function getRawMessage(): string {
         return $this->rawMessage;
     }
 
-    public function getTemplateLine(): int
-    {
+    public function getTemplateLine(): int {
         return $this->lineno;
     }
 
@@ -89,8 +87,7 @@ class Error extends \Exception
         $this->updateRepr();
     }
 
-    public function guess(): void
-    {
+    public function guess(): void {
         if ($this->lineno > -1) {
             return;
         }
@@ -105,8 +102,7 @@ class Error extends \Exception
         $this->updateRepr();
     }
 
-    private function updateRepr(): void
-    {
+    private function updateRepr(): void {
         if ($this->source && $this->source->getPath()) {
             // we only update the file and the line together
             $this->file = $this->source->getPath();
@@ -133,8 +129,7 @@ class Error extends \Exception
         }
     }
 
-    private function guessTemplateInfo(): void
-    {
+    private function guessTemplateInfo(): void {
         // $this->source is never null here (see guess() usage in Template)
 
         $this->lineno = 0;

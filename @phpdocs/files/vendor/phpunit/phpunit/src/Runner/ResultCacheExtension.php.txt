@@ -27,8 +27,7 @@ final class ResultCacheExtension implements AfterIncompleteTestHook, AfterLastTe
         $this->cache = $cache;
     }
 
-    public function flush(): void
-    {
+    public function flush(): void {
         $this->cache->persist();
     }
 
@@ -87,8 +86,7 @@ final class ResultCacheExtension implements AfterIncompleteTestHook, AfterLastTe
         $this->cache->setState($testName, BaseTestRunner::STATUS_WARNING);
     }
 
-    public function executeAfterLastTest(): void
-    {
+    public function executeAfterLastTest(): void {
         $this->flush();
     }
 

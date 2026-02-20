@@ -24,8 +24,7 @@ final class ContactNode extends MetadataNode
         parent::__construct($email);
     }
 
-    public function getEmail(): string
-    {
+    public function getEmail(): string {
         return $this->email;
     }
 }

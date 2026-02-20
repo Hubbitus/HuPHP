@@ -43,11 +43,12 @@ class SettingsFilter extends SettingsCheckStatic {
 	/**
 	* Apply all desired filters and set value.
 	**/
-	public function setSetting($name, $value): void {
+	public function &setSetting($name, $value): static {
 		foreach ($this->getFilterSet($name) as $filt){
 			$filt->apply($name, $value);
 		}
 		if (!is_null($name)) parent::setSetting($name, $value);
+		return $this;
 	}
 
 	/**
@@ -55,7 +56,7 @@ class SettingsFilter extends SettingsCheckStatic {
 	* Result not cached!
 	* @inheritdoc
 	**/
-	public function &getProperty($name){
+	public function &getProperty($name): mixed {
 		$val =& parent::getProperty($name);
 		foreach ($this->getFilterGet($name) as $filt){
 			$filt->apply($name, $val);

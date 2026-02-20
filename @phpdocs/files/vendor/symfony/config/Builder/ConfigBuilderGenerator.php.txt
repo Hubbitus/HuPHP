@@ -61,8 +61,7 @@ class ConfigBuilderGenerator implements ConfigBuilderGeneratorInterface
             $this->buildNode($rootNode, $rootClass, $this->getSubNamespace($rootClass));
             $rootClass->addImplements(ConfigBuilderInterface::class);
             $rootClass->addMethod('getExtensionAlias', '
-public function NAME(): string
-{
+public function NAME(): string {
     return \'ALIAS\';
 }', ['ALIAS' => $rootNode->getPath()]);
 
@@ -87,8 +86,7 @@ public function NAME(): string
         return $directory.\DIRECTORY_SEPARATOR.$class->getFilename();
     }
 
-    private function writeClasses(): void
-    {
+    private function writeClasses(): void {
         foreach ($this->classes as $class) {
             $this->buildConstructor($class);
             $this->buildToArray($class);
@@ -503,8 +501,7 @@ public function NAME($value): static
         $extraKeys = $class->shouldAllowExtraKeys() ? ' + $this->_extraKeys' : '';
 
         $class->addMethod('toArray', '
-public function NAME(): array
-{
+public function NAME(): array {
     '.$body.'
 
     return $output'.$extraKeys.';

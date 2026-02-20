@@ -361,16 +361,14 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * Returns a matcher that matches when the method is executed
      * zero or more times.
      */
-    public static function any(): AnyInvokedCountMatcher
-    {
+    public static function any(): AnyInvokedCountMatcher {
         return new AnyInvokedCountMatcher;
     }
 
     /**
      * Returns a matcher that matches when the method is never executed.
      */
-    public static function never(): InvokedCountMatcher
-    {
+    public static function never(): InvokedCountMatcher {
         return new InvokedCountMatcher(0);
     }
 
@@ -388,16 +386,14 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * Returns a matcher that matches when the method is executed at least once.
      */
-    public static function atLeastOnce(): InvokedAtLeastOnceMatcher
-    {
+    public static function atLeastOnce(): InvokedAtLeastOnceMatcher {
         return new InvokedAtLeastOnceMatcher;
     }
 
     /**
      * Returns a matcher that matches when the method is executed exactly once.
      */
-    public static function once(): InvokedCountMatcher
-    {
+    public static function once(): InvokedCountMatcher {
         return new InvokedCountMatcher(1);
     }
 
@@ -471,8 +467,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * This method is useful when mocking a fluent interface.
      */
-    public static function returnSelf(): ReturnSelfStub
-    {
+    public static function returnSelf(): ReturnSelfStub {
         return new ReturnSelfStub;
     }
 
@@ -504,22 +499,19 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * This method is called before the first test of this test class is run.
      */
-    public static function setUpBeforeClass(): void
-    {
+    public static function setUpBeforeClass(): void {
     }
 
     /**
      * This method is called after the last test of this test class is run.
      */
-    public static function tearDownAfterClass(): void
-    {
+    public static function tearDownAfterClass(): void {
     }
 
     /**
      * This method is called before each test.
      */
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
     }
 
     /**
@@ -527,8 +519,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * This method is called between setUp() and test.
      */
-    protected function assertPreConditions(): void
-    {
+    protected function assertPreConditions(): void {
     }
 
     /**
@@ -536,15 +527,13 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * This method is called between test and tearDown().
      */
-    protected function assertPostConditions(): void
-    {
+    protected function assertPostConditions(): void {
     }
 
     /**
      * This method is called after each test.
      */
-    protected function tearDown(): void
-    {
+    protected function tearDown(): void {
     }
 
     /**
@@ -553,8 +542,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         try {
             $class = new ReflectionClass($this);
             // @codeCoverageIgnoreStart
@@ -576,13 +564,11 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         return $buffer . $this->getDataSetAsString();
     }
 
-    public function count(): int
-    {
+    public function count(): int {
         return 1;
     }
 
-    public function getActualOutputForAssertion(): string
-    {
+    public function getActualOutputForAssertion(): string {
         $this->outputRetrievedForAssertion = true;
 
         return $this->getActualOutput();
@@ -660,16 +646,14 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         $this->expectExceptionCode($exception->getCode());
     }
 
-    public function expectNotToPerformAssertions(): void
-    {
+    public function expectNotToPerformAssertions(): void {
         $this->doesNotPerformAssertions = true;
     }
 
     /**
      * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5062
      */
-    public function expectDeprecation(): void
-    {
+    public function expectDeprecation(): void {
         $this->addWarning('Expecting E_DEPRECATED and E_USER_DEPRECATED is deprecated and will no longer be possible in PHPUnit 10.');
 
         $this->expectedException = Deprecated::class;
@@ -698,8 +682,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5062
      */
-    public function expectNotice(): void
-    {
+    public function expectNotice(): void {
         $this->addWarning('Expecting E_STRICT, E_NOTICE, and E_USER_NOTICE is deprecated and will no longer be possible in PHPUnit 10.');
 
         $this->expectedException = Notice::class;
@@ -728,8 +711,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5062
      */
-    public function expectWarning(): void
-    {
+    public function expectWarning(): void {
         $this->addWarning('Expecting E_WARNING and E_USER_WARNING is deprecated and will no longer be possible in PHPUnit 10.');
 
         $this->expectedException = WarningError::class;
@@ -758,8 +740,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5062
      */
-    public function expectError(): void
-    {
+    public function expectError(): void {
         $this->addWarning('Expecting E_ERROR and E_USER_ERROR is deprecated and will no longer be possible in PHPUnit 10.');
 
         $this->expectedException = Error::class;
@@ -785,23 +766,19 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         $this->expectExceptionMessageMatches($regularExpression);
     }
 
-    public function getStatus(): int
-    {
+    public function getStatus(): int {
         return $this->status;
     }
 
-    public function markAsRisky(): void
-    {
+    public function markAsRisky(): void {
         $this->status = BaseTestRunner::STATUS_RISKY;
     }
 
-    public function getStatusMessage(): string
-    {
+    public function getStatusMessage(): string {
         return $this->statusMessage;
     }
 
-    public function hasFailed(): bool
-    {
+    public function hasFailed(): bool {
         $status = $this->getStatus();
 
         return $status === BaseTestRunner::STATUS_FAILURE || $status === BaseTestRunner::STATUS_ERROR;
@@ -1006,16 +983,14 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function doubledTypes(): array
-    {
+    public function doubledTypes(): array {
         return array_unique($this->doubledTypes);
     }
 
     /**
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function getGroups(): array
-    {
+    public function getGroups(): array {
         return $this->groups;
     }
 
@@ -1048,8 +1023,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function getSize(): int
-    {
+    public function getSize(): int {
         return TestUtil::getSize(
             static::class,
             $this->getName(false),
@@ -1061,8 +1035,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function hasSize(): bool
-    {
+    public function hasSize(): bool {
         return $this->getSize() !== TestUtil::UNKNOWN;
     }
 
@@ -1071,8 +1044,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function isSmall(): bool
-    {
+    public function isSmall(): bool {
         return $this->getSize() === TestUtil::SMALL;
     }
 
@@ -1081,8 +1053,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function isMedium(): bool
-    {
+    public function isMedium(): bool {
         return $this->getSize() === TestUtil::MEDIUM;
     }
 
@@ -1091,16 +1062,14 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function isLarge(): bool
-    {
+    public function isLarge(): bool {
         return $this->getSize() === TestUtil::LARGE;
     }
 
     /**
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function getActualOutput(): string
-    {
+    public function getActualOutput(): string {
         if (!$this->outputBufferingActive) {
             return $this->output;
         }
@@ -1111,8 +1080,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function hasOutput(): bool
-    {
+    public function hasOutput(): bool {
         if ($this->output === '') {
             return false;
         }
@@ -1127,16 +1095,14 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function doesNotPerformAssertions(): bool
-    {
+    public function doesNotPerformAssertions(): bool {
         return $this->doesNotPerformAssertions;
     }
 
     /**
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function hasExpectationOnOutput(): bool
-    {
+    public function hasExpectationOnOutput(): bool {
         return is_string($this->outputExpectedString) || is_string($this->outputExpectedRegex) || $this->outputRetrievedForAssertion;
     }
 
@@ -1187,8 +1153,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function runBare(): void
-    {
+    public function runBare(): void {
         $this->numAssertions = 0;
 
         $this->snapshotGlobalState();
@@ -1422,8 +1387,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function isInIsolation(): bool
-    {
+    public function isInIsolation(): bool {
         return $this->inIsolation;
     }
 
@@ -1488,16 +1452,14 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function getNumAssertions(): int
-    {
+    public function getNumAssertions(): int {
         return $this->numAssertions;
     }
 
     /**
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function usesDataProvider(): bool
-    {
+    public function usesDataProvider(): bool {
         return !empty($this->data);
     }
 
@@ -1540,8 +1502,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    public function getProvidedData(): array
-    {
+    public function getProvidedData(): array {
         return $this->data;
     }
 
@@ -1553,8 +1514,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         $this->warnings[] = $warning;
     }
 
-    public function sortId(): string
-    {
+    public function sortId(): string {
         $id = $this->name;
 
         if (strpos($id, '::') === false) {
@@ -1573,8 +1533,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @return list<ExecutionOrderDependency>
      */
-    public function provides(): array
-    {
+    public function provides(): array {
         return $this->providedTests;
     }
 
@@ -1587,8 +1546,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @return list<ExecutionOrderDependency>
      */
-    public function requires(): array
-    {
+    public function requires(): array {
         return $this->dependencies;
     }
 
@@ -2066,8 +2024,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
-    protected function createResult(): TestResult
-    {
+    protected function createResult(): TestResult {
         return new TestResult;
     }
 
@@ -2089,8 +2046,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @throws Throwable
      */
-    private function verifyMockObjects(): void
-    {
+    private function verifyMockObjects(): void {
         foreach ($this->mockObjects as $mockObject) {
             if ($mockObject->__phpunit_hasMatchers()) {
                 $this->numAssertions++;
@@ -2122,8 +2078,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * @throws SyntheticSkippedError
      * @throws Warning
      */
-    private function checkRequirements(): void
-    {
+    private function checkRequirements(): void {
         if (!$this->name || !method_exists($this, $this->name)) {
             return;
         }
@@ -2138,8 +2093,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         }
     }
 
-    private function handleDependencies(): bool
-    {
+    private function handleDependencies(): bool {
         if ([] === $this->dependencies || $this->inIsolation) {
             return true;
         }
@@ -2222,8 +2176,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         return true;
     }
 
-    private function markSkippedForNotSpecifyingDependency(): void
-    {
+    private function markSkippedForNotSpecifyingDependency(): void {
         $this->status = BaseTestRunner::STATUS_SKIPPED;
 
         $this->result->startTest($this);
@@ -2282,8 +2235,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * Get the mock object generator, creating it if it doesn't exist.
      */
-    private function getMockObjectGenerator(): MockGenerator
-    {
+    private function getMockObjectGenerator(): MockGenerator {
         if ($this->mockObjectGenerator === null) {
             $this->mockObjectGenerator = new MockGenerator;
         }
@@ -2291,8 +2243,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         return $this->mockObjectGenerator;
     }
 
-    private function startOutputBuffering(): void
-    {
+    private function startOutputBuffering(): void {
         ob_start();
 
         $this->outputBufferingActive = true;
@@ -2302,8 +2253,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @throws RiskyTestError
      */
-    private function stopOutputBuffering(): void
-    {
+    private function stopOutputBuffering(): void {
         if (ob_get_level() !== $this->outputBufferingLevel) {
             while (ob_get_level() >= $this->outputBufferingLevel) {
                 ob_end_clean();
@@ -2326,8 +2276,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         $this->outputBufferingLevel  = ob_get_level();
     }
 
-    private function snapshotGlobalState(): void
-    {
+    private function snapshotGlobalState(): void {
         if ($this->runTestInSeparateProcess || $this->inIsolation ||
             (!$this->backupGlobals && !$this->backupStaticAttributes)) {
             return;
@@ -2340,8 +2289,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * @throws InvalidArgumentException
      * @throws RiskyTestError
      */
-    private function restoreGlobalState(): void
-    {
+    private function restoreGlobalState(): void {
         if (!$this->snapshot instanceof Snapshot) {
             return;
         }
@@ -2483,8 +2431,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         }
     }
 
-    private function getProphet(): Prophet
-    {
+    private function getProphet(): Prophet {
         if ($this->prophet === null) {
             $this->prophet = new Prophet;
         }
@@ -2543,8 +2490,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         }
     }
 
-    private function setDoesNotPerformAssertionsFromAnnotation(): void
-    {
+    private function setDoesNotPerformAssertionsFromAnnotation(): void {
         $annotations = TestUtil::parseTestMethodAnnotations(
             static::class,
             $this->name,
@@ -2555,8 +2501,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         }
     }
 
-    private function unregisterCustomComparators(): void
-    {
+    private function unregisterCustomComparators(): void {
         $factory = ComparatorFactory::getInstance();
 
         foreach ($this->customComparators as $comparator) {
@@ -2566,8 +2511,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         $this->customComparators = [];
     }
 
-    private function cleanupIniSettings(): void
-    {
+    private function cleanupIniSettings(): void {
         foreach ($this->iniSettings as $varName => $oldValue) {
             ini_set($varName, $oldValue);
         }
@@ -2575,8 +2519,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         $this->iniSettings = [];
     }
 
-    private function cleanupLocaleSettings(): void
-    {
+    private function cleanupLocaleSettings(): void {
         foreach ($this->locale as $category => $locale) {
             setlocale($category, $locale);
         }
@@ -2622,8 +2565,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         return $result;
     }
 
-    private function runInSeparateProcess(): bool
-    {
+    private function runInSeparateProcess(): bool {
         return ($this->runTestInSeparateProcess || $this->runClassInSeparateProcess) &&
             !$this->inIsolation && !$this instanceof PhptTestCase;
     }

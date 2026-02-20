@@ -72,8 +72,7 @@ final class MarkdownParser implements MarkdownParserInterface
         $this->environment = $environment;
     }
 
-    private function initialize(): void
-    {
+    private function initialize(): void {
         $this->referenceMap       = new ReferenceMap();
         $this->lineNumber         = 0;
         $this->activeBlockParsers = [];
@@ -302,8 +301,7 @@ final class MarkdownParser implements MarkdownParserInterface
     /**
      * @throws ParserLogicException
      */
-    private function deactivateBlockParser(): BlockContinueParserInterface
-    {
+    private function deactivateBlockParser(): BlockContinueParserInterface {
         $popped = \array_pop($this->activeBlockParsers);
         if ($popped === null) {
             throw new ParserLogicException('The last block parser should not be deactivated');
@@ -344,8 +342,7 @@ final class MarkdownParser implements MarkdownParserInterface
     /**
      * @throws ParserLogicException
      */
-    public function getActiveBlockParser(): BlockContinueParserInterface
-    {
+    public function getActiveBlockParser(): BlockContinueParserInterface {
         $active = \end($this->activeBlockParsers);
         if ($active === false) {
             throw new ParserLogicException('No active block parsers are available');

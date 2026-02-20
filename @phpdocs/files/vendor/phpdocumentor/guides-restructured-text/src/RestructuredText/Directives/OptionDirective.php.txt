@@ -47,8 +47,7 @@ final class OptionDirective extends SubDirective
         $genericLinkProvider->addGenericLink(self::NAME, OptionNode::LINK_TYPE);
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return self::NAME;
     }
 

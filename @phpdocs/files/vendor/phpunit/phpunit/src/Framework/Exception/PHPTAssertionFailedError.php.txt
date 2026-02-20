@@ -25,8 +25,7 @@ final class PHPTAssertionFailedError extends SyntheticError
         $this->diff = $diff;
     }
 
-    public function getDiff(): string
-    {
+    public function getDiff(): string {
         return $this->diff;
     }
 }

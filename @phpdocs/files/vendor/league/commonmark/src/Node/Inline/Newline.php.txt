@@ -33,8 +33,7 @@ final class Newline extends AbstractInline
     }
 
     /** @psalm-immutable */
-    public function getType(): int
-    {
+    public function getType(): int {
         return $this->type;
     }
 }

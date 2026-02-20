@@ -18,8 +18,7 @@ final class DescriptorRepository
         $this->versionDescriptor = $versionDescriptor;
     }
 
-    public function getVersionDescriptor(): VersionDescriptor
-    {
+    public function getVersionDescriptor(): VersionDescriptor {
         return $this->versionDescriptor;
     }
 

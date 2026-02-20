@@ -38,46 +38,38 @@ final class ConstantTest extends TestCase
     /**
      * Creates a new (empty) fixture object.
      */
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->fqsen = new Fqsen('\MySpace\CONSTANT');
         $this->docBlock = new DocBlock('');
         $this->fixture = new Constant($this->fqsen, $this->docBlock, new Expression($this->value));
     }
 
-    private function getFixture(): MetaDataContainerInterface
-    {
+    private function getFixture(): MetaDataContainerInterface {
         return $this->fixture;
     }
 
-    public function testGetValue(): void
-    {
+    public function testGetValue(): void {
         self::assertEquals(new Expression($this->value), $this->fixture->getValue());
     }
 
-    public function testIsFinal(): void
-    {
+    public function testIsFinal(): void {
         self::assertFalse($this->fixture->isFinal());
     }
 
-    public function testGetFqsen(): void
-    {
+    public function testGetFqsen(): void {
         self::assertSame($this->fqsen, $this->fixture->getFqsen());
         self::assertSame($this->fqsen->getName(), $this->fixture->getName());
     }
 
-    public function testGetDocblock(): void
-    {
+    public function testGetDocblock(): void {
         self::assertSame($this->docBlock, $this->fixture->getDocBlock());
     }
 
-    public function testGetVisibility(): void
-    {
+    public function testGetVisibility(): void {
         self::assertEquals(new Visibility(Visibility::PUBLIC_), $this->fixture->getVisibility());
     }
 
-    public function testLineAndColumnNumberIsReturnedWhenALocationIsProvided(): void
-    {
+    public function testLineAndColumnNumberIsReturnedWhenALocationIsProvided(): void {
         $fixture = new Constant($this->fqsen, $this->docBlock, null, new Location(100, 20), new Location(101, 20));
         $this->assertLineAndColumnNumberIsReturnedWhenALocationIsProvided($fixture);
     }

@@ -50,8 +50,7 @@ final class RenderGuide extends WriterAbstract implements
     ) {
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'RenderGuide';
     }
 
@@ -75,8 +74,7 @@ final class RenderGuide extends WriterAbstract implements
         $this->renderDocumentationSet($documentationSet, $transformation);
     }
 
-    public function getDefaultSettings(): array
-    {
+    public function getDefaultSettings(): array {
         return [];
     }
 

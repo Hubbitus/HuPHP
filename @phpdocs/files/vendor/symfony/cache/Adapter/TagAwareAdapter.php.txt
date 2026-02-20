@@ -253,8 +253,7 @@ class TagAwareAdapter implements TagAwareAdapterInterface, TagAwareCacheInterfac
         return true;
     }
 
-    public function commit(): bool
-    {
+    public function commit(): bool {
         if (!$items = $this->deferred) {
             return true;
         }
@@ -278,8 +277,7 @@ class TagAwareAdapter implements TagAwareAdapterInterface, TagAwareCacheInterfac
         return $ok;
     }
 
-    public function prune(): bool
-    {
+    public function prune(): bool {
         return $this->pool instanceof PruneableInterface && $this->pool->prune();
     }
 
@@ -294,8 +292,7 @@ class TagAwareAdapter implements TagAwareAdapterInterface, TagAwareCacheInterfac
         $this->tags instanceof ResettableInterface && $this->tags->reset();
     }
 
-    public function __serialize(): array
-    {
+    public function __serialize(): array {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 

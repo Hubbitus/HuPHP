@@ -34,8 +34,7 @@ final class Option
     {
     }
 
-    private static function cases(): array
-    {
+    private static function cases(): array {
         static $assoc;
         if (null === $assoc) {
             $assoc = [];
@@ -57,8 +56,7 @@ final class Option
         ));
     }
 
-    public static function forIDNA2008Ascii(): self
-    {
+    public static function forIDNA2008Ascii(): self {
         return self::new()
             ->nonTransitionalToAscii()
             ->checkBidi()
@@ -66,8 +64,7 @@ final class Option
             ->checkContextJ();
     }
 
-    public static function forIDNA2008Unicode(): self
-    {
+    public static function forIDNA2008Unicode(): self {
         return self::new()
             ->nonTransitionalToUnicode()
             ->checkBidi()
@@ -75,87 +72,71 @@ final class Option
             ->checkContextJ();
     }
 
-    public function toBytes(): int
-    {
+    public function toBytes(): int {
         return $this->value;
     }
 
     /** array<string, int> */
-    public function list(): array
-    {
+    public function list(): array {
         return array_keys(array_filter(
             self::cases(),
             fn (int $value) => 0 !== ($value & $this->value)
         ));
     }
 
-    public function allowUnassigned(): self
-    {
+    public function allowUnassigned(): self {
         return $this->add(self::ALLOW_UNASSIGNED);
     }
 
-    public function disallowUnassigned(): self
-    {
+    public function disallowUnassigned(): self {
         return $this->remove(self::ALLOW_UNASSIGNED);
     }
 
-    public function useSTD3Rules(): self
-    {
+    public function useSTD3Rules(): self {
         return $this->add(self::USE_STD3_RULES);
     }
 
-    public function prohibitSTD3Rules(): self
-    {
+    public function prohibitSTD3Rules(): self {
         return $this->remove(self::USE_STD3_RULES);
     }
 
-    public function checkBidi(): self
-    {
+    public function checkBidi(): self {
         return $this->add(self::CHECK_BIDI);
     }
 
-    public function ignoreBidi(): self
-    {
+    public function ignoreBidi(): self {
         return $this->remove(self::CHECK_BIDI);
     }
 
-    public function checkContextJ(): self
-    {
+    public function checkContextJ(): self {
         return $this->add(self::CHECK_CONTEXTJ);
     }
 
-    public function ignoreContextJ(): self
-    {
+    public function ignoreContextJ(): self {
         return $this->remove(self::CHECK_CONTEXTJ);
     }
 
-    public function checkContextO(): self
-    {
+    public function checkContextO(): self {
         return $this->add(self::CHECK_CONTEXTO);
     }
 
-    public function ignoreContextO(): self
-    {
+    public function ignoreContextO(): self {
         return $this->remove(self::CHECK_CONTEXTO);
     }
 
-    public function nonTransitionalToAscii(): self
-    {
+    public function nonTransitionalToAscii(): self {
         return $this->add(self::NONTRANSITIONAL_TO_ASCII);
     }
 
-    public function transitionalToAscii(): self
-    {
+    public function transitionalToAscii(): self {
         return $this->remove(self::NONTRANSITIONAL_TO_ASCII);
     }
 
-    public function nonTransitionalToUnicode(): self
-    {
+    public function nonTransitionalToUnicode(): self {
         return $this->add(self::NONTRANSITIONAL_TO_UNICODE);
     }
 
-    public function transitionalToUnicode(): self
-    {
+    public function transitionalToUnicode(): self {
         return $this->remove(self::NONTRANSITIONAL_TO_UNICODE);
     }
 

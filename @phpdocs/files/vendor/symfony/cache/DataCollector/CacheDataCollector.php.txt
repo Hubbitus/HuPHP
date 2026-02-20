@@ -41,16 +41,14 @@ class CacheDataCollector extends DataCollector implements LateDataCollectorInter
         $this->lateCollect();
     }
 
-    public function reset(): void
-    {
+    public function reset(): void {
         $this->data = [];
         foreach ($this->instances as $instance) {
             $instance->clearCalls();
         }
     }
 
-    public function lateCollect(): void
-    {
+    public function lateCollect(): void {
         $empty = ['calls' => [], 'adapters' => [], 'config' => [], 'options' => [], 'statistics' => []];
         $this->data = ['instances' => $empty, 'total' => $empty];
         foreach ($this->instances as $name => $instance) {
@@ -63,45 +61,39 @@ class CacheDataCollector extends DataCollector implements LateDataCollectorInter
         $this->data['instances']['calls'] = $this->cloneVar($this->data['instances']['calls']);
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'cache';
     }
 
     /**
      * Method returns amount of logged Cache reads: "get" calls.
      */
-    public function getStatistics(): array
-    {
+    public function getStatistics(): array {
         return $this->data['instances']['statistics'];
     }
 
     /**
      * Method returns the statistic totals.
      */
-    public function getTotals(): array
-    {
+    public function getTotals(): array {
         return $this->data['total']['statistics'];
     }
 
     /**
      * Method returns all logged Cache call objects.
      */
-    public function getCalls(): mixed
-    {
+    public function getCalls(): mixed {
         return $this->data['instances']['calls'];
     }
 
     /**
      * Method returns all logged Cache adapter classes.
      */
-    public function getAdapters(): array
-    {
+    public function getAdapters(): array {
         return $this->data['instances']['adapters'];
     }
 
-    private function calculateStatistics(): array
-    {
+    private function calculateStatistics(): array {
         $statistics = [];
         foreach ($this->data['instances']['calls'] as $name => $calls) {
             $statistics[$name] = [
@@ -159,8 +151,7 @@ class CacheDataCollector extends DataCollector implements LateDataCollectorInter
         return $statistics;
     }
 
-    private function calculateTotalStatistics(): array
-    {
+    private function calculateTotalStatistics(): array {
         $statistics = $this->getStatistics();
         $totals = [
             'calls' => 0,

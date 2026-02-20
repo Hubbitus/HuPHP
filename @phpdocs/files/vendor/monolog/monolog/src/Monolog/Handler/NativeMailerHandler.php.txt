@@ -142,8 +142,7 @@ class NativeMailerHandler extends MailHandler
         return $this->contentType;
     }
 
-    public function getEncoding(): string
-    {
+    public function getEncoding(): string {
         return $this->encoding;
     }
 

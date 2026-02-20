@@ -303,8 +303,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	/**
 	 * Converts to HTML.
 	 */
-	final public function toHtml(): string
-	{
+	final public function toHtml(): string {
 		return $this->render();
 	}
 
@@ -312,8 +311,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	/**
 	 * Converts to plain text.
 	 */
-	final public function toText(): string
-	{
+	final public function toText(): string {
 		return $this->getText();
 	}
 
@@ -341,8 +339,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	/**
 	 * Returns element's name.
 	 */
-	final public function getName(): string
-	{
+	final public function getName(): string {
 		return $this->name;
 	}
 
@@ -350,8 +347,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	/**
 	 * Is element empty?
 	 */
-	final public function isEmpty(): bool
-	{
+	final public function isEmpty(): bool {
 		return $this->isEmpty;
 	}
 
@@ -548,8 +544,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	/**
 	 * Returns element's HTML content.
 	 */
-	final public function getHtml(): string
-	{
+	final public function getHtml(): string {
 		return implode('', $this->children);
 	}
 
@@ -571,8 +566,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	/**
 	 * Returns element's textual content.
 	 */
-	final public function getText(): string
-	{
+	final public function getText(): string {
 		return self::htmlToText($this->getHtml());
 	}
 
@@ -673,8 +667,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	/**
 	 * Returns children count.
 	 */
-	final public function count(): int
-	{
+	final public function count(): int {
 		return count($this->children);
 	}
 
@@ -682,8 +675,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	/**
 	 * Removes all children.
 	 */
-	public function removeChildren(): void
-	{
+	public function removeChildren(): void {
 		$this->children = [];
 	}
 
@@ -702,8 +694,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	 * Returns all children.
 	 * @return array<int, self|string>
 	 */
-	final public function getChildren(): array
-	{
+	final public function getChildren(): array {
 		return $this->children;
 	}
 
@@ -741,8 +732,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	}
 
 
-	final public function __toString(): string
-	{
+	final public function __toString(): string {
 		return $this->render();
 	}
 
@@ -750,8 +740,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	/**
 	 * Returns element's start tag.
 	 */
-	final public function startTag(): string
-	{
+	final public function startTag(): string {
 		return $this->name
 			? '<' . $this->name . $this->attributes() . '>'
 			: '';
@@ -761,8 +750,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	/**
 	 * Returns element's end tag.
 	 */
-	final public function endTag(): string
-	{
+	final public function endTag(): string {
 		return $this->name && !$this->isEmpty ? '</' . $this->name . '>' : '';
 	}
 
@@ -771,8 +759,7 @@ class Html implements \ArrayAccess, \Countable, \IteratorAggregate, HtmlStringab
 	 * Returns element's attributes.
 	 * @internal
 	 */
-	final public function attributes(): string
-	{
+	final public function attributes(): string {
 		$s = '';
 		$attrs = $this->attrs;
 		foreach ($attrs as $key => $value) {

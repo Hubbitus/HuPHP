@@ -52,23 +52,19 @@ class ParserException extends Exception
 		));
 	}
 
-	public function getCurrentTokenValue(): string
-	{
+	public function getCurrentTokenValue(): string {
 		return $this->currentTokenValue;
 	}
 
-	public function getCurrentTokenType(): int
-	{
+	public function getCurrentTokenType(): int {
 		return $this->currentTokenType;
 	}
 
-	public function getCurrentOffset(): int
-	{
+	public function getCurrentOffset(): int {
 		return $this->currentOffset;
 	}
 
-	public function getExpectedTokenType(): int
-	{
+	public function getExpectedTokenType(): int {
 		return $this->expectedTokenType;
 	}
 

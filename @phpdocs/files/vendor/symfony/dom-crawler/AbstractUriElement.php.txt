@@ -64,16 +64,14 @@ abstract class AbstractUriElement
     /**
      * Gets the method associated with this link.
      */
-    public function getMethod(): string
-    {
+    public function getMethod(): string {
         return $this->method ?? 'GET';
     }
 
     /**
      * Gets the URI associated with this link.
      */
-    public function getUri(): string
-    {
+    public function getUri(): string {
         return UriResolver::resolve($this->getRawUri(), $this->currentUri);
     }
 

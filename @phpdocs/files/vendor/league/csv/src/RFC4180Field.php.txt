@@ -114,8 +114,7 @@ class RFC4180Field extends php_user_filter
     /**
      * Static method to register the class as a stream filter.
      */
-    public static function register(): void
-    {
+    public static function register(): void {
         if (!in_array(self::FILTERNAME, stream_get_filters(), true)) {
             stream_filter_register(self::FILTERNAME, self::class);
         }
@@ -124,8 +123,7 @@ class RFC4180Field extends php_user_filter
     /**
      * Static method to return the stream filter filtername.
      */
-    public static function getFiltername(): string
-    {
+    public static function getFiltername(): string {
         return self::FILTERNAME;
     }
 
@@ -158,8 +156,7 @@ class RFC4180Field extends php_user_filter
     }
 
     #[Deprecated(message: 'use League\Csv\Reader::setEscape or League\Csv\Writer::setEscape instead', since: 'league/csv:9.2.0')]
-    public function onCreate(): bool
-    {
+    public function onCreate(): bool {
         if (!is_array($this->params)) {
             throw new TypeError('The filter parameters must be an array.');
         }

@@ -120,8 +120,7 @@ class SamplingHandler extends AbstractHandler implements ProcessableHandlerInter
     /**
      * {@inheritDoc}
      */
-    public function getFormatter(): FormatterInterface
-    {
+    public function getFormatter(): FormatterInterface {
         $handler = $this->getHandler();
         if ($handler instanceof FormattableHandlerInterface) {
             return $handler->getFormatter();

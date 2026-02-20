@@ -48,23 +48,19 @@ class BinaryOperatorExpressionParser extends AbstractExpressionParser implements
         return new ($this->nodeClass)($left, $right, $token->getLine());
     }
 
-    public function getAssociativity(): InfixAssociativity
-    {
+    public function getAssociativity(): InfixAssociativity {
         return $this->associativity;
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function getDescription(): string
-    {
+    public function getDescription(): string {
         return $this->description ?? '';
     }
 
-    public function getPrecedence(): int
-    {
+    public function getPrecedence(): int {
         return $this->precedence;
     }
 
@@ -73,8 +69,7 @@ class BinaryOperatorExpressionParser extends AbstractExpressionParser implements
         return $this->precedenceChange;
     }
 
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return $this->aliases;
     }
 }

@@ -48,8 +48,7 @@ final class ElvisBinary extends AbstractBinary implements OperatorEscapeInterfac
         return $compiler->raw('?:');
     }
 
-    public function getOperandNamesToEscape(): array
-    {
+    public function getOperandNamesToEscape(): array {
         return ['left', 'right'];
     }
 }

@@ -64,8 +64,7 @@ trait ServiceLocatorTrait
         }
     }
 
-    public function getProvidedServices(): array
-    {
+    public function getProvidedServices(): array {
         if (!isset($this->providedTypes)) {
             $this->providedTypes = [];
 

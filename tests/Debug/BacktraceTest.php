@@ -16,100 +16,85 @@ use PHPUnit\Framework\TestCase;
  */
 class BacktraceTest extends TestCase
 {
-    public function testClassInstantiation(): void
-    {
+    public function testClassInstantiation(): void {
         $backtrace = new Backtrace();
         $this->assertInstanceOf(Backtrace::class, $backtrace);
     }
 
-    public function testBacktraceIsEmptyByDefault(): void
-    {
+    public function testBacktraceIsEmptyByDefault(): void {
         $backtrace = new Backtrace();
         $this->assertEmpty($backtrace->getArray());
     }
 
-    public function testBacktraceCount(): void
-    {
+    public function testBacktraceCount(): void {
         $backtrace = new Backtrace();
         $this->assertEquals(0, $backtrace->count());
     }
 
-    public function testBacktraceWithIgnoreCount(): void
-    {
+    public function testBacktraceWithIgnoreCount(): void {
         $backtrace = new Backtrace(1);
         $this->assertInstanceOf(Backtrace::class, $backtrace);
     }
 
-    public function testBacktraceNodeCreation(): void
-    {
+    public function testBacktraceNodeCreation(): void {
         $backtrace = new Backtrace();
         $array = $backtrace->getArray();
         $this->assertIsArray($array);
     }
 
-    public function testBacktraceIterator(): void
-    {
+    public function testBacktraceIterator(): void {
         $backtrace = new Backtrace();
         $this->assertInstanceOf(\Iterator::class, $backtrace);
     }
 
-    public function testBacktraceRewind(): void
-    {
+    public function testBacktraceRewind(): void {
         $backtrace = new Backtrace();
         $backtrace->rewind();
         $this->assertEquals(0, $backtrace->key());
     }
 
-    public function testBacktraceValid(): void
-    {
+    public function testBacktraceValid(): void {
         $backtrace = new Backtrace();
         $this->assertFalse($backtrace->valid());
     }
 
-    public function testBacktraceNext(): void
-    {
+    public function testBacktraceNext(): void {
         $backtrace = new Backtrace();
         $backtrace->next();
         $this->assertEquals(0, $backtrace->key());
     }
 
-    public function testBacktraceKey(): void
-    {
+    public function testBacktraceKey(): void {
         $backtrace = new Backtrace();
         $this->assertEquals(0, $backtrace->key());
     }
 
-    public function testBacktraceCurrent(): void
-    {
+    public function testBacktraceCurrent(): void {
         $backtrace = new Backtrace();
         $current = $backtrace->current();
         $this->assertNull($current);
     }
 
-    public function testBacktraceToString(): void
-    {
+    public function testBacktraceToString(): void {
         $backtrace = new Backtrace();
         $string = (string) $backtrace;
         $this->assertIsString($string);
     }
 
-    public function testBacktraceGetIterator(): void
-    {
+    public function testBacktraceGetIterator(): void {
         $backtrace = new Backtrace();
         $iterator = $backtrace->getIterator();
         $this->assertInstanceOf(\Iterator::class, $iterator);
     }
 
-    public function testBacktraceWithDifferentIgnoreCounts(): void
-    {
+    public function testBacktraceWithDifferentIgnoreCounts(): void {
         for ($i = 0; $i < 5; $i++) {
             $backtrace = new Backtrace($i);
             $this->assertInstanceOf(Backtrace::class, $backtrace);
         }
     }
 
-    public function testBacktraceNodeProperties(): void
-    {
+    public function testBacktraceNodeProperties(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -119,8 +104,7 @@ class BacktraceTest extends TestCase
         $this->assertInstanceOf(BacktraceNode::class, $node);
     }
 
-    public function testBacktraceNodeGetFile(): void
-    {
+    public function testBacktraceNodeGetFile(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -130,8 +114,7 @@ class BacktraceTest extends TestCase
         $this->assertEquals(__FILE__, $node->file);
     }
 
-    public function testBacktraceNodeGetLine(): void
-    {
+    public function testBacktraceNodeGetLine(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => 123,
@@ -141,8 +124,7 @@ class BacktraceTest extends TestCase
         $this->assertEquals(123, $node->line);
     }
 
-    public function testBacktraceNodeGetFunction(): void
-    {
+    public function testBacktraceNodeGetFunction(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -152,8 +134,7 @@ class BacktraceTest extends TestCase
         $this->assertEquals('testFunction', $node->function);
     }
 
-    public function testBacktraceNodeGetClass(): void
-    {
+    public function testBacktraceNodeGetClass(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -164,8 +145,7 @@ class BacktraceTest extends TestCase
         $this->assertEquals('TestClass', $node->class);
     }
 
-    public function testBacktraceNodeGetType(): void
-    {
+    public function testBacktraceNodeGetType(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -176,8 +156,7 @@ class BacktraceTest extends TestCase
         $this->assertEquals('->', $node->type);
     }
 
-    public function testBacktraceNodeGetArgs(): void
-    {
+    public function testBacktraceNodeGetArgs(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -188,8 +167,7 @@ class BacktraceTest extends TestCase
         $this->assertEquals(['arg1', 'arg2'], $node->args);
     }
 
-    public function testBacktraceNodeGetN(): void
-    {
+    public function testBacktraceNodeGetN(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -199,8 +177,7 @@ class BacktraceTest extends TestCase
         $this->assertEquals(5, $node->N);
     }
 
-    public function testBacktraceNodeIterator(): void
-    {
+    public function testBacktraceNodeIterator(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -210,8 +187,7 @@ class BacktraceTest extends TestCase
         $this->assertInstanceOf(\Iterator::class, $node);
     }
 
-    public function testBacktraceNodeRewind(): void
-    {
+    public function testBacktraceNodeRewind(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -222,8 +198,7 @@ class BacktraceTest extends TestCase
         $this->assertEquals(0, $node->key());
     }
 
-    public function testBacktraceNodeValid(): void
-    {
+    public function testBacktraceNodeValid(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -233,8 +208,7 @@ class BacktraceTest extends TestCase
         $this->assertTrue($node->valid());
     }
 
-    public function testBacktraceNodeNext(): void
-    {
+    public function testBacktraceNodeNext(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -245,8 +219,7 @@ class BacktraceTest extends TestCase
         $this->assertEquals(1, $node->key());
     }
 
-    public function testBacktraceNodeKey(): void
-    {
+    public function testBacktraceNodeKey(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -257,8 +230,7 @@ class BacktraceTest extends TestCase
         $this->assertIsInt($key);
     }
 
-    public function testBacktraceNodeCurrent(): void
-    {
+    public function testBacktraceNodeCurrent(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -269,8 +241,7 @@ class BacktraceTest extends TestCase
         $this->assertNotNull($current);
     }
 
-    public function testBacktraceNodeToArray(): void
-    {
+    public function testBacktraceNodeToArray(): void {
         $data = [
             'file' => __FILE__,
             'line' => __LINE__,
@@ -285,8 +256,7 @@ class BacktraceTest extends TestCase
         $this->assertArrayHasKey('function', $array);
     }
 
-    public function testBacktraceNodeHasProperty(): void
-    {
+    public function testBacktraceNodeHasProperty(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -297,8 +267,7 @@ class BacktraceTest extends TestCase
         $this->assertFalse($node->hasProperty('nonexistent'));
     }
 
-    public function testBacktraceNodeGetProperty(): void
-    {
+    public function testBacktraceNodeGetProperty(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -309,8 +278,7 @@ class BacktraceTest extends TestCase
         $this->assertNull($node->getProperty('nonexistent'));
     }
 
-    public function testBacktraceNodeSetProperty(): void
-    {
+    public function testBacktraceNodeSetProperty(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,
@@ -321,8 +289,7 @@ class BacktraceTest extends TestCase
         $this->assertEquals('value', $node->getProperty('custom'));
     }
 
-    public function testBacktraceNodeToString(): void
-    {
+    public function testBacktraceNodeToString(): void {
         $node = new BacktraceNode([
             'file' => __FILE__,
             'line' => __LINE__,

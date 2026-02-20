@@ -123,8 +123,7 @@ class Graph
     /**
      * Returns the name for this Graph.
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
@@ -153,8 +152,7 @@ class Graph
     /**
      * Returns the type of this Graph.
      */
-    public function getType(): string
-    {
+    public function getType(): string {
         return $this->type;
     }
 
@@ -169,8 +167,7 @@ class Graph
         return $this;
     }
 
-    public function isStrict(): bool
-    {
+    public function isStrict(): bool {
         return $this->strict;
     }
 
@@ -370,8 +367,7 @@ class Graph
      * GraphViz is not used in this method; it is safe to call it even without
      * GraphViz installed.
      */
-    public function __toString(): string
-    {
+    public function __toString(): string {
         $elements = array_merge(
             $this->graphs,
             $this->attributes,

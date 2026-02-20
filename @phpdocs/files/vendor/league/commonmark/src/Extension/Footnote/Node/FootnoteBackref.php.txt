@@ -33,8 +33,7 @@ final class FootnoteBackref extends AbstractInline implements ReferenceableInter
         $this->reference = $reference;
     }
 
-    public function getReference(): ReferenceInterface
-    {
+    public function getReference(): ReferenceInterface {
         return $this->reference;
     }
 }

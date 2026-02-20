@@ -81,8 +81,7 @@ class OutputFormatterStyleStack implements ResetInterface
     /**
      * Computes current style with stacks top codes.
      */
-    public function getCurrent(): OutputFormatterStyleInterface
-    {
+    public function getCurrent(): OutputFormatterStyleInterface {
         if (!$this->styles) {
             return $this->emptyStyle;
         }
@@ -100,8 +99,7 @@ class OutputFormatterStyleStack implements ResetInterface
         return $this;
     }
 
-    public function getEmptyStyle(): OutputFormatterStyleInterface
-    {
+    public function getEmptyStyle(): OutputFormatterStyleInterface {
         return $this->emptyStyle;
     }
 }

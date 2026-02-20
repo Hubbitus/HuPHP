@@ -40,8 +40,7 @@ final class BlockContinue
         return $this->cursorState;
     }
 
-    public function isFinalize(): bool
-    {
+    public function isFinalize(): bool {
         return $this->finalize;
     }
 
@@ -66,8 +65,7 @@ final class BlockContinue
     /**
      * Signal that we want to finalize and close the block
      */
-    public static function finished(): self
-    {
+    public static function finished(): self {
         return new self(null, true);
     }
 }

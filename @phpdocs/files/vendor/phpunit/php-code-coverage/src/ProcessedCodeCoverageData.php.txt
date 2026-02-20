@@ -95,8 +95,7 @@ final class ProcessedCodeCoverageData
         $this->lineCoverage = $lineCoverage;
     }
 
-    public function lineCoverage(): array
-    {
+    public function lineCoverage(): array {
         ksort($this->lineCoverage);
 
         return $this->lineCoverage;
@@ -107,15 +106,13 @@ final class ProcessedCodeCoverageData
         $this->functionCoverage = $functionCoverage;
     }
 
-    public function functionCoverage(): array
-    {
+    public function functionCoverage(): array {
         ksort($this->functionCoverage);
 
         return $this->functionCoverage;
     }
 
-    public function coveredFiles(): array
-    {
+    public function coveredFiles(): array {
         ksort($this->lineCoverage);
 
         return array_keys($this->lineCoverage);

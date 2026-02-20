@@ -66,8 +66,7 @@ final class ComplexityCalculatingVisitor extends NodeVisitorAbstract
         return null;
     }
 
-    public function result(): ComplexityCollection
-    {
+    public function result(): ComplexityCollection {
         return ComplexityCollection::fromList(...$this->result);
     }
 

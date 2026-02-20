@@ -52,8 +52,7 @@ final class CsvTableDirective extends BaseDirective
     ) {
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'csv-table';
     }
 

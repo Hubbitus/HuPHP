@@ -109,8 +109,7 @@ class Factory
      *
      * @return string[]
      */
-    public function getAllNames(): array
-    {
+    public function getAllNames(): array {
         /** @var RecursiveDirectoryIterator $files */
         $files = new DirectoryIterator($this->getTemplatesPath());
 
@@ -134,8 +133,7 @@ class Factory
     /**
      * Returns the path where all templates are stored.
      */
-    public function getTemplatesPath(): string
-    {
+    public function getTemplatesPath(): string {
         return $this->globalTemplatesPath;
     }
 
@@ -228,8 +226,7 @@ class Factory
         throw new TemplateNotFound($nameOrPath);
     }
 
-    private function getTemplatesDirectory(): Filesystem
-    {
+    private function getTemplatesDirectory(): Filesystem {
         $dsnString = $this->getTemplatesPath();
         try {
             $filesystem = $this->flySystemFactory->create(Dsn::createFromString($dsnString));

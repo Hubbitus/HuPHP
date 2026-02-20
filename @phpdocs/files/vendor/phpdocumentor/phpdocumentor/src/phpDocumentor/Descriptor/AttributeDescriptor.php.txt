@@ -41,8 +41,7 @@ final class AttributeDescriptor implements Descriptor, Stringable, AttributeInte
         $this->attributeClass = $attributeClass;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return $this->getName();
     }
 
@@ -52,8 +51,7 @@ final class AttributeDescriptor implements Descriptor, Stringable, AttributeInte
     }
 
     /** @return Collection<ValueObjects\CallArgument> */
-    public function getArguments(): Collection
-    {
+    public function getArguments(): Collection {
         return $this->arguments;
     }
 
@@ -68,8 +66,7 @@ final class AttributeDescriptor implements Descriptor, Stringable, AttributeInte
         return null;
     }
 
-    public function hasArguments(): bool
-    {
+    public function hasArguments(): bool {
         return $this->arguments->count() > 0;
     }
 }

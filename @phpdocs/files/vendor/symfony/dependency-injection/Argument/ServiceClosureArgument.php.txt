@@ -27,8 +27,7 @@ class ServiceClosureArgument implements ArgumentInterface
         $this->values = [$value];
     }
 
-    public function getValues(): array
-    {
+    public function getValues(): array {
         return $this->values;
     }
 

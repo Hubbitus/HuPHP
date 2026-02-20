@@ -69,28 +69,23 @@ final class Duration
         $this->milliseconds    = (int) $milliseconds;
     }
 
-    public function asNanoseconds(): float
-    {
+    public function asNanoseconds(): float {
         return $this->nanoseconds;
     }
 
-    public function asMicroseconds(): float
-    {
+    public function asMicroseconds(): float {
         return $this->nanoseconds / 1000;
     }
 
-    public function asMilliseconds(): float
-    {
+    public function asMilliseconds(): float {
         return $this->nanoseconds / 1000000;
     }
 
-    public function asSeconds(): float
-    {
+    public function asSeconds(): float {
         return $this->nanoseconds / 1000000000;
     }
 
-    public function asString(): string
-    {
+    public function asString(): string {
         $result = '';
 
         if ($this->hours > 0) {

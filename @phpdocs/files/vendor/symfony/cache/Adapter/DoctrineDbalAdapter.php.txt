@@ -115,8 +115,7 @@ class DoctrineDbalAdapter extends AbstractAdapter implements PruneableInterface
      *
      * @throws DBALException When the table already exists
      */
-    public function createTable(): void
-    {
+    public function createTable(): void {
         $schema = new Schema();
         $this->addTableToSchema($schema);
 
@@ -143,8 +142,7 @@ class DoctrineDbalAdapter extends AbstractAdapter implements PruneableInterface
         $this->addTableToSchema($schema);
     }
 
-    public function prune(): bool
-    {
+    public function prune(): bool {
         $deleteSql = "DELETE FROM $this->table WHERE $this->lifetimeCol + $this->timeCol <= ?";
         $params = [time()];
         $paramTypes = [ParameterType::INTEGER];
@@ -359,8 +357,7 @@ class DoctrineDbalAdapter extends AbstractAdapter implements PruneableInterface
         return parent::getId($key);
     }
 
-    private function getPlatformName(): string
-    {
+    private function getPlatformName(): string {
         if (isset($this->platformName)) {
             return $this->platformName;
         }
@@ -380,8 +377,7 @@ class DoctrineDbalAdapter extends AbstractAdapter implements PruneableInterface
         };
     }
 
-    private function getServerVersion(): string
-    {
+    private function getServerVersion(): string {
         if (isset($this->serverVersion)) {
             return $this->serverVersion;
         }

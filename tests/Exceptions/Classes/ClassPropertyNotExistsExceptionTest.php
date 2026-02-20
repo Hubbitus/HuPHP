@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class ClassPropertyNotExistsExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new ClassPropertyNotExistsException();
 
         $this->assertInstanceOf(ClassPropertyNotExistsException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new ClassPropertyNotExistsException('Property not found');
 
         $this->assertInstanceOf(ClassPropertyNotExistsException::class, $exception);
         $this->assertEquals('Property not found', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new ClassPropertyNotExistsException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(ClassPropertyNotExistsException::class);
 
         throw new ClassPropertyNotExistsException('Property does not exist');

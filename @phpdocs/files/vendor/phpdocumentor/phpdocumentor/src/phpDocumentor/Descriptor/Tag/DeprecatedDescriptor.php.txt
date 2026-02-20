@@ -29,8 +29,7 @@ final class DeprecatedDescriptor extends TagDescriptor
     /**
      * Returns the version since when the associated element was deprecated.
      */
-    public function getVersion(): string
-    {
+    public function getVersion(): string {
         return $this->version;
     }
 

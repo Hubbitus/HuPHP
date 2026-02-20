@@ -22,8 +22,7 @@ abstract class DescriptorNode extends CompoundNode
         parent::__construct();
     }
 
-    public function getQuery(): string
-    {
+    public function getQuery(): string {
         return $this->query;
     }
 

@@ -32,8 +32,7 @@ final class CastToString implements TypeCasting
         $this->variableName = TypeCastingInfo::fromAccessor($reflectionProperty);
     }
 
-    public function info(): TypeCastingInfo
-    {
+    public function info(): TypeCastingInfo {
         return $this->variableName;
     }
 

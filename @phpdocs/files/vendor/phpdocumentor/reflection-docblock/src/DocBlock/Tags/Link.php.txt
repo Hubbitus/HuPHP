@@ -53,16 +53,14 @@ final class Link extends BaseTag implements Factory\StaticMethod
     /**
      * Gets the link
      */
-    public function getLink(): string
-    {
+    public function getLink(): string {
         return $this->link;
     }
 
     /**
      * Returns a string representation for this tag.
      */
-    public function __toString(): string
-    {
+    public function __toString(): string {
         if ($this->description) {
             $description = $this->description->render();
         } else {

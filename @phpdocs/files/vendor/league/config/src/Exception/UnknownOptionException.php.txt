@@ -26,8 +26,7 @@ final class UnknownOptionException extends \InvalidArgumentException implements 
         $this->path = $path;
     }
 
-    public function getPath(): string
-    {
+    public function getPath(): string {
         return $this->path;
     }
 }

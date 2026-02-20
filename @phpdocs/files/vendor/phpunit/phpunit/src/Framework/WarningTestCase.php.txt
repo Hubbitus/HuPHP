@@ -41,16 +41,14 @@ final class WarningTestCase extends TestCase
         parent::__construct('Warning');
     }
 
-    public function getMessage(): string
-    {
+    public function getMessage(): string {
         return $this->message;
     }
 
     /**
      * Returns a string representation of the test case.
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         return 'Warning';
     }
 
@@ -59,8 +57,7 @@ final class WarningTestCase extends TestCase
      *
      * @psalm-return never-return
      */
-    protected function runTest(): void
-    {
+    protected function runTest(): void {
         throw new Warning($this->message);
     }
 }

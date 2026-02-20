@@ -33,8 +33,7 @@ final class Report extends File
         $this->setName($name);
     }
 
-    public function asDom(): DOMDocument
-    {
+    public function asDom(): DOMDocument {
         return $this->dom();
     }
 
@@ -60,8 +59,7 @@ final class Report extends File
         return $this->unitObject('trait', $name);
     }
 
-    public function source(): Source
-    {
+    public function source(): Source {
         $source = $this->contextNode()->getElementsByTagNameNS(
             'https://schema.phpunit.de/coverage/1.0',
             'source'

@@ -24,18 +24,15 @@ final class RenderDocumentCommand
     ) {
     }
 
-    public function getDocument(): DocumentNode
-    {
+    public function getDocument(): DocumentNode {
         return $this->document;
     }
 
-    public function getContext(): RenderContext
-    {
+    public function getContext(): RenderContext {
         return $this->renderContext;
     }
 
-    public function getFileDestination(): string
-    {
+    public function getFileDestination(): string {
         return $this->renderContext->getDestinationPath() . '/' . $this->renderContext->getCurrentFileName() . '.' . $this->renderContext->getOutputFormat();
     }
 }

@@ -33,8 +33,7 @@ class File
         $this->contextNode = $context;
     }
 
-    public function totals(): Totals
-    {
+    public function totals(): Totals {
         $totalsContainer = $this->contextNode->firstChild;
 
         if (!$totalsContainer) {
@@ -75,13 +74,11 @@ class File
         return new Coverage($lineNode, $line);
     }
 
-    protected function contextNode(): DOMElement
-    {
+    protected function contextNode(): DOMElement {
         return $this->contextNode;
     }
 
-    protected function dom(): DOMDocument
-    {
+    protected function dom(): DOMDocument {
         return $this->dom;
     }
 }

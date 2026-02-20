@@ -46,38 +46,31 @@ final class Conditional extends Mixed_ implements PseudoType
         $this->else = $else;
     }
 
-    public function isNegated(): bool
-    {
+    public function isNegated(): bool {
         return $this->negated;
     }
 
-    public function getSubjectType(): Type
-    {
+    public function getSubjectType(): Type {
         return $this->subjectType;
     }
 
-    public function getTargetType(): Type
-    {
+    public function getTargetType(): Type {
         return $this->targetType;
     }
 
-    public function getIf(): Type
-    {
+    public function getIf(): Type {
         return $this->if;
     }
 
-    public function getElse(): Type
-    {
+    public function getElse(): Type {
         return $this->else;
     }
 
-    public function underlyingType(): Type
-    {
+    public function underlyingType(): Type {
         return new Mixed_();
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return sprintf(
             '(%s %s %s ? %s : %s)',
             (string) $this->subjectType,

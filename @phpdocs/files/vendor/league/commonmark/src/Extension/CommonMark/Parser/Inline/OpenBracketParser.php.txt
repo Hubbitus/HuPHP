@@ -23,8 +23,7 @@ use League\CommonMark\Parser\InlineParserContext;
 
 final class OpenBracketParser implements InlineParserInterface
 {
-    public function getMatchDefinition(): InlineParserMatch
-    {
+    public function getMatchDefinition(): InlineParserMatch {
         return InlineParserMatch::string('[');
     }
 

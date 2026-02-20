@@ -15,13 +15,11 @@ trait SupportDefinedTestTrait
 {
     private bool $definedTest = false;
 
-    public function enableDefinedTest(): void
-    {
+    public function enableDefinedTest(): void {
         $this->definedTest = true;
     }
 
-    public function isDefinedTestEnabled(): bool
-    {
+    public function isDefinedTestEnabled(): bool {
         return $this->definedTest;
     }
 }

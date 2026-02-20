@@ -58,16 +58,14 @@ class EncloseField extends php_user_filter
     /**
      * Static method to return the stream filter filtername.
      */
-    public static function getFiltername(): string
-    {
+    public static function getFiltername(): string {
         return self::FILTERNAME;
     }
 
     /**
      * Static method to register the class as a stream filter.
      */
-    public static function register(): void
-    {
+    public static function register(): void {
         if (!in_array(self::FILTERNAME, stream_get_filters(), true)) {
             stream_filter_register(self::FILTERNAME, self::class);
         }
@@ -103,8 +101,7 @@ class EncloseField extends php_user_filter
     }
 
     #[Deprecated(message: 'use League\Csv\Writer::forceEnclosure() instead', since: 'league/csv:9.10.0')]
-    public function onCreate(): bool
-    {
+    public function onCreate(): bool {
         return is_array($this->params)
             && isset($this->params['sequence'])
             && self::isValidSequence($this->params['sequence']);

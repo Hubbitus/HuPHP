@@ -20,8 +20,7 @@ namespace Parsica\Parsica;
  * @api
  * @psalm-pure
  */
-function integer(): Parser
-{
+function integer(): Parser {
     $zeroNine = digitChar();
     $oneNine = oneOfS("123456789");
     $minus = char('-');
@@ -48,8 +47,7 @@ function integer(): Parser
  * @api
  * @psalm-pure
  */
-function float(): Parser
-{
+function float(): Parser {
     $digits = takeWhile1(isDigit())->label('at least one 0-9');
     $fraction = char('.')->append($digits);
     $sign = char('+')->or(char('-'))->or(pure('+'));

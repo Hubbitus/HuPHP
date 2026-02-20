@@ -27,8 +27,7 @@ final class TopicNode extends CompoundNode
         parent::__construct(array_filter($value));
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 }

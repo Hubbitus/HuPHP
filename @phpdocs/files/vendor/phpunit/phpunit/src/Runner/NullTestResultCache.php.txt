@@ -32,11 +32,9 @@ final class NullTestResultCache implements TestResultCache
         return 0;
     }
 
-    public function load(): void
-    {
+    public function load(): void {
     }
 
-    public function persist(): void
-    {
+    public function persist(): void {
     }
 }

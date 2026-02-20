@@ -21,10 +21,11 @@ class SettingsCheckStatic extends SettingsCheck {
 	/**
 	* Clear all except uncleared items.
 	**/
-	public function clear(): void {
+	public function &clear(): static {
 		foreach ($this->getRegularKeys() as $key => $sets){
 			$this->__SETS[$key] = null;
 		}
+		return $this;
 	}
 	/**
 	* Return array of regular keys, without 'uncleared' (private, static)

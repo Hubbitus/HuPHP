@@ -73,8 +73,7 @@ final class DocumentListIterator implements Iterator
         );
     }
 
-    public function next(): void
-    {
+    public function next(): void {
         $this->previousDocument = $this->currentDocument;
         if ($this->nextDocument === null && $this->innerIterator->valid()) {
             $this->innerIterator->next();
@@ -93,8 +92,7 @@ final class DocumentListIterator implements Iterator
         return $this->previousDocument?->get();
     }
 
-    public function valid(): bool
-    {
+    public function valid(): bool {
         if ($this->nextDocument !== null) {
             return true;
         }
@@ -115,8 +113,7 @@ final class DocumentListIterator implements Iterator
         return $this->nextDocument?->get();
     }
 
-    public function current(): mixed
-    {
+    public function current(): mixed {
         $document = $this->currentDocument?->get();
 
         if ($document === null) {
@@ -130,13 +127,11 @@ final class DocumentListIterator implements Iterator
         return $document;
     }
 
-    public function key(): mixed
-    {
+    public function key(): mixed {
         return $this->innerIterator->key();
     }
 
-    public function rewind(): void
-    {
+    public function rewind(): void {
         foreach ($this->unseenDocuments as $document => $seen) {
             $this->unseenDocuments[$document] = true;
         }
@@ -145,8 +140,7 @@ final class DocumentListIterator implements Iterator
     }
 
     /** @return Generator<DocumentNode> */
-    private function unseenIterator(): Generator
-    {
+    private function unseenIterator(): Generator {
         foreach ($this->unseenDocuments as $document => $seen) {
             if ($seen === false) {
                 continue;

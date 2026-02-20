@@ -8,15 +8,13 @@ use PHPUnit\Framework\TestCase;
 
 class SettingsCheckStaticTest extends TestCase
 {
-	public function testConstructor(): void
-	{
+	public function testConstructor(): void {
 		$possibles = ['name', 'age'];
 		$settings = new SettingsCheckStatic($possibles);
 		$this->assertInstanceOf(SettingsCheckStatic::class, $settings);
 	}
 
-	public function testClearRegularSettings(): void
-	{
+	public function testClearRegularSettings(): void {
 		$possibles = ['name', 'age', 'email'];
 		$settings = new SettingsCheckStatic($possibles);
 		$settings->setSetting('name', 'John');
@@ -34,8 +32,7 @@ class SettingsCheckStaticTest extends TestCase
 		$this->assertEquals('john@example.com', $settings->email);
 	}
 
-	public function testGetRegularKeys(): void
-	{
+	public function testGetRegularKeys(): void {
 		$possibles = ['name', 'age', 'email'];
 		$settings = new SettingsCheckStatic($possibles);
 		$settings->setSetting('name', 'John');
@@ -51,8 +48,7 @@ class SettingsCheckStaticTest extends TestCase
 		$this->assertNotContains('email', $regularKeys);
 	}
 
-	public function testGetRegularKeysEmpty(): void
-	{
+	public function testGetRegularKeysEmpty(): void {
 		$possibles = ['email'];
 		$settings = new SettingsCheckStatic($possibles);
 		$settings->setSetting('email', 'john@example.com');
@@ -63,8 +59,7 @@ class SettingsCheckStaticTest extends TestCase
 		$this->assertEmpty($regularKeys);
 	}
 
-	public function testClearWithNoStaticSettings(): void
-	{
+	public function testClearWithNoStaticSettings(): void {
 		$possibles = ['name', 'age'];
 		$settings = new SettingsCheckStatic($possibles);
 		$settings->setSetting('name', 'John');

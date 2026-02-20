@@ -61,13 +61,11 @@ class StopwatchPeriod
     /**
      * Gets the memory usage in bytes.
      */
-    public function getMemory(): int
-    {
+    public function getMemory(): int {
         return $this->memory;
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return \sprintf('%.2F MiB - %d ms', $this->getMemory() / 1024 / 1024, $this->getDuration());
     }
 }

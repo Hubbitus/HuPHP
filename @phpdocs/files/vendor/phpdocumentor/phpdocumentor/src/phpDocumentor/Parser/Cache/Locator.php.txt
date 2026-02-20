@@ -90,8 +90,7 @@ class Locator
         return new Path($namespacePath);
     }
 
-    private function root(): Path
-    {
+    private function root(): Path {
         if ($this->path === null) {
             throw new RuntimeException('Cache folder has not been set yet, please call `providePath` first');
         }

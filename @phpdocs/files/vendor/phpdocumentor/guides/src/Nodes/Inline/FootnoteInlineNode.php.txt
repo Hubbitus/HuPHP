@@ -38,13 +38,11 @@ final class FootnoteInlineNode extends AnnotationInlineNode
         parent::__construct(self::TYPE, $value);
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function getNumber(): int
-    {
+    public function getNumber(): int {
         return $this->number;
     }
 }

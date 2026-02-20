@@ -51,8 +51,7 @@ final class AutoEscapeTokenParser extends AbstractTokenParser
         return $token->test('endautoescape');
     }
 
-    public function getTag(): string
-    {
+    public function getTag(): string {
         return 'autoescape';
     }
 }

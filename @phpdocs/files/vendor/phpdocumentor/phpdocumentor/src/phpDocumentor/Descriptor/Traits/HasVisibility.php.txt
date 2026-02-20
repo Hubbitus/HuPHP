@@ -25,8 +25,7 @@ trait HasVisibility
         $this->visibility = $visibility;
     }
 
-    public function getVisibility(): Visibility
-    {
+    public function getVisibility(): Visibility {
         if ($this->visibility === null) {
             $this->visibility = new Visibility(VisibilityModifier::PUBLIC);
         }

@@ -20,8 +20,7 @@ final class MetaNode extends MetadataNode
         parent::__construct($value);
     }
 
-    public function getKey(): string
-    {
+    public function getKey(): string {
         return $this->key;
     }
 }

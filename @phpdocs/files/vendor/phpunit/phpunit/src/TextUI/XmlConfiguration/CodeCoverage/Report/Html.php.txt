@@ -40,18 +40,15 @@ final class Html
         $this->highLowerBound = $highLowerBound;
     }
 
-    public function target(): Directory
-    {
+    public function target(): Directory {
         return $this->target;
     }
 
-    public function lowUpperBound(): int
-    {
+    public function lowUpperBound(): int {
         return $this->lowUpperBound;
     }
 
-    public function highLowerBound(): int
-    {
+    public function highLowerBound(): int {
         return $this->highLowerBound;
     }
 }

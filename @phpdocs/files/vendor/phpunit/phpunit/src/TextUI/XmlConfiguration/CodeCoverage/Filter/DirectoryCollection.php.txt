@@ -43,18 +43,15 @@ final class DirectoryCollection implements Countable, IteratorAggregate
     /**
      * @return Directory[]
      */
-    public function asArray(): array
-    {
+    public function asArray(): array {
         return $this->directories;
     }
 
-    public function count(): int
-    {
+    public function count(): int {
         return count($this->directories);
     }
 
-    public function getIterator(): DirectoryCollectionIterator
-    {
+    public function getIterator(): DirectoryCollectionIterator {
         return new DirectoryCollectionIterator($this);
     }
 }

@@ -102,8 +102,7 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
     /**
      * Counts the number of test cases executed by run(TestResult result).
      */
-    public function count(): int
-    {
+    public function count(): int {
         return 1;
     }
 
@@ -245,57 +244,48 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
     /**
      * Returns the name of the test case.
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->toString();
     }
 
     /**
      * Returns a string representation of the test case.
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         return $this->filename;
     }
 
-    public function usesDataProvider(): bool
-    {
+    public function usesDataProvider(): bool {
         return false;
     }
 
-    public function getNumAssertions(): int
-    {
+    public function getNumAssertions(): int {
         return 1;
     }
 
-    public function getActualOutput(): string
-    {
+    public function getActualOutput(): string {
         return $this->output;
     }
 
-    public function hasOutput(): bool
-    {
+    public function hasOutput(): bool {
         return !empty($this->output);
     }
 
-    public function sortId(): string
-    {
+    public function sortId(): string {
         return $this->filename;
     }
 
     /**
      * @return list<ExecutionOrderDependency>
      */
-    public function provides(): array
-    {
+    public function provides(): array {
         return [];
     }
 
     /**
      * @return list<ExecutionOrderDependency>
      */
-    public function requires(): array
-    {
+    public function requires(): array {
         return [];
     }
 
@@ -432,8 +422,7 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
     /**
      * @throws Exception
      */
-    private function parse(): array
-    {
+    private function parse(): array {
         $sections = [];
         $section  = '';
 
@@ -582,8 +571,7 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
         );
     }
 
-    private function getCoverageFiles(): array
-    {
+    private function getCoverageFiles(): array {
         $baseDir  = dirname(realpath($this->filename)) . DIRECTORY_SEPARATOR;
         $basename = basename($this->filename, 'phpt');
 
@@ -645,8 +633,7 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
         $job = $template->render();
     }
 
-    private function cleanupForCoverage(): RawCodeCoverageData
-    {
+    private function cleanupForCoverage(): RawCodeCoverageData {
         $coverage = RawCodeCoverageData::fromXdebugWithoutPathCoverage([]);
         $files    = $this->getCoverageFiles();
 
@@ -885,8 +872,7 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
     /**
      * @throws Exception
      */
-    private function ensureCoverageFileDoesNotExist(): void
-    {
+    private function ensureCoverageFileDoesNotExist(): void {
         $files = $this->getCoverageFiles();
 
         if (file_exists($files['coverage'])) {

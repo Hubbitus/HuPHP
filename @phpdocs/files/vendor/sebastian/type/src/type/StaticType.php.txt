@@ -48,21 +48,18 @@ final class StaticType extends Type
         return false;
     }
 
-    public function name(): string
-    {
+    public function name(): string {
         return 'static';
     }
 
-    public function allowsNull(): bool
-    {
+    public function allowsNull(): bool {
         return $this->allowsNull;
     }
 
     /**
      * @psalm-assert-if-true StaticType $this
      */
-    public function isStatic(): bool
-    {
+    public function isStatic(): bool {
         return true;
     }
 }

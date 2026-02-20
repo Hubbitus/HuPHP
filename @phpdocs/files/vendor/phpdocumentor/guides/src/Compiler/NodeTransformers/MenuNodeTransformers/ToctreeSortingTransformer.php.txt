@@ -24,8 +24,7 @@ use function is_array;
 /** @implements NodeTransformer<TocNode> */
 final class ToctreeSortingTransformer implements NodeTransformer
 {
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 3200;
     }
 

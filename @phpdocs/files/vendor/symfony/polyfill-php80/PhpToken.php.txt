@@ -72,13 +72,11 @@ class PhpToken implements \Stringable
         return false;
     }
 
-    public function isIgnorable(): bool
-    {
+    public function isIgnorable(): bool {
         return \in_array($this->id, [\T_WHITESPACE, \T_COMMENT, \T_DOC_COMMENT, \T_OPEN_TAG], true);
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return (string) $this->text;
     }
 

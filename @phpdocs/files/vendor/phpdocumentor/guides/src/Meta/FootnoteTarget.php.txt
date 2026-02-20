@@ -20,8 +20,7 @@ final class FootnoteTarget extends AnnotationTarget
         parent::__construct($documentPath, $anchorName, $name);
     }
 
-    public function getNumber(): int
-    {
+    public function getNumber(): int {
         return $this->number;
     }
 

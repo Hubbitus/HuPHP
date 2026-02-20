@@ -12,15 +12,13 @@ use PHPUnit\Framework\TestCase;
  */
 class SettingsFilterReadonlyTest extends TestCase
 {
-    public function testConstructorStoresPropName(): void
-    {
+    public function testConstructorStoresPropName(): void {
         $filter = new SettingsFilterReadonly('testProp');
 
         $this->assertEquals('testProp', $filter->propName);
     }
 
-    public function testApplyThrowsVariableReadOnlyException(): void
-    {
+    public function testApplyThrowsVariableReadOnlyException(): void {
         $this->expectException(VariableReadOnlyException::class);
 
         $filter = new SettingsFilterReadonly('testProp');
@@ -31,8 +29,7 @@ class SettingsFilterReadonlyTest extends TestCase
         $filter->apply($name, $value);
     }
 
-    public function testApplyDoesNotModifyValueBeforeException(): void
-    {
+    public function testApplyDoesNotModifyValueBeforeException(): void {
         $this->expectException(VariableReadOnlyException::class);
 
         $filter = new SettingsFilterReadonly('testProp');
@@ -49,8 +46,7 @@ class SettingsFilterReadonlyTest extends TestCase
         }
     }
 
-    public function testApplyDoesNotModifyNameBeforeException(): void
-    {
+    public function testApplyDoesNotModifyNameBeforeException(): void {
         $this->expectException(VariableReadOnlyException::class);
 
         $filter = new SettingsFilterReadonly('testProp');
@@ -67,8 +63,7 @@ class SettingsFilterReadonlyTest extends TestCase
         }
     }
 
-    public function testApplyWithNullValue(): void
-    {
+    public function testApplyWithNullValue(): void {
         $this->expectException(VariableReadOnlyException::class);
 
         $filter = new SettingsFilterReadonly('testProp');
@@ -79,8 +74,7 @@ class SettingsFilterReadonlyTest extends TestCase
         $filter->apply($name, $value);
     }
 
-    public function testApplyWithArrayValue(): void
-    {
+    public function testApplyWithArrayValue(): void {
         $this->expectException(VariableReadOnlyException::class);
 
         $filter = new SettingsFilterReadonly('testProp');
@@ -91,8 +85,7 @@ class SettingsFilterReadonlyTest extends TestCase
         $filter->apply($name, $value);
     }
 
-    public function testApplyWithDifferentPropNames(): void
-    {
+    public function testApplyWithDifferentPropNames(): void {
         $this->expectException(VariableReadOnlyException::class);
 
         $filter = new SettingsFilterReadonly('specificProp');

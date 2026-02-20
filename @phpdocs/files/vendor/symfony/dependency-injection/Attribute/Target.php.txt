@@ -27,8 +27,7 @@ final class Target
     ) {
     }
 
-    public function getParsedName(): string
-    {
+    public function getParsedName(): string {
         if (null === $this->name) {
             throw new LogicException(\sprintf('Cannot parse the name of a #[Target] attribute that has not been resolved. Did you forget to call "%s::parseName()"?', __CLASS__));
         }

@@ -8,8 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class OutExtraDataHuFormatTest extends TestCase
 {
-	public function testConstructor(): void
-	{
+	public function testConstructor(): void {
 		$var = ['test' => 'value'];
 		$format = [
 			'FORMAT_CONSOLE' => 'Console: %s',
@@ -20,8 +19,7 @@ class OutExtraDataHuFormatTest extends TestCase
 		$this->assertInstanceOf(OutExtraDataHuFormat::class, $out);
 	}
 
-	public function testStrToConsole(): void
-	{
+	public function testStrToConsole(): void {
 		$var = ['test' => 'value'];
 		$format = [
 			'FORMAT_CONSOLE' => 'Console: %s',
@@ -34,8 +32,7 @@ class OutExtraDataHuFormatTest extends TestCase
 		$this->assertStringContainsString('Console:', $result);
 	}
 
-	public function testStrToFile(): void
-	{
+	public function testStrToFile(): void {
 		$var = ['test' => 'value'];
 		$format = [
 			'FORMAT_CONSOLE' => 'Console: %s',
@@ -48,8 +45,7 @@ class OutExtraDataHuFormatTest extends TestCase
 		$this->assertStringContainsString('File:', $result);
 	}
 
-	public function testStrToWeb(): void
-	{
+	public function testStrToWeb(): void {
 		$var = ['test' => 'value'];
 		$format = [
 			'FORMAT_CONSOLE' => 'Console: %s',
@@ -62,8 +58,7 @@ class OutExtraDataHuFormatTest extends TestCase
 		$this->assertStringContainsString('Web:', $result);
 	}
 
-	public function testStrToConsoleWithCustomFormat(): void
-	{
+	public function testStrToConsoleWithCustomFormat(): void {
 		$var = ['test' => 'value'];
 		$format = [
 			'FORMAT_CONSOLE' => 'Console: %s',

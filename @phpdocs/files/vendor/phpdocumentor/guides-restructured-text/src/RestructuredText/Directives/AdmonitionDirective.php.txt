@@ -36,8 +36,7 @@ use function trim;
  */
 final class AdmonitionDirective extends SubDirective
 {
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'admonition';
     }
 

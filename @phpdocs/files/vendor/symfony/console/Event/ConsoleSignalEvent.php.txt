@@ -30,8 +30,7 @@ final class ConsoleSignalEvent extends ConsoleEvent
         $this->exitCode = $exitCode;
     }
 
-    public function getHandlingSignal(): int
-    {
+    public function getHandlingSignal(): int {
         return $this->handlingSignal;
     }
 
@@ -44,8 +43,7 @@ final class ConsoleSignalEvent extends ConsoleEvent
         $this->exitCode = $exitCode;
     }
 
-    public function abortExit(): void
-    {
+    public function abortExit(): void {
         $this->exitCode = false;
     }
 

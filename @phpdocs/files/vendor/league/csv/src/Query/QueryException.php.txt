@@ -32,8 +32,7 @@ final class QueryException extends Exception implements UnableToProcessCsv
         };
     }
 
-    public static function dueToMissingColumn(): self
-    {
+    public static function dueToMissingColumn(): self {
         return new self('No valid column were found with the given data.');
     }
 

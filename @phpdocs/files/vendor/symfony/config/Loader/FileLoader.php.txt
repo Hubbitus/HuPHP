@@ -50,8 +50,7 @@ abstract class FileLoader extends Loader
     /**
      * Returns the file locator used by this loader.
      */
-    public function getLocator(): FileLocatorInterface
-    {
+    public function getLocator(): FileLocatorInterface {
         return $this->locator;
     }
 

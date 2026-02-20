@@ -40,8 +40,7 @@ final class LazyCommand extends Command
         $this->isEnabled = $isEnabled;
     }
 
-    public function ignoreValidationErrors(): void
-    {
+    public function ignoreValidationErrors(): void {
         $this->getCommand()->ignoreValidationErrors();
     }
 
@@ -66,8 +65,7 @@ final class LazyCommand extends Command
         parent::setHelperSet($helperSet);
     }
 
-    public function isEnabled(): bool
-    {
+    public function isEnabled(): bool {
         return $this->isEnabled ?? $this->getCommand()->isEnabled();
     }
 
@@ -103,13 +101,11 @@ final class LazyCommand extends Command
         return $this;
     }
 
-    public function getDefinition(): InputDefinition
-    {
+    public function getDefinition(): InputDefinition {
         return $this->getCommand()->getDefinition();
     }
 
-    public function getNativeDefinition(): InputDefinition
-    {
+    public function getNativeDefinition(): InputDefinition {
         return $this->getCommand()->getNativeDefinition();
     }
 
@@ -149,13 +145,11 @@ final class LazyCommand extends Command
         return $this;
     }
 
-    public function getHelp(): string
-    {
+    public function getHelp(): string {
         return $this->getCommand()->getHelp();
     }
 
-    public function getProcessedHelp(): string
-    {
+    public function getProcessedHelp(): string {
         return $this->getCommand()->getProcessedHelp();
     }
 
@@ -171,8 +165,7 @@ final class LazyCommand extends Command
         return $this;
     }
 
-    public function getUsages(): array
-    {
+    public function getUsages(): array {
         return $this->getCommand()->getUsages();
     }
 
@@ -181,8 +174,7 @@ final class LazyCommand extends Command
         return $this->getCommand()->getHelper($name);
     }
 
-    public function getCommand(): parent
-    {
+    public function getCommand(): parent {
         if (!$this->command instanceof \Closure) {
             return $this->command;
         }

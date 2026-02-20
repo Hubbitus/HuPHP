@@ -21,14 +21,12 @@ final class ReferenceTextRole extends AbstractReferenceTextRole
 {
     final public const NAME = 'ref';
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return self::NAME;
     }
 
     /** @inheritDoc */
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return [];
     }
 

@@ -37,8 +37,7 @@ final class AttributesInline extends AbstractInline
     /**
      * @return array<string, mixed>
      */
-    public function getAttributes(): array
-    {
+    public function getAttributes(): array {
         return $this->attributes;
     }
 
@@ -50,8 +49,7 @@ final class AttributesInline extends AbstractInline
         $this->attributes = $attributes;
     }
 
-    public function isBlock(): bool
-    {
+    public function isBlock(): bool {
         return $this->block;
     }
 }

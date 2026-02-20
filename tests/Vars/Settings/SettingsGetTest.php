@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class SettingsGetTest extends TestCase
 {
-	public function testMagicGetSettings(): void
-	{
+	public function testMagicGetSettings(): void {
 		$settingsObj = new Settings(['key' => 'value']);
 
 		$settingsGet = new class($settingsObj) extends SettingsGet {
@@ -25,8 +24,7 @@ class SettingsGetTest extends TestCase
 		$this->assertEquals('value', $result->key);
 	}
 
-	public function testSetsMethod(): void
-	{
+	public function testSetsMethod(): void {
 		$settingsObj = new Settings(['key' => 'value']);
 
 		$settingsGet = new class($settingsObj) extends SettingsGet {
@@ -41,8 +39,7 @@ class SettingsGetTest extends TestCase
 		$this->assertEquals('value', $result->key);
 	}
 
-	public function testSetsReturnsReference(): void
-	{
+	public function testSetsReturnsReference(): void {
 		$settingsObj = new Settings(['key' => 'value']);
 
 		$settingsGet = new class($settingsObj) extends SettingsGet {

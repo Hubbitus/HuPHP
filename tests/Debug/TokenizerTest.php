@@ -12,13 +12,11 @@ use PHPUnit\Framework\TestCase;
  */
 class TokenizerTest extends TestCase
 {
-    public function testClassExists(): void
-    {
+    public function testClassExists(): void {
         $this->assertTrue(class_exists(Tokenizer::class));
     }
 
-    public function testCreateWithBacktrace(): void
-    {
+    public function testCreateWithBacktrace(): void {
         // Create a backtrace node manually with test data
         $nodeData = [
             'file' => __FILE__,
@@ -35,8 +33,7 @@ class TokenizerTest extends TestCase
         $this->assertInstanceOf(Tokenizer::class, $tokenizer);
     }
 
-    public function testInstanceHasExpectedMethods(): void
-    {
+    public function testInstanceHasExpectedMethods(): void {
         $methods = get_class_methods(Tokenizer::class);
 
         $this->assertContains('create', $methods);
@@ -46,8 +43,7 @@ class TokenizerTest extends TestCase
         $this->assertContains('setFromBTN', $methods);
     }
 
-    public function testGetArgWithInvalidIndex(): void
-    {
+    public function testGetArgWithInvalidIndex(): void {
         // Create a backtrace node manually with test data
         $nodeData = [
             'file' => __FILE__,

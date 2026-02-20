@@ -11,30 +11,26 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseSelectExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new DatabaseSelectException();
 
         $this->assertInstanceOf(DatabaseSelectException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new DatabaseSelectException('Select failed');
 
         $this->assertInstanceOf(DatabaseSelectException::class, $exception);
         $this->assertEquals('Select failed', $exception->getMessage());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new DatabaseSelectException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(DatabaseSelectException::class);
 
         throw new DatabaseSelectException('Database select failed');

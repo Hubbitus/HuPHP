@@ -32,8 +32,7 @@ class ColumnConsistency
     /**
      * Returns the column count.
      */
-    public function getColumnCount(): int
-    {
+    public function getColumnCount(): int {
         return $this->columns_count;
     }
 

@@ -28,13 +28,11 @@ final class PreRenderDocument
     }
 
     /** @return NodeRenderer<DocumentNode> */
-    public function getRenderer(): NodeRenderer
-    {
+    public function getRenderer(): NodeRenderer {
         return $this->renderer;
     }
 
-    public function getCommand(): RenderDocumentCommand
-    {
+    public function getCommand(): RenderDocumentCommand {
         return $this->command;
     }
 }

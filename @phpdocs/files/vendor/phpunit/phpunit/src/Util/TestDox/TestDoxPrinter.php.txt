@@ -183,8 +183,7 @@ class TestDoxPrinter extends DefaultResultPrinter
         $this->flushOutputBuffer();
     }
 
-    public function flush(): void
-    {
+    public function flush(): void {
         $this->flushOutputBuffer(true);
     }
 
@@ -223,8 +222,7 @@ class TestDoxPrinter extends DefaultResultPrinter
         return get_class($test);
     }
 
-    protected function testHasPassed(): bool
-    {
+    protected function testHasPassed(): bool {
         if (!isset($this->testResults[$this->testIndex]['status'])) {
             return true;
         }
@@ -280,8 +278,7 @@ class TestDoxPrinter extends DefaultResultPrinter
         }
     }
 
-    protected function showSpinner(): void
-    {
+    protected function showSpinner(): void {
         if (!$this->showProgress) {
             return;
         }
@@ -294,8 +291,7 @@ class TestDoxPrinter extends DefaultResultPrinter
         $this->drawSpinner();
     }
 
-    protected function hideSpinner(): void
-    {
+    protected function hideSpinner(): void {
         if (!$this->showProgress) {
             return;
         }
@@ -307,13 +303,11 @@ class TestDoxPrinter extends DefaultResultPrinter
         $this->spinState = 0;
     }
 
-    protected function drawSpinner(): void
-    {
+    protected function drawSpinner(): void {
         // optional for CLI printers: show the user a 'buffering output' spinner
     }
 
-    protected function undrawSpinner(): void
-    {
+    protected function undrawSpinner(): void {
         // remove the spinner from the current line
     }
 
@@ -321,8 +315,7 @@ class TestDoxPrinter extends DefaultResultPrinter
     {
     }
 
-    protected function getEmptyTestResult(): array
-    {
+    protected function getEmptyTestResult(): array {
         return [
             'className' => '',
             'testName'  => '',

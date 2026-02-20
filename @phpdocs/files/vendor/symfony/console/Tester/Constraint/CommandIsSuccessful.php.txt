@@ -16,8 +16,7 @@ use Symfony\Component\Console\Command\Command;
 
 final class CommandIsSuccessful extends Constraint
 {
-    public function toString(): string
-    {
+    public function toString(): string {
         return 'is successful';
     }
 

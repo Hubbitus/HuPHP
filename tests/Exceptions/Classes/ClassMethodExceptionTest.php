@@ -11,24 +11,21 @@ use PHPUnit\Framework\TestCase;
  */
 class ClassMethodExceptionTest extends TestCase
 {
-    public function testConstructorWithNoArguments(): void
-    {
+    public function testConstructorWithNoArguments(): void {
         $exception = new ClassMethodException();
 
         $this->assertInstanceOf(ClassMethodException::class, $exception);
         $this->assertInstanceOf(\Hubbitus\HuPHP\Exceptions\Classes\ClassException::class, $exception);
     }
 
-    public function testConstructorWithMessage(): void
-    {
+    public function testConstructorWithMessage(): void {
         $exception = new ClassMethodException('Method not found');
 
         $this->assertInstanceOf(ClassMethodException::class, $exception);
         $this->assertEquals('Method not found', $exception->getMessage());
     }
 
-    public function testConstructorWithMessageAndCode(): void
-    {
+    public function testConstructorWithMessageAndCode(): void {
         $exception = new ClassMethodException('Method not found', 404);
 
         $this->assertInstanceOf(ClassMethodException::class, $exception);
@@ -36,23 +33,20 @@ class ClassMethodExceptionTest extends TestCase
         $this->assertEquals(404, $exception->getCode());
     }
 
-    public function testIsThrowable(): void
-    {
+    public function testIsThrowable(): void {
         $exception = new ClassMethodException();
 
         $this->assertInstanceOf(\Throwable::class, $exception);
     }
 
-    public function testExceptionCanBeThrown(): void
-    {
+    public function testExceptionCanBeThrown(): void {
         $this->expectException(ClassMethodException::class);
         $this->expectExceptionMessage('Method does not exist');
 
         throw new ClassMethodException('Method does not exist');
     }
 
-    public function testExceptionCanBeCaught(): void
-    {
+    public function testExceptionCanBeCaught(): void {
         try {
             throw new ClassMethodException('Test exception');
         } catch (ClassMethodException $e) {

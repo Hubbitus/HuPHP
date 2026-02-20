@@ -42,8 +42,7 @@ class FilesystemTagAwareAdapter extends AbstractTagAwareAdapter implements Prune
         $this->init($namespace, $directory);
     }
 
-    public function prune(): bool
-    {
+    public function prune(): bool {
         $ok = $this->doPrune();
 
         set_error_handler(static function () {});

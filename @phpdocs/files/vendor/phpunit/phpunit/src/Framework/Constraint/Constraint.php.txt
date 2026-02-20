@@ -62,13 +62,11 @@ abstract class Constraint implements Countable, SelfDescribing
     /**
      * Counts the number of constraint elements.
      */
-    public function count(): int
-    {
+    public function count(): int {
         return 1;
     }
 
-    protected function exporter(): Exporter
-    {
+    protected function exporter(): Exporter {
         if ($this->exporter === null) {
             $this->exporter = new Exporter;
         }
@@ -263,8 +261,7 @@ abstract class Constraint implements Countable, SelfDescribing
      *      LogicalNot
      *      + IsTrue
      */
-    protected function reduce(): self
-    {
+    protected function reduce(): self {
         return $this;
     }
 }

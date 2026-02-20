@@ -42,53 +42,46 @@ class ServiceReferenceGraphEdge
     /**
      * Returns the value of the edge.
      */
-    public function getValue(): mixed
-    {
+    public function getValue(): mixed {
         return $this->value;
     }
 
     /**
      * Returns the source node.
      */
-    public function getSourceNode(): ServiceReferenceGraphNode
-    {
+    public function getSourceNode(): ServiceReferenceGraphNode {
         return $this->sourceNode;
     }
 
     /**
      * Returns the destination node.
      */
-    public function getDestNode(): ServiceReferenceGraphNode
-    {
+    public function getDestNode(): ServiceReferenceGraphNode {
         return $this->destNode;
     }
 
     /**
      * Returns true if the edge is lazy, meaning it's a dependency not requiring direct instantiation.
      */
-    public function isLazy(): bool
-    {
+    public function isLazy(): bool {
         return $this->lazy;
     }
 
     /**
      * Returns true if the edge is weak, meaning it shouldn't prevent removing the target service.
      */
-    public function isWeak(): bool
-    {
+    public function isWeak(): bool {
         return $this->weak;
     }
 
     /**
      * Returns true if the edge links with a constructor argument.
      */
-    public function isReferencedByConstructor(): bool
-    {
+    public function isReferencedByConstructor(): bool {
         return $this->byConstructor;
     }
 
-    public function isFromMultiUseArgument(): bool
-    {
+    public function isFromMultiUseArgument(): bool {
         return $this->byMultiUseArgument;
     }
 }

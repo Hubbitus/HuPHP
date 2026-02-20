@@ -38,8 +38,7 @@ use function array_filter;
  */
 final class YoutubeDirective extends BaseDirective
 {
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'youtube';
     }
 

@@ -26,8 +26,7 @@ abstract class AnnotationNode extends CompoundNode
         parent::__construct($value);
     }
 
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 

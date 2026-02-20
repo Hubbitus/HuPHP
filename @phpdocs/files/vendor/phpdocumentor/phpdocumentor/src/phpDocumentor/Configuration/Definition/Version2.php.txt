@@ -37,8 +37,7 @@ final class Version2 implements ConfigurationInterface, Upgradable
     ) {
     }
 
-    public function getConfigTreeBuilder(): TreeBuilder
-    {
+    public function getConfigTreeBuilder(): TreeBuilder {
         $treebuilder = new TreeBuilder('phpdocumentor');
 
         $treebuilder->getRootNode()

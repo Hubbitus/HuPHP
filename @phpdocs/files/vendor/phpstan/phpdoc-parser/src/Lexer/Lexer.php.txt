@@ -135,8 +135,7 @@ class Lexer
 		return $tokens;
 	}
 
-	private function generateRegexp(): string
-	{
+	private function generateRegexp(): string {
 		$patterns = [
 			self::TOKEN_HORIZONTAL_WS => '[\\x09\\x20]++',
 

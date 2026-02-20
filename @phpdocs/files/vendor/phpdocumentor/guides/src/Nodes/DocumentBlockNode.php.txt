@@ -23,13 +23,11 @@ final class DocumentBlockNode extends CompoundNode
     }
 
     /** @return Node[] */
-    public function getChildren(): array
-    {
+    public function getChildren(): array {
         return $this->getValue();
     }
 
-    public function getIdentifier(): string
-    {
+    public function getIdentifier(): string {
         return $this->identifier;
     }
 }

@@ -52,8 +52,7 @@ class ErrorLogHandler extends AbstractProcessingHandler
     /**
      * @return int[] With all available types
      */
-    public static function getAvailableTypes(): array
-    {
+    public static function getAvailableTypes(): array {
         return [
             self::OPERATING_SYSTEM,
             self::SAPI,
@@ -63,8 +62,7 @@ class ErrorLogHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface
-    {
+    protected function getDefaultFormatter(): FormatterInterface {
         return new LineFormatter('[%datetime%] %channel%.%level_name%: %message% %context% %extra%');
     }
 

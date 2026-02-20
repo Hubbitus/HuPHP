@@ -55,8 +55,7 @@ class Iterator extends FilterIterator
         parent::__construct($iterator);
     }
 
-    public function accept(): bool
-    {
+    public function accept(): bool {
         $current  = $this->getInnerIterator()->current();
         $filename = $current->getFilename();
         $realPath = $current->getRealPath();

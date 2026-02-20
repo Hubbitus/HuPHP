@@ -125,8 +125,7 @@ class FormFieldRegistry
      *
      * @return FormField[] The list of fields as [string] Fully qualified name => (mixed) value)
      */
-    public function all(): array
-    {
+    public function all(): array {
         return $this->walk($this->fields, $this->base);
     }
 

@@ -207,56 +207,46 @@ abstract class CodeUnit
         $this->sourceLines    = $sourceLines;
     }
 
-    public function name(): string
-    {
+    public function name(): string {
         return $this->name;
     }
 
-    public function sourceFileName(): string
-    {
+    public function sourceFileName(): string {
         return $this->sourceFileName;
     }
 
     /**
      * @psalm-return list<int>
      */
-    public function sourceLines(): array
-    {
+    public function sourceLines(): array {
         return $this->sourceLines;
     }
 
-    public function isClass(): bool
-    {
+    public function isClass(): bool {
         return false;
     }
 
-    public function isClassMethod(): bool
-    {
+    public function isClassMethod(): bool {
         return false;
     }
 
-    public function isInterface(): bool
-    {
+    public function isInterface(): bool {
         return false;
     }
 
-    public function isInterfaceMethod(): bool
-    {
+    public function isInterfaceMethod(): bool {
         return false;
     }
 
-    public function isTrait(): bool
-    {
+    public function isTrait(): bool {
         return false;
     }
 
-    public function isTraitMethod(): bool
-    {
+    public function isTraitMethod(): bool {
         return false;
     }
 
-    public function isFunction(): bool
-    {
+    public function isFunction(): bool {
         return false;
     }
 

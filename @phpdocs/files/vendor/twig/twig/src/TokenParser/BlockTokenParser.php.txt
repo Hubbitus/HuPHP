@@ -70,8 +70,7 @@ final class BlockTokenParser extends AbstractTokenParser
         return $token->test('endblock');
     }
 
-    public function getTag(): string
-    {
+    public function getTag(): string {
         return 'block';
     }
 }

@@ -81,8 +81,7 @@ class FleepHookHandler extends SocketHandler
      *
      * @return LineFormatter
      */
-    protected function getDefaultFormatter(): FormatterInterface
-    {
+    protected function getDefaultFormatter(): FormatterInterface {
         return new LineFormatter(null, null, true, true);
     }
 

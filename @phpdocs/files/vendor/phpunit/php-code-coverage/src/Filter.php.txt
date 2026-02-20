@@ -106,13 +106,11 @@ final class Filter
     /**
      * @psalm-return list<string>
      */
-    public function files(): array
-    {
+    public function files(): array {
         return array_keys($this->files);
     }
 
-    public function isEmpty(): bool
-    {
+    public function isEmpty(): bool {
         return empty($this->files);
     }
 }

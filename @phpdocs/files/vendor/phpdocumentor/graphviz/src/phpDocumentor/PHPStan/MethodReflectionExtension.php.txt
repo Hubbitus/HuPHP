@@ -120,8 +120,7 @@ final class MethodReflectionExtension implements MethodsClassReflectionExtension
         }
     }
 
-    private function getAttributesXmlDoc(): SimpleXMLElement
-    {
+    private function getAttributesXmlDoc(): SimpleXMLElement {
         $fileContent = file_get_contents(__DIR__ . '/assets/attributes.xml');
 
         if ($fileContent === false) {

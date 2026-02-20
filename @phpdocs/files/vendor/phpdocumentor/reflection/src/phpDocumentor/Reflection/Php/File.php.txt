@@ -67,16 +67,14 @@ final class File implements MetaDataContainerInterface
     /**
      * Returns the hash of the contents for this file.
      */
-    public function getHash(): string
-    {
+    public function getHash(): string {
         return $this->hash;
     }
 
     /**
      * Retrieves the contents of this file.
      */
-    public function getSource(): string
-    {
+    public function getSource(): string {
         return $this->source;
     }
 
@@ -85,8 +83,7 @@ final class File implements MetaDataContainerInterface
      *
      * @return Fqsen[]
      */
-    public function getNamespaces(): array
-    {
+    public function getNamespaces(): array {
         return $this->namespaces;
     }
 
@@ -103,8 +100,7 @@ final class File implements MetaDataContainerInterface
      *
      * @return string[]
      */
-    public function getIncludes(): array
-    {
+    public function getIncludes(): array {
         return $this->includes;
     }
 
@@ -118,8 +114,7 @@ final class File implements MetaDataContainerInterface
      *
      * @return Constant[]
      */
-    public function getConstants(): array
-    {
+    public function getConstants(): array {
         return $this->constants;
     }
 
@@ -136,8 +131,7 @@ final class File implements MetaDataContainerInterface
      *
      * @return Function_[]
      */
-    public function getFunctions(): array
-    {
+    public function getFunctions(): array {
         return $this->functions;
     }
 
@@ -154,8 +148,7 @@ final class File implements MetaDataContainerInterface
      *
      * @return Class_[]
      */
-    public function getClasses(): array
-    {
+    public function getClasses(): array {
         return $this->classes;
     }
 
@@ -172,8 +165,7 @@ final class File implements MetaDataContainerInterface
      *
      * @return Interface_[]
      */
-    public function getInterfaces(): array
-    {
+    public function getInterfaces(): array {
         return $this->interfaces;
     }
 
@@ -190,8 +182,7 @@ final class File implements MetaDataContainerInterface
      *
      * @return Trait_[]
      */
-    public function getTraits(): array
-    {
+    public function getTraits(): array {
         return $this->traits;
     }
 
@@ -213,16 +204,14 @@ final class File implements MetaDataContainerInterface
      *
      * @return Enum_[]
      */
-    public function getEnums(): array
-    {
+    public function getEnums(): array {
         return $this->enums;
     }
 
     /**
      * Returns the file path relative to the project's root.
      */
-    public function getPath(): string
-    {
+    public function getPath(): string {
         return $this->path;
     }
 
@@ -237,8 +226,7 @@ final class File implements MetaDataContainerInterface
     /**
      * Returns the full name of this file
      */
-    public function getName(): string
-    {
+    public function getName(): string {
         return $this->name;
     }
 }

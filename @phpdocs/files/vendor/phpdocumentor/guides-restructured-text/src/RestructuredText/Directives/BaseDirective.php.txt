@@ -48,8 +48,7 @@ abstract class BaseDirective
      *
      * @return string[]
      */
-    public function getAliases(): array
-    {
+    public function getAliases(): array {
         return [];
     }
 

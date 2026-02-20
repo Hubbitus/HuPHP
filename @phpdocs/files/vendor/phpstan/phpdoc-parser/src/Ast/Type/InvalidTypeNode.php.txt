@@ -25,13 +25,11 @@ class InvalidTypeNode implements TypeNode
 		];
 	}
 
-	public function getException(): ParserException
-	{
+	public function getException(): ParserException {
 		return new ParserException(...$this->exceptionArgs);
 	}
 
-	public function __toString(): string
-	{
+	public function __toString(): string {
 		return '*Invalid type*';
 	}
 

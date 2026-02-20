@@ -30,8 +30,7 @@ final class InvokedAtLeastCount extends InvocationOrder
         $this->requiredInvocations = $requiredInvocations;
     }
 
-    public function toString(): string
-    {
+    public function toString(): string {
         return 'invoked at least ' . $this->requiredInvocations . ' times';
     }
 
@@ -41,8 +40,7 @@ final class InvokedAtLeastCount extends InvocationOrder
      *
      * @throws ExpectationFailedException
      */
-    public function verify(): void
-    {
+    public function verify(): void {
         $count = $this->getInvocationCount();
 
         if ($count < $this->requiredInvocations) {

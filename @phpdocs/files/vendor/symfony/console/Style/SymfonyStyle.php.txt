@@ -408,13 +408,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * Returns a new instance which makes use of stderr if available.
      */
-    public function getErrorStyle(): self
-    {
+    public function getErrorStyle(): self {
         return new self($this->input, $this->getErrorOutput());
     }
 
-    public function createTable(): Table
-    {
+    public function createTable(): Table {
         $output = $this->output instanceof ConsoleOutputInterface ? $this->output->section() : $this->output;
         $style = clone Table::getStyleDefinition('symfony-style-guide');
         $style->setCellHeaderFormat('<info>%s</info>');
@@ -422,14 +420,12 @@ class SymfonyStyle extends OutputStyle
         return (new Table($output))->setStyle($style);
     }
 
-    private function getProgressBar(): ProgressBar
-    {
+    private function getProgressBar(): ProgressBar {
         return $this->progressBar
             ?? throw new RuntimeException('The ProgressBar is not started.');
     }
 
-    private function autoPrependBlock(): void
-    {
+    private function autoPrependBlock(): void {
         $chars = substr(str_replace(\PHP_EOL, "\n", $this->bufferedOutput->fetch()), -2);
 
         if (!isset($chars[0])) {
@@ -441,8 +437,7 @@ class SymfonyStyle extends OutputStyle
         $this->newLine(2 - substr_count($chars, "\n"));
     }
 
-    private function autoPrependText(): void
-    {
+    private function autoPrependText(): void {
         $fetched = $this->bufferedOutput->fetch();
         // Prepend new line if last char isn't EOL:
         if ($fetched && !str_ends_with($fetched, "\n")) {

@@ -43,8 +43,7 @@ final class EnumTest extends TestCase
         );
     }
 
-    public function testFileHasEnum(): void
-    {
+    public function testFileHasEnum(): void {
         $file = $this->project->getFiles()[self::FILE];
 
         $enum = $file->getEnums()['\MyNamespace\MyEnum'];
@@ -55,8 +54,7 @@ final class EnumTest extends TestCase
         self::assertArrayHasKey('\MyNamespace\MyEnum::VALUE2', $enum->getCases());
     }
 
-    public function testEnumWithConstant(): void
-    {
+    public function testEnumWithConstant(): void {
         $file = $this->project->getFiles()[self::ENUM_WITH_CONSTANT];
 
         $enum = $file->getEnums()['\MyNamespace\MyEnumWithConstant'];
@@ -66,8 +64,7 @@ final class EnumTest extends TestCase
         self::assertSame("'MyConstValue'", $enum->getConstants()['\MyNamespace\MyEnumWithConstant::MYCONST']->getValue());
     }
 
-    public function testBackedEnum(): void
-    {
+    public function testBackedEnum(): void {
         $file = $this->project->getFiles()[self::BACKED_ENUM];
 
         $enum = $file->getEnums()['\MyNamespace\MyBackedEnum'];
@@ -81,8 +78,7 @@ final class EnumTest extends TestCase
         self::assertSame("'this is value2'", $enum->getCases()['\MyNamespace\MyBackedEnum::VALUE2']->getValue());
     }
 
-    public function testEnumSupportInProperty(): void
-    {
+    public function testEnumSupportInProperty(): void {
         $file = $this->project->getFiles()[self::ENUM_CONSUMER];
 
         $class = $file->getClasses()['\MyNamespace\EnumConsumer'];
@@ -98,8 +94,7 @@ final class EnumTest extends TestCase
         );
     }
 
-    public function testEnumSupportInMethod(): void
-    {
+    public function testEnumSupportInMethod(): void {
         $file = $this->project->getFiles()[self::ENUM_CONSUMER];
 
         $class = $file->getClasses()['\MyNamespace\EnumConsumer'];

@@ -63,8 +63,7 @@ final class CompleteCommand extends Command
         parent::__construct();
     }
 
-    protected function configure(): void
-    {
+    protected function configure(): void {
         $this
             ->addOption('shell', 's', InputOption::VALUE_REQUIRED, 'The shell type ("'.implode('", "', array_keys($this->completionOutputs)).'")')
             ->addOption('input', 'i', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'An array of input tokens (e.g. COMP_WORDS or argv)')

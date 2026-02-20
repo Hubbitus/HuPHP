@@ -59,8 +59,7 @@ final class ApplyTokenParser extends AbstractTokenParser
         return $token->test('endapply');
     }
 
-    public function getTag(): string
-    {
+    public function getTag(): string {
         return 'apply';
     }
 }

@@ -17,8 +17,7 @@ final class Error extends Exception implements SelfDescribing
     /**
      * Wrapper for getMessage() which is declared as final.
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         return $this->getMessage();
     }
 }

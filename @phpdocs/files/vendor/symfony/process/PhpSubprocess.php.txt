@@ -151,8 +151,7 @@ class PhpSubprocess extends Process
         return $content;
     }
 
-    private function getAllIniFiles(): array
-    {
+    private function getAllIniFiles(): array {
         $paths = [(string) php_ini_loaded_file()];
 
         if (false !== $scanned = php_ini_scanned_files()) {

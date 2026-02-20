@@ -33,8 +33,7 @@ final class AssemblerMatcher
     }
 
     /** @return AssemblerInterface<Descriptor, object> */
-    public function getAssembler(): AssemblerInterface
-    {
+    public function getAssembler(): AssemblerInterface {
         return $this->assembler;
     }
 }

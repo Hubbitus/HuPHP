@@ -143,71 +143,58 @@ class Snapshot
         }
     }
 
-    public function excludeList(): ExcludeList
-    {
+    public function excludeList(): ExcludeList {
         return $this->excludeList;
     }
 
-    public function globalVariables(): array
-    {
+    public function globalVariables(): array {
         return $this->globalVariables;
     }
 
-    public function superGlobalVariables(): array
-    {
+    public function superGlobalVariables(): array {
         return $this->superGlobalVariables;
     }
 
-    public function superGlobalArrays(): array
-    {
+    public function superGlobalArrays(): array {
         return $this->superGlobalArrays;
     }
 
-    public function staticAttributes(): array
-    {
+    public function staticAttributes(): array {
         return $this->staticAttributes;
     }
 
-    public function iniSettings(): array
-    {
+    public function iniSettings(): array {
         return $this->iniSettings;
     }
 
-    public function includedFiles(): array
-    {
+    public function includedFiles(): array {
         return $this->includedFiles;
     }
 
-    public function constants(): array
-    {
+    public function constants(): array {
         return $this->constants;
     }
 
-    public function functions(): array
-    {
+    public function functions(): array {
         return $this->functions;
     }
 
-    public function interfaces(): array
-    {
+    public function interfaces(): array {
         return $this->interfaces;
     }
 
-    public function classes(): array
-    {
+    public function classes(): array {
         return $this->classes;
     }
 
-    public function traits(): array
-    {
+    public function traits(): array {
         return $this->traits;
     }
 
     /**
      * Creates a snapshot user-defined constants.
      */
-    private function snapshotConstants(): void
-    {
+    private function snapshotConstants(): void {
         $constants = get_defined_constants(true);
 
         if (isset($constants['user'])) {
@@ -218,8 +205,7 @@ class Snapshot
     /**
      * Creates a snapshot user-defined functions.
      */
-    private function snapshotFunctions(): void
-    {
+    private function snapshotFunctions(): void {
         $functions = get_defined_functions();
 
         $this->functions = $functions['user'];
@@ -228,8 +214,7 @@ class Snapshot
     /**
      * Creates a snapshot user-defined classes.
      */
-    private function snapshotClasses(): void
-    {
+    private function snapshotClasses(): void {
         foreach (array_reverse(get_declared_classes()) as $className) {
             $class = new ReflectionClass($className);
 
@@ -246,8 +231,7 @@ class Snapshot
     /**
      * Creates a snapshot user-defined interfaces.
      */
-    private function snapshotInterfaces(): void
-    {
+    private function snapshotInterfaces(): void {
         foreach (array_reverse(get_declared_interfaces()) as $interfaceName) {
             $class = new ReflectionClass($interfaceName);
 
@@ -264,8 +248,7 @@ class Snapshot
     /**
      * Creates a snapshot of all global and super-global variables.
      */
-    private function snapshotGlobals(): void
-    {
+    private function snapshotGlobals(): void {
         $superGlobalArrays = $this->superGlobalArrays();
 
         foreach ($superGlobalArrays as $superGlobalArray) {
@@ -301,8 +284,7 @@ class Snapshot
     /**
      * Creates a snapshot of all static attributes in user-defined classes.
      */
-    private function snapshotStaticAttributes(): void
-    {
+    private function snapshotStaticAttributes(): void {
         foreach ($this->classes as $className) {
             $class    = new ReflectionClass($className);
             $snapshot = [];
@@ -341,8 +323,7 @@ class Snapshot
     /**
      * Returns a list of all super-global variable arrays.
      */
-    private function setupSuperGlobalArrays(): void
-    {
+    private function setupSuperGlobalArrays(): void {
         $this->superGlobalArrays = [
             '_ENV',
             '_POST',

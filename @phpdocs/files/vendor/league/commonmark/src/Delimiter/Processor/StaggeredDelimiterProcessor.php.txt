@@ -49,18 +49,15 @@ final class StaggeredDelimiterProcessor implements DelimiterProcessorInterface
         $this->add($processor);
     }
 
-    public function getOpeningCharacter(): string
-    {
+    public function getOpeningCharacter(): string {
         return $this->delimiterChar;
     }
 
-    public function getClosingCharacter(): string
-    {
+    public function getClosingCharacter(): string {
         return $this->delimiterChar;
     }
 
-    public function getMinLength(): int
-    {
+    public function getMinLength(): int {
         return $this->minLength;
     }
 

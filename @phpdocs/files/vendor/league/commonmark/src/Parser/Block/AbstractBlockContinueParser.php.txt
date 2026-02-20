@@ -22,13 +22,11 @@ use League\CommonMark\Node\Block\AbstractBlock;
  */
 abstract class AbstractBlockContinueParser implements BlockContinueParserInterface
 {
-    public function isContainer(): bool
-    {
+    public function isContainer(): bool {
         return false;
     }
 
-    public function canHaveLazyContinuationLines(): bool
-    {
+    public function canHaveLazyContinuationLines(): bool {
         return false;
     }
 
@@ -41,7 +39,6 @@ abstract class AbstractBlockContinueParser implements BlockContinueParserInterfa
     {
     }
 
-    public function closeBlock(): void
-    {
+    public function closeBlock(): void {
     }
 }

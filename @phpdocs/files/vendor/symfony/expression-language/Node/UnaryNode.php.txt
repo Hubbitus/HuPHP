@@ -57,8 +57,7 @@ class UnaryNode extends Node
         };
     }
 
-    public function toArray(): array
-    {
+    public function toArray(): array {
         return ['(', $this->attributes['operator'].' ', $this->nodes['node'], ')'];
     }
 }

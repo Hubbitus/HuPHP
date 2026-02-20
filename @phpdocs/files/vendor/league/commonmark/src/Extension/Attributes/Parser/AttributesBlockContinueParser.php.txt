@@ -41,8 +41,7 @@ final class AttributesBlockContinueParser extends AbstractBlockContinueParser
         $this->container = $container;
     }
 
-    public function getBlock(): AbstractBlock
-    {
+    public function getBlock(): AbstractBlock {
         return $this->block;
     }
 
@@ -75,8 +74,7 @@ final class AttributesBlockContinueParser extends AbstractBlockContinueParser
         return BlockContinue::none();
     }
 
-    public function closeBlock(): void
-    {
+    public function closeBlock(): void {
         // Attributes appearing at the very end of the document won't have any last lines to check
         // so we can make that determination here
         if (! $this->hasSubsequentLine) {

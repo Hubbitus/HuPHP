@@ -32,13 +32,11 @@ final class PreRenderProcess
     ) {
     }
 
-    public function getCommand(): RenderCommand
-    {
+    public function getCommand(): RenderCommand {
         return $this->command;
     }
 
-    public function isExitRendering(): bool
-    {
+    public function isExitRendering(): bool {
         return $this->exitRendering;
     }
 
@@ -49,8 +47,7 @@ final class PreRenderProcess
         return $this;
     }
 
-    public function getSteps(): int
-    {
+    public function getSteps(): int {
         return $this->steps;
     }
 }

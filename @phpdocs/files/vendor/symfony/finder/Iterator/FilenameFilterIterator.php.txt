@@ -25,8 +25,7 @@ class FilenameFilterIterator extends MultiplePcreFilterIterator
     /**
      * Filters the iterator values.
      */
-    public function accept(): bool
-    {
+    public function accept(): bool {
         return $this->isAccepted($this->current()->getFilename());
     }
 

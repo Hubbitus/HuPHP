@@ -41,8 +41,7 @@ trait HasTags
      *
      * @return Collection<Collection<TagDescriptor>>
      */
-    public function getTags(): Collection
-    {
+    public function getTags(): Collection {
         if (! isset($this->tags)) {
             $this->tags = new Collection();
         }
@@ -51,8 +50,7 @@ trait HasTags
     }
 
     /** @return Collection<AuthorDescriptor> */
-    public function getAuthor(): Collection
-    {
+    public function getAuthor(): Collection {
         /** @var Collection<AuthorDescriptor> $author */
         $author = $this->getTags()->fetch('author', new Collection());
         if ($author->count() !== 0) {
@@ -74,8 +72,7 @@ trait HasTags
      *
      * @return Collection<VersionDescriptor>
      */
-    public function getVersion(): Collection
-    {
+    public function getVersion(): Collection {
         /** @var Collection<VersionDescriptor> $version */
         $version = $this->getTags()->fetch('version', new Collection());
         if ($version->count() !== 0) {
@@ -97,8 +94,7 @@ trait HasTags
      *
      * @return Collection<TagDescriptor>
      */
-    public function getCopyright(): Collection
-    {
+    public function getCopyright(): Collection {
         /** @var Collection<TagDescriptor> $copyright */
         $copyright = $this->getTags()->fetch('copyright', new Collection());
         if ($copyright->count() !== 0) {

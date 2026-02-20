@@ -78,8 +78,7 @@ final class DocumentEntryRegistrationTransformer implements NodeTransformer
         return $node instanceof DocumentNode;
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         // Before TocNodeWithDocumentEntryTransformer and SectionEntryRegistrationTransformer
         return 5000;
     }

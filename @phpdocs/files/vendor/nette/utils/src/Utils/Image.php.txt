@@ -322,8 +322,7 @@ class Image
 
 
 	/** @return  ImageType::*[] */
-	public static function getSupportedTypes(): array
-	{
+	public static function getSupportedTypes(): array {
 		self::ensureExtension();
 		$flag = imagetypes();
 		return array_filter([
@@ -351,8 +350,7 @@ class Image
 	 * Returns image width.
 	 * @return positive-int
 	 */
-	public function getWidth(): int
-	{
+	public function getWidth(): int {
 		return imagesx($this->image);
 	}
 
@@ -361,8 +359,7 @@ class Image
 	 * Returns image height.
 	 * @return positive-int
 	 */
-	public function getHeight(): int
-	{
+	public function getHeight(): int {
 		return imagesy($this->image);
 	}
 
@@ -553,8 +550,7 @@ class Image
 	/**
 	 * Sharpens image a little bit.
 	 */
-	public function sharpen(): static
-	{
+	public function sharpen(): static {
 		imageconvolution($this->image, [ // my magic numbers ;)
 			[-1, -1, -1],
 			[-1, 24, -1],
@@ -693,8 +689,7 @@ class Image
 	/**
 	 * Outputs image to string.
 	 */
-	public function __toString(): string
-	{
+	public function __toString(): string {
 		return $this->toString();
 	}
 
@@ -797,8 +792,7 @@ class Image
 	/**
 	 * Prevents serialization.
 	 */
-	public function __serialize(): array
-	{
+	public function __serialize(): array {
 		throw new Nette\NotSupportedException('You cannot serialize or unserialize ' . self::class . ' instances.');
 	}
 
@@ -827,8 +821,7 @@ class Image
 	}
 
 
-	private static function ensureExtension(): void
-	{
+	private static function ensureExtension(): void {
 		if (!extension_loaded('gd')) {
 			throw new Nette\NotSupportedException('PHP extension GD is not loaded.');
 		}

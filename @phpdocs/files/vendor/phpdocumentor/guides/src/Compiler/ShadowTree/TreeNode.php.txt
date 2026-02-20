@@ -96,8 +96,7 @@ final class TreeNode
     }
 
     /** @return self<DocumentNode> */
-    public function getRoot(): self
-    {
+    public function getRoot(): self {
         return $this->root;
     }
 
@@ -111,14 +110,12 @@ final class TreeNode
     }
 
     /** @return TNode */
-    public function getNode(): Node
-    {
+    public function getNode(): Node {
         return $this->node;
     }
 
     /** @return  TreeNode<Node>[] */
-    public function getChildren(): array
-    {
+    public function getChildren(): array {
         return $this->children;
     }
 
@@ -200,8 +197,7 @@ final class TreeNode
         return null;
     }
 
-    public function isLastChildOfParent(): bool
-    {
+    public function isLastChildOfParent(): bool {
         if ($this->parent === null) {
             return false;
         }

@@ -159,8 +159,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->lmpop(...\func_get_args());
     }
 
-    public function clearLastError(): bool
-    {
+    public function clearLastError(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->clearLastError(...\func_get_args());
     }
 
@@ -169,8 +168,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->client(...\func_get_args());
     }
 
-    public function close(): bool
-    {
+    public function close(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->close(...\func_get_args());
     }
 
@@ -369,8 +367,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->get(...\func_get_args());
     }
 
-    public function getAuth(): mixed
-    {
+    public function getAuth(): mixed {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getAuth(...\func_get_args());
     }
 
@@ -384,8 +381,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getEx(...\func_get_args());
     }
 
-    public function getDBNum(): int
-    {
+    public function getDBNum(): int {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getDBNum(...\func_get_args());
     }
 
@@ -394,8 +390,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getDel(...\func_get_args());
     }
 
-    public function getHost(): string
-    {
+    public function getHost(): string {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getHost(...\func_get_args());
     }
 
@@ -404,8 +399,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getLastError(...\func_get_args());
     }
 
-    public function getMode(): int
-    {
+    public function getMode(): int {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getMode(...\func_get_args());
     }
 
@@ -419,8 +413,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getPersistentID(...\func_get_args());
     }
 
-    public function getPort(): int
-    {
+    public function getPort(): int {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getPort(...\func_get_args());
     }
 
@@ -434,8 +427,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->lcs(...\func_get_args());
     }
 
-    public function getReadTimeout(): float
-    {
+    public function getReadTimeout(): float {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getReadTimeout(...\func_get_args());
     }
 
@@ -449,13 +441,11 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getTimeout(...\func_get_args());
     }
 
-    public function getTransferredBytes(): array
-    {
+    public function getTransferredBytes(): array {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->getTransferredBytes(...\func_get_args());
     }
 
-    public function clearTransferredBytes(): void
-    {
+    public function clearTransferredBytes(): void {
         ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->clearTransferredBytes(...\func_get_args());
     }
 
@@ -549,8 +539,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->info(...\func_get_args());
     }
 
-    public function isConnected(): bool
-    {
+    public function isConnected(): bool {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->isConnected(...\func_get_args());
     }
 
@@ -614,8 +603,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->lSet(...\func_get_args());
     }
 
-    public function lastSave(): int
-    {
+    public function lastSave(): int {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->lastSave(...\func_get_args());
     }
 
@@ -784,8 +772,7 @@ class Redis6Proxy extends \Redis implements ResetInterface, LazyObjectInterface
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->restore(...\func_get_args());
     }
 
-    public function role(): mixed
-    {
+    public function role(): mixed {
         return ($this->lazyObjectState->realInstance ??= ($this->lazyObjectState->initializer)())->role(...\func_get_args());
     }
 

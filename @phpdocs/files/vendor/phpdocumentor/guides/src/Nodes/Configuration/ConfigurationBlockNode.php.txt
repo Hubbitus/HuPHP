@@ -26,8 +26,7 @@ final class ConfigurationBlockNode extends AbstractNode
     }
 
     /** @return list<ConfigurationTab> */
-    public function getTabs(): array
-    {
+    public function getTabs(): array {
         return $this->value;
     }
 }

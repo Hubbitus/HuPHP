@@ -106,8 +106,7 @@ final class IsEqual extends Constraint
      *
      * @throws InvalidArgumentException
      */
-    public function toString(): string
-    {
+    public function toString(): string {
         $delta = '';
 
         if (is_string($this->value)) {

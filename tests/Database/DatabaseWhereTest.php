@@ -14,8 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseWhereTest extends TestCase
 {
-    public function testClassPropertiesAndConstants(): void
-    {
+    public function testClassPropertiesAndConstants(): void {
         $where = new DatabaseWhere();
 
         $this->assertIsArray($where->_getArray());
@@ -23,8 +22,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals('=', DatabaseWhere::default_operator);
     }
 
-    public function testConstructorWithDefaultParameters(): void
-    {
+    public function testConstructorWithDefaultParameters(): void {
         $where = new DatabaseWhere();
 
         $this->assertEmpty($where->getArray());
@@ -33,8 +31,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals('', $where->_quoteFieldValue('test_value', ''));
     }
 
-    public function testConstructorWithArrayParameters(): void
-    {
+    public function testConstructorWithArrayParameters(): void {
         $where = new DatabaseWhere([
             'ID' => 1,
             'Name' => ['John', 'LIKE'],
@@ -45,8 +42,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals('WHERE ((ID=' . chr(39) . '1' . chr(39) . ' AND Name LIKE ' . chr(39) . 'John' . chr(39) . ' AND Age>=' . chr(39) . '25' . chr(39) . ' AND Status LIKE ' . chr(39) . 'Active' . chr(39) . '))', $where->getSQL());
     }
 
-    public function testConstructorWithBracketsParameters(): void
-    {
+    public function testConstructorWithBracketsParameters(): void {
         $where = new DatabaseWhere([
             'ID' => 1,
             'Name' => ['John', 'LIKE'],
@@ -58,8 +54,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals('WHERE ((ID=' . chr(39) . '1' . chr(39) . ' AND Name LIKE ' . chr(39) . 'John' . chr(39) . ' AND [Age]>=' . chr(39) . '25' . chr(39) . '))', $where->getSQL());
     }
 
-    public function testSetArrayMethod(): void
-    {
+    public function testSetArrayMethod(): void {
         $where = new DatabaseWhere();
         $where->setArray([
             'ID' => 1,
@@ -70,8 +65,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals($expectedSql, $where->getSQL());
     }
 
-    public function testAddMethod(): void
-    {
+    public function testAddMethod(): void {
         $where = new DatabaseWhere([
             'ID' => 1
         ]);
@@ -90,8 +84,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals('WHERE (ID=' . chr(39) . '1' . chr(39) . ' AND Name LIKE ' . chr(39) . 'John' . chr(39) . ' AND Age>=' . chr(39) . '25' . chr(39) . ')', $where->getSQL());
     }
 
-    public function testAppendMethod(): void
-    {
+    public function testAppendMethod(): void {
         $where1 = new DatabaseWhere([
             'ID' => 1
         ]);
@@ -107,8 +100,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals($expectedSql, $where1->getSQL());
     }
 
-    public function testSafeAppendMethod(): void
-    {
+    public function testSafeAppendMethod(): void {
         $where1 = new DatabaseWhere([
             'ID' => 1
         ]);
@@ -124,8 +116,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals($expectedSql, $where1->getSQL());
     }
 
-    public function testCountMethod(): void
-    {
+    public function testCountMethod(): void {
         $where = new DatabaseWhere([
             'ID' => 1,
             'Name' => ['John', 'LIKE']
@@ -140,8 +131,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals(3, $where->count());
     }
 
-    public function testGetArrayMethod(): void
-    {
+    public function testGetArrayMethod(): void {
         $where = new DatabaseWhere([
             'ID' => 1,
             'Name' => ['John', 'LIKE']
@@ -154,8 +144,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals(['John', 'LIKE'], $array[1]['Name']);
     }
 
-    public function testGetSQLMethod(): void
-    {
+    public function testGetSQLMethod(): void {
         $where = new DatabaseWhere([
             'ID' => 1,
             'Name' => ['John', 'LIKE'],
@@ -172,8 +161,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertNotEquals('WHERE (ID=' . chr(39) . '1' . chr(39) . ' AND Name LIKE ' . chr(39) . 'John' . chr(39) . ' AND Age>=' . chr(39) . '25' . chr(39) . ')', $where->getSQL());
     }
 
-    public function testConvertToSQLMethod(): void
-    {
+    public function testConvertToSQLMethod(): void {
         $where = new DatabaseWhere([
             'ID' => 1,
             'Name' => ['John', 'LIKE']
@@ -187,8 +175,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals('WHERE (ID=' . chr(39) . '1' . chr(39) . ' AND Name LIKE ' . chr(39) . 'John' . chr(39) . ')', $where->_getWhereStr());
     }
 
-    public function testConstructPhraseMethod(): void
-    {
+    public function testConstructPhraseMethod(): void {
         $where = new DatabaseWhere();
 
         $reflection = new \ReflectionClass(DatabaseWhere::class);
@@ -208,8 +195,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals("Date BETWEEN '2023-01-01' AND '2023-12-31'", $result);
     }
 
-    public function testEscapeFieldNameMethod(): void
-    {
+    public function testEscapeFieldNameMethod(): void {
         $where = new DatabaseWhere();
 
         $reflection = new \ReflectionClass(DatabaseWhere::class);
@@ -227,8 +213,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals('[Name]', $result);
     }
 
-    public function testQuoteFieldValueMethod(): void
-    {
+    public function testQuoteFieldValueMethod(): void {
         $where = new DatabaseWhere();
 
         $reflection = new \ReflectionClass(DatabaseWhere::class);
@@ -246,8 +231,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals('"John"', $result);
     }
 
-    public function testComplexWhereConditions(): void
-    {
+    public function testComplexWhereConditions(): void {
         $where = new DatabaseWhere([
             'ID' => 1,
             'Name' => ['John', 'LIKE'],
@@ -263,8 +247,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals($expectedSql, $where->getSQL());
     }
 
-    public function testEmptyWhereConditions(): void
-    {
+    public function testEmptyWhereConditions(): void {
         $where = new DatabaseWhere();
 
         $this->assertEquals('', $where->getSQL());
@@ -272,8 +255,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals(0, $where->count());
     }
 
-    public function testSingleCondition(): void
-    {
+    public function testSingleCondition(): void {
         $where = new DatabaseWhere([
             'ID' => 1
         ]);
@@ -281,8 +263,7 @@ class DatabaseWhereTest extends TestCase
         $this->assertEquals('WHERE ((ID=' . chr(39) . '1' . chr(39) . '))', $where->getSQL());
     }
 
-    public function testMultipleOperators(): void
-    {
+    public function testMultipleOperators(): void {
         $where = new DatabaseWhere([
             'ID' => 1,
             'OR',

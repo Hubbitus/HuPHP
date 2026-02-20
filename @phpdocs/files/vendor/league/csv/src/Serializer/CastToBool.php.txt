@@ -41,8 +41,7 @@ final class CastToBool implements TypeCasting
         $this->default = $default;
     }
 
-    public function info(): TypeCastingInfo
-    {
+    public function info(): TypeCastingInfo {
         return $this->info;
     }
 

@@ -40,8 +40,7 @@ abstract class IntegrationTestCase extends TestCase
         throw new \BadMethodCallException('Not implemented.');
     }
 
-    protected static function getFixturesDirectory(): string
-    {
+    protected static function getFixturesDirectory(): string {
         throw new \BadMethodCallException('Not implemented.');
     }
 
@@ -88,32 +87,28 @@ abstract class IntegrationTestCase extends TestCase
     /**
      * @return array<callable(string): (TwigFilter|false)>
      */
-    protected function getUndefinedFilterCallbacks(): array
-    {
+    protected function getUndefinedFilterCallbacks(): array {
         return [];
     }
 
     /**
      * @return array<callable(string): (TwigFunction|false)>
      */
-    protected function getUndefinedFunctionCallbacks(): array
-    {
+    protected function getUndefinedFunctionCallbacks(): array {
         return [];
     }
 
     /**
      * @return array<callable(string): (TwigTest|false)>
      */
-    protected function getUndefinedTestCallbacks(): array
-    {
+    protected function getUndefinedTestCallbacks(): array {
         return [];
     }
 
     /**
      * @return array<callable(string): (TokenParserInterface|false)>
      */
-    protected function getUndefinedTokenParserCallbacks(): array
-    {
+    protected function getUndefinedTokenParserCallbacks(): array {
         return [];
     }
 

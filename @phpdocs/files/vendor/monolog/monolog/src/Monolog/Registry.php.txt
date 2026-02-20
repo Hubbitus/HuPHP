@@ -99,8 +99,7 @@ class Registry
     /**
      * Clears the registry
      */
-    public static function clear(): void
-    {
+    public static function clear(): void {
         self::$loggers = [];
     }
 

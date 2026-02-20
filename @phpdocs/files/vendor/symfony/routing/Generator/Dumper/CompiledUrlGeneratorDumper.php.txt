@@ -24,8 +24,7 @@ use Symfony\Component\Routing\Matcher\Dumper\CompiledUrlMatcherDumper;
  */
 class CompiledUrlGeneratorDumper extends GeneratorDumper
 {
-    public function getCompiledRoutes(): array
-    {
+    public function getCompiledRoutes(): array {
         $compiledRoutes = [];
         foreach ($this->getRoutes()->all() as $name => $route) {
             $compiledRoute = $route->compile();
@@ -44,8 +43,7 @@ class CompiledUrlGeneratorDumper extends GeneratorDumper
         return $compiledRoutes;
     }
 
-    public function getCompiledAliases(): array
-    {
+    public function getCompiledAliases(): array {
         $routes = $this->getRoutes();
         $compiledAliases = [];
         foreach ($routes->getAliases() as $name => $alias) {
@@ -105,8 +103,7 @@ EOF;
      * Generates PHP code representing an array of defined routes
      * together with the routes properties (e.g. requirements).
      */
-    private function generateDeclaredRoutes(): string
-    {
+    private function generateDeclaredRoutes(): string {
         $routes = '';
         foreach ($this->getCompiledRoutes() as $name => $properties) {
             $routes .= \sprintf("\n    '%s' => %s,", $name, CompiledUrlMatcherDumper::export($properties));

@@ -63,21 +63,18 @@ final class FileTest extends TestCase
 
     private ObjectProphecy $docBlockFactory;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->docBlockFactory = $this->prophesize(DocBlockFactoryInterface::class);
         $this->nodesFactoryMock = $this->prophesize(NodesFactory::class);
         $this->fixture = new File($this->docBlockFactory->reveal(), $this->nodesFactoryMock->reveal());
     }
 
-    public function testMatches(): void
-    {
+    public function testMatches(): void {
         $this->assertFalse($this->fixture->matches(self::createContext(null), new stdClass()));
         $this->assertTrue($this->fixture->matches(self::createContext(null), m::mock(SourceFile::class)));
     }
 
-    public function testMiddlewareIsExecuted(): void
-    {
+    public function testMiddlewareIsExecuted(): void {
         $file = new FileElement('aa', __FILE__);
         $this->nodesFactoryMock->create(file_get_contents(__FILE__))->willReturn([]);
         $middleware = $this->prophesize(Middleware::class);
@@ -96,8 +93,7 @@ final class FileTest extends TestCase
         $this->assertSame($result, $file);
     }
 
-    public function testMiddlewareIsChecked(): void
-    {
+    public function testMiddlewareIsChecked(): void {
         $this->expectException(InvalidArgumentException::class);
         new File($this->docBlockFactory->reveal(), $this->nodesFactoryMock->reveal(), [new stdClass()]);
     }
@@ -123,8 +119,7 @@ final class FileTest extends TestCase
     }
 
     /** @return array<string, mixed[]> */
-    public static function nodeProvider(): array
-    {
+    public static function nodeProvider(): array {
         $docBlockNode = new DocBlockNode('Text');
         $namespaceNode = new NamespaceNode(new Name('mySpace'));
         $namespaceNode->getAttribute('fsqen', new Fqsen('\mySpace'));

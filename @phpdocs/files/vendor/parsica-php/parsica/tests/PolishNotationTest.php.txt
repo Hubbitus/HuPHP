@@ -24,8 +24,7 @@ final class PolishNotationTest extends TestCase
      */
     private Parser $expr;
 
-    public function setUp(): void
-    {
+    public function setUp(): void {
         $token = fn(Parser $parser) => keepFirst($parser, skipHSpace());
         $term = digitChar();
         $parens = fn(Parser $parser)

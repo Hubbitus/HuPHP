@@ -33,8 +33,7 @@ class VisibilityTest extends TestCase
     }
 
     /** @return string[][] */
-    public static function visibilityProvider(): array
-    {
+    public static function visibilityProvider(): array {
         return [
             ['public', 'public'],
             ['protected', 'protected'],
@@ -43,8 +42,7 @@ class VisibilityTest extends TestCase
         ];
     }
 
-    public function testVisibilityChecksInput(): void
-    {
+    public function testVisibilityChecksInput(): void {
         $this->expectException(InvalidArgumentException::class);
         new Visibility('fooBar');
     }

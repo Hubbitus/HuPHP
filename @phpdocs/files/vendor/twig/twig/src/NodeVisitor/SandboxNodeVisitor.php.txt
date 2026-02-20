@@ -141,8 +141,7 @@ final class SandboxNodeVisitor implements NodeVisitorInterface
         }
     }
 
-    public function getPriority(): int
-    {
+    public function getPriority(): int {
         return 0;
     }
 }

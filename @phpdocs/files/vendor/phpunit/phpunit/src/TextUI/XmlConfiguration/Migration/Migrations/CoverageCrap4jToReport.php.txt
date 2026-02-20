@@ -16,8 +16,7 @@ use DOMElement;
  */
 final class CoverageCrap4jToReport extends LogToReportMigration
 {
-    protected function forType(): string
-    {
+    protected function forType(): string {
         return 'coverage-crap4j';
     }
 

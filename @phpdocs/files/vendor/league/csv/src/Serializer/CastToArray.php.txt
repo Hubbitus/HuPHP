@@ -61,8 +61,7 @@ final class CastToArray implements TypeCasting
         $this->info = TypeCastingInfo::fromAccessor($reflectionProperty);
     }
 
-    public function info(): TypeCastingInfo
-    {
+    public function info(): TypeCastingInfo {
         return $this->info;
     }
 

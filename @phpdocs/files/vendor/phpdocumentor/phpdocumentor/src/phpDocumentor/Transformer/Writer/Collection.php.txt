@@ -63,8 +63,7 @@ final class Collection
      *
      * @throws Exception\RequirementMissing If a requirement of a writer is missing.
      */
-    public function checkRequirements(): void
-    {
+    public function checkRequirements(): void {
         /** @var WriterAbstract $writer */
         foreach ($this->writers as $writer) {
             $writer->checkRequirements();

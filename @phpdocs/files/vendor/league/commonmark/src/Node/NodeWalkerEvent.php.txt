@@ -30,13 +30,11 @@ final class NodeWalkerEvent
         $this->isEntering = $isEntering;
     }
 
-    public function getNode(): Node
-    {
+    public function getNode(): Node {
         return $this->node;
     }
 
-    public function isEntering(): bool
-    {
+    public function isEntering(): bool {
         return $this->isEntering;
     }
 }

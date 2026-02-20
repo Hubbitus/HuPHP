@@ -34,8 +34,7 @@ final class IndentedCodeParser extends AbstractBlockContinueParser
         $this->strings = new ArrayCollection();
     }
 
-    public function getBlock(): IndentedCode
-    {
+    public function getBlock(): IndentedCode {
         return $this->block;
     }
 
@@ -61,8 +60,7 @@ final class IndentedCodeParser extends AbstractBlockContinueParser
         $this->strings[] = $line;
     }
 
-    public function closeBlock(): void
-    {
+    public function closeBlock(): void {
         $lines = $this->strings->toArray();
 
         // Note that indented code block cannot be empty, so $lines will always have at least one non-empty element

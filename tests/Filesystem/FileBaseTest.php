@@ -13,8 +13,7 @@ class FileBaseTest extends TestCase
 	private string $testFile;
 	private string $testDir;
 
-	protected function setUp(): void
-	{
+	protected function setUp(): void {
 		$this->testDir = sys_get_temp_dir() . '/hubbitus_test_' . uniqid();
 		$this->testFile = $this->testDir . '/test_file.txt';
 
@@ -23,8 +22,7 @@ class FileBaseTest extends TestCase
 		}
 	}
 
-	protected function tearDown(): void
-	{
+	protected function tearDown(): void {
 		if (file_exists($this->testFile)) {
 			unlink($this->testFile);
 		}
@@ -33,49 +31,42 @@ class FileBaseTest extends TestCase
 		}
 	}
 
-	public function testConstructorEmpty(): void
-	{
+	public function testConstructorEmpty(): void {
 		$file = new FileBase();
 		$this->assertInstanceOf(FileBase::class, $file);
 		$this->assertEquals('', $file->path());
 	}
 
-	public function testConstructorWithFilename(): void
-	{
+	public function testConstructorWithFilename(): void {
 		$file = new FileBase($this->testFile);
 		$this->assertInstanceOf(FileBase::class, $file);
 		$this->assertEquals($this->testFile, $file->path());
 	}
 
-	public function testSetPath(): void
-	{
+	public function testSetPath(): void {
 		$file = new FileBase();
 		$result = $file->setPath($this->testFile);
 		$this->assertSame($file, $result);
 		$this->assertEquals($this->testFile, $file->path());
 	}
 
-	public function testRawPath(): void
-	{
+	public function testRawPath(): void {
 		$file = new FileBase($this->testFile);
 		$this->assertEquals($this->testFile, $file->rawPath());
 	}
 
-	public function testIsExistsFalse(): void
-	{
+	public function testIsExistsFalse(): void {
 		$file = new FileBase($this->testFile);
 		$this->assertFalse($file->isExists());
 	}
 
-	public function testIsExistsTrue(): void
-	{
+	public function testIsExistsTrue(): void {
 		touch($this->testFile);
 		$file = new FileBase($this->testFile);
 		$this->assertTrue($file->isExists());
 	}
 
-	public function testIsReadableFalse(): void
-	{
+	public function testIsReadableFalse(): void {
 		touch($this->testFile);
 		chmod($this->testFile, 0000);
 		$file = new FileBase($this->testFile);
@@ -85,16 +76,14 @@ class FileBaseTest extends TestCase
 		$this->assertIsBool($result);
 	}
 
-	public function testIsReadableTrue(): void
-	{
+	public function testIsReadableTrue(): void {
 		touch($this->testFile);
 		chmod($this->testFile, 0644);
 		$file = new FileBase($this->testFile);
 		$this->assertTrue($file->isReadable());
 	}
 
-	public function testUnlink(): void
-	{
+	public function testUnlink(): void {
 		touch($this->testFile);
 		$file = new FileBase($this->testFile);
 		$result = $file->unlink();
@@ -102,15 +91,13 @@ class FileBaseTest extends TestCase
 		$this->assertFalse(file_exists($this->testFile));
 	}
 
-	public function testGetDir(): void
-	{
+	public function testGetDir(): void {
 		$file = new FileBase($this->testFile);
 		$result = $file->getDir();
 		$this->assertEquals($this->testDir, $result);
 	}
 
-	public function testClearPendingWrite(): void
-	{
+	public function testClearPendingWrite(): void {
 		$file = new FileBase($this->testFile);
 		$file->setContentFromString('test content');
 		$result = $file->clearPendingWrite();
@@ -118,8 +105,7 @@ class FileBaseTest extends TestCase
 		unset($file); // Explicitly unset to avoid __destruct issues
 	}
 
-	public function testSetContentFromString(): void
-	{
+	public function testSetContentFromString(): void {
 		$file = new FileBase($this->testFile);
 		$file->setContentFromString('test content');
 		$result = $file->clearPendingWrite();
@@ -127,8 +113,7 @@ class FileBaseTest extends TestCase
 		unset($file); // Explicitly unset to avoid __destruct issues
 	}
 
-	public function testAppendString(): void
-	{
+	public function testAppendString(): void {
 		$file = new FileBase($this->testFile);
 		$file->setContentFromString('test content');
 		$file->appendString(' appended');
@@ -138,8 +123,7 @@ class FileBaseTest extends TestCase
 		unset($file);
 	}
 
-	public function testWriteContent(): void
-	{
+	public function testWriteContent(): void {
 		$file = new FileBase($this->testFile);
 		$file->setContentFromString('test content');
 		$count = $file->writeContent(0);
@@ -148,8 +132,7 @@ class FileBaseTest extends TestCase
 		$this->assertEquals('test content', file_get_contents($this->testFile));
 	}
 
-	public function testWriteContentWithFlags(): void
-	{
+	public function testWriteContentWithFlags(): void {
 		touch($this->testFile);
 		$file = new FileBase($this->testFile);
 		$file->setContentFromString('test content');
@@ -158,8 +141,7 @@ class FileBaseTest extends TestCase
 		$this->assertGreaterThan(0, $count);
 	}
 
-	public function testDestructWritesPending(): void
-	{
+	public function testDestructWritesPending(): void {
 		$file = new FileBase($this->testFile);
 		$file->setContentFromString('test content');
 		// __destruct should write pending content
@@ -167,8 +149,7 @@ class FileBaseTest extends TestCase
 		$this->assertEquals('test content', file_get_contents($this->testFile));
 	}
 
-	public function testWriteContentToNonExistingDirectory(): void
-	{
+	public function testWriteContentToNonExistingDirectory(): void {
 		$this->expectException(\Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException::class);
 		$file = new FileBase('/nonexistent/dir/file.txt');
 		$file->setContentFromString('test');

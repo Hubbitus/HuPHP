@@ -64,13 +64,11 @@ class ContainerConfigurator extends AbstractConfigurator
         $this->loader->import($resource, $type, $ignoreErrors, $this->file);
     }
 
-    final public function parameters(): ParametersConfigurator
-    {
+    final public function parameters(): ParametersConfigurator {
         return new ParametersConfigurator($this->container);
     }
 
-    final public function services(): ServicesConfigurator
-    {
+    final public function services(): ServicesConfigurator {
         return new ServicesConfigurator($this->container, $this->loader, $this->instanceof, $this->path, $this->anonymousCount);
     }
 

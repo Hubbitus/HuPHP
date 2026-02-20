@@ -62,8 +62,7 @@ abstract class DescriptorAbstract implements
      *
      * @return Collection<Error>
      */
-    public function getErrors(): Collection
-    {
+    public function getErrors(): Collection {
         $errors = $this->errors;
         foreach ($this->tags as $tags) {
             foreach ($tags as $tag) {
@@ -113,8 +112,7 @@ abstract class DescriptorAbstract implements
     /**
      * Represents this object by its unique identifier, the Fully Qualified Structural Element Name.
      */
-    public function __toString(): string
-    {
+    public function __toString(): string {
         return (string) $this->getFullyQualifiedStructuralElementName();
     }
 }

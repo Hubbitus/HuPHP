@@ -25,8 +25,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
  */
 final class MetaDirective extends ActionDirective
 {
-    public function getName(): string
-    {
+    public function getName(): string {
         return 'meta';
     }
 

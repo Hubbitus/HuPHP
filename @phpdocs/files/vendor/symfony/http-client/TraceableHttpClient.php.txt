@@ -78,13 +78,11 @@ final class TraceableHttpClient implements HttpClientInterface, ResetInterface
         return new ResponseStream(TraceableResponse::stream($this->client, $responses, $timeout));
     }
 
-    public function getTracedRequests(): array
-    {
+    public function getTracedRequests(): array {
         return $this->tracedRequests->getArrayCopy();
     }
 
-    public function reset(): void
-    {
+    public function reset(): void {
         if ($this->client instanceof ResetInterface) {
             $this->client->reset();
         }
