@@ -13,6 +13,8 @@ TESTS_DIR="$SCRIPT_DIR"
 COVERAGE=true
 VERBOSE=false
 
+rm -rvf "$PROJECT_ROOT/build/coverage*"
+
 # Парсинг аргументов
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -61,7 +63,6 @@ if [[ "$COVERAGE" == true ]]; then
     ARGS+=(
         "--coverage-html=$PROJECT_ROOT/build/coverage"
         "--coverage-text=$PROJECT_ROOT/build/coverage.txt"
-        "--coverage-text=php://stdout"
     )
     echo "Generating code coverage report (enabled by default)..."
 else
