@@ -17,6 +17,7 @@
             <file>tests/Debug/HuFormatTest.php</file>
             <file>tests/Vars/Settings/SettingsFilterReadonlyTest.php</file>
             <file>tests/Database/DatabaseBaseTest.php</file>
+            <file>tests/Database/DatabaseWhereTest.php</file>
         </testsuite>
     </testsuites>
 

@@ -14,7 +14,6 @@
             <exclude>tests/Database/DatabaseSettingsMySQLTest.php</exclude>
             <exclude>tests/Database/DatabaseSettingsTest.php</exclude>
             <exclude>tests/Database/DatabaseSqliteTest.php</exclude>
-            <exclude>tests/Database/DatabaseWhereTest.php</exclude>
             <exclude>tests/Database/IDatabaseTest.php</exclude>
             <exclude>tests/Database/DatabaseErrorSettingsTest.php</exclude>
             <exclude>tests/Database/DatabaseErrorTest.php</exclude>

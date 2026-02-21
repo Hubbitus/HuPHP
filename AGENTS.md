@@ -35,6 +35,18 @@ Code refactoring should be made, following these principles and requirements:
 7. All conditions if/else must have body with braces `{}`
 8. All call to global functions must be denoted by "\", like `\is_array()`.
 9. Class methods must be separated between by one empty line.
+10. PHPDoc must be formatted like:
+
+   ```
+   /**
+   * Some description
+   **/
+   ```
+
+   Highlights of requirements:
+   - Left aligned, without space symbol!
+   - Two ** on the end end line: `**/`
+
 
 # Automated testing
 Continue writing and enabling tests.
@@ -43,7 +55,8 @@ Continue writing and enabling tests.
 2. In first place tests must be changed, if it fails.
 3. If code needs to be fixed - check to do not introduce logic drifting.
 4. Follow other instructions and code-style from @AGENTS.md for any code write or modification.
-5. After complete new test class:
+5. Coverage of new tested class should be 100% by methods and lines! If that is not possible, please describe that carefully and provide suggestion how to fis (for example change code itself)
+6. After complete new test class:
     * run test verification by running script: `tests/run-tests.sh`. Fix any errors and warnings if appeared.
     * suggest (but do NOT run before user acceptance) run git commit with formed message by format:
     ```
@@ -51,4 +64,4 @@ Continue writing and enabling tests.
 
     Short description, statistic and coverage summary. 2-7 lines.
     ```
-6. After agree from user and commit, continue tests implementation. Our global goal at least 90% code coverage by classes!
+7. After agree from user and commit, continue tests implementation. Our global goal at least 90% code coverage by classes!
