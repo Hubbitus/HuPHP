@@ -6,8 +6,7 @@ namespace Hubbitus\Tests\HuPHP\RegExp;
 use Hubbitus\HuPHP\RegExp\RegExpPcre;
 use PHPUnit\Framework\TestCase;
 
-class RegExpPcreTest extends TestCase
-{
+class RegExpPcreTest extends TestCase {
 	public function testConstructor(): void {
 		$regexp = new RegExpPcre('/test/');
 		$this->assertInstanceOf(RegExpPcre::class, $regexp);

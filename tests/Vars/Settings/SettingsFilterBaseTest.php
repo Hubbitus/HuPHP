@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Vars\Settings\SettingsFilterBase
  */
-class SettingsFilterBaseTest extends TestCase
-{
+class SettingsFilterBaseTest extends TestCase {
     public function testConstructorStoresPropName(): void {
         $callback = function(&$name, &$value) { return $value; };
         $filter = new SettingsFilterBase('testProp', $callback);

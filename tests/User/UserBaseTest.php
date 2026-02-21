@@ -17,8 +17,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Hubbitus\HuPHP\User\UserSettings
  * @covers \Hubbitus\HuPHP\User\UserAuthenticateException
  */
-class UserBaseTest extends TestCase
-{
+class UserBaseTest extends TestCase {
     public function testUserSettingsInstantiation(): void {
         $settings = new UserSettings();
         $this->assertInstanceOf(UserSettings::class, $settings);

@@ -15,8 +15,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Database\DatabaseSqlite
  */
-class DatabaseSqliteTest extends TestCase
-{
+class DatabaseSqliteTest extends TestCase {
     public function testClassExtendsDatabase(): void {
         $settings = new DatabaseSettingsSqlite([
             'db_file' => ':memory:'

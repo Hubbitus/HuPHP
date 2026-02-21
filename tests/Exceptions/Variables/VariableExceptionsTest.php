@@ -18,8 +18,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableException
  */
-class VariableExceptionsTest extends TestCase
-{
+class VariableExceptionsTest extends TestCase {
     public function testVariableExceptionInstantiation(): void {
         $exception = new VariableException('Variable error');
         $this->assertInstanceOf(VariableException::class, $exception);

@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Debug\DumpUtils
  */
-class DumpUtilsTest extends TestCase
-{
+class DumpUtilsTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(DumpUtils::class));
     }

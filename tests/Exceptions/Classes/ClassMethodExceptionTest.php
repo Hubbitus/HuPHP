@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassMethodException
  */
-class ClassMethodExceptionTest extends TestCase
-{
+class ClassMethodExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new ClassMethodException();
 

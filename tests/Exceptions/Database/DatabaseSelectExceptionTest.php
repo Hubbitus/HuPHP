@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Database\DatabaseSelectException
  */
-class DatabaseSelectExceptionTest extends TestCase
-{
+class DatabaseSelectExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new DatabaseSelectException();
 

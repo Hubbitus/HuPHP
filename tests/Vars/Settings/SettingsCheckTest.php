@@ -7,8 +7,7 @@ use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use PHPUnit\Framework\TestCase;
 
-class SettingsCheckTest extends TestCase
-{
+class SettingsCheckTest extends TestCase {
 	public function testConstructorWithPossibles(): void {
 		$possibles = ['name', 'age', 'email'];
 		$settings = new SettingsCheck($possibles);

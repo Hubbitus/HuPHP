@@ -6,8 +6,7 @@ namespace Hubbitus\Tests\HuPHP\Vars;
 use Hubbitus\HuPHP\Vars\OutExtraDataDOMnode;
 use PHPUnit\Framework\TestCase;
 
-class OutExtraDataDOMnodeTest extends TestCase
-{
+class OutExtraDataDOMnodeTest extends TestCase {
 	public function testConstructor(): void {
 		$dom = new \DOMDocument('1.0', 'utf-8');
 		$element = $dom->createElement('test', 'value');

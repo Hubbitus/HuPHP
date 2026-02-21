@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException
  */
-class FileNotReadableExceptionTest extends TestCase
-{
+class FileNotReadableExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new FileNotReadableException();
 

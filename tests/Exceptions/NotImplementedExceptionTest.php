@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\NotImplementedException
  */
-class NotImplementedExceptionTest extends TestCase
-{
+class NotImplementedExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new NotImplementedException();
 

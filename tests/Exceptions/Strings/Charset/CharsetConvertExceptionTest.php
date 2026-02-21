@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Strings\Charset\CharsetConvertException
  */
-class CharsetConvertExceptionTest extends TestCase
-{
+class CharsetConvertExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new CharsetConvertException();
 

@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Vars\Single
  */
-class SingleTest extends TestCase
-{
+class SingleTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(Single::class));
     }

@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassUnknownException
  */
-class ClassUnknownExceptionTest extends TestCase
-{
+class ClassUnknownExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new ClassUnknownException();
 

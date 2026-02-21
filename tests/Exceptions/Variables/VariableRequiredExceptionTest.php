@@ -10,8 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException
  */
-class VariableRequiredExceptionTest extends TestCase
-{
+class VariableRequiredExceptionTest extends TestCase {
     public function testConstructorWithBacktrace(): void {
         $backtrace = new Backtrace();
         $exception = new VariableRequiredException($backtrace);

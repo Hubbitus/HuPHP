@@ -12,8 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Database\DatabaseSettingsMSSQL
  */
-class DatabaseSettingsMSSQLTest extends TestCase
-{
+class DatabaseSettingsMSSQLTest extends TestCase {
     public function testClassExtendsDatabaseSettings(): void {
         $settings = new DatabaseSettingsMSSQL();
 

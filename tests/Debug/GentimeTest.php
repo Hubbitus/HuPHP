@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Debug\Gentime
  */
-class GentimeTest extends TestCase
-{
+class GentimeTest extends TestCase {
     public function testClassInstantiation(): void {
         $gentime = new Gentime();
         $this->assertInstanceOf(Gentime::class, $gentime);

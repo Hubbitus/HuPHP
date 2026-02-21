@@ -8,8 +8,7 @@ use Hubbitus\HuPHP\System\OS;
 use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 
-class OutExtraDataCommonTest extends TestCase
-{
+class OutExtraDataCommonTest extends TestCase {
 	public function testConstructor(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);

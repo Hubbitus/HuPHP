@@ -12,8 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Database\DatabaseSettings
  */
-class DatabaseSettingsTest extends TestCase
-{
+class DatabaseSettingsTest extends TestCase {
     public function testConstructorWithDefaultSettings(): void {
         $settings = new DatabaseSettings();
 

@@ -43,8 +43,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Hubbitus\HuPHP\Exceptions\SessionException
  * @covers \Hubbitus\HuPHP\Exceptions\NotImplementedException
  */
-class ExceptionHierarchyTest extends TestCase
-{
+class ExceptionHierarchyTest extends TestCase {
     public function testBaseExceptionExtendsException(): void {
         $exception = new BaseException('Test message');
 

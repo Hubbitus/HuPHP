@@ -14,8 +14,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Hubbitus\HuPHP\Database\DatabaseError
  * @covers \Hubbitus\HuPHP\Database\DatabaseErrorSettings
  */
-class DatabaseErrorTest extends TestCase
-{
+class DatabaseErrorTest extends TestCase {
     public function testClassExtendsHuError(): void {
         $error = new DatabaseError([]);
 

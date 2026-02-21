@@ -12,8 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Database\DatabaseWhere
  */
-class DatabaseWhereTest extends TestCase
-{
+class DatabaseWhereTest extends TestCase {
     public function testClassPropertiesAndConstants(): void {
         $where = new DatabaseWhere();
 

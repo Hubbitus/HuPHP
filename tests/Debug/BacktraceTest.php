@@ -14,8 +14,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Debug\Backtrace
  */
-class BacktraceTest extends TestCase
-{
+class BacktraceTest extends TestCase {
     public function testClassInstantiation(): void {
         $backtrace = new Backtrace();
         $this->assertInstanceOf(Backtrace::class, $backtrace);

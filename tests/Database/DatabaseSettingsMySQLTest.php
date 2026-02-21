@@ -12,8 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Database\DatabaseSettingsMySQL
  */
-class DatabaseSettingsMySQLTest extends TestCase
-{
+class DatabaseSettingsMySQLTest extends TestCase {
     public function testClassExtendsDatabaseSettings(): void {
         $settings = new DatabaseSettingsMySQL();
 

@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Database\DatabaseConnectErrorException
  */
-class DatabaseConnectErrorExceptionTest extends TestCase
-{
+class DatabaseConnectErrorExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new DatabaseConnectErrorException();
 

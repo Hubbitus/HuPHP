@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\System\ProcessState
  */
-class ProcessStateTest extends TestCase
-{
+class ProcessStateTest extends TestCase {
     public function testClassInstantiation(): void {
         $state = new ProcessState();
         $this->assertInstanceOf(ProcessState::class, $state);

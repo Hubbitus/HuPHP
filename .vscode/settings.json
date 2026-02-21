@@ -37,5 +37,6 @@
         "unichr",
         "uniord"
     ],
-    "php.version": "8.3"
+    "php.version": "8.3",
+    "go-to-next-change.treeView": true
 }

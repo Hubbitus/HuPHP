@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\SerializeException
  */
-class SerializeExceptionTest extends TestCase
-{
+class SerializeExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new SerializeException();
 

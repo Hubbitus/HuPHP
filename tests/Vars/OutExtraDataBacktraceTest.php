@@ -14,8 +14,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Vars\OutExtraDataBacktrace
  */
-class OutExtraDataBacktraceTest extends TestCase
-{
+class OutExtraDataBacktraceTest extends TestCase {
     public function testClassInstantiation(): void {
         $backtrace = new Backtrace();
         $extraData = new OutExtraDataBacktrace($backtrace);

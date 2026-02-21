@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\SessionException
  */
-class SessionExceptionTest extends TestCase
-{
+class SessionExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new SessionException();
 

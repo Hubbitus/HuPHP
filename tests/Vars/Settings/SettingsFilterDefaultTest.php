@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterDefault
  */
-class SettingsFilterDefaultTest extends TestCase
-{
+class SettingsFilterDefaultTest extends TestCase {
     public function testConstructorStoresDefaultValue(): void {
         $filter = new SettingsFilterDefault('testProp', 'default_value');
 

@@ -4,12 +4,9 @@ declare(strict_types=1);
 namespace Hubbitus\Tests\HuPHP\Filesystem;
 
 use Hubbitus\HuPHP\Filesystem\FileBase;
-use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException;
-use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
 use PHPUnit\Framework\TestCase;
 
-class FileBaseTest extends TestCase
-{
+class FileBaseTest extends TestCase {
 	private string $testFile;
 	private string $testDir;
 

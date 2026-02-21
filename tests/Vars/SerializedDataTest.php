@@ -10,8 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Vars\SerializedData
  */
-class SerializedDataTest extends TestCase
-{
+class SerializedDataTest extends TestCase {
     public function testConstructorCreatesEmptyContainer(): void {
         $data = new SerializedData();
 

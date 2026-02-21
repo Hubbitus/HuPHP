@@ -16,8 +16,7 @@ class TestClassForCast {
 /**
  * @covers \Hubbitus\HuPHP\Vars\HuClass
  */
-class HuClassTest extends TestCase
-{
+class HuClassTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(HuClass::class));
     }

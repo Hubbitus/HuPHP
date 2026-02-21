@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Filesystem\FileRead
  */
-class FileReadTest extends TestCase
-{
+class FileReadTest extends TestCase {
     private string $testFile;
     private string $testDir;
 

@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException
  */
-class VariableRangeExceptionTest extends TestCase
-{
+class VariableRangeExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new VariableRangeException();
 

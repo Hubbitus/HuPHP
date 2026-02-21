@@ -12,8 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Hubbitus\HuPHP\System\Process
  * @covers \Hubbitus\HuPHP\System\ProcessState
  */
-class ProcessTest extends TestCase
-{
+class ProcessTest extends TestCase {
     public function testClassHasConstants(): void {
         $this->assertEquals(0, Process::STDIN);
         $this->assertEquals(1, Process::STDOUT);

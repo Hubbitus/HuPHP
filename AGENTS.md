@@ -34,6 +34,7 @@ Code refactoring should be made, following these principles and requirements:
 6. All variables, method input parameters and output results must have type specification!
 7. All conditions if/else must have body with braces `{}`
 8. All call to global functions must be denoted by "\", like `\is_array()`.
+9. Class methods must be separated between by one empty line.
 
 # Automated testing
 Continue writing and enabling tests.

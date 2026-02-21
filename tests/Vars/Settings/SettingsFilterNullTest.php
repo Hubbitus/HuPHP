@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterNull
  */
-class SettingsFilterNullTest extends TestCase
-{
+class SettingsFilterNullTest extends TestCase {
     public function testConstructorStoresPropName(): void {
         $filter = new SettingsFilterNull('testProp');
 

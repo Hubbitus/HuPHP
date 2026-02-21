@@ -7,8 +7,7 @@ use Hubbitus\HuPHP\Vars\Settings\SettingsGet;
 use Hubbitus\HuPHP\Vars\Settings\Settings;
 use PHPUnit\Framework\TestCase;
 
-class SettingsGetTest extends TestCase
-{
+class SettingsGetTest extends TestCase {
 	public function testMagicGetSettings(): void {
 		$settingsObj = new Settings(['key' => 'value']);
 

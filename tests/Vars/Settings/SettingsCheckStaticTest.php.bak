@@ -6,8 +6,7 @@ namespace Hubbitus\Tests\HuPHP\Vars\Settings;
 use Hubbitus\HuPHP\Vars\Settings\SettingsCheckStatic;
 use PHPUnit\Framework\TestCase;
 
-class SettingsCheckStaticTest extends TestCase
-{
+class SettingsCheckStaticTest extends TestCase {
 	public function testConstructor(): void {
 		$possibles = ['name', 'age'];
 		$settings = new SettingsCheckStatic($possibles);

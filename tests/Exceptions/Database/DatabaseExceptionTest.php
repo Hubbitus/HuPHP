@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Database\DatabaseException
  */
-class DatabaseExceptionTest extends TestCase
-{
+class DatabaseExceptionTest extends TestCase {
     public function testDatabaseExceptionInstantiation(): void {
         $exception = new DatabaseException('Database error');
         $this->assertInstanceOf(DatabaseException::class, $exception);

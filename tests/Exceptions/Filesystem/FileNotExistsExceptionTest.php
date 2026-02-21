@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException
  */
-class FileNotExistsExceptionTest extends TestCase
-{
+class FileNotExistsExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new FileNotExistsException();
 

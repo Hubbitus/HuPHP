@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Filesystem\FileInMemory
  */
-class FileInMemoryTest extends TestCase
-{
+class FileInMemoryTest extends TestCase {
     private string $testFile;
     private string $testDir;
 

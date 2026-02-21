@@ -6,8 +6,7 @@ namespace Hubbitus\Tests\HuPHP\Vars\Strings;
 use Hubbitus\HuPHP\Vars\Strings\Translit;
 use PHPUnit\Framework\TestCase;
 
-class TranslitTest extends TestCase
-{
+class TranslitTest extends TestCase {
 	public function testTranslitSimple(): void {
 		$result = Translit::translit('Привет');
 		$this->assertEquals('Privet', $result);

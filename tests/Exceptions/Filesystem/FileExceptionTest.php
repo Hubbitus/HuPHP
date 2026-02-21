@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileException
  */
-class FileExceptionTest extends TestCase
-{
+class FileExceptionTest extends TestCase {
     public function testFileExceptionInstantiation(): void {
         $exception = new FileException('File error', '/path/to/file');
         $this->assertInstanceOf(FileException::class, $exception);

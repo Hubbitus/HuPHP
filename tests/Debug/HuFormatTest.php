@@ -11,8 +11,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Hubbitus\HuPHP\Debug\HuFormat
  * @covers \Hubbitus\HuPHP\Debug\HuFormatException
  */
-class HuFormatTest extends TestCase
-{
+class HuFormatTest extends TestCase {
     public function testConstructorCreatesInstance(): void {
         $format = new HuFormat();
 

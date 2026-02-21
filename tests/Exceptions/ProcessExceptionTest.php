@@ -14,8 +14,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\ProcessException
  */
-class ProcessExceptionTest extends TestCase
-{
+class ProcessExceptionTest extends TestCase {
     public function testClassInstantiation(): void {
         $state = new \stdClass();
         $exception = new ProcessException('Test message', 0, $state);

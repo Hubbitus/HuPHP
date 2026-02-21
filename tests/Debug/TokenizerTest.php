@@ -10,8 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Debug\Tokenizer
  */
-class TokenizerTest extends TestCase
-{
+class TokenizerTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(Tokenizer::class));
     }

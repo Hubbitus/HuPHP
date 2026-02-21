@@ -12,8 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Vars\Settings\SettingsFilter
  */
-class SettingsFilterTest extends TestCase
-{
+class SettingsFilterTest extends TestCase {
     private $settings;
 
     protected function setUp(): void {

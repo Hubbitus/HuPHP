@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Debug\HuLOGSettings
  */
-class HuLOGSettingsTest extends TestCase
-{
+class HuLOGSettingsTest extends TestCase {
     public function testConstructor(): void {
         $settings = new HuLOGSettings();
 

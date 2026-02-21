@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Vars\HuArray
  */
-class HuArrayTest extends TestCase
-{
+class HuArrayTest extends TestCase {
     public function testClassInstantiation(): void {
         $array = new HuArray();
         $this->assertInstanceOf(HuArray::class, $array);

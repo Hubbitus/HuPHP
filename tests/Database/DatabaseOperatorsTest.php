@@ -12,8 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Database\DatabaseOperators
  */
-class DatabaseOperatorsTest extends TestCase
-{
+class DatabaseOperatorsTest extends TestCase {
     public function testClassPropertiesAreArrays(): void {
         $this->assertIsArray(DatabaseOperators::$operators1);
         $this->assertIsArray(DatabaseOperators::$operators2);

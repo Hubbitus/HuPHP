@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\BaseException
  */
-class BaseExceptionTest extends TestCase
-{
+class BaseExceptionTest extends TestCase {
     public function testClassInstantiation(): void {
         $exception = new BaseException('Test message');
         $this->assertInstanceOf(BaseException::class, $exception);

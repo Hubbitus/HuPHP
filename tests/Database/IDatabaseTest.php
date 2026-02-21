@@ -6,14 +6,12 @@
 
 namespace Hubbitus\HuPHP\Tests\Database;
 
-use Hubbitus\HuPHP\Database\IDatabase;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Hubbitus\HuPHP\Database\IDatabase
  */
-class IDatabaseTest extends TestCase
-{
+class IDatabaseTest extends TestCase {
     public function testInterfaceExists(): void {
         $this->assertTrue(interface_exists('Hubbitus\\HuPHP\\Database\\IDatabase'));
     }

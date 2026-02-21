@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Database\DatabaseQueryFailedException
  */
-class DatabaseQueryFailedExceptionTest extends TestCase
-{
+class DatabaseQueryFailedExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new DatabaseQueryFailedException();
 

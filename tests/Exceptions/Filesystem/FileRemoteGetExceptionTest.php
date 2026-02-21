@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileRemoteGetException
  */
-class FileRemoteGetExceptionTest extends TestCase
-{
+class FileRemoteGetExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new FileRemoteGetException();
 

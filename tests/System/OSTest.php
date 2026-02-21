@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\System\OS
  */
-class OSTest extends TestCase
-{
+class OSTest extends TestCase {
     public function testGetOutTypeReturnsBrowserWhenUserAgentSet(): void {
         $_SERVER['HTTP_USER_AGENT'] = 'Mozilla/5.0';
 

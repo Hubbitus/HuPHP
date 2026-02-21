@@ -6,8 +6,7 @@ namespace Hubbitus\Tests\HuPHP\Vars\Settings;
 use Hubbitus\HuPHP\Vars\Settings\Settings;
 use PHPUnit\Framework\TestCase;
 
-class SettingsTest extends TestCase
-{
+class SettingsTest extends TestCase {
 	public function testConstructorEmpty(): void {
 		$settings = new Settings();
 		$this->assertInstanceOf(Settings::class, $settings);

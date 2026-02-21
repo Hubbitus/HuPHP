@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Network\NetworkException
  */
-class NetworkExceptionTest extends TestCase
-{
+class NetworkExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new NetworkException();
 

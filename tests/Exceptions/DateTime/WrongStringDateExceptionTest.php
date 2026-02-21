@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\DateTime\WrongStringDateException
  */
-class WrongStringDateExceptionTest extends TestCase
-{
+class WrongStringDateExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new WrongStringDateException();
 

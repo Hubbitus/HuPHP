@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Debug\Dump
  */
-class DumpTest extends TestCase
-{
+class DumpTest extends TestCase {
     public function testDumpConsoleReturnsString(): void {
         $var = ['key' => 'value'];
         $result = Dump::c($var, 'Test Header', true);

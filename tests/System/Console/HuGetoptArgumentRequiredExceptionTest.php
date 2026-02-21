@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\System\Console\HuGetoptArgumentRequiredException
  */
-class HuGetoptArgumentRequiredExceptionTest extends TestCase
-{
+class HuGetoptArgumentRequiredExceptionTest extends TestCase {
     public function testClassInstantiation(): void {
         $exception = new HuGetoptArgumentRequiredException('Argument required');
         $this->assertInstanceOf(HuGetoptArgumentRequiredException::class, $exception);

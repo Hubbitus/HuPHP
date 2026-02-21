@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassNotExistsException
  */
-class ClassNotExistsExceptionTest extends TestCase
-{
+class ClassNotExistsExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new ClassNotExistsException();
 

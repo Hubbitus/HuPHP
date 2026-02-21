@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Hubbitus\HuPHP\Exceptions\Network\SocketReadException
  */
-class SocketReadExceptionTest extends TestCase
-{
+class SocketReadExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new SocketReadException();
 
