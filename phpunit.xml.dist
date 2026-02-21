@@ -17,7 +17,6 @@
             <exclude>tests/Database/IDatabaseTest.php</exclude>
             <exclude>tests/Database/DatabaseErrorSettingsTest.php</exclude>
             <exclude>tests/Database/DatabaseErrorTest.php</exclude>
-            <exclude>tests/Debug/BacktraceTest.php</exclude>
             <exclude>tests/Exceptions/BaseExceptionTest.php</exclude>
             <exclude>tests/Exceptions/Filesystem/FileExceptionTest.php</exclude>
             <exclude>tests/Exceptions/Database/DatabaseExceptionTest.php</exclude>

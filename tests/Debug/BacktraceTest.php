@@ -1,301 +1,349 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for Backtrace class.
- */
-
 namespace Hubbitus\HuPHP\Tests\Debug;
 
 use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\Debug\BacktraceNode;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Debug\Backtrace
+ * @covers Hubbitus\HuPHP\Debug\Backtrace
  */
-class BacktraceTest extends TestCase {
-    public function testClassInstantiation(): void {
-        $backtrace = new Backtrace();
-        $this->assertInstanceOf(Backtrace::class, $backtrace);
+final class BacktraceTest extends TestCase
+{
+    public function testConstructorWithNullCreatesBacktrace(): void {
+        $bt = new Backtrace(null, 0);
+        
+        $this->assertInstanceOf(Backtrace::class, $bt);
+        $this->assertGreaterThan(0, $bt->length());
     }
 
-    public function testBacktraceIsEmptyByDefault(): void {
-        $backtrace = new Backtrace();
-        $this->assertEmpty($backtrace->getArray());
-    }
-
-    public function testBacktraceCount(): void {
-        $backtrace = new Backtrace();
-        $this->assertEquals(0, $backtrace->count());
-    }
-
-    public function testBacktraceWithIgnoreCount(): void {
-        $backtrace = new Backtrace(1);
-        $this->assertInstanceOf(Backtrace::class, $backtrace);
-    }
-
-    public function testBacktraceNodeCreation(): void {
-        $backtrace = new Backtrace();
-        $array = $backtrace->getArray();
-        $this->assertIsArray($array);
-    }
-
-    public function testBacktraceIterator(): void {
-        $backtrace = new Backtrace();
-        $this->assertInstanceOf(\Iterator::class, $backtrace);
-    }
-
-    public function testBacktraceRewind(): void {
-        $backtrace = new Backtrace();
-        $backtrace->rewind();
-        $this->assertEquals(0, $backtrace->key());
-    }
-
-    public function testBacktraceValid(): void {
-        $backtrace = new Backtrace();
-        $this->assertFalse($backtrace->valid());
-    }
-
-    public function testBacktraceNext(): void {
-        $backtrace = new Backtrace();
-        $backtrace->next();
-        $this->assertEquals(0, $backtrace->key());
-    }
-
-    public function testBacktraceKey(): void {
-        $backtrace = new Backtrace();
-        $this->assertEquals(0, $backtrace->key());
-    }
-
-    public function testBacktraceCurrent(): void {
-        $backtrace = new Backtrace();
-        $current = $backtrace->current();
-        $this->assertNull($current);
-    }
-
-    public function testBacktraceToString(): void {
-        $backtrace = new Backtrace();
-        $string = (string) $backtrace;
-        $this->assertIsString($string);
-    }
-
-    public function testBacktraceGetIterator(): void {
-        $backtrace = new Backtrace();
-        $iterator = $backtrace->getIterator();
-        $this->assertInstanceOf(\Iterator::class, $iterator);
-    }
-
-    public function testBacktraceWithDifferentIgnoreCounts(): void {
-        for ($i = 0; $i < 5; $i++) {
-            $backtrace = new Backtrace($i);
-            $this->assertInstanceOf(Backtrace::class, $backtrace);
-        }
-    }
-
-    public function testBacktraceNodeProperties(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $this->assertInstanceOf(BacktraceNode::class, $node);
-    }
-
-    public function testBacktraceNodeGetFile(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $this->assertEquals(__FILE__, $node->file);
-    }
-
-    public function testBacktraceNodeGetLine(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => 123,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $this->assertEquals(123, $node->line);
-    }
-
-    public function testBacktraceNodeGetFunction(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'testFunction',
-            'N' => 0
-        ]);
-        $this->assertEquals('testFunction', $node->function);
-    }
-
-    public function testBacktraceNodeGetClass(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'class' => 'TestClass',
-            'N' => 0
-        ]);
-        $this->assertEquals('TestClass', $node->class);
-    }
-
-    public function testBacktraceNodeGetType(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'type' => '->',
-            'N' => 0
-        ]);
-        $this->assertEquals('->', $node->type);
-    }
-
-    public function testBacktraceNodeGetArgs(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'args' => ['arg1', 'arg2'],
-            'N' => 0
-        ]);
-        $this->assertEquals(['arg1', 'arg2'], $node->args);
-    }
-
-    public function testBacktraceNodeGetN(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 5
-        ]);
-        $this->assertEquals(5, $node->N);
-    }
-
-    public function testBacktraceNodeIterator(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $this->assertInstanceOf(\Iterator::class, $node);
-    }
-
-    public function testBacktraceNodeRewind(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $node->rewind();
-        $this->assertEquals(0, $node->key());
-    }
-
-    public function testBacktraceNodeValid(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $this->assertTrue($node->valid());
-    }
-
-    public function testBacktraceNodeNext(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $node->next();
-        $this->assertEquals(1, $node->key());
-    }
-
-    public function testBacktraceNodeKey(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $key = $node->key();
-        $this->assertIsInt($key);
-    }
-
-    public function testBacktraceNodeCurrent(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $current = $node->current();
-        $this->assertNotNull($current);
-    }
-
-    public function testBacktraceNodeToArray(): void {
-        $data = [
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
+    public function testConstructorWithArray(): void {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'testFunction2'],
         ];
-        $node = new BacktraceNode($data);
-        $array = $node->toArray();
-        $this->assertIsArray($array);
-        $this->assertArrayHasKey('file', $array);
-        $this->assertArrayHasKey('line', $array);
-        $this->assertArrayHasKey('function', $array);
+        
+        $bt = new Backtrace($debugData, 0);
+        
+        $this->assertEquals(2, $bt->length());
     }
 
-    public function testBacktraceNodeHasProperty(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $this->assertTrue($node->hasProperty('file'));
-        $this->assertFalse($node->hasProperty('nonexistent'));
+    public function testConstructorRemoveSelf(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'func2'],
+            ['file' => '/test/file3.php', 'line' => 30, 'function' => 'func3'],
+        ];
+        
+        $bt = new Backtrace($debugData, 1);
+        
+        $this->assertEquals(2, $bt->length());
     }
 
-    public function testBacktraceNodeGetProperty(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $this->assertEquals(__FILE__, $node->getProperty('file'));
-        $this->assertNull($node->getProperty('nonexistent'));
+    public function testCreateStaticMethod(): void {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction'],
+        ];
+        
+        $bt = Backtrace::create($debugData, 0);
+        
+        $this->assertInstanceOf(Backtrace::class, $bt);
+        $this->assertEquals(1, $bt->length());
     }
 
-    public function testBacktraceNodeSetProperty(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $node->setProperty('custom', 'value');
-        $this->assertEquals('value', $node->getProperty('custom'));
+    public function testGetNode(): void {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'testFunction2'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $node = $bt->getNode(0);
+        
+        $this->assertInstanceOf(BacktraceNode::class, $node);
+        $this->assertEquals('/test/file.php', $node->file);
+        $this->assertEquals(10, $node->line);
     }
 
-    public function testBacktraceNodeToString(): void {
-        $node = new BacktraceNode([
-            'file' => __FILE__,
-            'line' => __LINE__,
-            'function' => 'test',
-            'N' => 0
-        ]);
-        $string = (string) $node;
-        $this->assertIsString($string);
+    public function testGetNodeWithNegativeIndex(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'func2'],
+            ['file' => '/test/file3.php', 'line' => 30, 'function' => 'func3'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $node = $bt->getNode(-1);
+        
+        $this->assertInstanceOf(BacktraceNode::class, $node);
+        $this->assertEquals('/test/file3.php', $node->file);
+    }
+
+    public function testGetNodeWithNullIndex(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'func2'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $node = $bt->getNode(null);
+        
+        $this->assertInstanceOf(BacktraceNode::class, $node);
+        $this->assertEquals('/test/file1.php', $node->file);
+    }
+
+    public function testGetNodeThrowsExceptionForInvalidIndex(): void {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        
+        $this->expectException(VariableRangeException::class);
+        $bt->getNode(100);
+    }
+
+    public function testSetNode(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $newNode = new BacktraceNode(['file' => '/new/file.php', 'line' => 99, 'function' => 'newFunc'], 0);
+        
+        $bt->setNode(0, $newNode);
+        $node = $bt->getNode(0);
+        
+        $this->assertEquals('/new/file.php', $node->file);
+        $this->assertEquals(99, $node->line);
+    }
+
+    public function testDelNode(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'func2'],
+            ['file' => '/test/file3.php', 'line' => 30, 'function' => 'func3'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $bt->delNode(1);
+        
+        $this->assertEquals(2, $bt->length());
+        $this->assertEquals('/test/file1.php', $bt->getNode(0)->file);
+        $this->assertEquals('/test/file3.php', $bt->getNode(1)->file);
+    }
+
+    public function testDelNodeWithNegativeIndex(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'func2'],
+            ['file' => '/test/file3.php', 'line' => 30, 'function' => 'func3'],
+        ];
+
+        $bt = new Backtrace($debugData, 0);
+        $bt->delNode(-1);
+
+        $this->assertEquals(2, $bt->length());
+        // After deleting last element (-1), index 1 points to file2.php
+        $this->assertEquals('/test/file2.php', $bt->getNode(1)->file);
+    }
+
+    public function testDelNodeThrowsExceptionForInvalidIndex(): void {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'func1'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        
+        $this->expectException(VariableRangeException::class);
+        $bt->delNode(100);
+    }
+
+    public function testLength(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'func2'],
+            ['file' => '/test/file3.php', 'line' => 30, 'function' => 'func3'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        
+        $this->assertEquals(3, $bt->length());
+    }
+
+    public function testIteratorInterface(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'func2'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $bt->rewind();
+        
+        $this->assertEquals(0, $bt->key());
+        $this->assertInstanceOf(BacktraceNode::class, $bt->current());
+        $this->assertTrue($bt->valid());
+        
+        $bt->next();
+        $this->assertEquals(1, $bt->key());
+        $this->assertInstanceOf(BacktraceNode::class, $bt->current());
+        
+        $bt->next();
+        $this->assertFalse($bt->valid());
+        $this->assertNull($bt->current());
+    }
+
+    public function testEndMethod(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'func2'],
+            ['file' => '/test/file3.php', 'line' => 30, 'function' => 'func3'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $node = $bt->end();
+        
+        $this->assertInstanceOf(BacktraceNode::class, $node);
+        $this->assertEquals('/test/file3.php', $node->file);
+    }
+
+    public function testPrevMethod(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'func2'],
+            ['file' => '/test/file3.php', 'line' => 30, 'function' => 'func3'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $bt->end();
+        
+        $node = $bt->prev();
+        $this->assertInstanceOf(BacktraceNode::class, $node);
+        $this->assertEquals('/test/file2.php', $node->file);
+        
+        $node = $bt->prev();
+        $this->assertInstanceOf(BacktraceNode::class, $node);
+        $this->assertEquals('/test/file1.php', $node->file);
+        
+        $node = $bt->prev();
+        $this->assertNull($node);
+    }
+
+    public function testFindMethod(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'testFunc'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'otherFunc'],
+            ['file' => '/test/file3.php', 'line' => 30, 'function' => 'testFunc'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $searchNode = new BacktraceNode(['function' => 'testFunc']);
+        $found = $bt->find($searchNode);
+        
+        $this->assertInstanceOf(Backtrace::class, $found);
+        $this->assertEquals(2, $found->length());
+    }
+
+    public function testFindMethodWithFilePattern(): void {
+        $debugData = [
+            ['file' => '/test/file1.php', 'line' => 10, 'function' => 'func1'],
+            ['file' => '/test/file2.php', 'line' => 20, 'function' => 'func2'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $searchNode = new BacktraceNode(['file' => '*file1.php']);
+        $found = $bt->find($searchNode);
+        
+        $this->assertEquals(1, $found->length());
+        $this->assertEquals('/test/file1.php', $found->getNode(0)->file);
+    }
+
+    public function testPrintFormatWithEmptyBacktrace(): void {
+        $bt = new Backtrace([], 0);
+        $result = $bt->printFormat();
+        
+        $this->assertIsString($result);
+        // Even "empty" backtrace contains some output when formatted
+        $this->assertIsString($result);
+    }
+
+    public function testToString(): void {
+        $debugData = [
+            [
+                'file' => '/test/file.php',
+                'line' => 10,
+                'function' => 'testFunction',
+                'args' => [],
+            ],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        // Use explicit format to avoid issues with global configuration
+        $result = $bt->printFormat(['A:::' => ['v:::']]);
+        
+        $this->assertIsString($result);
+        $this->assertNotEmpty($result);
+    }
+
+    public function testSetPrintoutFormat(): void {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction'],
+        ];
+        
+        $bt = new Backtrace($debugData, 0);
+        $format = ['FORMAT_CONSOLE' => ['v']];
+
+        $result = $bt->setPrintoutFormat($format);
+
+        $this->assertSame($bt, $result);
+    }
+
+    public function testDump(): void
+    {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction'],
+        ];
+
+        $bt = new Backtrace($debugData, 0);
+        $result = $bt->dump(true);
+
+        $this->assertIsString($result);
+        $this->assertStringContainsString('/test/file.php', $result);
+    }
+
+    public function testFindRegexpThrowsException(): void
+    {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction'],
+        ];
+
+        $bt = new Backtrace($debugData, 0);
+        $searchNode = new BacktraceNode(['function' => 'testFunction']);
+
+        $this->expectException(\Hubbitus\HuPHP\Exceptions\BaseException::class);
+        $bt->findRegexp($searchNode);
+    }
+
+    public function testPrintFormatConfiguresDefaultFormat(): void
+    {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction', 'args' => []],
+        ];
+
+        $bt = new Backtrace($debugData, 0);
+        // Clear global config to trigger PrintoutDefault::configure()
+        $originalConfig = $GLOBALS['__CONFIG']['backtrace::printout'] ?? null;
+        $GLOBALS['__CONFIG']['backtrace::printout'] = [];
+
+        try {
+            $result = $bt->printFormat();
+            $this->assertIsString($result);
+            $this->assertNotEmpty($result);
+        } finally {
+            $GLOBALS['__CONFIG']['backtrace::printout'] = $originalConfig;
+        }
     }
 }

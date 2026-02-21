@@ -28,8 +28,8 @@ Code refactoring should be made, following these principles and requirements:
 # Code style
 1. All open braces "{" **must be on the same line** of entity or item they enclose (class or method name, condition and so on...), separated with single space from it.
 2. Between methods should be 1 single empty line
-3. In all PHP files must present strict declaration clause: "declare(strict_types=1);".
-4. All PHP files must use full open tag "<?php" and should not use close tag "?>"
+3. In all PHP files must present strict declaration clause: `declare(strict_types=1);`.
+4. All PHP files must use full open tag `<?php` and should not use close tag `?>`
 5. PHP files must have last empty single line
 6. All variables, method input parameters and output results must have type specification!
 7. All conditions if/else must have body with braces `{}`
@@ -46,6 +46,7 @@ Code refactoring should be made, following these principles and requirements:
    Highlights of requirements:
    - Left aligned, without space symbol!
    - Two ** on the end end line: `**/`
+11. Declaration of the `namespace` must be at the very beginning of the file, just after `declare(strict_types=1);`!
 
 
 # Automated testing
