@@ -110,7 +110,7 @@ class DatabaseBaseTest extends TestCase {
             'sql_fetch_object', 'sql_fetch_array', 'sql_fetch_assoc', 'sql_fetch_row',
             'sql_free_result', 'sql_num_rows', 'sql_num_fields', 'sql_fetch_field',
             'sql_fetch_fields',
-            'ping', 'select_db', 'set_names', 'db_select', 'rowsTotal', 'getError',
+            'db_select', 'set_names', 'rowsTotal', 'getError',
             'getSQL', 'iconv_result', 'iconv_query', 'collectDebugInfo', '__wakeup'
         ];
 

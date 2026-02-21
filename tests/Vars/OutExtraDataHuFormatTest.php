@@ -110,7 +110,7 @@ final class OutExtraDataHuFormatTest extends TestCase
     {
         $var = ['key1' => 'value1', 'key2' => 'value2'];
         $customFormats = [
-            'FORMAT_CONSOLE' => ['A:::', ['a:::key1', ' ', 'a:::key2']],
+            'FORMAT_CONSOLE' => ['A:::', 'a:::key1', ' ', 'a:::key2'],
             'FORMAT_WEB' => ['v'],
             'FORMAT_FILE' => ['v'],
         ];
@@ -176,9 +176,9 @@ final class OutExtraDataHuFormatTest extends TestCase
     {
         $var = ['key' => 'value'];
         $customFormats = [
-            'FORMAT_CONSOLE' => ['A:::', ['a:::key', ' (console)']],
-            'FORMAT_WEB' => ['A:::', ['a:::key', ' (web)']],
-            'FORMAT_FILE' => ['A:::', ['a:::key', ' (file)']],
+            'FORMAT_CONSOLE' => ['A:::', 'a:::key', ' (console)'],
+            'FORMAT_WEB' => ['A:::', 'a:::key', ' (web)'],
+            'FORMAT_FILE' => ['A:::', 'a:::key', ' (file)'],
         ];
         $format = new OutExtraDataHuFormat($var, $customFormats);
 
@@ -204,8 +204,8 @@ final class OutExtraDataHuFormatTest extends TestCase
         $customFormats = [
             'FORMAT_CONSOLE' => [
                 'I:::',
-                ['A:::', ['a:::name', ' (', ['a:::age'], ")
-"]],
+                ['A:::', 'a:::name', ' (', 'a:::age', ")
+"],
             ],
             'FORMAT_WEB' => ['v'],
             'FORMAT_FILE' => ['v'],
@@ -227,7 +227,7 @@ final class OutExtraDataHuFormatTest extends TestCase
 
         $customFormats = [
             'FORMAT_CONSOLE' => [
-                'aE:::-',
+                'E:::',
                 '$var["value"]',
             ],
             'FORMAT_WEB' => ['v'],
@@ -248,7 +248,10 @@ final class OutExtraDataHuFormatTest extends TestCase
         $customFormats = [
             'FORMAT_CONSOLE' => [
                 'A:::',
-                ['a:::name', ' is ', ['a:::age'], ' years old'],
+                'a:::name',
+                ' is ',
+                'a:::age',
+                ' years old',
             ],
             'FORMAT_WEB' => ['v'],
             'FORMAT_FILE' => ['v'],

@@ -184,8 +184,13 @@ class HuFormat extends HuError {
 			}
 		}
 		else{//<3>
-			$this->_name = $this->_realValue = $format;
-			$this->_realValued = true;
+			//Parse string format for modifiers
+			$this->parseModsName($format);
+			//If no modifiers, treat as plain string value
+			if (empty($this->_modArr)) {
+				$this->_realValue = $format;
+				$this->_realValued = true;
+			}
 		}
 
 		return $this;
@@ -195,16 +200,17 @@ class HuFormat extends HuError {
 	* Parses and set from given str. As separator used {@see self::mods_separator}.
 	* F.e.: 'AI:::line'. If separator not present - whole string in NAME!
 	*
-	* @param string $str
+	* @param string|int $str
 	* @return &$this
 	**/
 	protected function &parseModsName($str): HuFormat {
-		if (!strstr($str, self::mods_separator)){//Whole name
+		$str = (string) $str;
+		if (!\strstr($str, self::mods_separator)){//Whole name
 			$this->_name = $str;
 			$this->_modStr = '';
 		}
 		else{//Separator present
-			list ($this->_modStr, $this->_name) = explode(self::mods_separator, $str);
+			list ($this->_modStr, $this->_name) = \explode(self::mods_separator, $str);
 		}
 		return $this->parseMods(true);
 	}
@@ -236,8 +242,17 @@ class HuFormat extends HuError {
 
 			//If all mod_* are only evaluate value and not produce out.
 			if (!$this->_resStr) {
+				//If format was plain string (no modifiers), return it as is
+				if (empty($this->_modArr) && $this->_realValued && \is_string($this->_realValue)) {
+					return $this->_realValue;
+				}
 				$value = $this->getValue();
-				return $value !== null ? (string)$value : '';
+				if ($value === null) return '';
+				if (\is_array($value)) return \print_r($value, true);
+				if (\is_object($value) && !\method_exists($value, '__toString')) {
+					return \print_r((array)$value, true);
+				}
+				return (string)$value;
 			}
 		}
 
@@ -267,14 +282,23 @@ class HuFormat extends HuError {
 	* @throws VariableRangeException
 	**/
 	public function &changeModsStr($mods): static {
-		for($i=0; $i < strlen($mods); $i++){
-			if (in_array($mods[$i], array('+', '-', '*'))){
+		$len = \strlen($mods);
+		for($i=0; $i < $len; $i++){
+			if (\in_array($mods[$i], ['+', '-', '*'], true)){
 				$op = $mods[$i];
-				$mod = $mods[++$i];
+				++$i;
+				if ($i >= $len) {
+					throw new VariableRangeException('Modifier expected after operator "'.$op.'"');
+				}
+				$mod = $mods[$i];
 			}
 			else{
 				$mod = $mods[$i];
 				$op = '+';	//Default
+			}
+
+			if (!\array_key_exists($mod, self::$MODS)) {
+				throw new VariableRangeException('Unknown modifier - "'.$mod.'"');
 			}
 
 			switch ($op){
