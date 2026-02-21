@@ -49,7 +49,8 @@ class CompiledRoute implements \Serializable
         $this->variables = $variables;
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         return [
             'vars' => $this->variables,
             'path_prefix' => $this->staticPrefix,
@@ -65,7 +66,8 @@ class CompiledRoute implements \Serializable
     /**
      * @internal
      */
-    final public function serialize(): string {
+    final public function serialize(): string
+    {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 
@@ -92,14 +94,16 @@ class CompiledRoute implements \Serializable
     /**
      * Returns the static prefix.
      */
-    public function getStaticPrefix(): string {
+    public function getStaticPrefix(): string
+    {
         return $this->staticPrefix;
     }
 
     /**
      * Returns the regex.
      */
-    public function getRegex(): string {
+    public function getRegex(): string
+    {
         return $this->regex;
     }
 
@@ -114,35 +118,40 @@ class CompiledRoute implements \Serializable
     /**
      * Returns the tokens.
      */
-    public function getTokens(): array {
+    public function getTokens(): array
+    {
         return $this->tokens;
     }
 
     /**
      * Returns the host tokens.
      */
-    public function getHostTokens(): array {
+    public function getHostTokens(): array
+    {
         return $this->hostTokens;
     }
 
     /**
      * Returns the variables.
      */
-    public function getVariables(): array {
+    public function getVariables(): array
+    {
         return $this->variables;
     }
 
     /**
      * Returns the path variables.
      */
-    public function getPathVariables(): array {
+    public function getPathVariables(): array
+    {
         return $this->pathVariables;
     }
 
     /**
      * Returns the host variables.
      */
-    public function getHostVariables(): array {
+    public function getHostVariables(): array
+    {
         return $this->hostVariables;
     }
 }

@@ -37,7 +37,8 @@ final class Version
      *
      * @psalm-return non-empty-string
      */
-    public static function id(): string {
+    public static function id(): string
+    {
         if (self::$pharVersion !== '') {
             return self::$pharVersion;
         }
@@ -54,7 +55,8 @@ final class Version
     /**
      * @psalm-return non-empty-string
      */
-    public static function series(): string {
+    public static function series(): string
+    {
         if (strpos(self::id(), '-')) {
             $version = explode('-', self::id())[0];
         } else {
@@ -67,7 +69,8 @@ final class Version
     /**
      * @psalm-return non-empty-string
      */
-    public static function getVersionString(): string {
+    public static function getVersionString(): string
+    {
         return 'PHPUnit ' . self::id() . ' by Sebastian Bergmann and contributors.';
     }
 }

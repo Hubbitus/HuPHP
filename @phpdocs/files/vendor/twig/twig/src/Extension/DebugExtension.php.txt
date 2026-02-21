@@ -18,7 +18,8 @@ use Twig\TwigFunction;
 
 final class DebugExtension extends AbstractExtension
 {
-    public function getFunctions(): array {
+    public function getFunctions(): array
+    {
         // dump is safe if var_dump is overridden by xdebug
         $isDumpOutputHtmlSafe = \extension_loaded('xdebug')
             // Xdebug overloads var_dump in develop mode when html_errors is enabled

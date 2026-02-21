@@ -268,7 +268,8 @@ final class TestResult implements Countable
      *
      * Flushes all flushable TestListeners.
      */
-    public function flushListeners(): void {
+    public function flushListeners(): void
+    {
         foreach ($this->listeners as $listener) {
             if ($listener instanceof Printer) {
                 $listener->flush();
@@ -475,28 +476,32 @@ final class TestResult implements Countable
     /**
      * Returns true if no risky test occurred.
      */
-    public function allHarmless(): bool {
+    public function allHarmless(): bool
+    {
         return $this->riskyCount() === 0;
     }
 
     /**
      * Gets the number of risky tests.
      */
-    public function riskyCount(): int {
+    public function riskyCount(): int
+    {
         return count($this->risky);
     }
 
     /**
      * Returns true if no incomplete test occurred.
      */
-    public function allCompletelyImplemented(): bool {
+    public function allCompletelyImplemented(): bool
+    {
         return $this->notImplementedCount() === 0;
     }
 
     /**
      * Gets the number of incomplete tests.
      */
-    public function notImplementedCount(): int {
+    public function notImplementedCount(): int
+    {
         return count($this->notImplemented);
     }
 
@@ -505,7 +510,8 @@ final class TestResult implements Countable
      *
      * @return TestFailure[]
      */
-    public function risky(): array {
+    public function risky(): array
+    {
         return $this->risky;
     }
 
@@ -514,21 +520,24 @@ final class TestResult implements Countable
      *
      * @return TestFailure[]
      */
-    public function notImplemented(): array {
+    public function notImplemented(): array
+    {
         return $this->notImplemented;
     }
 
     /**
      * Returns true if no test has been skipped.
      */
-    public function noneSkipped(): bool {
+    public function noneSkipped(): bool
+    {
         return $this->skippedCount() === 0;
     }
 
     /**
      * Gets the number of skipped tests.
      */
-    public function skippedCount(): int {
+    public function skippedCount(): int
+    {
         return count($this->skipped);
     }
 
@@ -537,14 +546,16 @@ final class TestResult implements Countable
      *
      * @return TestFailure[]
      */
-    public function skipped(): array {
+    public function skipped(): array
+    {
         return $this->skipped;
     }
 
     /**
      * Gets the number of detected errors.
      */
-    public function errorCount(): int {
+    public function errorCount(): int
+    {
         return count($this->errors);
     }
 
@@ -553,14 +564,16 @@ final class TestResult implements Countable
      *
      * @return TestFailure[]
      */
-    public function errors(): array {
+    public function errors(): array
+    {
         return $this->errors;
     }
 
     /**
      * Gets the number of detected failures.
      */
-    public function failureCount(): int {
+    public function failureCount(): int
+    {
         return count($this->failures);
     }
 
@@ -569,14 +582,16 @@ final class TestResult implements Countable
      *
      * @return TestFailure[]
      */
-    public function failures(): array {
+    public function failures(): array
+    {
         return $this->failures;
     }
 
     /**
      * Gets the number of detected warnings.
      */
-    public function warningCount(): int {
+    public function warningCount(): int
+    {
         return count($this->warnings);
     }
 
@@ -585,14 +600,16 @@ final class TestResult implements Countable
      *
      * @return TestFailure[]
      */
-    public function warnings(): array {
+    public function warnings(): array
+    {
         return $this->warnings;
     }
 
     /**
      * Returns the names of the tests that have passed.
      */
-    public function passed(): array {
+    public function passed(): array
+    {
         return $this->passed;
     }
 
@@ -601,14 +618,16 @@ final class TestResult implements Countable
      *
      * This enables @depends-annotations for TestClassName::class
      */
-    public function passedClasses(): array {
+    public function passedClasses(): array
+    {
         return $this->passedTestClasses;
     }
 
     /**
      * Returns whether code coverage information should be collected.
      */
-    public function getCollectCodeCoverageInformation(): bool {
+    public function getCollectCodeCoverageInformation(): bool
+    {
         return $this->codeCoverage !== null;
     }
 
@@ -965,21 +984,24 @@ final class TestResult implements Countable
     /**
      * Gets the number of run tests.
      */
-    public function count(): int {
+    public function count(): int
+    {
         return $this->runTests;
     }
 
     /**
      * Checks whether the test run should stop.
      */
-    public function shouldStop(): bool {
+    public function shouldStop(): bool
+    {
         return $this->stop;
     }
 
     /**
      * Marks that the test run should stop.
      */
-    public function stop(): void {
+    public function stop(): void
+    {
         $this->stop = true;
     }
 
@@ -1010,7 +1032,8 @@ final class TestResult implements Countable
     /**
      * Returns the deprecation-to-exception conversion setting.
      */
-    public function getConvertDeprecationsToExceptions(): bool {
+    public function getConvertDeprecationsToExceptions(): bool
+    {
         return $this->convertDeprecationsToExceptions;
     }
 
@@ -1025,7 +1048,8 @@ final class TestResult implements Countable
     /**
      * Returns the error-to-exception conversion setting.
      */
-    public function getConvertErrorsToExceptions(): bool {
+    public function getConvertErrorsToExceptions(): bool
+    {
         return $this->convertErrorsToExceptions;
     }
 
@@ -1040,7 +1064,8 @@ final class TestResult implements Countable
     /**
      * Returns the notice-to-exception conversion setting.
      */
-    public function getConvertNoticesToExceptions(): bool {
+    public function getConvertNoticesToExceptions(): bool
+    {
         return $this->convertNoticesToExceptions;
     }
 
@@ -1055,7 +1080,8 @@ final class TestResult implements Countable
     /**
      * Returns the warning-to-exception conversion setting.
      */
-    public function getConvertWarningsToExceptions(): bool {
+    public function getConvertWarningsToExceptions(): bool
+    {
         return $this->convertWarningsToExceptions;
     }
 
@@ -1088,7 +1114,8 @@ final class TestResult implements Countable
         $this->beStrictAboutTestsThatDoNotTestAnything = $flag;
     }
 
-    public function isStrictAboutTestsThatDoNotTestAnything(): bool {
+    public function isStrictAboutTestsThatDoNotTestAnything(): bool
+    {
         return $this->beStrictAboutTestsThatDoNotTestAnything;
     }
 
@@ -1097,7 +1124,8 @@ final class TestResult implements Countable
         $this->beStrictAboutOutputDuringTests = $flag;
     }
 
-    public function isStrictAboutOutputDuringTests(): bool {
+    public function isStrictAboutOutputDuringTests(): bool
+    {
         return $this->beStrictAboutOutputDuringTests;
     }
 
@@ -1106,7 +1134,8 @@ final class TestResult implements Countable
         $this->beStrictAboutResourceUsageDuringSmallTests = $flag;
     }
 
-    public function isStrictAboutResourceUsageDuringSmallTests(): bool {
+    public function isStrictAboutResourceUsageDuringSmallTests(): bool
+    {
         return $this->beStrictAboutResourceUsageDuringSmallTests;
     }
 
@@ -1115,7 +1144,8 @@ final class TestResult implements Countable
         $this->enforceTimeLimit = $flag;
     }
 
-    public function enforcesTimeLimit(): bool {
+    public function enforcesTimeLimit(): bool
+    {
         return $this->enforceTimeLimit;
     }
 
@@ -1124,15 +1154,18 @@ final class TestResult implements Countable
         $this->beStrictAboutTodoAnnotatedTests = $flag;
     }
 
-    public function isStrictAboutTodoAnnotatedTests(): bool {
+    public function isStrictAboutTodoAnnotatedTests(): bool
+    {
         return $this->beStrictAboutTodoAnnotatedTests;
     }
 
-    public function forceCoversAnnotation(): void {
+    public function forceCoversAnnotation(): void
+    {
         $this->forceCoversAnnotation = true;
     }
 
-    public function forcesCoversAnnotation(): bool {
+    public function forcesCoversAnnotation(): bool
+    {
         return $this->forceCoversAnnotation;
     }
 
@@ -1171,22 +1204,26 @@ final class TestResult implements Countable
     /**
      * Returns the time spent running the tests.
      */
-    public function time(): float {
+    public function time(): float
+    {
         return $this->time;
     }
 
     /**
      * Returns whether the entire test was successful or not.
      */
-    public function wasSuccessful(): bool {
+    public function wasSuccessful(): bool
+    {
         return $this->wasSuccessfulIgnoringWarnings() && empty($this->warnings);
     }
 
-    public function wasSuccessfulIgnoringWarnings(): bool {
+    public function wasSuccessfulIgnoringWarnings(): bool
+    {
         return empty($this->errors) && empty($this->failures);
     }
 
-    public function wasSuccessfulAndNoTestIsRiskyOrSkippedOrIncomplete(): bool {
+    public function wasSuccessfulAndNoTestIsRiskyOrSkippedOrIncomplete(): bool
+    {
         return $this->wasSuccessful() && $this->allHarmless() && $this->allCompletelyImplemented() && $this->noneSkipped();
     }
 
@@ -1225,7 +1262,8 @@ final class TestResult implements Countable
     /**
      * Returns the set timeout for large tests.
      */
-    public function getTimeoutForLargeTests(): int {
+    public function getTimeoutForLargeTests(): int
+    {
         return $this->timeoutForLargeTests;
     }
 

@@ -28,7 +28,8 @@ final class Embed extends AbstractBlock
         $this->embedCode = $embedCode;
     }
 
-    public function getUrl(): string {
+    public function getUrl(): string
+    {
         return $this->url;
     }
 

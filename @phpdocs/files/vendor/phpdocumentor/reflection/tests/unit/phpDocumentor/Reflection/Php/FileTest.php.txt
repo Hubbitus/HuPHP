@@ -47,17 +47,20 @@ final class FileTest extends TestCase
     /**
      * Creates a new (emoty) fixture object.
      */
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->docBlock = new DocBlock('');
 
         $this->fixture = new File(self::EXAMPLE_HASH, self::EXAMPLE_PATH, self::EXAMPLE_SOURCE, $this->docBlock);
     }
 
-    private function getFixture(): MetaDataContainerInterface {
+    private function getFixture(): MetaDataContainerInterface
+    {
         return $this->fixture;
     }
 
-    public function testAddAndGetClasses(): void {
+    public function testAddAndGetClasses(): void
+    {
         $this->assertEmpty($this->fixture->getClasses());
 
         $class = new Class_(new Fqsen('\MySpace\MyClass'));
@@ -66,7 +69,8 @@ final class FileTest extends TestCase
         $this->assertEquals(['\MySpace\MyClass' => $class], $this->fixture->getClasses());
     }
 
-    public function testAddAndGetConstants(): void {
+    public function testAddAndGetConstants(): void
+    {
         $this->assertEmpty($this->fixture->getConstants());
 
         $constant = new Constant(new Fqsen('\MySpace::MY_CONSTANT'));
@@ -75,7 +79,8 @@ final class FileTest extends TestCase
         $this->assertEquals(['\MySpace::MY_CONSTANT' => $constant], $this->fixture->getConstants());
     }
 
-    public function testAddAndGetFunctions(): void {
+    public function testAddAndGetFunctions(): void
+    {
         $this->assertEmpty($this->fixture->getFunctions());
 
         $function = new Function_(new Fqsen('\MySpace::MyFunction()'));
@@ -84,7 +89,8 @@ final class FileTest extends TestCase
         $this->assertEquals(['\MySpace::MyFunction()' => $function], $this->fixture->getFunctions());
     }
 
-    public function testAddAndGetInterfaces(): void {
+    public function testAddAndGetInterfaces(): void
+    {
         $this->assertEmpty($this->fixture->getInterfaces());
 
         $interface = new Interface_(new Fqsen('\MySpace\MyInterface'), []);
@@ -93,7 +99,8 @@ final class FileTest extends TestCase
         $this->assertEquals(['\MySpace\MyInterface' => $interface], $this->fixture->getInterfaces());
     }
 
-    public function testAddAndGetTraits(): void {
+    public function testAddAndGetTraits(): void
+    {
         $this->assertEmpty($this->fixture->getTraits());
 
         $trait = new Trait_(new Fqsen('\MySpace\MyTrait'));
@@ -102,7 +109,8 @@ final class FileTest extends TestCase
         $this->assertEquals(['\MySpace\MyTrait' => $trait], $this->fixture->getTraits());
     }
 
-    public function testAddAndGetEnums(): void {
+    public function testAddAndGetEnums(): void
+    {
         $this->assertEmpty($this->fixture->getEnums());
 
         $enum = new Enum_(new Fqsen('\MySpace\MyEnum'), null);
@@ -111,27 +119,33 @@ final class FileTest extends TestCase
         $this->assertEquals(['\MySpace\MyEnum' => $enum], $this->fixture->getEnums());
     }
 
-    public function testGetDocBlock(): void {
+    public function testGetDocBlock(): void
+    {
         $this->assertSame($this->docBlock, $this->fixture->getDocBlock());
     }
 
-    public function testGetHash(): void {
+    public function testGetHash(): void
+    {
         $this->assertSame(self::EXAMPLE_HASH, $this->fixture->getHash());
     }
 
-    public function testGetName(): void {
+    public function testGetName(): void
+    {
         $this->assertSame(self::EXAMPLE_NAME, $this->fixture->getName());
     }
 
-    public function testSetAndGetPath(): void {
+    public function testSetAndGetPath(): void
+    {
         $this->assertSame(self::EXAMPLE_PATH, $this->fixture->getPath());
     }
 
-    public function testSetAndGetSource(): void {
+    public function testSetAndGetSource(): void
+    {
         $this->assertSame(self::EXAMPLE_SOURCE, $this->fixture->getSource());
     }
 
-    public function testSetAndGetNamespaceAliases(): void {
+    public function testSetAndGetNamespaceAliases(): void
+    {
         $this->assertEmpty($this->fixture->getNamespaces());
 
         $this->fixture->addNamespace(new Fqsen('\MyNamepace\Foo'));
@@ -139,7 +153,8 @@ final class FileTest extends TestCase
         $this->assertEquals(['\MyNamepace\Foo' => new Fqsen('\MyNamepace\Foo')], $this->fixture->getNamespaces());
     }
 
-    public function testAddAndGetIncludes(): void {
+    public function testAddAndGetIncludes(): void
+    {
         $this->assertEmpty($this->fixture->getIncludes());
 
         $include = self::EXAMPLE_PATH;

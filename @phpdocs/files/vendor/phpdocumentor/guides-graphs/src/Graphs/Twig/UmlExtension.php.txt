@@ -37,7 +37,8 @@ final class UmlExtension extends AbstractExtension
     }
 
     /** @return TwigFunction[] */
-    public function getFunctions(): array {
+    public function getFunctions(): array
+    {
         return [
             new TwigFunction('uml', $this->uml(...), ['is_safe' => ['html'], 'needs_context' => true]),
         ];

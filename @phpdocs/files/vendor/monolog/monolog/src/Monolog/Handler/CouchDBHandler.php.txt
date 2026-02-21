@@ -70,7 +70,8 @@ class CouchDBHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface {
+    protected function getDefaultFormatter(): FormatterInterface
+    {
         return new JsonFormatter(JsonFormatter::BATCH_MODE_JSON, false);
     }
 }

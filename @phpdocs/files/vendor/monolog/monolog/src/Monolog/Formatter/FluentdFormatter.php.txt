@@ -50,7 +50,8 @@ class FluentdFormatter implements FormatterInterface
         $this->levelTag = $levelTag;
     }
 
-    public function isUsingLevelsInTag(): bool {
+    public function isUsingLevelsInTag(): bool
+    {
         return $this->levelTag;
     }
 

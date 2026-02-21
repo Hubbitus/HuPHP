@@ -23,7 +23,8 @@ final class ReplacementNode extends CompoundNode
     }
 
     /** @return Node[] */
-    public function getChildren(): array {
+    public function getChildren(): array
+    {
         return $this->getValue();
     }
 }

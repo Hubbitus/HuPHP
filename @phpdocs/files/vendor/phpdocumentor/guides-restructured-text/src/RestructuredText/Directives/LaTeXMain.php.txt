@@ -23,7 +23,8 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
  */
 final class LaTeXMain extends BaseDirective
 {
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'latex-main';
     }
 

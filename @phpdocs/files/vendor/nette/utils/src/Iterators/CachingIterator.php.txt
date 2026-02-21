@@ -62,27 +62,32 @@ class CachingIterator extends \CachingIterator implements \Countable
 	}
 
 
-	public function isEmpty(): bool {
+	public function isEmpty(): bool
+	{
 		return $this->counter === 0;
 	}
 
 
-	public function isOdd(): bool {
+	public function isOdd(): bool
+	{
 		return $this->counter % 2 === 1;
 	}
 
 
-	public function isEven(): bool {
+	public function isEven(): bool
+	{
 		return $this->counter % 2 === 0;
 	}
 
 
-	public function getCounter(): int {
+	public function getCounter(): int
+	{
 		return $this->counter;
 	}
 
 
-	public function count(): int {
+	public function count(): int
+	{
 		$inner = $this->getInnerIterator();
 		if ($inner instanceof \Countable) {
 			return $inner->count();
@@ -96,7 +101,8 @@ class CachingIterator extends \CachingIterator implements \Countable
 	/**
 	 * Forwards to the next element.
 	 */
-	public function next(): void {
+	public function next(): void
+	{
 		parent::next();
 		if (parent::valid()) {
 			$this->counter++;
@@ -107,20 +113,23 @@ class CachingIterator extends \CachingIterator implements \Countable
 	/**
 	 * Rewinds the Iterator.
 	 */
-	public function rewind(): void {
+	public function rewind(): void
+	{
 		parent::rewind();
 		$this->counter = parent::valid() ? 1 : 0;
 	}
 
 
 	/** @return TKey */
-	public function getNextKey(): mixed {
+	public function getNextKey(): mixed
+	{
 		return $this->getInnerIterator()->key();
 	}
 
 
 	/** @return TValue */
-	public function getNextValue(): mixed {
+	public function getNextValue(): mixed
+	{
 		return $this->getInnerIterator()->current();
 	}
 }

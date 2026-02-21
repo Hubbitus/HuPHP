@@ -39,7 +39,8 @@ trait UsesTraits
      *
      * @return Collection<TraitInterface|Fqsen>
      */
-    public function getUsedTraits(): Collection {
+    public function getUsedTraits(): Collection
+    {
         if (! isset($this->usedTraits)) {
             $this->usedTraits = new Collection();
         }

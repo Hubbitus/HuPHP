@@ -203,7 +203,8 @@ class Logger implements LoggerInterface, ResettableInterface
         }
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
@@ -233,7 +234,8 @@ class Logger implements LoggerInterface, ResettableInterface
      *
      * @throws \LogicException If empty handler stack
      */
-    public function popHandler(): HandlerInterface {
+    public function popHandler(): HandlerInterface
+    {
         if (!$this->handlers) {
             throw new \LogicException('You tried to pop from an empty handler stack.');
         }
@@ -261,7 +263,8 @@ class Logger implements LoggerInterface, ResettableInterface
     /**
      * @return HandlerInterface[]
      */
-    public function getHandlers(): array {
+    public function getHandlers(): array
+    {
         return $this->handlers;
     }
 
@@ -281,7 +284,8 @@ class Logger implements LoggerInterface, ResettableInterface
      * @throws \LogicException If empty processor stack
      * @return callable
      */
-    public function popProcessor(): callable {
+    public function popProcessor(): callable
+    {
         if (!$this->processors) {
             throw new \LogicException('You tried to pop from an empty processor stack.');
         }
@@ -292,7 +296,8 @@ class Logger implements LoggerInterface, ResettableInterface
     /**
      * @return callable[]
      */
-    public function getProcessors(): array {
+    public function getProcessors(): array
+    {
         return $this->processors;
     }
 
@@ -424,7 +429,8 @@ class Logger implements LoggerInterface, ResettableInterface
      * This is useful at the end of a request and will be called automatically on every handler
      * when they get destructed.
      */
-    public function close(): void {
+    public function close(): void
+    {
         foreach ($this->handlers as $handler) {
             $handler->close();
         }
@@ -440,7 +446,8 @@ class Logger implements LoggerInterface, ResettableInterface
      * have a long running process like a worker or an application server serving multiple requests
      * in one process.
      */
-    public function reset(): void {
+    public function reset(): void
+    {
         foreach ($this->handlers as $handler) {
             if ($handler instanceof ResettableInterface) {
                 $handler->reset();
@@ -460,7 +467,8 @@ class Logger implements LoggerInterface, ResettableInterface
      * @return array<string, int> Assoc array with human-readable level names => level codes.
      * @phpstan-return array<LevelName, Level>
      */
-    public static function getLevels(): array {
+    public static function getLevels(): array
+    {
         return array_flip(static::$levels);
     }
 
@@ -695,7 +703,8 @@ class Logger implements LoggerInterface, ResettableInterface
     /**
      * Returns the timezone to be used for the timestamp of log records.
      */
-    public function getTimezone(): DateTimeZone {
+    public function getTimezone(): DateTimeZone
+    {
         return $this->timezone;
     }
 
@@ -718,7 +727,8 @@ class Logger implements LoggerInterface, ResettableInterface
     /**
      * @return array<string, mixed>
      */
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         return [
             'name' => $this->name,
             'handlers' => $this->handlers,

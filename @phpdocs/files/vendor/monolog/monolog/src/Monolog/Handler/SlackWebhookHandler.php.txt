@@ -77,11 +77,13 @@ class SlackWebhookHandler extends AbstractProcessingHandler
         );
     }
 
-    public function getSlackRecord(): SlackRecord {
+    public function getSlackRecord(): SlackRecord
+    {
         return $this->slackRecord;
     }
 
-    public function getWebhookUrl(): string {
+    public function getWebhookUrl(): string
+    {
         return $this->webhookUrl;
     }
 
@@ -118,7 +120,8 @@ class SlackWebhookHandler extends AbstractProcessingHandler
         return $this;
     }
 
-    public function getFormatter(): FormatterInterface {
+    public function getFormatter(): FormatterInterface
+    {
         $formatter = parent::getFormatter();
         $this->slackRecord->setFormatter($formatter);
 

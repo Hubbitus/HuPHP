@@ -22,9 +22,7 @@
 *	- In method ::scheme() fix provide root assignments.
 **/
 
-/**
-* @uses gentime
-**/
+namespace Hubbitus\HuPHP\Template;
 
 error_reporting(E_ALL);
 ini_set('display_errors', true);

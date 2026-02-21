@@ -27,7 +27,8 @@ abstract class MatcherDumper implements MatcherDumperInterface
         $this->routes = $routes;
     }
 
-    public function getRoutes(): RouteCollection {
+    public function getRoutes(): RouteCollection
+    {
         return $this->routes;
     }
 }

@@ -32,7 +32,8 @@ final class GH26_Test extends TestCase
 {
     use ParserAssertions;
 
-    private static function pathParser(): Parser {
+    private static function pathParser(): Parser
+    {
         $sep = char('/')
             ->label('directory separator');
         // unix supports other characters, such as space, so adapt if needed

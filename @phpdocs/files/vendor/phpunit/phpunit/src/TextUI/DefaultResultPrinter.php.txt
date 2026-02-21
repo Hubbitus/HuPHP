@@ -514,7 +514,8 @@ class DefaultResultPrinter extends Printer implements ResultPrinter
         }
     }
 
-    protected function writeNewLine(): void {
+    protected function writeNewLine(): void
+    {
         $this->column = 0;
         $this->write("\n");
     }

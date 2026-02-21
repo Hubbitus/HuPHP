@@ -107,7 +107,8 @@ final class Twig extends WriterAbstract implements Initializable, ProjectDescrip
     ) {
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'twig';
     }
 
@@ -177,7 +178,8 @@ final class Twig extends WriterAbstract implements Initializable, ProjectDescrip
         }
     }
 
-    public function getDefaultSettings(): array {
+    public function getDefaultSettings(): array
+    {
         return [];
     }
 

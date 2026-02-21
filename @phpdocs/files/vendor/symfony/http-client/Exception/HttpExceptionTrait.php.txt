@@ -69,7 +69,8 @@ trait HttpExceptionTrait
         parent::__construct($message, $code);
     }
 
-    public function getResponse(): ResponseInterface {
+    public function getResponse(): ResponseInterface
+    {
         return $this->response;
     }
 }

@@ -38,7 +38,8 @@ trait HasMethods
     }
 
     /** @return Collection<MethodInterface> */
-    public function getMethods(): Collection {
+    public function getMethods(): Collection
+    {
         if (! isset($this->methods)) {
             $this->methods = Collection::fromInterfaceString(MethodInterface::class);
         }
@@ -47,7 +48,8 @@ trait HasMethods
     }
 
     /** @return Collection<MethodInterface> */
-    public function getInheritedMethods(): Collection {
+    public function getInheritedMethods(): Collection
+    {
         $inheritedMethods = Collection::fromInterfaceString(MethodInterface::class);
 
         if (method_exists($this, 'getUsedTraits')) {
@@ -79,7 +81,8 @@ trait HasMethods
     }
 
     /** @return Collection<MethodInterface> */
-    public function getMagicMethods(): Collection {
+    public function getMagicMethods(): Collection
+    {
         $methodTags = $this->getTags()->fetch('method', new Collection())->filter(Tag\MethodDescriptor::class);
 
         $methods = Collection::fromInterfaceString(MethodInterface::class);

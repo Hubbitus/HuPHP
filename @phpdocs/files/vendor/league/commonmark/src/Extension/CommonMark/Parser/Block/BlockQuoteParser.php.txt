@@ -30,11 +30,13 @@ final class BlockQuoteParser extends AbstractBlockContinueParser
         $this->block = new BlockQuote();
     }
 
-    public function getBlock(): BlockQuote {
+    public function getBlock(): BlockQuote
+    {
         return $this->block;
     }
 
-    public function isContainer(): bool {
+    public function isContainer(): bool
+    {
         return true;
     }
 

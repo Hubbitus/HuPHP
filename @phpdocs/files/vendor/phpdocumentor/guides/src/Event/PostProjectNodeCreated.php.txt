@@ -24,7 +24,8 @@ final class PostProjectNodeCreated
     ) {
     }
 
-    public function getProjectNode(): ProjectNode {
+    public function getProjectNode(): ProjectNode
+    {
         return $this->projectNode;
     }
 
@@ -33,7 +34,8 @@ final class PostProjectNodeCreated
         $this->projectNode = $projectNode;
     }
 
-    public function getSettings(): ProjectSettings {
+    public function getSettings(): ProjectSettings
+    {
         return $this->settings;
     }
 

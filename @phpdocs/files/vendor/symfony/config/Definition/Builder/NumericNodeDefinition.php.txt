@@ -60,7 +60,8 @@ abstract class NumericNodeDefinition extends ScalarNodeDefinition
     /**
      * @throws InvalidDefinitionException
      */
-    public function cannotBeEmpty(): static {
+    public function cannotBeEmpty(): static
+    {
         throw new InvalidDefinitionException('->cannotBeEmpty() is not applicable to NumericNodeDefinition.');
     }
 }

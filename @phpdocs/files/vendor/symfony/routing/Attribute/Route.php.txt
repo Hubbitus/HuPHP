@@ -100,7 +100,8 @@ class Route
         $this->localizedPaths = $localizedPaths;
     }
 
-    public function getLocalizedPaths(): array {
+    public function getLocalizedPaths(): array
+    {
         return $this->localizedPaths;
     }
 

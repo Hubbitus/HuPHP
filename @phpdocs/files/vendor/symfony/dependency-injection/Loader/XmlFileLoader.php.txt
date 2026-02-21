@@ -787,7 +787,8 @@ EOF
         return $valid;
     }
 
-    private function shouldEnableEntityLoader(): bool {
+    private function shouldEnableEntityLoader(): bool
+    {
         static $dom, $schema;
         if (null === $dom) {
             $dom = new \DOMDocument();

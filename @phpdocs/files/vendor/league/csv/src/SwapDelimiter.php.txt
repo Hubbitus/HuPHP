@@ -40,14 +40,16 @@ final class SwapDelimiter extends php_user_filter
     private string $search = '';
     private string $replace = '';
 
-    public static function getFiltername(): string {
+    public static function getFiltername(): string
+    {
         return self::FILTER_NAME;
     }
 
     /**
      * Static method to register the class as a stream filter.
      */
-    public static function register(): void {
+    public static function register(): void
+    {
         in_array(self::FILTER_NAME, stream_get_filters(), true) || stream_filter_register(self::FILTER_NAME, self::class);
     }
 
@@ -128,7 +130,8 @@ final class SwapDelimiter extends php_user_filter
         return $filter;
     }
 
-    public function onCreate(): bool {
+    public function onCreate(): bool
+    {
         if (self::FILTER_NAME !== $this->filtername) {
             return false;
         }

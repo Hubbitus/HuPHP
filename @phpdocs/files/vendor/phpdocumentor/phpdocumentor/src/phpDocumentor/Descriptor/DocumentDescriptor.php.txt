@@ -30,7 +30,8 @@ final class DocumentDescriptor implements Descriptor
     ) {
     }
 
-    public function getDocumentNode(): DocumentNode {
+    public function getDocumentNode(): DocumentNode
+    {
         return $this->documentNode;
     }
 
@@ -39,19 +40,23 @@ final class DocumentDescriptor implements Descriptor
         $this->documentNode = $documentNode;
     }
 
-    public function getHash(): string {
+    public function getHash(): string
+    {
         return $this->hash;
     }
 
-    public function getFile(): string {
+    public function getFile(): string
+    {
         return $this->file;
     }
 
-    public function getTitle(): string {
+    public function getTitle(): string
+    {
         return $this->title;
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->title;
     }
 }

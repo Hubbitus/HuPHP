@@ -343,7 +343,8 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
         return 1;
     }
 
-    private function getListenersWithPriority(): array {
+    private function getListenersWithPriority(): array
+    {
         $result = [];
 
         $allListeners = new \ReflectionProperty(EventDispatcher::class, 'listeners');
@@ -359,7 +360,8 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
         return $result;
     }
 
-    private function getListenersWithoutPriority(): array {
+    private function getListenersWithoutPriority(): array
+    {
         $result = [];
 
         foreach ($this->getListeners() as $eventName => $listeners) {

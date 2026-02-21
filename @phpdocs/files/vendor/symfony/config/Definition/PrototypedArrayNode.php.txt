@@ -95,7 +95,8 @@ class PrototypedArrayNode extends ArrayNode
         $this->defaultValue = $value;
     }
 
-    public function hasDefaultValue(): bool {
+    public function hasDefaultValue(): bool
+    {
         return true;
     }
 
@@ -119,7 +120,8 @@ class PrototypedArrayNode extends ArrayNode
      * The default value could be either explicited or derived from the prototype
      * default value.
      */
-    public function getDefaultValue(): mixed {
+    public function getDefaultValue(): mixed
+    {
         if (null !== $this->defaultChildren) {
             $default = $this->prototype->hasDefaultValue() ? $this->prototype->getDefaultValue() : [];
             $defaults = [];
@@ -146,7 +148,8 @@ class PrototypedArrayNode extends ArrayNode
     /**
      * Retrieves the prototype.
      */
-    public function getPrototype(): PrototypeNodeInterface {
+    public function getPrototype(): PrototypeNodeInterface
+    {
         return $this->prototype;
     }
 

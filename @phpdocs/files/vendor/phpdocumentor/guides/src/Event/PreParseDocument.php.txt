@@ -26,7 +26,8 @@ final class PreParseDocument
     {
     }
 
-    public function getParser(): Parser {
+    public function getParser(): Parser
+    {
         return $this->parser;
     }
 
@@ -35,11 +36,13 @@ final class PreParseDocument
         $this->contents = $contents;
     }
 
-    public function getContents(): string {
+    public function getContents(): string
+    {
         return $this->contents;
     }
 
-    public function getFileName(): string {
+    public function getFileName(): string
+    {
         return $this->fileName;
     }
 }

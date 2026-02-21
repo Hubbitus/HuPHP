@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 /**
 * In PHP we unfortunately do not have multiple inheritance :(
-* So, turn it class into interface and provide common, possible implementation
-* through static methods of __outExtraData__common_implementation homonymous methods
-* and providing link to $this and in method implementation refer to it as &obj instead of direct $this.
 *
 * Common implementation will be present in comments near after declaration.
 **/
@@ -50,10 +47,7 @@ interface IOutExtraData {
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
 	**/
-	public function strToPrint($format = null);/*{Now common solution is (see description on begin abput Multiple Inheritance):
-	return __outExtraData__common_implementation::strToPrint($this, $format);
-	}
-	*/
+	public function strToPrint($format = null);
 
 	/**
 	* Convert to string by provided type.
@@ -63,40 +57,5 @@ interface IOutExtraData {
 	* @return string
 	* @throws VariableRangeException
 	**/
-	public function strByOutType($type, $format = null);/*{Now common solution is (see description on begin abput Multiple Inheritance):
-	return __outExtraData__common_implementation::strByOutType($this, $type, $format);
-	*/
-}
-/* see description on begin about Multiple Inheritance **/
-class __outExtraData__common_implementation{
-	public static function strByOutType(/*$this*/&$obj, $type, $format = null){
-		$obj->_curTypeOut = $type;
-
-		switch ($type){
-			case OS::OUT_TYPE_BROWSER:
-			return $obj->strToWeb($format);
-				break;
-
-			case OS::OUT_TYPE_CONSOLE:
-				return $obj->strToConsole($format);
-				break;
-
-			case OS::OUT_TYPE_FILE:
-				return $obj->strToFile($format);
-				break;
-
-			// Addition, pseudo
-			case OS::OUT_TYPE_PRINT:
-				return $obj->strToPrint($format);
-				break;
-
-			default:
-				throw new VariableRangeException("$type MUST be one of: OS::OUT_TYPE_BROWSER, OS::OUT_TYPE_CONSOLE, OS::OUT_TYPE_FILE or OS::OUT_TYPE_PRINT!");
-		}
-	}
-	public static function strToPrint(/*$this*/&$obj, $format = null){
-		$obj->_curTypeOut = OS::OUT_TYPE_PRINT;//Pseudo. Will be clarified.
-		if (OS::OUT_TYPE_BROWSER == OS::getOutType()) return $obj->strToWeb($format);
-		else return $obj->strToConsole($format);
-	}
+	public function strByOutType($type, $format = null);
 }

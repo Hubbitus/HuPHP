@@ -28,11 +28,13 @@ abstract class MenuEntryNode extends AbstractNode implements Stringable
         $this->value = $title;
     }
 
-    public function getUrl(): string {
+    public function getUrl(): string
+    {
         return $this->url;
     }
 
-    public function getLevel(): int {
+    public function getLevel(): int
+    {
         return $this->level;
     }
 }

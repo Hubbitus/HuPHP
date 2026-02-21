@@ -30,19 +30,23 @@ final class InventoryLink
         }
     }
 
-    public function getProject(): string {
+    public function getProject(): string
+    {
         return $this->project;
     }
 
-    public function getVersion(): string {
+    public function getVersion(): string
+    {
         return $this->version;
     }
 
-    public function getPath(): string {
+    public function getPath(): string
+    {
         return $this->path;
     }
 
-    public function getTitle(): string {
+    public function getTitle(): string
+    {
         return $this->title;
     }
 

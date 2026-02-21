@@ -13,7 +13,8 @@ use PHPUnit\Framework\TestCase;
 #[RequiresPackage('nikic/php-parser', '>= 5.2')]
 final class AsymmetricAccessorTest extends TestCase
 {
-    public function testAsymmetricAccessor(): void {
+    public function testAsymmetricAccessor(): void
+    {
         $file = __DIR__ . '/data/PHP84/AsymmetricAccessor.php';
         $projectFactory = ProjectFactory::createInstance();
         $project = $projectFactory->create('My project', [new LocalFile($file)]);
@@ -30,7 +31,8 @@ final class AsymmetricAccessorTest extends TestCase
         );
     }
 
-    public function testAsyncPropertyPromotion(): void {
+    public function testAsyncPropertyPromotion(): void
+    {
         $file = __DIR__ . '/data/PHP84/AsymmetricPropertyPromotion.php';
         $projectFactory = ProjectFactory::createInstance();
         $project = $projectFactory->create('My project', [new LocalFile($file)]);

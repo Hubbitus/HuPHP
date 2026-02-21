@@ -86,7 +86,8 @@ final class Totals
         $container->appendChild($this->traitsNode);
     }
 
-    public function container(): DOMNode {
+    public function container(): DOMNode
+    {
         return $this->container;
     }
 

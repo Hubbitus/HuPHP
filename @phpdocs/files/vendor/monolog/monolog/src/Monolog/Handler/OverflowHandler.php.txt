@@ -138,7 +138,8 @@ class OverflowHandler extends AbstractHandler implements FormattableHandlerInter
     /**
      * {@inheritDoc}
      */
-    public function getFormatter(): FormatterInterface {
+    public function getFormatter(): FormatterInterface
+    {
         if ($this->handler instanceof FormattableHandlerInterface) {
             return $this->handler->getFormatter();
         }

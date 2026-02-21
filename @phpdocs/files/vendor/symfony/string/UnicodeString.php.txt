@@ -193,7 +193,8 @@ class UnicodeString extends AbstractUnicodeString
         return $str;
     }
 
-    public function length(): int {
+    public function length(): int
+    {
         return grapheme_strlen($this->string);
     }
 

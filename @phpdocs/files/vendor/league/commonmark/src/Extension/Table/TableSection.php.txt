@@ -47,15 +47,18 @@ final class TableSection extends AbstractBlock
      *
      * @phpstan-return self::TYPE_*
      */
-    public function getType(): string {
+    public function getType(): string
+    {
         return $this->type;
     }
 
-    public function isHead(): bool {
+    public function isHead(): bool
+    {
         return $this->type === self::TYPE_HEAD;
     }
 
-    public function isBody(): bool {
+    public function isBody(): bool
+    {
         return $this->type === self::TYPE_BODY;
     }
 }

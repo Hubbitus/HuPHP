@@ -66,7 +66,8 @@ class ProjectAnalyzer implements Stringable
     /**
      * Returns a textual report of the findings of this class.
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         $logString = <<<'TEXT'
 In the Project are:
   %8d files

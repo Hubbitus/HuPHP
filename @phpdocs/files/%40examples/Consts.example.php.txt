@@ -12,6 +12,9 @@
 
 include('autoload.php');
 
+use Hubbitus\HuPHP\Vars\Consts\Consts;
+use Hubbitus\HuPHP\Debug\Dump;
+
 /*
 $constants = get_defined_constants(true);
 print_r($constants['session']);
@@ -24,7 +27,7 @@ Dump::a(Consts::get_regexp('tidy', '/TYPE/i'));
 
 Dump::a(Consts::get('TIDY_NODETYPE_STARTEND'));
 
-Dump::a(TIDY_NODETYPE_STARTEND);
-Dump::a(Consts::getNameByValue(TIDY_NODETYPE_STARTEND, '', '/^TIDY/', true));
-Dump::a(Consts::getNameByValue(TIDY_NODETYPE_STARTEND, '', '/^TIDY/', false));
+Dump::a(\TIDY_NODETYPE_STARTEND);
+Dump::a(Consts::getNameByValue(\TIDY_NODETYPE_STARTEND, '', '/^TIDY/', true));
+Dump::a(Consts::getNameByValue(\TIDY_NODETYPE_STARTEND, '', '/^TIDY/', false));
 Dump::a(Consts::getNameByValue(366, '', '/^TIDY/', false));

@@ -41,14 +41,16 @@ final class ErrorTestCase extends TestCase
         parent::__construct('Error');
     }
 
-    public function getMessage(): string {
+    public function getMessage(): string
+    {
         return $this->message;
     }
 
     /**
      * Returns a string representation of the test case.
      */
-    public function toString(): string {
+    public function toString(): string
+    {
         return 'Error';
     }
 
@@ -57,7 +59,8 @@ final class ErrorTestCase extends TestCase
      *
      * @psalm-return never-return
      */
-    protected function runTest(): void {
+    protected function runTest(): void
+    {
         throw new Error($this->message);
     }
 }

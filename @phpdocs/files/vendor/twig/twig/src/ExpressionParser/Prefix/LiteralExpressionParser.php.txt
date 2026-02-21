@@ -107,15 +107,18 @@ final class LiteralExpressionParser extends AbstractExpressionParser implements 
         }
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->type;
     }
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         return 'A literal value (boolean, string, number, sequence, mapping, ...)';
     }
 
-    public function getPrecedence(): int {
+    public function getPrecedence(): int
+    {
         // not used
         return 0;
     }

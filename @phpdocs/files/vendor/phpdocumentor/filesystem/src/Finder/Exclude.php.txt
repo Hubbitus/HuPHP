@@ -45,15 +45,18 @@ final class Exclude
     }
 
     /** @return list<string> */
-    public function getPaths(): array {
+    public function getPaths(): array
+    {
         return $this->paths;
     }
 
-    public function excludeHidden(): bool {
+    public function excludeHidden(): bool
+    {
         return $this->hidden;
     }
 
-    public function followSymlinks(): bool {
+    public function followSymlinks(): bool
+    {
         return $this->symlinks;
     }
 

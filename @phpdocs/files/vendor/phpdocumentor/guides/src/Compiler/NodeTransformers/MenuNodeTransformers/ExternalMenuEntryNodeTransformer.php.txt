@@ -58,7 +58,8 @@ final class ExternalMenuEntryNodeTransformer extends AbstractMenuEntryNodeTransf
         return [$entryNode];
     }
 
-    public function getPriority(): int {
+    public function getPriority(): int
+    {
         // After DocumentEntryTransformer
         return 4500;
     }

@@ -24,7 +24,8 @@ final class Parser
     {
     }
 
-    public static function createInstance(): self {
+    public static function createInstance(): self
+    {
         return new self(
             (new ParserBuilder())->build(),
         );

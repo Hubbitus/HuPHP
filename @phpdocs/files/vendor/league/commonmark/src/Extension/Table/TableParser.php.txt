@@ -78,11 +78,13 @@ final class TableParser extends AbstractBlockContinueParser implements BlockCont
         $this->remainingAutocompletedCells = $remainingAutocompletedCells;
     }
 
-    public function canHaveLazyContinuationLines(): bool {
+    public function canHaveLazyContinuationLines(): bool
+    {
         return true;
     }
 
-    public function getBlock(): Table {
+    public function getBlock(): Table
+    {
         return $this->block;
     }
 

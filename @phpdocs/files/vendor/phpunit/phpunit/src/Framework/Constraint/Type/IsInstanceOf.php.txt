@@ -32,7 +32,8 @@ final class IsInstanceOf extends Constraint
     /**
      * Returns a string representation of the constraint.
      */
-    public function toString(): string {
+    public function toString(): string
+    {
         return sprintf(
             'is instance of %s "%s"',
             $this->getType(),
@@ -71,7 +72,8 @@ final class IsInstanceOf extends Constraint
         );
     }
 
-    private function getType(): string {
+    private function getType(): string
+    {
         try {
             $reflection = new ReflectionClass($this->className);
 

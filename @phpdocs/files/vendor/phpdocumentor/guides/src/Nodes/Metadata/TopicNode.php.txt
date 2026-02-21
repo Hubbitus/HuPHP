@@ -28,11 +28,13 @@ final class TopicNode extends MetadataNode
         parent::__construct($body);
     }
 
-    public function getTitle(): string {
+    public function getTitle(): string
+    {
         return $this->title;
     }
 
-    public function getBody(): string {
+    public function getBody(): string
+    {
         return $this->body;
     }
 }

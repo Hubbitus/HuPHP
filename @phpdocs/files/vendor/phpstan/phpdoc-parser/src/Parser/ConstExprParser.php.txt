@@ -26,7 +26,8 @@ class ConstExprParser
 	/**
 	 * @internal
 	 */
-	public function toDoctrine(): self {
+	public function toDoctrine(): self
+	{
 		$self = new self($this->config);
 		$self->parseDoctrineStrings = true;
 		return $self;

@@ -201,7 +201,8 @@ class Router implements RouterInterface, RequestMatcherInterface
         }
     }
 
-    public function getContext(): RequestContext {
+    public function getContext(): RequestContext
+    {
         return $this->context;
     }
 
@@ -281,7 +282,8 @@ class Router implements RouterInterface, RequestMatcherInterface
     /**
      * Gets the UrlGenerator instance associated with this Router.
      */
-    public function getGenerator(): UrlGeneratorInterface {
+    public function getGenerator(): UrlGeneratorInterface
+    {
         if (isset($this->generator)) {
             return $this->generator;
         }
@@ -322,11 +324,13 @@ class Router implements RouterInterface, RequestMatcherInterface
         $this->expressionLanguageProviders[] = $provider;
     }
 
-    protected function getGeneratorDumperInstance(): GeneratorDumperInterface {
+    protected function getGeneratorDumperInstance(): GeneratorDumperInterface
+    {
         return new $this->options['generator_dumper_class']($this->getRouteCollection());
     }
 
-    protected function getMatcherDumperInstance(): MatcherDumperInterface {
+    protected function getMatcherDumperInstance(): MatcherDumperInterface
+    {
         return new $this->options['matcher_dumper_class']($this->getRouteCollection());
     }
 
@@ -334,7 +338,8 @@ class Router implements RouterInterface, RequestMatcherInterface
      * Provides the ConfigCache factory implementation, falling back to a
      * default implementation if necessary.
      */
-    private function getConfigCacheFactory(): ConfigCacheFactoryInterface {
+    private function getConfigCacheFactory(): ConfigCacheFactoryInterface
+    {
         return $this->configCacheFactory ??= new ConfigCacheFactory($this->options['debug']);
     }
 

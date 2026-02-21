@@ -36,27 +36,33 @@ final class TestFileCollectionIterator implements Countable, Iterator
         $this->files = $files->asArray();
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return iterator_count($this);
     }
 
-    public function rewind(): void {
+    public function rewind(): void
+    {
         $this->position = 0;
     }
 
-    public function valid(): bool {
+    public function valid(): bool
+    {
         return $this->position < count($this->files);
     }
 
-    public function key(): int {
+    public function key(): int
+    {
         return $this->position;
     }
 
-    public function current(): TestFile {
+    public function current(): TestFile
+    {
         return $this->files[$this->position];
     }
 
-    public function next(): void {
+    public function next(): void
+    {
         $this->position++;
     }
 }

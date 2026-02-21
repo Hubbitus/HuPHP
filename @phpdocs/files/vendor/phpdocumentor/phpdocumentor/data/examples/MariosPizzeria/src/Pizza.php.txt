@@ -192,7 +192,8 @@ final readonly class Pizza implements Product
         get { return "Thin crust"; }
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 

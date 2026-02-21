@@ -30,7 +30,8 @@ class Alias
     /**
      * Checks if this DI Alias should be public or not.
      */
-    public function isPublic(): bool {
+    public function isPublic(): bool
+    {
         return $this->public;
     }
 
@@ -49,7 +50,8 @@ class Alias
     /**
      * Whether this alias is private.
      */
-    public function isPrivate(): bool {
+    public function isPrivate(): bool
+    {
         return !$this->public;
     }
 
@@ -82,7 +84,8 @@ class Alias
         return $this;
     }
 
-    public function isDeprecated(): bool {
+    public function isDeprecated(): bool
+    {
         return (bool) $this->deprecation;
     }
 
@@ -98,7 +101,8 @@ class Alias
         ];
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->id;
     }
 }

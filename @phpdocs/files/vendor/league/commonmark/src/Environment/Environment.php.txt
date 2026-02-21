@@ -119,7 +119,8 @@ final class Environment implements EnvironmentInterface, EnvironmentBuilderInter
         $this->addBlockStartParser(new SkipLinesStartingWithLettersParser(), 249);
     }
 
-    public function getConfiguration(): ConfigurationInterface {
+    public function getConfiguration(): ConfigurationInterface
+    {
         return $this->config->reader();
     }
 
@@ -183,7 +184,8 @@ final class Environment implements EnvironmentInterface, EnvironmentBuilderInter
     /**
      * {@inheritDoc}
      */
-    public function getBlockStartParsers(): iterable {
+    public function getBlockStartParsers(): iterable
+    {
         if (! $this->extensionsInitialized) {
             $this->initializeExtensions();
         }
@@ -191,7 +193,8 @@ final class Environment implements EnvironmentInterface, EnvironmentBuilderInter
         return $this->blockStartParsers->getIterator();
     }
 
-    public function getDelimiterProcessors(): DelimiterProcessorCollection {
+    public function getDelimiterProcessors(): DelimiterProcessorCollection
+    {
         if (! $this->extensionsInitialized) {
             $this->initializeExtensions();
         }
@@ -229,7 +232,8 @@ final class Environment implements EnvironmentInterface, EnvironmentBuilderInter
     /**
      * {@inheritDoc}
      */
-    public function getExtensions(): iterable {
+    public function getExtensions(): iterable
+    {
         return $this->extensions;
     }
 
@@ -252,7 +256,8 @@ final class Environment implements EnvironmentInterface, EnvironmentBuilderInter
         return $this;
     }
 
-    private function initializeExtensions(): void {
+    private function initializeExtensions(): void
+    {
         // Initialize the slug normalizer
         $this->getSlugNormalizer();
 
@@ -379,7 +384,8 @@ final class Environment implements EnvironmentInterface, EnvironmentBuilderInter
     /**
      * @return iterable<InlineParserInterface>
      */
-    public function getInlineParsers(): iterable {
+    public function getInlineParsers(): iterable
+    {
         if (! $this->extensionsInitialized) {
             $this->initializeExtensions();
         }
@@ -387,7 +393,8 @@ final class Environment implements EnvironmentInterface, EnvironmentBuilderInter
         return $this->inlineParsers->getIterator();
     }
 
-    public function getSlugNormalizer(): TextNormalizerInterface {
+    public function getSlugNormalizer(): TextNormalizerInterface
+    {
         if ($this->slugNormalizer === null) {
             $normalizer = $this->config->get('slug_normalizer/instance');
             \assert($normalizer instanceof TextNormalizerInterface);
@@ -419,7 +426,8 @@ final class Environment implements EnvironmentInterface, EnvironmentBuilderInter
         }
     }
 
-    public static function createDefaultConfiguration(): Configuration {
+    public static function createDefaultConfiguration(): Configuration
+    {
         return new Configuration([
             'html_input' => Expect::anyOf(HtmlFilter::STRIP, HtmlFilter::ALLOW, HtmlFilter::ESCAPE)->default(HtmlFilter::ALLOW),
             'allow_unsafe_links' => Expect::bool(true),

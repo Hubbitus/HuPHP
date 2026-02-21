@@ -63,7 +63,8 @@ class InputArgument
     /**
      * Returns the argument name.
      */
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
@@ -72,7 +73,8 @@ class InputArgument
      *
      * @return bool true if parameter mode is self::REQUIRED, false otherwise
      */
-    public function isRequired(): bool {
+    public function isRequired(): bool
+    {
         return self::REQUIRED === (self::REQUIRED & $this->mode);
     }
 
@@ -81,7 +83,8 @@ class InputArgument
      *
      * @return bool true if mode is self::IS_ARRAY, false otherwise
      */
-    public function isArray(): bool {
+    public function isArray(): bool
+    {
         return self::IS_ARRAY === (self::IS_ARRAY & $this->mode);
     }
 
@@ -120,7 +123,8 @@ class InputArgument
         return $this->default;
     }
 
-    public function hasCompletion(): bool {
+    public function hasCompletion(): bool
+    {
         return [] !== $this->suggestedValues;
     }
 
@@ -143,7 +147,8 @@ class InputArgument
     /**
      * Returns the description text.
      */
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         return $this->description;
     }
 }

@@ -47,7 +47,8 @@ class Stopwatch implements ResetInterface
     /**
      * @return Section[]
      */
-    public function getSections(): array {
+    public function getSections(): array
+    {
         return $this->sections;
     }
 

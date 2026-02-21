@@ -594,7 +594,8 @@ final class JsonConverter
      * @codeCoverageIgnore
      */
     #[Deprecated(message:'use League\Csv\JsonConverter::__construct() instead', since:'league/csv:9.22.0')]
-    public static function create(): self {
+    public static function create(): self
+    {
         return new self(
             flags: 0,
             depth: 512,

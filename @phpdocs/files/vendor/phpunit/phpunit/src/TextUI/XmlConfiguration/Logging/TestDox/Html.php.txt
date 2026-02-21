@@ -28,7 +28,8 @@ final class Html
         $this->target = $target;
     }
 
-    public function target(): File {
+    public function target(): File
+    {
         return $this->target;
     }
 }

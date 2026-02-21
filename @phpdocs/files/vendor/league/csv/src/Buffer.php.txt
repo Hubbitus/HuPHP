@@ -130,22 +130,26 @@ final class Buffer implements TabularData
         return $bytes + $dataStorage->insertAll($this->getRecords());
     }
 
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return [] === $this->rows;
     }
 
-    public function hasHeader(): bool {
+    public function hasHeader(): bool
+    {
         return [] !== $this->header;
     }
 
-    public function recordCount(): int {
+    public function recordCount(): int
+    {
         return count($this->rows);
     }
 
     /**
      * @return list<string>|array{}
      */
-    public function getHeader(): array {
+    public function getHeader(): array
+    {
         return $this->header;
     }
 
@@ -237,7 +241,8 @@ final class Buffer implements TabularData
         return array_key_first($this->rows);
     }
 
-    public function first(): array {
+    public function first(): array
+    {
         return null === ($offset = $this->firstOffset()) ? [] : $this->rowToRecord($this->rows[$offset], $this->header);
     }
 
@@ -261,7 +266,8 @@ final class Buffer implements TabularData
         return array_key_last($this->rows);
     }
 
-    public function last(): array {
+    public function last(): array
+    {
         return null === ($offset = $this->lastOffset()) ? [] : $this->rowToRecord($this->rows[$offset], $this->header);
     }
 
@@ -394,7 +400,8 @@ final class Buffer implements TabularData
         return $affectedRecords;
     }
 
-    public function truncate(): void {
+    public function truncate(): void
+    {
         $this->rows = [];
     }
 

@@ -41,7 +41,8 @@ final class CitationInlineNodeTransformer implements NodeTransformer
         return $node instanceof CitationInlineNode;
     }
 
-    public function getPriority(): int {
+    public function getPriority(): int
+    {
         // After CitationTargetTransformer
         return 2000;
     }

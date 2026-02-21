@@ -61,7 +61,8 @@ class EnvPlaceholderParameterBag extends ParameterBag
     /**
      * Gets the common env placeholder prefix for env vars created by this bag.
      */
-    public function getEnvPlaceholderUniquePrefix(): string {
+    public function getEnvPlaceholderUniquePrefix(): string
+    {
         if (!isset($this->envPlaceholderUniquePrefix)) {
             $reproducibleEntropy = unserialize(serialize($this->parameters));
             array_walk_recursive($reproducibleEntropy, function (&$v) { $v = null; });
@@ -76,11 +77,13 @@ class EnvPlaceholderParameterBag extends ParameterBag
      *
      * @return string[][] A map of env var names to their placeholders
      */
-    public function getEnvPlaceholders(): array {
+    public function getEnvPlaceholders(): array
+    {
         return $this->envPlaceholders;
     }
 
-    public function getUnusedEnvPlaceholders(): array {
+    public function getUnusedEnvPlaceholders(): array
+    {
         return $this->unusedEnvPlaceholders;
     }
 
@@ -131,7 +134,8 @@ class EnvPlaceholderParameterBag extends ParameterBag
      *
      * @return string[][]
      */
-    public function getProvidedTypes(): array {
+    public function getProvidedTypes(): array
+    {
         return $this->providedTypes;
     }
 

@@ -669,7 +669,8 @@ final class Test
         return $mapper->codeUnitsToSourceLines($codeUnits);
     }
 
-    private static function emptyHookMethodsArray(): array {
+    private static function emptyHookMethodsArray(): array
+    {
         return [
             'beforeClass'   => ['setUpBeforeClass'],
             'before'        => ['setUp'],

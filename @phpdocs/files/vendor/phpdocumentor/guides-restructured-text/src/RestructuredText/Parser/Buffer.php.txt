@@ -34,11 +34,13 @@ final class Buffer
     ) {
     }
 
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return $this->lines === [];
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return count($this->lines);
     }
 
@@ -63,13 +65,15 @@ final class Buffer
     }
 
     /** @return string[] */
-    public function getLines(): array {
+    public function getLines(): array
+    {
         $this->unIndent();
 
         return $this->lines;
     }
 
-    public function getLinesString(): string {
+    public function getLinesString(): string
+    {
         $this->unIndent();
 
         return implode("\n", $this->lines);
@@ -91,17 +95,20 @@ final class Buffer
         return $this->lines[$lastLineKey];
     }
 
-    public function clear(): void {
+    public function clear(): void
+    {
         $this->lines = [];
     }
 
-    public function trimLines(): void {
+    public function trimLines(): void
+    {
         foreach ($this->lines as $i => $line) {
             $this->lines[$i] = trim($line);
         }
     }
 
-    private function unIndent(): void {
+    private function unIndent(): void
+    {
         if ($this->unindentStrategy === UnindentStrategy::NONE) {
             return;
         }
@@ -120,7 +127,8 @@ final class Buffer
         }
     }
 
-    private function detectIndentation(): int {
+    private function detectIndentation(): int
+    {
         if (!isset($this->lines[0])) {
             return 0;
         }

@@ -43,19 +43,23 @@ final class TestDirectoryCollection implements Countable, IteratorAggregate
     /**
      * @return TestDirectory[]
      */
-    public function asArray(): array {
+    public function asArray(): array
+    {
         return $this->directories;
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return count($this->directories);
     }
 
-    public function getIterator(): TestDirectoryCollectionIterator {
+    public function getIterator(): TestDirectoryCollectionIterator
+    {
         return new TestDirectoryCollectionIterator($this);
     }
 
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return $this->count() === 0;
     }
 }

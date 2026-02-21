@@ -109,7 +109,8 @@ class Transform
     /**
      * Connect a series of output messages to various events to display progress.
      */
-    private function connectOutputToEvents(): void {
+    private function connectOutputToEvents(): void
+    {
         $this->eventDispatcher->addListener(
             Transformer::EVENT_PRE_TRANSFORM,
             function (PreTransformEvent $event): void {

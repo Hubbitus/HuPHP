@@ -11,6 +11,8 @@ declare(strict_types=1);
 * @created 2008-06-26 03:58
 **/
 
+namespace Hubbitus\HuPHP\Debug;
+
 class DumpUtils {
 	/**
 	* Transform string, which is text-representation of requested var into more well formatted form.
@@ -18,25 +20,26 @@ class DumpUtils {
 	* @param string $dump String returned by print_r
 	* @return string. Transformed, well-formatted.
 	**/
-	public static function transformCorrect_print_r($dump){
-		return trim(
-			preg_replace(
-				array(
+	public static function transformCorrect_print_r($dump): string {
+		return \trim(
+			\preg_replace(
+				[
 					'/Array\n\s*\(/',
 					'/Object\n\s*\(/',
-					'/\["(.+)"\]=>\n /',
-					'/Array(0){\s+}/',
-				),
-				array(
+					'/\["(.+)"\]=>/',
+					'/Array\(0\){\s+}/',
+				],
+				[
 					'Array(',
 					'Object(',
 					'[\1]=>',
 					'Array(0){}',
-				),
+				],
 				$dump
 			)
 		);
 	}
+
 	/**
 	* Transform string, which is text-representation of requested var into more well formatted form.
 	* var_dump variant
@@ -49,8 +52,8 @@ class DumpUtils {
 			preg_replace(
 				array(
 					'/array(\(\d+\))\s+({)/i',
-					'/Object\n\s*\(/',
-					'/\["?(.+?)"?\]=>\n\s*/',
+					'/object\([^)]+\)\s+\(/',
+					'/\["?(.+?)"?\]=>/',
 				),
 				array(
 					'Array\1\2',
@@ -61,4 +64,4 @@ class DumpUtils {
 			)
 		);
 	}
-};
+}

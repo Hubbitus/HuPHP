@@ -39,11 +39,13 @@ final class SnapshotNodeList implements Countable, IteratorAggregate
         return $snapshot;
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return count($this->nodes);
     }
 
-    public function getIterator(): ArrayIterator {
+    public function getIterator(): ArrayIterator
+    {
         return new ArrayIterator($this->nodes);
     }
 }

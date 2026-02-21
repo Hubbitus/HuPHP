@@ -80,7 +80,8 @@ class FilterHandler extends Handler implements ProcessableHandlerInterface, Rese
     /**
      * @phpstan-return array<int, Level>
      */
-    public function getAcceptedLevels(): array {
+    public function getAcceptedLevels(): array
+    {
         return array_flip($this->acceptedLevels);
     }
 
@@ -190,7 +191,8 @@ class FilterHandler extends Handler implements ProcessableHandlerInterface, Rese
     /**
      * {@inheritDoc}
      */
-    public function getFormatter(): FormatterInterface {
+    public function getFormatter(): FormatterInterface
+    {
         $handler = $this->getHandler();
         if ($handler instanceof FormattableHandlerInterface) {
             return $handler->getFormatter();

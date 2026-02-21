@@ -27,7 +27,8 @@ class Description extends AbstractBlock implements TightBlockInterface
         $this->tight = $tight;
     }
 
-    public function isTight(): bool {
+    public function isTight(): bool
+    {
         return $this->tight;
     }
 

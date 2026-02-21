@@ -434,7 +434,8 @@ class FragmentFinder
      * Returns a new instance.
      */
     #[Deprecated(message:'use League\Csv\FragmentFinder::__construct()', since:'league/csv:9.22.0')]
-    public static function create(): self {
+    public static function create(): self
+    {
         return new self();
     }
 }

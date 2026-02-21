@@ -23,11 +23,13 @@ abstract class InlineNode extends AbstractNode implements InlineNodeInterface
         $this->value = $value;
     }
 
-    public function getType(): string {
+    public function getType(): string
+    {
         return $this->type;
     }
 
-    public function toString(): string {
+    public function toString(): string
+    {
         return $this->value;
     }
 }

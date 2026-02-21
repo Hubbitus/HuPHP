@@ -122,7 +122,8 @@ final class JUnit extends Printer implements TestListener
     /**
      * Flush buffer and close output.
      */
-    public function flush(): void {
+    public function flush(): void
+    {
         $this->write($this->getXML());
 
         parent::flush();
@@ -372,7 +373,8 @@ final class JUnit extends Printer implements TestListener
     /**
      * Returns the XML as a string.
      */
-    public function getXML(): string {
+    public function getXML(): string
+    {
         return $this->document->saveXML();
     }
 
@@ -407,7 +409,8 @@ final class JUnit extends Printer implements TestListener
         $this->currentTestCase->appendChild($fault);
     }
 
-    private function doAddSkipped(): void {
+    private function doAddSkipped(): void
+    {
         if ($this->currentTestCase === null) {
             return;
         }

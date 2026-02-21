@@ -30,7 +30,8 @@ trait TranslatorTrait
         $this->locale = $locale;
     }
 
-    public function getLocale(): string {
+    public function getLocale(): string
+    {
         return $this->locale ?: (class_exists(\Locale::class) ? \Locale::getDefault() : 'en');
     }
 

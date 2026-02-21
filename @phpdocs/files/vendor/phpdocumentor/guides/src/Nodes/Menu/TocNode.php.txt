@@ -18,7 +18,8 @@ use function is_scalar;
 /** @link https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#table-of-contents */
 final class TocNode extends MenuNode
 {
-    public function getDepth(): int {
+    public function getDepth(): int
+    {
         if ($this->hasOption('depth') && is_scalar($this->getOption('depth'))) {
             return (int) $this->getOption('depth');
         }
@@ -30,7 +31,8 @@ final class TocNode extends MenuNode
         return self::DEFAULT_DEPTH;
     }
 
-    public function isPageLevelOnly(): bool {
+    public function isPageLevelOnly(): bool
+    {
         return $this->hasOption('titlesonly');
     }
 }

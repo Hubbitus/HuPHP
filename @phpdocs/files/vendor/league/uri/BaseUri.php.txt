@@ -80,7 +80,8 @@ class BaseUri implements Stringable, JsonSerializable, UriAccess
         return new static($this->uri, $uriFactory);
     }
 
-    public function withoutUriFactory(): static {
+    public function withoutUriFactory(): static
+    {
         return new static($this->uri, null);
     }
 
@@ -89,15 +90,18 @@ class BaseUri implements Stringable, JsonSerializable, UriAccess
         return $this->uri;
     }
 
-    public function getUriString(): string {
+    public function getUriString(): string
+    {
         return $this->uri->__toString();
     }
 
-    public function jsonSerialize(): string {
+    public function jsonSerialize(): string
+    {
         return $this->uri->__toString();
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->uri->__toString();
     }
 
@@ -179,7 +183,8 @@ class BaseUri implements Stringable, JsonSerializable, UriAccess
     /**
      * Tells whether the `file` scheme base URI represents a local file.
      */
-    public function isLocalFile(): bool {
+    public function isLocalFile(): bool
+    {
         return match (true) {
             'file' !== $this->uri->getScheme() => false,
             in_array($this->uri->getAuthority(), ['', null, 'localhost'], true) => true,
@@ -193,7 +198,8 @@ class BaseUri implements Stringable, JsonSerializable, UriAccess
      * A URI is opaque if and only if it is absolute
      * and does not have an authority path.
      */
-    public function isOpaque(): bool {
+    public function isOpaque(): bool
+    {
         return $this->nullValue === $this->uri->getAuthority()
             && $this->isAbsolute();
     }
@@ -220,14 +226,16 @@ class BaseUri implements Stringable, JsonSerializable, UriAccess
     /**
      * Tells whether the URI is absolute.
      */
-    public function isAbsolute(): bool {
+    public function isAbsolute(): bool
+    {
         return $this->nullValue !== $this->uri->getScheme();
     }
 
     /**
      * Tells whether the URI is a network path.
      */
-    public function isNetworkPath(): bool {
+    public function isNetworkPath(): bool
+    {
         return $this->nullValue === $this->uri->getScheme()
             && $this->nullValue !== $this->uri->getAuthority();
     }
@@ -235,7 +243,8 @@ class BaseUri implements Stringable, JsonSerializable, UriAccess
     /**
      * Tells whether the URI is an absolute path.
      */
-    public function isAbsolutePath(): bool {
+    public function isAbsolutePath(): bool
+    {
         return $this->nullValue === $this->uri->getScheme()
             && $this->nullValue === $this->uri->getAuthority()
             && '/' === ($this->uri->getPath()[0] ?? '');
@@ -244,7 +253,8 @@ class BaseUri implements Stringable, JsonSerializable, UriAccess
     /**
      * Tells whether the URI is a relative path.
      */
-    public function isRelativePath(): bool {
+    public function isRelativePath(): bool
+    {
         return $this->nullValue === $this->uri->getScheme()
             && $this->nullValue === $this->uri->getAuthority()
             && '/' !== ($this->uri->getPath()[0] ?? '');
@@ -286,14 +296,16 @@ class BaseUri implements Stringable, JsonSerializable, UriAccess
     /**
      * Tells whether the URI contains an Internationalized Domain Name (IDN).
      */
-    public function hasIdn(): bool {
+    public function hasIdn(): bool
+    {
         return IdnaConverter::isIdn($this->uri->getHost());
     }
 
     /**
      * Tells whether the URI contains an IPv4 regardless if it is mapped or native.
      */
-    public function hasIPv4(): bool {
+    public function hasIPv4(): bool
+    {
         return IPv4Converter::fromEnvironment()->isIpv4($this->uri->getHost());
     }
 

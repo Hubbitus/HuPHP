@@ -30,7 +30,8 @@ abstract class ApiDocumentationPass implements CompilerPassInterface
      */
     abstract protected function process(ApiSetDescriptor $subject): ApiSetDescriptor;
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         $self = new ReflectionObject($this);
         $attributes = $self->getAttributes(Stage::class);
 

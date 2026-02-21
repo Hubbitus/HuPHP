@@ -52,12 +52,14 @@ class Paginator
 	}
 
 
-	public function getPage(): int {
+	public function getPage(): int
+	{
 		return $this->base + $this->getPageIndex();
 	}
 
 
-	public function getFirstPage(): int {
+	public function getFirstPage(): int
+	{
 		return $this->base;
 	}
 
@@ -74,7 +76,8 @@ class Paginator
 	 * Returns the sequence number of the first element on the page
 	 * @return int<0, max>
 	 */
-	public function getFirstItemOnPage(): int {
+	public function getFirstItemOnPage(): int
+	{
 		return $this->itemCount !== 0
 			? $this->offset + 1
 			: 0;
@@ -85,7 +88,8 @@ class Paginator
 	 * Returns the sequence number of the last element on the page
 	 * @return int<0, max>
 	 */
-	public function getLastItemOnPage(): int {
+	public function getLastItemOnPage(): int
+	{
 		return $this->offset + $this->length;
 	}
 
@@ -97,7 +101,8 @@ class Paginator
 	}
 
 
-	public function getBase(): int {
+	public function getBase(): int
+	{
 		return $this->base;
 	}
 
@@ -106,7 +111,8 @@ class Paginator
 	 * Returns zero-based page number.
 	 * @return int<0, max>
 	 */
-	protected function getPageIndex(): int {
+	protected function getPageIndex(): int
+	{
 		$index = max(0, $this->page - $this->base);
 		return $this->itemCount === null
 			? $index
@@ -114,12 +120,14 @@ class Paginator
 	}
 
 
-	public function isFirst(): bool {
+	public function isFirst(): bool
+	{
 		return $this->getPageIndex() === 0;
 	}
 
 
-	public function isLast(): bool {
+	public function isLast(): bool
+	{
 		return $this->itemCount === null
 			? false
 			: $this->getPageIndex() >= $this->getPageCount() - 1;
@@ -147,7 +155,8 @@ class Paginator
 	/**
 	 * @return positive-int
 	 */
-	public function getItemsPerPage(): int {
+	public function getItemsPerPage(): int
+	{
 		return $this->itemsPerPage;
 	}
 
@@ -172,7 +181,8 @@ class Paginator
 	 * Returns the absolute index of the first item on current page.
 	 * @return int<0, max>
 	 */
-	public function getOffset(): int {
+	public function getOffset(): int
+	{
 		return $this->getPageIndex() * $this->itemsPerPage;
 	}
 
@@ -193,7 +203,8 @@ class Paginator
 	 * Returns the number of items on current page.
 	 * @return int<0, max>
 	 */
-	public function getLength(): int {
+	public function getLength(): int
+	{
 		return $this->itemCount === null
 			? $this->itemsPerPage
 			: max(0, min($this->itemsPerPage, $this->itemCount - $this->getPageIndex() * $this->itemsPerPage));

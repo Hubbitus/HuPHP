@@ -57,7 +57,8 @@ final class NameFilterIterator extends RecursiveFilterIterator
     /**
      * @throws InvalidArgumentException
      */
-    public function accept(): bool {
+    public function accept(): bool
+    {
         $test = $this->getInnerIterator()->current();
 
         if ($test instanceof TestSuite) {

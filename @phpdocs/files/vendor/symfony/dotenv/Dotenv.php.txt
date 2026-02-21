@@ -264,7 +264,8 @@ final class Dotenv
         }
     }
 
-    private function lexVarname(): string {
+    private function lexVarname(): string
+    {
         // var name + optional export
         if (!preg_match('/(export[ \t]++)?('.self::VARNAME_REGEX.')/A', $this->data, $matches, 0, $this->cursor)) {
             throw $this->createFormatException('Invalid character in variable name');
@@ -291,7 +292,8 @@ final class Dotenv
         return $matches[2];
     }
 
-    private function lexValue(): string {
+    private function lexValue(): string
+    {
         if (preg_match('/[ \t]*+(?:#.*)?$/Am', $this->data, $matches, 0, $this->cursor)) {
             $this->moveCursor($matches[0]);
             $this->skipEmptyLines();
@@ -383,7 +385,8 @@ final class Dotenv
         return $v;
     }
 
-    private function lexNestedExpression(): string {
+    private function lexNestedExpression(): string
+    {
         ++$this->cursor;
         $value = '';
 
@@ -408,7 +411,8 @@ final class Dotenv
         return $value;
     }
 
-    private function skipEmptyLines(): void {
+    private function skipEmptyLines(): void
+    {
         if (preg_match('/(?:\s*+(?:#[^\n]*+)?+)++/A', $this->data, $match, 0, $this->cursor)) {
             $this->moveCursor($match[0]);
         }

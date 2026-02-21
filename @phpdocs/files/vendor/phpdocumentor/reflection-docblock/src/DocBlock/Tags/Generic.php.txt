@@ -63,7 +63,8 @@ final class Generic extends BaseTag implements Factory\StaticMethod
     /**
      * Returns the tag as a serialized string
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         if ($this->description) {
             $description = $this->description->render();
         } else {

@@ -36,7 +36,8 @@ final class PropertyHook implements AttributeContainer, MetaDataContainerInterfa
     /**
      * Returns true when this hook is final. Otherwise, returns false.
      */
-    public function isFinal(): bool {
+    public function isFinal(): bool
+    {
         return $this->final;
     }
 
@@ -53,7 +54,8 @@ final class PropertyHook implements AttributeContainer, MetaDataContainerInterfa
      *
      * @return Argument[]
      */
-    public function getArguments(): array {
+    public function getArguments(): array
+    {
         return $this->arguments;
     }
 
@@ -68,7 +70,8 @@ final class PropertyHook implements AttributeContainer, MetaDataContainerInterfa
     /**
      * Returns the name of this hook.
      */
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
@@ -80,11 +83,13 @@ final class PropertyHook implements AttributeContainer, MetaDataContainerInterfa
         return $this->docBlock;
     }
 
-    public function getLocation(): Location {
+    public function getLocation(): Location
+    {
         return $this->location;
     }
 
-    public function getEndLocation(): Location {
+    public function getEndLocation(): Location
+    {
         return $this->endLocation;
     }
 }

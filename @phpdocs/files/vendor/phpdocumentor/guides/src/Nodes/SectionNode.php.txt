@@ -26,12 +26,14 @@ final class SectionNode extends CompoundNode implements LinkTargetNode
         parent::__construct([$title]);
     }
 
-    public function getTitle(): TitleNode {
+    public function getTitle(): TitleNode
+    {
         return $this->title;
     }
 
     /** @return TitleNode[] */
-    public function getTitles(): array {
+    public function getTitles(): array
+    {
         $titles = [$this->title];
         foreach ($this->value as $node) {
             if ($node instanceof self === false) {
@@ -44,15 +46,18 @@ final class SectionNode extends CompoundNode implements LinkTargetNode
         return $titles;
     }
 
-    public function getLinkType(): string {
+    public function getLinkType(): string
+    {
         return self::STD_LABEL;
     }
 
-    public function getId(): string {
+    public function getId(): string
+    {
         return $this->getTitle()->getId();
     }
 
-    public function getLinkText(): string {
+    public function getLinkText(): string
+    {
         return $this->getTitle()->toString();
     }
 }

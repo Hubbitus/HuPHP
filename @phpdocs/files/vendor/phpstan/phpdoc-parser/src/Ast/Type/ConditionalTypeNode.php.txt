@@ -29,7 +29,8 @@ class ConditionalTypeNode implements TypeNode
 		$this->negated = $negated;
 	}
 
-	public function __toString(): string {
+	public function __toString(): string
+	{
 		return sprintf(
 			'(%s %s %s ? %s : %s)',
 			$this->subjectType,

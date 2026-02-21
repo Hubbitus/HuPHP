@@ -36,7 +36,8 @@ final class StringStream implements Stream
      * @internal
      * @psalm-mutation-free
      */
-    public function take1(): TakeResult {
+    public function take1(): TakeResult
+    {
         if ($this->string === '') {
             throw new EndOfStream("End of stream was reached in " . $this->position->pretty());
         }
@@ -54,7 +55,8 @@ final class StringStream implements Stream
      * @inheritDoc
      * @psalm-mutation-free
      */
-    public function isEOF(): bool {
+    public function isEOF(): bool
+    {
         return $this->string === '';
     }
 
@@ -115,7 +117,8 @@ final class StringStream implements Stream
     /**
      * @psalm-mutation-free
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->string;
     }
 
@@ -123,7 +126,8 @@ final class StringStream implements Stream
      * @inheritDoc
      * @psalm-mutation-free
      */
-    public function position(): Position {
+    public function position(): Position
+    {
         return $this->position;
     }
 }

@@ -3,7 +3,7 @@
         'name' => 'hubbitus/huphp',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '1339e4a36d5f02509355c13bfab889bc6583d6a3',
+        'reference' => 'fe46200a9e571048fd72a845ed8f394210cd98da',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -49,7 +49,7 @@
         'hubbitus/huphp' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '1339e4a36d5f02509355c13bfab889bc6583d6a3',
+            'reference' => 'fe46200a9e571048fd72a845ed8f394210cd98da',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

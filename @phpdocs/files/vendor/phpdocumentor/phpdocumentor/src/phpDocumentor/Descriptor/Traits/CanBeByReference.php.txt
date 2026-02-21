@@ -25,7 +25,8 @@ trait CanBeByReference
         $this->byReference = $byReference;
     }
 
-    public function isByReference(): bool {
+    public function isByReference(): bool
+    {
         if (! isset($this->byReference)) {
             $this->byReference = IsApplicable::false();
         }

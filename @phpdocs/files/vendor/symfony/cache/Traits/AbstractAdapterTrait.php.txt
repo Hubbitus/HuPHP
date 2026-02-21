@@ -267,7 +267,8 @@ trait AbstractAdapterTrait
         return $wasEnabled;
     }
 
-    public function reset(): void {
+    public function reset(): void
+    {
         if ($this->deferred) {
             $this->commit();
         }
@@ -275,7 +276,8 @@ trait AbstractAdapterTrait
         $this->ids = [];
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 

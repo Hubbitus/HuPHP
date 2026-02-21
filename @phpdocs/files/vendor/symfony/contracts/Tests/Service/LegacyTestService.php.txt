@@ -19,7 +19,8 @@ use Symfony\Contracts\Service\ServiceSubscriberTrait;
 
 class LegacyParentTestService
 {
-    public function aParentService(): Service1 {
+    public function aParentService(): Service1
+    {
     }
 
     public function setContainer(ContainerInterface $container): ?ContainerInterface
@@ -35,12 +36,14 @@ class LegacyTestService extends LegacyParentTestService implements ServiceSubscr
     protected $container;
 
     #[SubscribedService]
-    public function aService(): Service2 {
+    public function aService(): Service2
+    {
         return $this->container->get(__METHOD__);
     }
 
     #[SubscribedService(nullable: true)]
-    public function nullableInAttribute(): Service2 {
+    public function nullableInAttribute(): Service2
+    {
         if (!$this->container->has(__METHOD__)) {
             throw new \LogicException();
         }
@@ -64,7 +67,8 @@ class LegacyTestService extends LegacyParentTestService implements ServiceSubscr
 class LegacyChildTestService extends LegacyTestService
 {
     #[SubscribedService]
-    public function aChildService(): LegacyService3 {
+    public function aChildService(): LegacyService3
+    {
         return $this->container->get(__METHOD__);
     }
 }

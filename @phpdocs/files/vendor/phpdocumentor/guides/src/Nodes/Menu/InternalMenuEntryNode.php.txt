@@ -35,21 +35,25 @@ final class InternalMenuEntryNode extends MenuEntryNode
         parent::__construct($url, $title, $level);
     }
 
-    public function getDocumentLink(): string {
+    public function getDocumentLink(): string
+    {
         return '/' . $this->url;
     }
 
-    public function getAnchor(): string {
+    public function getAnchor(): string
+    {
         return $this->anchor;
     }
 
     /** @return MenuEntryNode[] */
-    public function getChildren(): array {
+    public function getChildren(): array
+    {
         return $this->children;
     }
 
     /** @return MenuEntryNode[] */
-    public function getEntries(): array {
+    public function getEntries(): array
+    {
         return $this->children;
     }
 
@@ -58,12 +62,14 @@ final class InternalMenuEntryNode extends MenuEntryNode
         $this->children[] = $menuEntryNode;
     }
 
-    public function isDocumentRoot(): bool {
+    public function isDocumentRoot(): bool
+    {
         return $this->isDocumentRoot;
     }
 
     /** @return SectionMenuEntryNode[] */
-    public function getSections(): array {
+    public function getSections(): array
+    {
         return $this->sections;
     }
 
@@ -71,20 +77,24 @@ final class InternalMenuEntryNode extends MenuEntryNode
     {
         $this->sections[] = $section;
     }
-
-    public function isInRootline(): bool {
+    
+    public function isInRootline(): bool
+    {
         return $this->isInRootline;
     }
 
-    public function isCurrent(): bool {
+    public function isCurrent(): bool
+    {
         return $this->isCurrent;
     }
 
-    public function isExternal(): bool {
+    public function isExternal(): bool
+    {
         return $this->isExternal;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->url . '#' . $this->anchor;
     }
 }

@@ -51,7 +51,8 @@ final class ClassConstantTest extends TestCase
 
     private ObjectProphecy $docBlockFactory;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->docBlockFactory = $this->prophesize(DocBlockFactoryInterface::class);
         $this->fixture = new ClassConstant(
             $this->docBlockFactory->reveal(),
@@ -59,7 +60,8 @@ final class ClassConstantTest extends TestCase
         );
     }
 
-    public function testMatches(): void {
+    public function testMatches(): void
+    {
         $this->assertFalse($this->fixture->matches(self::createContext(null), new stdClass()));
         $this->assertTrue($this->fixture->matches(self::createContext(null), $this->buildConstantIteratorStub()));
     }
@@ -77,7 +79,8 @@ final class ClassConstantTest extends TestCase
     }
 
     /** @return array<string|int[]> */
-    public static function visibilityProvider(): array {
+    public static function visibilityProvider(): array
+    {
         return [
             [
                 ClassNode::MODIFIER_PUBLIC,
@@ -99,7 +102,8 @@ final class ClassConstantTest extends TestCase
         ];
     }
 
-    public function testCreateForInterface(): void {
+    public function testCreateForInterface(): void
+    {
         $interface = new InterfaceElement(new Fqsen('\myInterface'));
         $const = new Const_('\Space\MyInterface::MY_CONST1', new String_('a'));
         $const->setAttribute('fqsen', new Fqsen((string) $const->name));
@@ -110,7 +114,8 @@ final class ClassConstantTest extends TestCase
         self::assertInstanceOf(ConstantDescriptor::class, current($result->getConstants()));
     }
 
-    public function testCreateForTrait(): void {
+    public function testCreateForTrait(): void
+    {
         $trait = new TraitElement(new Fqsen('\myTrait'));
         $const = new Const_('\Space\MyTrait::MY_CONST1', new String_('a'));
         $const->setAttribute('fqsen', new Fqsen((string) $const->name));
@@ -121,7 +126,8 @@ final class ClassConstantTest extends TestCase
         self::assertInstanceOf(ConstantDescriptor::class, current($result->getConstants()));
     }
 
-    public function testCreateForEnum(): void {
+    public function testCreateForEnum(): void
+    {
         $enum = new EnumElement(new Fqsen('\myEnum'), new Null_());
         $const = new Const_('\Space\MyEnum::MY_CONST1', new String_('a'));
         $const->setAttribute('fqsen', new Fqsen((string) $const->name));
@@ -132,7 +138,8 @@ final class ClassConstantTest extends TestCase
         self::assertInstanceOf(ConstantDescriptor::class, current($result->getConstants()));
     }
 
-    public function testCreateWithDocBlock(): void {
+    public function testCreateWithDocBlock(): void
+    {
         $doc = new Doc('text');
         $docBlock = new DocBlockDescriptor('text');
         $this->docBlockFactory->create('text', null)->willReturn($docBlock);

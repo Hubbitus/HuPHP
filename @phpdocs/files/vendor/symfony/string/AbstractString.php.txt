@@ -241,7 +241,8 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
      */
     abstract public function chunk(int $length = 1): array;
 
-    public function collapseWhitespace(): static {
+    public function collapseWhitespace(): static
+    {
         $str = clone $this;
         $str->string = trim(preg_replace("/(?:[ \n\r\t\x0C]{2,}+|[\n\r\t\x0C])/", ' ', $str->string), " \n\r\t\x0C");
 
@@ -325,7 +326,8 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
 
     abstract public function folded(): static;
 
-    public function ignoreCase(): static {
+    public function ignoreCase(): static
+    {
         $str = clone $this;
         $str->ignoreCase = true;
 
@@ -376,13 +378,15 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return $i;
     }
 
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return '' === $this->string;
     }
 
     abstract public function join(array $strings, ?string $lastGlue = null): static;
 
-    public function jsonSerialize(): string {
+    public function jsonSerialize(): string
+    {
         return $this->string;
     }
 
@@ -516,15 +520,18 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return $b;
     }
 
-    public function toCodePointString(): CodePointString {
+    public function toCodePointString(): CodePointString
+    {
         return new CodePointString($this->string);
     }
 
-    public function toString(): string {
+    public function toString(): string
+    {
         return $this->string;
     }
 
-    public function toUnicodeString(): UnicodeString {
+    public function toUnicodeString(): UnicodeString
+    {
         return new UnicodeString($this->string);
     }
 
@@ -678,7 +685,8 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return $str;
     }
 
-    public function __sleep(): array {
+    public function __sleep(): array
+    {
         return ['string'];
     }
 
@@ -687,7 +695,8 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         $this->ignoreCase = false;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->string;
     }
 }

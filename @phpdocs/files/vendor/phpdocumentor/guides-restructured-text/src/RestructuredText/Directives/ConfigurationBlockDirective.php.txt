@@ -47,7 +47,8 @@ final class ConfigurationBlockDirective extends SubDirective
         $this->slugger = new AsciiSlugger();
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'configuration-block';
     }
 

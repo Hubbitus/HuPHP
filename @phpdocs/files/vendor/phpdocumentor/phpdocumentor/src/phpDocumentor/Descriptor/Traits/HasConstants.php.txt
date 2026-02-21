@@ -37,7 +37,8 @@ trait HasConstants
     }
 
     /** @return Collection<ConstantInterface> */
-    public function getConstants(): Collection {
+    public function getConstants(): Collection
+    {
         if (! isset($this->constants)) {
             $this->constants = Collection::fromInterfaceString(ConstantInterface::class);
         }
@@ -46,7 +47,8 @@ trait HasConstants
     }
 
     /** @return Collection<ConstantInterface> */
-    public function getInheritedConstants(): Collection {
+    public function getInheritedConstants(): Collection
+    {
         $inheritedConstants = Collection::fromInterfaceString(ConstantInterface::class);
 
         if (method_exists($this, 'getUsedTraits')) {

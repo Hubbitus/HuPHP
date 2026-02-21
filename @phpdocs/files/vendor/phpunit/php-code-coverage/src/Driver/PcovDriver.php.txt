@@ -43,11 +43,13 @@ final class PcovDriver extends Driver
         $this->filter = $filter;
     }
 
-    public function start(): void {
+    public function start(): void
+    {
         start();
     }
 
-    public function stop(): RawCodeCoverageData {
+    public function stop(): RawCodeCoverageData
+    {
         stop();
 
         $filesToCollectCoverageFor = waiting();
@@ -66,7 +68,8 @@ final class PcovDriver extends Driver
         return RawCodeCoverageData::fromXdebugWithoutPathCoverage($collected);
     }
 
-    public function nameAndVersion(): string {
+    public function nameAndVersion(): string
+    {
         return 'PCOV ' . phpversion('pcov');
     }
 }

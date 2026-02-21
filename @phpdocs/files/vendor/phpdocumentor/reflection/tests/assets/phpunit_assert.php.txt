@@ -2755,7 +2755,8 @@ abstract class Assert
     /**
      * @throws Exception
      */
-    public static function logicalAnd(): LogicalAnd {
+    public static function logicalAnd(): LogicalAnd
+    {
         $constraints = \func_get_args();
 
         $constraint = new LogicalAnd;
@@ -2764,7 +2765,8 @@ abstract class Assert
         return $constraint;
     }
 
-    public static function logicalOr(): LogicalOr {
+    public static function logicalOr(): LogicalOr
+    {
         $constraints = \func_get_args();
 
         $constraint = new LogicalOr;
@@ -2778,7 +2780,8 @@ abstract class Assert
         return new LogicalNot($constraint);
     }
 
-    public static function logicalXor(): LogicalXor {
+    public static function logicalXor(): LogicalXor
+    {
         $constraints = \func_get_args();
 
         $constraint = new LogicalXor;
@@ -2787,11 +2790,13 @@ abstract class Assert
         return $constraint;
     }
 
-    public static function anything(): IsAnything {
+    public static function anything(): IsAnything
+    {
         return new IsAnything;
     }
 
-    public static function isTrue(): IsTrue {
+    public static function isTrue(): IsTrue
+    {
         return new IsTrue;
     }
 
@@ -2800,27 +2805,33 @@ abstract class Assert
         return new Callback($callback);
     }
 
-    public static function isFalse(): IsFalse {
+    public static function isFalse(): IsFalse
+    {
         return new IsFalse;
     }
 
-    public static function isJson(): IsJson {
+    public static function isJson(): IsJson
+    {
         return new IsJson;
     }
 
-    public static function isNull(): IsNull {
+    public static function isNull(): IsNull
+    {
         return new IsNull;
     }
 
-    public static function isFinite(): IsFinite {
+    public static function isFinite(): IsFinite
+    {
         return new IsFinite;
     }
 
-    public static function isInfinite(): IsInfinite {
+    public static function isInfinite(): IsInfinite
+    {
         return new IsInfinite;
     }
 
-    public static function isNan(): IsNan {
+    public static function isNan(): IsNan
+    {
         return new IsNan;
     }
 
@@ -2883,23 +2894,28 @@ abstract class Assert
         );
     }
 
-    public static function isEmpty(): IsEmpty {
+    public static function isEmpty(): IsEmpty
+    {
         return new IsEmpty;
     }
 
-    public static function isWritable(): IsWritable {
+    public static function isWritable(): IsWritable
+    {
         return new IsWritable;
     }
 
-    public static function isReadable(): IsReadable {
+    public static function isReadable(): IsReadable
+    {
         return new IsReadable;
     }
 
-    public static function directoryExists(): DirectoryExists {
+    public static function directoryExists(): DirectoryExists
+    {
         return new DirectoryExists;
     }
 
-    public static function fileExists(): FileExists {
+    public static function fileExists(): FileExists
+    {
         return new FileExists;
     }
 
@@ -3174,14 +3190,16 @@ abstract class Assert
     /**
      * Return the current assertion count.
      */
-    public static function getCount(): int {
+    public static function getCount(): int
+    {
         return self::$count;
     }
 
     /**
      * Reset the assertion counter.
      */
-    public static function resetCount(): void {
+    public static function resetCount(): void
+    {
         self::$count = 0;
     }
 

@@ -35,7 +35,8 @@ class ArrayExpression extends AbstractExpression implements SupportDefinedTestIn
         }
     }
 
-    public function getKeyValuePairs(): array {
+    public function getKeyValuePairs(): array
+    {
         $pairs = [];
         foreach (array_chunk($this->nodes, 2) as $pair) {
             $pairs[] = [
@@ -65,7 +66,8 @@ class ArrayExpression extends AbstractExpression implements SupportDefinedTestIn
      *
      * @internal
      */
-    public function isSequence(): bool {
+    public function isSequence(): bool
+    {
         foreach ($this->getKeyValuePairs() as $i => $pair) {
             $key = $pair['key'];
             if ($key instanceof TempNameExpression) {

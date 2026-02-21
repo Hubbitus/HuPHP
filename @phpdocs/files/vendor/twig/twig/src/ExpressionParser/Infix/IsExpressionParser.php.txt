@@ -62,19 +62,23 @@ class IsExpressionParser extends AbstractExpressionParser implements InfixExpres
         return new $class($expr, $ready ? $test : $test->getName(), $arguments, $stream->getCurrent()->getLine());
     }
 
-    public function getPrecedence(): int {
+    public function getPrecedence(): int
+    {
         return 100;
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'is';
     }
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         return 'Twig tests';
     }
 
-    public function getAssociativity(): InfixAssociativity {
+    public function getAssociativity(): InfixAssociativity
+    {
         return InfixAssociativity::Left;
     }
 }

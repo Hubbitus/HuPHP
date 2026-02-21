@@ -24,7 +24,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(GlobalConstantIterator::class)]
 final class GlobalConstantIteratorTest extends m\Adapter\Phpunit\MockeryTestCase
 {
-    public function testIterateProps(): void {
+    public function testIterateProps(): void
+    {
         $const1 = new Const_('\Space\MY_CONST1', new Variable('a'));
         $const1->setAttribute('fqsen', new Fqsen((string) $const1->name));
         $const2 = new Const_('\Space\MY_CONST2', new Variable('b'));
@@ -41,7 +42,8 @@ final class GlobalConstantIteratorTest extends m\Adapter\Phpunit\MockeryTestCase
         }
     }
 
-    public function testKey(): void {
+    public function testKey(): void
+    {
         $constant = m::mock(ConstStatement::class);
 
         $fixture = new GlobalConstantIterator($constant);
@@ -51,7 +53,8 @@ final class GlobalConstantIteratorTest extends m\Adapter\Phpunit\MockeryTestCase
         $this->assertEquals(1, $fixture->key());
     }
 
-    public function testProxyMethods(): void {
+    public function testProxyMethods(): void
+    {
         $constant = m::mock(ConstStatement::class);
         $constant->shouldReceive('getLine')->once()->andReturn(10);
 
@@ -60,7 +63,8 @@ final class GlobalConstantIteratorTest extends m\Adapter\Phpunit\MockeryTestCase
         $this->assertEquals(10, $fixture->getLine());
     }
 
-    public function testGetDocCommentPropFirst(): void {
+    public function testGetDocCommentPropFirst(): void
+    {
         $const = m::mock(Const_::class);
         $constants = m::mock(ConstStatement::class);
         $constants->consts = [$const];
@@ -73,7 +77,8 @@ final class GlobalConstantIteratorTest extends m\Adapter\Phpunit\MockeryTestCase
         $this->assertEquals('test', $fixture->getDocComment()->getText());
     }
 
-    public function testGetDocComment(): void {
+    public function testGetDocComment(): void
+    {
         $const = m::mock(Const_::class);
         $constants = m::mock(ConstStatement::class);
         $constants->consts = [$const];

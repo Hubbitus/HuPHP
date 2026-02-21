@@ -48,14 +48,16 @@ class MarkdownInput implements MarkdownInputInterface
         $this->lineOffset = $lineOffset;
     }
 
-    public function getContent(): string {
+    public function getContent(): string
+    {
         return $this->content;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getLines(): iterable {
+    public function getLines(): iterable
+    {
         $this->splitLinesIfNeeded();
 
         \assert($this->lines !== null);
@@ -66,7 +68,8 @@ class MarkdownInput implements MarkdownInputInterface
         }
     }
 
-    public function getLineCount(): int {
+    public function getLineCount(): int
+    {
         $this->splitLinesIfNeeded();
 
         \assert($this->lineCount !== null);
@@ -74,7 +77,8 @@ class MarkdownInput implements MarkdownInputInterface
         return $this->lineCount;
     }
 
-    private function splitLinesIfNeeded(): void {
+    private function splitLinesIfNeeded(): void
+    {
         if ($this->lines !== null) {
             return;
         }

@@ -68,7 +68,8 @@ namespace PHPUnit\Framework\MockObject;
 
 trait MockedCloneMethodWithVoidReturnType
 {
-    public function __clone(): void {
+    public function __clone(): void
+    {
         $this->__phpunit_invocationMocker = clone $this->__phpunit_getInvocationHandler();
     }
 }
@@ -89,7 +90,8 @@ namespace PHPUnit\Framework\MockObject;
 
 trait UnmockedCloneMethodWithVoidReturnType
 {
-    public function __clone(): void {
+    public function __clone(): void
+    {
         $this->__phpunit_invocationMocker = clone $this->__phpunit_getInvocationHandler();
 
         parent::__clone();
@@ -1133,7 +1135,8 @@ EOT;
         return $methodName === $className;
     }
 
-    private function mockedCloneMethod(): string {
+    private function mockedCloneMethod(): string
+    {
         if (PHP_MAJOR_VERSION >= 8) {
             if (!trait_exists('\PHPUnit\Framework\MockObject\MockedCloneMethodWithVoidReturnType')) {
                 eval(self::MOCKED_CLONE_METHOD_WITH_VOID_RETURN_TYPE_TRAIT);
@@ -1149,7 +1152,8 @@ EOT;
         return PHP_EOL . '    use \PHPUnit\Framework\MockObject\MockedCloneMethodWithoutReturnType;';
     }
 
-    private function unmockedCloneMethod(): string {
+    private function unmockedCloneMethod(): string
+    {
         if (PHP_MAJOR_VERSION >= 8) {
             if (!trait_exists('\PHPUnit\Framework\MockObject\UnmockedCloneMethodWithVoidReturnType')) {
                 eval(self::UNMOCKED_CLONE_METHOD_WITH_VOID_RETURN_TYPE_TRAIT);

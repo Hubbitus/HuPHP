@@ -25,7 +25,8 @@ final class TableOfContentsBuilder implements CompilerPassInterface
     {
     }
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         return 'Builds table of contents for documentation sets';
     }
 

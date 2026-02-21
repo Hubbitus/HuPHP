@@ -33,7 +33,8 @@ trait HasDescription
      *
      * This method will automatically attempt to inherit the parent's description if this one has none.
      */
-    public function getDescription(): DescriptionDescriptor {
+    public function getDescription(): DescriptionDescriptor
+    {
         if ($this->description !== null) {
             return $this->description;
         }

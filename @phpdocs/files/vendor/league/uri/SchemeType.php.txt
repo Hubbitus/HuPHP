@@ -19,15 +19,18 @@ enum SchemeType
     case Hierarchical;
     case Unknown;
 
-    public function isOpaque(): bool {
+    public function isOpaque(): bool
+    {
         return self::Opaque === $this;
     }
 
-    public function isHierarchical(): bool {
+    public function isHierarchical(): bool
+    {
         return self::Hierarchical === $this;
     }
 
-    public function isUnknown(): bool {
+    public function isUnknown(): bool
+    {
         return self::Unknown === $this;
     }
 }

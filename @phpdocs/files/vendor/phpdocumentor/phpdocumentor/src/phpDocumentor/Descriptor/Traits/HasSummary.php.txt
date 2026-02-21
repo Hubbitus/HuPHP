@@ -39,7 +39,8 @@ trait HasSummary
      *
      * This method will automatically attempt to inherit the parent's summary if this one has none.
      */
-    public function getSummary(): string {
+    public function getSummary(): string
+    {
         if ($this->summary && strtolower(trim($this->summary)) !== '{@inheritdoc}') {
             return $this->summary;
         }

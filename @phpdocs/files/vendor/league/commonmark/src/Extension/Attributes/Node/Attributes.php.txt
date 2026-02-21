@@ -40,7 +40,8 @@ final class Attributes extends AbstractBlock
     /**
      * @return array<string, mixed>
      */
-    public function getAttributes(): array {
+    public function getAttributes(): array
+    {
         return $this->attributes;
     }
 
@@ -52,7 +53,8 @@ final class Attributes extends AbstractBlock
         $this->attributes = $attributes;
     }
 
-    public function getTarget(): int {
+    public function getTarget(): int
+    {
         return $this->target;
     }
 

@@ -24,7 +24,8 @@ final class SetVersionPass implements CompilerPassInterface
     {
     }
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         return 'Prepare version in repository';
     }
 

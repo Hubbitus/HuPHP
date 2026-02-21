@@ -39,7 +39,8 @@ class HTMLConverter
     protected string $offset_attr = '';
     protected string $column_attr = '';
 
-    private static function supportsModernDom(): bool {
+    private static function supportsModernDom(): bool
+    {
         return extension_loaded('dom') && class_exists(HTMLDocument::class);
     }
 
@@ -245,7 +246,8 @@ class HTMLConverter
      * Returns an new instance.
      */
     #[Deprecated(message:'use League\Csv\HTMLConverter::__construct()', since:'league/csv:9.22.0')]
-    public static function create(): self {
+    public static function create(): self
+    {
         return new self();
     }
 }

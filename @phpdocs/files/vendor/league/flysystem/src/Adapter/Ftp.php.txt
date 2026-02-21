@@ -577,7 +577,8 @@ class Ftp extends AbstractFtpAdapter
         return (int) preg_replace('/\D/', '', implode(' ', (array) $response));
     }
 
-    private function hasFtpConnection(): bool {
+    private function hasFtpConnection(): bool
+    {
         return is_resource($this->connection) || $this->connection instanceof \FTP\Connection;
     }
 }

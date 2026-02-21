@@ -84,7 +84,8 @@ class Lexer
         ], $options);
     }
 
-    private function initialize(): void {
+    private function initialize(): void
+    {
         if ($this->isInitialized) {
             return;
         }
@@ -235,7 +236,8 @@ class Lexer
         return new TokenStream($this->tokens, $this->source);
     }
 
-    private function lexData(): void {
+    private function lexData(): void
+    {
         // if no matches are left we return the rest of the template as simple text token
         if ($this->position == \count($this->positions[0]) - 1) {
             $this->pushToken(Token::TEXT_TYPE, substr($this->code, $this->cursor));
@@ -299,7 +301,8 @@ class Lexer
         }
     }
 
-    private function lexBlock(): void {
+    private function lexBlock(): void
+    {
         if (!$this->brackets && preg_match($this->regexes['lex_block'], $this->code, $match, 0, $this->cursor)) {
             $this->pushToken(Token::BLOCK_END_TYPE);
             $this->moveCursor($match[0]);
@@ -309,7 +312,8 @@ class Lexer
         }
     }
 
-    private function lexVar(): void {
+    private function lexVar(): void
+    {
         if (!$this->brackets && preg_match($this->regexes['lex_var'], $this->code, $match, 0, $this->cursor)) {
             $this->pushToken(Token::VAR_END_TYPE);
             $this->moveCursor($match[0]);
@@ -319,7 +323,8 @@ class Lexer
         }
     }
 
-    private function lexExpression(): void {
+    private function lexExpression(): void
+    {
         // whitespace
         if (preg_match('/\s+/A', $this->code, $match, 0, $this->cursor)) {
             $this->moveCursor($match[0]);
@@ -432,7 +437,8 @@ class Lexer
         return $result;
     }
 
-    private function lexRawData(): void {
+    private function lexRawData(): void
+    {
         if (!preg_match($this->regexes['lex_raw_data'], $this->code, $match, \PREG_OFFSET_CAPTURE, $this->cursor)) {
             throw new SyntaxError('Unexpected end of file: Unclosed "verbatim" block.', $this->lineno, $this->source);
         }
@@ -455,7 +461,8 @@ class Lexer
         $this->pushToken(Token::TEXT_TYPE, $text);
     }
 
-    private function lexComment(): void {
+    private function lexComment(): void
+    {
         if (!preg_match($this->regexes['lex_comment'], $this->code, $match, \PREG_OFFSET_CAPTURE, $this->cursor)) {
             throw new SyntaxError('Unclosed comment.', $this->lineno, $this->source);
         }
@@ -463,7 +470,8 @@ class Lexer
         $this->moveCursor(substr($this->code, $this->cursor, $match[0][1] - $this->cursor).$match[0][0]);
     }
 
-    private function lexString(): void {
+    private function lexString(): void
+    {
         if (preg_match($this->regexes['interpolation_start'], $this->code, $match, 0, $this->cursor)) {
             $this->brackets[] = [$this->options['interpolation'][0], $this->lineno];
             $this->pushToken(Token::INTERPOLATION_START_TYPE);
@@ -486,7 +494,8 @@ class Lexer
         }
     }
 
-    private function lexInterpolation(): void {
+    private function lexInterpolation(): void
+    {
         $bracket = end($this->brackets);
         if ($this->options['interpolation'][0] === $bracket[0] && preg_match($this->regexes['interpolation_end'], $this->code, $match, 0, $this->cursor)) {
             array_pop($this->brackets);
@@ -514,7 +523,8 @@ class Lexer
         $this->lineno += substr_count($text, "\n");
     }
 
-    private function getOperatorRegex(): string {
+    private function getOperatorRegex(): string
+    {
         $expressionParsers = [];
         foreach ($this->env->getExpressionParsers() as $expressionParser) {
             $expressionParsers = array_merge($expressionParsers, [$expressionParser->getName()], $expressionParser->getAliases());
@@ -552,7 +562,8 @@ class Lexer
         $this->state = $state;
     }
 
-    private function popState(): void {
+    private function popState(): void
+    {
         if (0 === \count($this->states)) {
             throw new \LogicException('Cannot pop state without a previous state.');
         }

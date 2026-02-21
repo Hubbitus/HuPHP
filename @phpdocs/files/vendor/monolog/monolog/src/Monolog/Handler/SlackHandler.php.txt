@@ -94,11 +94,13 @@ class SlackHandler extends SocketHandler
         $this->token = $token;
     }
 
-    public function getSlackRecord(): SlackRecord {
+    public function getSlackRecord(): SlackRecord
+    {
         return $this->slackRecord;
     }
 
-    public function getToken(): string {
+    public function getToken(): string
+    {
         return $this->token;
     }
 
@@ -169,7 +171,8 @@ class SlackHandler extends SocketHandler
      * If we do not read some but close the socket too early, slack sometimes
      * drops the request entirely.
      */
-    protected function finalizeWrite(): void {
+    protected function finalizeWrite(): void
+    {
         $res = $this->getResource();
         if (is_resource($res)) {
             @fread($res, 2048);
@@ -185,7 +188,8 @@ class SlackHandler extends SocketHandler
         return $this;
     }
 
-    public function getFormatter(): FormatterInterface {
+    public function getFormatter(): FormatterInterface
+    {
         $formatter = parent::getFormatter();
         $this->slackRecord->setFormatter($formatter);
 

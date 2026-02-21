@@ -26,11 +26,13 @@ final class DescriptionDescriptor implements Stringable
         $this->inlineTags = $tags;
     }
 
-    public static function createEmpty(): self {
+    public static function createEmpty(): self
+    {
         return new self(new Description(''), []);
     }
 
-    public function getBodyTemplate(): string {
+    public function getBodyTemplate(): string
+    {
         return $this->description->getBodyTemplate();
     }
 
@@ -44,11 +46,13 @@ final class DescriptionDescriptor implements Stringable
      *
      * @return array<int, TagDescriptor|null>
      */
-    public function getTags(): array {
+    public function getTags(): array
+    {
         return $this->inlineTags;
     }
 
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return $this->description->getBodyTemplate() === '';
     }
 
@@ -60,7 +64,8 @@ final class DescriptionDescriptor implements Stringable
      *
      * @deprecated will be removed in v4
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         $tags = [];
         foreach ($this->getTags() as $tag) {
             if ($tag === null) {

@@ -46,20 +46,32 @@ class Single {
 	* @params	variable number of parameters. Any other parameters directly passed to instantiated class-constructor.
 	**/
 	public static function &singleton($className){
-		$args = func_get_args();
-		unset($args[0]);//Class name
+		$args = \func_get_args();
+		\array_shift($args); // Remove class name
 
 		$hash = $className . '_' . self::hash($args);
 		if (!isset(self::$instance[$hash])){
-			if (!function_exists('__autoload') and (!function_exists('spl_autoload_functions') or !spl_autoload_functions())) self::tryIncludeByClassName($className);
+			if (!\function_exists('__autoload') && (!\function_exists('spl_autoload_functions') || !\spl_autoload_functions())) {
+				self::tryIncludeByClassName($className);
+			}
 
 			/*
 			Using Reflection to instantiate class with any args.
 			See http://ru2.php.net/manual/ru/function.call-user-func-array.php, comment of richard_harrison at rjharrison dot org
 			*/
 			$reflectionObj = new \ReflectionClass($className);
-			// use Reflection to create a new instance, using the $args
-			self::$instance[$hash] = $reflectionObj->newInstanceArgs($args);
+			
+			// Use Reflection to create a new instance, using the $args
+			if (empty($args)) {
+				self::$instance[$hash] = $reflectionObj->newInstance();
+			} else {
+				try {
+					self::$instance[$hash] = $reflectionObj->newInstanceArgs($args);
+				} catch (\ReflectionException $e) {
+					// Fallback for classes without constructor that accepts arguments
+					self::$instance[$hash] = $reflectionObj->newInstance();
+				}
+			}
 		}
 
 		return self::$instance[$hash];

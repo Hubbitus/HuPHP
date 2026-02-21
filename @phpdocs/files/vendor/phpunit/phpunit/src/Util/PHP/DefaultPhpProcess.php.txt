@@ -62,7 +62,8 @@ class DefaultPhpProcess extends AbstractPhpProcess
     /**
      * Returns an array of file handles to be used in place of pipes.
      */
-    protected function getHandles(): array {
+    protected function getHandles(): array
+    {
         return [];
     }
 
@@ -221,13 +222,15 @@ class DefaultPhpProcess extends AbstractPhpProcess
         fwrite($pipe, $job);
     }
 
-    protected function cleanup(): void {
+    protected function cleanup(): void
+    {
         if ($this->tempFile) {
             unlink($this->tempFile);
         }
     }
 
-    protected function useTemporaryFile(): bool {
+    protected function useTemporaryFile(): bool
+    {
         return false;
     }
 }

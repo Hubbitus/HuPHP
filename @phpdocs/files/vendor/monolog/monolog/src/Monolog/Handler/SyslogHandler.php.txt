@@ -50,7 +50,8 @@ class SyslogHandler extends AbstractSyslogHandler
     /**
      * {@inheritDoc}
      */
-    public function close(): void {
+    public function close(): void
+    {
         closelog();
     }
 

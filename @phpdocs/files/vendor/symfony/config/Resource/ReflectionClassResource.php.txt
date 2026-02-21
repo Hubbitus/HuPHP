@@ -55,11 +55,13 @@ class ReflectionClassResource implements SelfCheckingResourceInterface
         return true;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return 'reflection.'.$this->className;
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         if (!isset($this->hash)) {
             $this->hash = $this->computeHash();
             $this->loadFiles($this->classReflector);
@@ -97,7 +99,8 @@ class ReflectionClassResource implements SelfCheckingResourceInterface
         } while ($class = $class->getParentClass());
     }
 
-    private function computeHash(): string {
+    private function computeHash(): string
+    {
         try {
             $this->classReflector ??= new \ReflectionClass($this->className);
         } catch (\ReflectionException) {

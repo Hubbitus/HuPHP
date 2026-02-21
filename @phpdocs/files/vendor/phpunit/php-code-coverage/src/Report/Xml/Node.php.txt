@@ -32,11 +32,13 @@ abstract class Node
         $this->setContextNode($context);
     }
 
-    public function dom(): DOMDocument {
+    public function dom(): DOMDocument
+    {
         return $this->dom;
     }
 
-    public function totals(): Totals {
+    public function totals(): Totals
+    {
         $totalsContainer = $this->contextNode()->firstChild;
 
         if (!$totalsContainer) {
@@ -84,7 +86,8 @@ abstract class Node
         $this->contextNode = $context;
     }
 
-    protected function contextNode(): DOMElement {
+    protected function contextNode(): DOMElement
+    {
         return $this->contextNode;
     }
 }

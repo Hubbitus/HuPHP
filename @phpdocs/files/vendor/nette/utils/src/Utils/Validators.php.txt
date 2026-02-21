@@ -270,7 +270,8 @@ class Validators
 
 
 	/** @internal */
-	public static function isMixed(): bool {
+	public static function isMixed(): bool
+	{
 		return true;
 	}
 

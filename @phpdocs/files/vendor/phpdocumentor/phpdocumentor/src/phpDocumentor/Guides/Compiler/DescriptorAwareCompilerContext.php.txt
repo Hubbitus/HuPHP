@@ -16,7 +16,8 @@ final class DescriptorAwareCompilerContext extends CompilerContext
         parent::__construct($projectNode);
     }
 
-    public function getVersionDescriptor(): VersionDescriptor {
+    public function getVersionDescriptor(): VersionDescriptor
+    {
         return $this->versionDescriptor;
     }
 }

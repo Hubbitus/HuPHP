@@ -90,51 +90,63 @@ final class Configuration
         $this->testSuite        = $testSuite;
     }
 
-    public function filename(): string {
+    public function filename(): string
+    {
         return $this->filename;
     }
 
-    public function hasValidationErrors(): bool {
+    public function hasValidationErrors(): bool
+    {
         return $this->validationResult->hasValidationErrors();
     }
 
-    public function validationErrors(): string {
+    public function validationErrors(): string
+    {
         return $this->validationResult->asString();
     }
 
-    public function extensions(): ExtensionCollection {
+    public function extensions(): ExtensionCollection
+    {
         return $this->extensions;
     }
 
-    public function codeCoverage(): CodeCoverage {
+    public function codeCoverage(): CodeCoverage
+    {
         return $this->codeCoverage;
     }
 
-    public function groups(): Groups {
+    public function groups(): Groups
+    {
         return $this->groups;
     }
 
-    public function testdoxGroups(): Groups {
+    public function testdoxGroups(): Groups
+    {
         return $this->testdoxGroups;
     }
 
-    public function listeners(): ExtensionCollection {
+    public function listeners(): ExtensionCollection
+    {
         return $this->listeners;
     }
 
-    public function logging(): Logging {
+    public function logging(): Logging
+    {
         return $this->logging;
     }
 
-    public function php(): Php {
+    public function php(): Php
+    {
         return $this->php;
     }
 
-    public function phpunit(): PHPUnit {
+    public function phpunit(): PHPUnit
+    {
         return $this->phpunit;
     }
 
-    public function testSuite(): TestSuiteCollection {
+    public function testSuite(): TestSuiteCollection
+    {
         return $this->testSuite;
     }
 }

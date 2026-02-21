@@ -81,7 +81,8 @@ final class ContentsMenuEntryNodeTransformer extends AbstractMenuEntryNodeTransf
         return $newEntryNode->getSections();
     }
 
-    public function getPriority(): int {
+    public function getPriority(): int
+    {
         // After DocumentEntryTransformer
         return 4500;
     }

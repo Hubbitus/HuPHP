@@ -58,7 +58,8 @@ abstract class Type implements \Stringable
         return false;
     }
 
-    public function isNullable(): bool {
+    public function isNullable(): bool
+    {
         return false;
     }
 

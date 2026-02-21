@@ -1068,7 +1068,8 @@ final class File extends Renderer
     /**
      * @psalm-return array<int,true>
      */
-    private static function keywordTokens(): array {
+    private static function keywordTokens(): array
+    {
         if (self::$keywordTokens !== []) {
             return self::$keywordTokens;
         }

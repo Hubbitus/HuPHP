@@ -32,7 +32,8 @@ final class WindowsPhpProcess extends DefaultPhpProcess
     /**
      * @throws Exception
      */
-    protected function getHandles(): array {
+    protected function getHandles(): array
+    {
         if (false === $stdout_handle = tmpfile()) {
             throw new Exception(
                 'A temporary file could not be created; verify that your TEMP environment variable is writable',
@@ -44,7 +45,8 @@ final class WindowsPhpProcess extends DefaultPhpProcess
         ];
     }
 
-    protected function useTemporaryFile(): bool {
+    protected function useTemporaryFile(): bool
+    {
         return true;
     }
 }

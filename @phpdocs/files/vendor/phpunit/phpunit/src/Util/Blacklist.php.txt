@@ -26,7 +26,8 @@ final class Blacklist
      *
      * @return string[]
      */
-    public function getBlacklistedDirectories(): array {
+    public function getBlacklistedDirectories(): array
+    {
         return (new ExcludeList)->getExcludedDirectories();
     }
 

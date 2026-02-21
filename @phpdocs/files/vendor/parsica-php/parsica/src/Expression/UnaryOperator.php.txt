@@ -49,18 +49,21 @@ final class UnaryOperator
     /**
      * @psalm-return Parser<TSymbol>
      */
-    function symbol(): Parser {
+    function symbol(): Parser
+    {
         return $this->symbol;
     }
 
     /**
      * @psalm-return callable(TExpressionAST):TExpressionAST
      */
-    function transform(): callable {
+    function transform(): callable
+    {
         return $this->transform;
     }
 
-    function label(): string {
+    function label(): string
+    {
         return $this->label;
     }
 }

@@ -23,7 +23,8 @@ final class TitleParser implements Parser
         $document->setMetaTitle('' . $value);
     }
 
-    public function field(): string {
+    public function field(): string
+    {
         return 'title';
     }
 }

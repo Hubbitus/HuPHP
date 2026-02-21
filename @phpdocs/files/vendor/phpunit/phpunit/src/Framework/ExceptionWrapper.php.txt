@@ -54,7 +54,8 @@ final class ExceptionWrapper extends Exception
         $this->setOriginalException($t);
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         $string = TestFailure::exceptionToString($this);
 
         if ($trace = Filter::getFilteredStacktrace($this)) {
@@ -68,7 +69,8 @@ final class ExceptionWrapper extends Exception
         return $string;
     }
 
-    public function getClassName(): string {
+    public function getClassName(): string
+    {
         return $this->className;
     }
 

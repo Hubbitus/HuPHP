@@ -43,7 +43,8 @@ class GenericEvent extends Event implements \ArrayAccess, \IteratorAggregate
     /**
      * Getter for subject property.
      */
-    public function getSubject(): mixed {
+    public function getSubject(): mixed
+    {
         return $this->subject;
     }
 
@@ -76,7 +77,8 @@ class GenericEvent extends Event implements \ArrayAccess, \IteratorAggregate
     /**
      * Getter for all arguments.
      */
-    public function getArguments(): array {
+    public function getArguments(): array
+    {
         return $this->arguments;
     }
 

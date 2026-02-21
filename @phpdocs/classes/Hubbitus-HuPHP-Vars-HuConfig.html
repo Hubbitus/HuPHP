@@ -64,6 +64,10 @@
                 <a href="namespaces/hubbitus-huphp.html" class="">HuPHP</a>
                 
             </li>
+                    <li>
+                <a href="namespaces/hubbitus-tests.html" class="">Tests</a>
+                
+            </li>
             </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -718,15 +722,15 @@
                 
             </li>
                     <li>
+                <a href="packages/Debug-Backtrace.html" class="">Backtrace</a>
+                
+            </li>
+                    <li>
                 <a href="packages/Debug-Dump.html" class="">Dump</a>
                 
             </li>
                     <li>
                 <a href="packages/Debug-HuLOG.html" class="">HuLOG</a>
-                
-            </li>
-                    <li>
-                <a href="packages/Debug-Bactrace.html" class="">Bactrace</a>
                 
             </li>
             </ul>
@@ -796,28 +800,8 @@
 </h4>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Image.html" class="">Image</a>
-</h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/Image-GD.html" class="">GD</a>
-                
-            </li>
-            </ul>
-
-                                    <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/RegExp.html" class="">RegExp</a>
 </h4>
-
-                                    <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Console.html" class="">Console</a>
-</h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/Console-Getopt.html" class="">Getopt</a>
-                
-            </li>
-            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/System.html" class="">System</a>
@@ -924,9 +908,9 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/HuConfig.php"><a href="files/vars-huconfig.html"><abbr title="Vars/HuConfig.php">HuConfig.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.24" class="phpdocumentor-element-found-in__source" data-line="24" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.27" class="phpdocumentor-element-found-in__source" data-line="27" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
     </aside>
 
             <p class="phpdocumentor-summary">Class to provide easy access to $GLOBALS[&#039;__CONFIG&#039;] variables.</p>
@@ -1014,7 +998,7 @@ Single::def(&#039;HuConfig&#039;)-&gt;test-&gt;first</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Hubbitus-HuPHP-Vars-Settings-Settings.html#method___set">__set()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
 <dd>useful alias of {@see ::setSetting()} to provide easy access in style of $obj-&gt;PropertyName = &#039;Some new value&#039;;</dd>
 
@@ -1023,12 +1007,12 @@ Single::def(&#039;HuConfig&#039;)-&gt;test-&gt;first</dd>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Add setting vith value in possible settings.</dd>
+<dd>Add setting with value in possible settings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Hubbitus-HuPHP-Vars-Settings-Settings.html#method_clear">clear()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Clear all settings</dd>
 
@@ -1046,7 +1030,7 @@ without modification of main object I should clone it, but it is break one line 
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Format Field Primarily for {@see ::getString}, but may be used and separatly
+<dd>Format Field Primarily for {@see ::getString}, but may be used and separately
 $field one of:
 1) Именем настройки. Если найдена такая настройка и она не пуста, подставляется она
 2) Просто константной строкой, тогда выводится как есть
@@ -1083,7 +1067,7 @@ Also try include file &#039;includes/configs/&#039; . $name . &#039;.config.php&
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Return string in what merged settings by provided format.</dd>
+<dd>Get string representation of settings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Hubbitus-HuPHP-Vars-Settings-Settings.html#method_length">length()</a>
@@ -1095,14 +1079,14 @@ Also try include file &#039;includes/configs/&#039; . $name . &#039;.config.php&
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Hubbitus-HuPHP-Vars-Settings-SettingsCheck.html#method_mergeSettingsArray">mergeSettingsArray()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Reimplement extended variant to chect setting name possibility.</dd>
+<dd>Reimplement extended variant to check setting name possibility.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Hubbitus-HuPHP-Vars-Settings-SettingsCheck.html#method_nesting">nesting()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
 <dd>Emulate nesting.</dd>
 
@@ -1116,9 +1100,9 @@ Also try include file &#039;includes/configs/&#039; . $name . &#039;.config.php&
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Hubbitus-HuPHP-Vars-Settings-SettingsCheck.html#method_setSetting">setSetting()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: static    </span>
 </dt>
-<dd>Reimplement extended variant to chect setting name possibility.</dd>
+<dd>Reimplement extended variant to check setting name possibility.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Hubbitus-HuPHP-Vars-Settings-SettingsCheck.html#method_setSettingsArray">setSettingsArray()</a>
@@ -1157,9 +1141,9 @@ Also try include file &#039;includes/configs/&#039; . $name . &#039;.config.php&
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/SettingsCheck.php"><a href="files/vars-settings-settingscheck.html"><abbr title="Vars/Settings/SettingsCheck.php">SettingsCheck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.24" class="phpdocumentor-element-found-in__source" data-line="24" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.21" class="phpdocumentor-element-found-in__source" data-line="21" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
     </aside>
 
     
@@ -1168,7 +1152,7 @@ Also try include file &#039;includes/configs/&#039; . $name . &#039;.config.php&
         <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">$properties</span>
-     = <span class="phpdocumentor-signature__default-value">array()</span></code>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
     
     
@@ -1200,9 +1184,9 @@ Also try include file &#039;includes/configs/&#039; . $name . &#039;.config.php&
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/HuConfig.php"><a href="files/vars-huconfig.html"><abbr title="Vars/HuConfig.php">HuConfig.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.27" class="phpdocumentor-element-found-in__source" data-line="27" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.30" class="phpdocumentor-element-found-in__source" data-line="30" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Constructor.</p>
@@ -1236,9 +1220,9 @@ Also try include file &#039;includes/configs/&#039; . $name . &#039;.config.php&
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/HuConfig.php"><a href="files/vars-huconfig.html"><abbr title="Vars/HuConfig.php">HuConfig.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.49" class="phpdocumentor-element-found-in__source" data-line="49" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.54" class="phpdocumentor-element-found-in__source" data-line="54" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">For more comfort access in config fields without temporary variables like:
@@ -1299,9 +1283,9 @@ Single::def(&#039;HuConfig&#039;)-&gt;test-&gt;first</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/SettingsCheck.php"><a href="files/vars-settings-settingscheck.html"><abbr title="Vars/Settings/SettingsCheck.php">SettingsCheck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.76" class="phpdocumentor-element-found-in__source" data-line="76" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.79" class="phpdocumentor-element-found-in__source" data-line="79" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Check isset of requested property. See http://php.net/isset comment of &quot;phpnotes dot 20 dot zsh at spamgourmet dot com&quot;</p>
@@ -1351,16 +1335,16 @@ Single::def(&#039;HuConfig&#039;)-&gt;test-&gt;first</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/Settings.php"><a href="files/vars-settings-settings.html"><abbr title="Vars/Settings/Settings.php">Settings.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">91</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.91" class="phpdocumentor-element-found-in__source" data-line="91" data-modal="source-view" data-src="files/Vars/Settings/Settings.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.97" class="phpdocumentor-element-found-in__source" data-line="97" data-modal="source-view" data-src="files/Vars/Settings/Settings.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">useful alias of {@see ::setSetting()} to provide easy access in style of $obj-&gt;PropertyName = &#039;Some new value&#039;;</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">__set</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__set</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1385,22 +1369,6 @@ Single::def(&#039;HuConfig&#039;)-&gt;test-&gt;first</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/Hubbitus-HuPHP-Vars-Settings-Settings.html#method___set#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">@return</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>&amp;$this</p>
-</section>
-
-                                    </dd>
-                                            </dl>
 
         
     
@@ -1425,7 +1393,7 @@ Single::def(&#039;HuConfig&#039;)-&gt;test-&gt;first</p>
             <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.58" class="phpdocumentor-element-found-in__source" data-line="58" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
     </aside>
 
-        <p class="phpdocumentor-summary">Add setting vith value in possible settings.</p>
+        <p class="phpdocumentor-summary">Add setting with value in possible settings.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1473,16 +1441,16 @@ Single::def(&#039;HuConfig&#039;)-&gt;test-&gt;first</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/Settings.php"><a href="files/vars-settings-settings.html"><abbr title="Vars/Settings/Settings.php">Settings.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">163</span>
+    <span class="phpdocumentor-element-found-in__line">169</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.163" class="phpdocumentor-element-found-in__source" data-line="163" data-modal="source-view" data-src="files/Vars/Settings/Settings.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.169" class="phpdocumentor-element-found-in__source" data-line="169" data-modal="source-view" data-src="files/Vars/Settings/Settings.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Clear all settings</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">clear</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">clear</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1509,7 +1477,11 @@ Single::def(&#039;HuConfig&#039;)-&gt;test-&gt;first</p>
 
         
     
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1587,12 +1559,12 @@ HuClass::clone($dellin-&gt;getNotMatchedCities())-&gt;filter(create_function('$v
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/Settings.php"><a href="files/vars-settings-settings.html"><abbr title="Vars/Settings/Settings.php">Settings.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">149</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.149" class="phpdocumentor-element-found-in__source" data-line="149" data-modal="source-view" data-src="files/Vars/Settings/Settings.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.154" class="phpdocumentor-element-found-in__source" data-line="154" data-modal="source-view" data-src="files/Vars/Settings/Settings.php.txt"></a>
     </aside>
 
-        <p class="phpdocumentor-summary">Format Field Primarily for {@see ::getString}, but may be used and separatly
+        <p class="phpdocumentor-summary">Format Field Primarily for {@see ::getString}, but may be used and separately
 $field one of:
 1) Именем настройки. Если найдена такая настройка и она не пуста, подставляется она
 2) Просто константной строкой, тогда выводится как есть
@@ -1652,9 +1624,9 @@ $field one of:
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/HuConfig.php"><a href="files/vars-huconfig.html"><abbr title="Vars/HuConfig.php">HuConfig.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.64" class="phpdocumentor-element-found-in__source" data-line="64" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.71" class="phpdocumentor-element-found-in__source" data-line="71" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Reimplement as initial, only return value by reference
@@ -1662,7 +1634,7 @@ Also try include file &#039;includes/configs/&#039; . $name . &#039;.config.php&
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">getProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nothrow</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">getProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$noThrow</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1672,17 +1644,17 @@ Also try include file &#039;includes/configs/&#039; . $name . &#039;.config.php&
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$name</span>
-                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$nothrow</span>
+                <span class="phpdocumentor-argument-list__argument__name">$noThrow</span>
                 : <span class="phpdocumentor-argument-list__argument__type">bool</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>If true - silently not thrown any exception.</p>
+                    <section class="phpdocumentor-description"><p>=false If true - silently not thrown any exception.</p>
 </section>
 
             </dd>
@@ -1722,16 +1694,16 @@ Also try include file &#039;includes/configs/&#039; . $name . &#039;.config.php&
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/HuConfig.php"><a href="files/vars-huconfig.html"><abbr title="Vars/HuConfig.php">HuConfig.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.39" class="phpdocumentor-element-found-in__source" data-line="39" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.43" class="phpdocumentor-element-found-in__source" data-line="43" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">As __get before.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">getRaw</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$varname</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nothrow</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">getRaw</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$varname</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$noThrow</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1750,7 +1722,7 @@ Bee careful - after standard call (not raw) original Array value was replaced by
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$nothrow</span>
+                <span class="phpdocumentor-argument-list__argument__name">$noThrow</span>
                 : <span class="phpdocumentor-argument-list__argument__type">bool</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -1796,12 +1768,12 @@ Bee careful - after standard call (not raw) original Array value was replaced by
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/Settings.php"><a href="files/vars-settings-settings.html"><abbr title="Vars/Settings/Settings.php">Settings.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">126</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.121" class="phpdocumentor-element-found-in__source" data-line="121" data-modal="source-view" data-src="files/Vars/Settings/Settings.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.126" class="phpdocumentor-element-found-in__source" data-line="126" data-modal="source-view" data-src="files/Vars/Settings/Settings.php.txt"></a>
     </aside>
 
-        <p class="phpdocumentor-summary">Return string in what merged settings by provided format.</p>
+        <p class="phpdocumentor-summary">Get string representation of settings.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1810,9 +1782,7 @@ Bee careful - after standard call (not raw) original Array value was replaced by
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Description of elements $fields <abbr title="\Hubbitus\HuPHP\Vars\Settings\::formatField()">::formatField()</abbr> method</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1825,6 +1795,21 @@ Bee careful - after standard call (not raw) original Array value was replaced by
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Hubbitus-HuPHP-Vars-Settings-Settings.html#method_getString#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">see</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Hubbitus\HuPHP\Vars\Settings\::formatField()">::formatField()</abbr></span>
+                                        
+                                             
+                                    </dd>
+                                            </dl>
 
         
     
@@ -1848,9 +1833,9 @@ Bee careful - after standard call (not raw) original Array value was replaced by
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/Settings.php"><a href="files/vars-settings-settings.html"><abbr title="Vars/Settings/Settings.php">Settings.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">172</span>
+    <span class="phpdocumentor-element-found-in__line">179</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.172" class="phpdocumentor-element-found-in__source" data-line="172" data-modal="source-view" data-src="files/Vars/Settings/Settings.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.179" class="phpdocumentor-element-found-in__source" data-line="179" data-modal="source-view" data-src="files/Vars/Settings/Settings.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return amount of settings.</p>
@@ -1888,16 +1873,16 @@ Bee careful - after standard call (not raw) original Array value was replaced by
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/SettingsCheck.php"><a href="files/vars-settings-settingscheck.html"><abbr title="Vars/Settings/SettingsCheck.php">SettingsCheck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.83" class="phpdocumentor-element-found-in__source" data-line="83" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.87" class="phpdocumentor-element-found-in__source" data-line="87" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
     </aside>
 
-        <p class="phpdocumentor-summary">Reimplement extended variant to chect setting name possibility.</p>
+        <p class="phpdocumentor-summary">Reimplement extended variant to check setting name possibility.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">mergeSettingsArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$setArr</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">mergeSettingsArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$setArr</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1948,24 +1933,24 @@ Bee careful - after standard call (not raw) original Array value was replaced by
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/SettingsCheck.php"><a href="files/vars-settings-settingscheck.html"><abbr title="Vars/Settings/SettingsCheck.php">SettingsCheck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">119</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.113" class="phpdocumentor-element-found-in__source" data-line="113" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.119" class="phpdocumentor-element-found-in__source" data-line="119" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Emulate nesting.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">nesting</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">nesting</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
         <section class="phpdocumentor-description"><p>As we reimplement object to do not have properties itself, instead
 define it in $this-&gt;properties we should  provide mechanism to emulate
-nestiong, to do not mention each time again presented properties.
-So, with this method we can define in childs new propery
+nesting, to do not mention each time again presented properties.
+So, with this method we can define in children new property
 $this-&gt;properties_addon and than call this method (in constructor f.e.)
 to add new props.</p>
 <p>So, method MUST be called explicitly. No any magic here!!!</p>
@@ -2073,16 +2058,16 @@ So, in this page, below, i found next fine workaround (see comment and example o
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/SettingsCheck.php"><a href="files/vars-settings-settingscheck.html"><abbr title="Vars/Settings/SettingsCheck.php">SettingsCheck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.41" class="phpdocumentor-element-found-in__source" data-line="41" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.38" class="phpdocumentor-element-found-in__source" data-line="38" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
     </aside>
 
-        <p class="phpdocumentor-summary">Reimplement extended variant to chect setting name possibility.</p>
+        <p class="phpdocumentor-summary">Reimplement extended variant to check setting name possibility.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">setSetting</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">setSetting</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2124,7 +2109,11 @@ So, in this page, below, i found next fine workaround (see comment and example o
 
         
     
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -2140,9 +2129,9 @@ So, in this page, below, i found next fine workaround (see comment and example o
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/Settings/SettingsCheck.php"><a href="files/vars-settings-settingscheck.html"><abbr title="Vars/Settings/SettingsCheck.php">SettingsCheck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
-            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.66" class="phpdocumentor-element-found-in__source" data-line="66" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Vars-HuConfig.html#source-view.67" class="phpdocumentor-element-found-in__source" data-line="67" data-modal="source-view" data-src="files/Vars/Settings/SettingsCheck.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Reimplement extended variant to check setting name possibility.</p>

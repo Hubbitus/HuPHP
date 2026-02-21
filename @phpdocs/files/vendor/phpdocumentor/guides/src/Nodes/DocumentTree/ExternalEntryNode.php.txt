@@ -21,7 +21,8 @@ final class ExternalEntryNode extends EntryNode
         $this->value = $value;
     }
 
-    public function getTitle(): string {
+    public function getTitle(): string
+    {
         return $this->title;
     }
 }

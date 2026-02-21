@@ -73,7 +73,8 @@ abstract class AbstractHandler extends Handler implements ResettableInterface
      *
      * @phpstan-return Level
      */
-    public function getLevel(): int {
+    public function getLevel(): int
+    {
         return $this->level;
     }
 
@@ -97,7 +98,8 @@ abstract class AbstractHandler extends Handler implements ResettableInterface
      * @return bool true means that this handler allows bubbling.
      *              false means that bubbling is not permitted.
      */
-    public function getBubble(): bool {
+    public function getBubble(): bool
+    {
         return $this->bubble;
     }
 

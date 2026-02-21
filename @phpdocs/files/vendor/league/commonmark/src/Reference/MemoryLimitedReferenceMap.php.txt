@@ -61,7 +61,8 @@ final class MemoryLimitedReferenceMap implements ReferenceMapInterface
         return $this->decorated->getIterator();
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return $this->decorated->count();
     }
 }

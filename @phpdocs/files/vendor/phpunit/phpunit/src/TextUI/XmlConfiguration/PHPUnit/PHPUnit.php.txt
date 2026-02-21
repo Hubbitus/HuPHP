@@ -330,21 +330,24 @@ final class PHPUnit
         $this->conflictBetweenPrinterClassAndTestdox           = $conflictBetweenPrinterClassAndTestdox;
     }
 
-    public function cacheResult(): bool {
+    public function cacheResult(): bool
+    {
         return $this->cacheResult;
     }
 
     /**
      * @psalm-assert-if-true !null $this->cacheResultFile
      */
-    public function hasCacheResultFile(): bool {
+    public function hasCacheResultFile(): bool
+    {
         return $this->cacheResultFile !== null;
     }
 
     /**
      * @throws Exception
      */
-    public function cacheResultFile(): string {
+    public function cacheResultFile(): string
+    {
         if (!$this->hasCacheResultFile()) {
             throw new Exception('Cache result file is not configured');
         }
@@ -357,57 +360,69 @@ final class PHPUnit
         return $this->columns;
     }
 
-    public function colors(): string {
+    public function colors(): string
+    {
         return $this->colors;
     }
 
-    public function stderr(): bool {
+    public function stderr(): bool
+    {
         return $this->stderr;
     }
 
-    public function noInteraction(): bool {
+    public function noInteraction(): bool
+    {
         return $this->noInteraction;
     }
 
-    public function verbose(): bool {
+    public function verbose(): bool
+    {
         return $this->verbose;
     }
 
-    public function reverseDefectList(): bool {
+    public function reverseDefectList(): bool
+    {
         return $this->reverseDefectList;
     }
 
-    public function convertDeprecationsToExceptions(): bool {
+    public function convertDeprecationsToExceptions(): bool
+    {
         return $this->convertDeprecationsToExceptions;
     }
 
-    public function convertErrorsToExceptions(): bool {
+    public function convertErrorsToExceptions(): bool
+    {
         return $this->convertErrorsToExceptions;
     }
 
-    public function convertNoticesToExceptions(): bool {
+    public function convertNoticesToExceptions(): bool
+    {
         return $this->convertNoticesToExceptions;
     }
 
-    public function convertWarningsToExceptions(): bool {
+    public function convertWarningsToExceptions(): bool
+    {
         return $this->convertWarningsToExceptions;
     }
 
-    public function forceCoversAnnotation(): bool {
+    public function forceCoversAnnotation(): bool
+    {
         return $this->forceCoversAnnotation;
     }
 
     /**
      * @psalm-assert-if-true !null $this->bootstrap
      */
-    public function hasBootstrap(): bool {
+    public function hasBootstrap(): bool
+    {
         return $this->bootstrap !== null;
     }
 
     /**
      * @throws Exception
      */
-    public function bootstrap(): string {
+    public function bootstrap(): string
+    {
         if (!$this->hasBootstrap()) {
             throw new Exception('Bootstrap script is not configured');
         }
@@ -415,69 +430,84 @@ final class PHPUnit
         return (string) $this->bootstrap;
     }
 
-    public function processIsolation(): bool {
+    public function processIsolation(): bool
+    {
         return $this->processIsolation;
     }
 
-    public function failOnEmptyTestSuite(): bool {
+    public function failOnEmptyTestSuite(): bool
+    {
         return $this->failOnEmptyTestSuite;
     }
 
-    public function failOnIncomplete(): bool {
+    public function failOnIncomplete(): bool
+    {
         return $this->failOnIncomplete;
     }
 
-    public function failOnRisky(): bool {
+    public function failOnRisky(): bool
+    {
         return $this->failOnRisky;
     }
 
-    public function failOnSkipped(): bool {
+    public function failOnSkipped(): bool
+    {
         return $this->failOnSkipped;
     }
 
-    public function failOnWarning(): bool {
+    public function failOnWarning(): bool
+    {
         return $this->failOnWarning;
     }
 
-    public function stopOnDefect(): bool {
+    public function stopOnDefect(): bool
+    {
         return $this->stopOnDefect;
     }
 
-    public function stopOnError(): bool {
+    public function stopOnError(): bool
+    {
         return $this->stopOnError;
     }
 
-    public function stopOnFailure(): bool {
+    public function stopOnFailure(): bool
+    {
         return $this->stopOnFailure;
     }
 
-    public function stopOnWarning(): bool {
+    public function stopOnWarning(): bool
+    {
         return $this->stopOnWarning;
     }
 
-    public function stopOnIncomplete(): bool {
+    public function stopOnIncomplete(): bool
+    {
         return $this->stopOnIncomplete;
     }
 
-    public function stopOnRisky(): bool {
+    public function stopOnRisky(): bool
+    {
         return $this->stopOnRisky;
     }
 
-    public function stopOnSkipped(): bool {
+    public function stopOnSkipped(): bool
+    {
         return $this->stopOnSkipped;
     }
 
     /**
      * @psalm-assert-if-true !null $this->extensionsDirectory
      */
-    public function hasExtensionsDirectory(): bool {
+    public function hasExtensionsDirectory(): bool
+    {
         return $this->extensionsDirectory !== null;
     }
 
     /**
      * @throws Exception
      */
-    public function extensionsDirectory(): string {
+    public function extensionsDirectory(): string
+    {
         if (!$this->hasExtensionsDirectory()) {
             throw new Exception('Extensions directory is not configured');
         }
@@ -490,7 +520,8 @@ final class PHPUnit
      *
      * @deprecated see https://github.com/sebastianbergmann/phpunit/issues/4039
      */
-    public function hasTestSuiteLoaderClass(): bool {
+    public function hasTestSuiteLoaderClass(): bool
+    {
         return $this->testSuiteLoaderClass !== null;
     }
 
@@ -499,7 +530,8 @@ final class PHPUnit
      *
      * @deprecated see https://github.com/sebastianbergmann/phpunit/issues/4039
      */
-    public function testSuiteLoaderClass(): string {
+    public function testSuiteLoaderClass(): string
+    {
         if (!$this->hasTestSuiteLoaderClass()) {
             throw new Exception('TestSuiteLoader class is not configured');
         }
@@ -512,7 +544,8 @@ final class PHPUnit
      *
      * @deprecated see https://github.com/sebastianbergmann/phpunit/issues/4039
      */
-    public function hasTestSuiteLoaderFile(): bool {
+    public function hasTestSuiteLoaderFile(): bool
+    {
         return $this->testSuiteLoaderFile !== null;
     }
 
@@ -521,7 +554,8 @@ final class PHPUnit
      *
      * @deprecated see https://github.com/sebastianbergmann/phpunit/issues/4039
      */
-    public function testSuiteLoaderFile(): string {
+    public function testSuiteLoaderFile(): string
+    {
         if (!$this->hasTestSuiteLoaderFile()) {
             throw new Exception('TestSuiteLoader sourcecode file is not configured');
         }
@@ -532,14 +566,16 @@ final class PHPUnit
     /**
      * @psalm-assert-if-true !null $this->printerClass
      */
-    public function hasPrinterClass(): bool {
+    public function hasPrinterClass(): bool
+    {
         return $this->printerClass !== null;
     }
 
     /**
      * @throws Exception
      */
-    public function printerClass(): string {
+    public function printerClass(): string
+    {
         if (!$this->hasPrinterClass()) {
             throw new Exception('ResultPrinter class is not configured');
         }
@@ -550,14 +586,16 @@ final class PHPUnit
     /**
      * @psalm-assert-if-true !null $this->printerFile
      */
-    public function hasPrinterFile(): bool {
+    public function hasPrinterFile(): bool
+    {
         return $this->printerFile !== null;
     }
 
     /**
      * @throws Exception
      */
-    public function printerFile(): string {
+    public function printerFile(): string
+    {
         if (!$this->hasPrinterFile()) {
             throw new Exception('ResultPrinter sourcecode file is not configured');
         }
@@ -565,61 +603,74 @@ final class PHPUnit
         return (string) $this->printerFile;
     }
 
-    public function beStrictAboutChangesToGlobalState(): bool {
+    public function beStrictAboutChangesToGlobalState(): bool
+    {
         return $this->beStrictAboutChangesToGlobalState;
     }
 
-    public function beStrictAboutOutputDuringTests(): bool {
+    public function beStrictAboutOutputDuringTests(): bool
+    {
         return $this->beStrictAboutOutputDuringTests;
     }
 
-    public function beStrictAboutResourceUsageDuringSmallTests(): bool {
+    public function beStrictAboutResourceUsageDuringSmallTests(): bool
+    {
         return $this->beStrictAboutResourceUsageDuringSmallTests;
     }
 
-    public function beStrictAboutTestsThatDoNotTestAnything(): bool {
+    public function beStrictAboutTestsThatDoNotTestAnything(): bool
+    {
         return $this->beStrictAboutTestsThatDoNotTestAnything;
     }
 
-    public function beStrictAboutTodoAnnotatedTests(): bool {
+    public function beStrictAboutTodoAnnotatedTests(): bool
+    {
         return $this->beStrictAboutTodoAnnotatedTests;
     }
 
-    public function beStrictAboutCoversAnnotation(): bool {
+    public function beStrictAboutCoversAnnotation(): bool
+    {
         return $this->beStrictAboutCoversAnnotation;
     }
 
-    public function enforceTimeLimit(): bool {
+    public function enforceTimeLimit(): bool
+    {
         return $this->enforceTimeLimit;
     }
 
-    public function defaultTimeLimit(): int {
+    public function defaultTimeLimit(): int
+    {
         return $this->defaultTimeLimit;
     }
 
-    public function timeoutForSmallTests(): int {
+    public function timeoutForSmallTests(): int
+    {
         return $this->timeoutForSmallTests;
     }
 
-    public function timeoutForMediumTests(): int {
+    public function timeoutForMediumTests(): int
+    {
         return $this->timeoutForMediumTests;
     }
 
-    public function timeoutForLargeTests(): int {
+    public function timeoutForLargeTests(): int
+    {
         return $this->timeoutForLargeTests;
     }
 
     /**
      * @psalm-assert-if-true !null $this->defaultTestSuite
      */
-    public function hasDefaultTestSuite(): bool {
+    public function hasDefaultTestSuite(): bool
+    {
         return $this->defaultTestSuite !== null;
     }
 
     /**
      * @throws Exception
      */
-    public function defaultTestSuite(): string {
+    public function defaultTestSuite(): string
+    {
         if (!$this->hasDefaultTestSuite()) {
             throw new Exception('Default test suite is not configured');
         }
@@ -627,31 +678,38 @@ final class PHPUnit
         return (string) $this->defaultTestSuite;
     }
 
-    public function executionOrder(): int {
+    public function executionOrder(): int
+    {
         return $this->executionOrder;
     }
 
-    public function resolveDependencies(): bool {
+    public function resolveDependencies(): bool
+    {
         return $this->resolveDependencies;
     }
 
-    public function defectsFirst(): bool {
+    public function defectsFirst(): bool
+    {
         return $this->defectsFirst;
     }
 
-    public function backupGlobals(): bool {
+    public function backupGlobals(): bool
+    {
         return $this->backupGlobals;
     }
 
-    public function backupStaticAttributes(): bool {
+    public function backupStaticAttributes(): bool
+    {
         return $this->backupStaticAttributes;
     }
 
-    public function registerMockObjectsFromTestArgumentsRecursively(): bool {
+    public function registerMockObjectsFromTestArgumentsRecursively(): bool
+    {
         return $this->registerMockObjectsFromTestArgumentsRecursively;
     }
 
-    public function conflictBetweenPrinterClassAndTestdox(): bool {
+    public function conflictBetweenPrinterClassAndTestdox(): bool
+    {
         return $this->conflictBetweenPrinterClassAndTestdox;
     }
 }

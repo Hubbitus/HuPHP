@@ -38,7 +38,8 @@ trait HasErrors
      *
      * @return Collection<Error>
      */
-    public function getErrors(): Collection {
+    public function getErrors(): Collection
+    {
         if (! isset($this->errors)) {
             $this->errors = Collection::fromClassString(Error::class);
         }

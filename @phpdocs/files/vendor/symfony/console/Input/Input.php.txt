@@ -78,7 +78,8 @@ abstract class Input implements InputInterface, StreamableInputInterface
         }
     }
 
-    public function isInteractive(): bool {
+    public function isInteractive(): bool
+    {
         return $this->interactive;
     }
 
@@ -90,7 +91,8 @@ abstract class Input implements InputInterface, StreamableInputInterface
         $this->interactive = $interactive;
     }
 
-    public function getArguments(): array {
+    public function getArguments(): array
+    {
         return array_merge($this->definition->getArgumentDefaults(), $this->arguments);
     }
 
@@ -120,7 +122,8 @@ abstract class Input implements InputInterface, StreamableInputInterface
         return $this->definition->hasArgument($name);
     }
 
-    public function getOptions(): array {
+    public function getOptions(): array
+    {
         return array_merge($this->definition->getOptionDefaults(), $this->options);
     }
 

@@ -194,17 +194,20 @@ final class OptimizerNodeVisitor implements NodeVisitorInterface
         }
     }
 
-    private function addLoopToCurrent(): void {
+    private function addLoopToCurrent(): void
+    {
         $this->loops[0]->setAttribute('with_loop', true);
     }
 
-    private function addLoopToAll(): void {
+    private function addLoopToAll(): void
+    {
         foreach ($this->loops as $loop) {
             $loop->setAttribute('with_loop', true);
         }
     }
 
-    public function getPriority(): int {
+    public function getPriority(): int
+    {
         return 255;
     }
 }

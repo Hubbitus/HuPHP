@@ -47,19 +47,23 @@ final class CodeUnitCollection implements Countable, IteratorAggregate
     /**
      * @psalm-return list<CodeUnit>
      */
-    public function asArray(): array {
+    public function asArray(): array
+    {
         return $this->codeUnits;
     }
 
-    public function getIterator(): CodeUnitCollectionIterator {
+    public function getIterator(): CodeUnitCollectionIterator
+    {
         return new CodeUnitCollectionIterator($this);
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return count($this->codeUnits);
     }
 
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return empty($this->codeUnits);
     }
 

@@ -75,7 +75,8 @@ final class UriTemplate implements Stringable
     /**
      * Returns the string representation of the UriTemplate.
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->template->value;
     }
 
@@ -84,14 +85,16 @@ final class UriTemplate implements Stringable
      *
      * @return array<string>
      */
-    public function getVariableNames(): array {
+    public function getVariableNames(): array
+    {
         return $this->template->variableNames;
     }
 
     /**
      * @return array<string, InputValue>
      */
-    public function getDefaultVariables(): array {
+    public function getDefaultVariables(): array
+    {
         return iterator_to_array($this->defaultVariables);
     }
 
@@ -282,7 +285,8 @@ final class UriTemplate implements Stringable
      * Create a new instance from the environment.
      */
     #[Deprecated(message:'use League\Uri\UriTemplate::__toString() instead', since:'league/uri:7.6.0')]
-    public function getTemplate(): string {
+    public function getTemplate(): string
+    {
         return $this->__toString();
     }
 }

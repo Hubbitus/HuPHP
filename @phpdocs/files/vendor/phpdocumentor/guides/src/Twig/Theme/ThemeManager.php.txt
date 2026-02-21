@@ -77,7 +77,8 @@ final class ThemeManager
         $this->filesystemLoader->setPaths(array_merge(...$paths));
     }
 
-    public function getFilesystemLoader(): FilesystemLoader {
+    public function getFilesystemLoader(): FilesystemLoader
+    {
         return $this->filesystemLoader;
     }
 }

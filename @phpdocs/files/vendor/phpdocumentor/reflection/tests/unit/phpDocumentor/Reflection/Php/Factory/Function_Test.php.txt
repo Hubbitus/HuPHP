@@ -44,12 +44,14 @@ final class Function_Test extends TestCase
 
     private ObjectProphecy $docBlockFactory;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->docBlockFactory = $this->prophesize(DocBlockFactoryInterface::class);
         $this->fixture = new Function_($this->docBlockFactory->reveal());
     }
 
-    public function testMatches(): void {
+    public function testMatches(): void
+    {
         $this->assertFalse($this->fixture->matches(self::createContext(null), new stdClass()));
         $this->assertTrue($this->fixture->matches(
             self::createContext(null)->push(new File('hash', 'path')),
@@ -57,7 +59,8 @@ final class Function_Test extends TestCase
         ));
     }
 
-    public function testCreateWithoutParameters(): void {
+    public function testCreateWithoutParameters(): void
+    {
         $functionMock = $this->prophesize(\PhpParser\Node\Stmt\Function_::class);
         $functionMock->byRef = false;
         $functionMock->stmts = [];
@@ -78,7 +81,8 @@ final class Function_Test extends TestCase
         $this->assertEquals('\SomeSpace::function()', (string) $function->getFqsen());
     }
 
-    public function testCreateWithDocBlock(): void {
+    public function testCreateWithDocBlock(): void
+    {
         $doc = new Doc('Text');
         $functionMock = $this->prophesize(\PhpParser\Node\Stmt\Function_::class);
         $functionMock->byRef = false;
@@ -103,7 +107,8 @@ final class Function_Test extends TestCase
         $this->assertSame($docBlock, $function->getDocBlock());
     }
 
-    public function testIteratesStatements(): void {
+    public function testIteratesStatements(): void
+    {
         $doc = new Doc('Text');
         $functionMock = $this->prophesize(\PhpParser\Node\Stmt\Function_::class);
         $functionMock->byRef = false;

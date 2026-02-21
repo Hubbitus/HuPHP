@@ -68,11 +68,13 @@ trait LazyDecoratorTrait
         return isset($this->lazyObjectState->realInstance);
     }
 
-    public function initializeLazyObject(): parent {
+    public function initializeLazyObject(): parent
+    {
         return $this->lazyObjectState->realInstance;
     }
 
-    public function resetLazyObject(): bool {
+    public function resetLazyObject(): bool
+    {
         if (!isset($this->lazyObjectState->initializer)) {
             return false;
         }
@@ -137,7 +139,8 @@ trait LazyDecoratorTrait
         }
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         return [$this->lazyObjectState->realInstance];
     }
 
@@ -147,7 +150,8 @@ trait LazyDecoratorTrait
         $this->lazyObjectState->realInstance = $data[0];
     }
 
-    public function __clone(): void {
+    public function __clone(): void
+    {
         $this->lazyObjectState->realInstance; // initialize lazy object
         $this->lazyObjectState = clone $this->lazyObjectState;
     }

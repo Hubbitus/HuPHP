@@ -18,11 +18,13 @@ trait CanBeDeprecated
     /**
      * Checks whether this element is deprecated.
      */
-    public function isDeprecated(): bool {
+    public function isDeprecated(): bool
+    {
         return $this->isDeprecatedByTag() || $this->isDeprecatedByAttribute();
     }
 
-    private function isDeprecatedByTag(): bool {
+    private function isDeprecatedByTag(): bool
+    {
         return isset($this->tags['deprecated']);
     }
 
@@ -30,7 +32,8 @@ trait CanBeDeprecated
      * @phpstan-assert-if-true AttributedInterface $this
      * @psalm-assert-if-true AttributedInterface $this`[
      */
-    private function isDeprecatedByAttribute(): bool {
+    private function isDeprecatedByAttribute(): bool
+    {
         if ($this instanceof AttributedInterface) {
             foreach ($this->getAttributes() as $attribute) {
                 if ((string) $attribute->getFullyQualifiedStructuralElementName() === '\Deprecated') {
@@ -43,7 +46,8 @@ trait CanBeDeprecated
     }
 
     /** @return Deprecation[] */
-    public function getDeprecations(): array {
+    public function getDeprecations(): array
+    {
         $deprecations = [];
         if ($this->isDeprecatedByTag()) {
             /** @var DeprecatedDescriptor[] $tags */

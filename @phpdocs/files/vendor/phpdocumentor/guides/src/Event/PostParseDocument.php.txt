@@ -39,11 +39,13 @@ final class PostParseDocument
         $this->documentNode = $documentNode;
     }
 
-    public function getFileName(): string {
+    public function getFileName(): string
+    {
         return $this->fileName;
     }
 
-    public function getOriginalFileName(): string {
+    public function getOriginalFileName(): string
+    {
         return $this->originalFile;
     }
 }

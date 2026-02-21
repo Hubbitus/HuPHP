@@ -41,13 +41,15 @@ final class Files implements IteratorAggregate, Countable
     }
 
     /** @return Iterator<string> */
-    public function getIterator(): Iterator {
+    public function getIterator(): Iterator
+    {
         sort($this->files, SORT_NATURAL | SORT_FLAG_CASE);
 
         return new ArrayIterator($this->files);
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return count($this->files);
     }
 }

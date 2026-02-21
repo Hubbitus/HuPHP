@@ -51,7 +51,8 @@ use function var_export;
 
 final class GuidesExtension extends Extension implements CompilerPassInterface, ConfigurationInterface, PrependExtensionInterface
 {
-    public function getConfigTreeBuilder(): TreeBuilder {
+    public function getConfigTreeBuilder(): TreeBuilder
+    {
         $treeBuilder = new TreeBuilder('guides');
         $rootNode = $treeBuilder->getRootNode();
         assert($rootNode instanceof ArrayNodeDefinition);

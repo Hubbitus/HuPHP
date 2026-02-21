@@ -56,11 +56,13 @@ final class SimpleType extends Type
         return false;
     }
 
-    public function name(): string {
+    public function name(): string
+    {
         return $this->name;
     }
 
-    public function allowsNull(): bool {
+    public function allowsNull(): bool
+    {
         return $this->allowsNull;
     }
 
@@ -72,7 +74,8 @@ final class SimpleType extends Type
     /**
      * @psalm-assert-if-true SimpleType $this
      */
-    public function isSimple(): bool {
+    public function isSimple(): bool
+    {
         return true;
     }
 

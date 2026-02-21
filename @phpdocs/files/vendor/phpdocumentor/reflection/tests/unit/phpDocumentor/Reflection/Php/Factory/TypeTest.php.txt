@@ -30,7 +30,8 @@ use PhpUnit\Framework\TestCase as PhpUnitTestCase;
 #[CoversClass(Type::class)]
 final class TypeTest extends PhpUnitTestCase
 {
-    public function testReturnsNullWhenNoTypeIsPassed(): void {
+    public function testReturnsNullWhenNoTypeIsPassed(): void
+    {
         $factory = new Type();
 
         $result = $factory->fromPhpParser(null);
@@ -38,7 +39,8 @@ final class TypeTest extends PhpUnitTestCase
         $this->assertNull($result);
     }
 
-    public function testReturnsReflectedType(): void {
+    public function testReturnsReflectedType(): void
+    {
         $factory = new Type();
         $given = new Name('integer');
         $expected = new Integer();
@@ -48,7 +50,8 @@ final class TypeTest extends PhpUnitTestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testReturnsNullableTypeWhenPassedAPhpParserNullable(): void {
+    public function testReturnsNullableTypeWhenPassedAPhpParserNullable(): void
+    {
         $factory = new Type();
         $given = new NullableType(new Identifier('integer'));
         $expected = new Nullable(new Integer());
@@ -58,7 +61,8 @@ final class TypeTest extends PhpUnitTestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testReturnsUnion(): void {
+    public function testReturnsUnion(): void
+    {
         $factory = new Type();
         $given = new UnionType([new Identifier('integer'), new Identifier('string')]);
         $expected = new Compound([new Integer(), new String_()]);
@@ -68,7 +72,8 @@ final class TypeTest extends PhpUnitTestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testReturnsUnionGivenVariousTypes(): void {
+    public function testReturnsUnionGivenVariousTypes(): void
+    {
         $factory = new Type();
         $given = new UnionType(['integer', new Name('string'), new Identifier('float')]);
         $expected = new Compound([new Integer(), new String_(), new Float_()]);
@@ -78,7 +83,8 @@ final class TypeTest extends PhpUnitTestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testReturnsInterseptionType(): void {
+    public function testReturnsInterseptionType(): void
+    {
         $factory = new Type();
         $given = new IntersectionType(['integer', new Name('string')]);
         $expected = new Intersection([new Integer(), new String_()]);

@@ -39,11 +39,13 @@ final class ConversionFailed extends SyntaxError
         return new self('Host `'.$host.'` is invalid: '.implode('; ', $reasons).'.', (string) $host, $result);
     }
 
-    public function getHost(): string {
+    public function getHost(): string
+    {
         return $this->host;
     }
 
-    public function getResult(): Result {
+    public function getResult(): Result
+    {
         return $this->result;
     }
 }

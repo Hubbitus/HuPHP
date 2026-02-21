@@ -156,7 +156,8 @@ class PropertyPathBuilder
     /**
      * Returns the length of the current path.
      */
-    public function getLength(): int {
+    public function getLength(): int
+    {
         return \count($this->elements);
     }
 
@@ -173,7 +174,8 @@ class PropertyPathBuilder
     /**
      * Returns the current property path as string.
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         $string = '';
 
         foreach ($this->elements as $offset => $element) {

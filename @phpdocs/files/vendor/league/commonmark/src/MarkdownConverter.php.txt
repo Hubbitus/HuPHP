@@ -40,7 +40,8 @@ class MarkdownConverter implements ConverterInterface, MarkdownConverterInterfac
         $this->htmlRenderer   = new HtmlRenderer($environment);
     }
 
-    public function getEnvironment(): EnvironmentInterface {
+    public function getEnvironment(): EnvironmentInterface
+    {
         return $this->environment;
     }
 

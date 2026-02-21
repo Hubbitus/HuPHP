@@ -139,7 +139,8 @@ final class ListBlockStartParser implements BlockStartParserInterface, Configura
     /**
      * @psalm-return non-empty-string
      */
-    private function generateListMarkerRegex(): string {
+    private function generateListMarkerRegex(): string
+    {
         // No configuration given - use the defaults
         if ($this->config === null) {
             return $this->listMarkerRegex = '/^[*+-]/';

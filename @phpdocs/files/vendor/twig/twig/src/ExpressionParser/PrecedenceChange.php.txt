@@ -25,15 +25,18 @@ class PrecedenceChange
     ) {
     }
 
-    public function getPackage(): string {
+    public function getPackage(): string
+    {
         return $this->package;
     }
 
-    public function getVersion(): string {
+    public function getVersion(): string
+    {
         return $this->version;
     }
 
-    public function getNewPrecedence(): int {
+    public function getNewPrecedence(): int
+    {
         return $this->newPrecedence;
     }
 }

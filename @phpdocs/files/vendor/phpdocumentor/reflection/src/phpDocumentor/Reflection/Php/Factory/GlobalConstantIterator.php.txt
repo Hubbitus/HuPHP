@@ -38,7 +38,8 @@ final class GlobalConstantIterator implements Iterator
      *
      * @return int Line
      */
-    public function getLine(): int {
+    public function getLine(): int
+    {
         return $this->constant->getLine();
     }
 
@@ -47,21 +48,24 @@ final class GlobalConstantIterator implements Iterator
      *
      * @return int Line
      */
-    public function getEndLine(): int {
+    public function getEndLine(): int
+    {
         return $this->constant->getEndLine();
     }
 
     /**
      * Returns the name of the current constant.
      */
-    public function getName(): string {
+    public function getName(): string
+    {
         return (string) $this->constant->consts[$this->index]->name;
     }
 
     /**
      * Returns the fqsen of the current constant.
      */
-    public function getFqsen(): Fqsen {
+    public function getFqsen(): Fqsen
+    {
         return $this->constant->consts[$this->index]->getAttribute('fqsen');
     }
 
@@ -80,19 +84,22 @@ final class GlobalConstantIterator implements Iterator
         return $docComment;
     }
 
-    public function getValue(): Expr {
+    public function getValue(): Expr
+    {
         return $this->constant->consts[$this->index]->value;
     }
 
     /** @link http://php.net/manual/en/iterator.current.php */
     #[Override]
-    public function current(): self {
+    public function current(): self
+    {
         return $this;
     }
 
     /** @link http://php.net/manual/en/iterator.next.php */
     #[Override]
-    public function next(): void {
+    public function next(): void
+    {
         ++$this->index;
     }
 
@@ -105,13 +112,15 @@ final class GlobalConstantIterator implements Iterator
 
     /** @link http://php.net/manual/en/iterator.valid.php */
     #[Override]
-    public function valid(): bool {
+    public function valid(): bool
+    {
         return isset($this->constant->consts[$this->index]);
     }
 
     /** @link http://php.net/manual/en/iterator.rewind.php */
     #[Override]
-    public function rewind(): void {
+    public function rewind(): void
+    {
         $this->index = 0;
     }
 }

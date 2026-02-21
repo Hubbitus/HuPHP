@@ -60,7 +60,8 @@ class ArrayShapeNode implements TypeNode
 		return new self($items, false, $unsealedType, $kind);
 	}
 
-	public function __toString(): string {
+	public function __toString(): string
+	{
 		$items = $this->items;
 
 		if (! $this->sealed) {

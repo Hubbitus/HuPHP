@@ -30,11 +30,13 @@ class ArrayKey extends AggregatedType implements PseudoType
         parent::__construct([new String_(), new Integer()], '|');
     }
 
-    public function underlyingType(): Type {
+    public function underlyingType(): Type
+    {
         return new Compound([new String_(), new Integer()]);
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return 'array-key';
     }
 }

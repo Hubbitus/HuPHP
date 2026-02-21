@@ -68,7 +68,8 @@ final class UseTokenParser extends AbstractTokenParser
         return new EmptyNode($token->getLine());
     }
 
-    public function getTag(): string {
+    public function getTag(): string
+    {
         return 'use';
     }
 }

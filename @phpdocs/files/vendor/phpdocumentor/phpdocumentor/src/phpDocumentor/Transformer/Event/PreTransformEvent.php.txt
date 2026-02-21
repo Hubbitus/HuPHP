@@ -64,7 +64,8 @@ final class PreTransformEvent extends EventAbstract
     }
 
     /** @return Transformation[] */
-    public function getTransformations(): array {
+    public function getTransformations(): array
+    {
         return $this->transformations;
     }
 }

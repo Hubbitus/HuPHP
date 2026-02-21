@@ -42,11 +42,13 @@ class ClassExistenceResource implements SelfCheckingResourceInterface
         }
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->resource;
     }
 
-    public function getResource(): string {
+    public function getResource(): string
+    {
         return $this->resource;
     }
 
@@ -99,7 +101,8 @@ class ClassExistenceResource implements SelfCheckingResourceInterface
         return $this->exists[0] xor !$exists[0];
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         if (null === $this->exists) {
             $this->isFresh(0);
         }

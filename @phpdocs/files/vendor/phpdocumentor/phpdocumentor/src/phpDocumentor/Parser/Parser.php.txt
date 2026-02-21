@@ -92,7 +92,8 @@ class Parser
     /**
      * Returns whether we want to run PHPLint on every file.
      */
-    public function doValidation(): bool {
+    public function doValidation(): bool
+    {
         return $this->validate;
     }
 
@@ -111,7 +112,8 @@ class Parser
      *
      * @return string[]
      */
-    public function getMarkers(): array {
+    public function getMarkers(): array
+    {
         return $this->markers;
     }
 
@@ -128,7 +130,8 @@ class Parser
     /**
      * Returns the absolute base path for all files.
      */
-    public function getPath(): string {
+    public function getPath(): string
+    {
         return $this->path;
     }
 
@@ -146,7 +149,8 @@ class Parser
     /**
      * Returns the name of the default package.
      */
-    public function getDefaultPackageName(): string {
+    public function getDefaultPackageName(): string
+    {
         return $this->defaultPackageName;
     }
 
@@ -168,7 +172,8 @@ class Parser
     /**
      * Returns the currently active encoding.
      */
-    public function getEncoding(): string {
+    public function getEncoding(): string
+    {
         return $this->encoding;
     }
 
@@ -196,7 +201,8 @@ class Parser
     /**
      * Writes the complete parsing cycle to log.
      */
-    private function logAfterParsingAllFiles(): void {
+    private function logAfterParsingAllFiles(): void
+    {
         $event = $this->stopwatch->stop('parser.parse');
 
         $this->log('Elapsed time to parse all files: ' . round($event->getDuration() / 1000, 2) . 's');
@@ -215,7 +221,8 @@ class Parser
         $this->logger->log($priority, $message, $parameters);
     }
 
-    private function startTimingTheParsePhase(): void {
+    private function startTimingTheParsePhase(): void
+    {
         $this->stopwatch->start('parser.parse');
     }
 }

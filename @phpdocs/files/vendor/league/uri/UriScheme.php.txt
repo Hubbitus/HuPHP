@@ -132,7 +132,8 @@ enum UriScheme: string
         };
     }
 
-    public function type(): SchemeType {
+    public function type(): SchemeType
+    {
         return match ($this) {
             self::Urn,
             self::About,
@@ -156,7 +157,8 @@ enum UriScheme: string
         };
     }
 
-    public function isWhatWgSpecial(): bool {
+    public function isWhatWgSpecial(): bool
+    {
         return match ($this) {
             self::Ftp,
             self::Http,
@@ -190,7 +192,8 @@ enum UriScheme: string
         return $reverse[$port] ?? [];
     }
 
-    public function builder(): Builder {
+    public function builder(): Builder
+    {
         return new Builder(scheme: $this);
     }
 }

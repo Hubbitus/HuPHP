@@ -27,7 +27,8 @@ final class TaskListItemMarker extends AbstractInline
         $this->checked = $isCompleted;
     }
 
-    public function isChecked(): bool {
+    public function isChecked(): bool
+    {
         return $this->checked;
     }
 

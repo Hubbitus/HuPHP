@@ -22,7 +22,8 @@ use phpDocumentor\Guides\RestructuredText\Parser\InlineLexer;
  */
 final class NbspRule extends AbstractInlineRule implements CachableInlineRule
 {
-    public function getToken(): int {
+    public function getToken(): int
+    {
         return InlineLexer::NBSP;
     }
 
@@ -38,7 +39,8 @@ final class NbspRule extends AbstractInlineRule implements CachableInlineRule
         return new WhitespaceInlineNode();
     }
 
-    public function getPriority(): int {
+    public function getPriority(): int
+    {
         return 1000;
     }
 }

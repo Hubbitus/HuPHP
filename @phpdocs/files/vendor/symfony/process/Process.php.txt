@@ -194,7 +194,8 @@ class Process implements \IteratorAggregate
         return $process;
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 
@@ -520,7 +521,8 @@ class Process implements \IteratorAggregate
      * @throws RuntimeException In case the process is already running
      * @throws LogicException   if an idle timeout is set
      */
-    public function disableOutput(): static {
+    public function disableOutput(): static
+    {
         if ($this->isRunning()) {
             throw new RuntimeException('Disabling output while the process is running is not possible.');
         }
@@ -540,7 +542,8 @@ class Process implements \IteratorAggregate
      *
      * @throws RuntimeException In case the process is already running
      */
-    public function enableOutput(): static {
+    public function enableOutput(): static
+    {
         if ($this->isRunning()) {
             throw new RuntimeException('Enabling output while the process is running is not possible.');
         }
@@ -553,7 +556,8 @@ class Process implements \IteratorAggregate
     /**
      * Returns true in case the output is disabled, false otherwise.
      */
-    public function isOutputDisabled(): bool {
+    public function isOutputDisabled(): bool
+    {
         return $this->outputDisabled;
     }
 
@@ -563,7 +567,8 @@ class Process implements \IteratorAggregate
      * @throws LogicException in case the output has been disabled
      * @throws LogicException In case the process is not started
      */
-    public function getOutput(): string {
+    public function getOutput(): string
+    {
         $this->readPipesForOutput(__FUNCTION__);
 
         if (false === $ret = stream_get_contents($this->stdout, -1, 0)) {
@@ -582,7 +587,8 @@ class Process implements \IteratorAggregate
      * @throws LogicException in case the output has been disabled
      * @throws LogicException In case the process is not started
      */
-    public function getIncrementalOutput(): string {
+    public function getIncrementalOutput(): string
+    {
         $this->readPipesForOutput(__FUNCTION__);
 
         $latest = stream_get_contents($this->stdout, -1, $this->incrementalOutputOffset);
@@ -657,7 +663,8 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
-    public function clearOutput(): static {
+    public function clearOutput(): static
+    {
         ftruncate($this->stdout, 0);
         fseek($this->stdout, 0);
         $this->incrementalOutputOffset = 0;
@@ -671,7 +678,8 @@ class Process implements \IteratorAggregate
      * @throws LogicException in case the output has been disabled
      * @throws LogicException In case the process is not started
      */
-    public function getErrorOutput(): string {
+    public function getErrorOutput(): string
+    {
         $this->readPipesForOutput(__FUNCTION__);
 
         if (false === $ret = stream_get_contents($this->stderr, -1, 0)) {
@@ -691,7 +699,8 @@ class Process implements \IteratorAggregate
      * @throws LogicException in case the output has been disabled
      * @throws LogicException In case the process is not started
      */
-    public function getIncrementalErrorOutput(): string {
+    public function getIncrementalErrorOutput(): string
+    {
         $this->readPipesForOutput(__FUNCTION__);
 
         $latest = stream_get_contents($this->stderr, -1, $this->incrementalErrorOutputOffset);
@@ -709,7 +718,8 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
-    public function clearErrorOutput(): static {
+    public function clearErrorOutput(): static
+    {
         ftruncate($this->stderr, 0);
         fseek($this->stderr, 0);
         $this->incrementalErrorOutputOffset = 0;
@@ -752,7 +762,8 @@ class Process implements \IteratorAggregate
     /**
      * Checks if the process ended successfully.
      */
-    public function isSuccessful(): bool {
+    public function isSuccessful(): bool
+    {
         return 0 === $this->getExitCode();
     }
 
@@ -763,7 +774,8 @@ class Process implements \IteratorAggregate
      *
      * @throws LogicException In case the process is not terminated
      */
-    public function hasBeenSignaled(): bool {
+    public function hasBeenSignaled(): bool
+    {
         $this->requireProcessIsTerminated(__FUNCTION__);
 
         return $this->processInformation['signaled'];
@@ -777,7 +789,8 @@ class Process implements \IteratorAggregate
      * @throws RuntimeException In case --enable-sigchild is activated
      * @throws LogicException   In case the process is not terminated
      */
-    public function getTermSignal(): int {
+    public function getTermSignal(): int
+    {
         $this->requireProcessIsTerminated(__FUNCTION__);
 
         if ($this->isSigchildEnabled() && -1 === $this->processInformation['termsig']) {
@@ -794,7 +807,8 @@ class Process implements \IteratorAggregate
      *
      * @throws LogicException In case the process is not terminated
      */
-    public function hasBeenStopped(): bool {
+    public function hasBeenStopped(): bool
+    {
         $this->requireProcessIsTerminated(__FUNCTION__);
 
         return $this->processInformation['stopped'];
@@ -807,7 +821,8 @@ class Process implements \IteratorAggregate
      *
      * @throws LogicException In case the process is not terminated
      */
-    public function getStopSignal(): int {
+    public function getStopSignal(): int
+    {
         $this->requireProcessIsTerminated(__FUNCTION__);
 
         return $this->processInformation['stopsig'];
@@ -816,7 +831,8 @@ class Process implements \IteratorAggregate
     /**
      * Checks if the process is currently running.
      */
-    public function isRunning(): bool {
+    public function isRunning(): bool
+    {
         if (self::STATUS_STARTED !== $this->status) {
             return false;
         }
@@ -829,14 +845,16 @@ class Process implements \IteratorAggregate
     /**
      * Checks if the process has been started with no regard to the current state.
      */
-    public function isStarted(): bool {
+    public function isStarted(): bool
+    {
         return self::STATUS_READY != $this->status;
     }
 
     /**
      * Checks if the process is terminated.
      */
-    public function isTerminated(): bool {
+    public function isTerminated(): bool
+    {
         $this->updateStatus(false);
 
         return self::STATUS_TERMINATED == $this->status;
@@ -847,7 +865,8 @@ class Process implements \IteratorAggregate
      *
      * The status is one of: ready, started, terminated.
      */
-    public function getStatus(): string {
+    public function getStatus(): string
+    {
         $this->updateStatus(false);
 
         return $this->status;
@@ -929,7 +948,8 @@ class Process implements \IteratorAggregate
     /**
      * Gets the command line to be executed.
      */
-    public function getCommandLine(): string {
+    public function getCommandLine(): string
+    {
         return \is_array($this->commandline) ? implode(' ', array_map($this->escapeArgument(...), $this->commandline)) : $this->commandline;
     }
 
@@ -1011,7 +1031,8 @@ class Process implements \IteratorAggregate
     /**
      * Checks if the TTY mode is enabled.
      */
-    public function isTty(): bool {
+    public function isTty(): bool
+    {
         return $this->tty;
     }
 
@@ -1030,7 +1051,8 @@ class Process implements \IteratorAggregate
     /**
      * Returns PTY state.
      */
-    public function isPty(): bool {
+    public function isPty(): bool
+    {
         return $this->pty;
     }
 
@@ -1063,7 +1085,8 @@ class Process implements \IteratorAggregate
     /**
      * Gets the environment variables.
      */
-    public function getEnv(): array {
+    public function getEnv(): array
+    {
         return $this->env;
     }
 
@@ -1145,7 +1168,8 @@ class Process implements \IteratorAggregate
     /**
      * @throws LogicException in case process is not started
      */
-    public function getStartTime(): float {
+    public function getStartTime(): float
+    {
         if (!$this->isStarted()) {
             throw new LogicException('Start time is only available after process start.');
         }
@@ -1184,7 +1208,8 @@ class Process implements \IteratorAggregate
     /**
      * Returns whether TTY is supported on the current operating system.
      */
-    public static function isTtySupported(): bool {
+    public static function isTtySupported(): bool
+    {
         static $isTtySupported;
 
         return $isTtySupported ??= ('/' === \DIRECTORY_SEPARATOR && stream_isatty(\STDOUT) && @is_writable('/dev/tty'));
@@ -1193,7 +1218,8 @@ class Process implements \IteratorAggregate
     /**
      * Returns whether PTY is supported on the current operating system.
      */
-    public static function isPtySupported(): bool {
+    public static function isPtySupported(): bool
+    {
         static $result;
 
         if (null !== $result) {
@@ -1283,7 +1309,8 @@ class Process implements \IteratorAggregate
     /**
      * Returns whether PHP has been compiled with the '--enable-sigchild' option or not.
      */
-    protected function isSigchildEnabled(): bool {
+    protected function isSigchildEnabled(): bool
+    {
         if (null !== self::$sigchild) {
             return self::$sigchild;
         }
@@ -1360,7 +1387,8 @@ class Process implements \IteratorAggregate
      *
      * @return int The exitcode
      */
-    private function close(): int {
+    private function close(): int
+    {
         $this->processPipes->close();
         if ($this->process) {
             proc_close($this->process);
@@ -1390,7 +1418,8 @@ class Process implements \IteratorAggregate
     /**
      * Resets data related to the latest run of the process.
      */
-    private function resetProcessData(): void {
+    private function resetProcessData(): void
+    {
         $this->starttime = null;
         $this->callback = null;
         $this->exitcode = null;
@@ -1569,7 +1598,8 @@ class Process implements \IteratorAggregate
         }, $commandline);
     }
 
-    private function getDefaultEnv(): array {
+    private function getDefaultEnv(): array
+    {
         $env = getenv();
         $env = ('\\' === \DIRECTORY_SEPARATOR ? array_intersect_ukey($env, $_SERVER, 'strcasecmp') : array_intersect_key($env, $_SERVER)) ?: $env;
 

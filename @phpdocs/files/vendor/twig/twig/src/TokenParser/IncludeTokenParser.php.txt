@@ -66,7 +66,8 @@ class IncludeTokenParser extends AbstractTokenParser
         return [$variables, $only, $ignoreMissing];
     }
 
-    public function getTag(): string {
+    public function getTag(): string
+    {
         return 'include';
     }
 }

@@ -26,7 +26,8 @@ final class IsNotExpressionParser extends IsExpressionParser
         return new NotUnary(parent::parse($parser, $expr, $token), $token->getLine());
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'is not';
     }
 }

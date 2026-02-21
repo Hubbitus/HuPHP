@@ -43,7 +43,8 @@ final class MapIterator extends IteratorIterator
         };
     }
 
-    public function current(): mixed {
+    public function current(): mixed
+    {
         return ($this->callable)(parent::current(), parent::key());
     }
 

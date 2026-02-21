@@ -35,7 +35,8 @@ abstract class AbstractEvent implements StoppableEventInterface
     /**
      * Returns whether further event listeners should be triggered.
      */
-    final public function isPropagationStopped(): bool {
+    final public function isPropagationStopped(): bool
+    {
         return $this->propagationStopped;
     }
 
@@ -46,7 +47,8 @@ abstract class AbstractEvent implements StoppableEventInterface
      * further event listener will be triggered once any trigger calls
      * stopPropagation().
      */
-    final public function stopPropagation(): void {
+    final public function stopPropagation(): void
+    {
         $this->propagationStopped = true;
     }
 }

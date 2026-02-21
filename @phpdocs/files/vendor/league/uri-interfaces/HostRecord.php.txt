@@ -132,7 +132,8 @@ final class HostRecord implements JsonSerializable
     ) {
     }
 
-    public function hasZoneIdentifier(): bool {
+    public function hasZoneIdentifier(): bool
+    {
         return $this->hasZoneIdentifier ??= HostType::Ipv6 === $this->type && str_contains((string) $this->value, '%');
     }
 
@@ -167,7 +168,8 @@ final class HostRecord implements JsonSerializable
         return $this->hostAsUnicode;
     }
 
-    public function isDomainType(): bool {
+    public function isDomainType(): bool
+    {
         return $this->isDomainName ??= match (true) {
             HostType::RegisteredName !== $this->type, '' === $this->value => false,
             null === $this->value => true,
@@ -421,7 +423,8 @@ final class HostRecord implements JsonSerializable
     /**
      * @return HostRecordSerializedShape
      */
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         return [['host' => $this->value], []];
     }
 

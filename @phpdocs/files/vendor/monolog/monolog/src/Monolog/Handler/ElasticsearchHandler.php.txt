@@ -116,14 +116,16 @@ class ElasticsearchHandler extends AbstractProcessingHandler
      *
      * @return mixed[]
      */
-    public function getOptions(): array {
+    public function getOptions(): array
+    {
         return $this->options;
     }
 
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface {
+    protected function getDefaultFormatter(): FormatterInterface
+    {
         return new ElasticsearchFormatter($this->options['index'], $this->options['type']);
     }
 

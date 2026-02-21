@@ -145,7 +145,8 @@ abstract class NodeDefinition implements NodeParentInterface
      *
      * @return $this
      */
-    public function isRequired(): static {
+    public function isRequired(): static
+    {
         $this->required = true;
 
         return $this;
@@ -215,7 +216,8 @@ abstract class NodeDefinition implements NodeParentInterface
      *
      * @return $this
      */
-    public function defaultNull(): static {
+    public function defaultNull(): static
+    {
         return $this->defaultValue(null);
     }
 
@@ -224,7 +226,8 @@ abstract class NodeDefinition implements NodeParentInterface
      *
      * @return $this
      */
-    public function defaultTrue(): static {
+    public function defaultTrue(): static
+    {
         return $this->defaultValue(true);
     }
 
@@ -233,14 +236,16 @@ abstract class NodeDefinition implements NodeParentInterface
      *
      * @return $this
      */
-    public function defaultFalse(): static {
+    public function defaultFalse(): static
+    {
         return $this->defaultValue(false);
     }
 
     /**
      * Sets an expression to run before the normalization.
      */
-    public function beforeNormalization(): ExprBuilder {
+    public function beforeNormalization(): ExprBuilder
+    {
         return $this->normalization()->before();
     }
 
@@ -249,7 +254,8 @@ abstract class NodeDefinition implements NodeParentInterface
      *
      * @return $this
      */
-    public function cannotBeEmpty(): static {
+    public function cannotBeEmpty(): static
+    {
         $this->allowEmptyValue = false;
 
         return $this;
@@ -262,7 +268,8 @@ abstract class NodeDefinition implements NodeParentInterface
      * modify it.
      * An exception should be thrown when the node is not valid.
      */
-    public function validate(): ExprBuilder {
+    public function validate(): ExprBuilder
+    {
         return $this->validation()->rule();
     }
 
@@ -281,21 +288,24 @@ abstract class NodeDefinition implements NodeParentInterface
     /**
      * Gets the builder for validation rules.
      */
-    protected function validation(): ValidationBuilder {
+    protected function validation(): ValidationBuilder
+    {
         return $this->validation ??= new ValidationBuilder($this);
     }
 
     /**
      * Gets the builder for merging rules.
      */
-    protected function merge(): MergeBuilder {
+    protected function merge(): MergeBuilder
+    {
         return $this->merge ??= new MergeBuilder($this);
     }
 
     /**
      * Gets the builder for normalization rules.
      */
-    protected function normalization(): NormalizationBuilder {
+    protected function normalization(): NormalizationBuilder
+    {
         return $this->normalization ??= new NormalizationBuilder($this);
     }
 

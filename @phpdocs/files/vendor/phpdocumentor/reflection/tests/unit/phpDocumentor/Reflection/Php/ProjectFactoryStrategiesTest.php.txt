@@ -27,12 +27,14 @@ use stdClass;
 #[CoversClass(ProjectFactoryStrategies::class)]
 class ProjectFactoryStrategiesTest extends TestCase
 {
-    public function testStrategiesAreChecked(): void {
+    public function testStrategiesAreChecked(): void
+    {
         new ProjectFactoryStrategies([new DummyFactoryStrategy()]);
         $this->assertTrue(true);
     }
 
-    public function testFindMatching(): void {
+    public function testFindMatching(): void
+    {
         $strategy  = new DummyFactoryStrategy();
         $container = new ProjectFactoryStrategies([$strategy]);
         $actual    = $container->findMatching(
@@ -43,7 +45,8 @@ class ProjectFactoryStrategiesTest extends TestCase
         $this->assertSame($strategy, $actual);
     }
 
-    public function testCreateThrowsExceptionWhenStrategyNotFound(): void {
+    public function testCreateThrowsExceptionWhenStrategyNotFound(): void
+    {
         $this->expectException(OutOfBoundsException::class);
         $container = new ProjectFactoryStrategies([]);
         $container->findMatching(

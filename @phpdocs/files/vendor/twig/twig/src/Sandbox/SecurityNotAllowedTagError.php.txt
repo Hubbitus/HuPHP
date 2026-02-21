@@ -26,7 +26,8 @@ final class SecurityNotAllowedTagError extends SecurityError
         $this->tagName = $tagName;
     }
 
-    public function getTagName(): string {
+    public function getTagName(): string
+    {
         return $this->tagName;
     }
 }

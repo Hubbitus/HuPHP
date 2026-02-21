@@ -45,7 +45,8 @@ trait CanHaveAType
     }
 
     /** @return list<Type> */
-    public function getTypes(): array {
+    public function getTypes(): array
+    {
         trigger_error('Please use getType', E_USER_DEPRECATED);
 
         return array_filter([$this->getType()]);

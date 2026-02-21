@@ -27,11 +27,13 @@ final class PHPReference implements TextRole
         $this->lexer = new InlineLexer();
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'class';
     }
 
-    public function getAliases(): array {
+    public function getAliases(): array
+    {
         return [
             'namespace',
             'interface',

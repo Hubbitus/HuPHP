@@ -48,12 +48,14 @@ final class PropertyTest extends TestCase
 
     private ObjectProphecy $docBlockFactory;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->docBlockFactory = $this->prophesize(DocBlockFactoryInterface::class);
         $this->fixture = new Property($this->docBlockFactory->reveal(), new PrettyPrinter());
     }
 
-    public function testMatches(): void {
+    public function testMatches(): void
+    {
         $this->assertFalse($this->fixture->matches(self::createContext(null), new stdClass()));
         $this->assertTrue($this->fixture->matches(self::createContext(null), new PropertyNode(1, [])));
     }
@@ -70,7 +72,8 @@ final class PropertyTest extends TestCase
     }
 
     /** @return array<string|int[]> */
-    public static function visibilityProvider(): array {
+    public static function visibilityProvider(): array
+    {
         return [
             [
                 ClassNode::MODIFIER_PUBLIC,
@@ -87,7 +90,8 @@ final class PropertyTest extends TestCase
         ];
     }
 
-    public function testCreateWithDocBlock(): void {
+    public function testCreateWithDocBlock(): void
+    {
         $doc = new Doc('text');
         $docBlock = new DocBlockDescriptor('text');
         $this->docBlockFactory->create('text', null)->willReturn($docBlock);
@@ -102,7 +106,8 @@ final class PropertyTest extends TestCase
         $this->assertSame($docBlock, $property->getDocBlock());
     }
 
-    public function testCreateMultipleInOneStatement(): void {
+    public function testCreateMultipleInOneStatement(): void
+    {
         $property1 = new PropertyProperty('property1', new String_('MyDefault1'));
         $property1->setAttribute('fqsen', new Fqsen('\myClass::$property1'));
         $property2 = new PropertyProperty('property2', new String_('MyDefault2'));

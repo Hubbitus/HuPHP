@@ -49,7 +49,8 @@ class TreeBuilder implements NodeParentInterface
      *
      * @throws \RuntimeException
      */
-    public function buildTree(): NodeInterface {
+    public function buildTree(): NodeInterface
+    {
         return $this->tree ??= $this->root->getNode(true);
     }
 

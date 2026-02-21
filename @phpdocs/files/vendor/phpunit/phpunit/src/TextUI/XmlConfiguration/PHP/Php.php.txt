@@ -86,47 +86,58 @@ final class Php
         $this->requestVariables = $requestVariables;
     }
 
-    public function includePaths(): DirectoryCollection {
+    public function includePaths(): DirectoryCollection
+    {
         return $this->includePaths;
     }
 
-    public function iniSettings(): IniSettingCollection {
+    public function iniSettings(): IniSettingCollection
+    {
         return $this->iniSettings;
     }
 
-    public function constants(): ConstantCollection {
+    public function constants(): ConstantCollection
+    {
         return $this->constants;
     }
 
-    public function globalVariables(): VariableCollection {
+    public function globalVariables(): VariableCollection
+    {
         return $this->globalVariables;
     }
 
-    public function envVariables(): VariableCollection {
+    public function envVariables(): VariableCollection
+    {
         return $this->envVariables;
     }
 
-    public function postVariables(): VariableCollection {
+    public function postVariables(): VariableCollection
+    {
         return $this->postVariables;
     }
 
-    public function getVariables(): VariableCollection {
+    public function getVariables(): VariableCollection
+    {
         return $this->getVariables;
     }
 
-    public function cookieVariables(): VariableCollection {
+    public function cookieVariables(): VariableCollection
+    {
         return $this->cookieVariables;
     }
 
-    public function serverVariables(): VariableCollection {
+    public function serverVariables(): VariableCollection
+    {
         return $this->serverVariables;
     }
 
-    public function filesVariables(): VariableCollection {
+    public function filesVariables(): VariableCollection
+    {
         return $this->filesVariables;
     }
 
-    public function requestVariables(): VariableCollection {
+    public function requestVariables(): VariableCollection
+    {
         return $this->requestVariables;
     }
 }

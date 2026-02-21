@@ -38,7 +38,8 @@ final class Type implements Schema
 	}
 
 
-	public function nullable(): self {
+	public function nullable(): self
+	{
 		$this->type = 'null|' . $this->type;
 		return $this;
 	}
@@ -51,7 +52,8 @@ final class Type implements Schema
 	}
 
 
-	public function dynamic(): self {
+	public function dynamic(): self
+	{
 		$this->type = DynamicParameter::class . '|' . $this->type;
 		return $this;
 	}

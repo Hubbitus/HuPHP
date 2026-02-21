@@ -79,7 +79,8 @@ final class Template
         }
     }
 
-    public function render(): string {
+    public function render(): string
+    {
         $keys = [];
 
         foreach ($this->values as $key => $value) {

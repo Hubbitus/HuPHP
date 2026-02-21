@@ -149,9 +149,11 @@ class TestPool implements CacheItemPoolInterface
     {
     }
 
-    public function commit(): bool {
+    public function commit(): bool
+    {
     }
 
-    public function clear(): bool {
+    public function clear(): bool
+    {
     }
 }

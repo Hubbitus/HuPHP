@@ -57,7 +57,8 @@ class MercurialProcessor implements ProcessorInterface
     /**
      * @return array{branch: string, revision: string}|array<never>
      */
-    private static function getMercurialInfo(): array {
+    private static function getMercurialInfo(): array
+    {
         if (self::$cache) {
             return self::$cache;
         }

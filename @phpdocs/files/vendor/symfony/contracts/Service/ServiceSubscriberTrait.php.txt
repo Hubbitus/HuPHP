@@ -32,7 +32,8 @@ trigger_deprecation('symfony/contracts', 'v3.5', '"%s" is deprecated, use "Servi
  */
 trait ServiceSubscriberTrait
 {
-    public static function getSubscribedServices(): array {
+    public static function getSubscribedServices(): array
+    {
         $services = method_exists(get_parent_class(self::class) ?: '', __FUNCTION__) ? parent::getSubscribedServices() : [];
 
         foreach ((new \ReflectionClass(self::class))->getMethods() as $method) {

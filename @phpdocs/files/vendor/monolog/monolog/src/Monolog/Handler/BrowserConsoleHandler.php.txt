@@ -50,7 +50,8 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
      *
      *     You can do [[blue text]]{color: blue} or [[green background]]{background-color: green; color: white}
      */
-    protected function getDefaultFormatter(): FormatterInterface {
+    protected function getDefaultFormatter(): FormatterInterface
+    {
         return new LineFormatter('[[%channel%]]{macro: autolabel} [[%level_name%]]{font-weight: bold} %message%');
     }
 
@@ -73,7 +74,8 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
      * Convert records to javascript console commands and send it to the browser.
      * This method is automatically called on PHP shutdown if output is HTML or Javascript.
      */
-    public static function send(): void {
+    public static function send(): void
+    {
         $format = static::getResponseFormat();
         if ($format === self::FORMAT_UNKNOWN) {
             return;
@@ -89,7 +91,8 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
         }
     }
 
-    public function close(): void {
+    public function close(): void
+    {
         self::resetStatic();
     }
 
@@ -103,14 +106,16 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
     /**
      * Forget all logged records
      */
-    public static function resetStatic(): void {
+    public static function resetStatic(): void
+    {
         static::$records = [];
     }
 
     /**
      * Wrapper for register_shutdown_function to allow overriding
      */
-    protected function registerShutdownFunction(): void {
+    protected function registerShutdownFunction(): void
+    {
         if (PHP_SAPI !== 'cli') {
             register_shutdown_function(['Monolog\Handler\BrowserConsoleHandler', 'send']);
         }
@@ -134,7 +139,8 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
      * @return string One of 'js', 'html' or 'unknown'
      * @phpstan-return self::FORMAT_*
      */
-    protected static function getResponseFormat(): string {
+    protected static function getResponseFormat(): string
+    {
         // Check content type
         foreach (headers_list() as $header) {
             if (stripos($header, 'content-type:') === 0) {
@@ -164,7 +170,8 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
         return self::FORMAT_UNKNOWN;
     }
 
-    private static function generateScript(): string {
+    private static function generateScript(): string
+    {
         $script = [];
         foreach (static::$records as $record) {
             $context = static::dump('Context', $record['context']);

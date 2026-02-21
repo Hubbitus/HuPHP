@@ -58,15 +58,18 @@ final class FilterExpressionParser extends AbstractExpressionParser implements I
         return new $class($expr, $ready ? $filter : new ConstantExpression($filter->getName(), $line), $arguments, $line);
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return '|';
     }
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         return 'Twig filter call';
     }
 
-    public function getPrecedence(): int {
+    public function getPrecedence(): int
+    {
         return 512;
     }
 
@@ -75,7 +78,8 @@ final class FilterExpressionParser extends AbstractExpressionParser implements I
         return new PrecedenceChange('twig/twig', '3.21', 300);
     }
 
-    public function getAssociativity(): InfixAssociativity {
+    public function getAssociativity(): InfixAssociativity
+    {
         return InfixAssociativity::Left;
     }
 }

@@ -42,7 +42,8 @@ final class ConditionalTernary extends AbstractExpression implements OperatorEsc
         ;
     }
 
-    public function getOperandNamesToEscape(): array {
+    public function getOperandNamesToEscape(): array
+    {
         return ['left', 'right'];
     }
 }

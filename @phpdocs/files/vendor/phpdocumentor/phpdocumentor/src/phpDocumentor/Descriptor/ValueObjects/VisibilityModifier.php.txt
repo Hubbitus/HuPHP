@@ -10,7 +10,8 @@ enum VisibilityModifier: string
     case PROTECTED = 'protected';
     case PRIVATE = 'private';
 
-    public function getWeight(): int {
+    public function getWeight(): int
+    {
         return match ($this) {
             self::PUBLIC => 0,
             self::PROTECTED => 1,

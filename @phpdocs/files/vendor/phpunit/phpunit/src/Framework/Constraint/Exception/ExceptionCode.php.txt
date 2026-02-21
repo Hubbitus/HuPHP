@@ -31,7 +31,8 @@ final class ExceptionCode extends Constraint
         $this->expectedCode = $expected;
     }
 
-    public function toString(): string {
+    public function toString(): string
+    {
         return 'exception code is ';
     }
 

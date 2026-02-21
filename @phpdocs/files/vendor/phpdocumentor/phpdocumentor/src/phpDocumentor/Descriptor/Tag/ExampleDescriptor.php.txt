@@ -46,7 +46,8 @@ final class ExampleDescriptor extends TagDescriptor
     /**
      * Returns the location where this example points to.
      */
-    public function getFilePath(): string {
+    public function getFilePath(): string
+    {
         return $this->filePath;
     }
 
@@ -93,7 +94,8 @@ final class ExampleDescriptor extends TagDescriptor
     /**
      * Returns the content of the example.
      */
-    public function getExample(): string {
+    public function getExample(): string
+    {
         return $this->example;
     }
 }

@@ -24,7 +24,8 @@ use Symfony\Contracts\Service\ServiceSubscriberTrait;
  */
 class ServiceSubscriberTraitTest extends TestCase
 {
-    public static function setUpBeforeClass(): void {
+    public static function setUpBeforeClass(): void
+    {
         class_exists(LegacyTestService::class);
     }
 

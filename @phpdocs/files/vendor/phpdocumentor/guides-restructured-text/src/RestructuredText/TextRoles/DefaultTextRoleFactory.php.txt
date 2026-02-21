@@ -100,7 +100,8 @@ final class DefaultTextRoleFactory implements TextRoleFactory
         $this->defaultTextRole = $this->getTextRole($roleName);
     }
 
-    public function getDefaultTextRole(): TextRole {
+    public function getDefaultTextRole(): TextRole
+    {
         return $this->defaultTextRole;
     }
 }

@@ -86,7 +86,8 @@ final class Version3 implements ConfigurationInterface, Normalizable
     ) {
     }
 
-    public function getConfigTreeBuilder(): TreeBuilder {
+    public function getConfigTreeBuilder(): TreeBuilder
+    {
         $treebuilder = new TreeBuilder('phpdocumentor');
 
         $treebuilder->getRootNode()
@@ -229,7 +230,8 @@ final class Version3 implements ConfigurationInterface, Normalizable
         return $configuration;
     }
 
-    private function apiSection(): ArrayNodeDefinition {
+    private function apiSection(): ArrayNodeDefinition
+    {
         $treebuilder = new TreeBuilder('apis');
 
         return $treebuilder->getRootNode()
@@ -330,7 +332,8 @@ final class Version3 implements ConfigurationInterface, Normalizable
             ->end();
     }
 
-    private function guideSection(): ArrayNodeDefinition {
+    private function guideSection(): ArrayNodeDefinition
+    {
         $treebuilder = new TreeBuilder('guides');
 
         return $treebuilder->getRootNode()

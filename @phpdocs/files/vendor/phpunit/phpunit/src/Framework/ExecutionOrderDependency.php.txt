@@ -166,34 +166,41 @@ final class ExecutionOrderDependency
         }
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->getTarget();
     }
 
-    public function isValid(): bool {
+    public function isValid(): bool
+    {
         // Invalid dependencies can be declared and are skipped by the runner
         return $this->className !== '' && $this->methodName !== '';
     }
 
-    public function useShallowClone(): bool {
+    public function useShallowClone(): bool
+    {
         return $this->useShallowClone;
     }
 
-    public function useDeepClone(): bool {
+    public function useDeepClone(): bool
+    {
         return $this->useDeepClone;
     }
 
-    public function targetIsClass(): bool {
+    public function targetIsClass(): bool
+    {
         return $this->methodName === 'class';
     }
 
-    public function getTarget(): string {
+    public function getTarget(): string
+    {
         return $this->isValid()
             ? $this->className . '::' . $this->methodName
             : '';
     }
 
-    public function getTargetClassName(): string {
+    public function getTargetClassName(): string
+    {
         return $this->className;
     }
 }

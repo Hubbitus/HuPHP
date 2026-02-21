@@ -33,7 +33,8 @@ final class BlockedNode implements NodeInterface
         return $this->parentNode;
     }
 
-    public function render(): string {
+    public function render(): string
+    {
         $rendered = '';
         foreach ($this->children as $child) {
             $rendered .= $child->render();

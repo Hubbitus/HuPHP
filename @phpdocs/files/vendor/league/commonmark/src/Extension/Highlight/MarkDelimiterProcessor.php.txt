@@ -19,15 +19,18 @@ use League\CommonMark\Node\Inline\AbstractStringContainer;
 
 class MarkDelimiterProcessor implements DelimiterProcessorInterface
 {
-    public function getOpeningCharacter(): string {
+    public function getOpeningCharacter(): string
+    {
         return '=';
     }
 
-    public function getClosingCharacter(): string {
+    public function getClosingCharacter(): string
+    {
         return '=';
     }
 
-    public function getMinLength(): int {
+    public function getMinLength(): int
+    {
         return 2;
     }
 

@@ -26,7 +26,8 @@ final class VariableInlineNode extends InlineNode
         parent::__construct(self::TYPE, $value);
     }
 
-    public function getChild(): Node {
+    public function getChild(): Node
+    {
         if ($this->child === null) {
             return new PlainTextInlineNode('|' . $this->value . '|');
         }

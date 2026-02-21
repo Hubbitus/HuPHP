@@ -105,7 +105,8 @@ class Printer
         }
     }
 
-    public function flush(): void {
+    public function flush(): void
+    {
         if ($this->stream && $this->isPhpStream) {
             assert(is_resource($this->stream));
 

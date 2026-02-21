@@ -46,7 +46,8 @@ class ExpressionFunction
         $this->evaluator = $evaluator(...);
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 

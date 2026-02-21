@@ -653,7 +653,8 @@ trait RedisTrait
         }
     }
 
-    private function getHosts(): array {
+    private function getHosts(): array
+    {
         $hosts = [$this->redis];
         if ($this->redis instanceof \Predis\ClientInterface) {
             $connection = $this->redis->getConnection();

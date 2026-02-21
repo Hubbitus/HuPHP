@@ -45,7 +45,8 @@ class SyntaxError extends Exception
         return new self('The header record does not exist or is empty at offset: `'.$offset.'`');
     }
 
-    public static function dueToInvalidHeaderColumnNames(): self {
+    public static function dueToInvalidHeaderColumnNames(): self
+    {
         return new self('The header record contains non string colum names.');
     }
 
@@ -57,7 +58,8 @@ class SyntaxError extends Exception
         return $instance;
     }
 
-    public function duplicateColumnNames(): array {
+    public function duplicateColumnNames(): array
+    {
         return $this->duplicateColumnNames;
     }
 }

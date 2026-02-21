@@ -43,7 +43,8 @@ class ThrottlingHttpClient implements HttpClientInterface, ResetInterface
         return $response;
     }
 
-    public function reset(): void {
+    public function reset(): void
+    {
         $this->traitReset();
         $this->rateLimiter->reset();
     }

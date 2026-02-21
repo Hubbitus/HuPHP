@@ -40,7 +40,8 @@ class ResourceCheckerConfigCache implements ConfigCacheInterface
         $this->resourceCheckers = $resourceCheckers;
     }
 
-    public function getPath(): string {
+    public function getPath(): string
+    {
         return $this->file;
     }
 
@@ -53,7 +54,8 @@ class ResourceCheckerConfigCache implements ConfigCacheInterface
      * The first ResourceChecker that supports a given resource is considered authoritative.
      * Resources with no matching ResourceChecker will silently be ignored and considered fresh.
      */
-    public function isFresh(): bool {
+    public function isFresh(): bool
+    {
         if (!is_file($this->file)) {
             return false;
         }
@@ -136,7 +138,8 @@ class ResourceCheckerConfigCache implements ConfigCacheInterface
     /**
      * Gets the meta file path.
      */
-    private function getMetaFile(): string {
+    private function getMetaFile(): string
+    {
         return $this->file.'.meta';
     }
 

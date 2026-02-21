@@ -78,7 +78,8 @@ class DeduplicationHandler extends BufferHandler
         $this->time = $time;
     }
 
-    public function flush(): void {
+    public function flush(): void
+    {
         if ($this->bufferSize === 0) {
             return;
         }
@@ -139,7 +140,8 @@ class DeduplicationHandler extends BufferHandler
         return false;
     }
 
-    private function collectLogs(): void {
+    private function collectLogs(): void
+    {
         if (!file_exists($this->deduplicationStore)) {
             return;
         }

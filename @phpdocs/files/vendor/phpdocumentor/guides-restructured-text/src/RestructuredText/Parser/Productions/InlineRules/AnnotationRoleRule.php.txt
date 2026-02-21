@@ -86,7 +86,8 @@ final class AnnotationRoleRule extends AbstractInlineRule
         return null;
     }
 
-    public function getPriority(): int {
+    public function getPriority(): int
+    {
         return 500;
     }
 }

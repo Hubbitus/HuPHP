@@ -71,7 +71,8 @@ final class Target
         $this->setPresentation($presentation);
     }
 
-    public function getTitle(): string {
+    public function getTitle(): string
+    {
         return $this->title;
     }
 
@@ -115,7 +116,8 @@ final class Target
         }
     }
 
-    public function getPresentation(): string {
+    public function getPresentation(): string
+    {
         return $this->presentation;
     }
 }

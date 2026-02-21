@@ -34,22 +34,26 @@ final class Result
         return new self($infos['result'], $infos['isTransitionalDifferent'], Error::filterByErrorBytes($infos['errors']));
     }
 
-    public function domain(): string {
+    public function domain(): string
+    {
         return $this->domain;
     }
 
-    public function isTransitionalDifferent(): bool {
+    public function isTransitionalDifferent(): bool
+    {
         return $this->isTransitionalDifferent;
     }
 
     /**
      * @return array<Error>
      */
-    public function errors(): array {
+    public function errors(): array
+    {
         return $this->errors;
     }
 
-    public function hasErrors(): bool {
+    public function hasErrors(): bool
+    {
         return [] !== $this->errors;
     }
 

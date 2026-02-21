@@ -31,7 +31,8 @@ use function implode;
  */
 final class RawDirective extends BaseDirective
 {
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'raw';
     }
 

@@ -24,7 +24,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversNothing]
 final class PropertyHookTest extends TestCase
 {
-    public function testPropertyHookWithDocblocks(): void {
+    public function testPropertyHookWithDocblocks(): void
+    {
         $file = __DIR__ . '/data/PHP84/PropertyHook.php';
         $projectFactory = ProjectFactory::createInstance();
         $project = $projectFactory->create('My project', [new LocalFile($file)]);
@@ -56,7 +57,8 @@ final class PropertyHookTest extends TestCase
         $this->assertSame('Not sure this works, but it gets', $hooks[0]->getDocBlock()->getSummary());
     }
 
-    public function testPropertyHookAsymmetric(): void {
+    public function testPropertyHookAsymmetric(): void
+    {
         $file = __DIR__ . '/data/PHP84/PropertyHookAsymmetric.php';
         $projectFactory = ProjectFactory::createInstance();
         $project = $projectFactory->create('My project', [new LocalFile($file)]);
@@ -92,7 +94,8 @@ final class PropertyHookTest extends TestCase
         ), $hooks[1]->getArguments()[0]);
     }
 
-    public function testVirtualProperty(): void {
+    public function testVirtualProperty(): void
+    {
         $file = __DIR__ . '/data/PHP84/PropertyHookVirtual.php';
         $projectFactory = ProjectFactory::createInstance();
         $project = $projectFactory->create('My project', [new LocalFile($file)]);

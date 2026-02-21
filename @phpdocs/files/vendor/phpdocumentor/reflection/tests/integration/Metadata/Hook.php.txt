@@ -13,11 +13,13 @@ final class Hook implements Metadata
         $this->hook = $hook;
     }
 
-    public function key(): string {
+    public function key(): string
+    {
         return "project-metadata";
     }
 
-    public function hook(): string {
+    public function hook(): string
+    {
         return $this->hook;
     }
 }

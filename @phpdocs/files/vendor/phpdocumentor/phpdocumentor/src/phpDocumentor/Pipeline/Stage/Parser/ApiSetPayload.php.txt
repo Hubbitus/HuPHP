@@ -38,19 +38,23 @@ final class ApiSetPayload
     }
 
     /** @return ConfigurationMap */
-    public function getConfiguration(): array {
+    public function getConfiguration(): array
+    {
         return $this->configuration;
     }
 
-    public function getBuilder(): ProjectDescriptorBuilder {
+    public function getBuilder(): ProjectDescriptorBuilder
+    {
         return $this->builder;
     }
 
-    public function getVersion(): VersionDescriptor {
+    public function getVersion(): VersionDescriptor
+    {
         return $this->version;
     }
 
-    public function getApiSet(): ApiSetDescriptor {
+    public function getApiSet(): ApiSetDescriptor
+    {
         return $this->apiSet;
     }
 
@@ -67,7 +71,8 @@ final class ApiSetPayload
     }
 
     /** @return File[] */
-    public function getFiles(): array {
+    public function getFiles(): array
+    {
         return $this->files;
     }
 }

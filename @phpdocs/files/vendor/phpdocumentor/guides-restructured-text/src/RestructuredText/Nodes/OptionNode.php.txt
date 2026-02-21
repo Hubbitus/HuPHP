@@ -42,24 +42,29 @@ final class OptionNode extends CompoundNode implements LinkTargetNode, MultipleL
         parent::__construct($value);
     }
 
-    public function getPlainContent(): string {
+    public function getPlainContent(): string
+    {
         return $this->plainContent;
     }
 
-    public function getLinkType(): string {
+    public function getLinkType(): string
+    {
         return self::LINK_TYPE;
     }
 
-    public function getId(): string {
+    public function getId(): string
+    {
         return $this->id;
     }
 
-    public function getLinkText(): string {
+    public function getLinkText(): string
+    {
         return $this->plainContent;
     }
 
     /** @return string[] */
-    public function getAdditionalIds(): array {
+    public function getAdditionalIds(): array
+    {
         return $this->additionalIds;
     }
 }

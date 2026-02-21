@@ -40,7 +40,8 @@ trait ImplementsInterfaces
     }
 
     /** @return Collection<InterfaceInterface|Fqsen> */
-    public function getInterfaces(): Collection {
+    public function getInterfaces(): Collection
+    {
         if (! isset($this->implements)) {
             $this->implements = new Collection();
         }
@@ -49,7 +50,8 @@ trait ImplementsInterfaces
     }
 
     /** @return Collection<InterfaceInterface|Fqsen> */
-    public function getInterfacesIncludingInherited(): Collection {
+    public function getInterfacesIncludingInherited(): Collection
+    {
         $interfaces = $this->getInterfaces();
         if ($this instanceof InheritsFromElement) {
             $inheritedElement = $this->getInheritedElement();

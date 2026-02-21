@@ -16,7 +16,8 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 #[CoversClass(ContextStack::class)]
 final class ContextStackTest extends PHPUnitTestCase
 {
-    public function testCreate(): void {
+    public function testCreate(): void
+    {
         $project = new Project('myProject');
         $typeContext = new Context('myNamespace');
         $context = new ContextStack($project, $typeContext);
@@ -25,7 +26,8 @@ final class ContextStackTest extends PHPUnitTestCase
         self::assertSame($typeContext, $context->getTypeContext());
     }
 
-    public function testPeekThowsWhenEmpty(): void {
+    public function testPeekThowsWhenEmpty(): void
+    {
         $this->expectException(OutOfBoundsException::class);
         $project = new Project('myProject');
         $typeContext = new Context('myNamespace');
@@ -34,7 +36,8 @@ final class ContextStackTest extends PHPUnitTestCase
         $context->peek();
     }
 
-    public function testPeekReturnsTopOfStack(): void {
+    public function testPeekReturnsTopOfStack(): void
+    {
         $class = new ClassElement(new Fqsen('\MyClass'));
 
         $project = new Project('myProject');
@@ -47,7 +50,8 @@ final class ContextStackTest extends PHPUnitTestCase
         self::assertSame($typeContext, $context->getTypeContext());
     }
 
-    public function testCreateWithTypeContext(): void {
+    public function testCreateWithTypeContext(): void
+    {
         $class = new ClassElement(new Fqsen('\MyClass'));
 
         $project = new Project('myProject');
@@ -60,14 +64,16 @@ final class ContextStackTest extends PHPUnitTestCase
         self::assertSame($typeContext, $context->getTypeContext());
     }
 
-    public function testSearchEmptyStackResultsInNull(): void {
+    public function testSearchEmptyStackResultsInNull(): void
+    {
         $project = new Project('myProject');
         $context = new ContextStack($project);
 
         self::assertNull($context->search(ClassElement::class));
     }
 
-    public function testSearchStackForExistingElementTypeWillReturnTheFirstHit(): void {
+    public function testSearchStackForExistingElementTypeWillReturnTheFirstHit(): void
+    {
         $class = new ClassElement(new Fqsen('\MyClass'));
         $project = new Project('myProject');
         $context = new ContextStack($project);

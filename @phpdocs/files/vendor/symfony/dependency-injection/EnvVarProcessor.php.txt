@@ -34,7 +34,8 @@ class EnvVarProcessor implements EnvVarProcessorInterface
         $this->loaders = $loaders ?? new \ArrayIterator();
     }
 
-    public static function getProvidedTypes(): array {
+    public static function getProvidedTypes(): array
+    {
         return [
             'base64' => 'string',
             'bool' => 'bool',

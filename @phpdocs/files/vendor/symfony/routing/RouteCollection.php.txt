@@ -77,7 +77,8 @@ class RouteCollection implements \IteratorAggregate, \Countable
     /**
      * Gets the number of Routes in this collection.
      */
-    public function count(): int {
+    public function count(): int
+    {
         return \count($this->routes);
     }
 
@@ -100,7 +101,8 @@ class RouteCollection implements \IteratorAggregate, \Countable
      *
      * @return array<string, Route>
      */
-    public function all(): array {
+    public function all(): array
+    {
         if ($this->priorities) {
             $priorities = $this->priorities;
             $keysOrder = array_flip(array_keys($this->routes));
@@ -360,7 +362,8 @@ class RouteCollection implements \IteratorAggregate, \Countable
      *
      * @return ResourceInterface[]
      */
-    public function getResources(): array {
+    public function getResources(): array
+    {
         return array_values($this->resources);
     }
 
@@ -401,7 +404,8 @@ class RouteCollection implements \IteratorAggregate, \Countable
     /**
      * @return array<string, Alias>
      */
-    public function getAliases(): array {
+    public function getAliases(): array
+    {
         return $this->aliases;
     }
 

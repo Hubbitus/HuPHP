@@ -26,12 +26,14 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
  */
 final class ContainerDirective extends SubDirective
 {
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'container';
     }
 
     /** {@inheritDoc} */
-    public function getAliases(): array {
+    public function getAliases(): array
+    {
         return ['div'];
     }
 

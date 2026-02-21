@@ -92,11 +92,13 @@ class ConsoleSectionOutput extends StreamOutput
         $this->writeln($message);
     }
 
-    public function getContent(): string {
+    public function getContent(): string
+    {
         return implode('', $this->content);
     }
 
-    public function getVisibleContent(): string {
+    public function getVisibleContent(): string
+    {
         if (0 === $this->maxHeight) {
             return $this->getContent();
         }
@@ -154,7 +156,8 @@ class ConsoleSectionOutput extends StreamOutput
     /**
      * @internal
      */
-    public function addNewLineOfInputSubmit(): void {
+    public function addNewLineOfInputSubmit(): void
+    {
         $this->content[] = \PHP_EOL;
         ++$this->lines;
     }

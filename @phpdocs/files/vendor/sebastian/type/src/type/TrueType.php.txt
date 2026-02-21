@@ -22,18 +22,21 @@ final class TrueType extends Type
               $other->value() === true;
     }
 
-    public function name(): string {
+    public function name(): string
+    {
         return 'true';
     }
 
-    public function allowsNull(): bool {
+    public function allowsNull(): bool
+    {
         return false;
     }
 
     /**
      * @psalm-assert-if-true TrueType $this
      */
-    public function isTrue(): bool {
+    public function isTrue(): bool
+    {
         return true;
     }
 }

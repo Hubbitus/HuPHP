@@ -69,7 +69,8 @@ final class Node implements NodeInterface
         $this->children[] = $node;
     }
 
-    public function render(): string {
+    public function render(): string
+    {
         if (isset(self::VOID_ELEMENTS[$this->tagName])) {
             return '<'.$this->tagName.$this->renderAttributes().' />';
         }
@@ -82,7 +83,8 @@ final class Node implements NodeInterface
         return $rendered.'</'.$this->tagName.'>';
     }
 
-    private function renderAttributes(): string {
+    private function renderAttributes(): string
+    {
         $rendered = [];
         foreach ($this->attributes as $name => $value) {
             if (null === $value) {

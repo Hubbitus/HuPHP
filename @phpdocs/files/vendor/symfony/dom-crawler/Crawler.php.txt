@@ -377,14 +377,16 @@ class Crawler implements \Countable, \IteratorAggregate
     /**
      * Returns the first node of the current selection.
      */
-    public function first(): static {
+    public function first(): static
+    {
         return $this->eq(0);
     }
 
     /**
      * Returns the last node of the current selection.
      */
-    public function last(): static {
+    public function last(): static
+    {
         return $this->eq(\count($this->nodes) - 1);
     }
 
@@ -393,7 +395,8 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * @throws \InvalidArgumentException When current node is empty
      */
-    public function siblings(): static {
+    public function siblings(): static
+    {
         if (!$this->nodes) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
@@ -445,7 +448,8 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * @throws \InvalidArgumentException When current node is empty
      */
-    public function nextAll(): static {
+    public function nextAll(): static
+    {
         if (!$this->nodes) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
@@ -458,7 +462,8 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * @throws \InvalidArgumentException
      */
-    public function previousAll(): static {
+    public function previousAll(): static
+    {
         if (!$this->nodes) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
@@ -471,7 +476,8 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * @throws \InvalidArgumentException When the current node is empty
      */
-    public function ancestors(): static {
+    public function ancestors(): static
+    {
         if (!$this->nodes) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
@@ -540,7 +546,8 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * @throws \InvalidArgumentException When current node is empty
      */
-    public function nodeName(): string {
+    public function nodeName(): string
+    {
         if (!$this->nodes) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
@@ -633,7 +640,8 @@ class Crawler implements \Countable, \IteratorAggregate
         return $html;
     }
 
-    public function outerHtml(): string {
+    public function outerHtml(): string
+    {
         if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
@@ -798,7 +806,8 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * @throws \InvalidArgumentException If the current node list contains non-DOMElement instances
      */
-    public function links(): array {
+    public function links(): array
+    {
         $links = [];
         foreach ($this->nodes as $node) {
             if (!$node instanceof \DOMElement) {
@@ -816,7 +825,8 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * @throws \InvalidArgumentException If the current node list is empty
      */
-    public function image(): Image {
+    public function image(): Image
+    {
         if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
@@ -835,7 +845,8 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * @return Image[]
      */
-    public function images(): array {
+    public function images(): array
+    {
         $images = [];
         foreach ($this as $node) {
             if (!$node instanceof \DOMElement) {
@@ -1050,7 +1061,8 @@ class Crawler implements \Countable, \IteratorAggregate
         return $this->nodes[$position] ?? null;
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return \count($this->nodes);
     }
 
@@ -1204,7 +1216,8 @@ class Crawler implements \Countable, \IteratorAggregate
     /**
      * @throws \LogicException If the CssSelector Component is not available
      */
-    private function createCssSelectorConverter(): CssSelectorConverter {
+    private function createCssSelectorConverter(): CssSelectorConverter
+    {
         if (!class_exists(CssSelectorConverter::class)) {
             throw new \LogicException('To filter with a CSS selector, install the CssSelector component ("composer require symfony/css-selector"). Or use filterXpath instead.');
         }

@@ -25,7 +25,8 @@ final class DirectiveOption
     {
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
@@ -34,11 +35,13 @@ final class DirectiveOption
         return $this->value;
     }
 
-    public function toString(): string {
+    public function toString(): string
+    {
         return strval($this->value);
     }
 
-    public function toBool(): bool {
+    public function toBool(): bool
+    {
         if (is_bool($this->value)) {
             return $this->value;
         }

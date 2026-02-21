@@ -101,7 +101,8 @@ class FirePHPHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface {
+    protected function getDefaultFormatter(): FormatterInterface
+    {
         return new WildfireFormatter();
     }
 
@@ -113,7 +114,8 @@ class FirePHPHandler extends AbstractProcessingHandler
      *
      * @return array<string, string>
      */
-    protected function getInitHeaders(): array {
+    protected function getInitHeaders(): array
+    {
         // Initial payload consists of required headers for Wildfire
         return array_merge(
             $this->createHeader(['Protocol', 1], static::PROTOCOL_URI),
@@ -167,7 +169,8 @@ class FirePHPHandler extends AbstractProcessingHandler
     /**
      * Verifies if the headers are accepted by the current user agent
      */
-    protected function headersAccepted(): bool {
+    protected function headersAccepted(): bool
+    {
         if (!empty($_SERVER['HTTP_USER_AGENT']) && preg_match('{\bFirePHP/\d+\.\d+\b}', $_SERVER['HTTP_USER_AGENT'])) {
             return true;
         }

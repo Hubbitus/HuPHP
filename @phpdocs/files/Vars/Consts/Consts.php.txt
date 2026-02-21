@@ -13,6 +13,8 @@
 /**
 * @example Consts.example.php
 **/
+namespace Hubbitus\HuPHP\Vars\Consts;
+
 class Consts { // constants
 	/**
 	* Возвращает массив констант
@@ -27,7 +29,7 @@ class Consts { // constants
 		if ($not_categorized) $constants = get_defined_constants($not_categorized);
 		else $constants = get_defined_constants();
 
-		$consts = ( ($not_categorized or empty($category))? $constants : $constants[$category] );
+		$consts = ( ($not_categorized or empty($category))? $constants : ($constants[$category] ?? []) );
 		$new_consts = array();
 		if (is_array(reset($consts))){
 			foreach ($consts as $key => $c_arr){
@@ -61,30 +63,18 @@ class Consts { // constants
 	**/
 	public static function getNameByValue($value, $category='', $regexp='@.*@i', $not_categorized=false){
 		$constants = self::get_regexp($category, $regexp, $not_categorized);
-		$cmp = new const_value_filter($value);
 
-		if (!is_array(current($constants)))
-			return array_filter($constants, array($cmp, 'cmp'));
-		else{
-			foreach ($constants as $key => &$arr){
-				$constants[$key] = array_filter($constants[$key], array($cmp, 'cmp'));
+		if (!is_array(current($constants))) {
+			return array_filter($constants, function($item) use ($value) {
+				return ($value == $item);
+			});
+		} else {
+			foreach ($constants as $key => &$arr) {
+				$constants[$key] = array_filter($constants[$key], function($item) use ($value) {
+					return ($value == $item);
+				});
 			}
 			return array_filter($constants);
 		}
-	}
-}
-/*
-* Due to:
-* PHP Fatal error:  Class declarations may not be nested in ...
-* it helper-class must be defined in global scope.
-**/
-class const_value_filter{
-	private $_val;
-
-	function __construct(&$val){
-		$this->_val =& $val;
-	}
-	function cmp(&$item){
-		return ($this->_val == $item);
 	}
 }

@@ -30,12 +30,14 @@ final class PostParseProcess
     ) {
     }
 
-    public function getParseDirectoryCommand(): ParseDirectoryCommand {
+    public function getParseDirectoryCommand(): ParseDirectoryCommand
+    {
         return $this->parseDirectoryCommand;
     }
 
     /** @return DocumentNode[] */
-    public function getDocuments(): array {
+    public function getDocuments(): array
+    {
         return $this->documents;
     }
 }

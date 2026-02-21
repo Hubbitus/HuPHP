@@ -32,11 +32,13 @@ final class DocumentBlockParser extends AbstractBlockContinueParser
         $this->document = new Document($referenceMap);
     }
 
-    public function getBlock(): Document {
+    public function getBlock(): Document
+    {
         return $this->document;
     }
 
-    public function isContainer(): bool {
+    public function isContainer(): bool
+    {
         return true;
     }
 
@@ -50,11 +52,13 @@ final class DocumentBlockParser extends AbstractBlockContinueParser
         return BlockContinue::at($cursor);
     }
 
-    public function closeBlock(): void {
+    public function closeBlock(): void
+    {
         $this->removeLinkReferenceDefinitions();
     }
 
-    private function removeLinkReferenceDefinitions(): void {
+    private function removeLinkReferenceDefinitions(): void
+    {
         $emptyNodes = [];
 
         $walker = $this->document->walker();

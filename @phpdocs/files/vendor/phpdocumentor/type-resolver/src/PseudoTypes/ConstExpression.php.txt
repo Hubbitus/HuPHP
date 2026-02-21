@@ -33,19 +33,23 @@ final class ConstExpression implements PseudoType
         $this->expression = $expression;
     }
 
-    public function getOwner(): Type {
+    public function getOwner(): Type
+    {
         return $this->owner;
     }
 
-    public function getExpression(): string {
+    public function getExpression(): string
+    {
         return $this->expression;
     }
 
-    public function underlyingType(): Type {
+    public function underlyingType(): Type
+    {
         return new Mixed_();
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return sprintf('%s::%s', (string) $this->owner, $this->expression);
     }
 }

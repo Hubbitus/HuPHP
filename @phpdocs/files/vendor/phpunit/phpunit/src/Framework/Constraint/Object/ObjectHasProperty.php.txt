@@ -33,7 +33,8 @@ final class ObjectHasProperty extends Constraint
     /**
      * Returns a string representation of the constraint.
      */
-    public function toString(): string {
+    public function toString(): string
+    {
         return sprintf(
             'has property "%s"',
             $this->propertyName,

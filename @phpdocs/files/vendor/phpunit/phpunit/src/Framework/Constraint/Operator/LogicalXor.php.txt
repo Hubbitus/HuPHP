@@ -20,7 +20,8 @@ final class LogicalXor extends BinaryOperator
     /**
      * Returns the name of this operator.
      */
-    public function operator(): string {
+    public function operator(): string
+    {
         return 'xor';
     }
 
@@ -29,7 +30,8 @@ final class LogicalXor extends BinaryOperator
      *
      * @see https://www.php.net/manual/en/language.operators.precedence.php.
      */
-    public function precedence(): int {
+    public function precedence(): int
+    {
         return 23;
     }
 

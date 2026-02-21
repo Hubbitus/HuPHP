@@ -78,7 +78,8 @@ class SyslogUdpHandler extends AbstractSyslogHandler
         }
     }
 
-    public function close(): void {
+    public function close(): void
+    {
         $this->socket->close();
     }
 

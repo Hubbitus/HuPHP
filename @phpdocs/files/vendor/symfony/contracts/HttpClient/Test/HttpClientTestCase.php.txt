@@ -24,7 +24,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  */
 abstract class HttpClientTestCase extends TestCase
 {
-    public static function setUpBeforeClass(): void {
+    public static function setUpBeforeClass(): void
+    {
         if (!\function_exists('ob_gzhandler')) {
             static::markTestSkipped('The "ob_gzhandler" function is not available.');
         }
@@ -32,7 +33,8 @@ abstract class HttpClientTestCase extends TestCase
         TestHttpServer::start();
     }
 
-    public static function tearDownAfterClass(): void {
+    public static function tearDownAfterClass(): void
+    {
         TestHttpServer::stop(8067);
         TestHttpServer::stop(8077);
     }

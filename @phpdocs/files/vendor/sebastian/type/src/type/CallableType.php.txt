@@ -74,18 +74,21 @@ final class CallableType extends Type
         return false;
     }
 
-    public function name(): string {
+    public function name(): string
+    {
         return 'callable';
     }
 
-    public function allowsNull(): bool {
+    public function allowsNull(): bool
+    {
         return $this->allowsNull;
     }
 
     /**
      * @psalm-assert-if-true CallableType $this
      */
-    public function isCallable(): bool {
+    public function isCallable(): bool
+    {
         return true;
     }
 

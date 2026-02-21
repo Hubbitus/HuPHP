@@ -37,7 +37,8 @@ final class AutoloaderLocator
      */
     private static ClassLoader|null $fallbackClassLoader;
 
-    public static function loader(): ClassLoader {
+    public static function loader(): ClassLoader
+    {
         if (isset(self::$classLoader) === false || self::$classLoader->isClassMapAuthoritative() === false) {
             return self::autoload();
         }
@@ -50,7 +51,8 @@ final class AutoloaderLocator
         return self::$fallbackClassLoader;
     }
 
-    public static function autoload(): ClassLoader {
+    public static function autoload(): ClassLoader
+    {
         if (isset(self::$classLoader) === false) {
             if (Phar::running(false)) {
                 self::$classLoader = require 'phar://' . Phar::running(false) . '/vendor/autoload.php';
@@ -117,7 +119,8 @@ final class AutoloaderLocator
      * {@link https://getcomposer.org/doc/03-cli.md#composer COMPOSER environment variable}
      * or returns the default 'composer.json'.
      */
-    public static function findComposerConfigurationPath(): string {
+    public static function findComposerConfigurationPath(): string
+    {
         $filename = getenv('COMPOSER') ?: 'composer';
 
         return $filename . '.json';

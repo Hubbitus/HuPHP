@@ -90,7 +90,8 @@ final class IsEqualWithDelta extends Constraint
      *
      * @throws InvalidArgumentException
      */
-    public function toString(): string {
+    public function toString(): string
+    {
         return sprintf(
             'is equal to %s with delta <%F>',
             $this->exporter()->export($this->value),

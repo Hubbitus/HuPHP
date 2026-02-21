@@ -52,11 +52,13 @@ final class VariableBag implements ArrayAccess, Countable, IteratorAggregate
         }
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return count($this->variables);
     }
 
-    public function getIterator(): Traversable {
+    public function getIterator(): Traversable
+    {
         yield from $this->variables;
     }
 
@@ -83,14 +85,16 @@ final class VariableBag implements ArrayAccess, Countable, IteratorAggregate
     /**
      * Tells whether the bag is empty or not.
      */
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return [] === $this->variables;
     }
 
     /**
      * Tells whether the bag is empty or not.
      */
-    public function isNotEmpty(): bool {
+    public function isNotEmpty(): bool
+    {
         return [] !== $this->variables;
     }
 

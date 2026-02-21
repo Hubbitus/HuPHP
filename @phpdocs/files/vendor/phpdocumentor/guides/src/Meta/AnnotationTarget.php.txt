@@ -20,7 +20,8 @@ class AnnotationTarget extends InternalTarget
         parent::__construct($documentPath, $anchorName);
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 }

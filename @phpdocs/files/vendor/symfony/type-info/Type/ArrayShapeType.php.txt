@@ -73,11 +73,13 @@ final class ArrayShapeType extends CollectionType
     /**
      * @return array<array{type: Type, optional: bool}>
      */
-    public function getShape(): array {
+    public function getShape(): array
+    {
         return $this->shape;
     }
 
-    public function isSealed(): bool {
+    public function isSealed(): bool
+    {
         return null === $this->extraValueType;
     }
 
@@ -118,7 +120,8 @@ final class ArrayShapeType extends CollectionType
         return true;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         $items = [];
 
         foreach ($this->shape as $key => $value) {

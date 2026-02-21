@@ -51,7 +51,8 @@ final class InvocationHandler
         $this->returnValueGeneration = $returnValueGeneration;
     }
 
-    public function hasMatchers(): bool {
+    public function hasMatchers(): bool
+    {
         foreach ($this->matchers as $matcher) {
             if ($matcher->hasMatchers()) {
                 return true;
@@ -167,7 +168,8 @@ final class InvocationHandler
     /**
      * @throws Throwable
      */
-    public function verify(): void {
+    public function verify(): void
+    {
         foreach ($this->matchers as $matcher) {
             $matcher->verify();
         }

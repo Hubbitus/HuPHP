@@ -99,7 +99,8 @@ final class DefaultTestResultCache implements TestResultCache
         return $this->times[$testName] ?? 0.0;
     }
 
-    public function load(): void {
+    public function load(): void
+    {
         if (!is_file($this->cacheFilename)) {
             return;
         }
@@ -131,7 +132,8 @@ final class DefaultTestResultCache implements TestResultCache
     /**
      * @throws Exception
      */
-    public function persist(): void {
+    public function persist(): void
+    {
         if (!Filesystem::createDirectory(dirname($this->cacheFilename))) {
             throw new Exception(
                 sprintf(

@@ -88,11 +88,13 @@ final class HtmlRenderer implements DocumentRendererInterface, ChildNodeRenderer
         throw new NoMatchingRendererException('Unable to find corresponding renderer for node type ' . \get_class($node));
     }
 
-    public function getBlockSeparator(): string {
+    public function getBlockSeparator(): string
+    {
         return $this->environment->getConfiguration()->get('renderer/block_separator');
     }
 
-    public function getInnerSeparator(): string {
+    public function getInnerSeparator(): string
+    {
         return $this->environment->getConfiguration()->get('renderer/inner_separator');
     }
 }

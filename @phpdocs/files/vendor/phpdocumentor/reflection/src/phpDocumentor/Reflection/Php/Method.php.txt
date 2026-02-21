@@ -84,21 +84,24 @@ final class Method implements Element, MetaDataContainerInterface, AttributeCont
     /**
      * Returns true when this method is abstract. Otherwise returns false.
      */
-    public function isAbstract(): bool {
+    public function isAbstract(): bool
+    {
         return $this->abstract;
     }
 
     /**
      * Returns true when this method is final. Otherwise returns false.
      */
-    public function isFinal(): bool {
+    public function isFinal(): bool
+    {
         return $this->final;
     }
 
     /**
      * Returns true when this method is static. Otherwise returns false.
      */
-    public function isStatic(): bool {
+    public function isStatic(): bool
+    {
         return $this->static;
     }
 
@@ -115,7 +118,8 @@ final class Method implements Element, MetaDataContainerInterface, AttributeCont
      *
      * @return Argument[]
      */
-    public function getArguments(): array {
+    public function getArguments(): array
+    {
         return $this->arguments;
     }
 
@@ -131,7 +135,8 @@ final class Method implements Element, MetaDataContainerInterface, AttributeCont
      * Returns the Fqsen of the element.
      */
     #[Override]
-    public function getFqsen(): Fqsen {
+    public function getFqsen(): Fqsen
+    {
         return $this->fqsen;
     }
 
@@ -139,7 +144,8 @@ final class Method implements Element, MetaDataContainerInterface, AttributeCont
      * Returns the name of the element.
      */
     #[Override]
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->fqsen->getName();
     }
 
@@ -151,11 +157,13 @@ final class Method implements Element, MetaDataContainerInterface, AttributeCont
         return $this->docBlock;
     }
 
-    public function getLocation(): Location {
+    public function getLocation(): Location
+    {
         return $this->location;
     }
 
-    public function getEndLocation(): Location {
+    public function getEndLocation(): Location
+    {
         return $this->endLocation;
     }
 
@@ -166,11 +174,13 @@ final class Method implements Element, MetaDataContainerInterface, AttributeCont
      * return type defined this method will return Mixed_ by default. The return value of this
      * method is not affected by the return tag in your docblock.
      */
-    public function getReturnType(): Type {
+    public function getReturnType(): Type
+    {
         return $this->returnType;
     }
 
-    public function getHasReturnByReference(): bool {
+    public function getHasReturnByReference(): bool
+    {
         return $this->hasReturnByReference;
     }
 }

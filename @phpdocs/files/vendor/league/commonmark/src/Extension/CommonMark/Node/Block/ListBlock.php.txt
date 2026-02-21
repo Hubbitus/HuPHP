@@ -39,11 +39,13 @@ class ListBlock extends AbstractBlock implements TightBlockInterface
         $this->listData = $listData;
     }
 
-    public function getListData(): ListData {
+    public function getListData(): ListData
+    {
         return $this->listData;
     }
 
-    public function isTight(): bool {
+    public function isTight(): bool
+    {
         return $this->tight;
     }
 

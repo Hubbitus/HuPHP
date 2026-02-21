@@ -23,11 +23,13 @@ final class IsApplicable implements Equals
     {
     }
 
-    public static function true(): self {
+    public static function true(): self
+    {
         return new self(true);
     }
 
-    public static function false(): self {
+    public static function false(): self
+    {
         return new self(false);
     }
 
@@ -36,15 +38,18 @@ final class IsApplicable implements Equals
         return new self($boolean);
     }
 
-    public function isTrue(): bool {
+    public function isTrue(): bool
+    {
         return $this->value === true;
     }
 
-    public function isFalse(): bool {
+    public function isFalse(): bool
+    {
         return $this->value === false;
     }
 
-    public function inverse(): self {
+    public function inverse(): self
+    {
         return new self(! $this->value);
     }
 

@@ -82,7 +82,8 @@ final class TypesTokenParser extends AbstractTokenParser
         return $types;
     }
 
-    public function getTag(): string {
+    public function getTag(): string
+    {
         return 'types';
     }
 }

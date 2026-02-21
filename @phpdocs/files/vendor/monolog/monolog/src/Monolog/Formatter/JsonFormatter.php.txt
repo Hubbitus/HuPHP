@@ -56,14 +56,16 @@ class JsonFormatter extends NormalizerFormatter
      * compatibility with some API endpoints, alternative styles
      * are available.
      */
-    public function getBatchMode(): int {
+    public function getBatchMode(): int
+    {
         return $this->batchMode;
     }
 
     /**
      * True if newlines are appended to every formatted record
      */
-    public function isAppendingNewlines(): bool {
+    public function isAppendingNewlines(): bool
+    {
         return $this->appendNewline;
     }
 

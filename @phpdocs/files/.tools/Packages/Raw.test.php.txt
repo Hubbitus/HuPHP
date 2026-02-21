@@ -12,7 +12,7 @@ Dump::a('Just test');
 
 function f(){
     $bt = Backtrace::create();
-    $bt->printout();
+    $bt->printFormat();
 }
 f();
 

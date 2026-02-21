@@ -43,7 +43,8 @@ class SodiumMarshaller implements MarshallerInterface
         $this->decryptionKeys = $decryptionKeys;
     }
 
-    public static function isSupported(): bool {
+    public static function isSupported(): bool
+    {
         return \function_exists('sodium_crypto_box_seal');
     }
 

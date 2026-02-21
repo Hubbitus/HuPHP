@@ -70,14 +70,16 @@ class EscapeFormula
      *
      * @return array<string>
      */
-    public function getSpecialCharacters(): array {
+    public function getSpecialCharacters(): array
+    {
         return array_keys($this->special_chars);
     }
 
     /**
      * Returns the escape character.
      */
-    public function getEscape(): string {
+    public function getEscape(): string
+    {
         return $this->escape;
     }
 

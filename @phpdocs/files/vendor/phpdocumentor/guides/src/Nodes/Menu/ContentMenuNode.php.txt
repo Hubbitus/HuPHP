@@ -20,7 +20,8 @@ final class ContentMenuNode extends MenuNode
 {
     private bool $local = false;
 
-    public function getDepth(): int {
+    public function getDepth(): int
+    {
         if ($this->hasOption('depth') && is_scalar($this->getOption('depth'))) {
             return (int) $this->getOption('depth');
         }
@@ -28,11 +29,13 @@ final class ContentMenuNode extends MenuNode
         return self::DEFAULT_DEPTH;
     }
 
-    public function isPageLevelOnly(): bool {
+    public function isPageLevelOnly(): bool
+    {
         return false;
     }
 
-    public function isLocal(): bool {
+    public function isLocal(): bool
+    {
         return $this->local;
     }
 

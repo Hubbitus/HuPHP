@@ -42,7 +42,8 @@ final class Fail implements ParseResult
     /**
      * @api
      */
-    public function errorMessage(): string {
+    public function errorMessage(): string
+    {
         try {
             $firstChar = $this->got->take1()->chunk();
             $unexpected = Ascii::printable($firstChar);
@@ -69,19 +70,23 @@ final class Fail implements ParseResult
             . "Expecting $expecting";
     }
 
-    public function got(): Stream {
+    public function got(): Stream
+    {
         return $this->got;
     }
 
-    public function expected(): string {
+    public function expected(): string
+    {
         return $this->expected;
     }
 
-    public function isSuccess(): bool {
+    public function isSuccess(): bool
+    {
         return false;
     }
 
-    public function isFail(): bool {
+    public function isFail(): bool
+    {
         return !$this->isSuccess();
     }
 
@@ -132,14 +137,16 @@ final class Fail implements ParseResult
     /**
      * @inheritDoc
      */
-    public function remainder(): Stream {
+    public function remainder(): Stream
+    {
         throw new BadMethodCallException("Can't read the remainder of a failed ParseResult.");
     }
 
     /**
      * @inheritDoc
      */
-    public function position(): Position {
+    public function position(): Position
+    {
         return $this->got->position();
     }
 

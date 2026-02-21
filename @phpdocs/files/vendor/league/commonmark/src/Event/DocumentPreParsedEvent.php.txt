@@ -32,11 +32,13 @@ final class DocumentPreParsedEvent extends AbstractEvent
         $this->markdown = $markdown;
     }
 
-    public function getDocument(): Document {
+    public function getDocument(): Document
+    {
         return $this->document;
     }
 
-    public function getMarkdown(): MarkdownInputInterface {
+    public function getMarkdown(): MarkdownInputInterface
+    {
         return $this->markdown;
     }
 

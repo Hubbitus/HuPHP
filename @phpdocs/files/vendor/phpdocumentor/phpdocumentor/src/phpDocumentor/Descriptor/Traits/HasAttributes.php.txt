@@ -23,7 +23,8 @@ trait HasAttributes
     }
 
     /** @return Collection<AttributeInterface> */
-    public function getAttributes(): Collection {
+    public function getAttributes(): Collection
+    {
         if (! isset($this->attributes)) {
             $this->attributes = Collection::fromInterfaceString(AttributeInterface::class);
         }

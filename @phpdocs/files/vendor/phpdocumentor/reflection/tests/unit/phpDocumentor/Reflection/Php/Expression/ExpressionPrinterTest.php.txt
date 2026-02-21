@@ -37,7 +37,8 @@ final class ExpressionPrinterTest extends TestCase
      *   'expectedParts': array<string, Type>
      * }>
      */
-    public static function argumentProvider(): array {
+    public static function argumentProvider(): array
+    {
         return [
             'myClassDefault' => [
                 'code' => '<?php function foo(MyClass $arg = new MyClass()) {}',

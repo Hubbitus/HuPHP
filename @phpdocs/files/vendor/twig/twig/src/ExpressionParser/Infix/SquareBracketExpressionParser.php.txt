@@ -69,19 +69,23 @@ final class SquareBracketExpressionParser extends AbstractExpressionParser imple
         return new GetAttrExpression($expr, $attribute, $arguments, Template::ARRAY_CALL, $lineno);
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return '[';
     }
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         return 'Array access';
     }
 
-    public function getPrecedence(): int {
+    public function getPrecedence(): int
+    {
         return 512;
     }
 
-    public function getAssociativity(): InfixAssociativity {
+    public function getAssociativity(): InfixAssociativity
+    {
         return InfixAssociativity::Left;
     }
 }

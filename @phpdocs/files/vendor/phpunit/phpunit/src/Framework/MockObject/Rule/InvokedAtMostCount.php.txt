@@ -30,7 +30,8 @@ final class InvokedAtMostCount extends InvocationOrder
         $this->allowedInvocations = $allowedInvocations;
     }
 
-    public function toString(): string {
+    public function toString(): string
+    {
         return 'invoked at most ' . $this->allowedInvocations . ' times';
     }
 
@@ -40,7 +41,8 @@ final class InvokedAtMostCount extends InvocationOrder
      *
      * @throws ExpectationFailedException
      */
-    public function verify(): void {
+    public function verify(): void
+    {
         $count = $this->getInvocationCount();
 
         if ($count > $this->allowedInvocations) {

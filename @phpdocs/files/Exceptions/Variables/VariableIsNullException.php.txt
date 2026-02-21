@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace Hubbitus\HuPHP\Exceptions\variables;
+namespace Hubbitus\HuPHP\Exceptions\Variables;
 
-use Hubbitus\HuPHP\Exceptions\variables\VariableRequiredException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 
 class VariableIsNullException extends VariableRequiredException {}

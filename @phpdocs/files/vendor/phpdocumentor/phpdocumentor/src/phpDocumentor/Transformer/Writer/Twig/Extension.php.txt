@@ -125,7 +125,8 @@ final class Extension extends AbstractExtension implements ExtensionInterface, G
      *     env: mixed
      * }
      */
-    public function getGlobals(): array {
+    public function getGlobals(): array
+    {
         return [
             'project' => $this->project,
             'documentationSet' => $this->documentationSet,
@@ -139,7 +140,8 @@ final class Extension extends AbstractExtension implements ExtensionInterface, G
     }
 
     /** @return list<TwigTest> */
-    public function getTests(): array {
+    public function getTests(): array
+    {
         return [
             new TwigTest('element container', static fn (Descriptor $el) => $el instanceof ContainerInterface),
             new TwigTest('namespace', static fn (Descriptor $el) => $el instanceof NamespaceInterface),
@@ -172,7 +174,8 @@ final class Extension extends AbstractExtension implements ExtensionInterface, G
      *
      * @return TwigFunction[]
      */
-    public function getFunctions(): array {
+    public function getFunctions(): array
+    {
         return [
             new TwigFunction(
                 'renderBaseUrlHeader',
@@ -357,7 +360,8 @@ final class Extension extends AbstractExtension implements ExtensionInterface, G
      *
      * @return TwigFilter[]
      */
-    public function getFilters(): array {
+    public function getFilters(): array
+    {
         return [
             'markdown' => new TwigFilter(
                 'markdown',

@@ -42,11 +42,13 @@ final class AttributeExtension extends AbstractExtension
     /**
      * @return class-string
      */
-    public function getClass(): string {
+    public function getClass(): string
+    {
         return $this->class;
     }
 
-    public function getFilters(): array {
+    public function getFilters(): array
+    {
         if (!isset($this->filters)) {
             $this->initFromAttributes();
         }
@@ -54,7 +56,8 @@ final class AttributeExtension extends AbstractExtension
         return $this->filters;
     }
 
-    public function getFunctions(): array {
+    public function getFunctions(): array
+    {
         if (!isset($this->functions)) {
             $this->initFromAttributes();
         }
@@ -62,7 +65,8 @@ final class AttributeExtension extends AbstractExtension
         return $this->functions;
     }
 
-    public function getTests(): array {
+    public function getTests(): array
+    {
         if (!isset($this->tests)) {
             $this->initFromAttributes();
         }
@@ -70,14 +74,16 @@ final class AttributeExtension extends AbstractExtension
         return $this->tests;
     }
 
-    public function getLastModified(): int {
+    public function getLastModified(): int
+    {
         return max(
             filemtime(__FILE__),
             is_file($filename = (new \ReflectionClass($this->getClass()))->getFileName()) ? filemtime($filename) : 0,
         );
     }
 
-    private function initFromAttributes(): void {
+    private function initFromAttributes(): void
+    {
         $filters = $functions = $tests = [];
         $reflectionClass = new \ReflectionClass($this->getClass());
         foreach ($reflectionClass->getMethods() as $method) {

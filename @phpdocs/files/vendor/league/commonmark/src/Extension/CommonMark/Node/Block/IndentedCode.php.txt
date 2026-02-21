@@ -20,7 +20,8 @@ final class IndentedCode extends AbstractBlock implements StringContainerInterfa
 {
     private string $literal = '';
 
-    public function getLiteral(): string {
+    public function getLiteral(): string
+    {
         return $this->literal;
     }
 

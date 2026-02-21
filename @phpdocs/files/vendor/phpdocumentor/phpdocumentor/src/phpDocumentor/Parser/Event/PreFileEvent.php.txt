@@ -47,7 +47,8 @@ final class PreFileEvent extends EventAbstract
     /**
      * Returns the name of the file that is about to be processed.
      */
-    public function getFile(): string {
+    public function getFile(): string
+    {
         return $this->file;
     }
 }

@@ -64,21 +64,24 @@ final class Converter
     /**
      * Returns an instance using a GMP calculator.
      */
-    public static function fromGMP(): self {
+    public static function fromGMP(): self
+    {
         return new self(new GMPCalculator());
     }
 
     /**
      * Returns an instance using a Bcmath calculator.
      */
-    public static function fromBCMath(): self {
+    public static function fromBCMath(): self
+    {
         return new self(new BCMathCalculator());
     }
 
     /**
      * Returns an instance using a PHP native calculator (requires 64bits PHP).
      */
-    public static function fromNative(): self {
+    public static function fromNative(): self
+    {
         return new self(new NativeCalculator());
     }
 
@@ -89,7 +92,8 @@ final class Converter
      *
      * @codeCoverageIgnore
      */
-    public static function fromEnvironment(): self {
+    public static function fromEnvironment(): self
+    {
         FeatureDetection::supportsIPv4Conversion();
 
         return match (true) {

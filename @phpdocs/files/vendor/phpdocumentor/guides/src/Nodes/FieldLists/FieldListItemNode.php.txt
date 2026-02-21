@@ -25,11 +25,13 @@ final class FieldListItemNode extends CompoundNode
         parent::__construct($children);
     }
 
-    public function getTerm(): string {
+    public function getTerm(): string
+    {
         return $this->term;
     }
 
-    public function getPlaintextContent(): string {
+    public function getPlaintextContent(): string
+    {
         return $this->plaintextContent;
     }
 

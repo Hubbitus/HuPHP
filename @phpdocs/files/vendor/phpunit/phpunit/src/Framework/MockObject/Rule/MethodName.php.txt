@@ -44,7 +44,8 @@ final class MethodName
         $this->constraint = $constraint;
     }
 
-    public function toString(): string {
+    public function toString(): string
+    {
         return 'method name ' . $this->constraint->toString();
     }
 

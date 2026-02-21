@@ -30,13 +30,15 @@ trait VerifyDeprecations
 
     /** @before */
     #[Before]
-    public function enableDeprecationTracking(): void {
+    public function enableDeprecationTracking(): void
+    {
         Deprecation::enableTrackingDeprecations();
     }
 
     /** @after */
     #[After]
-    public function verifyDeprecationsAreTriggered(): void {
+    public function verifyDeprecationsAreTriggered(): void
+    {
         foreach ($this->doctrineDeprecationsExpectations as $identifier => $expectation) {
             $actualCount = Deprecation::getTriggeredDeprecations()[$identifier] ?? 0;
 

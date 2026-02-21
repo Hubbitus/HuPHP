@@ -70,7 +70,8 @@ trait ClockSensitiveTrait
      * @internal
      */
     #[After]
-    protected static function restoreClockAfterTest(): void {
+    protected static function restoreClockAfterTest(): void
+    {
         Clock::set(self::saveClockBeforeTest(false));
     }
 }

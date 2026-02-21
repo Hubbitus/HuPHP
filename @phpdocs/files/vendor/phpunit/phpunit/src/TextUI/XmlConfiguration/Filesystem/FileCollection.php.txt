@@ -43,19 +43,23 @@ final class FileCollection implements Countable, IteratorAggregate
     /**
      * @return File[]
      */
-    public function asArray(): array {
+    public function asArray(): array
+    {
         return $this->files;
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return count($this->files);
     }
 
-    public function getIterator(): FileCollectionIterator {
+    public function getIterator(): FileCollectionIterator
+    {
         return new FileCollectionIterator($this);
     }
 
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return $this->count() === 0;
     }
 }

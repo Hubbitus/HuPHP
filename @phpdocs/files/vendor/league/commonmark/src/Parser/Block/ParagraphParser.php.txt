@@ -33,11 +33,13 @@ final class ParagraphParser extends AbstractBlockContinueParser implements Block
         $this->referenceParser = new ReferenceParser();
     }
 
-    public function canHaveLazyContinuationLines(): bool {
+    public function canHaveLazyContinuationLines(): bool
+    {
         return true;
     }
 
-    public function getBlock(): Paragraph {
+    public function getBlock(): Paragraph
+    {
         return $this->block;
     }
 
@@ -55,7 +57,8 @@ final class ParagraphParser extends AbstractBlockContinueParser implements Block
         $this->referenceParser->parse($line);
     }
 
-    public function closeBlock(): void {
+    public function closeBlock(): void
+    {
         $this->block->onlyContainsLinkReferenceDefinitions = $this->referenceParser->hasReferences() && $this->referenceParser->getParagraphContent() === '';
     }
 
@@ -67,14 +70,16 @@ final class ParagraphParser extends AbstractBlockContinueParser implements Block
         }
     }
 
-    public function getContentString(): string {
+    public function getContentString(): string
+    {
         return $this->referenceParser->getParagraphContent();
     }
 
     /**
      * @return ReferenceInterface[]
      */
-    public function getReferences(): iterable {
+    public function getReferences(): iterable
+    {
         return $this->referenceParser->getReferences();
     }
 }

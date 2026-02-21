@@ -33,11 +33,13 @@ final class MarkdownParserState implements MarkdownParserStateInterface
         $this->lastMatchedBlockParser = $lastMatchedBlockParser;
     }
 
-    public function getActiveBlockParser(): BlockContinueParserInterface {
+    public function getActiveBlockParser(): BlockContinueParserInterface
+    {
         return $this->activeBlockParser;
     }
 
-    public function getLastMatchedBlockParser(): BlockContinueParserInterface {
+    public function getLastMatchedBlockParser(): BlockContinueParserInterface
+    {
         return $this->lastMatchedBlockParser;
     }
 

@@ -143,7 +143,8 @@ class ErrorHandler
     /**
      * @return array<class-string, LogLevel::*>
      */
-    protected function defaultExceptionLevelMap(): array {
+    protected function defaultExceptionLevelMap(): array
+    {
         return [
             'ParseError' => LogLevel::CRITICAL,
             'Throwable' => LogLevel::ERROR,
@@ -153,7 +154,8 @@ class ErrorHandler
     /**
      * @return array<int, LogLevel::*>
      */
-    protected function defaultErrorLevelMap(): array {
+    protected function defaultErrorLevelMap(): array
+    {
         return [
             E_ERROR             => LogLevel::CRITICAL,
             E_WARNING           => LogLevel::WARNING,
@@ -236,7 +238,8 @@ class ErrorHandler
     /**
      * @private
      */
-    public function handleFatalError(): void {
+    public function handleFatalError(): void
+    {
         $this->reservedMemory = '';
 
         if (is_array($this->lastFatalData)) {

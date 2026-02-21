@@ -32,11 +32,13 @@ class SeeDescriptor extends TagDescriptor implements Stringable
         parent::__construct($name, $description);
     }
 
-    public function getReference(): Reference {
+    public function getReference(): Reference
+    {
         return $this->reference;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return (string) $this->reference;
     }
 }

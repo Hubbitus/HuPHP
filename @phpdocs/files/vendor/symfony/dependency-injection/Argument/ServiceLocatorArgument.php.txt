@@ -36,7 +36,8 @@ class ServiceLocatorArgument implements ArgumentInterface
         return $this->taggedIteratorArgument;
     }
 
-    public function getValues(): array {
+    public function getValues(): array
+    {
         return $this->values;
     }
 

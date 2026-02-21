@@ -109,7 +109,8 @@ final class PropertyRead extends TagWithType implements Factory\StaticMethod
     /**
      * Returns a string representation for this tag.
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         if ($this->description !== null) {
             $description = $this->description->render();
         } else {

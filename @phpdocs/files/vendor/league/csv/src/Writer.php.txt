@@ -42,7 +42,8 @@ class Writer extends AbstractCsv implements TabularDataWriter
     /** @var array{0:array<string>,1:array<string>} */
     protected array $enclosure_replace = [[], []];
 
-    protected function resetProperties(): void {
+    protected function resetProperties(): void
+    {
         parent::resetProperties();
 
         $this->enclosure_replace = [
@@ -69,7 +70,8 @@ class Writer extends AbstractCsv implements TabularDataWriter
     /**
      * Returns the current end of line sequence characters.
      */
-    public function getEndOfLine(): string {
+    public function getEndOfLine(): string
+    {
         return $this->newline;
     }
 
@@ -84,7 +86,8 @@ class Writer extends AbstractCsv implements TabularDataWriter
     /**
      * Tells whether new entries will all be enclosed on writing.
      */
-    public function encloseAll(): bool {
+    public function encloseAll(): bool
+    {
         return self::ENCLOSE_ALL === $this->enclose_all;
     }
 
@@ -92,14 +95,16 @@ class Writer extends AbstractCsv implements TabularDataWriter
      * Tells whether new entries will be selectively enclosed on writing
      * if the field content requires encoding.
      */
-    public function encloseNecessary(): bool {
+    public function encloseNecessary(): bool
+    {
         return self::ENCLOSE_NECESSARY === $this->enclose_all;
     }
 
     /**
      * Tells whether new entries will never be enclosed on writing.
      */
-    public function encloseNone(): bool {
+    public function encloseNone(): bool
+    {
         return self::ENCLOSE_NONE === $this->enclose_all;
     }
 
@@ -217,21 +222,24 @@ class Writer extends AbstractCsv implements TabularDataWriter
         return $this;
     }
 
-    public function necessaryEnclosure(): self {
+    public function necessaryEnclosure(): self
+    {
         $this->enclose_all = self::ENCLOSE_NECESSARY;
         $this->resetProperties();
 
         return $this;
     }
 
-    public function forceEnclosure(): self {
+    public function forceEnclosure(): self
+    {
         $this->enclose_all = self::ENCLOSE_ALL;
         $this->resetProperties();
 
         return $this;
     }
 
-    public function noEnclosure(): self {
+    public function noEnclosure(): self
+    {
         $this->enclose_all = self::ENCLOSE_NONE;
         $this->resetProperties();
 
@@ -282,7 +290,8 @@ class Writer extends AbstractCsv implements TabularDataWriter
      * Applies post insertion actions.
      */
     #[Deprecated(message:'no longer affecting the class behaviour', since:'league/csv:9.9.0')]
-    protected function consolidate(): int {
+    protected function consolidate(): int
+    {
         if (null === $this->flush_threshold) {
             return 0;
         }
@@ -306,7 +315,8 @@ class Writer extends AbstractCsv implements TabularDataWriter
      * Returns the current newline sequence characters.
      */
     #[Deprecated(message:'use League\Csv\Writer::getEndOfLine()', since:'league/csv:9.10.0')]
-    public function getNewline(): string {
+    public function getNewline(): string
+    {
         return $this->getEndOfLine();
     }
 
@@ -335,7 +345,8 @@ class Writer extends AbstractCsv implements TabularDataWriter
      * Sets the enclosure threshold to only enclose necessary fields.
      */
     #[Deprecated(message:'use League\Csv\Writer::necessaryEnclosure()', since:'league/csv:9.22.0')]
-    public function relaxEnclosure(): self {
+    public function relaxEnclosure(): self
+    {
         return $this->necessaryEnclosure();
     }
 }

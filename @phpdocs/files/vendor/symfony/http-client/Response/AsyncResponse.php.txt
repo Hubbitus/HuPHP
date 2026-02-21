@@ -91,7 +91,8 @@ class AsyncResponse implements ResponseInterface, StreamableInterface
         }
     }
 
-    public function getStatusCode(): int {
+    public function getStatusCode(): int
+    {
         if ($this->initializer) {
             self::initialize($this);
         }
@@ -155,7 +156,8 @@ class AsyncResponse implements ResponseInterface, StreamableInterface
         return $stream;
     }
 
-    public function cancel(): void {
+    public function cancel(): void
+    {
         if ($this->info['canceled']) {
             return;
         }
@@ -491,7 +493,8 @@ class AsyncResponse implements ResponseInterface, StreamableInterface
         return $e;
     }
 
-    private function close(): void {
+    private function close(): void
+    {
         $this->response->cancel();
     }
 }

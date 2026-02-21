@@ -94,7 +94,8 @@ final class Cursor
     /**
      * @return $this
      */
-    public function savePosition(): static {
+    public function savePosition(): static
+    {
         $this->output->write("\x1b7");
 
         return $this;
@@ -103,7 +104,8 @@ final class Cursor
     /**
      * @return $this
      */
-    public function restorePosition(): static {
+    public function restorePosition(): static
+    {
         $this->output->write("\x1b8");
 
         return $this;
@@ -112,7 +114,8 @@ final class Cursor
     /**
      * @return $this
      */
-    public function hide(): static {
+    public function hide(): static
+    {
         $this->output->write("\x1b[?25l");
 
         return $this;
@@ -121,7 +124,8 @@ final class Cursor
     /**
      * @return $this
      */
-    public function show(): static {
+    public function show(): static
+    {
         $this->output->write("\x1b[?25h\x1b[?0c");
 
         return $this;
@@ -132,7 +136,8 @@ final class Cursor
      *
      * @return $this
      */
-    public function clearLine(): static {
+    public function clearLine(): static
+    {
         $this->output->write("\x1b[2K");
 
         return $this;
@@ -141,7 +146,8 @@ final class Cursor
     /**
      * Clears all the output from the current line after the current position.
      */
-    public function clearLineAfter(): self {
+    public function clearLineAfter(): self
+    {
         $this->output->write("\x1b[K");
 
         return $this;
@@ -152,7 +158,8 @@ final class Cursor
      *
      * @return $this
      */
-    public function clearOutput(): static {
+    public function clearOutput(): static
+    {
         $this->output->write("\x1b[0J");
 
         return $this;
@@ -163,7 +170,8 @@ final class Cursor
      *
      * @return $this
      */
-    public function clearScreen(): static {
+    public function clearScreen(): static
+    {
         $this->output->write("\x1b[2J");
 
         return $this;
@@ -172,7 +180,8 @@ final class Cursor
     /**
      * Returns the current cursor position as x,y coordinates.
      */
-    public function getCurrentPosition(): array {
+    public function getCurrentPosition(): array
+    {
         static $isTtySupported;
 
         if (!$isTtySupported ??= '/' === \DIRECTORY_SEPARATOR && stream_isatty(\STDOUT)) {

@@ -89,7 +89,8 @@ final class IgnoredLinesFindingVisitor extends NodeVisitorAbstract
     /**
      * @psalm-return list<int>
      */
-    public function ignoredLines(): array {
+    public function ignoredLines(): array
+    {
         return $this->ignoredLines;
     }
 

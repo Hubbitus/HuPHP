@@ -166,7 +166,8 @@ class Command
     /**
      * Create a TestRunner, override in subclasses.
      */
-    protected function createRunner(): TestRunner {
+    protected function createRunner(): TestRunner
+    {
         return new TestRunner($this->arguments['loader']);
     }
 
@@ -595,7 +596,8 @@ class Command
         }
     }
 
-    protected function handleVersionCheck(): void {
+    protected function handleVersionCheck(): void
+    {
         $this->printVersionString();
 
         $latestVersion           = file_get_contents('https://phar.phpunit.de/latest-version-of/phpunit');
@@ -631,7 +633,8 @@ class Command
     /**
      * Show the help message.
      */
-    protected function showHelp(): void {
+    protected function showHelp(): void
+    {
         $this->printVersionString();
         (new Help)->writeToConsole();
     }
@@ -639,10 +642,12 @@ class Command
     /**
      * Custom callback for test suite discovery.
      */
-    protected function handleCustomTestSuite(): void {
+    protected function handleCustomTestSuite(): void
+    {
     }
 
-    private function printVersionString(): void {
+    private function printVersionString(): void
+    {
         if ($this->versionStringPrinted) {
             return;
         }
@@ -791,7 +796,8 @@ class Command
         return TestRunner::SUCCESS_EXIT;
     }
 
-    private function generateConfiguration(): void {
+    private function generateConfiguration(): void
+    {
         $this->printVersionString();
 
         print 'Generating phpunit.xml in ' . getcwd() . PHP_EOL . PHP_EOL;

@@ -29,7 +29,8 @@ final class Heading extends AbstractBlock
         $this->level = $level;
     }
 
-    public function getLevel(): int {
+    public function getLevel(): int
+    {
         return $this->level;
     }
 

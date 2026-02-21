@@ -280,7 +280,8 @@ abstract class AttributeClassLoader implements LoaderInterface
     {
     }
 
-    public function getResolver(): LoaderResolverInterface {
+    public function getResolver(): LoaderResolverInterface
+    {
     }
 
     /**
@@ -367,7 +368,8 @@ abstract class AttributeClassLoader implements LoaderInterface
         return $globals;
     }
 
-    private function resetGlobals(): array {
+    private function resetGlobals(): array
+    {
         return [
             'path' => null,
             'localized_paths' => [],

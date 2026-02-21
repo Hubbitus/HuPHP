@@ -71,7 +71,8 @@ class Transformer
         $this->writers = $writerCollection;
     }
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         return 'Transform analyzed project into artifacts';
     }
 
@@ -99,7 +100,8 @@ class Transformer
         $this->destination = $filesystem;
     }
 
-    public function destination(): FilesystemInterface {
+    public function destination(): FilesystemInterface
+    {
         $destination = $this->destination;
 
         Assert::notNull($destination);

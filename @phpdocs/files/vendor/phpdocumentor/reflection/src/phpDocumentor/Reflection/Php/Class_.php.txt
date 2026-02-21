@@ -83,21 +83,24 @@ final class Class_ implements Element, MetaDataContainerInterface, AttributeCont
     /**
      * Returns true when this class is final. Otherwise returns false.
      */
-    public function isFinal(): bool {
+    public function isFinal(): bool
+    {
         return $this->final;
     }
 
     /**
      * Returns true when this class is abstract. Otherwise returns false.
      */
-    public function isAbstract(): bool {
+    public function isAbstract(): bool
+    {
         return $this->abstract;
     }
 
     /**
      * Returns true when this class is read-only. Otherwise returns false.
      */
-    public function isReadOnly(): bool {
+    public function isReadOnly(): bool
+    {
         return $this->readOnly;
     }
 
@@ -114,7 +117,8 @@ final class Class_ implements Element, MetaDataContainerInterface, AttributeCont
      *
      * @return Fqsen[]
      */
-    public function getInterfaces(): array {
+    public function getInterfaces(): array
+    {
         return $this->implements;
     }
 
@@ -131,7 +135,8 @@ final class Class_ implements Element, MetaDataContainerInterface, AttributeCont
      *
      * @return Constant[]
      */
-    public function getConstants(): array {
+    public function getConstants(): array
+    {
         return $this->constants;
     }
 
@@ -148,7 +153,8 @@ final class Class_ implements Element, MetaDataContainerInterface, AttributeCont
      *
      * @return Method[]
      */
-    public function getMethods(): array {
+    public function getMethods(): array
+    {
         return $this->methods;
     }
 
@@ -165,7 +171,8 @@ final class Class_ implements Element, MetaDataContainerInterface, AttributeCont
      *
      * @return Property[]
      */
-    public function getProperties(): array {
+    public function getProperties(): array
+    {
         return $this->properties;
     }
 
@@ -182,7 +189,8 @@ final class Class_ implements Element, MetaDataContainerInterface, AttributeCont
      *
      * @return Fqsen[]
      */
-    public function getUsedTraits(): array {
+    public function getUsedTraits(): array
+    {
         return $this->usedTraits;
     }
 
@@ -198,7 +206,8 @@ final class Class_ implements Element, MetaDataContainerInterface, AttributeCont
      * Returns the Fqsen of the element.
      */
     #[Override]
-    public function getFqsen(): Fqsen {
+    public function getFqsen(): Fqsen
+    {
         return $this->fqsen;
     }
 
@@ -206,7 +215,8 @@ final class Class_ implements Element, MetaDataContainerInterface, AttributeCont
      * Returns the name of the element.
      */
     #[Override]
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->fqsen->getName();
     }
 
@@ -215,11 +225,13 @@ final class Class_ implements Element, MetaDataContainerInterface, AttributeCont
         return $this->docBlock;
     }
 
-    public function getLocation(): Location {
+    public function getLocation(): Location
+    {
         return $this->location;
     }
 
-    public function getEndLocation(): Location {
+    public function getEndLocation(): Location
+    {
         return $this->endLocation;
     }
 }

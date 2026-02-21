@@ -30,7 +30,8 @@ class Sourcecode extends WriterAbstract
     {
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'sourcecode';
     }
 

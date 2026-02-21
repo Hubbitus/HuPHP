@@ -26,7 +26,8 @@ trait FilesystemTrait
 
     private MarshallerInterface $marshaller;
 
-    public function prune(): bool {
+    public function prune(): bool
+    {
         $time = time();
         $pruned = true;
 

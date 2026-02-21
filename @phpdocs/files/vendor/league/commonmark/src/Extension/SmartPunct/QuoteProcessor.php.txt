@@ -38,15 +38,18 @@ final class QuoteProcessor implements DelimiterProcessorInterface
         $this->closerCharacter     = $closer;
     }
 
-    public function getOpeningCharacter(): string {
+    public function getOpeningCharacter(): string
+    {
         return $this->normalizedCharacter;
     }
 
-    public function getClosingCharacter(): string {
+    public function getClosingCharacter(): string
+    {
         return $this->normalizedCharacter;
     }
 
-    public function getMinLength(): int {
+    public function getMinLength(): int
+    {
         return 1;
     }
 

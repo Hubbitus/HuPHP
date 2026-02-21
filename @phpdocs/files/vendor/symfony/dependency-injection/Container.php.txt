@@ -97,14 +97,16 @@ class Container implements ContainerInterface, ResetInterface
     /**
      * Returns true if the container is compiled.
      */
-    public function isCompiled(): bool {
+    public function isCompiled(): bool
+    {
         return $this->compiled;
     }
 
     /**
      * Gets the service container parameter bag.
      */
-    public function getParameterBag(): ParameterBagInterface {
+    public function getParameterBag(): ParameterBagInterface
+    {
         return $this->parameterBag;
     }
 
@@ -305,14 +307,16 @@ class Container implements ContainerInterface, ResetInterface
      *
      * @return string[]
      */
-    public function getServiceIds(): array {
+    public function getServiceIds(): array
+    {
         return array_map('strval', array_unique(array_merge(['service_container'], array_keys($this->fileMap), array_keys($this->methodMap), array_keys($this->aliases), array_keys($this->services))));
     }
 
     /**
      * Gets service ids that existed at compile time.
      */
-    public function getRemovedIds(): array {
+    public function getRemovedIds(): array
+    {
         return [];
     }
 

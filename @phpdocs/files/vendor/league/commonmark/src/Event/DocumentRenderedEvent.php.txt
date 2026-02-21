@@ -27,7 +27,8 @@ final class DocumentRenderedEvent extends AbstractEvent
     /**
      * @psalm-mutation-free
      */
-    public function getOutput(): RenderedContentInterface {
+    public function getOutput(): RenderedContentInterface
+    {
         return $this->output;
     }
 

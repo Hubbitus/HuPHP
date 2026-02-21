@@ -31,7 +31,8 @@ abstract class Handler implements HandlerInterface
     /**
      * {@inheritDoc}
      */
-    public function close(): void {
+    public function close(): void
+    {
     }
 
     public function __destruct()

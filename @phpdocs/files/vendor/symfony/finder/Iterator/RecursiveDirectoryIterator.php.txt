@@ -51,7 +51,8 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
     /**
      * Return an instance of SplFileInfo with support for relative paths.
      */
-    public function current(): SplFileInfo {
+    public function current(): SplFileInfo
+    {
         // the logic here avoids redoing the same work in all iterations
 
         if (!isset($this->subPath)) {
@@ -111,13 +112,15 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
         }
     }
 
-    public function next(): void {
+    public function next(): void
+    {
         $this->ignoreFirstRewind = false;
 
         parent::next();
     }
 
-    public function rewind(): void {
+    public function rewind(): void
+    {
         // some streams like FTP are not rewindable, ignore the first rewind after creation,
         // as newly created DirectoryIterator does not need to be rewound
         if ($this->ignoreFirstRewind) {

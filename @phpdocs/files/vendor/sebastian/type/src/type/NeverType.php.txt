@@ -16,18 +16,21 @@ final class NeverType extends Type
         return $other instanceof self;
     }
 
-    public function name(): string {
+    public function name(): string
+    {
         return 'never';
     }
 
-    public function allowsNull(): bool {
+    public function allowsNull(): bool
+    {
         return false;
     }
 
     /**
      * @psalm-assert-if-true NeverType $this
      */
-    public function isNever(): bool {
+    public function isNever(): bool
+    {
         return true;
     }
 }

@@ -72,7 +72,8 @@ final class Color
         return $this->set().$text.$this->unset();
     }
 
-    public function set(): string {
+    public function set(): string
+    {
         $setCodes = [];
         if ('' !== $this->foreground) {
             $setCodes[] = $this->foreground;
@@ -90,7 +91,8 @@ final class Color
         return \sprintf("\033[%sm", implode(';', $setCodes));
     }
 
-    public function unset(): string {
+    public function unset(): string
+    {
         $unsetCodes = [];
         if ('' !== $this->foreground) {
             $unsetCodes[] = 39;

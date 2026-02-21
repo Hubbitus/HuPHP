@@ -23,7 +23,8 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
  */
 final class DefaultRoleDirective extends ActionDirective
 {
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'default-role';
     }
 

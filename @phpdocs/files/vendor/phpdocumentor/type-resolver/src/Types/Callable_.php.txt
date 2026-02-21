@@ -37,7 +37,8 @@ final class Callable_ implements Type
     }
 
     /** @return CallableParameter[] */
-    public function getParameters(): array {
+    public function getParameters(): array
+    {
         return $this->parameters;
     }
 
@@ -49,7 +50,8 @@ final class Callable_ implements Type
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return 'callable';
     }
 }

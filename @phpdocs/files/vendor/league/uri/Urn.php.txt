@@ -207,7 +207,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
     /**
      * @return non-empty-string
      */
-    private function setUriString(): string {
+    private function setUriString(): string
+    {
         $str = $this->toRfc2141();
         if (null !== $this->rComponent) {
             $str .= '?+'.$this->rComponent;
@@ -229,7 +230,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
      *
      * @return non-empty-string
      */
-    public function getNid(): string {
+    public function getNid(): string
+    {
         return $this->nid;
     }
 
@@ -238,7 +240,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
      *
      * @return non-empty-string
      */
-    public function getNss(): string {
+    public function getNss(): string
+    {
         return $this->nss;
     }
 
@@ -277,7 +280,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
      *
      * @return non-empty-string
      */
-    public function toString(): string {
+    public function toString(): string
+    {
         return $this->uriString;
     }
 
@@ -286,7 +290,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
      *
      * @return non-empty-string
      */
-    public function toRfc2141(): string {
+    public function toRfc2141(): string
+    {
         return 'urn:'.$this->nid.':'.$this->nss;
     }
 
@@ -295,7 +300,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
      *
      * @see https://datatracker.ietf.org/doc/html/rfc3987
      */
-    public function toDisplayString(): string {
+    public function toDisplayString(): string
+    {
         return UriString::toIriString($this->uriString);
     }
 
@@ -306,7 +312,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
      *
      * @return non-empty-string
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->toString();
     }
 
@@ -316,7 +323,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
      *
      * @return non-empty-string
      */
-    public function jsonSerialize(): string {
+    public function jsonSerialize(): string
+    {
         return $this->toString();
     }
 
@@ -335,19 +343,23 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
         return null !== $template ? Uri::fromTemplate($template, $this->toComponents()) : Uri::new($this->uriString);
     }
 
-    public function hasRComponent(): bool {
+    public function hasRComponent(): bool
+    {
         return null !== $this->rComponent;
     }
 
-    public function hasQComponent(): bool {
+    public function hasQComponent(): bool
+    {
         return null !== $this->qComponent;
     }
 
-    public function hasFComponent(): bool {
+    public function hasFComponent(): bool
+    {
         return null !== $this->fComponent;
     }
 
-    public function hasOptionalComponent(): bool {
+    public function hasOptionalComponent(): bool
+    {
         return null !== $this->rComponent
             || null !== $this->qComponent
             || null !== $this->fComponent;
@@ -496,7 +508,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
         );
     }
 
-    public function normalize(): self {
+    public function normalize(): self
+    {
         $copy = new self(
             nid: strtolower($this->nid),
             nss: (string) Encoder::normalizePath($this->nss),
@@ -541,7 +554,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
     /**
      * @return UrnSerialize
      */
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         return [['urn' => $this->toString()], []];
     }
 
@@ -566,7 +580,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
     /**
      * @return UrnMap
      */
-    public function toComponents(): array {
+    public function toComponents(): array
+    {
         return [
             'scheme' => 'urn',
             'nid' => $this->nid,
@@ -580,7 +595,8 @@ final class Urn implements Conditionable, Stringable, JsonSerializable, Transfor
     /**
      * @return UrnMap
      */
-    public function __debugInfo(): array {
+    public function __debugInfo(): array
+    {
         return $this->toComponents();
     }
 }

@@ -84,7 +84,8 @@ final class ToctreeDirective extends BaseDirective
         $this->settingsManager = $settingsManager ?? new SettingsManager(new ProjectSettings());
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'toctree';
     }
 

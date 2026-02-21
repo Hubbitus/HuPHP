@@ -21,7 +21,8 @@ class ArrayShapeUnsealedTypeNode implements Node
 		$this->keyType = $keyType;
 	}
 
-	public function __toString(): string {
+	public function __toString(): string
+	{
 		if ($this->keyType !== null) {
 			return sprintf('<%s, %s>', $this->keyType, $this->valueType);
 		}

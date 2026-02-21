@@ -57,7 +57,8 @@ final class Coverage
         $this->writer->endElement();
     }
 
-    public function finalize(): void {
+    public function finalize(): void
+    {
         $this->writer->endElement();
 
         $fragment = $this->contextNode->ownerDocument->createDocumentFragment();

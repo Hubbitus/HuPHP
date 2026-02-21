@@ -64,6 +64,10 @@
                 <a href="namespaces/hubbitus-huphp.html" class="">HuPHP</a>
                 
             </li>
+                    <li>
+                <a href="namespaces/hubbitus-tests.html" class="">Tests</a>
+                
+            </li>
             </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -718,15 +722,15 @@
                 
             </li>
                     <li>
+                <a href="packages/Debug-Backtrace.html" class="">Backtrace</a>
+                
+            </li>
+                    <li>
                 <a href="packages/Debug-Dump.html" class="">Dump</a>
                 
             </li>
                     <li>
                 <a href="packages/Debug-HuLOG.html" class="">HuLOG</a>
-                
-            </li>
-                    <li>
-                <a href="packages/Debug-Bactrace.html" class="">Bactrace</a>
                 
             </li>
             </ul>
@@ -796,28 +800,8 @@
 </h4>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Image.html" class="">Image</a>
-</h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/Image-GD.html" class="">GD</a>
-                
-            </li>
-            </ul>
-
-                                    <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/RegExp.html" class="">RegExp</a>
 </h4>
-
-                                    <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Console.html" class="">Console</a>
-</h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/Console-Getopt.html" class="">Getopt</a>
-                
-            </li>
-            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/System.html" class="">System</a>
@@ -906,7 +890,8 @@
             <div class="phpdocumentor-element__package">
             in package
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Application.html">Application</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Debug.html">Debug</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Debug-Backtrace.html">Backtrace</a></li>
                             </ul>
         </div>
     
@@ -924,12 +909,13 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">231</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.231" class="phpdocumentor-element-found-in__source" data-line="231" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.37" class="phpdocumentor-element-found-in__source" data-line="37" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Debug and backtrace toolkit.</p>
+
 
 
 
@@ -940,10 +926,126 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">subpackage</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>Backtrace</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">version</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">2.1.6</span>
+                                                                                
+                                             
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">author</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>Pahan-Hubbitus (Pavel Alexeev) <a href="mailto:Pahan@Hubbitus.info">Pahan@Hubbitus.info</a></p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">copyright</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">created</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>?2008-05-30 01:20 v 2.1b to 2.1.1</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
                     <span class="phpdocumentor-tag__name">uses</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Hubbitus\HuPHP\Debug\dump">dump</abbr></span>
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Hubbitus\HuPHP\Debug\ASSIGN_IF()">ASSIGN_IF()</abbr></span>
+                                        
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">uses</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Hubbitus\HuPHP\Debug\EMPTY_VAR()">EMPTY_VAR()</abbr></span>
+                                        
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">uses</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Hubbitus\HuPHP\Debug\REQUIRED_VAR()">REQUIRED_VAR()</abbr></span>
+                                        
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">uses</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Hubbitus\HuPHP\Debug\VariableEmptyException">VariableEmptyException</abbr></span>
+                                        
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">uses</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Hubbitus\HuPHP\Debug\VariableArrayInconsistentException">VariableArrayInconsistentException</abbr></span>
+                                        
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">uses</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><a href="classes/Hubbitus-HuPHP-Exceptions-Variables-VariableRangeException.html"><abbr title="\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException">VariableRangeException</abbr></a></span>
+                                        
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">uses</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><a href="classes/Hubbitus-HuPHP-Exceptions-Variables-VariableRequiredException.html"><abbr title="\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException">VariableRequiredException</abbr></a></span>
+                                        
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">uses</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Hubbitus\HuPHP\Debug\BacktraceEmptyException">BacktraceEmptyException</abbr></span>
+                                        
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">uses</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Hubbitus\HuPHP\Debug\ClassPropertyNotExistsException">ClassPropertyNotExistsException</abbr></span>
+                                        
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">uses</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><a href="classes/Hubbitus-HuPHP-Debug-HuFormat.html"><abbr title="\Hubbitus\HuPHP\Debug\HuFormat">HuFormat</abbr></a></span>
                                         
                                              
                                     </dd>
@@ -1082,7 +1184,7 @@ so all it patterns and syntax allowed.</dd>
 and added to more flexibility.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_printout">printout()</a>
+    <a class="" href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_printFormat">printFormat()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
@@ -1147,9 +1249,9 @@ On time of set format NOT CHECKED!</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">247</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.247" class="phpdocumentor-element-found-in__source" data-line="247" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.53" class="phpdocumentor-element-found-in__source" data-line="53" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Constructor</p>
@@ -1211,9 +1313,9 @@ remove from stack.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">441</span>
+    <span class="phpdocumentor-element-found-in__line">250</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.441" class="phpdocumentor-element-found-in__source" data-line="441" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.250" class="phpdocumentor-element-found-in__source" data-line="250" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">By default convert into string will ::printout();</p>
@@ -1251,9 +1353,9 @@ remove from stack.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">260</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.260" class="phpdocumentor-element-found-in__source" data-line="260" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.66" class="phpdocumentor-element-found-in__source" data-line="66" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">To allow constructions like: backtrace::create()-&gt;methodName()</p>
@@ -1312,9 +1414,9 @@ remove from stack.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">460</span>
+    <span class="phpdocumentor-element-found-in__line">271</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.460" class="phpdocumentor-element-found-in__source" data-line="460" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.271" class="phpdocumentor-element-found-in__source" data-line="271" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return current backtraceNode</p>
@@ -1352,9 +1454,9 @@ remove from stack.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">325</span>
+    <span class="phpdocumentor-element-found-in__line">131</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.325" class="phpdocumentor-element-found-in__source" data-line="325" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.131" class="phpdocumentor-element-found-in__source" data-line="131" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Delete node in place $N
@@ -1418,9 +1520,9 @@ So, be carefully in loops - it may have undefined behavior.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">272</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.272" class="phpdocumentor-element-found-in__source" data-line="272" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.78" class="phpdocumentor-element-found-in__source" data-line="78" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Dump in appropriate(auto) form backtrace.</p>
@@ -1490,9 +1592,9 @@ So, be carefully in loops - it may have undefined behavior.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">504</span>
+    <span class="phpdocumentor-element-found-in__line">319</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.504" class="phpdocumentor-element-found-in__source" data-line="504" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.319" class="phpdocumentor-element-found-in__source" data-line="319" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return end backtraceNode and move internal pointer to it. It is NOT part Iterator interface
@@ -1531,9 +1633,9 @@ and added to more flexibility.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">360</span>
+    <span class="phpdocumentor-element-found-in__line">166</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.360" class="phpdocumentor-element-found-in__source" data-line="360" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.166" class="phpdocumentor-element-found-in__source" data-line="166" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Find node of backtrace. To match each possible used fnmatch (http://php.net/fnmatch),
@@ -1595,9 +1697,9 @@ and to search by N use ::getNode() this faster.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">379</span>
+    <span class="phpdocumentor-element-found-in__line">185</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.379" class="phpdocumentor-element-found-in__source" data-line="379" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.185" class="phpdocumentor-element-found-in__source" data-line="185" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
     
@@ -1656,9 +1758,9 @@ and to search by N use ::getNode() this faster.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">282</span>
+    <span class="phpdocumentor-element-found-in__line">88</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.282" class="phpdocumentor-element-found-in__source" data-line="282" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.88" class="phpdocumentor-element-found-in__source" data-line="88" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get BackTraceNode by its number</p>
@@ -1725,9 +1827,9 @@ and to search by N use ::getNode() this faster.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">473</span>
+    <span class="phpdocumentor-element-found-in__line">285</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.473" class="phpdocumentor-element-found-in__source" data-line="473" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.285" class="phpdocumentor-element-found-in__source" data-line="285" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return current key</p>
@@ -1765,9 +1867,9 @@ and to search by N use ::getNode() this faster.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">339</span>
+    <span class="phpdocumentor-element-found-in__line">145</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.339" class="phpdocumentor-element-found-in__source" data-line="339" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.145" class="phpdocumentor-element-found-in__source" data-line="145" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return count of BackTraceNodes.</p>
@@ -1805,9 +1907,9 @@ and to search by N use ::getNode() this faster.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">481</span>
+    <span class="phpdocumentor-element-found-in__line">294</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.481" class="phpdocumentor-element-found-in__source" data-line="481" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.294" class="phpdocumentor-element-found-in__source" data-line="294" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return next backtraceNode</p>
@@ -1856,9 +1958,9 @@ and to search by N use ::getNode() this faster.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">513</span>
+    <span class="phpdocumentor-element-found-in__line">329</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.513" class="phpdocumentor-element-found-in__source" data-line="513" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.329" class="phpdocumentor-element-found-in__source" data-line="329" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return prev backtraceNode and move internal pointer to it. It is NOT part Iterator interface
@@ -1889,17 +1991,17 @@ and added to more flexibility.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_printout">
-        printout()
-        <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_printout" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_printFormat">
+        printFormat()
+        <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_printFormat" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">393</span>
+    <span class="phpdocumentor-element-found-in__line">200</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.393" class="phpdocumentor-element-found-in__source" data-line="393" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.200" class="phpdocumentor-element-found-in__source" data-line="200" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Adopted from http://php.rinet.ru/manual/ru/function.debug-backtrace.php
@@ -1907,7 +2009,7 @@ comments of users</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">printout</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$return</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$OutType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">printFormat</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$outType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1915,15 +2017,6 @@ comments of users</p>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$return</span>
-                : <span class="phpdocumentor-argument-list__argument__type">bool</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">false</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Return or print directly.</p>
-</section>
-
-            </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$format</span>
                 : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
@@ -1935,29 +2028,28 @@ get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::print
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$OutType</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                <span class="phpdocumentor-argument-list__argument__name">$outType</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>If present - determine type of format from $format (passed or default). Must be index in $format.</p>
-</section>
-
+                
             </dd>
             </dl>
 
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_printout#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_printFormat#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">Throws</span>
+                    <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>(VariableRequiredException, BacktraceEmptyException)</p>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Hubbitus-HuPHP-Exceptions-Variables-VariableRequiredException.html"><abbr title="\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException">VariableRequiredException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>BacktraceEmptyException</p>
 </section>
 
                                     </dd>
@@ -1981,9 +2073,9 @@ get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::print
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">452</span>
+    <span class="phpdocumentor-element-found-in__line">262</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.452" class="phpdocumentor-element-found-in__source" data-line="452" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.262" class="phpdocumentor-element-found-in__source" data-line="262" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Rewind internal pointer to begin</p>
@@ -2017,9 +2109,9 @@ get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::print
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">300</span>
+    <span class="phpdocumentor-element-found-in__line">106</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.300" class="phpdocumentor-element-found-in__source" data-line="300" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.106" class="phpdocumentor-element-found-in__source" data-line="106" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Replace (or silently add) node in place $N</p>
@@ -2073,9 +2165,9 @@ get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::print
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">432</span>
+    <span class="phpdocumentor-element-found-in__line">240</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.432" class="phpdocumentor-element-found-in__source" data-line="432" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.240" class="phpdocumentor-element-found-in__source" data-line="240" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Set format to printout. Array by type of out as key {@see OS::OUT_* constants}, and values as array in format,
@@ -2118,13 +2210,12 @@ On time of set format NOT CHECKED!</p>
 
                                     </dd>
                                                 <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">Throws</span>
+                    <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>(VariableRequiredException)</p>
-</section>
-
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Hubbitus-HuPHP-Exceptions-Variables-VariableRequiredException.html"><abbr title="\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException">VariableRequiredException</abbr></a></span>
+                                                            
+                                             
                                     </dd>
                                             </dl>
 
@@ -2146,9 +2237,9 @@ On time of set format NOT CHECKED!</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Debug/Backtrace.php"><a href="files/debug-backtrace.html"><abbr title="Debug/Backtrace.php">Backtrace.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">495</span>
+    <span class="phpdocumentor-element-found-in__line">309</span>
 
-            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.495" class="phpdocumentor-element-found-in__source" data-line="495" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
+            <a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#source-view.309" class="phpdocumentor-element-found-in__source" data-line="309" data-modal="source-view" data-src="files/Debug/Backtrace.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return if Iterator valid and not end reached.</p>
@@ -2301,7 +2392,7 @@ On time of set format NOT CHECKED!</p>
                                             <li class=""><a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_length">length()</a></li>
                                             <li class=""><a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_next">next()</a></li>
                                             <li class=""><a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_prev">prev()</a></li>
-                                            <li class=""><a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_printout">printout()</a></li>
+                                            <li class=""><a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_printFormat">printFormat()</a></li>
                                             <li class=""><a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_rewind">rewind()</a></li>
                                             <li class=""><a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_setNode">setNode()</a></li>
                                             <li class=""><a href="classes/Hubbitus-HuPHP-Debug-Backtrace.html#method_setPrintoutFormat">setPrintoutFormat()</a></li>

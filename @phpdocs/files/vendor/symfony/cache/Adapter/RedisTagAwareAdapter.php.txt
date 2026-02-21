@@ -279,7 +279,8 @@ EOLUA;
         return $success;
     }
 
-    private function getRedisEvictionPolicy(): string {
+    private function getRedisEvictionPolicy(): string
+    {
         if (isset($this->redisEvictionPolicy)) {
             return $this->redisEvictionPolicy;
         }

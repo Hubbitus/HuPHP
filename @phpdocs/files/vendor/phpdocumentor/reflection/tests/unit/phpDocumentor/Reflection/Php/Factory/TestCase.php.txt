@@ -39,7 +39,8 @@ abstract class TestCase extends MockeryTestCase
         );
     }
 
-    public function testCreateThrowsException(): void {
+    public function testCreateThrowsException(): void
+    {
         $this->expectException(InvalidArgumentException::class);
         $this->fixture->create(self::createContext(null), new stdClass(), m::mock(StrategyContainer::class));
     }

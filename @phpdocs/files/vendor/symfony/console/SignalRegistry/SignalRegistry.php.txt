@@ -54,7 +54,8 @@ final class SignalRegistry
         pcntl_signal($signal, [$this, 'handle']);
     }
 
-    public static function isSupported(): bool {
+    public static function isSupported(): bool
+    {
         return \function_exists('pcntl_signal');
     }
 
@@ -78,7 +79,8 @@ final class SignalRegistry
      *
      * @internal
      */
-    public function pushCurrentHandlers(): void {
+    public function pushCurrentHandlers(): void
+    {
         $this->stack[] = $this->signalHandlers;
         $this->signalHandlers = [];
     }
@@ -91,7 +93,8 @@ final class SignalRegistry
      *
      * @internal
      */
-    public function popPreviousHandlers(): void {
+    public function popPreviousHandlers(): void
+    {
         $popped = $this->signalHandlers;
         $this->signalHandlers = array_pop($this->stack) ?? [];
 

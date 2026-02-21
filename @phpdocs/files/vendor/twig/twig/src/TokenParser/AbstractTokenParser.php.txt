@@ -37,7 +37,8 @@ abstract class AbstractTokenParser implements TokenParserInterface
     /**
      * Parses an assignment expression like "a, b".
      */
-    protected function parseAssignmentExpression(): Nodes {
+    protected function parseAssignmentExpression(): Nodes
+    {
         $stream = $this->parser->getStream();
         $targets = [];
         while (true) {

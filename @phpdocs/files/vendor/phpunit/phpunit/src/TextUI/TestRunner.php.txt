@@ -820,7 +820,8 @@ final class TestRunner extends BaseTestRunner
     /**
      * Returns the loader to be used.
      */
-    public function getLoader(): TestSuiteLoader {
+    public function getLoader(): TestSuiteLoader
+    {
         if ($this->loader === null) {
             $this->loader = new StandardTestSuiteLoader;
         }
@@ -844,7 +845,8 @@ final class TestRunner extends BaseTestRunner
         exit(self::FAILURE_EXIT);
     }
 
-    private function createTestResult(): TestResult {
+    private function createTestResult(): TestResult
+    {
         return new TestResult;
     }
 
@@ -1237,7 +1239,8 @@ final class TestRunner extends BaseTestRunner
         $this->timer->start();
     }
 
-    private function codeCoverageGenerationSucceeded(): void {
+    private function codeCoverageGenerationSucceeded(): void
+    {
         $this->write(
             sprintf(
                 "done [%s]\n",

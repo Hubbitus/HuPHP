@@ -39,7 +39,8 @@ final class BacktickParser implements InlineParserInterface
     /** @var array<int, int> backtick count => position of known ender */
     private array $seenBackticks = [];
 
-    public function getMatchDefinition(): InlineParserMatch {
+    public function getMatchDefinition(): InlineParserMatch
+    {
         return InlineParserMatch::regex('`+');
     }
 

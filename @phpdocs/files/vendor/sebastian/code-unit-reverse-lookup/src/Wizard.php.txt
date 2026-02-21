@@ -60,12 +60,14 @@ class Wizard
         return $filename . ':' . $lineNumber;
     }
 
-    private function updateLookupTable(): void {
+    private function updateLookupTable(): void
+    {
         $this->processClassesAndTraits();
         $this->processFunctions();
     }
 
-    private function processClassesAndTraits(): void {
+    private function processClassesAndTraits(): void
+    {
         $classes = get_declared_classes();
         $traits  = get_declared_traits();
 
@@ -87,7 +89,8 @@ class Wizard
         }
     }
 
-    private function processFunctions(): void {
+    private function processFunctions(): void
+    {
         foreach (get_defined_functions()['user'] as $function) {
             if (isset($this->processedFunctions[$function])) {
                 continue;

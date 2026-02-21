@@ -14,6 +14,8 @@ declare(strict_types=1);
 * @uses database
 **/
 
+namespace Hubbitus\HuPHP\Database;
+
 class DatabaseSettingsSqlite extends DatabaseSettings{
 }
 /**

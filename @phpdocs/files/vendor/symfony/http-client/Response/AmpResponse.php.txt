@@ -123,7 +123,8 @@ final class AmpResponse implements ResponseInterface, StreamableInterface
         return null !== $type ? $this->info[$type] ?? null : $this->info;
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 

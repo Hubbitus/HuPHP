@@ -220,7 +220,8 @@ class PhpArrayAdapter implements AdapterInterface, CacheInterface, PruneableInte
         return !isset($this->keys[$item->getKey()]) && $this->pool->saveDeferred($item);
     }
 
-    public function commit(): bool {
+    public function commit(): bool
+    {
         return $this->pool->commit();
     }
 
@@ -336,7 +337,8 @@ EOF;
     /**
      * Load the cache file.
      */
-    private function initialize(): void {
+    private function initialize(): void
+    {
         if (isset(self::$valuesCache[$this->file])) {
             $values = self::$valuesCache[$this->file];
         } elseif (!is_file($this->file)) {

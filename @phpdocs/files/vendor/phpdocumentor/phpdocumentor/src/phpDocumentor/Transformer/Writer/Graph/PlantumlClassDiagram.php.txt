@@ -40,7 +40,8 @@ final class PlantumlClassDiagram implements Generator
                     {
                     }
 
-                    public function getLoggerInformation(): array {
+                    public function getLoggerInformation(): array
+                    {
                         return [];
                     }
                 },

@@ -36,7 +36,8 @@ class ClassHasAttribute extends Constraint
     /**
      * Returns a string representation of the constraint.
      */
-    public function toString(): string {
+    public function toString(): string
+    {
         return sprintf(
             'has attribute "%s"',
             $this->attributeName,
@@ -82,7 +83,8 @@ class ClassHasAttribute extends Constraint
         );
     }
 
-    protected function attributeName(): string {
+    protected function attributeName(): string
+    {
         return $this->attributeName;
     }
 }

@@ -37,7 +37,8 @@ final class ArrayHasKey extends Constraint
      *
      * @throws InvalidArgumentException
      */
-    public function toString(): string {
+    public function toString(): string
+    {
         return 'has the key ' . $this->exporter()->export($this->key);
     }
 

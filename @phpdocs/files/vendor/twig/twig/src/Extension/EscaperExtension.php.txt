@@ -38,15 +38,18 @@ final class EscaperExtension extends AbstractExtension
         $this->setDefaultStrategy($defaultStrategy);
     }
 
-    public function getTokenParsers(): array {
+    public function getTokenParsers(): array
+    {
         return [new AutoEscapeTokenParser()];
     }
 
-    public function getNodeVisitors(): array {
+    public function getNodeVisitors(): array
+    {
         return [new EscaperNodeVisitor()];
     }
 
-    public function getFilters(): array {
+    public function getFilters(): array
+    {
         return [
             new TwigFilter('escape', [EscaperRuntime::class, 'escape'], ['is_safe_callback' => [self::class, 'escapeFilterIsSafe']]),
             new TwigFilter('e', [EscaperRuntime::class, 'escape'], ['is_safe_callback' => [self::class, 'escapeFilterIsSafe']]),
@@ -54,7 +57,8 @@ final class EscaperExtension extends AbstractExtension
         ];
     }
 
-    public function getLastModified(): int {
+    public function getLastModified(): int
+    {
         return max(
             parent::getLastModified(),
             filemtime((new \ReflectionClass(EscaperRuntime::class))->getFileName()),

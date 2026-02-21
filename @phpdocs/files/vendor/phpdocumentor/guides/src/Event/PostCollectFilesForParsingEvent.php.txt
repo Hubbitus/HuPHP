@@ -30,11 +30,13 @@ final class PostCollectFilesForParsingEvent
     ) {
     }
 
-    public function getCommand(): ParseDirectoryCommand {
+    public function getCommand(): ParseDirectoryCommand
+    {
         return $this->command;
     }
 
-    public function getFiles(): Files {
+    public function getFiles(): Files
+    {
         return $this->files;
     }
 

@@ -85,7 +85,8 @@ final class Facade
         $this->saveDocument($this->project->asDom(), 'index');
     }
 
-    private function setBuildInformation(): void {
+    private function setBuildInformation(): void
+    {
         $buildNode = $this->project->buildInformation();
         $buildNode->setRuntimeInformation(new Runtime);
         $buildNode->setBuildTime(new DateTimeImmutable);
@@ -267,7 +268,8 @@ final class Facade
         );
     }
 
-    private function targetDirectory(): string {
+    private function targetDirectory(): string
+    {
         return $this->target;
     }
 

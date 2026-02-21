@@ -69,7 +69,8 @@ final class DocBlock
         $this->isTemplateStart = $isTemplateStart;
     }
 
-    public function getSummary(): string {
+    public function getSummary(): string
+    {
         return $this->summary;
     }
 
@@ -113,7 +114,8 @@ final class DocBlock
      *
      * @see self::isTemplateEnd() for the check whether a closing marker was provided.
      */
-    public function isTemplateStart(): bool {
+    public function isTemplateStart(): bool
+    {
         return $this->isTemplateStart;
     }
 
@@ -122,7 +124,8 @@ final class DocBlock
      *
      * @see self::isTemplateStart() for a more complete description of the Docblock Template functionality.
      */
-    public function isTemplateEnd(): bool {
+    public function isTemplateEnd(): bool
+    {
         return $this->isTemplateEnd;
     }
 
@@ -131,7 +134,8 @@ final class DocBlock
      *
      * @return Tag[]
      */
-    public function getTags(): array {
+    public function getTags(): array
+    {
         return $this->tags;
     }
 

@@ -24,7 +24,8 @@ class HttpOptions
 {
     private array $options = [];
 
-    public function toArray(): array {
+    public function toArray(): array
+    {
         return $this->options;
     }
 

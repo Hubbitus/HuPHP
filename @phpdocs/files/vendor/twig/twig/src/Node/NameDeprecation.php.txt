@@ -29,15 +29,18 @@ class NameDeprecation
         $this->newName = $newName;
     }
 
-    public function getPackage(): string {
+    public function getPackage(): string
+    {
         return $this->package;
     }
 
-    public function getVersion(): string {
+    public function getVersion(): string
+    {
         return $this->version;
     }
 
-    public function getNewName(): string {
+    public function getNewName(): string
+    {
         return $this->newName;
     }
 }

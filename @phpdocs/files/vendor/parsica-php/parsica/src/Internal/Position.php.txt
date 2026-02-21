@@ -44,7 +44,8 @@ final class Position
     /**
      * Pretty print as "filename:line:column"
      */
-    public function pretty(): string {
+    public function pretty(): string
+    {
         return $this->filename . ":" . $this->line . ":" . $this->column;
     }
 
@@ -70,15 +71,18 @@ final class Position
         return new Position($this->filename, $line, $column);
     }
 
-    public function filename(): string {
+    public function filename(): string
+    {
         return $this->filename;
     }
 
-    public function line(): int {
+    public function line(): int
+    {
         return $this->line;
     }
 
-    public function column(): int {
+    public function column(): int
+    {
         return $this->column;
     }
 }

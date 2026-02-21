@@ -37,15 +37,18 @@ final class IntMask extends Integer implements PseudoType
     /**
      * @return Type[]
      */
-    public function getTypes(): array {
+    public function getTypes(): array
+    {
         return $this->types;
     }
 
-    public function underlyingType(): Type {
+    public function underlyingType(): Type
+    {
         return new Integer();
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return 'int-mask<' . implode(', ', $this->types) . '>';
     }
 }

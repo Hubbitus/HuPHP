@@ -56,11 +56,13 @@ final class ProjectFactoryTest extends MockeryTestCase
 {
     use ProphecyTrait;
 
-    public function testCreatingAnInstanceInstantiatesItWithTheRecommendedStrategies(): void {
+    public function testCreatingAnInstanceInstantiatesItWithTheRecommendedStrategies(): void
+    {
         $this->assertInstanceOf(ProjectFactory::class, ProjectFactory::createInstance());
     }
 
-    public function testCreate(): void {
+    public function testCreate(): void
+    {
         $expected = ['some/file.php', 'some/other.php'];
         $calls = 0;
         $someOtherStrategy = $this->prophesize(ProjectFactoryStrategy::class);
@@ -105,13 +107,15 @@ final class ProjectFactoryTest extends MockeryTestCase
         $this->assertEquals(['some/file.php', 'some/other.php'], $projectFilePaths);
     }
 
-    public function testCreateThrowsExceptionWhenStrategyNotFound(): void {
+    public function testCreateThrowsExceptionWhenStrategyNotFound(): void
+    {
         $this->expectException(OutOfBoundsException::class);
         $projectFactory = new ProjectFactory([]);
         $projectFactory->create('MyProject', ['aa']);
     }
 
-    public function testCreateProjectFromFileWithNamespacedClass(): void {
+    public function testCreateProjectFromFileWithNamespacedClass(): void
+    {
         $file = new File(md5('some/file.php'), 'some/file.php');
         $file->addNamespace(new Fqsen('\mySpace'));
         $file->addClass(new Class_(new Fqsen('\mySpace\MyClass')));
@@ -126,7 +130,8 @@ final class ProjectFactoryTest extends MockeryTestCase
         $this->assertEquals('\mySpace\MyClass', key($mySpace->getClasses()));
     }
 
-    public function testWithNamespacedInterface(): void {
+    public function testWithNamespacedInterface(): void
+    {
         $file = new File(md5('some/file.php'), 'some/file.php');
         $file->addNamespace(new Fqsen('\mySpace'));
         $file->addInterface(new Interface_(new Fqsen('\mySpace\MyInterface')));
@@ -139,7 +144,8 @@ final class ProjectFactoryTest extends MockeryTestCase
         $this->assertEquals('\mySpace\MyInterface', key($mySpace->getInterfaces()));
     }
 
-    public function testWithNamespacedFunction(): void {
+    public function testWithNamespacedFunction(): void
+    {
         $file = new File(md5('some/file.php'), 'some/file.php');
         $file->addNamespace(new Fqsen('\mySpace'));
         $file->addFunction(new Function_(new Fqsen('\mySpace\function()')));
@@ -152,7 +158,8 @@ final class ProjectFactoryTest extends MockeryTestCase
         $this->assertEquals('\mySpace\function()', key($mySpace->getFunctions()));
     }
 
-    public function testWithNamespacedConstant(): void {
+    public function testWithNamespacedConstant(): void
+    {
         $file = new File(md5('some/file.php'), 'some/file.php');
         $file->addNamespace(new Fqsen('\mySpace'));
         $file->addConstant(new Constant(new Fqsen('\mySpace::MY_CONST')));
@@ -165,7 +172,8 @@ final class ProjectFactoryTest extends MockeryTestCase
         $this->assertEquals('\mySpace::MY_CONST', key($mySpace->getConstants()));
     }
 
-    public function testWithNamespacedTrait(): void {
+    public function testWithNamespacedTrait(): void
+    {
         $file = new File(md5('some/file.php'), 'some/file.php');
         $file->addNamespace(new Fqsen('\mySpace'));
         $file->addTrait(new Trait_(new Fqsen('\mySpace\MyTrait')));
@@ -178,7 +186,8 @@ final class ProjectFactoryTest extends MockeryTestCase
         $this->assertEquals('\mySpace\MyTrait', key($mySpace->getTraits()));
     }
 
-    public function testNamespaceSpreadOverMultipleFiles(): void {
+    public function testNamespaceSpreadOverMultipleFiles(): void
+    {
         $someFile = new File(md5('some/file.php'), 'some/file.php');
         $someFile->addNamespace(new Fqsen('\mySpace'));
         $someFile->addClass(new Class_(new Fqsen('\mySpace\MyClass')));
@@ -193,7 +202,8 @@ final class ProjectFactoryTest extends MockeryTestCase
         $this->assertCount(2, current($namespaces)->getClasses());
     }
 
-    public function testSingleFileMultipleNamespaces(): void {
+    public function testSingleFileMultipleNamespaces(): void
+    {
         $someFile = new File(md5('some/file.php'), 'some/file.php');
         $someFile->addNamespace(new Fqsen('\mySpace'));
         $someFile->addClass(new Class_(new Fqsen('\mySpace\MyClass')));

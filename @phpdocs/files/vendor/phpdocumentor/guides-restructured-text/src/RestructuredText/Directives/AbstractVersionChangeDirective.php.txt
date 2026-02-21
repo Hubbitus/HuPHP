@@ -45,7 +45,8 @@ abstract class AbstractVersionChangeDirective extends SubDirective
         );
     }
 
-    final public function getName(): string {
+    final public function getName(): string
+    {
         return $this->type;
     }
 }

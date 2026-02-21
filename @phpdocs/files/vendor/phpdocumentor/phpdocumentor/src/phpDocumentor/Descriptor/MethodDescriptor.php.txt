@@ -100,7 +100,8 @@ class MethodDescriptor extends DescriptorAbstract implements
         $this->static = $static;
     }
 
-    public function isStatic(): bool {
+    public function isStatic(): bool
+    {
         return $this->static;
     }
 
@@ -121,11 +122,13 @@ class MethodDescriptor extends DescriptorAbstract implements
     }
 
     /** @return Collection<ArgumentInterface> */
-    public function getArguments(): Collection {
+    public function getArguments(): Collection
+    {
         return $this->arguments;
     }
 
-    public function getResponse(): ReturnDescriptor {
+    public function getResponse(): ReturnDescriptor
+    {
         $definedReturn = new ReturnDescriptor('return');
         $definedReturn->setType($this->returnType);
 
@@ -142,7 +145,8 @@ class MethodDescriptor extends DescriptorAbstract implements
     /**
      * Returns the file associated with the parent class, interface or trait.
      */
-    public function getFile(): FileInterface {
+    public function getFile(): FileInterface
+    {
         $file = $this->getParent()->getFile();
 
         Assert::notNull($file);
@@ -151,7 +155,8 @@ class MethodDescriptor extends DescriptorAbstract implements
     }
 
     /** @return Collection<ReturnDescriptor> */
-    public function getReturn(): Collection {
+    public function getReturn(): Collection
+    {
         /** @var Collection<ReturnDescriptor> $var */
         $var = $this->getTags()->fetch('return', new Collection())->filter(ReturnDescriptor::class);
         if ($var->count() !== 0) {
@@ -167,7 +172,8 @@ class MethodDescriptor extends DescriptorAbstract implements
     }
 
     /** @return Collection<ParamDescriptor> */
-    public function getParam(): Collection {
+    public function getParam(): Collection
+    {
         /** @var Collection<ParamDescriptor> $var */
         $var = $this->getTags()->fetch('param', new Collection());
         if ($var instanceof Collection && $var->count() > 0) {
@@ -235,7 +241,8 @@ class MethodDescriptor extends DescriptorAbstract implements
         $this->hasReturnByReference = $hasReturnByReference;
     }
 
-    public function getHasReturnByReference(): bool {
+    public function getHasReturnByReference(): bool
+    {
         return $this->hasReturnByReference;
     }
 

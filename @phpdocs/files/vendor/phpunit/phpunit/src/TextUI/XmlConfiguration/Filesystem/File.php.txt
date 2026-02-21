@@ -26,7 +26,8 @@ final class File
         $this->path = $path;
     }
 
-    public function path(): string {
+    public function path(): string
+    {
         return $this->path;
     }
 }

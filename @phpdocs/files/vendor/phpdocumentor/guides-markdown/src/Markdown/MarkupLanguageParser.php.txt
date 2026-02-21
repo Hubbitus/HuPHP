@@ -107,7 +107,8 @@ final class MarkupLanguageParser implements MarkupLanguageParserInterface
         return $document;
     }
 
-    public function getParserContext(): ParserContext {
+    public function getParserContext(): ParserContext
+    {
         if ($this->parserContext === null) {
             throw new RuntimeException(
                 'A parser\'s Environment should not be consulted before parsing has started',
@@ -117,7 +118,8 @@ final class MarkupLanguageParser implements MarkupLanguageParserInterface
         return $this->parserContext;
     }
 
-    public function getDocument(): DocumentNode {
+    public function getDocument(): DocumentNode
+    {
         if ($this->document === null) {
             throw new RuntimeException('Cannot get document as parser is not started');
         }

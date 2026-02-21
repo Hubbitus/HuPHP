@@ -39,7 +39,8 @@ class TraceableResponse implements ResponseInterface, StreamableInterface
     ) {
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 
@@ -61,7 +62,8 @@ class TraceableResponse implements ResponseInterface, StreamableInterface
         }
     }
 
-    public function getStatusCode(): int {
+    public function getStatusCode(): int
+    {
         try {
             return $this->response->getStatusCode();
         } finally {
@@ -118,7 +120,8 @@ class TraceableResponse implements ResponseInterface, StreamableInterface
         }
     }
 
-    public function cancel(): void {
+    public function cancel(): void
+    {
         $this->response->cancel();
 
         if ($this->event?->isStarted()) {

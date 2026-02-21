@@ -52,7 +52,8 @@ final class HtmlBlock extends AbstractBlock implements RawMarkupContainerInterfa
      *
      * @phpstan-return self::TYPE_*
      */
-    public function getType(): int {
+    public function getType(): int
+    {
         return $this->type;
     }
 
@@ -66,7 +67,8 @@ final class HtmlBlock extends AbstractBlock implements RawMarkupContainerInterfa
         $this->type = $type;
     }
 
-    public function getLiteral(): string {
+    public function getLiteral(): string
+    {
         return $this->literal;
     }
 

@@ -93,7 +93,8 @@ class MockHttpClient implements HttpClientInterface, ResetInterface
         return new ResponseStream(MockResponse::stream($responses, $timeout));
     }
 
-    public function getRequestsCount(): int {
+    public function getRequestsCount(): int
+    {
         return $this->requestsCount;
     }
 
@@ -105,7 +106,8 @@ class MockHttpClient implements HttpClientInterface, ResetInterface
         return $clone;
     }
 
-    public function reset(): void {
+    public function reset(): void
+    {
         $this->requestsCount = 0;
     }
 }

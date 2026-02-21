@@ -172,7 +172,8 @@ trait FilesystemCommonTrait
         }
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 

@@ -57,7 +57,8 @@ final class AnchorReferenceResolver implements ReferenceResolver
         return true;
     }
 
-    public static function getPriority(): int {
+    public static function getPriority(): int
+    {
         return self::PRIORITY;
     }
 }

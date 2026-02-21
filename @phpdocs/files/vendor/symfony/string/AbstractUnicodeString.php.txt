@@ -158,7 +158,8 @@ abstract class AbstractUnicodeString extends AbstractString
         return $str;
     }
 
-    public function camel(): static {
+    public function camel(): static
+    {
         $str = clone $this;
         $str->string = str_replace(' ', '', preg_replace_callback('/\b.(?!\p{Lu})/u', static function ($m) {
             static $i = 0;
@@ -217,7 +218,8 @@ abstract class AbstractUnicodeString extends AbstractString
         return $str;
     }
 
-    public function lower(): static {
+    public function lower(): static
+    {
         $str = clone $this;
         $str->string = mb_strtolower(str_replace('İ', 'i̇', $str->string), 'UTF-8');
 
@@ -340,14 +342,16 @@ abstract class AbstractUnicodeString extends AbstractString
         return $str;
     }
 
-    public function reverse(): static {
+    public function reverse(): static
+    {
         $str = clone $this;
         $str->string = implode('', array_reverse(preg_split('/(\X)/u', $str->string, -1, \PREG_SPLIT_DELIM_CAPTURE | \PREG_SPLIT_NO_EMPTY)));
 
         return $str;
     }
 
-    public function snake(): static {
+    public function snake(): static
+    {
         $str = $this->camel();
         $str->string = mb_strtolower(preg_replace(['/(\p{Lu}+)(\p{Lu}\p{Ll})/u', '/([\p{Ll}0-9])(\p{Lu})/u'], '\1_\2', $str->string), 'UTF-8');
 
@@ -444,7 +448,8 @@ abstract class AbstractUnicodeString extends AbstractString
         return $str;
     }
 
-    public function upper(): static {
+    public function upper(): static
+    {
         $str = clone $this;
         $str->string = mb_strtoupper($str->string, 'UTF-8');
 

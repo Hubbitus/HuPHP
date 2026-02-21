@@ -115,7 +115,8 @@ class FingersCrossedHandler extends Handler implements ProcessableHandlerInterfa
     /**
      * Manually activate this logger regardless of the activation strategy
      */
-    public function activate(): void {
+    public function activate(): void
+    {
         if ($this->stopBuffering) {
             $this->buffering = false;
         }
@@ -152,7 +153,8 @@ class FingersCrossedHandler extends Handler implements ProcessableHandlerInterfa
     /**
      * {@inheritDoc}
      */
-    public function close(): void {
+    public function close(): void
+    {
         $this->flushBuffer();
 
         $this->getHandler()->close();
@@ -174,7 +176,8 @@ class FingersCrossedHandler extends Handler implements ProcessableHandlerInterfa
      *
      * It also resets the handler to its initial buffering state.
      */
-    public function clear(): void {
+    public function clear(): void
+    {
         $this->buffer = [];
         $this->reset();
     }
@@ -182,7 +185,8 @@ class FingersCrossedHandler extends Handler implements ProcessableHandlerInterfa
     /**
      * Resets the state of the handler. Stops forwarding records to the wrapped handler.
      */
-    private function flushBuffer(): void {
+    private function flushBuffer(): void
+    {
         if (null !== $this->passthruLevel) {
             $level = $this->passthruLevel;
             $this->buffer = array_filter($this->buffer, function ($record) use ($level) {
@@ -236,7 +240,8 @@ class FingersCrossedHandler extends Handler implements ProcessableHandlerInterfa
     /**
      * {@inheritDoc}
      */
-    public function getFormatter(): FormatterInterface {
+    public function getFormatter(): FormatterInterface
+    {
         $handler = $this->getHandler();
         if ($handler instanceof FormattableHandlerInterface) {
             return $handler->getFormatter();

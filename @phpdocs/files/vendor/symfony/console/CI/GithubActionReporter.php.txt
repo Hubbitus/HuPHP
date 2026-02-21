@@ -47,7 +47,8 @@ class GithubActionReporter
         $this->output = $output;
     }
 
-    public static function isGithubActionEnvironment(): bool {
+    public static function isGithubActionEnvironment(): bool
+    {
         return false !== getenv('GITHUB_ACTIONS');
     }
 

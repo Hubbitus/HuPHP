@@ -92,7 +92,8 @@ abstract class BaseNode implements NodeInterface
      *
      * @internal
      */
-    public static function resetPlaceholders(): void {
+    public static function resetPlaceholders(): void
+    {
         self::$placeholderUniquePrefixes = [];
         self::$placeholders = [];
     }
@@ -115,7 +116,8 @@ abstract class BaseNode implements NodeInterface
         return isset($this->attributes[$key]);
     }
 
-    public function getAttributes(): array {
+    public function getAttributes(): array
+    {
         return $this->attributes;
     }
 
@@ -251,7 +253,8 @@ abstract class BaseNode implements NodeInterface
      *
      * see ExprBuilder::TYPE_* constants.
      */
-    public function getNormalizedTypes(): array {
+    public function getNormalizedTypes(): array
+    {
         return $this->normalizedTypes;
     }
 
@@ -267,14 +270,16 @@ abstract class BaseNode implements NodeInterface
         $this->finalValidationClosures = $closures;
     }
 
-    public function isRequired(): bool {
+    public function isRequired(): bool
+    {
         return $this->required;
     }
 
     /**
      * Checks if this node is deprecated.
      */
-    public function isDeprecated(): bool {
+    public function isDeprecated(): bool
+    {
         return (bool) $this->deprecation;
     }
 
@@ -291,11 +296,13 @@ abstract class BaseNode implements NodeInterface
         ];
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    public function getPath(): string {
+    public function getPath(): string
+    {
         if (null !== $this->parent) {
             return $this->parent->getPath().$this->pathSeparator.$this->name;
         }
@@ -459,21 +466,24 @@ abstract class BaseNode implements NodeInterface
     /**
      * Tests if placeholder values are allowed for this node.
      */
-    protected function allowPlaceholders(): bool {
+    protected function allowPlaceholders(): bool
+    {
         return true;
     }
 
     /**
      * Tests if a placeholder is being handled currently.
      */
-    protected function isHandlingPlaceholder(): bool {
+    protected function isHandlingPlaceholder(): bool
+    {
         return null !== $this->handlingPlaceholder;
     }
 
     /**
      * Gets allowed dynamic types for this node.
      */
-    protected function getValidPlaceholderTypes(): array {
+    protected function getValidPlaceholderTypes(): array
+    {
         return [];
     }
 

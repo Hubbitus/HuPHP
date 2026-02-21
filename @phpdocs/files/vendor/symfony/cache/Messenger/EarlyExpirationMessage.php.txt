@@ -61,11 +61,13 @@ final class EarlyExpirationMessage
         return new self($item, $pool, $callback);
     }
 
-    public function getItem(): CacheItem {
+    public function getItem(): CacheItem
+    {
         return $this->item;
     }
 
-    public function getPool(): string {
+    public function getPool(): string
+    {
         return $this->pool;
     }
 

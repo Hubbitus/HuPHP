@@ -49,11 +49,13 @@ class ParameterBag implements ParameterBagInterface
         }
     }
 
-    public function all(): array {
+    public function all(): array
+    {
         return $this->parameters;
     }
 
-    public function allDeprecated(): array {
+    public function allDeprecated(): array
+    {
         return $this->deprecatedParameters;
     }
 

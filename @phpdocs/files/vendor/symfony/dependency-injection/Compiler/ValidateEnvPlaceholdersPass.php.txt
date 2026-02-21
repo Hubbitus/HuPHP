@@ -83,7 +83,8 @@ class ValidateEnvPlaceholdersPass implements CompilerPassInterface
     /**
      * @internal
      */
-    public function getExtensionConfig(): array {
+    public function getExtensionConfig(): array
+    {
         try {
             return $this->extensionConfig;
         } finally {

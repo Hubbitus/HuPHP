@@ -67,7 +67,8 @@ final class ExtensionHandler
     }
 
     /** @return ExtensionInfo[] */
-    private function getExtensions(): array {
+    private function getExtensions(): array
+    {
         if ($this->extensions !== null) {
             return $this->extensions;
         }
@@ -89,7 +90,8 @@ final class ExtensionHandler
     }
 
     /** @return Generator<class-string> */
-    public function loadExtensions(): Generator {
+    public function loadExtensions(): Generator
+    {
         foreach ($this->getExtensions() as $extension) {
             $namespace = $extension->getNamespace();
             AutoloaderLocator::loader()->addPsr4($namespace, [$extension->getPath()]);

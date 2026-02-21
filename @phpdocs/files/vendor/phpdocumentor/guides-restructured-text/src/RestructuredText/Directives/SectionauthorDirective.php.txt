@@ -31,7 +31,8 @@ final class SectionauthorDirective extends BaseDirective
     ) {
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'sectionauthor';
     }
 
@@ -42,7 +43,8 @@ final class SectionauthorDirective extends BaseDirective
      *
      * @return string[]
      */
-    public function getAliases(): array {
+    public function getAliases(): array
+    {
         return ['codeauthor'];
     }
 

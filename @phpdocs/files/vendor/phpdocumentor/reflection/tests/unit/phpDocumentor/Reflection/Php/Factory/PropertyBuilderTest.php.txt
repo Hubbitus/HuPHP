@@ -18,7 +18,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(PropertyBuilder::class)]
 class PropertyBuilderTest extends TestCase
 {
-    public function testBuildsPropertyElementWithCorrectAttributes(): void {
+    public function testBuildsPropertyElementWithCorrectAttributes(): void
+    {
         $fqsen = new Fqsen('\MyClass::$property');
         $visibility = new Visibility(Visibility::PUBLIC_);
         $startLocation = new Location(10);

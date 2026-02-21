@@ -50,7 +50,8 @@ final class ConsoleErrorEvent extends ConsoleEvent
         $r->setValue($this->error, $this->exitCode);
     }
 
-    public function getExitCode(): int {
+    public function getExitCode(): int
+    {
         return $this->exitCode ?? (\is_int($this->error->getCode()) && 0 !== $this->error->getCode() ? $this->error->getCode() : 1);
     }
 }

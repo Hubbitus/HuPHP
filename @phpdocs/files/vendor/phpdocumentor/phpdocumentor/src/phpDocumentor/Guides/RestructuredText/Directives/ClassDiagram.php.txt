@@ -10,7 +10,8 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 
 final class ClassDiagram extends BaseDirective
 {
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'phpdoc:class-diagram';
     }
 

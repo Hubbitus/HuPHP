@@ -56,7 +56,8 @@ final class DelimiterProcessorCollection implements DelimiterProcessorCollection
     /**
      * @return string[]
      */
-    public function getDelimiterCharacters(): array {
+    public function getDelimiterCharacters(): array
+    {
         return \array_keys($this->processorsByChar);
     }
 
@@ -81,7 +82,8 @@ final class DelimiterProcessorCollection implements DelimiterProcessorCollection
         $this->processorsByChar[$opening] = $s;
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return \count($this->processorsByChar);
     }
 }

@@ -54,7 +54,8 @@ class InterfaceDescriptor extends DescriptorAbstract implements Interfaces\Inter
         $this->parents = $parents;
     }
 
-    public function getParent(): Collection {
+    public function getParent(): Collection
+    {
         return $this->parents;
     }
 
@@ -63,12 +64,14 @@ class InterfaceDescriptor extends DescriptorAbstract implements Interfaces\Inter
         $this->constants = $constants;
     }
 
-    public function getConstants(): Collection {
+    public function getConstants(): Collection
+    {
         return $this->constants;
     }
 
     /** @return Collection<ConstantInterface> */
-    public function getInheritedConstants(): Collection {
+    public function getInheritedConstants(): Collection
+    {
         $inheritedConstants = Collection::fromInterfaceString(ConstantInterface::class);
 
         /** @var InterfaceInterface|Fqsen $parent */
@@ -89,12 +92,14 @@ class InterfaceDescriptor extends DescriptorAbstract implements Interfaces\Inter
         $this->methods = $methods;
     }
 
-    public function getMethods(): Collection {
+    public function getMethods(): Collection
+    {
         return $this->methods;
     }
 
     /** @return Collection<MethodInterface> */
-    public function getInheritedMethods(): Collection {
+    public function getInheritedMethods(): Collection
+    {
         $inheritedMethods = Collection::fromInterfaceString(MethodInterface::class);
 
         /** @var InterfaceInterface|Fqsen $parent */

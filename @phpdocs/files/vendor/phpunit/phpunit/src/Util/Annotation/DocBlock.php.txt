@@ -180,7 +180,8 @@ final class DocBlock
      *   string|array{version: string, operator: string}|array{constraint: string}|array<int|string, string>
      * >
      */
-    public function requirements(): array {
+    public function requirements(): array
+    {
         if ($this->parsedRequirements !== null) {
             return $this->parsedRequirements;
         }
@@ -301,7 +302,8 @@ final class DocBlock
     /**
      * @psalm-return array<string, array{line: int, value: string}>
      */
-    public function getInlineAnnotations(): array {
+    public function getInlineAnnotations(): array
+    {
         $code        = file($this->fileName);
         $lineNumber  = $this->startLine;
         $startLine   = $this->startLine - 1;
@@ -323,33 +325,40 @@ final class DocBlock
         return $annotations;
     }
 
-    public function symbolAnnotations(): array {
+    public function symbolAnnotations(): array
+    {
         return $this->symbolAnnotations;
     }
 
-    public function isHookToBeExecutedBeforeClass(): bool {
+    public function isHookToBeExecutedBeforeClass(): bool
+    {
         return $this->isMethod &&
             false !== strpos($this->docComment, '@beforeClass');
     }
 
-    public function isHookToBeExecutedAfterClass(): bool {
+    public function isHookToBeExecutedAfterClass(): bool
+    {
         return $this->isMethod &&
             false !== strpos($this->docComment, '@afterClass');
     }
 
-    public function isToBeExecutedBeforeTest(): bool {
+    public function isToBeExecutedBeforeTest(): bool
+    {
         return 1 === preg_match('/@before\b/', $this->docComment);
     }
 
-    public function isToBeExecutedAfterTest(): bool {
+    public function isToBeExecutedAfterTest(): bool
+    {
         return 1 === preg_match('/@after\b/', $this->docComment);
     }
 
-    public function isToBeExecutedAsPreCondition(): bool {
+    public function isToBeExecutedAsPreCondition(): bool
+    {
         return 1 === preg_match('/@preCondition\b/', $this->docComment);
     }
 
-    public function isToBeExecutedAsPostCondition(): bool {
+    public function isToBeExecutedAsPostCondition(): bool
+    {
         return 1 === preg_match('/@postCondition\b/', $this->docComment);
     }
 

@@ -50,7 +50,8 @@ final class EmphasisInlineNode extends InlineCompoundNode
         parent::__construct($children);
     }
 
-    public function getType(): string {
+    public function getType(): string
+    {
         return self::TYPE;
     }
 }

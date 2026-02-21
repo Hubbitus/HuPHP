@@ -27,7 +27,8 @@ use Monolog\Formatter\FormatterInterface;
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         parent::tearDown();
 
         if (isset($this->handler)) {
@@ -59,7 +60,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @phpstan-return Record[]
      */
-    protected function getMultipleRecords(): array {
+    protected function getMultipleRecords(): array
+    {
         return [
             $this->getRecord(Logger::DEBUG, 'debug message 1'),
             $this->getRecord(Logger::DEBUG, 'debug message 2'),
@@ -69,7 +71,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    protected function getIdentityFormatter(): FormatterInterface {
+    protected function getIdentityFormatter(): FormatterInterface
+    {
         $formatter = $this->createMock(FormatterInterface::class);
         $formatter->expects($this->any())
             ->method('format')

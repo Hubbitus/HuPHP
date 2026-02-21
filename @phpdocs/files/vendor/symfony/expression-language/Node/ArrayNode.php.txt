@@ -54,7 +54,8 @@ class ArrayNode extends Node
         return $result;
     }
 
-    public function toArray(): array {
+    public function toArray(): array
+    {
         $value = [];
         foreach ($this->getKeyValuePairs() as $pair) {
             $value[$pair['key']->attributes['value']] = $pair['value'];
@@ -83,7 +84,8 @@ class ArrayNode extends Node
         return $array;
     }
 
-    protected function getKeyValuePairs(): array {
+    protected function getKeyValuePairs(): array
+    {
         $pairs = [];
         foreach (array_chunk($this->nodes, 2) as $pair) {
             $pairs[] = ['key' => $pair[0], 'value' => $pair[1]];

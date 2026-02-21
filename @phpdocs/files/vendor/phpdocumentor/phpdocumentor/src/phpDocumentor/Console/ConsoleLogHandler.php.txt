@@ -50,6 +50,7 @@ final class ConsoleLogHandler implements HandlerInterface
         }
     }
 
-    public function close(): void {
+    public function close(): void
+    {
     }
 }

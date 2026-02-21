@@ -30,7 +30,8 @@ final class Footnote extends AbstractBlock implements ReferenceableInterface
         $this->reference = $reference;
     }
 
-    public function getReference(): ReferenceInterface {
+    public function getReference(): ReferenceInterface
+    {
         return $this->reference;
     }
 }

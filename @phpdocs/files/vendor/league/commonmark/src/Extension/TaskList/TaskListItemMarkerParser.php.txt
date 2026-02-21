@@ -21,7 +21,8 @@ use League\CommonMark\Parser\InlineParserContext;
 
 final class TaskListItemMarkerParser implements InlineParserInterface
 {
-    public function getMatchDefinition(): InlineParserMatch {
+    public function getMatchDefinition(): InlineParserMatch
+    {
         return InlineParserMatch::oneOf('[ ]', '[x]');
     }
 

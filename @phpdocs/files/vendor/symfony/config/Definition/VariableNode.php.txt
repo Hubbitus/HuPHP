@@ -36,11 +36,13 @@ class VariableNode extends BaseNode implements PrototypeNodeInterface
         $this->defaultValue = $value;
     }
 
-    public function hasDefaultValue(): bool {
+    public function hasDefaultValue(): bool
+    {
         return $this->defaultValueSet;
     }
 
-    public function getDefaultValue(): mixed {
+    public function getDefaultValue(): mixed
+    {
         $v = $this->defaultValue;
 
         return $v instanceof \Closure ? $v() : $v;

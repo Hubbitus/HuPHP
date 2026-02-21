@@ -39,7 +39,8 @@ final class CloseBracketParser implements InlineParserInterface, EnvironmentAwar
     /** @psalm-readonly-allow-private-mutation */
     private EnvironmentInterface $environment;
 
-    public function getMatchDefinition(): InlineParserMatch {
+    public function getMatchDefinition(): InlineParserMatch
+    {
         return InlineParserMatch::string(']');
     }
 

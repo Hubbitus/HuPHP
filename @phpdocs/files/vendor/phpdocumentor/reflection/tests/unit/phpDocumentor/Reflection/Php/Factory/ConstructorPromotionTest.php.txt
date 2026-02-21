@@ -39,7 +39,8 @@ final class ConstructorPromotionTest extends TestCase
     private ObjectProphecy $strategy;
     private ObjectProphecy $docblockFactory;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->strategy        = $this->prophesize(ProjectFactoryStrategy::class);
         $this->docblockFactory = $this->prophesize(DocBlockFactoryInterface::class);
         $printer               = $this->prophesize(Standard::class);
@@ -59,7 +60,8 @@ final class ConstructorPromotionTest extends TestCase
     }
 
     /** @return mixed[][] */
-    public static function objectProvider(): array {
+    public static function objectProvider(): array
+    {
         $context = new ContextStack(new Project('test'));
 
         return [
@@ -131,7 +133,8 @@ final class ConstructorPromotionTest extends TestCase
     }
 
     /** @return mixed[][] */
-    public static function visibilityProvider(): array {
+    public static function visibilityProvider(): array
+    {
         return [
             [
                 ClassNode::MODIFIER_PUBLIC,

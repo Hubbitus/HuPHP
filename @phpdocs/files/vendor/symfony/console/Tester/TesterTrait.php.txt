@@ -76,14 +76,16 @@ trait TesterTrait
     /**
      * Gets the input instance used by the last execution of the command or application.
      */
-    public function getInput(): InputInterface {
+    public function getInput(): InputInterface
+    {
         return $this->input;
     }
 
     /**
      * Gets the output instance used by the last execution of the command or application.
      */
-    public function getOutput(): OutputInterface {
+    public function getOutput(): OutputInterface
+    {
         return $this->output;
     }
 
@@ -92,7 +94,8 @@ trait TesterTrait
      *
      * @throws \RuntimeException If it's called before the execute method
      */
-    public function getStatusCode(): int {
+    public function getStatusCode(): int
+    {
         return $this->statusCode ?? throw new \RuntimeException('Status code not initialized, did you execute the command before requesting the status code?');
     }
 

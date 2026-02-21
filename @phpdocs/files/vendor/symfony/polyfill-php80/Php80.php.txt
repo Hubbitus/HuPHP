@@ -66,7 +66,8 @@ final class Php80
         return (int) $res;
     }
 
-    public static function preg_last_error_msg(): string {
+    public static function preg_last_error_msg(): string
+    {
         switch (preg_last_error()) {
             case \PREG_INTERNAL_ERROR:
                 return 'Internal error';

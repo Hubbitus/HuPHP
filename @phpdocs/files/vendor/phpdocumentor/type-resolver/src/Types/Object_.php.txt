@@ -58,7 +58,8 @@ final class Object_ implements Type
         return $this->fqsen;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         if ($this->fqsen) {
             return (string) $this->fqsen;
         }

@@ -45,7 +45,8 @@ class InvalidTagValueNode implements PhpDocTagValueNode
 		return new ParserException(...$this->exceptionArgs);
 	}
 
-	public function __toString(): string {
+	public function __toString(): string
+	{
 		return $this->value;
 	}
 

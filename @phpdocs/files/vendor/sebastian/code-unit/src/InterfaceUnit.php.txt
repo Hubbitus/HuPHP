@@ -17,7 +17,8 @@ final class InterfaceUnit extends CodeUnit
     /**
      * @psalm-assert-if-true InterfaceUnit $this
      */
-    public function isInterface(): bool {
+    public function isInterface(): bool
+    {
         return true;
     }
 }

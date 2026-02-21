@@ -26,7 +26,8 @@ final class Version
         $this->version = $this->detectVersion();
     }
 
-    private function detectVersion(): string {
+    private function detectVersion(): string
+    {
         $version = self::VERSION;
 
         // prevent replacing the version by the PEAR building
@@ -54,11 +55,13 @@ final class Version
         return $version;
     }
 
-    public function getVersion(): string {
+    public function getVersion(): string
+    {
         return ltrim($this->version, 'v');
     }
 
-    public function getExtensionVersion(): string {
+    public function getExtensionVersion(): string
+    {
         if (strpos($this->version, '-') !== false) {
             $version = explode('-', $this->version)[0];
 

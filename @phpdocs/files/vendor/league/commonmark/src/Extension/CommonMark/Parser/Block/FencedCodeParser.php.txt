@@ -35,7 +35,8 @@ final class FencedCodeParser extends AbstractBlockContinueParser
         $this->strings = new ArrayCollection();
     }
 
-    public function getBlock(): FencedCode {
+    public function getBlock(): FencedCode
+    {
         return $this->block;
     }
 
@@ -64,7 +65,8 @@ final class FencedCodeParser extends AbstractBlockContinueParser
         $this->strings[] = $line;
     }
 
-    public function closeBlock(): void {
+    public function closeBlock(): void
+    {
         // first line becomes info string
         $firstLine = $this->strings->first();
         if ($firstLine === false) {

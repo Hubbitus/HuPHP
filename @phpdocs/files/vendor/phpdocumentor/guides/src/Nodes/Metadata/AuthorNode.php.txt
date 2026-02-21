@@ -27,7 +27,8 @@ final class AuthorNode extends MetadataNode
     }
 
     /** @return Node[] */
-    public function getChildren(): array {
+    public function getChildren(): array
+    {
         return $this->children;
     }
 }

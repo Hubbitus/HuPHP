@@ -28,15 +28,18 @@ class FloatValue implements PseudoType
         $this->value = $value;
     }
 
-    public function getValue(): float {
+    public function getValue(): float
+    {
         return $this->value;
     }
 
-    public function underlyingType(): Type {
+    public function underlyingType(): Type
+    {
         return new Float_();
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return (string) $this->value;
     }
 }

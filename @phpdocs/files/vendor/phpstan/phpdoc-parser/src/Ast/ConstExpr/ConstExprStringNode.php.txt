@@ -35,7 +35,8 @@ class ConstExprStringNode implements ConstExprNode
 		$this->quoteType = $quoteType;
 	}
 
-	public function __toString(): string {
+	public function __toString(): string
+	{
 		if ($this->quoteType === self::SINGLE_QUOTED) {
 			// from https://github.com/nikic/PHP-Parser/blob/0ffddce52d816f72d0efc4d9b02e276d3309ef01/lib/PhpParser/PrettyPrinter/Standard.php#L1007
 			return sprintf("'%s'", addcslashes($this->value, '\'\\'));
@@ -45,7 +46,8 @@ class ConstExprStringNode implements ConstExprNode
 		return sprintf('"%s"', $this->escapeDoubleQuotedString());
 	}
 
-	private function escapeDoubleQuotedString(): string {
+	private function escapeDoubleQuotedString(): string
+	{
 		$quote = '"';
 		$escaped = addcslashes($this->value, "\n\r\t\f\v$" . $quote . '\\');
 

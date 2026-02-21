@@ -43,19 +43,23 @@ final class TestSuiteCollection implements Countable, IteratorAggregate
     /**
      * @return TestSuite[]
      */
-    public function asArray(): array {
+    public function asArray(): array
+    {
         return $this->testSuites;
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return count($this->testSuites);
     }
 
-    public function getIterator(): TestSuiteCollectionIterator {
+    public function getIterator(): TestSuiteCollectionIterator
+    {
         return new TestSuiteCollectionIterator($this);
     }
 
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return $this->count() === 0;
     }
 }

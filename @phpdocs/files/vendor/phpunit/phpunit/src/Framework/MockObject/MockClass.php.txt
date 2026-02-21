@@ -45,7 +45,8 @@ final class MockClass implements MockType
     /**
      * @psalm-return class-string
      */
-    public function generate(): string {
+    public function generate(): string
+    {
         if (!class_exists($this->mockName, false)) {
             eval($this->classCode);
 
@@ -61,7 +62,8 @@ final class MockClass implements MockType
         return $this->mockName;
     }
 
-    public function getClassCode(): string {
+    public function getClassCode(): string
+    {
         return $this->classCode;
     }
 }

@@ -38,7 +38,8 @@ final class GlobalMenuExtension extends AbstractExtension
     }
 
     /** @return TwigFunction[] */
-    public function getFunctions(): array {
+    public function getFunctions(): array
+    {
         return [
             new TwigFunction('renderMenu', $this->renderMenu(...), ['is_safe' => ['html'], 'needs_context' => true]),
         ];

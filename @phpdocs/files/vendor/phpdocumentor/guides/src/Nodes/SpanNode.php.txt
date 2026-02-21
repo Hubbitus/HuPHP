@@ -22,7 +22,8 @@ final class SpanNode extends TextNode
     }
 
     /** @return InlineCompoundNode[] */
-    public function getTokens(): array {
+    public function getTokens(): array
+    {
         return $this->tokens;
     }
 }

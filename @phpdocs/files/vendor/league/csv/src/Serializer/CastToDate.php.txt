@@ -76,7 +76,8 @@ final class CastToDate implements TypeCasting
         }
     }
 
-    public function info(): TypeCastingInfo {
+    public function info(): TypeCastingInfo
+    {
         return $this->info;
     }
 

@@ -78,7 +78,8 @@ final class Source extends BaseTag implements Factory\StaticMethod
      * @return int The starting line, relative to the structural element's
      *     location.
      */
-    public function getStartingLine(): int {
+    public function getStartingLine(): int
+    {
         return $this->startingLine;
     }
 
@@ -93,7 +94,8 @@ final class Source extends BaseTag implements Factory\StaticMethod
         return $this->lineCount;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         if ($this->description) {
             $description = $this->description->render();
         } else {

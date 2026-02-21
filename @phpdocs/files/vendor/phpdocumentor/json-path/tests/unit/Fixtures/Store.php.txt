@@ -22,7 +22,8 @@ class Store
     {
     }
 
-    public function getAddress(): string {
+    public function getAddress(): string
+    {
         return 'My Address';
     }
 
@@ -31,7 +32,8 @@ class Store
         $this->books[] = $book;
     }
 
-    public function getBooks(): array {
+    public function getBooks(): array
+    {
         return $this->books;
     }
 }

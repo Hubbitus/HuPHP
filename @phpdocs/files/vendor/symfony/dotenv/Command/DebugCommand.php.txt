@@ -51,7 +51,8 @@ final class DebugCommand extends Command
         parent::__construct();
     }
 
-    protected function configure(): void {
+    protected function configure(): void
+    {
         $this
             ->setDefinition([
                 new InputArgument('filter', InputArgument::OPTIONAL, 'The name of an environment variable or a filter.', null, $this->getAvailableVars(...)),
@@ -176,7 +177,8 @@ EOT
         return $variables;
     }
 
-    private function getAvailableVars(): array {
+    private function getAvailableVars(): array
+    {
         $filePath = $_SERVER['SYMFONY_DOTENV_PATH'] ?? $this->projectDirectory.\DIRECTORY_SEPARATOR.'.env';
         $envFiles = $this->getEnvFiles($filePath);
 

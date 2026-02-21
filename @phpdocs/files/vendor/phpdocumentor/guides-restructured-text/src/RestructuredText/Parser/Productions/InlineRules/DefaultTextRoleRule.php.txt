@@ -63,7 +63,8 @@ final class DefaultTextRoleRule extends AbstractInlineRule
         return null;
     }
 
-    public function getPriority(): int {
+    public function getPriority(): int
+    {
         // Must be executed after all other rules that contain single backticks
         return 20;
     }

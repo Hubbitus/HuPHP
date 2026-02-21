@@ -189,7 +189,8 @@ final class CachingFileAnalyser implements FileAnalyser
         return $this->directory . DIRECTORY_SEPARATOR . $cacheKey;
     }
 
-    private static function cacheVersion(): string {
+    private static function cacheVersion(): string
+    {
         if (self::$cacheVersion !== null) {
             return self::$cacheVersion;
         }

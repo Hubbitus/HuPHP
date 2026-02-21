@@ -38,7 +38,8 @@ class ErrorChunk implements ChunkInterface
         }
     }
 
-    public function isTimeout(): bool {
+    public function isTimeout(): bool
+    {
         $this->didThrow = true;
 
         if (null !== $this->error) {
@@ -48,12 +49,14 @@ class ErrorChunk implements ChunkInterface
         return true;
     }
 
-    public function isFirst(): bool {
+    public function isFirst(): bool
+    {
         $this->didThrow = true;
         throw null !== $this->error ? new TransportException($this->errorMessage, 0, $this->error) : new TimeoutException($this->errorMessage);
     }
 
-    public function isLast(): bool {
+    public function isLast(): bool
+    {
         $this->didThrow = true;
         throw null !== $this->error ? new TransportException($this->errorMessage, 0, $this->error) : new TimeoutException($this->errorMessage);
     }
@@ -64,12 +67,14 @@ class ErrorChunk implements ChunkInterface
         throw null !== $this->error ? new TransportException($this->errorMessage, 0, $this->error) : new TimeoutException($this->errorMessage);
     }
 
-    public function getContent(): string {
+    public function getContent(): string
+    {
         $this->didThrow = true;
         throw null !== $this->error ? new TransportException($this->errorMessage, 0, $this->error) : new TimeoutException($this->errorMessage);
     }
 
-    public function getOffset(): int {
+    public function getOffset(): int
+    {
         return $this->offset;
     }
 
@@ -87,7 +92,8 @@ class ErrorChunk implements ChunkInterface
         return $this->didThrow;
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 

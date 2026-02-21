@@ -26,7 +26,8 @@ final class Messages
     }
 
     /** @return Message[] */
-    public function getWarnings(): array {
+    public function getWarnings(): array
+    {
         return $this->warnings;
     }
 

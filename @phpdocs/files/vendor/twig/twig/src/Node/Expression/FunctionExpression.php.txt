@@ -47,7 +47,8 @@ class FunctionExpression extends CallExpression implements SupportDefinedTestInt
         $this->deprecateAttribute('dynamic_name', new NameDeprecation('twig/twig', '3.12'));
     }
 
-    public function enableDefinedTest(): void {
+    public function enableDefinedTest(): void
+    {
         if ('constant' === $this->getAttribute('name')) {
             $this->definedTest = true;
         }

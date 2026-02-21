@@ -43,15 +43,18 @@ final class IniSettingCollection implements Countable, IteratorAggregate
     /**
      * @return IniSetting[]
      */
-    public function asArray(): array {
+    public function asArray(): array
+    {
         return $this->iniSettings;
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         return count($this->iniSettings);
     }
 
-    public function getIterator(): IniSettingCollectionIterator {
+    public function getIterator(): IniSettingCollectionIterator
+    {
         return new IniSettingCollectionIterator($this);
     }
 }

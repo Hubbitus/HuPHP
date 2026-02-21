@@ -17,7 +17,8 @@ final class FunctionUnit extends CodeUnit
     /**
      * @psalm-assert-if-true FunctionUnit $this
      */
-    public function isFunction(): bool {
+    public function isFunction(): bool
+    {
         return true;
     }
 }

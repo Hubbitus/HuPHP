@@ -59,7 +59,8 @@ class AssignmentExpressionParser extends BinaryOperatorExpressionParser
         }
     }
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         return 'Assignment operator';
     }
 }

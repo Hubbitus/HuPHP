@@ -25,7 +25,8 @@ use League\CommonMark\Util\RegexHelper;
 
 final class EscapableParser implements InlineParserInterface
 {
-    public function getMatchDefinition(): InlineParserMatch {
+    public function getMatchDefinition(): InlineParserMatch
+    {
         return InlineParserMatch::string('\\');
     }
 

@@ -68,7 +68,8 @@ final class Processor
 	/**
 	 * @return string[]
 	 */
-	public function getWarnings(): array {
+	public function getWarnings(): array
+	{
 		$res = [];
 		foreach ($this->context->warnings as $message) {
 			$res[] = $message->toString();
@@ -78,14 +79,16 @@ final class Processor
 	}
 
 
-	private function throwsErrors(): void {
+	private function throwsErrors(): void
+	{
 		if ($this->context->errors) {
 			throw new ValidationException(null, $this->context->errors);
 		}
 	}
 
 
-	private function createContext(): void {
+	private function createContext(): void
+	{
 		$this->context = new Context;
 		$this->context->skipDefaults = $this->skipDefaults;
 		foreach ($this->onNewContext as $cb) {

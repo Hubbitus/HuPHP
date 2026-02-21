@@ -31,7 +31,8 @@ final class FlushTokenParser extends AbstractTokenParser
         return new FlushNode($token->getLine());
     }
 
-    public function getTag(): string {
+    public function getTag(): string
+    {
         return 'flush';
     }
 }

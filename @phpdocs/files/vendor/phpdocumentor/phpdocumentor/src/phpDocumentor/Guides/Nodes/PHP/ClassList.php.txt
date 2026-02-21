@@ -17,7 +17,8 @@ final class ClassList extends DescriptorNode
     }
 
     /** @return DescriptorNode<Descriptor>[] */
-    public function getBlueprint(): array {
+    public function getBlueprint(): array
+    {
         return $this->blueprint;
     }
 }

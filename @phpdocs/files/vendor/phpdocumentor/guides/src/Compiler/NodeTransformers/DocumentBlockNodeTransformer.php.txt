@@ -61,7 +61,8 @@ final class DocumentBlockNodeTransformer implements NodeTransformer
         return $node instanceof DocumentBlockNode;
     }
 
-    public function getPriority(): int {
+    public function getPriority(): int
+    {
         return 3000;
     }
 }

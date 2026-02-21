@@ -27,11 +27,13 @@ final class SectionEntryNode extends EntryNode
     {
     }
 
-    public function getId(): string {
+    public function getId(): string
+    {
         return $this->title->getId();
     }
 
-    public function getTitle(): TitleNode {
+    public function getTitle(): TitleNode
+    {
         return $this->title;
     }
 
@@ -41,7 +43,8 @@ final class SectionEntryNode extends EntryNode
     }
 
     /** @return SectionEntryNode[] */
-    public function getChildren(): array {
+    public function getChildren(): array
+    {
         return $this->children;
     }
 

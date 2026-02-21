@@ -17,7 +17,8 @@ trait PizzaSauceTrait
 
     protected string $sauceType = 'Tomato';
 
-    public function getSauceType(): string {
+    public function getSauceType(): string
+    {
         return $this->sauceType;
     }
 

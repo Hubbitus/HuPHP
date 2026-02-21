@@ -34,7 +34,8 @@ final class QuoteParser implements InlineParserInterface
      */
     public const SINGLE_QUOTES = [Quote::SINGLE_QUOTE, Quote::SINGLE_QUOTE_OPENER, Quote::SINGLE_QUOTE_CLOSER];
 
-    public function getMatchDefinition(): InlineParserMatch {
+    public function getMatchDefinition(): InlineParserMatch
+    {
         return InlineParserMatch::oneOf(Quote::SINGLE_QUOTE, Quote::DOUBLE_QUOTE);
     }
 

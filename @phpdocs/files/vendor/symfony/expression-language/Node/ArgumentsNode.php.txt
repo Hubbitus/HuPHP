@@ -25,7 +25,8 @@ class ArgumentsNode extends ArrayNode
         $this->compileArguments($compiler, false);
     }
 
-    public function toArray(): array {
+    public function toArray(): array
+    {
         $array = [];
 
         foreach ($this->getKeyValuePairs() as $pair) {

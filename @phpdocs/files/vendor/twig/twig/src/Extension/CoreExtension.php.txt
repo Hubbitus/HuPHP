@@ -209,7 +209,8 @@ final class CoreExtension extends AbstractExtension
         return $this->numberFormat;
     }
 
-    public function getTokenParsers(): array {
+    public function getTokenParsers(): array
+    {
         return [
             new ApplyTokenParser(),
             new ForTokenParser(),
@@ -232,7 +233,8 @@ final class CoreExtension extends AbstractExtension
         ];
     }
 
-    public function getFilters(): array {
+    public function getFilters(): array
+    {
         return [
             // formatting filters
             new TwigFilter('date', [$this, 'formatDate']),
@@ -285,7 +287,8 @@ final class CoreExtension extends AbstractExtension
         ];
     }
 
-    public function getFunctions(): array {
+    public function getFunctions(): array
+    {
         return [
             new TwigFunction('parent', null, ['parser_callable' => [self::class, 'parseParentFunction']]),
             new TwigFunction('block', null, ['parser_callable' => [self::class, 'parseBlockFunction']]),
@@ -304,7 +307,8 @@ final class CoreExtension extends AbstractExtension
         ];
     }
 
-    public function getTests(): array {
+    public function getTests(): array
+    {
         return [
             new TwigTest('even', null, ['node_class' => EvenTest::class]),
             new TwigTest('odd', null, ['node_class' => OddTest::class]),
@@ -322,11 +326,13 @@ final class CoreExtension extends AbstractExtension
         ];
     }
 
-    public function getNodeVisitors(): array {
+    public function getNodeVisitors(): array
+    {
         return [];
     }
 
-    public function getExpressionParsers(): array {
+    public function getExpressionParsers(): array
+    {
         return [
             // unary operators
             new UnaryOperatorExpressionParser(NotUnary::class, 'not', 50, new PrecedenceChange('twig/twig', '3.15', 70)),

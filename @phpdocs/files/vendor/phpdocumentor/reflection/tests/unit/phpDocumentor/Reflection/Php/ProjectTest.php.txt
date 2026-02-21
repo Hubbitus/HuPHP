@@ -33,15 +33,18 @@ class ProjectTest extends TestCase
     /**
      * Initializes the fixture object.
      */
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->fixture = new Project(self::EXAMPLE_NAME);
     }
 
-    public function testGetSetName(): void {
+    public function testGetSetName(): void
+    {
         $this->assertEquals(self::EXAMPLE_NAME, $this->fixture->getName());
     }
 
-    public function testGetAddFiles(): void {
+    public function testGetAddFiles(): void
+    {
         $this->assertEmpty($this->fixture->getFiles());
 
         $include = new File('foo-bar', 'foo/bar');
@@ -50,7 +53,8 @@ class ProjectTest extends TestCase
         $this->assertSame(['foo/bar' => $include], $this->fixture->getFiles());
     }
 
-    public function testGetRootNamespace(): void {
+    public function testGetRootNamespace(): void
+    {
         $this->assertInstanceOf(Namespace_::class, $this->fixture->getRootNamespace());
 
         $namespaceDescriptor = new Namespace_(new Fqsen('\MySpace'));
@@ -59,7 +63,8 @@ class ProjectTest extends TestCase
         $this->assertSame($namespaceDescriptor, $project->getRootNamespace());
     }
 
-    public function testGetAddNamespace(): void {
+    public function testGetAddNamespace(): void
+    {
         $this->assertEmpty($this->fixture->getNamespaces());
 
         $namespace = new Namespace_(new Fqsen('\MySpace'));

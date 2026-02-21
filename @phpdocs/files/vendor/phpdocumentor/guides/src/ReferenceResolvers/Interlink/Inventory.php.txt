@@ -34,7 +34,8 @@ final class Inventory
     {
     }
 
-    public function getBaseUrl(): string {
+    public function getBaseUrl(): string
+    {
         return $this->baseUrl;
     }
 
@@ -45,7 +46,8 @@ final class Inventory
     }
 
     /** @return InventoryGroup[] */
-    public function getGroups(): array {
+    public function getGroups(): array
+    {
         return $this->groups;
     }
 
@@ -76,7 +78,8 @@ final class Inventory
         return array_key_exists($reducedKey, $this->groups);
     }
 
-    public function isLoaded(): bool {
+    public function isLoaded(): bool
+    {
         return $this->isLoaded;
     }
 

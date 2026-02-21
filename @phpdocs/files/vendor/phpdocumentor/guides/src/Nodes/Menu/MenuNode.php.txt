@@ -38,7 +38,8 @@ abstract class MenuNode extends CompoundNode
     abstract public function getDepth(): int;
 
     /** @return MenuEntryNode[] */
-    public function getMenuEntries(): array {
+    public function getMenuEntries(): array
+    {
         return $this->value;
     }
 
@@ -57,7 +58,8 @@ abstract class MenuNode extends CompoundNode
         return $that;
     }
 
-    public function isReversed(): bool {
+    public function isReversed(): bool
+    {
         return $this->reversed;
     }
 

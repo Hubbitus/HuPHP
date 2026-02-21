@@ -21,7 +21,8 @@ final class SeparatorNode extends CompoundNode
         parent::__construct([]);
     }
 
-    public function getLevel(): int {
+    public function getLevel(): int
+    {
         return $this->level;
     }
 }

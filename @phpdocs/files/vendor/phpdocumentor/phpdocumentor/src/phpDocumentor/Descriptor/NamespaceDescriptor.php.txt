@@ -104,7 +104,8 @@ class NamespaceDescriptor extends DescriptorAbstract implements Interfaces\Names
      *
      * @return Collection<ClassInterface>
      */
-    public function getClasses(): Collection {
+    public function getClasses(): Collection
+    {
         return $this->classes;
     }
 
@@ -123,7 +124,8 @@ class NamespaceDescriptor extends DescriptorAbstract implements Interfaces\Names
      *
      * @return Collection<ConstantInterface>
      */
-    public function getConstants(): Collection {
+    public function getConstants(): Collection
+    {
         return $this->constants;
     }
 
@@ -142,7 +144,8 @@ class NamespaceDescriptor extends DescriptorAbstract implements Interfaces\Names
      *
      * @return Collection<FunctionInterface>
      */
-    public function getFunctions(): Collection {
+    public function getFunctions(): Collection
+    {
         return $this->functions;
     }
 
@@ -161,7 +164,8 @@ class NamespaceDescriptor extends DescriptorAbstract implements Interfaces\Names
      *
      * @return Collection<InterfaceInterface>
      */
-    public function getInterfaces(): Collection {
+    public function getInterfaces(): Collection
+    {
         return $this->interfaces;
     }
 
@@ -186,7 +190,8 @@ class NamespaceDescriptor extends DescriptorAbstract implements Interfaces\Names
      *
      * @return Collection<NamespaceInterface>
      */
-    public function getChildren(): Collection {
+    public function getChildren(): Collection
+    {
         return $this->children;
     }
 
@@ -205,7 +210,8 @@ class NamespaceDescriptor extends DescriptorAbstract implements Interfaces\Names
      *
      * @return Collection<TraitInterface>
      */
-    public function getTraits(): Collection {
+    public function getTraits(): Collection
+    {
         return $this->traits;
     }
 
@@ -214,7 +220,8 @@ class NamespaceDescriptor extends DescriptorAbstract implements Interfaces\Names
      *
      * @return Collection<EnumInterface>
      */
-    public function getEnums(): Collection {
+    public function getEnums(): Collection
+    {
         return $this->enums;
     }
 
@@ -231,7 +238,8 @@ class NamespaceDescriptor extends DescriptorAbstract implements Interfaces\Names
     /**
      * Returns true when the namespace is empty.
      */
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return $this->classes->count() === 0
             && $this->constants->count() === 0
             && $this->functions->count() === 0

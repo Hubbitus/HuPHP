@@ -29,18 +29,21 @@ class RenderedContent implements RenderedContentInterface, \Stringable
         $this->content  = $content;
     }
 
-    public function getDocument(): Document {
+    public function getDocument(): Document
+    {
         return $this->document;
     }
 
-    public function getContent(): string {
+    public function getContent(): string
+    {
         return $this->content;
     }
 
     /**
      * @psalm-mutation-free
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->content;
     }
 }

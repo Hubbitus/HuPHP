@@ -48,17 +48,20 @@ final class Trait_Test extends TestCase
 
     private ObjectProphecy $docBlockFactory;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->docBlockFactory = $this->prophesize(DocBlockFactoryInterface::class);
         $this->fixture = new Trait_($this->docBlockFactory->reveal());
     }
 
-    public function testMatches(): void {
+    public function testMatches(): void
+    {
         $this->assertFalse($this->fixture->matches(self::createContext(null), new stdClass()));
         $this->assertTrue($this->fixture->matches(self::createContext(null), m::mock(TraitNode::class)));
     }
 
-    public function testSimpleCreate(): void {
+    public function testSimpleCreate(): void
+    {
         $containerMock = m::mock(StrategyContainer::class);
         $interfaceMock = $this->buildTraitMock();
         $interfaceMock->shouldReceive('getDocComment')->andReturnNull();
@@ -69,7 +72,8 @@ final class Trait_Test extends TestCase
         $this->assertEquals('\Space\MyTrait', (string) $trait->getFqsen());
     }
 
-    public function testIteratesStatements(): void {
+    public function testIteratesStatements(): void
+    {
         $method1           = new ClassMethod('\Space\MyTrait::method1');
         $method1Descriptor = new MethodElement(new Fqsen('\Space\MyTrait::method1'));
         $strategyMock      = $this->prophesize(ProjectFactoryStrategy::class);
@@ -98,7 +102,8 @@ final class Trait_Test extends TestCase
         );
     }
 
-    public function testCreateWithDocBlock(): void {
+    public function testCreateWithDocBlock(): void
+    {
         $doc       = new Doc('Text');
         $traitMock = $this->buildTraitMock();
         $traitMock->shouldReceive('getDocComment')->andReturn($doc);

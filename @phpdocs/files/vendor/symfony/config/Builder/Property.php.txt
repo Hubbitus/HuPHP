@@ -33,11 +33,13 @@ class Property
         $this->originalName = $originalName;
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    public function getOriginalName(): string {
+    public function getOriginalName(): string
+    {
         return $this->originalName;
     }
 
@@ -72,11 +74,13 @@ class Property
         $this->content = $content;
     }
 
-    public function isArray(): bool {
+    public function isArray(): bool
+    {
         return $this->array;
     }
 
-    public function areScalarsAllowed(): bool {
+    public function areScalarsAllowed(): bool
+    {
         return $this->scalarsAllowed;
     }
 }

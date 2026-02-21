@@ -17,7 +17,8 @@ final class LogicalAnd extends BinaryOperator
     /**
      * Returns the name of this operator.
      */
-    public function operator(): string {
+    public function operator(): string
+    {
         return 'and';
     }
 
@@ -26,7 +27,8 @@ final class LogicalAnd extends BinaryOperator
      *
      * @see https://www.php.net/manual/en/language.operators.precedence.php
      */
-    public function precedence(): int {
+    public function precedence(): int
+    {
         return 22;
     }
 

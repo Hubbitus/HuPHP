@@ -34,7 +34,8 @@ class TokenStream
     /**
      * Returns a string representation of the token stream.
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return implode("\n", $this->tokens);
     }
 
@@ -71,14 +72,16 @@ class TokenStream
     /**
      * Checks if end of stream was reached.
      */
-    public function isEOF(): bool {
+    public function isEOF(): bool
+    {
         return Token::EOF_TYPE === $this->current->type;
     }
 
     /**
      * @internal
      */
-    public function getExpression(): string {
+    public function getExpression(): string
+    {
         return $this->expression;
     }
 }

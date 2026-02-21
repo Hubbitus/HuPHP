@@ -32,11 +32,13 @@ final class DocumentPreRenderEvent extends AbstractEvent
         $this->format   = $format;
     }
 
-    public function getDocument(): Document {
+    public function getDocument(): Document
+    {
         return $this->document;
     }
 
-    public function getFormat(): string {
+    public function getFormat(): string
+    {
         return $this->format;
     }
 }

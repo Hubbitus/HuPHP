@@ -16,21 +16,24 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(ConstantEvaluator::class)]
 final class ConstantEvaluatorTest extends TestCase
 {
-    public function testEvaluateThrowsWhenTypeContextIsNotSet(): void {
+    public function testEvaluateThrowsWhenTypeContextIsNotSet(): void
+    {
         $this->expectException(ConstExprEvaluationException::class);
 
         $evaluator = new ConstantEvaluator();
         $evaluator->evaluate(new Namespace_(), new ContextStack(new Project('test')));
     }
 
-    public function testEvaluateThrowsOnUnknownExpression(): void {
+    public function testEvaluateThrowsOnUnknownExpression(): void
+    {
         $this->expectException(ConstExprEvaluationException::class);
 
         $evaluator = new ConstantEvaluator();
         $result = $evaluator->evaluate(new ShellExec([]), new ContextStack(new Project('test'), new Context('Test')));
     }
 
-    public function testEvaluateReturnsNamespaceFromContext(): void {
+    public function testEvaluateReturnsNamespaceFromContext(): void
+    {
         $evaluator = new ConstantEvaluator();
         $result = $evaluator->evaluate(new Namespace_(), new ContextStack(new Project('test'), new Context('Test')));
 

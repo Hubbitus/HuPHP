@@ -29,7 +29,8 @@ abstract class CompoundNode extends AbstractNode
     }
 
     /** @return TValue[] */
-    public function getChildren(): array {
+    public function getChildren(): array
+    {
         return $this->value;
     }
 

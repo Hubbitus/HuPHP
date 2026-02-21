@@ -90,7 +90,8 @@ class LogmaticHandler extends SocketHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface {
+    protected function getDefaultFormatter(): FormatterInterface
+    {
         $formatter = new LogmaticFormatter();
 
         if (!empty($this->hostname)) {

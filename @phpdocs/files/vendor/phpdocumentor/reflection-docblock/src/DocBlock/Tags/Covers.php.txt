@@ -76,14 +76,16 @@ final class Covers extends BaseTag implements Factory\StaticMethod
     /**
      * Returns the structural element this tag refers to.
      */
-    public function getReference(): Fqsen {
+    public function getReference(): Fqsen
+    {
         return $this->refers;
     }
 
     /**
      * Returns a string representation of this tag.
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         if ($this->description) {
             $description = $this->description->render();
         } else {

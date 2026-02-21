@@ -33,7 +33,8 @@ use function iterator_to_array;
 
 final class ExecutorTest extends TestCase
 {
-    public function testQueryRootSource(): void {
+    public function testQueryRootSource(): void
+    {
         $store = new Store();
         $executor = new Executor();
         $result = $executor->evaluate(
@@ -49,7 +50,8 @@ final class ExecutorTest extends TestCase
         self::assertSame([$store], iterator_to_array($result, false));
     }
 
-    public function testQueryRootSourceObject(): void {
+    public function testQueryRootSourceObject(): void
+    {
         $root = new stdClass();
         $store = new Store();
         $root->store = $store;
@@ -67,7 +69,8 @@ final class ExecutorTest extends TestCase
         self::assertSame([$store], iterator_to_array($result));
     }
 
-    public function testQuerySubProperty(): void {
+    public function testQuerySubProperty(): void
+    {
         $root = new stdClass();
         $store = new Store();
         $store->addBook(new Book('First book'));
@@ -89,7 +92,8 @@ final class ExecutorTest extends TestCase
         self::assertSame($store->getBooks(), iterator_to_array($result, false));
     }
 
-    public function testQuerySubPropertyByFilter(): void {
+    public function testQuerySubPropertyByFilter(): void
+    {
         $book = new Book('phpDoc');
         $root = new stdClass();
         $store = new Store();
@@ -126,7 +130,8 @@ final class ExecutorTest extends TestCase
         self::assertSame([$book], iterator_to_array($result, false));
     }
 
-    public function testQuerySubPropertyByFilterFunctionCall(): void {
+    public function testQuerySubPropertyByFilterFunctionCall(): void
+    {
         $book = new Commic('phpDoc');
         $root = new stdClass();
         $store = new Store();
@@ -171,7 +176,8 @@ final class ExecutorTest extends TestCase
         self::assertSame([$book], iterator_to_array($result, false));
     }
 
-    public function testQueryWithWildcard(): void {
+    public function testQueryWithWildcard(): void
+    {
         $books = [
             'phpDoc',
             'First book',
@@ -206,7 +212,8 @@ final class ExecutorTest extends TestCase
         self::assertSame($books, iterator_to_array($result, false));
     }
 
-    public function testQueryCollectionInCollection(): void {
+    public function testQueryCollectionInCollection(): void
+    {
         $books = [
             'phpDoc',
             'First book',

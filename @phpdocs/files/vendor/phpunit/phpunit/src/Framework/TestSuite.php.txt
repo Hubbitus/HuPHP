@@ -249,7 +249,8 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     /**
      * Returns a string representation of the test suite.
      */
-    public function toString(): string {
+    public function toString(): string
+    {
         return $this->getName();
     }
 
@@ -542,7 +543,8 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
      *
      * @todo refactor usage of numTests in DefaultResultPrinter
      */
-    public function count(): int {
+    public function count(): int
+    {
         $this->numTests = 0;
 
         foreach ($this as $test) {
@@ -555,7 +557,8 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     /**
      * Returns the name of the suite.
      */
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
@@ -564,7 +567,8 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
      *
      * @psalm-return list<string>
      */
-    public function getGroups(): array {
+    public function getGroups(): array
+    {
         return array_map(
             static function ($key): string
             {
@@ -574,7 +578,8 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
         );
     }
 
-    public function getGroupDetails(): array {
+    public function getGroupDetails(): array
+    {
         return $this->groups;
     }
 
@@ -720,7 +725,8 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
      *
      * @return Test[]
      */
-    public function tests(): array {
+    public function tests(): array
+    {
         return $this->tests;
     }
 
@@ -781,7 +787,8 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     /**
      * Returns an iterator for this test suite.
      */
-    public function getIterator(): Iterator {
+    public function getIterator(): Iterator
+    {
         $iterator = new TestSuiteIterator($this);
 
         if ($this->iteratorFilter !== null) {
@@ -805,14 +812,16 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     /**
      * @psalm-return array<int,string>
      */
-    public function warnings(): array {
+    public function warnings(): array
+    {
         return array_unique($this->warnings);
     }
 
     /**
      * @return list<ExecutionOrderDependency>
      */
-    public function provides(): array {
+    public function provides(): array
+    {
         if ($this->providedTests === null) {
             $this->providedTests = [];
 
@@ -836,7 +845,8 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     /**
      * @return list<ExecutionOrderDependency>
      */
-    public function requires(): array {
+    public function requires(): array
+    {
         if ($this->requiredTests === null) {
             $this->requiredTests = [];
 
@@ -858,14 +868,16 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
         return $this->requiredTests;
     }
 
-    public function sortId(): string {
+    public function sortId(): string
+    {
         return $this->getName() . '::class';
     }
 
     /**
      * Creates a default TestResult object.
      */
-    protected function createResult(): TestResult {
+    protected function createResult(): TestResult
+    {
         return new TestResult;
     }
 
@@ -890,7 +902,8 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
         );
     }
 
-    private function clearCaches(): void {
+    private function clearCaches(): void
+    {
         $this->numTests      = -1;
         $this->providedTests = null;
         $this->requiredTests = null;

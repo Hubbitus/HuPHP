@@ -17,7 +17,8 @@ final class TraitUnit extends CodeUnit
     /**
      * @psalm-assert-if-true TraitUnit $this
      */
-    public function isTrait(): bool {
+    public function isTrait(): bool
+    {
         return true;
     }
 }

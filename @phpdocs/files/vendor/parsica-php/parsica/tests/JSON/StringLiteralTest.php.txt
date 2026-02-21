@@ -18,7 +18,8 @@ final class StringLiteralTest extends TestCase
 {
     use ParserAssertions;
 
-    public static function escapedChars(): array {
+    public static function escapedChars(): array
+    {
         return [
             // label => [literal that will appear in json, expected character it results in]
             "quotation mark" => ["\\\"", '"'],

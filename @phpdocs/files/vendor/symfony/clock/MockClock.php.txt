@@ -41,7 +41,8 @@ final class MockClock implements ClockInterface
         $this->now = null !== $timezone ? $now->setTimezone($timezone) : $now;
     }
 
-    public function now(): DatePoint {
+    public function now(): DatePoint
+    {
         return clone $this->now;
     }
 

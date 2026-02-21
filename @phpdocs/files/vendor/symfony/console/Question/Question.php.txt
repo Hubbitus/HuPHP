@@ -45,7 +45,8 @@ class Question
     /**
      * Returns the question.
      */
-    public function getQuestion(): string {
+    public function getQuestion(): string
+    {
         return $this->question;
     }
 
@@ -60,7 +61,8 @@ class Question
     /**
      * Returns whether the user response accepts newline characters.
      */
-    public function isMultiline(): bool {
+    public function isMultiline(): bool
+    {
         return $this->multiline;
     }
 
@@ -79,7 +81,8 @@ class Question
     /**
      * Returns whether the user response must be hidden.
      */
-    public function isHidden(): bool {
+    public function isHidden(): bool
+    {
         return $this->hidden;
     }
 
@@ -104,7 +107,8 @@ class Question
     /**
      * In case the response cannot be hidden, whether to fallback on non-hidden question or not.
      */
-    public function isHiddenFallback(): bool {
+    public function isHiddenFallback(): bool
+    {
         return $this->hiddenFallback;
     }
 
@@ -270,7 +274,8 @@ class Question
         return (bool) \count(array_filter(array_keys($array), 'is_string'));
     }
 
-    public function isTrimmable(): bool {
+    public function isTrimmable(): bool
+    {
         return $this->trimmable;
     }
 

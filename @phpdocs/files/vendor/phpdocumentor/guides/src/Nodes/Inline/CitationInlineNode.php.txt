@@ -31,7 +31,8 @@ final class CitationInlineNode extends AnnotationInlineNode
         parent::__construct(self::TYPE, $value);
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 }

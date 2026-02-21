@@ -39,15 +39,18 @@ final class EnumFormatter
     ){
     }
 
-    public static function usingName(): self {
+    public static function usingName(): self
+    {
         return new self(self::NAME_FORMAT, null);
     }
 
-    public static function usingValue(): self {
+    public static function usingValue(): self
+    {
         return new self(self::VALUE_FORMAT, null);
     }
 
-    public static function usingJson(): self {
+    public static function usingJson(): self
+    {
         return new self(self::JSON_FORMAT, null);
     }
 

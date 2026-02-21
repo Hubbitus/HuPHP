@@ -44,7 +44,8 @@ abstract class AbstractAdmonitionDirective extends SubDirective
         );
     }
 
-    final public function getName(): string {
+    final public function getName(): string
+    {
         return $this->name;
     }
 }

@@ -33,7 +33,8 @@ final class FrontMatterExtension implements ExtensionInterface
         $this->frontMatterParser = new FrontMatterParser($dataParser ?? LibYamlFrontMatterParser::capable() ?? new SymfonyYamlFrontMatterParser());
     }
 
-    public function getFrontMatterParser(): FrontMatterParserInterface {
+    public function getFrontMatterParser(): FrontMatterParserInterface
+    {
         return $this->frontMatterParser;
     }
 

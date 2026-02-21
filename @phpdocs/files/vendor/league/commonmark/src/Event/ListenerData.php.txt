@@ -38,11 +38,13 @@ final class ListenerData
     /**
      * @return class-string
      */
-    public function getEvent(): string {
+    public function getEvent(): string
+    {
         return $this->event;
     }
 
-    public function getListener(): callable {
+    public function getListener(): callable
+    {
         return $this->listener;
     }
 }

@@ -62,7 +62,8 @@ class CharsetConverter extends php_user_filter
     /**
      * Static method to register the class as a stream filter.
      */
-    public static function register(): void {
+    public static function register(): void
+    {
         $filter_name = self::FILTERNAME.'.*';
 
         in_array($filter_name, stream_get_filters(), true) || stream_filter_register($filter_name, self::class);
@@ -214,7 +215,8 @@ class CharsetConverter extends php_user_filter
         return $encoding_list[strtolower($encoding)] ?? throw new OutOfRangeException('The submitted charset '.$encoding.' is not supported by the mbstring extension.');
     }
 
-    public function onCreate(): bool {
+    public function onCreate(): bool
+    {
         $prefix = self::FILTERNAME.'.';
         if (!str_starts_with($this->filtername, $prefix)) {
             return false;

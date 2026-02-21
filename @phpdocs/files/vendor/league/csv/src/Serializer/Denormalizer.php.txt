@@ -67,7 +67,8 @@ final class Denormalizer
      * Enables converting empty string to the null value.
      */
     #[Deprecated(message:'use League\Csv\Serializer\MapRecord::$convertEmptyStringToNull or League\Csv\Serializer\MapCell::$convertEmptyStringToNullinstead', since:'league/csv:9.17.0')]
-    public static function allowEmptyStringAsNull(): void {
+    public static function allowEmptyStringAsNull(): void
+    {
         self::$convertEmptyStringToNull = true;
     }
 
@@ -80,7 +81,8 @@ final class Denormalizer
      * Disables converting empty string to the null value.
      */
     #[Deprecated(message:'use League\Csv\Serializer\MapRecord::$convertEmptyStringToNull or League\Csv\Serializer\MapCell::$convertEmptyStringToNullinstead', since:'league/csv:9.17.0')]
-    public static function disallowEmptyStringAsNull(): void {
+    public static function disallowEmptyStringAsNull(): void
+    {
         self::$convertEmptyStringToNull = false;
     }
 
@@ -104,7 +106,8 @@ final class Denormalizer
         return CallbackCasting::unregisterType($type);
     }
 
-    public static function unregisterAllTypes(): void {
+    public static function unregisterAllTypes(): void
+    {
         CallbackCasting::unregisterTypes();
     }
 
@@ -123,18 +126,21 @@ final class Denormalizer
         return CallbackCasting::unregisterAlias($alias);
     }
 
-    public static function unregisterAllAliases(): void {
+    public static function unregisterAllAliases(): void
+    {
         CallbackCasting::unregisterAliases();
     }
 
-    public static function unregisterAll(): void {
+    public static function unregisterAll(): void
+    {
         CallbackCasting::unregisterAll();
     }
 
     /**
      * @return array<string>
      */
-    public static function types(): array {
+    public static function types(): array
+    {
         $default = [...array_column(Type::cases(), 'value'), ...CallbackCasting::types()];
 
         return array_values(array_unique($default));
@@ -143,7 +149,8 @@ final class Denormalizer
     /**
      * @return array<string, string>
      */
-    public static function aliases(): array {
+    public static function aliases(): array
+    {
         return CallbackCasting::aliases();
     }
 
@@ -257,7 +264,8 @@ final class Denormalizer
     /**
      * @return array<ReflectionMethod>
      */
-    private function setAfterMappingCalls(): array {
+    private function setAfterMappingCalls(): array
+    {
         return $this->mapRecord?->afterMappingMethods($this->class)
             ?? AfterMapping::from($this->class)?->mapRecord->afterMappingMethods($this->class) /* @phpstan-ignore-line */
             ?? [];

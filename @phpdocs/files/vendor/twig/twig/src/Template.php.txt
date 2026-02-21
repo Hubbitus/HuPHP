@@ -100,7 +100,8 @@ abstract class Template
         return false;
     }
 
-    public function isTraitable(): bool {
+    public function isTraitable(): bool
+    {
         return true;
     }
 
@@ -334,7 +335,8 @@ abstract class Template
      *
      * @return $this
      */
-    public function unwrap(): self {
+    public function unwrap(): self
+    {
         return $this;
     }
 
@@ -346,7 +348,8 @@ abstract class Template
      *
      * @return array An array of blocks
      */
-    public function getBlocks(): array {
+    public function getBlocks(): array
+    {
         return $this->blocks;
     }
 

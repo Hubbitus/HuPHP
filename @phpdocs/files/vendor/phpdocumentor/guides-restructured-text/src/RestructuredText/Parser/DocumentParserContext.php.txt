@@ -60,19 +60,23 @@ class DocumentParserContext
         $this->currentTitleLevel = $context->getInitialHeaderLevel() - 1;
     }
 
-    public function getProjectNode(): ProjectNode {
+    public function getProjectNode(): ProjectNode
+    {
         return $this->context->getProjectNode();
     }
 
-    public function getContext(): ParserContext {
+    public function getContext(): ParserContext
+    {
         return $this->context;
     }
 
-    public function getParser(): MarkupLanguageParser {
+    public function getParser(): MarkupLanguageParser
+    {
         return $this->markupLanguageParser;
     }
 
-    public function getDocument(): DocumentNode {
+    public function getDocument(): DocumentNode
+    {
         if ($this->document === null) {
             throw new RuntimeException('Cannot get document, parser is not started');
         }
@@ -100,11 +104,13 @@ class DocumentParserContext
         return $this->currentTitleLevel;
     }
 
-    public function getTextRoleFactoryForDocument(): TextRoleFactory {
+    public function getTextRoleFactoryForDocument(): TextRoleFactory
+    {
         return $this->textRoleFactoryForDocument;
     }
 
-    public function getCodeBlockDefaultLanguage(): string {
+    public function getCodeBlockDefaultLanguage(): string
+    {
         return $this->codeBlockDefaultLanguage;
     }
 
@@ -124,7 +130,8 @@ class DocumentParserContext
         $this->links[$name ?? ''] = trim($url);
     }
 
-    public function resetAnonymousStack(): void {
+    public function resetAnonymousStack(): void
+    {
         $this->anonymous = [];
     }
 
@@ -134,12 +141,14 @@ class DocumentParserContext
     }
 
     /** @return array<string, string> */
-    public function getLinks(): array {
+    public function getLinks(): array
+    {
         return $this->links;
     }
 
     /** @return array<string, string> */
-    public function getLoggerInformation(): array {
+    public function getLoggerInformation(): array
+    {
         $info = [];
         if ($this->document !== null) {
             $info = array_merge($this->document->getLoggerInformation(), $info);

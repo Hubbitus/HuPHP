@@ -34,7 +34,8 @@ final class InlineImageParser extends AbstractInlineTextDecoratorParser
         parent::__construct($inlineParsers, $logger);
     }
 
-    protected function getType(): string {
+    protected function getType(): string
+    {
         return 'Image';
     }
 

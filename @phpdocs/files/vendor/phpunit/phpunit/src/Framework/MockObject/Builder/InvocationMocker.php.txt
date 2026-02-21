@@ -138,7 +138,8 @@ final class InvocationMocker implements InvocationStubber, MethodNameMatch
         return $this->will($stub);
     }
 
-    public function willReturnSelf(): self {
+    public function willReturnSelf(): self
+    {
         $stub = new ReturnSelf;
 
         return $this->will($stub);
@@ -212,7 +213,8 @@ final class InvocationMocker implements InvocationStubber, MethodNameMatch
      *
      * @return $this
      */
-    public function withAnyParameters(): self {
+    public function withAnyParameters(): self
+    {
         $this->ensureParametersCanBeConfigured();
 
         $this->matcher->setParametersRule(new Rule\AnyParameters);
@@ -256,7 +258,8 @@ final class InvocationMocker implements InvocationStubber, MethodNameMatch
      * @throws MethodNameNotConfiguredException
      * @throws MethodParametersAlreadyConfiguredException
      */
-    private function ensureParametersCanBeConfigured(): void {
+    private function ensureParametersCanBeConfigured(): void
+    {
         if (!$this->matcher->hasMethodNameRule()) {
             throw new MethodNameNotConfiguredException;
         }

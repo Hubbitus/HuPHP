@@ -28,11 +28,13 @@ class InternalTarget implements Target
     ) {
     }
 
-    public function getDocumentPath(): string {
+    public function getDocumentPath(): string
+    {
         return $this->documentPath;
     }
 
-    public function getAnchor(): string {
+    public function getAnchor(): string
+    {
         return $this->anchorName;
     }
 
@@ -46,7 +48,8 @@ class InternalTarget implements Target
         return $this->title;
     }
 
-    public function getUrl(): string {
+    public function getUrl(): string
+    {
         return $this->url;
     }
 
@@ -57,11 +60,13 @@ class InternalTarget implements Target
         return $this;
     }
 
-    public function getLinkType(): string {
+    public function getLinkType(): string
+    {
         return $this->linkType;
     }
 
-    public function getPrefix(): string {
+    public function getPrefix(): string
+    {
         return $this->prefix;
     }
 }

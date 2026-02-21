@@ -120,7 +120,8 @@ final class ProjectNode extends CompoundNode
     }
 
     /** @return array<string, Node> */
-    public function getVariables(): array {
+    public function getVariables(): array
+    {
         return $this->variables;
     }
 
@@ -174,7 +175,8 @@ final class ProjectNode extends CompoundNode
     }
 
     /** @return array<string, array<string, InternalTarget>> */
-    public function getAllInternalTargets(): array {
+    public function getAllInternalTargets(): array
+    {
         return $this->internalLinkTargets;
     }
 
@@ -184,11 +186,13 @@ final class ProjectNode extends CompoundNode
     }
 
     /** @return DocumentEntryNode[] */
-    public function getAllDocumentEntries(): array {
+    public function getAllDocumentEntries(): array
+    {
         return $this->documentEntries;
     }
 
-    public function getRootDocumentEntry(): DocumentEntryNode {
+    public function getRootDocumentEntry(): DocumentEntryNode
+    {
         foreach ($this->documentEntries as $documentEntry) {
             if ($documentEntry->isRoot()) {
                 return $documentEntry;
@@ -221,16 +225,19 @@ final class ProjectNode extends CompoundNode
         return $this->documentEntries[$filePath] ?? null;
     }
 
-    public function reset(): void {
+    public function reset(): void
+    {
         $this->documentEntries = [];
     }
 
-    public function getLastRendered(): DateTimeImmutable {
+    public function getLastRendered(): DateTimeImmutable
+    {
         return $this->lastRendered;
     }
 
     /** @return NavMenuNode[] */
-    public function getGlobalMenues(): array {
+    public function getGlobalMenues(): array
+    {
         return $this->globalMenues;
     }
 
@@ -243,7 +250,8 @@ final class ProjectNode extends CompoundNode
     }
 
     /** @return list<string> */
-    public function getKeywords(): array {
+    public function getKeywords(): array
+    {
         return $this->keywords;
     }
 

@@ -24,7 +24,8 @@ abstract class TypedVariableAbstract extends TypedAbstract
     /**
      * Retrieves the variable name stored on this descriptor.
      */
-    public function getVariableName(): string {
+    public function getVariableName(): string
+    {
         return $this->variableName;
     }
 

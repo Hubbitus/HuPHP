@@ -64,6 +64,10 @@
                 <a href="namespaces/hubbitus-huphp.html" class="">HuPHP</a>
                 
             </li>
+                    <li>
+                <a href="namespaces/hubbitus-tests.html" class="">Tests</a>
+                
+            </li>
             </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -718,15 +722,15 @@
                 
             </li>
                     <li>
+                <a href="packages/Debug-Backtrace.html" class="">Backtrace</a>
+                
+            </li>
+                    <li>
                 <a href="packages/Debug-Dump.html" class="">Dump</a>
                 
             </li>
                     <li>
                 <a href="packages/Debug-HuLOG.html" class="">HuLOG</a>
-                
-            </li>
-                    <li>
-                <a href="packages/Debug-Bactrace.html" class="">Bactrace</a>
                 
             </li>
             </ul>
@@ -796,28 +800,8 @@
 </h4>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Image.html" class="">Image</a>
-</h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/Image-GD.html" class="">GD</a>
-                
-            </li>
-            </ul>
-
-                                    <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/RegExp.html" class="">RegExp</a>
 </h4>
-
-                                    <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Console.html" class="">Console</a>
-</h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/Console-Getopt.html" class="">Getopt</a>
-                
-            </li>
-            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/System.html" class="">System</a>
@@ -959,13 +943,6 @@
 <dd>Return first NON-empty string if present. Silent return empty string &quot;&quot; otherwise.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a class="" href="namespaces/hubbitus-huphp-macroses.html#function_NON_EMPTY_STR">NON_EMPTY_STR()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-<dd>If provided argument $str is not empty *string* then return &quot;$prefix.$str.$suffix&quot; otherwise $defValue</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/hubbitus-huphp-macroses.html#function_EMPTY_VAR">EMPTY_VAR()</a>
     <span>
                                 &nbsp;: mixed    </span>
@@ -1006,6 +983,13 @@ Return TRUE isset, correct handling strings opposite official version.</dd>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/hubbitus-huphp-macroses.html#function_NON_EMPTY_STR">NON_EMPTY_STR()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>If provided argument $str is not empty *string* then return &quot;$prefix.$str.$suffix&quot; otherwise $defValue</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/hubbitus-huphp-macroses.html#function_REQUIRED_NOT_NULL">REQUIRED_NOT_NULL()</a>
@@ -1258,87 +1242,6 @@ converted into string like &quot;Array(N)&quot; where N is count of elements.</l
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
         <a href="namespaces/hubbitus-huphp-macroses.html#function_EMPTY_STR#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">example</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>EMPTY_STR.example.php</p>
-</section>
-
-                                    </dd>
-                                            </dl>
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_NON_EMPTY_STR">
-        NON_EMPTY_STR()
-        <a href="namespaces/hubbitus-huphp-macroses.html#function_NON_EMPTY_STR" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="macroses/EMPTY_STR.php"><a href="files/macroses-empty-str.html"><abbr title="macroses/EMPTY_STR.php">EMPTY_STR.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">85</span>
-
-            <a href="namespaces/hubbitus-huphp-macroses.html#source-view.85" class="phpdocumentor-element-found-in__source" data-line="85" data-modal="source-view" data-src="files/macroses/EMPTY_STR.php.txt"></a>
-    </aside>
-
-        <p class="phpdocumentor-summary">If provided argument $str is not empty *string* then return &quot;$prefix.$str.$suffix&quot; otherwise $defValue</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">NON_EMPTY_STR</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$str</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$prefix</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">''</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$suffix</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">''</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$defValue</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">''</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-        <section class="phpdocumentor-description"><p>WARNING! this macros operate by <em>STRINGS</em>, so, it is handle several values such as 0, true, Array() by special way.
-To determine of string &quot;emptying&quot; it is fully relied on <a href="namespaces/hubbitus-huphp-macroses.html#function_EMPTY_STR"><abbr title="\Hubbitus\HuPHP\Macroses\EMPTY_STR()">EMPTY_STR()</abbr></a>. Please se it for more details.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$str</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$prefix</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">''</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$suffix</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">''</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$defValue</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">''</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="namespaces/hubbitus-huphp-macroses.html#function_NON_EMPTY_STR#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -1665,6 +1568,87 @@ So, if error handler was be set before (like set_error_handler(&quot;func_error_
     
 </article>
                     <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_NON_EMPTY_STR">
+        NON_EMPTY_STR()
+        <a href="namespaces/hubbitus-huphp-macroses.html#function_NON_EMPTY_STR" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="macroses/NON_EMPTY_STR.php"><a href="files/macroses-non-empty-str.html"><abbr title="macroses/NON_EMPTY_STR.php">NON_EMPTY_STR.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">32</span>
+
+            <a href="namespaces/hubbitus-huphp-macroses.html#source-view.32" class="phpdocumentor-element-found-in__source" data-line="32" data-modal="source-view" data-src="files/macroses/NON_EMPTY_STR.php.txt"></a>
+    </aside>
+
+        <p class="phpdocumentor-summary">If provided argument $str is not empty *string* then return &quot;$prefix.$str.$suffix&quot; otherwise $defValue</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">NON_EMPTY_STR</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$str</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$prefix</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">''</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$suffix</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">''</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$defValue</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">''</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>WARNING! this macros operate by <em>STRINGS</em>, so, it is handle several values such as 0, true, Array() by special way.
+To determine of string &quot;emptying&quot; it is fully relied on <a href="namespaces/hubbitus-huphp-macroses.html#function_EMPTY_STR"><abbr title="\Hubbitus\HuPHP\Macroses\EMPTY_STR()">EMPTY_STR()</abbr></a>. Please se it for more details.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$str</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$prefix</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">''</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$suffix</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">''</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$defValue</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">''</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/hubbitus-huphp-macroses.html#function_NON_EMPTY_STR#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>EMPTY_STR.example.php</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
     <h4 class="phpdocumentor-element__name" id="function_REQUIRED_NOT_NULL">
         REQUIRED_NOT_NULL()
         <a href="namespaces/hubbitus-huphp-macroses.html#function_REQUIRED_NOT_NULL" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1804,13 +1788,12 @@ $this-&gt;settings = REQUIRED_VAR($settings);</p>
 
                                     </dd>
                                                 <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">Throws</span>
+                    <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>(VariableRequiredException)</p>
-</section>
-
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Hubbitus\HuPHP\Exceptions\variables\VariableRequiredException">VariableRequiredException</abbr></span>
+                                                            
+                                             
                                     </dd>
                                             </dl>
 

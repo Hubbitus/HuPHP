@@ -15,7 +15,8 @@ namespace phpDocumentor\Guides\RestructuredText\Directives;
 
 final class IndexDirective extends SubDirective
 {
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'index';
     }
 }

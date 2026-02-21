@@ -63,7 +63,8 @@ use function sprintf;
     /**
      * Attempts to load a configuration from the default locations for phpDocumentor
      */
-    public function fromDefaultLocations(): Configuration {
+    public function fromDefaultLocations(): Configuration
+    {
         foreach ($this->defaultFiles as $file) {
             try {
                 return $this->fromUri(UriFactory::createUri($file));
@@ -75,7 +76,8 @@ use function sprintf;
         return new Configuration($this->applyMiddleware($this->createDefault(), null));
     }
 
-    public function createDefault(): Configuration {
+    public function createDefault(): Configuration
+    {
         return $this->createConfigurationFromArray($this->symfonyConfigFactory->createDefault());
     }
 
@@ -99,7 +101,8 @@ use function sprintf;
         return $this->applyMiddleware($this->createConfigurationFromArray($config), $uri);
     }
 
-    public function fromDefault(): Configuration {
+    public function fromDefault(): Configuration
+    {
         return $this->applyMiddleware($this->createDefault(), null);
     }
 

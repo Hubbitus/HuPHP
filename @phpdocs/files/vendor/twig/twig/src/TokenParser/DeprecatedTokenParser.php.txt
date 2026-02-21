@@ -58,7 +58,8 @@ final class DeprecatedTokenParser extends AbstractTokenParser
         return $node;
     }
 
-    public function getTag(): string {
+    public function getTag(): string
+    {
         return 'deprecated';
     }
 }

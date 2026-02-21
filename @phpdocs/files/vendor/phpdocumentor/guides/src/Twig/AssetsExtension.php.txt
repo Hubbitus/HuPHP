@@ -51,7 +51,8 @@ final class AssetsExtension extends AbstractExtension
     }
 
     /** @return TwigFunction[] */
-    public function getFunctions(): array {
+    public function getFunctions(): array
+    {
         return [
             new TwigFunction('asset', $this->asset(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('renderNode', $this->renderNode(...), ['is_safe' => ['html'], 'needs_context' => true]),
@@ -68,7 +69,8 @@ final class AssetsExtension extends AbstractExtension
     }
 
     /** @return TwigTest[] */
-    public function getTests(): array {
+    public function getTests(): array
+    {
         return [
             new TwigTest(
                 'node',

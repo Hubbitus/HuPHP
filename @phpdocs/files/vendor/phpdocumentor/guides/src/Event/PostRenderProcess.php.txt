@@ -26,7 +26,8 @@ final class PostRenderProcess
     {
     }
 
-    public function getCommand(): RenderCommand {
+    public function getCommand(): RenderCommand
+    {
         return $this->command;
     }
 }

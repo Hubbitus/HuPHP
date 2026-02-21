@@ -31,7 +31,8 @@ trait CanBeVariadic
     /**
      * Returns whether this argument represents a variadic argument.
      */
-    public function isVariadic(): bool {
+    public function isVariadic(): bool
+    {
         if (! isset($this->isVariadic)) {
             $this->isVariadic = IsApplicable::false();
         }

@@ -17,7 +17,8 @@ final class LogicalOr extends BinaryOperator
     /**
      * Returns the name of this operator.
      */
-    public function operator(): string {
+    public function operator(): string
+    {
         return 'or';
     }
 
@@ -26,7 +27,8 @@ final class LogicalOr extends BinaryOperator
      *
      * @see https://www.php.net/manual/en/language.operators.precedence.php
      */
-    public function precedence(): int {
+    public function precedence(): int
+    {
         return 24;
     }
 

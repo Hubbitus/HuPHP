@@ -23,7 +23,8 @@ abstract class MetadataNode extends AbstractNode
         $this->setValue($value);
     }
 
-    public function toString(): string {
+    public function toString(): string
+    {
         return $this->value ?? '';
     }
 }

@@ -48,7 +48,8 @@ final class FootnoteInlineNodeTransformer implements NodeTransformer
         return $node instanceof FootnoteInlineNode;
     }
 
-    public function getPriority(): int {
+    public function getPriority(): int
+    {
         // After FooternoteTargetTransformer
         return 2000;
     }

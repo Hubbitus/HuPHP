@@ -186,7 +186,8 @@ final class Path
      *
      * @throws RuntimeException If your operating system or environment isn't supported
      */
-    public static function getHomeDirectory(): string {
+    public static function getHomeDirectory(): string
+    {
         // For UNIX support
         if (getenv('HOME')) {
             return self::canonicalize(getenv('HOME'));

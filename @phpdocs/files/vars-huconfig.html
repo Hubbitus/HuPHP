@@ -64,6 +64,10 @@
                 <a href="namespaces/hubbitus-huphp.html" class="">HuPHP</a>
                 
             </li>
+                    <li>
+                <a href="namespaces/hubbitus-tests.html" class="">Tests</a>
+                
+            </li>
             </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -718,15 +722,15 @@
                 
             </li>
                     <li>
+                <a href="packages/Debug-Backtrace.html" class="">Backtrace</a>
+                
+            </li>
+                    <li>
                 <a href="packages/Debug-Dump.html" class="">Dump</a>
                 
             </li>
                     <li>
                 <a href="packages/Debug-HuLOG.html" class="">HuLOG</a>
-                
-            </li>
-                    <li>
-                <a href="packages/Debug-Bactrace.html" class="">Bactrace</a>
                 
             </li>
             </ul>
@@ -796,28 +800,8 @@
 </h4>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Image.html" class="">Image</a>
-</h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/Image-GD.html" class="">GD</a>
-                
-            </li>
-            </ul>
-
-                                    <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/RegExp.html" class="">RegExp</a>
 </h4>
-
-                                    <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Console.html" class="">Console</a>
-</h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/Console-Getopt.html" class="">Getopt</a>
-                
-            </li>
-            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/System.html" class="">System</a>
@@ -965,9 +949,9 @@ we must use global $CONF; first, or also very long $GLOBALS[&#039;CONF&#039;]</d
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Vars/HuConfig.php"><a href="files/vars-huconfig.html"><abbr title="Vars/HuConfig.php">HuConfig.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">111</span>
+    <span class="phpdocumentor-element-found-in__line">121</span>
 
-            <a href="files/vars-huconfig.html#source-view.111" class="phpdocumentor-element-found-in__source" data-line="111" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
+            <a href="files/vars-huconfig.html#source-view.121" class="phpdocumentor-element-found-in__source" data-line="121" data-modal="source-view" data-src="files/Vars/HuConfig.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Short alias to Single::def(&#039;config&#039;). In case of we can-t define constant like:
@@ -979,7 +963,7 @@ we must use global $CONF; first, or also very long $GLOBALS[&#039;CONF&#039;]</p
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility"></span>
-                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">CONF</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$className</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nothrow</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__reference-operator">&amp;</span>    <span class="phpdocumentor-signature__name">CONF</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$className</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$noThrow</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
         <section class="phpdocumentor-description"><p>So, choose function aliasing. Now we can invoke it instead of Single::def('HuConfig')-&gt;config_value
 or even $GLOBALS['CONF']-&gt;someSetting but just:
@@ -1001,7 +985,7 @@ CONF('className')-&gt;desiredClassOption</p>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$nothrow</span>
+                <span class="phpdocumentor-argument-list__argument__name">$noThrow</span>
                 : <span class="phpdocumentor-argument-list__argument__type">bool</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -1023,7 +1007,7 @@ CONF('className')-&gt;desiredClassOption</p>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>Single_Object(HuConfig)|Object(HuArray). If className present - Object(HuArray) returned, Single_Object(HuConfig) otherwise to next query.</p>
+                                                 <section class="phpdocumentor-description"><p>Single|HuArray. If className present - HuArray returned, Single(HuConfig) otherwise to next query.</p>
 </section>
 
                                     </dd>

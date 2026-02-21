@@ -166,7 +166,8 @@ final class NoPrivateNetworkHttpClient implements HttpClientInterface, ResetInte
         return $clone;
     }
 
-    public function reset(): void {
+    public function reset(): void
+    {
         $this->dnsCache->exchangeArray([]);
 
         if ($this->client instanceof ResetInterface) {

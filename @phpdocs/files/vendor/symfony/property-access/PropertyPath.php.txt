@@ -127,11 +127,13 @@ class PropertyPath implements \IteratorAggregate, PropertyPathInterface
         $this->length = \count($this->elements);
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->pathAsString;
     }
 
-    public function getLength(): int {
+    public function getLength(): int
+    {
         return $this->length;
     }
 
@@ -155,11 +157,13 @@ class PropertyPath implements \IteratorAggregate, PropertyPathInterface
     /**
      * Returns a new iterator for this path.
      */
-    public function getIterator(): PropertyPathIteratorInterface {
+    public function getIterator(): PropertyPathIteratorInterface
+    {
         return new PropertyPathIterator($this);
     }
 
-    public function getElements(): array {
+    public function getElements(): array
+    {
         return $this->elements;
     }
 

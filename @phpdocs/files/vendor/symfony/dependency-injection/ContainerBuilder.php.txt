@@ -184,7 +184,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
     /**
      * Checks if resources are tracked.
      */
-    public function isTrackingResources(): bool {
+    public function isTrackingResources(): bool
+    {
         return $this->trackResources;
     }
 
@@ -233,7 +234,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
      *
      * @return array<string, ExtensionInterface>
      */
-    public function getExtensions(): array {
+    public function getExtensions(): array
+    {
         return $this->extensions;
     }
 
@@ -250,7 +252,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
      *
      * @return ResourceInterface[]
      */
-    public function getResources(): array {
+    public function getResources(): array
+    {
         return array_values($this->resources);
     }
 
@@ -461,14 +464,16 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
     /**
      * Returns the compiler pass config which can then be modified.
      */
-    public function getCompilerPassConfig(): PassConfig {
+    public function getCompilerPassConfig(): PassConfig
+    {
         return $this->getCompiler()->getPassConfig();
     }
 
     /**
      * Returns the compiler.
      */
-    public function getCompiler(): Compiler {
+    public function getCompiler(): Compiler
+    {
         return $this->compiler ??= new Compiler();
     }
 
@@ -787,7 +792,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
         }
     }
 
-    public function getServiceIds(): array {
+    public function getServiceIds(): array
+    {
         return array_map('strval', array_unique(array_merge(array_keys($this->getDefinitions()), array_keys($this->aliasDefinitions), parent::getServiceIds())));
     }
 
@@ -796,7 +802,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
      *
      * @return array<string, bool>
      */
-    public function getRemovedIds(): array {
+    public function getRemovedIds(): array
+    {
         return $this->removedIds;
     }
 
@@ -871,7 +878,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
     /**
      * @return array<string, Alias>
      */
-    public function getAliases(): array {
+    public function getAliases(): array
+    {
         return $this->aliasDefinitions;
     }
 
@@ -941,7 +949,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
      *
      * @return array<string, Definition>
      */
-    public function getDefinitions(): array {
+    public function getDefinitions(): array
+    {
         return $this->definitions;
     }
 
@@ -1299,7 +1308,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
      *
      * @return string[]
      */
-    public function findTags(): array {
+    public function findTags(): array
+    {
         $tags = [];
         foreach ($this->getDefinitions() as $id => $definition) {
             $tags[] = array_keys($definition->getTags());
@@ -1313,7 +1323,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
      *
      * @return string[]
      */
-    public function findUnusedTags(): array {
+    public function findUnusedTags(): array
+    {
         return array_values(array_diff($this->findTags(), $this->usedTags));
     }
 
@@ -1328,7 +1339,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
     /**
      * @return ExpressionFunctionProviderInterface[]
      */
-    public function getExpressionLanguageProviders(): array {
+    public function getExpressionLanguageProviders(): array
+    {
         return $this->expressionLanguageProviders;
     }
 
@@ -1394,14 +1406,16 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
      *
      * @return array<string, ChildDefinition>
      */
-    public function getAutoconfiguredInstanceof(): array {
+    public function getAutoconfiguredInstanceof(): array
+    {
         return $this->autoconfiguredInstanceof;
     }
 
     /**
      * @return array<string, callable>
      */
-    public function getAutoconfiguredAttributes(): array {
+    public function getAutoconfiguredAttributes(): array
+    {
         return $this->autoconfiguredAttributes;
     }
 
@@ -1478,7 +1492,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
      *
      * @return int[] The number of time each env vars has been resolved
      */
-    public function getEnvCounters(): array {
+    public function getEnvCounters(): array
+    {
         $bag = $this->getParameterBag();
         $envPlaceholders = $bag instanceof EnvPlaceholderParameterBag ? $bag->getEnvPlaceholders() : $this->envPlaceholders;
 
@@ -1545,7 +1560,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
      *
      * @internal
      */
-    public function getRemovedBindingIds(): array {
+    public function getRemovedBindingIds(): array
+    {
         return $this->removedBindingIds;
     }
 
@@ -1675,7 +1691,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
         }
     }
 
-    private function getExpressionLanguage(): ExpressionLanguage {
+    private function getExpressionLanguage(): ExpressionLanguage
+    {
         if (!isset($this->expressionLanguage)) {
             if (!class_exists(Expression::class)) {
                 throw new LogicException('Expressions cannot be used without the ExpressionLanguage component. Try running "composer require symfony/expression-language".');

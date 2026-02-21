@@ -26,7 +26,8 @@ final class Directory
         $this->path = $path;
     }
 
-    public function path(): string {
+    public function path(): string
+    {
         return $this->path;
     }
 }

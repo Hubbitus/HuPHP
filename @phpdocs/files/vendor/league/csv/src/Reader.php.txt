@@ -82,7 +82,8 @@ class Reader extends AbstractCsv implements TabularDataReader, JsonSerializable
     /**
      * Enables skipping empty records.
      */
-    public function skipEmptyRecords(): static {
+    public function skipEmptyRecords(): static
+    {
         if ($this->is_empty_records_included) {
             $this->is_empty_records_included = false;
             $this->nb_records = -1;
@@ -94,7 +95,8 @@ class Reader extends AbstractCsv implements TabularDataReader, JsonSerializable
     /**
      * Disables skipping empty records.
      */
-    public function includeEmptyRecords(): static {
+    public function includeEmptyRecords(): static
+    {
         if (!$this->is_empty_records_included) {
             $this->is_empty_records_included = true;
             $this->nb_records = -1;
@@ -106,11 +108,13 @@ class Reader extends AbstractCsv implements TabularDataReader, JsonSerializable
     /**
      * Tells whether empty records are skipped by the instance.
      */
-    public function isEmptyRecordsIncluded(): bool {
+    public function isEmptyRecordsIncluded(): bool
+    {
         return $this->is_empty_records_included;
     }
 
-    protected function resetProperties(): void {
+    protected function resetProperties(): void
+    {
         parent::resetProperties();
 
         $this->nb_records = -1;
@@ -130,7 +134,8 @@ class Reader extends AbstractCsv implements TabularDataReader, JsonSerializable
      *
      * Returns the header record.
      */
-    public function getHeader(): array {
+    public function getHeader(): array
+    {
         return match (true) {
             null === $this->header_offset,
             [] !== $this->header => $this->header,
@@ -233,7 +238,8 @@ class Reader extends AbstractCsv implements TabularDataReader, JsonSerializable
     /**
      * @throws Exception
      */
-    public function first(): array {
+    public function first(): array
+    {
         return ResultSet::from($this)->first();
     }
 
@@ -286,7 +292,8 @@ class Reader extends AbstractCsv implements TabularDataReader, JsonSerializable
         return $formatter($record);
     }
 
-    public function last(): array {
+    public function last(): array
+    {
         return $this->getLastRecord([]);
     }
 
@@ -341,7 +348,8 @@ class Reader extends AbstractCsv implements TabularDataReader, JsonSerializable
     /**
      * @throws Exception
      */
-    public function count(): int {
+    public function count(): int
+    {
         if (-1 === $this->nb_records) {
             $this->nb_records = iterator_count($this->getRecords());
         }
@@ -352,14 +360,16 @@ class Reader extends AbstractCsv implements TabularDataReader, JsonSerializable
     /**
      * @throws Exception
      */
-    public function getIterator(): Iterator {
+    public function getIterator(): Iterator
+    {
         return $this->getRecords();
     }
 
     /**
      * @throws Exception
      */
-    public function jsonSerialize(): array {
+    public function jsonSerialize(): array
+    {
         return array_values([...$this->getRecords()]);
     }
 
@@ -555,7 +565,8 @@ class Reader extends AbstractCsv implements TabularDataReader, JsonSerializable
     /**
      * @throws Exception
      */
-    protected function prepareRecords(): Iterator {
+    protected function prepareRecords(): Iterator
+    {
         $normalized = fn ($record): bool => is_array($record) && ($this->is_empty_records_included || $record !== [null]);
         $bom = null;
         if (!$this->is_input_bom_included) {

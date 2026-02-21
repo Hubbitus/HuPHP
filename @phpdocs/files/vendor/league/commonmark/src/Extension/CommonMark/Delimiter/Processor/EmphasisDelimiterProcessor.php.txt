@@ -43,15 +43,18 @@ final class EmphasisDelimiterProcessor implements CacheableDelimiterProcessorInt
         $this->char = $char;
     }
 
-    public function getOpeningCharacter(): string {
+    public function getOpeningCharacter(): string
+    {
         return $this->char;
     }
 
-    public function getClosingCharacter(): string {
+    public function getClosingCharacter(): string
+    {
         return $this->char;
     }
 
-    public function getMinLength(): int {
+    public function getMinLength(): int
+    {
         return 1;
     }
 

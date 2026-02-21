@@ -41,11 +41,13 @@ class DirectoryResource implements SelfCheckingResourceInterface
         $this->resource = $resolvedResource;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return hash('xxh128', serialize([$this->resource, $this->pattern]));
     }
 
-    public function getResource(): string {
+    public function getResource(): string
+    {
         return $this->resource;
     }
 

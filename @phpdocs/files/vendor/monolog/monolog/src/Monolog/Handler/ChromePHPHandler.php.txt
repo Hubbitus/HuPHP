@@ -104,7 +104,8 @@ class ChromePHPHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface {
+    protected function getDefaultFormatter(): FormatterInterface
+    {
         return new ChromePHPFormatter();
     }
 
@@ -130,7 +131,8 @@ class ChromePHPHandler extends AbstractProcessingHandler
      *
      * @see sendHeader()
      */
-    protected function send(): void {
+    protected function send(): void
+    {
         if (self::$overflowed || !self::$sendHeaders) {
             return;
         }
@@ -183,7 +185,8 @@ class ChromePHPHandler extends AbstractProcessingHandler
     /**
      * Verifies if the headers are accepted by the current user agent
      */
-    protected function headersAccepted(): bool {
+    protected function headersAccepted(): bool
+    {
         if (empty($_SERVER['HTTP_USER_AGENT'])) {
             return false;
         }

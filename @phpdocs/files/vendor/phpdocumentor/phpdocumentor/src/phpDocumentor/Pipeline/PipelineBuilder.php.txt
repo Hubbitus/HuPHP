@@ -16,7 +16,8 @@ class PipelineBuilder
         return $this;
     }
 
-    public function build(): PipelineInterface {
+    public function build(): PipelineInterface
+    {
         return new Pipeline(null, ...$this->stages);
     }
 }

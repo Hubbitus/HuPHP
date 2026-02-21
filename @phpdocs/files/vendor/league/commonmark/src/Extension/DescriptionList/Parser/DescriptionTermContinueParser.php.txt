@@ -33,7 +33,8 @@ final class DescriptionTermContinueParser extends AbstractBlockContinueParser im
         $this->term  = $term;
     }
 
-    public function getBlock(): DescriptionTerm {
+    public function getBlock(): DescriptionTerm
+    {
         return $this->block;
     }
 

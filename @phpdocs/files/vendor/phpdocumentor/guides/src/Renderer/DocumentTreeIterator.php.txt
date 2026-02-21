@@ -39,7 +39,8 @@ final class DocumentTreeIterator implements RecursiveIterator
     ) {
     }
 
-    public function current(): DocumentNode {
+    public function current(): DocumentNode
+    {
         foreach ($this->documents as $document) {
             if ($document->getDocumentEntry() === $this->levelNodes[$this->position]) {
                 return $document;
@@ -49,23 +50,28 @@ final class DocumentTreeIterator implements RecursiveIterator
         throw new LogicException('Could not find document for node');
     }
 
-    public function next(): void {
+    public function next(): void
+    {
         ++$this->position;
     }
 
-    public function key(): int {
+    public function key(): int
+    {
         return $this->position;
     }
 
-    public function valid(): bool {
+    public function valid(): bool
+    {
         return isset($this->levelNodes[$this->position]);
     }
 
-    public function rewind(): void {
+    public function rewind(): void
+    {
         $this->position = 0;
     }
 
-    public function hasChildren(): bool {
+    public function hasChildren(): bool
+    {
         return empty($this->levelNodes[$this->position]->getChildren()) === false;
     }
 

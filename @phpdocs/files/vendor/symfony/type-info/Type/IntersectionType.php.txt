@@ -59,7 +59,8 @@ final class IntersectionType extends Type implements CompositeTypeInterface
     /**
      * @return list<T>
      */
-    public function getTypes(): array {
+    public function getTypes(): array
+    {
         return $this->types;
     }
 
@@ -74,7 +75,8 @@ final class IntersectionType extends Type implements CompositeTypeInterface
         return true;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         $string = '';
         $glue = '';
 

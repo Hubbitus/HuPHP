@@ -53,7 +53,8 @@ class ProjectDescriptorBuilder
         $this->filter = $filterManager;
     }
 
-    public function createProjectDescriptor(): void {
+    public function createProjectDescriptor(): void
+    {
         $this->project = new ProjectDescriptor(self::DEFAULT_PROJECT_NAME);
 
         // Ensure all custom settings from other services are loaded, even if no other custom settings will
@@ -64,7 +65,8 @@ class ProjectDescriptorBuilder
     /**
      * Returns the project descriptor that is being built.
      */
-    public function getProjectDescriptor(): ProjectDescriptor {
+    public function getProjectDescriptor(): ProjectDescriptor
+    {
         return $this->project;
     }
 
@@ -171,7 +173,8 @@ class ProjectDescriptorBuilder
         $this->defaultPackageName = $name;
     }
 
-    public function getDefaultPackageName(): string {
+    public function getDefaultPackageName(): string
+    {
         return $this->defaultPackageName;
     }
 

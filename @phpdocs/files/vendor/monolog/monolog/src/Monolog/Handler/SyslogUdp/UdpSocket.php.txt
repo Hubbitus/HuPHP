@@ -41,7 +41,8 @@ class UdpSocket
         $this->send($this->assembleMessage($line, $header));
     }
 
-    public function close(): void {
+    public function close(): void
+    {
         if (is_resource($this->socket) || $this->socket instanceof Socket) {
             socket_close($this->socket);
             $this->socket = null;

@@ -22,7 +22,8 @@ final class EmailAutolinkParser implements InlineParserInterface
 {
     private const REGEX = '[A-Za-z0-9.\-_+]+@[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_.]+';
 
-    public function getMatchDefinition(): InlineParserMatch {
+    public function getMatchDefinition(): InlineParserMatch
+    {
         return InlineParserMatch::regex(self::REGEX);
     }
 

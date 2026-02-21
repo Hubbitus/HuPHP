@@ -34,7 +34,8 @@ final class HeadingParser extends AbstractBlockContinueParser implements BlockCo
         $this->content = $content;
     }
 
-    public function getBlock(): Heading {
+    public function getBlock(): Heading
+    {
         return $this->block;
     }
 

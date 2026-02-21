@@ -46,17 +46,20 @@ use function Parsica\Parsica\whitespace;
 final class ParserBuilder
 {
     /** @return Parser<RootNode> */
-    private static function rootNode(): Parser {
+    private static function rootNode(): Parser
+    {
         return char('$')->map(static fn () => new RootNode())->label('$');
     }
 
     /** @return Parser<CurrentNode> */
-    private static function currentNode(): Parser {
+    private static function currentNode(): Parser
+    {
         return char('@')->map(static fn () => new CurrentNode());
     }
 
     /** @return Parser<FieldAccess> */
-    private static function fieldAccess(): Parser {
+    private static function fieldAccess(): Parser
+    {
         $fieldName = self::fieldName();
 
         return choice(
@@ -66,12 +69,14 @@ final class ParserBuilder
     }
 
     /** @return Parser<Wildcard> */
-    private static function wildcard(): Parser {
+    private static function wildcard(): Parser
+    {
         return string('*')->label('Wildcard')->map(static fn () => new Wildcard());
     }
 
     /** @return Parser<FilterNode> */
-    private static function filter(): Parser {
+    private static function filter(): Parser
+    {
         return choice(
             between(
                 string('['),
@@ -87,7 +92,8 @@ final class ParserBuilder
     }
 
     /** @return Parser<Comparison> */
-    private static function expression(): Parser {
+    private static function expression(): Parser
+    {
         $operator = choice(
             string('=='),
             string('!='),
@@ -113,7 +119,8 @@ final class ParserBuilder
     }
 
     /** @return Parser<Path> */
-    private static function currentNodeFollowUp(): Parser {
+    private static function currentNodeFollowUp(): Parser
+    {
         $inner = choice(
             self::fieldAccess(),
         );
@@ -124,7 +131,8 @@ final class ParserBuilder
     }
 
     /** @return Parser<FunctionCall> */
-    private static function functionCall(): Parser {
+    private static function functionCall(): Parser
+    {
         return collect(
             atLeastOne(alphaNumChar()),
             skipHSpace()->followedBy(
@@ -138,7 +146,8 @@ final class ParserBuilder
     }
 
     /** @return Parser<list<mixed>> */
-    private static function arguments(): Parser {
+    private static function arguments(): Parser
+    {
         return sepBy(
             char(','),
             choice(self::currentNodeFollowUp(), self::currentNode()),
@@ -146,14 +155,16 @@ final class ParserBuilder
     }
 
     /** @return Parser<FieldName> */
-    private static function fieldName(): Parser {
+    private static function fieldName(): Parser
+    {
         return atLeastOne(
             alphaNumChar()->or(char('_')),
         )->label('NODE_NAME')->map(static fn ($name) => new FieldName($name));
     }
 
     /** @return Parser<Path> */
-    private static function rootFollowUp(): Parser {
+    private static function rootFollowUp(): Parser
+    {
         $inner = choice(
             self::fieldAccess(),
             self::filter(),
@@ -171,7 +182,8 @@ final class ParserBuilder
     }
 
     /** @return Parser<Path> */
-    public function build(): Parser {
+    public function build(): Parser
+    {
         return choice(
             self::rootFollowUp(),
             self::currentNodeFollowUp(),

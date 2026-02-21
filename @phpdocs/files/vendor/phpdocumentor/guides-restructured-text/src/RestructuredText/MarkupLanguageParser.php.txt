@@ -47,14 +47,16 @@ class MarkupLanguageParser implements ParserInterface
     }
 
     /** @deprecated one should use injected rules in a rule. Not subparsers */
-    public function getSubParser(): MarkupLanguageParser {
+    public function getSubParser(): MarkupLanguageParser
+    {
         return new MarkupLanguageParser(
             $this->startingRule,
             $this->documentParserContextFactory,
         );
     }
 
-    public function getParserContext(): ParserContext {
+    public function getParserContext(): ParserContext
+    {
         if ($this->parserContext === null) {
             throw new RuntimeException(
                 'A parser\'s Environment should not be consulted before parsing has started',
@@ -64,7 +66,8 @@ class MarkupLanguageParser implements ParserInterface
         return $this->parserContext;
     }
 
-    public function getDocument(): DocumentNode {
+    public function getDocument(): DocumentNode
+    {
         if ($this->documentParser === null) {
             throw new RuntimeException('Nothing has been parsed yet.');
         }
@@ -72,7 +75,8 @@ class MarkupLanguageParser implements ParserInterface
         return $this->documentParser->getDocument();
     }
 
-    public function getFilename(): string {
+    public function getFilename(): string
+    {
         return $this->filename ?: '(unknown)';
     }
 

@@ -32,11 +32,13 @@ final class ListBlockParser extends AbstractBlockContinueParser
         $this->block = new ListBlock($listData);
     }
 
-    public function getBlock(): ListBlock {
+    public function getBlock(): ListBlock
+    {
         return $this->block;
     }
 
-    public function isContainer(): bool {
+    public function isContainer(): bool
+    {
         return true;
     }
 
@@ -52,7 +54,8 @@ final class ListBlockParser extends AbstractBlockContinueParser
         return BlockContinue::at($cursor);
     }
 
-    public function closeBlock(): void {
+    public function closeBlock(): void
+    {
         $item = $this->block->firstChild();
         while ($item instanceof AbstractBlock) {
             // check for non-final list item ending with blank line:

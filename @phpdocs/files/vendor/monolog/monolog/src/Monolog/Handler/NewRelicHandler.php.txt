@@ -125,7 +125,8 @@ class NewRelicHandler extends AbstractProcessingHandler
      *
      * @return bool
      */
-    protected function isNewRelicEnabled(): bool {
+    protected function isNewRelicEnabled(): bool
+    {
         return extension_loaded('newrelic');
     }
 
@@ -191,7 +192,8 @@ class NewRelicHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter(): FormatterInterface {
+    protected function getDefaultFormatter(): FormatterInterface
+    {
         return new NormalizerFormatter();
     }
 }

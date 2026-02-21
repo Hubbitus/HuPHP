@@ -36,11 +36,13 @@ final class HttplugPromise implements HttplugPromiseInterface
         ));
     }
 
-    public function cancel(): void {
+    public function cancel(): void
+    {
         $this->promise->cancel();
     }
 
-    public function getState(): string {
+    public function getState(): string
+    {
         return $this->promise->getState();
     }
 

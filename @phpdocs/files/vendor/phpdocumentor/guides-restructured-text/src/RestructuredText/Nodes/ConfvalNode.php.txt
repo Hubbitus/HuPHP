@@ -49,23 +49,28 @@ final class ConfvalNode extends CompoundNode implements LinkTargetNode, Optional
         parent::__construct($value);
     }
 
-    public function getPlainContent(): string {
+    public function getPlainContent(): string
+    {
         return $this->plainContent;
     }
 
-    public function getLinkType(): string {
+    public function getLinkType(): string
+    {
         return self::LINK_TYPE;
     }
 
-    public function getId(): string {
+    public function getId(): string
+    {
         return $this->id;
     }
 
-    public function getAnchor(): string {
+    public function getAnchor(): string
+    {
         return self::LINK_PREFIX . $this->id;
     }
 
-    public function getLinkText(): string {
+    public function getLinkText(): string
+    {
         return $this->plainContent;
     }
 
@@ -74,7 +79,8 @@ final class ConfvalNode extends CompoundNode implements LinkTargetNode, Optional
         return $this->type;
     }
 
-    public function isRequired(): bool {
+    public function isRequired(): bool
+    {
         return $this->required;
     }
 
@@ -84,15 +90,18 @@ final class ConfvalNode extends CompoundNode implements LinkTargetNode, Optional
     }
 
     /** @return array<string,InlineCompoundNode> */
-    public function getAdditionalOptions(): array {
+    public function getAdditionalOptions(): array
+    {
         return $this->additionalOptions;
     }
 
-    public function getPrefix(): string {
+    public function getPrefix(): string
+    {
         return self::LINK_PREFIX;
     }
 
-    public function isNoindex(): bool {
+    public function isNoindex(): bool
+    {
         return $this->noindex;
     }
 }

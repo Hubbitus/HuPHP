@@ -17,7 +17,8 @@ use PHPUnit\Framework\MockObject\Invocation as BaseInvocation;
  */
 final class InvokedAtLeastOnce extends InvocationOrder
 {
-    public function toString(): string {
+    public function toString(): string
+    {
         return 'invoked at least once';
     }
 
@@ -27,7 +28,8 @@ final class InvokedAtLeastOnce extends InvocationOrder
      *
      * @throws ExpectationFailedException
      */
-    public function verify(): void {
+    public function verify(): void
+    {
         $count = $this->getInvocationCount();
 
         if ($count < 1) {

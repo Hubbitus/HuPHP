@@ -50,7 +50,8 @@ class TypedReference extends Reference
         return $this->name;
     }
 
-    public function getAttributes(): array {
+    public function getAttributes(): array
+    {
         return $this->attributes;
     }
 }

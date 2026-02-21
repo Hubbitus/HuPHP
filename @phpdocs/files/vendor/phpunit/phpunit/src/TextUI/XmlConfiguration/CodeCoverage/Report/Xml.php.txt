@@ -28,7 +28,8 @@ final class Xml
         $this->target = $target;
     }
 
-    public function target(): Directory {
+    public function target(): Directory
+    {
         return $this->target;
     }
 }

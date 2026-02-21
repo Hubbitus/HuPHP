@@ -14,11 +14,13 @@ final class AsymmetricVisibility extends Visibility
         parent::__construct((string) $readVisibility);
     }
 
-    public function getReadVisibility(): Visibility {
+    public function getReadVisibility(): Visibility
+    {
         return $this->readVisibility;
     }
 
-    public function getWriteVisibility(): Visibility {
+    public function getWriteVisibility(): Visibility
+    {
         return $this->writeVisibility;
     }
 }

@@ -101,11 +101,13 @@ enum Bom: string
         };
     }
 
-    public function length(): int {
+    public function length(): int
+    {
         return strlen($this->value);
     }
 
-    public function encoding(): string {
+    public function encoding(): string
+    {
         return match ($this) {
             self::Utf16Le => 'UTF-16LE',
             self::Utf16Be => 'UTF-16BE',
@@ -115,14 +117,16 @@ enum Bom: string
         };
     }
 
-    public function isUtf8(): bool {
+    public function isUtf8(): bool
+    {
         return match ($this) {
             self::Utf8 => true,
             default => false,
         };
     }
 
-    public function isUtf16(): bool {
+    public function isUtf16(): bool
+    {
         return match ($this) {
             self::Utf16Le,
             self::Utf16Be => true,
@@ -130,7 +134,8 @@ enum Bom: string
         };
     }
 
-    public function isUtf32(): bool {
+    public function isUtf32(): bool
+    {
         return match ($this) {
             self::Utf32Le,
             self::Utf32Be => true,

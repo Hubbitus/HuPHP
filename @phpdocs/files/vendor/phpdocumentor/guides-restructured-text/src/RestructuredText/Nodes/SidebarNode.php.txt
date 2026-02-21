@@ -26,7 +26,8 @@ final class SidebarNode extends CompoundNode
         parent::__construct($value);
     }
 
-    public function getTitle(): InlineCompoundNode {
+    public function getTitle(): InlineCompoundNode
+    {
         return $this->title;
     }
 }

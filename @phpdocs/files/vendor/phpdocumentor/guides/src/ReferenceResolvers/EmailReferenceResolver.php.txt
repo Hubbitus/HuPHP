@@ -38,7 +38,8 @@ final class EmailReferenceResolver implements ReferenceResolver
         return false;
     }
 
-    public static function getPriority(): int {
+    public static function getPriority(): int
+    {
         return self::PRIORITY;
     }
 }

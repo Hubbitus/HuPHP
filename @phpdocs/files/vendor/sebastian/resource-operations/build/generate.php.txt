@@ -44,7 +44,8 @@ final class ResourceOperations
     /**
      * @return string[]
      */
-    public static function getFunctions(): array {
+    public static function getFunctions(): array
+    {
         return [
 
 EOT;

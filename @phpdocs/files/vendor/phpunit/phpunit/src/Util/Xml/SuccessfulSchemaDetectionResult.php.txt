@@ -32,14 +32,16 @@ final class SuccessfulSchemaDetectionResult extends SchemaDetectionResult
     /**
      * @psalm-assert-if-true SuccessfulSchemaDetectionResult $this
      */
-    public function detected(): bool {
+    public function detected(): bool
+    {
         return true;
     }
 
     /**
      * @psalm-return non-empty-string
      */
-    public function version(): string {
+    public function version(): string
+    {
         return $this->version;
     }
 }

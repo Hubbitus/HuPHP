@@ -130,7 +130,8 @@ final class CodeCoverage
     /**
      * Returns the code coverage information as a graph of node objects.
      */
-    public function getReport(): Directory {
+    public function getReport(): Directory
+    {
         if ($this->cachedReport === null) {
             $this->cachedReport = (new Builder($this->analyser()))->build($this);
         }
@@ -141,7 +142,8 @@ final class CodeCoverage
     /**
      * Clears collected code coverage data.
      */
-    public function clear(): void {
+    public function clear(): void
+    {
         $this->currentId    = null;
         $this->data         = new ProcessedCodeCoverageData;
         $this->tests        = [];
@@ -151,14 +153,16 @@ final class CodeCoverage
     /**
      * @internal
      */
-    public function clearCache(): void {
+    public function clearCache(): void
+    {
         $this->cachedReport = null;
     }
 
     /**
      * Returns the filter object used.
      */
-    public function filter(): Filter {
+    public function filter(): Filter
+    {
         return $this->filter;
     }
 
@@ -189,7 +193,8 @@ final class CodeCoverage
     /**
      * Returns the test data.
      */
-    public function getTests(): array {
+    public function getTests(): array
+    {
         return $this->tests;
     }
 
@@ -334,50 +339,61 @@ final class CodeCoverage
         $this->cachedReport = null;
     }
 
-    public function enableCheckForUnintentionallyCoveredCode(): void {
+    public function enableCheckForUnintentionallyCoveredCode(): void
+    {
         $this->checkForUnintentionallyCoveredCode = true;
     }
 
-    public function disableCheckForUnintentionallyCoveredCode(): void {
+    public function disableCheckForUnintentionallyCoveredCode(): void
+    {
         $this->checkForUnintentionallyCoveredCode = false;
     }
 
-    public function includeUncoveredFiles(): void {
+    public function includeUncoveredFiles(): void
+    {
         $this->includeUncoveredFiles = true;
     }
 
-    public function excludeUncoveredFiles(): void {
+    public function excludeUncoveredFiles(): void
+    {
         $this->includeUncoveredFiles = false;
     }
 
-    public function processUncoveredFiles(): void {
+    public function processUncoveredFiles(): void
+    {
         $this->processUncoveredFiles = true;
     }
 
-    public function doNotProcessUncoveredFiles(): void {
+    public function doNotProcessUncoveredFiles(): void
+    {
         $this->processUncoveredFiles = false;
     }
 
-    public function enableAnnotationsForIgnoringCode(): void {
+    public function enableAnnotationsForIgnoringCode(): void
+    {
         $this->useAnnotationsForIgnoringCode = true;
     }
 
-    public function disableAnnotationsForIgnoringCode(): void {
+    public function disableAnnotationsForIgnoringCode(): void
+    {
         $this->useAnnotationsForIgnoringCode = false;
     }
 
-    public function ignoreDeprecatedCode(): void {
+    public function ignoreDeprecatedCode(): void
+    {
         $this->ignoreDeprecatedCode = true;
     }
 
-    public function doNotIgnoreDeprecatedCode(): void {
+    public function doNotIgnoreDeprecatedCode(): void
+    {
         $this->ignoreDeprecatedCode = false;
     }
 
     /**
      * @psalm-assert-if-true !null $this->cacheDirectory
      */
-    public function cachesStaticAnalysis(): bool {
+    public function cachesStaticAnalysis(): bool
+    {
         return $this->cacheDirectory !== null;
     }
 
@@ -386,14 +402,16 @@ final class CodeCoverage
         $this->cacheDirectory = $directory;
     }
 
-    public function doNotCacheStaticAnalysis(): void {
+    public function doNotCacheStaticAnalysis(): void
+    {
         $this->cacheDirectory = null;
     }
 
     /**
      * @throws StaticAnalysisCacheNotConfiguredException
      */
-    public function cacheDirectory(): string {
+    public function cacheDirectory(): string
+    {
         if (!$this->cachesStaticAnalysis()) {
             throw new StaticAnalysisCacheNotConfiguredException(
                 'The static analysis cache is not configured'
@@ -411,19 +429,23 @@ final class CodeCoverage
         $this->parentClassesExcludedFromUnintentionallyCoveredCodeCheck[] = $className;
     }
 
-    public function enableBranchAndPathCoverage(): void {
+    public function enableBranchAndPathCoverage(): void
+    {
         $this->driver->enableBranchAndPathCoverage();
     }
 
-    public function disableBranchAndPathCoverage(): void {
+    public function disableBranchAndPathCoverage(): void
+    {
         $this->driver->disableBranchAndPathCoverage();
     }
 
-    public function collectsBranchAndPathCoverage(): bool {
+    public function collectsBranchAndPathCoverage(): bool
+    {
         return $this->driver->collectsBranchAndPathCoverage();
     }
 
-    public function detectsDeadCode(): bool {
+    public function detectsDeadCode(): bool
+    {
         return $this->driver->detectsDeadCode();
     }
 
@@ -519,7 +541,8 @@ final class CodeCoverage
     /**
      * @throws UnintentionallyCoveredCodeException
      */
-    private function addUncoveredFilesFromFilter(): void {
+    private function addUncoveredFilesFromFilter(): void
+    {
         $uncoveredFiles = array_diff(
             $this->filter->files(),
             $this->data->coveredFiles()
@@ -541,7 +564,8 @@ final class CodeCoverage
     /**
      * @throws UnintentionallyCoveredCodeException
      */
-    private function processUncoveredFilesFromFilter(): void {
+    private function processUncoveredFilesFromFilter(): void
+    {
         $uncoveredFiles = array_diff(
             $this->filter->files(),
             $this->data->coveredFiles()
@@ -660,7 +684,8 @@ final class CodeCoverage
         return array_values($unintentionallyCoveredUnits);
     }
 
-    private function analyser(): FileAnalyser {
+    private function analyser(): FileAnalyser
+    {
         if ($this->analyser !== null) {
             return $this->analyser;
         }

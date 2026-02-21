@@ -32,7 +32,8 @@ abstract class BaseTag implements DocBlock\Tag
      *
      * @return string The name of this tag.
      */
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 

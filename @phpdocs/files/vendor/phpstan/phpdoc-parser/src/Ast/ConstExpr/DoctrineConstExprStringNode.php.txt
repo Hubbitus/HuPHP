@@ -21,7 +21,8 @@ class DoctrineConstExprStringNode extends ConstExprStringNode
 		$this->value = $value;
 	}
 
-	public function __toString(): string {
+	public function __toString(): string
+	{
 		return self::escape($this->value);
 	}
 

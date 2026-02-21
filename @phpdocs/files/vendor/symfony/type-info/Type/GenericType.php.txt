@@ -46,14 +46,16 @@ final class GenericType extends Type implements WrappingTypeInterface
         $this->variableTypes = $variableTypes;
     }
 
-    public function getWrappedType(): Type {
+    public function getWrappedType(): Type
+    {
         return $this->type;
     }
 
     /**
      * @return list<Type>
      */
-    public function getVariableTypes(): array {
+    public function getVariableTypes(): array
+    {
         return $this->variableTypes;
     }
 
@@ -62,7 +64,8 @@ final class GenericType extends Type implements WrappingTypeInterface
         return $this->getWrappedType()->isSatisfiedBy($specification);
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         $typeString = (string) $this->type;
 
         $variableTypesString = '';

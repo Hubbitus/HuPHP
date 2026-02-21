@@ -31,7 +31,8 @@ final class AnonymousFootnoteRefParser implements InlineParserInterface, Environ
     /** @psalm-readonly-allow-private-mutation */
     private TextNormalizerInterface $slugNormalizer;
 
-    public function getMatchDefinition(): InlineParserMatch {
+    public function getMatchDefinition(): InlineParserMatch
+    {
         return InlineParserMatch::regex('\^\[([^\]]+)\]');
     }
 

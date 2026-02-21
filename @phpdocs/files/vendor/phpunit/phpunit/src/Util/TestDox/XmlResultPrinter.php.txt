@@ -76,7 +76,8 @@ final class XmlResultPrinter extends Printer implements TestListener
     /**
      * Flush buffer and close output.
      */
-    public function flush(): void {
+    public function flush(): void
+    {
         $this->write($this->document->saveXML());
 
         parent::flush();

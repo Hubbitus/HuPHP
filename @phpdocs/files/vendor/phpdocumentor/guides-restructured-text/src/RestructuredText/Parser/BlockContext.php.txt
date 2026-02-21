@@ -21,7 +21,7 @@ use function array_merge;
 final class BlockContext
 {
     private readonly LinesIterator $documentIterator;
-
+    
     public function __construct(
         private readonly DocumentParserContext $documentParserContext,
         string $contents,
@@ -31,17 +31,20 @@ final class BlockContext
         $this->documentIterator = new LinesIterator();
         $this->documentIterator->load($contents, $preserveSpace);
     }
-
-    public function getDocumentIterator(): LinesIterator {
+    
+    public function getDocumentIterator(): LinesIterator
+    {
         return $this->documentIterator;
     }
 
-    public function getDocumentParserContext(): DocumentParserContext {
+    public function getDocumentParserContext(): DocumentParserContext
+    {
         return $this->documentParserContext;
     }
 
     /** @return array<string, int|string> */
-    public function getLoggerInformation(): array {
+    public function getLoggerInformation(): array
+    {
         $info = [
             'currentLineNumber' => $this->lineOffset + 1,
         ];

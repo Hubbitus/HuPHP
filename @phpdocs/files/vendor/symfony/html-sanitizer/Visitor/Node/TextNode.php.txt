@@ -34,7 +34,8 @@ final class TextNode implements NodeInterface
         return $this->parentNode;
     }
 
-    public function render(): string {
+    public function render(): string
+    {
         return StringSanitizer::encodeHtmlEntities($this->text);
     }
 }

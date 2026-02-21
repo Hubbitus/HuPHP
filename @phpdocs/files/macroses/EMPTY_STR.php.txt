@@ -42,7 +42,7 @@ function EMPTY_STR(mixed ...$params){
 	while (
 		!(//Most complex check. See explanation in PhpDoc
 			(//It must be first check, because non-empty array simple check evaluated into true.
-				is_array($str) //Explicit check, even it is EMPTY array
+				\is_array($str) //Explicit check, even it is EMPTY array
 				and
 				($str = 'Array(' . count($str) . ')')	// Assign in condition
 			)
@@ -66,22 +66,4 @@ function EMPTY_STR(mixed ...$params){
 		$i < $numArgs //In do-wile it must be last
 	);
 	return (string)$str;
-}
-
-/**
-* If provided argument $str is not empty *string* then return "$prefix.$str.$suffix" otherwise $defValue
-*
-* WARNING! this macros operate by *STRINGS*, so, it is handle several values such as 0, true, Array() by special way.
-* To determine of string "emptying" it is fully relied on {@see EMPTY_STR()}. Please se it for more details.
-*
-* @example EMPTY_STR.example.php
-*
-* @param	string $str
-* @param	string $prefix
-* @param	string $suffix
-* @param	string $defValue
-* @return	string
-**/
-function NON_EMPTY_STR(&$str, $prefix='', $suffix='', $defValue=''){
-	return ( strlen(($str = EMPTY_STR($str))) > 0 ? $prefix.$str.$suffix : $defValue);
 }

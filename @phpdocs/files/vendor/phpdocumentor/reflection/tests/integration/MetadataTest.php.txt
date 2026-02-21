@@ -17,7 +17,8 @@ final class MetadataTest extends TestCase
 {
     const FILE = __DIR__ . '/Metadata/example.php';
 
-    public function testCustomMetadata(): void {
+    public function testCustomMetadata(): void
+    {
         $projectFactory = ProjectFactory::createInstance();
         $projectFactory->addStrategy(new HookStrategy());
 

@@ -58,7 +58,8 @@ class Route implements \Serializable
         $this->setCondition($condition);
     }
 
-    public function __serialize(): array {
+    public function __serialize(): array
+    {
         return [
             'path' => $this->path,
             'host' => $this->host,
@@ -75,7 +76,8 @@ class Route implements \Serializable
     /**
      * @internal
      */
-    final public function serialize(): string {
+    final public function serialize(): string
+    {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 
@@ -105,7 +107,8 @@ class Route implements \Serializable
         $this->__unserialize(unserialize($serialized));
     }
 
-    public function getPath(): string {
+    public function getPath(): string
+    {
         return $this->path;
     }
 
@@ -124,7 +127,8 @@ class Route implements \Serializable
         return $this;
     }
 
-    public function getHost(): string {
+    public function getHost(): string
+    {
         return $this->host;
     }
 
@@ -145,7 +149,8 @@ class Route implements \Serializable
      *
      * @return string[]
      */
-    public function getSchemes(): array {
+    public function getSchemes(): array
+    {
         return $this->schemes;
     }
 
@@ -179,7 +184,8 @@ class Route implements \Serializable
      *
      * @return string[]
      */
-    public function getMethods(): array {
+    public function getMethods(): array
+    {
         return $this->methods;
     }
 
@@ -199,7 +205,8 @@ class Route implements \Serializable
         return $this;
     }
 
-    public function getOptions(): array {
+    public function getOptions(): array
+    {
         return $this->options;
     }
 
@@ -254,7 +261,8 @@ class Route implements \Serializable
         return \array_key_exists($name, $this->options);
     }
 
-    public function getDefaults(): array {
+    public function getDefaults(): array
+    {
         return $this->defaults;
     }
 
@@ -310,7 +318,8 @@ class Route implements \Serializable
         return $this;
     }
 
-    public function getRequirements(): array {
+    public function getRequirements(): array
+    {
         return $this->requirements;
     }
 
@@ -366,7 +375,8 @@ class Route implements \Serializable
         return $this;
     }
 
-    public function getCondition(): string {
+    public function getCondition(): string
+    {
         return $this->condition;
     }
 
@@ -389,7 +399,8 @@ class Route implements \Serializable
      *
      * @see RouteCompiler which is responsible for the compilation process
      */
-    public function compile(): CompiledRoute {
+    public function compile(): CompiledRoute
+    {
         if (null !== $this->compiled) {
             return $this->compiled;
         }
@@ -440,7 +451,8 @@ class Route implements \Serializable
         return $regex;
     }
 
-    private function isLocalized(): bool {
+    private function isLocalized(): bool
+    {
         return isset($this->defaults['_locale']) && isset($this->defaults['_canonical_route']) && ($this->requirements['_locale'] ?? null) === preg_quote($this->defaults['_locale']);
     }
 }

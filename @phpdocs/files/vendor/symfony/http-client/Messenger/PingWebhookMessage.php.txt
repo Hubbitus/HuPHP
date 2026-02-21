@@ -24,7 +24,8 @@ final class PingWebhookMessage implements \Stringable
     ) {
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return "[{$this->method}] {$this->url}";
     }
 }

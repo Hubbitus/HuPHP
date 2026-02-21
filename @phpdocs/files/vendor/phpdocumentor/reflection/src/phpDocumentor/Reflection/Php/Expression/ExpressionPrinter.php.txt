@@ -43,7 +43,8 @@ final class ExpressionPrinter extends Standard
         );
     }
 
-    protected function resetState(): void {
+    protected function resetState(): void
+    {
         parent::resetState();
 
         $this->parts = [];
@@ -101,7 +102,8 @@ final class ExpressionPrinter extends Standard
     }
 
     /** @return array<string, Fqsen|Type> */
-    public function getParts(): array {
+    public function getParts(): array
+    {
         return $this->parts;
     }
 }

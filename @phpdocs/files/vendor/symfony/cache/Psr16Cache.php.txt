@@ -125,7 +125,8 @@ class Psr16Cache implements CacheInterface, PruneableInterface, ResettableInterf
         }
     }
 
-    public function clear(): bool {
+    public function clear(): bool
+    {
         return $this->pool->clear();
     }
 

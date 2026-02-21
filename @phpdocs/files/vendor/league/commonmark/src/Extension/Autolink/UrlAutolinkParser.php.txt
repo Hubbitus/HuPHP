@@ -84,7 +84,8 @@ final class UrlAutolinkParser implements InlineParserInterface
         $this->defaultProtocol = $defaultProtocol;
     }
 
-    public function getMatchDefinition(): InlineParserMatch {
+    public function getMatchDefinition(): InlineParserMatch
+    {
         return InlineParserMatch::oneOf(...$this->prefixes);
     }
 

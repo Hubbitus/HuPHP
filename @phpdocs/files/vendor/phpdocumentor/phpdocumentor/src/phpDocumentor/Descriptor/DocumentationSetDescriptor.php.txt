@@ -52,7 +52,8 @@ abstract class DocumentationSetDescriptor implements Descriptor, CompilableSubje
     }
 
     /** @return Collection<TocDescriptor> */
-    public function getTableOfContents(): Collection {
+    public function getTableOfContents(): Collection
+    {
         return $this->tocs;
     }
 
@@ -63,11 +64,13 @@ abstract class DocumentationSetDescriptor implements Descriptor, CompilableSubje
      *   it was ran and makes it uncacheable. But should this be cached? In any case, I need it for the RenderGuide
      *   writer at the moment; so refactor this once that becomes clearer.
      */
-    public function getSource(): Source {
+    public function getSource(): Source
+    {
         return $this->source;
     }
 
-    public function getOutputLocation(): string {
+    public function getOutputLocation(): string
+    {
         return $this->outputLocation;
     }
 
@@ -86,7 +89,8 @@ abstract class DocumentationSetDescriptor implements Descriptor, CompilableSubje
      *
      * @return Collection<FileInterface>
      */
-    public function getFiles(): Collection {
+    public function getFiles(): Collection
+    {
         return $this->files;
     }
 
@@ -111,7 +115,8 @@ abstract class DocumentationSetDescriptor implements Descriptor, CompilableSubje
      *
      * @return Collection<Collection<ElementInterface>>
      */
-    public function getIndexes(): Collection {
+    public function getIndexes(): Collection
+    {
         return $this->indexes;
     }
 

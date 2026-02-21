@@ -80,7 +80,8 @@ class PhpExecutableFinder
     /**
      * Finds the PHP executable arguments.
      */
-    public function findArguments(): array {
+    public function findArguments(): array
+    {
         $arguments = [];
         if ('phpdbg' === \PHP_SAPI) {
             $arguments[] = '-qrr';

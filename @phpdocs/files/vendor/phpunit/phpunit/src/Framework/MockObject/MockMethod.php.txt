@@ -176,14 +176,16 @@ final class MockMethod
         $this->deprecation             = $deprecation;
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->methodName;
     }
 
     /**
      * @throws RuntimeException
      */
-    public function generateCode(): string {
+    public function generateCode(): string
+    {
         if ($this->static) {
             $templateFile = 'mocked_static_method.tpl';
         } elseif ($this->returnType->isNever() || $this->returnType->isVoid()) {
@@ -234,7 +236,8 @@ final class MockMethod
         return $template->render();
     }
 
-    public function getReturnType(): Type {
+    public function getReturnType(): Type
+    {
         return $this->returnType;
     }
 

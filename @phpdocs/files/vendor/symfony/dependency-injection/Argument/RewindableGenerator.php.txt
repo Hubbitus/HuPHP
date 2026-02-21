@@ -32,7 +32,8 @@ class RewindableGenerator implements \IteratorAggregate, \Countable
         return $g();
     }
 
-    public function count(): int {
+    public function count(): int
+    {
         if (!\is_int($count = $this->count)) {
             $this->count = $count();
         }

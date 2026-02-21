@@ -64,11 +64,13 @@ final class MacroTokenParser extends AbstractTokenParser
         return $token->test('endmacro');
     }
 
-    public function getTag(): string {
+    public function getTag(): string
+    {
         return 'macro';
     }
 
-    private function parseDefinition(): ArrayExpression {
+    private function parseDefinition(): ArrayExpression
+    {
         $arguments = new ArrayExpression([], $this->parser->getCurrentToken()->getLine());
         $stream = $this->parser->getStream();
         $stream->expect(Token::OPERATOR_TYPE, '(', 'A list of arguments must begin with an opening parenthesis');

@@ -33,19 +33,23 @@ final class SandboxExtension extends AbstractExtension
         $this->sourcePolicy = $sourcePolicy;
     }
 
-    public function getTokenParsers(): array {
+    public function getTokenParsers(): array
+    {
         return [new SandboxTokenParser()];
     }
 
-    public function getNodeVisitors(): array {
+    public function getNodeVisitors(): array
+    {
         return [new SandboxNodeVisitor()];
     }
 
-    public function enableSandbox(): void {
+    public function enableSandbox(): void
+    {
         $this->sandboxed = true;
     }
 
-    public function disableSandbox(): void {
+    public function disableSandbox(): void
+    {
         $this->sandboxed = false;
     }
 
@@ -54,7 +58,8 @@ final class SandboxExtension extends AbstractExtension
         return $this->sandboxedGlobally || $this->sandboxed || $this->isSourceSandboxed($source);
     }
 
-    public function isSandboxedGlobally(): bool {
+    public function isSandboxedGlobally(): bool
+    {
         return $this->sandboxedGlobally;
     }
 
@@ -72,7 +77,8 @@ final class SandboxExtension extends AbstractExtension
         $this->policy = $policy;
     }
 
-    public function getSecurityPolicy(): SecurityPolicyInterface {
+    public function getSecurityPolicy(): SecurityPolicyInterface
+    {
         return $this->policy;
     }
 

@@ -39,7 +39,8 @@ final class PreParsingEvent extends EventAbstract
         return $this;
     }
 
-    public function getFileCount(): int {
+    public function getFileCount(): int
+    {
         return $this->fileCount;
     }
 }

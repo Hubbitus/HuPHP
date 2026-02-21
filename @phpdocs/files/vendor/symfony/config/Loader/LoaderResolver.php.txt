@@ -61,7 +61,8 @@ class LoaderResolver implements LoaderResolverInterface
      *
      * @return LoaderInterface[]
      */
-    public function getLoaders(): array {
+    public function getLoaders(): array
+    {
         return $this->loaders;
     }
 }

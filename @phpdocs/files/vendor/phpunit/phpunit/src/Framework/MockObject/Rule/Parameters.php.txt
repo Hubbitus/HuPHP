@@ -56,7 +56,8 @@ final class Parameters implements ParametersRule
         }
     }
 
-    public function toString(): string {
+    public function toString(): string
+    {
         $text = 'with parameter';
 
         foreach ($this->parameters as $index => $parameter) {
@@ -95,7 +96,8 @@ final class Parameters implements ParametersRule
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    public function verify(): void {
+    public function verify(): void
+    {
         $this->doVerify();
     }
 
@@ -103,7 +105,8 @@ final class Parameters implements ParametersRule
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    private function doVerify(): bool {
+    private function doVerify(): bool
+    {
         if (isset($this->parameterVerificationResult)) {
             return $this->guardAgainstDuplicateEvaluationOfParameterConstraints();
         }
@@ -147,7 +150,8 @@ final class Parameters implements ParametersRule
     /**
      * @throws ExpectationFailedException
      */
-    private function guardAgainstDuplicateEvaluationOfParameterConstraints(): bool {
+    private function guardAgainstDuplicateEvaluationOfParameterConstraints(): bool
+    {
         if ($this->parameterVerificationResult instanceof ExpectationFailedException) {
             throw $this->parameterVerificationResult;
         }

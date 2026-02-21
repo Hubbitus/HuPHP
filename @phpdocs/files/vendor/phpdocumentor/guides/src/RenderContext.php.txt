@@ -83,12 +83,14 @@ class RenderContext
         )->withIterator($this->getIterator());
     }
 
-    public function getDocument(): DocumentNode {
+    public function getDocument(): DocumentNode
+    {
         return $this->document;
     }
 
     /** @return DocumentNode[] */
-    public function getAllDocuments(): array {
+    public function getAllDocuments(): array
+    {
         return $this->allDocuments;
     }
 
@@ -142,7 +144,8 @@ class RenderContext
         return $link ?? '';
     }
 
-    public function getDirName(): string {
+    public function getDirName(): string
+    {
         $dirname = dirname($this->outputFilePath);
 
         if ($dirname === '.') {
@@ -152,11 +155,13 @@ class RenderContext
         return $dirname;
     }
 
-    public function hasCurrentFileName(): bool {
+    public function hasCurrentFileName(): bool
+    {
         return $this->currentFileName !== null;
     }
 
-    public function getCurrentFileName(): string {
+    public function getCurrentFileName(): string
+    {
         if ($this->currentFileName === null) {
             throw new LogicException('Cannot get current file name when not rendering a document');
         }
@@ -165,7 +170,8 @@ class RenderContext
     }
 
     /** @return string[] */
-    public function getCurrentFileRootline(): array {
+    public function getCurrentFileRootline(): array
+    {
         if ($this->getCurrentDocumentEntry() === null) {
             throw new LogicException('Cannot get current document entry when not rendering a document');
         }
@@ -182,7 +188,8 @@ class RenderContext
     }
 
     /** @return array<string, string|null> */
-    public function getLoggerInformation(): array {
+    public function getLoggerInformation(): array
+    {
         return [
             'rst-file' => $this->currentFileName,
         ];
@@ -198,7 +205,8 @@ class RenderContext
         return $this->projectNode->findDocumentEntry($this->getCurrentFileName());
     }
 
-    public function getDestinationPath(): string {
+    public function getDestinationPath(): string
+    {
         return $this->destinationPath;
     }
 
@@ -207,7 +215,8 @@ class RenderContext
         return $this->destination;
     }
 
-    public function getProjectNode(): ProjectNode {
+    public function getProjectNode(): ProjectNode
+    {
         return $this->projectNode;
     }
 
@@ -222,11 +231,13 @@ class RenderContext
         throw new Exception('No document was found for document entry ' . $entryNode->getFile());
     }
 
-    public function getRootDocumentNode(): DocumentNode {
+    public function getRootDocumentNode(): DocumentNode
+    {
         return $this->getDocumentNodeForEntry($this->getProjectNode()->getRootDocumentEntry());
     }
 
-    public function getOutputFormat(): string {
+    public function getOutputFormat(): string
+    {
         return $this->outputFormat;
     }
 
@@ -235,7 +246,8 @@ class RenderContext
         return $this->iterator;
     }
 
-    public function getOutputFilePath(): string {
+    public function getOutputFilePath(): string
+    {
         return $this->outputFilePath;
     }
 

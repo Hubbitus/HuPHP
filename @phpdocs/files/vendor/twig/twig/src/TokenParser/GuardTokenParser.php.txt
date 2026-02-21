@@ -72,7 +72,8 @@ final class GuardTokenParser extends AbstractTokenParser
         return $token->test(['endguard']);
     }
 
-    public function getTag(): string {
+    public function getTag(): string
+    {
         return 'guard';
     }
 }

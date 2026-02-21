@@ -26,15 +26,18 @@ class DataChunk implements ChunkInterface
     ) {
     }
 
-    public function isTimeout(): bool {
+    public function isTimeout(): bool
+    {
         return false;
     }
 
-    public function isFirst(): bool {
+    public function isFirst(): bool
+    {
         return false;
     }
 
-    public function isLast(): bool {
+    public function isLast(): bool
+    {
         return false;
     }
 
@@ -43,11 +46,13 @@ class DataChunk implements ChunkInterface
         return null;
     }
 
-    public function getContent(): string {
+    public function getContent(): string
+    {
         return $this->content;
     }
 
-    public function getOffset(): int {
+    public function getOffset(): int
+    {
         return $this->offset;
     }
 

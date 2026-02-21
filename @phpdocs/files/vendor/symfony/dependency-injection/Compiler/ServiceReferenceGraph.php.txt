@@ -55,14 +55,16 @@ class ServiceReferenceGraph
      *
      * @return ServiceReferenceGraphNode[]
      */
-    public function getNodes(): array {
+    public function getNodes(): array
+    {
         return $this->nodes;
     }
 
     /**
      * Clears all nodes.
      */
-    public function clear(): void {
+    public function clear(): void
+    {
         foreach ($this->nodes as $node) {
             $node->clear();
         }

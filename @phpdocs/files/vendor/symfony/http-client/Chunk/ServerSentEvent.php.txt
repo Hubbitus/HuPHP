@@ -66,26 +66,31 @@ final class ServerSentEvent extends DataChunk implements ChunkInterface
         }
     }
 
-    public function getId(): string {
+    public function getId(): string
+    {
         return $this->id;
     }
 
-    public function getType(): string {
+    public function getType(): string
+    {
         return $this->type;
     }
 
-    public function getData(): string {
+    public function getData(): string
+    {
         return $this->data;
     }
 
-    public function getRetry(): float {
+    public function getRetry(): float
+    {
         return $this->retry;
     }
 
     /**
      * Gets the SSE data decoded as an array when it's a JSON payload.
      */
-    public function getArrayData(): array {
+    public function getArrayData(): array
+    {
         if (null !== $this->jsonData) {
             return $this->jsonData;
         }

@@ -39,7 +39,8 @@ final class HtmlBlockParser extends AbstractBlockContinueParser
         $this->block = new HtmlBlock($blockType);
     }
 
-    public function getBlock(): HtmlBlock {
+    public function getBlock(): HtmlBlock
+    {
         return $this->block;
     }
 
@@ -73,7 +74,8 @@ final class HtmlBlockParser extends AbstractBlockContinueParser
         }
     }
 
-    public function closeBlock(): void {
+    public function closeBlock(): void
+    {
         $this->block->setLiteral($this->content);
         $this->content = '';
     }

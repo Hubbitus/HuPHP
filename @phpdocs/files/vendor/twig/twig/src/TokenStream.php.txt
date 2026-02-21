@@ -34,7 +34,8 @@ final class TokenStream
         }
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return implode("\n", $this->tokens);
     }
 
@@ -49,7 +50,8 @@ final class TokenStream
     /**
      * Sets the pointer to the next token and returns the old one.
      */
-    public function next(): Token {
+    public function next(): Token
+    {
         if (!isset($this->tokens[++$this->current])) {
             throw new SyntaxError('Unexpected end of template.', $this->tokens[$this->current - 1]->getLine(), $this->source);
         }
@@ -112,15 +114,18 @@ final class TokenStream
     /**
      * Checks if end of stream was reached.
      */
-    public function isEOF(): bool {
+    public function isEOF(): bool
+    {
         return $this->tokens[$this->current]->test(Token::EOF_TYPE);
     }
 
-    public function getCurrent(): Token {
+    public function getCurrent(): Token
+    {
         return $this->tokens[$this->current];
     }
 
-    public function getSourceContext(): Source {
+    public function getSourceContext(): Source
+    {
         return $this->source;
     }
 }

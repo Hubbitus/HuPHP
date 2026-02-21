@@ -40,7 +40,8 @@ abstract class AbstractPipes implements PipesInterface
         }
     }
 
-    public function close(): void {
+    public function close(): void
+    {
         foreach ($this->pipes as $pipe) {
             if (\is_resource($pipe)) {
                 fclose($pipe);
@@ -54,7 +55,8 @@ abstract class AbstractPipes implements PipesInterface
      *
      * stream_select() returns false when the `select` system call is interrupted by an incoming signal.
      */
-    protected function hasSystemCallBeenInterrupted(): bool {
+    protected function hasSystemCallBeenInterrupted(): bool
+    {
         $lastError = $this->lastError;
         $this->lastError = null;
 
@@ -75,7 +77,8 @@ abstract class AbstractPipes implements PipesInterface
     /**
      * Unblocks streams.
      */
-    protected function unblock(): void {
+    protected function unblock(): void
+    {
         if (!$this->blocked) {
             return;
         }
@@ -179,7 +182,8 @@ abstract class AbstractPipes implements PipesInterface
         return null;
     }
 
-    private function closeBrokenInputPipe(): void {
+    private function closeBrokenInputPipe(): void
+    {
         $this->lastError = error_get_last()['message'] ?? null;
         if (\is_resource($this->pipes[0] ?? null)) {
             fclose($this->pipes[0]);

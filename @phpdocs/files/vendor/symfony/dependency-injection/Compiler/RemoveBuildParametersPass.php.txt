@@ -46,7 +46,8 @@ class RemoveBuildParametersPass implements CompilerPassInterface
     /**
      * @return array<string, mixed>
      */
-    public function getRemovedParameters(): array {
+    public function getRemovedParameters(): array
+    {
         return $this->removedParameters;
     }
 }

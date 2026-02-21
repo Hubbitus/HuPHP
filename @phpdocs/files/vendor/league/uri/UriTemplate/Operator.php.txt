@@ -57,14 +57,16 @@ enum Operator: string
     case QueryPair = '&';
     case Fragment = '#';
 
-    public function first(): string {
+    public function first(): string
+    {
         return match ($this) {
             self::None, self::ReservedChars => '',
             default => $this->value,
         };
     }
 
-    public function separator(): string {
+    public function separator(): string
+    {
         return match ($this) {
             self::None, self::ReservedChars, self::Fragment => ',',
             self::Query, self::QueryPair => '&',
@@ -72,7 +74,8 @@ enum Operator: string
         };
     }
 
-    public function isNamed(): bool {
+    public function isNamed(): bool
+    {
         return match ($this) {
             self::Query, self::PathParam, self::QueryPair => true,
             default => false,

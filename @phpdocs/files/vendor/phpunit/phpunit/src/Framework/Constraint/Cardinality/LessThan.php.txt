@@ -34,7 +34,8 @@ final class LessThan extends Constraint
      *
      * @throws InvalidArgumentException
      */
-    public function toString(): string {
+    public function toString(): string
+    {
         return 'is less than ' . $this->exporter()->export($this->value);
     }
 

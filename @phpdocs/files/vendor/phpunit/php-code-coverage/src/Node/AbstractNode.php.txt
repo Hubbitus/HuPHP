@@ -56,11 +56,13 @@ abstract class AbstractNode implements Countable
         $this->parent = $parent;
     }
 
-    public function name(): string {
+    public function name(): string
+    {
         return $this->name;
     }
 
-    public function id(): string {
+    public function id(): string
+    {
         if ($this->id === null) {
             $parent = $this->parent();
 
@@ -80,7 +82,8 @@ abstract class AbstractNode implements Countable
         return $this->id;
     }
 
-    public function pathAsString(): string {
+    public function pathAsString(): string
+    {
         if ($this->pathAsString === null) {
             if ($this->parent === null) {
                 $this->pathAsString = $this->name;
@@ -92,7 +95,8 @@ abstract class AbstractNode implements Countable
         return $this->pathAsString;
     }
 
-    public function pathAsArray(): array {
+    public function pathAsArray(): array
+    {
         if ($this->pathAsArray === null) {
             if ($this->parent === null) {
                 $this->pathAsArray = [];
@@ -111,86 +115,100 @@ abstract class AbstractNode implements Countable
         return $this->parent;
     }
 
-    public function percentageOfTestedClasses(): Percentage {
+    public function percentageOfTestedClasses(): Percentage
+    {
         return Percentage::fromFractionAndTotal(
             $this->numberOfTestedClasses(),
             $this->numberOfClasses(),
         );
     }
 
-    public function percentageOfTestedTraits(): Percentage {
+    public function percentageOfTestedTraits(): Percentage
+    {
         return Percentage::fromFractionAndTotal(
             $this->numberOfTestedTraits(),
             $this->numberOfTraits(),
         );
     }
 
-    public function percentageOfTestedClassesAndTraits(): Percentage {
+    public function percentageOfTestedClassesAndTraits(): Percentage
+    {
         return Percentage::fromFractionAndTotal(
             $this->numberOfTestedClassesAndTraits(),
             $this->numberOfClassesAndTraits(),
         );
     }
 
-    public function percentageOfTestedFunctions(): Percentage {
+    public function percentageOfTestedFunctions(): Percentage
+    {
         return Percentage::fromFractionAndTotal(
             $this->numberOfTestedFunctions(),
             $this->numberOfFunctions(),
         );
     }
 
-    public function percentageOfTestedMethods(): Percentage {
+    public function percentageOfTestedMethods(): Percentage
+    {
         return Percentage::fromFractionAndTotal(
             $this->numberOfTestedMethods(),
             $this->numberOfMethods(),
         );
     }
 
-    public function percentageOfTestedFunctionsAndMethods(): Percentage {
+    public function percentageOfTestedFunctionsAndMethods(): Percentage
+    {
         return Percentage::fromFractionAndTotal(
             $this->numberOfTestedFunctionsAndMethods(),
             $this->numberOfFunctionsAndMethods(),
         );
     }
 
-    public function percentageOfExecutedLines(): Percentage {
+    public function percentageOfExecutedLines(): Percentage
+    {
         return Percentage::fromFractionAndTotal(
             $this->numberOfExecutedLines(),
             $this->numberOfExecutableLines(),
         );
     }
 
-    public function percentageOfExecutedBranches(): Percentage {
+    public function percentageOfExecutedBranches(): Percentage
+    {
         return Percentage::fromFractionAndTotal(
             $this->numberOfExecutedBranches(),
             $this->numberOfExecutableBranches()
         );
     }
 
-    public function percentageOfExecutedPaths(): Percentage {
+    public function percentageOfExecutedPaths(): Percentage
+    {
         return Percentage::fromFractionAndTotal(
             $this->numberOfExecutedPaths(),
             $this->numberOfExecutablePaths()
         );
     }
 
-    public function numberOfClassesAndTraits(): int {
+    public function numberOfClassesAndTraits(): int
+    {
         return $this->numberOfClasses() + $this->numberOfTraits();
     }
 
-    public function numberOfTestedClassesAndTraits(): int {
+    public function numberOfTestedClassesAndTraits(): int
+    {
         return $this->numberOfTestedClasses() + $this->numberOfTestedTraits();
     }
 
-    public function classesAndTraits(): array {
+    public function classesAndTraits(): array
+    {
         return array_merge($this->classes(), $this->traits());
     }
 
-    public function numberOfFunctionsAndMethods(): int {
+    public function numberOfFunctionsAndMethods(): int
+    {
         return $this->numberOfFunctions() + $this->numberOfMethods();
     }
 
-    public function numberOfTestedFunctionsAndMethods(): int {
+    public function numberOfTestedFunctionsAndMethods(): int
+    {
         return $this->numberOfTestedFunctions() + $this->numberOfTestedMethods();
     }
 

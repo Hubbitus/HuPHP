@@ -32,7 +32,8 @@ abstract class AbstractNode implements Node
     protected $value;
 
     /** @return array<string, scalar|null> */
-    public function getOptions(): array {
+    public function getOptions(): array
+    {
         return $this->options;
     }
 
@@ -43,12 +44,14 @@ abstract class AbstractNode implements Node
     }
 
     /** @return TValue */
-    public function getValue(): mixed {
+    public function getValue(): mixed
+    {
         return $this->value;
     }
 
     /** @return string[] */
-    public function getClasses(): array {
+    public function getClasses(): array
+    {
         return $this->classes;
     }
 
@@ -77,7 +80,8 @@ abstract class AbstractNode implements Node
         $this->classes = array_unique($classes);
     }
 
-    public function getClassesString(): string {
+    public function getClassesString(): string
+    {
         return implode(' ', $this->classes);
     }
 

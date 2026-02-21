@@ -27,15 +27,18 @@ class EmbedParser implements BlockContinueParserInterface
         $this->embed = new Embed($url);
     }
 
-    public function getBlock(): AbstractBlock {
+    public function getBlock(): AbstractBlock
+    {
         return $this->embed;
     }
 
-    public function isContainer(): bool {
+    public function isContainer(): bool
+    {
         return false;
     }
 
-    public function canHaveLazyContinuationLines(): bool {
+    public function canHaveLazyContinuationLines(): bool
+    {
         return false;
     }
 
@@ -53,6 +56,7 @@ class EmbedParser implements BlockContinueParserInterface
     {
     }
 
-    public function closeBlock(): void {
+    public function closeBlock(): void
+    {
     }
 }

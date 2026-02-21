@@ -88,7 +88,8 @@ final class IsIdentical extends Constraint
      *
      * @throws InvalidArgumentException
      */
-    public function toString(): string {
+    public function toString(): string
+    {
         if (is_object($this->value)) {
             return 'is identical to an object of class "' .
                 get_class($this->value) . '"';

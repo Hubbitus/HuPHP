@@ -79,7 +79,8 @@ final class PharLoader
         ];
     }
 
-    private function phpunitVersion(): string {
+    private function phpunitVersion(): string
+    {
         $version = Version::id();
 
         if (strpos($version, '-') === false) {

@@ -19,14 +19,16 @@ abstract class SchemaDetectionResult
     /**
      * @psalm-assert-if-true SuccessfulSchemaDetectionResult $this
      */
-    public function detected(): bool {
+    public function detected(): bool
+    {
         return false;
     }
 
     /**
      * @throws Exception
      */
-    public function version(): string {
+    public function version(): string
+    {
         throw new Exception('No supported schema was detected');
     }
 }

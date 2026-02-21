@@ -42,7 +42,8 @@ trait ProcessableHandlerTrait
     /**
      * {@inheritDoc}
      */
-    public function popProcessor(): callable {
+    public function popProcessor(): callable
+    {
         if (!$this->processors) {
             throw new \LogicException('You tried to pop from an empty processor stack.');
         }
@@ -65,7 +66,8 @@ trait ProcessableHandlerTrait
         return $record;
     }
 
-    protected function resetProcessors(): void {
+    protected function resetProcessors(): void
+    {
         foreach ($this->processors as $processor) {
             if ($processor instanceof ResettableInterface) {
                 $processor->reset();

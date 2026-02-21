@@ -46,7 +46,8 @@ class MethodDescriptor extends TagDescriptor
         $this->methodName = $methodName;
     }
 
-    public function getMethodName(): string {
+    public function getMethodName(): string
+    {
         return $this->methodName;
     }
 
@@ -57,7 +58,8 @@ class MethodDescriptor extends TagDescriptor
     }
 
     /** @return Collection<ArgumentDescriptor> */
-    public function getArguments(): Collection {
+    public function getArguments(): Collection
+    {
         return $this->arguments;
     }
 
@@ -76,7 +78,8 @@ class MethodDescriptor extends TagDescriptor
         $this->static = $static;
     }
 
-    public function isStatic(): bool {
+    public function isStatic(): bool
+    {
         return $this->static;
     }
 
@@ -85,7 +88,8 @@ class MethodDescriptor extends TagDescriptor
         $this->hasReturnByReference = $hasReturnByReference;
     }
 
-    public function getHasReturnByReference(): bool {
+    public function getHasReturnByReference(): bool
+    {
         return $this->hasReturnByReference;
     }
 }

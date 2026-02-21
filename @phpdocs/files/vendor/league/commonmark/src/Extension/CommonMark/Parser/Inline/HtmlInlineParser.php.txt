@@ -24,7 +24,8 @@ use League\CommonMark\Util\RegexHelper;
 
 final class HtmlInlineParser implements InlineParserInterface
 {
-    public function getMatchDefinition(): InlineParserMatch {
+    public function getMatchDefinition(): InlineParserMatch
+    {
         return InlineParserMatch::regex(RegexHelper::PARTIAL_HTMLTAG)->caseSensitive();
     }
 

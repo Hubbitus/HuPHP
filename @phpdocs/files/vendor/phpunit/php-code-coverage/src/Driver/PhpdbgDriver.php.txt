@@ -35,11 +35,13 @@ final class PhpdbgDriver extends Driver
         }
     }
 
-    public function start(): void {
+    public function start(): void
+    {
         phpdbg_start_oplog();
     }
 
-    public function stop(): RawCodeCoverageData {
+    public function stop(): RawCodeCoverageData
+    {
         static $fetchedLines = [];
 
         $dbgData = phpdbg_end_oplog();
@@ -69,7 +71,8 @@ final class PhpdbgDriver extends Driver
         );
     }
 
-    public function nameAndVersion(): string {
+    public function nameAndVersion(): string
+    {
         return 'PHPDBG ' . PHP_VERSION;
     }
 

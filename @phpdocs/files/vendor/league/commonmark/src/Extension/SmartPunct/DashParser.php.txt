@@ -26,7 +26,8 @@ final class DashParser implements InlineParserInterface
     private const EN_DASH = '–';
     private const EM_DASH = '—';
 
-    public function getMatchDefinition(): InlineParserMatch {
+    public function getMatchDefinition(): InlineParserMatch
+    {
         return InlineParserMatch::regex('(?<!-)(-{2,})');
     }
 

@@ -67,12 +67,14 @@ final class LinesIterator implements Iterator
         return null;
     }
 
-    public function rewind(): void {
+    public function rewind(): void
+    {
         $this->position = 0;
         $this->peek = 1;
     }
 
-    public function current(): string {
+    public function current(): string
+    {
         if ($this->valid() === false) {
             throw new OutOfBoundsException('Attempted to read a line that does not exist');
         }
@@ -80,7 +82,8 @@ final class LinesIterator implements Iterator
         return $this->lines[$this->position];
     }
 
-    public function key(): int {
+    public function key(): int
+    {
         return $this->position;
     }
 
@@ -90,20 +93,24 @@ final class LinesIterator implements Iterator
      * @todo Revisit The Loop in {@see DocumentParserContext::parseLines()}
      *          and see if the Look Ahead timing should be done differently
      */
-    public function prev(): void {
+    public function prev(): void
+    {
         --$this->position;
     }
 
-    public function next(): void {
+    public function next(): void
+    {
         ++$this->position;
         $this->peek = 1;
     }
 
-    public function atStart(): bool {
+    public function atStart(): bool
+    {
         return $this->position === 0;
     }
 
-    public function valid(): bool {
+    public function valid(): bool
+    {
         return isset($this->lines[$this->position]);
     }
 
@@ -122,11 +129,13 @@ final class LinesIterator implements Iterator
     }
 
     /** @return string[] */
-    public function toArray(): array {
+    public function toArray(): array
+    {
         return $this->lines;
     }
 
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return count($this->lines) === 0 || (count($this->lines) === 1 && trim($this->lines[0]) === '');
     }
 

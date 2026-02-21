@@ -15,7 +15,8 @@ use Parsica\Parsica\JSON\JSON;
 
 final class JSONTest extends TestCase
 {
-    public static function examples(): array {
+    public static function examples(): array
+    {
         return [
             ['true'],
             ['false'],

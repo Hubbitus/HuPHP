@@ -23,7 +23,8 @@ use function trim;
  */
 final class HighlightDirective extends ActionDirective
 {
-    public function getName(): string {
+    public function getName(): string
+    {
         return 'highlight';
     }
 

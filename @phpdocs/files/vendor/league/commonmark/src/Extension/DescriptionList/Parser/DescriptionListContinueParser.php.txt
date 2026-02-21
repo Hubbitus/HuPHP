@@ -31,7 +31,8 @@ final class DescriptionListContinueParser extends AbstractBlockContinueParser
         $this->block = new DescriptionList();
     }
 
-    public function getBlock(): DescriptionList {
+    public function getBlock(): DescriptionList
+    {
         return $this->block;
     }
 
@@ -40,7 +41,8 @@ final class DescriptionListContinueParser extends AbstractBlockContinueParser
         return BlockContinue::at($cursor);
     }
 
-    public function isContainer(): bool {
+    public function isContainer(): bool
+    {
         return true;
     }
 

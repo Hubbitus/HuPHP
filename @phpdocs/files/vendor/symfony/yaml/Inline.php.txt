@@ -817,7 +817,8 @@ class Inline
      *
      * @see http://www.yaml.org/spec/1.2/spec.html#id2761573
      */
-    private static function getTimestampRegex(): string {
+    private static function getTimestampRegex(): string
+    {
         return <<<EOF
         ~^
         (?P<year>[0-9][0-9][0-9][0-9])
@@ -837,7 +838,8 @@ EOF;
     /**
      * Gets a regex that matches a YAML number in hexadecimal notation.
      */
-    private static function getHexRegex(): string {
+    private static function getHexRegex(): string
+    {
         return '~^0x[0-9a-f_]++$~i';
     }
 }

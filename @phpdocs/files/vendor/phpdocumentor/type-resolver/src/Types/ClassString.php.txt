@@ -35,7 +35,8 @@ final class ClassString extends String_ implements PseudoType
         $this->fqsen = $fqsen;
     }
 
-    public function underlyingType(): Type {
+    public function underlyingType(): Type
+    {
         return new String_();
     }
 
@@ -50,7 +51,8 @@ final class ClassString extends String_ implements PseudoType
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
-    public function __toString(): string {
+    public function __toString(): string
+    {
         if ($this->fqsen === null) {
             return 'class-string';
         }
