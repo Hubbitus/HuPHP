@@ -127,4 +127,77 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('outer', $result);
         $this->assertStringContainsString('inner', $result);
     }
+
+    public function testDumpConsoleOutputWithoutReturn(): void {
+        $var = ['key' => 'value'];
+        
+        // Capture console output
+        ob_start();
+        Dump::c($var, 'Console Output Test', false);
+        $output = ob_get_clean();
+        
+        $this->assertIsString($output);
+        $this->assertStringContainsString('=== Console Output Test ===', $output);
+        $this->assertStringContainsString('key', $output);
+    }
+
+    public function testDumpWebOutputWithoutReturn(): void {
+        $var = ['key' => 'value'];
+        
+        // Capture web output
+        ob_start();
+        Dump::w($var, 'Web Output Test', false);
+        $output = ob_get_clean();
+        
+        $this->assertIsString($output);
+        $this->assertStringContainsString('=== Web Output Test ===', $output);
+    }
+
+    public function testDumpLogOutputWithoutReturn(): void {
+        $var = ['key' => 'value'];
+        
+        // This will call error_log, just ensure it doesn't throw
+        $this->expectNotToPerformAssertions();
+        Dump::log($var, 'Log Output Test', false);
+    }
+
+    public function testDumpAutoWithCliEnvironment(): void {
+        $var = ['key' => 'value'];
+        
+        // Test auto dump - should work in any environment
+        $result = Dump::auto($var, 'Auto Test', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('=== Auto Test ===', $result);
+    }
+
+    public function testDumpWithEmptyArray(): void {
+        $var = [];
+        $result = Dump::c($var, 'Empty Array', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('=== Empty Array ===', $result);
+        $this->assertStringContainsString('Array', $result);
+    }
+
+    public function testDumpWithFloatValue(): void {
+        $var = 3.14159;
+        $result = Dump::c($var, 'Float Test', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('3.14159', $result);
+    }
+
+    public function testDumpWithFalseValue(): void {
+        $var = false;
+        $result = Dump::c($var, 'False Test', true);
+        
+        $this->assertIsString($result);
+        $this->assertStringContainsString('false', $result);
+    }
+
+    // Note: Dump::auto() web branch (line 136) is not testable in CLI environment.
+    // The branch 'return static::w($var, $header, $return)' is only executed when
+    // php_sapi_name() !== 'cli'. This is a limitation of CLI testing.
+    // The method is still tested above with testDumpAutoWithCliEnvironment().
 }

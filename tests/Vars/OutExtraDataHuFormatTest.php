@@ -25,18 +25,18 @@ final class OutExtraDataHuFormatTest extends TestCase
         $this->assertInstanceOf(OutExtraDataHuFormat::class, $format);
     }
 
-    public function testStrToConsoleReturnsString(): void
+    public function testStrForConsoleReturnsString(): void
     {
         $var = 'test_value';
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
-        $result = $format->strToConsole();
+        $result = $format->strForConsole();
 
         $this->assertIsString($result);
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testStrToConsoleWithCustomFormat(): void
+    public function testStrForConsoleWithCustomFormat(): void
     {
         $var = 'test_value';
         $customFormats = [
@@ -46,24 +46,24 @@ final class OutExtraDataHuFormatTest extends TestCase
         ];
         $format = new OutExtraDataHuFormat($var, $customFormats);
 
-        $result = $format->strToConsole(['v']);
+        $result = $format->strForConsole(['v']);
 
         $this->assertIsString($result);
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testStrToWebReturnsString(): void
+    public function testStrForWebReturnsString(): void
     {
         $var = 'test_value';
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
-        $result = $format->strToWeb();
+        $result = $format->strForWeb();
 
         $this->assertIsString($result);
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testStrToWebWithCustomFormat(): void
+    public function testStrForWebWithCustomFormat(): void
     {
         $var = 'test_value';
         $customFormats = [
@@ -73,24 +73,24 @@ final class OutExtraDataHuFormatTest extends TestCase
         ];
         $format = new OutExtraDataHuFormat($var, $customFormats);
 
-        $result = $format->strToWeb(['v']);
+        $result = $format->strForWeb(['v']);
 
         $this->assertIsString($result);
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testStrToFileReturnsString(): void
+    public function testStrForFileReturnsString(): void
     {
         $var = 'test_value';
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
-        $result = $format->strToFile();
+        $result = $format->strForFile();
 
         $this->assertIsString($result);
         $this->assertStringContainsString('test_value', $result);
     }
 
-    public function testStrToFileWithCustomFormat(): void
+    public function testStrForFileWithCustomFormat(): void
     {
         $var = 'test_value';
         $customFormats = [
@@ -100,7 +100,7 @@ final class OutExtraDataHuFormatTest extends TestCase
         ];
         $format = new OutExtraDataHuFormat($var, $customFormats);
 
-        $result = $format->strToFile(['v']);
+        $result = $format->strForFile(['v']);
 
         $this->assertIsString($result);
         $this->assertStringContainsString('test_value', $result);
@@ -116,7 +116,7 @@ final class OutExtraDataHuFormatTest extends TestCase
         ];
         $format = new OutExtraDataHuFormat($var, $customFormats);
 
-        $result = $format->strToConsole();
+        $result = $format->strForConsole();
 
         $this->assertIsString($result);
         $this->assertStringContainsString('value1', $result);
@@ -134,7 +134,7 @@ final class OutExtraDataHuFormatTest extends TestCase
         ];
         $format = new OutExtraDataHuFormat($obj, $customFormats);
 
-        $result = $format->strToConsole();
+        $result = $format->strForConsole();
 
         $this->assertIsString($result);
         $this->assertStringContainsString('test_value', $result);
@@ -145,7 +145,7 @@ final class OutExtraDataHuFormatTest extends TestCase
         $var = null;
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
-        $result = $format->strToConsole();
+        $result = $format->strForConsole();
 
         $this->assertIsString($result);
     }
@@ -155,7 +155,7 @@ final class OutExtraDataHuFormatTest extends TestCase
         $var = true;
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
-        $result = $format->strToConsole();
+        $result = $format->strForConsole();
 
         $this->assertIsString($result);
         $this->assertStringContainsString('1', $result);
@@ -166,7 +166,7 @@ final class OutExtraDataHuFormatTest extends TestCase
         $var = 42;
         $format = new OutExtraDataHuFormat($var, $this->testFormats);
 
-        $result = $format->strToConsole();
+        $result = $format->strForConsole();
 
         $this->assertIsString($result);
         $this->assertStringContainsString('42', $result);
@@ -182,8 +182,8 @@ final class OutExtraDataHuFormatTest extends TestCase
         ];
         $format = new OutExtraDataHuFormat($var, $customFormats);
 
-        $consoleOutput = $format->strToConsole();
-        $webOutput = $format->strToWeb();
+        $consoleOutput = $format->strForConsole();
+        $webOutput = $format->strForWeb();
 
         // Outputs should differ
         $this->assertStringContainsString('value', $consoleOutput);
@@ -212,7 +212,7 @@ final class OutExtraDataHuFormatTest extends TestCase
         ];
 
         $format = new OutExtraDataHuFormat($var, $customFormats);
-        $result = $format->strToConsole();
+        $result = $format->strForConsole();
 
         $this->assertIsString($result);
         $this->assertStringContainsString('Alice', $result);
@@ -235,7 +235,7 @@ final class OutExtraDataHuFormatTest extends TestCase
         ];
 
         $format = new OutExtraDataHuFormat($var, $customFormats);
-        $result = $format->strToConsole();
+        $result = $format->strForConsole();
 
         $this->assertIsString($result);
         $this->assertStringContainsString('42', $result);
@@ -258,7 +258,7 @@ final class OutExtraDataHuFormatTest extends TestCase
         ];
 
         $format = new OutExtraDataHuFormat($var, $customFormats);
-        $result = $format->strToConsole();
+        $result = $format->strForConsole();
 
         $this->assertIsString($result);
         $this->assertStringContainsString('Alice', $result);

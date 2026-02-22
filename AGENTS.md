@@ -66,3 +66,51 @@ Continue writing and enabling tests.
     Short description, statistic and coverage summary. 2-7 lines.
     ```
 7. After agree from user and commit, continue tests implementation. Our global goal at least 90% code coverage by classes!
+
+# Static Analysis (PHPStan)
+
+PHPStan is used for static analysis to catch type errors and bugs before runtime.
+
+1. **Always run PHPStan alongside tests** - After making code changes, run both:
+   ```bash
+   tests/run-tests.sh    # Run unit tests
+   tests/lint.sh         # Run PHPStan static analysis
+   ```
+
+2. **New code must be PHPStan-clean** - All new code must pass PHPStan analysis at level 5 without errors.
+
+3. **Fix PHPStan errors immediately** - If PHPStan reports errors in your changes, fix them before committing.
+
+4. **Use type hints** - Always add proper type hints for:
+   - Method parameters
+   - Return types
+   - Property types
+
+5. **Use enums for type safety** - Prefer enums over constants for better type safety and readability:
+   ```php
+   // Good: Using enum
+   use Hubbitus\HuPHP\System\OutputType;
+   $type = OutputType::CONSOLE;
+   $key = $type->value;  // 'CONSOLE'
+   
+   // Legacy: Using constants (avoid in new code, refactor to enum)
+   $type = OS::OUT_TYPE_CONSOLE;  // ❌ Refactor to OutputType::CONSOLE
+   ```
+   
+   The `OutputType` enum provides:
+   - `OutputType::BROWSER`, `CONSOLE`, `PRINT`, `FILE`, `WAP` - enum cases
+   - `->value` - access string value ('CONSOLE', etc.)
+
+6. **PHPStan configuration** - The `phpstan.neon` file defines:
+   - Analysis level (currently 5)
+   - Paths to analyze
+   - Ignored errors for legacy code
+
+7. **Commit message for PHPStan fixes** - When fixing PHPStan errors:
+   ```
+   PHPStan: fix type errors in XXX
+
+   - Added return types to methods
+   - Fixed parameter types
+   - Replaced constants with OutputType enum
+   ```

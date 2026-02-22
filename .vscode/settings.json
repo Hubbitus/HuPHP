@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "Alexeev",
+        "analyse",
         "argtypes",
         "autoinclude",
         "autoloaders",
@@ -31,6 +32,7 @@
         "phpdoc",
         "phpdocumentor",
         "phpnotes",
+        "phpstan",
         "POSIXLY",
         "proclimit",
         "spamgourmet",

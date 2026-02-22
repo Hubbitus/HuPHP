@@ -21,19 +21,19 @@ use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 **/
 
 class OutExtraDataBacktrace extends OutExtraDataCommon {
-	public function strToConsole($format = null): mixed {
+	public function strForConsole(array|string|null $format = null): string {
 		return $this->_var->printFormat(null, OS::OUT_TYPE_CONSOLE);
 	}
 
-	public function strToFile($format = null): mixed {
+	public function strForFile(array|string|null $format = null): string {
 		return $this->_var->printFormat(null, OS::OUT_TYPE_FILE);
 	}
 
-	public function strToWeb($format = null): mixed {
+	public function strForWeb(array|string|null $format = null): string {
 		return $this->_var->printFormat(null, OS::OUT_TYPE_BROWSER);
 	}
 
 	public function __toString(): string {
-		return $this->strToConsole();
+		return $this->strForConsole();
 	}
 }

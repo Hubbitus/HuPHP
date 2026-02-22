@@ -14,7 +14,10 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
-        "phpdocumentor/phpdocumentor": "^3.0"
+        "phpdocumentor/phpdocumentor": "^3.0",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -31,6 +34,7 @@
     },
     "scripts": {
         "test": "tests/run-tests.sh",
+        "phpstan": "phpstan analyse",
         "clean": "rm -rvf .phpunit.result.cache .tools/regenerate.all.log .tools/Packages/build/* build/* .phpunit.result.cache *.log",
         "build": "echo 'Build completed'"
     },

@@ -33,41 +33,41 @@ protected $_var = null;
 		$this->_var =& $var;
 	}
 
-	public function strToConsole($format = null){
+	public function strForConsole(array|string|null $format = null): string {
 		return Dump::c($this->_var, null, true);
 	}
-	public function strToFile($format = null){
+	public function strForFile(array|string|null $format = null): string {
 		return Dump::log($this->_var, null, true);
 	}
-	public function strToWeb($format = null){
+	public function strForWeb(array|string|null $format = null): string {
 		return Dump::w($this->_var, null, true);
 	}
-	public function strToPrint($format = null){
-		return static::strToPrintBase($this, $format);
+	public function strForPrint(array|string|null $format = null): string {
+		return static::strForPrintBase($this, $format);
 	}
-	public function strByOutType($type, $format = null){
+	public function strByOutType(int $type, array|string|null $format = null): string {
 		return static::strByOutTypeBase($this, $type, $format);
 	}
 
-	public static function strByOutTypeBase(/*$this*/&$obj, $type, $format = null){
+	public static function strByOutTypeBase(/*$this*/&$obj, int $type, array|string|null $format = null): string {
 		$obj->_curTypeOut = $type;
 
 		switch ($type){
 			case OS::OUT_TYPE_BROWSER:
-			return $obj->strToWeb($format);
+			return $obj->strForWeb($format);
 				break;
 
 			case OS::OUT_TYPE_CONSOLE:
-				return $obj->strToConsole($format);
+				return $obj->strForConsole($format);
 				break;
 
 			case OS::OUT_TYPE_FILE:
-				return $obj->strToFile($format);
+				return $obj->strForFile($format);
 				break;
 
 			// Addition, pseudo
 			case OS::OUT_TYPE_PRINT:
-				return $obj->strToPrint($format);
+				return $obj->strForPrint($format);
 				break;
 
 			default:
@@ -75,9 +75,9 @@ protected $_var = null;
 		}
 	}
 
-	public static function strToPrintBase(/*$this*/&$obj, $format = null){
+	public static function strForPrintBase(/*$this*/&$obj, array|string|null $format = null): string {
 		$obj->_curTypeOut = OS::OUT_TYPE_PRINT;//Pseudo. Will be clarified.
-		if (OS::OUT_TYPE_BROWSER == OS::getOutType()) return $obj->strToWeb($format);
-		else return $obj->strToConsole($format);
+		if (OS::OUT_TYPE_BROWSER == OS::getOutType()) return $obj->strForWeb($format);
+		else return $obj->strForConsole($format);
 	}
 }

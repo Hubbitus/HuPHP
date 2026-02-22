@@ -1,0 +1,13 @@
+includes:
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+    level: 5
+    bootstrapFiles:
+        - HuPHP.autoload.php
+    paths:
+        - Debug/IHuLOGFormatter.php
+        - Debug/HuLOGTextFormatter.php
+        - Debug/HuLOGSimpleTestFormatter.php
+        - System/OutputType.php

@@ -44,19 +44,19 @@ class OutExtraDataHuFormat extends OutExtraDataCommon {
 	/**
 	*@inheritdoc
 	**/
-	public function strToConsole($format = null){
+	public function strForConsole(array|string|null $format = null): string {
 		return $this->_format->setFormat(EMPTY_VAR($format, $this->format['FORMAT_CONSOLE']))->getString();
 	}
 	/**
 	*@inheritdoc
 	**/
-	public function strToFile($format = null){
+	public function strForFile(array|string|null $format = null): string {
 		return $this->_format->setFormat(EMPTY_VAR($format, $this->format['FORMAT_FILE']))->getString();
 	}
 	/**
 	*@inheritdoc
 	**/
-	public function strToWeb($format = null){
+	public function strForWeb(array|string|null $format = null): string {
 		return $this->_format->setFormat(EMPTY_VAR($format, $this->format['FORMAT_WEB']))->getString();
 	}
 }

@@ -46,11 +46,7 @@ class Backtrace implements \Iterator {
     * @param int $removeSelf If filled automatically, contains also this call (or call ::create() if appropriate). This will remove it. Number is amount of arrays remove from stack.
     **/
     public function __construct(?array $bt = null, int $removeSelf = 1) {
-        if ($bt) {
-            $this->_bt = $bt;
-        } else {
-            $this->_bt = \debug_backtrace();
-        }
+        $this->_bt = $bt ?: debug_backtrace();
 
         while ($removeSelf--) {
             \array_shift($this->_bt);
@@ -179,7 +175,7 @@ class Backtrace implements \Iterator {
         $ret->rewind();
         while ($node = $ret->current()) {
             // Returned 0 if equals
-            if ($node->fnmatchCmp($need) != 0) {
+            if ($node->fnmatchCmp($need) !== 0) {
                 $ret->delNode();
             } else {
                 $node = $ret->next();

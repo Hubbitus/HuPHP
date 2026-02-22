@@ -553,10 +553,9 @@ class HuFormat extends HuError {
 	/**
 	* As we overload getString() without arguments, implementation from HuError
 	* is not suitable. So, overload it as and thrown exception (class by autoload) to avoid accidentally usages.
-	* @TODO It is very useful methods. Consider implementation in the future.
 	**/
-	public function strToFile($format = null): mixed { throw new ClassMethodException('Method strToFile is not exists yet'); }
-	public function strToWeb($format = null): mixed { throw new ClassMethodException('Method strToWeb is not exists yet'); }
-	public function strToConsole($format = null): mixed { throw new ClassMethodException('Method strToConsole is not exists yet'); }
-	public function strToPrint($format = null): mixed { throw new ClassMethodException('Method strToPrint is not exists yet'); }
+	public function strForFile($format = null): string { throw new ClassMethodException('Method strToFile is not exists yet'); }
+	public function strForWeb($format = null): string { throw new ClassMethodException('Method strToWeb is not exists yet'); }
+	public function strForConsole($format = null): string { throw new ClassMethodException('Method strToConsole is not exists yet'); }
+	public function strForPrint($format = null): string { throw new ClassMethodException('Method strToPrint is not exists yet'); }
 }

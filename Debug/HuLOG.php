@@ -16,6 +16,7 @@ namespace Hubbitus\HuPHP\Debug;
 
 use Hubbitus\HuPHP\Debug\HuLOGSettings;
 use Hubbitus\HuPHP\Debug\HuLOGText;
+use Hubbitus\HuPHP\Debug\IHuLOGFormatter;
 use Hubbitus\HuPHP\Vars\NullClass;
 use Hubbitus\HuPHP\Vars\IOutExtraData;
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
@@ -29,23 +30,26 @@ class HuLOG extends SettingsGet{//HubbitusLOG
 
 	protected $_sets = null;
 
-	public function __construct (HuLOGSettings|array $sets = null){
+	protected ?IHuLOGFormatter $formatter = null;
+
+	public function __construct (HuLOGSettings|array $sets = null, ?IHuLOGFormatter $formatter = null){
 		if (\is_array($sets)) $this->_sets = new HuLOGSettings((array)$sets);
 		elseif($sets) $this->_sets = $sets;
 		else $this->_sets = new HuLOGSettings();//Default
 		$this->lastLogText = new HuLOGText ($this->settings->HuLOG_Text_settings);
+		$this->formatter = $formatter ?? new HuLOGTextFormatter();
 	}
 
 	private function log_to_file($file='ERR'){
 //	exec('echo -ne '.escapeshellarg($this->lastLogText->strToFile($this->lastLogText->settings->FORMAT_FILE)).' >> '.$this->settings->LOG_FILE_DIR.$this->settings->FILE_PREFIX.$file.' 2>&1');
 		file_put_contents(
 			$this->settings->LOG_FILE_DIR.$this->settings->FILE_PREFIX.$file,
-			$this->lastLogText->strToFile($this->lastLogText->settings->FORMAT_FILE),
+			$this->formatter->formatForFile($this->lastLogText),
 			FILE_APPEND
 		);
 	}
 	private function log_print(){
-		echo $this->lastLogText->strToPrint();
+		echo $this->formatter->formatForPrint($this->lastLogText);
 	}
 	protected function makeLogString($log_string, $file, $type, $extra){
 		$this->lastLogTime = time();

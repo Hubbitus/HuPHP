@@ -15,32 +15,32 @@ class OutExtraDataCommonTest extends TestCase {
 		$this->assertInstanceOf(OutExtraDataCommon::class, $out);
 	}
 
-	public function testStrToConsole(): void {
+	public function testStrForConsole(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
-		$result = $out->strToConsole();
+		$result = $out->strForConsole();
 		$this->assertIsString($result);
 		$this->assertStringContainsString('test', $result);
 	}
 
-	public function testStrToFile(): void {
+	public function testStrForFile(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
-		$result = $out->strToFile();
+		$result = $out->strForFile();
 		$this->assertIsString($result);
 	}
 
-	public function testStrToWeb(): void {
+	public function testStrForWeb(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
-		$result = $out->strToWeb();
+		$result = $out->strForWeb();
 		$this->assertIsString($result);
 	}
 
-	public function testStrToPrint(): void {
+	public function testStrForPrint(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
-		$result = $out->strToPrint();
+		$result = $out->strForPrint();
 		$this->assertIsString($result);
 	}
 
@@ -73,16 +73,17 @@ class OutExtraDataCommonTest extends TestCase {
 	}
 
 	public function testStrByOutTypeInvalid(): void {
-		$this->expectException(VariableRangeException::class);
+		// With strict types, TypeError is thrown for invalid type
+		$this->expectException(\TypeError::class);
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
 		$out->strByOutType('invalid_type');
 	}
 
-	public function testStrToPrintBase(): void {
+	public function testStrForPrintBase(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
-		$result = OutExtraDataCommon::strToPrintBase($out);
+		$result = OutExtraDataCommon::strForPrintBase($out);
 		$this->assertIsString($result);
 	}
 

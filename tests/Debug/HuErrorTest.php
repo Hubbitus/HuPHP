@@ -86,53 +86,53 @@ class HuErrorTest extends TestCase {
 		$this->assertEquals('data', $this->error->new);
 	}
 
-	public function testStrToFile(): void {
+	public function testStrForFile(): void {
 		$this->error->message = 'Test error message';
 		$this->error->code = 500;
 
-		$output = $this->error->strToFile();
+		$output = $this->error->strForFile();
 
 		$this->assertIsString($output);
 	}
 
-	public function testStrToFileWithFormat(): void {
+	public function testStrForFileWithFormat(): void {
 		$this->error->message = 'Test';
-		$output = $this->error->strToFile(['message']);
+		$output = $this->error->strForFile(['message']);
 
 		$this->assertIsString($output);
 	}
 
-	public function testStrToWeb(): void {
+	public function testStrForWeb(): void {
 		$this->error->message = 'Web error';
-		$output = $this->error->strToWeb();
+		$output = $this->error->strForWeb();
 
 		$this->assertIsString($output);
 	}
 
-	public function testStrToWebWithFormat(): void {
+	public function testStrForWebWithFormat(): void {
 		$this->error->message = 'Test';
-		$output = $this->error->strToWeb(['message']);
+		$output = $this->error->strForWeb(['message']);
 
 		$this->assertIsString($output);
 	}
 
-	public function testStrToConsole(): void {
+	public function testStrForConsole(): void {
 		$this->error->message = 'Console error';
-		$output = $this->error->strToConsole();
+		$output = $this->error->strForConsole();
 
 		$this->assertIsString($output);
 	}
 
-	public function testStrToConsoleWithFormat(): void {
+	public function testStrForConsoleWithFormat(): void {
 		$this->error->message = 'Test';
-		$output = $this->error->strToConsole(['message']);
+		$output = $this->error->strForConsole(['message']);
 
 		$this->assertIsString($output);
 	}
 
-	public function testStrToPrint(): void {
+	public function testStrForPrint(): void {
 		$this->error->message = 'Print error';
-		$output = $this->error->strToPrint();
+		$output = $this->error->strForPrint();
 
 		$this->assertIsString($output);
 	}
@@ -211,7 +211,7 @@ class HuErrorTest extends TestCase {
 	public function testCurTypeOutProperty(): void {
 		$this->assertEquals(OS::OUT_TYPE_BROWSER, $this->error->_curTypeOut);
 
-		$this->error->strToConsole();
+		$this->error->strForConsole();
 		$this->assertEquals(OS::OUT_TYPE_CONSOLE, $this->error->_curTypeOut);
 	}
 

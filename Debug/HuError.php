@@ -1,6 +1,16 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Debug;
+
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
+use Hubbitus\HuPHP\Vars\Settings\Settings;
+use Hubbitus\HuPHP\System\OS;
+use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
+use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
+use Hubbitus\HuPHP\Vars\IOutExtraData;
+
 /**
 * Debug and backtrace toolkit.
 *
@@ -19,18 +29,6 @@ declare(strict_types=1);
 * @uses VariableRangeException
 * @uses outExtraData.interface
 **/
-
-namespace Hubbitus\HuPHP\Debug;
-
-use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
-use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
-use Hubbitus\HuPHP\Vars\Settings\Settings;
-use Hubbitus\HuPHP\System\OS;
-use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
-use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
-use Hubbitus\HuPHP\Vars\IOutExtraData;
-
-
 class HuError extends Settings implements IOutExtraData {
 	/** Self settings. **/
 	protected /* settings */ $_sets = null;
@@ -72,26 +70,30 @@ class HuError extends Settings implements IOutExtraData {
 	/**
 	* String to print into file.
 	*
-	* @param string $format If @format not-empty use it for formatting result. "Format of $format"
+	* @param array<mixed>|string|null $format If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. If empty string, FORMAT_FILE setting used.
 	*	And if it settings empty (or not exists) too, just using dump::log() for all filled fields.
 	* @return string
 	**/
-	public function strToFile($format = null){
+	public function strForFile(array|string|null $format = null): string {
 		$this->_curTypeOut = OS::OUT_TYPE_FILE;
-		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_FILE)) return $this->getString($format);
-		else return Dump::log($this->__SETS, null, true);
+		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_FILE)){
+			return $this->getString($format);
+		}
+		else {
+			return Dump::log($this->__SETS, null, true);
+		}
 	}
 
 	/**
 	* String to print into user browser.
 	*
-	* @param string $format If @format not-empty use it for formatting result. "Format of $format"
+	* @param array<mixed>|string|null $format If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. If empty string, FORMAT_WEB setting used.
 	*	And if it settings empty (or not exists) too, just using dump::w() for all filled fields.
 	* @return string
 	**/
-	public function strToWeb($format = null){
+	public function strForWeb(array|string|null $format = null): string {
 		$this->_curTypeOut = OS::OUT_TYPE_BROWSER;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_WEB)) return $this->getString($format);
 		else return Dump::w($this->__SETS, null, true);
@@ -100,12 +102,12 @@ class HuError extends Settings implements IOutExtraData {
 	/**
 	* String to print on console.
 	*
-	* @param string $format If @format not-empty use it for formatting result. "Format of $format"
+	* @param array<mixed>|string|null $format If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. If empty string, FORMAT_CONSOLE setting used.
 	*	And if it settings empty (or not exists) too, just using dump::c() for all filled fields.
 	* @return string
 	**/
-	public function strToConsole($format = null){
+	public function strForConsole(array|string|null $format = null): string {
 		$this->_curTypeOut = OS::OUT_TYPE_CONSOLE;
 		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_CONSOLE)) return $this->getString($format);
 		else return Dump::c($this->__SETS, null, true);
@@ -115,24 +117,24 @@ class HuError extends Settings implements IOutExtraData {
 	* String to print. automatically detect Web or Console. Detect by {@link OS::getOutType()}
 	*	and invoke appropriate ::strToWeb() or ::strToConsole()
 	*
-	* @param string $format	If @format not-empty use it for formatting result. "Format of $format"
+	* @param array<mixed>|string|null $format	If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
 	**/
-	public function strToPrint($format = null): mixed {
-		return OutExtraDataCommon::strToPrintBase($this, $format);
+	public function strForPrint(array|string|null $format = null): string {
+		return OutExtraDataCommon::strForPrintBase($this, $format);
 	}
 
 	/**
 	* Convert to string by type.
 	*
 	* @param integer $type	One of OS::OUT_TYPE_* constant. {@link OS::OUT_TYPE_BROWSER}
-	* @param string $format	If @format not-empty use it for formatting result. "Format of $format"
+	* @param array<mixed>|string|null $format	If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
 	* @throws VariableRangeException
 	**/
-	public function strByOutType($type, $format = null){
+	public function strByOutType(int $type, array|string|null $format = null): string {
 		return OutExtraDataCommon::strByOutTypeBase($this, $type, $format);
 	}
 
@@ -141,8 +143,8 @@ class HuError extends Settings implements IOutExtraData {
 	*
 	* @return string ::strToPrint()
 	**/
-	public function __toString(){
-		return $this->strToPrint();
+	public function __toString(): string {
+		return $this->strForPrint();
 	}
 
 	/**
@@ -173,11 +175,10 @@ class HuError extends Settings implements IOutExtraData {
 	/**
 	* Just alias for ::setSettingsArray()
 	*
-	* @param	$setArr
-	* @return mixed	::setSettingsArray()
+	* @param	array	$setArr
 	**/
-	public function setFromArray(array $setArr){
-		return $this->setSettingsArray($setArr);
+	public function setFromArray(array $setArr): void {
+		$this->setSettingsArray($setArr);
 	}
 
 	/**
@@ -185,7 +186,7 @@ class HuError extends Settings implements IOutExtraData {
 	*
 	* @inheritdoc
 	**/
-	public function mergeSettingsArray(array $setArr): void{
+	public function mergeSettingsArray(array $setArr): void {
 		//Insert BEFORE update data in merge. User data 'date' must overwrite auto, if present!
 		$this->updateDate();
 
@@ -198,7 +199,7 @@ class HuError extends Settings implements IOutExtraData {
 	* @param	$setArr
 	* @return mixed	::mergeSettingsArray()
 	**/
-	public function mergeFromArray(array $setArr){
+	public function mergeFromArray(array $setArr): void {
 		$this->mergeSettingsArray($setArr);
 	}
 
@@ -237,7 +238,9 @@ class HuError extends Settings implements IOutExtraData {
 		elseif($fieldValue instanceof Backtrace){
 			return NON_EMPTY_STR(@$fieldValue->printFormat(null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
 		}
-		else return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]);
+		else {
+			return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]) ?? ''; // Ensure we always return a string, even if NON_EMPTY_STR returns null
+		}
 	}
 
 	/** @var array Extra data storage */

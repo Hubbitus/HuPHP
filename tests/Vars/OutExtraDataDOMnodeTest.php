@@ -23,33 +23,33 @@ class OutExtraDataDOMnodeTest extends TestCase {
 		$this->assertInstanceOf(OutExtraDataDOMnode::class, $out);
 	}
 
-	public function testStrToConsole(): void {
+	public function testStrForConsole(): void {
 		$dom = new \DOMDocument('1.0', 'utf-8');
 		$element = $dom->createElement('test', 'value');
 
 		$out = new OutExtraDataDOMnode($element);
-		$result = $out->strToConsole();
+		$result = $out->strForConsole();
 		$this->assertIsString($result);
 		$this->assertStringContainsString('<test>', $result);
 		$this->assertStringContainsString('value', $result);
 	}
 
-	public function testStrToFile(): void {
+	public function testStrForFile(): void {
 		$dom = new \DOMDocument('1.0', 'utf-8');
 		$element = $dom->createElement('test', 'value');
 
 		$out = new OutExtraDataDOMnode($element);
-		$result = $out->strToFile();
+		$result = $out->strForFile();
 		$this->assertIsString($result);
 		$this->assertStringContainsString('<test>', $result);
 	}
 
-	public function testStrToWeb(): void {
+	public function testStrForWeb(): void {
 		$dom = new \DOMDocument('1.0', 'utf-8');
 		$element = $dom->createElement('test', 'value');
 
 		$out = new OutExtraDataDOMnode($element);
-		$result = $out->strToWeb();
+		$result = $out->strForWeb();
 		$this->assertIsString($result);
 		$this->assertStringContainsString('<test>', $result);
 	}
@@ -63,7 +63,7 @@ class OutExtraDataDOMnodeTest extends TestCase {
 		$root->appendChild($child2);
 
 		$out = new OutExtraDataDOMnode($root);
-		$result = $out->strToConsole();
+		$result = $out->strForConsole();
 		$this->assertIsString($result);
 		$this->assertStringContainsString('<root>', $result);
 		$this->assertStringContainsString('<child1>', $result);

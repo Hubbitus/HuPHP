@@ -3,16 +3,22 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
 
-class HuLOGText extends HuError{
+/**
+* Log text formatter class.
+*
+* Log text formatter class extending HuError.
+* Used to format and output log messages with customizable format settings.
+**/
+class HuLOGText extends HuError {
 	/**
 	* Constructor.
 	*
-	* @param HuLOGTextSettings|array	$sets	Initial settings.
+	* @param HuLOGTextSettings|array|null	$sets	Initial settings.
 	*	If HuLOG_text_settings assigned AS IS, if array MERGED with defaults and overwrite
 	*	presented settings!
 	**/
-	public function __construct( /* HuLOG_text_settings | array */ $sets){
-		if (is_array($sets) and !empty($sets)){ //MERGE, NOT overwrite!
+	public function __construct( /* HuLOG_text_settings | array */ $sets = null){
+		if (\is_array($sets) and !empty($sets)){ //MERGE, NOT overwrite!
 			$this->_sets = new HuLOGTextSettings();
 			$this->_sets->mergeSettingsArray($sets);
 		}

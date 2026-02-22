@@ -296,6 +296,53 @@ Example:
 ./tests/run-tests.sh --verbose
 ```
 
+## Static Analysis (PHPStan)
+
+The project uses [PHPStan](https://phpstan.org/) for static analysis to catch bugs and type errors before runtime.
+
+### Running PHPStan
+
+```bash
+# Using the lint script
+./tests/lint.sh
+
+# Or directly via Composer
+composer phpstan
+
+# Or directly via PHPStan
+./vendor/bin/phpstan analyse
+```
+
+### Configuration
+
+PHPStan is configured in `phpstan.neon` at the project root. Current configuration:
+- **Level**: 5 (balanced strictness)
+- **Paths**: Analyzes `Debug/` directory (gradually expanding)
+- **Bootstrap**: Uses `HuPHP.autoload.php` for class loading
+
+### Understanding PHPStan Output
+
+PHPStan will report errors with:
+- 🪪 Error code for reference
+- 💡 Tips for fixing issues
+- Line numbers and file paths
+
+Example error:
+```
+------ -----------------------------------------------------------------------
+  Line   HuError.php
+ ------ -----------------------------------------------------------------------
+  80     Access to an undefined property
+         Hubbitus\HuPHP\Debug\HuError::$settings.
+         🪪  property.notFound
+ ------ -----------------------------------------------------------------------
+```
+
+### Ignoring Legacy Code
+
+Some legacy code may have PHPStan errors that require significant refactoring. These are temporarily ignored in `phpstan.neon` with the intention to fix them gradually.
+
+
 ## Contributing
 
 Issues and pull requests are welcome on GitHub.

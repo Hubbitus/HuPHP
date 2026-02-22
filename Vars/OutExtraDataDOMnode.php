@@ -44,13 +44,13 @@ class OutExtraDataDOMnode extends OutExtraDataCommon {
 		$this->_var->preserveWhiteSpace = false;
 		$this->_var->formatOutput = true;
 	}
-	public function strToConsole($format = null): mixed {
+	public function strForConsole(array|string|null $format = null): string {
 		return Dump::c(trim($this->_var->saveXML()), null, true);
 	}
-	public function strToFile($format = null){
+	public function strForFile(array|string|null $format = null): string {
 		return Dump::log(trim($this->_var->saveXML()), '', true);
 	}
-	public function strToWeb($format = null){
+	public function strForWeb(array|string|null $format = null): string {
 		return Dump::w(trim($this->_var->saveXML()), '', true);
 	}
 }
