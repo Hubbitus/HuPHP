@@ -18,7 +18,7 @@ use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 
-class HuFormatException extends VariableException {}
+// HuFormatException is defined in separate file Debug/HuFormatException.php
 
 /**
 * Class to format different structures.
