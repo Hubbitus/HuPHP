@@ -21,51 +21,65 @@ class HuErrorSettings extends Settings {
 	// Defaults
 	public function __construct(){
 		parent::__construct();
-		$this->__SETS = [
-			/**
-			* @example HuLOG.php
-			**/
-			OutputType::WEB->name => 	   [], /** For strForWeb().		If empty (by default): dump::w */
-			OutputType::CONSOLE->name => [], /** For strForConsole().	If empty (by default): dump::c */
-			OutputType::FILE->name => [], /** For strForFile().	If empty (by default): dump::log */
-
-			/**
-			* @see ::updateDate()
-			**/
-			'AUTO_DATE'		=> true,
-			'DATE_FORMAT'		=> 'Y-m-d H:i:s',
-		];
+		$this->initDefaults();
 	}
 
 	/**
-	* @example
-	* protected $__SETS = array(
-	*	//In format if Settings::getString(array)
-	*	OutputType::CONSOLE->name => array(
-	*		array('date', "\033[36m", "\033[0m"),
-	*		'level',
-	*		array('type', "\033[1m", "\033[0m: ", ''),//Bold
-	*		'logText',
-	*		array('extra', "\n"),
-	*		"\n"
-	*	),
-	*	OutputType::WEB->name => array(
-	*		array('date', "<b>", "</b>"),
-	*		'level',
-	*		array('type', "<b>", "</b>: ", ''),
-	*		'logText',
-	*		array('extra', "<br\\>\n"),
-	*		"<br\\>\n"
-	*	),
-	*	OutputType::FILE->name => array(
-	*		'date',
-	*		'level',
-	*		array('type', '', ': ', ''),
-	*		'logText',
-	*		array('extra', "\n"),
-	*		"\n"
-	*		),
-	*	),
-	* );
-	**/
+	* Initialize default settings.
+	*
+	* @return void
+	*/
+	protected function initDefaults(): void {
+		$this->__SETS = [];
+		$this->__SETS[OutputType::WEB->name] = [];
+		$this->__SETS[OutputType::CONSOLE->name] = [];
+		$this->__SETS[OutputType::FILE->name] = [];
+		$this->__SETS['AUTO_DATE'] = true;
+		$this->__SETS['DATE_FORMAT'] = 'Y-m-d H:i:s';
+	}
+
+	/**
+	* Get default web format.
+	*
+	* @return array<mixed>
+	*/
+	public function getDefaultWebFormat(): array {
+		return $this->__SETS[OutputType::WEB->name];
+	}
+
+	/**
+	* Get default console format.
+	*
+	* @return array<mixed>
+	*/
+	public function getDefaultConsoleFormat(): array {
+		return $this->__SETS[OutputType::CONSOLE->name];
+	}
+
+	/**
+	* Get default file format.
+	*
+	* @return array<mixed>
+	*/
+	public function getDefaultFileFormat(): array {
+		return $this->__SETS[OutputType::FILE->name];
+	}
+
+	/**
+	* Check if auto date is enabled.
+	*
+	* @return bool
+	*/
+	public function isAutoDateEnabled(): bool {
+		return (bool)$this->__SETS['AUTO_DATE'];
+	}
+
+	/**
+	* Get date format string.
+	*
+	* @return string
+	*/
+	public function getDateFormat(): string {
+		return $this->__SETS['DATE_FORMAT'];
+	}
 }
