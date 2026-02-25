@@ -227,12 +227,12 @@ class HuFormat extends HuError {
 	/**
 	* Set main: format and value.
 	*
-	* @param	array|string	$format. If === null, skipped to allow set other
+	* @param	array|string|null	$format. If === null, skipped to allow set other
 	*	parts. To clear you may use false/true or any else such as empty string.
-	* @param	&mixed	$value.	{@see ::setValue()} Skipped if === null. You
+	* @param	mixed	$value.	{@see ::setValue()} Skipped if === null. You
 	*	may call {@see ::setValue()} to do that
 	* @param	mixed	$key	Key of iteration in mod_I and/or mod_A.
-	* @return	&$this
+	* @return	$this
 	**/
 	public function &set($format = null, &$value = null, $key = null){
 		if (null !== $value) $this->setValue($value);
@@ -254,7 +254,7 @@ class HuFormat extends HuError {
 	/**
 	* Set value
 	*
-	* @param	&mixed	$value.	Value to format.
+	* @param	mixed	$value.	Value to format.
 	*	If === null $this->_value =& $this; $this->_realValue =& $this->_value;
 	* @return $this
 	**/
@@ -357,7 +357,7 @@ class HuFormat extends HuError {
 			}
 
 			//If all mod_* are only evaluate value and not produce out.
-			if (!$this->_resStr) {
+			if ($this->_resStr === null) {
 				//If format was plain string (no modifiers), return it as is
 				if ($this->_modArr !== [] && $this->_realValued && \is_string($this->_realValue)) {
 					return $this->_realValue;
@@ -376,9 +376,9 @@ class HuFormat extends HuError {
 	}
 
 	/**
-	* Set or not?
+	* Check if mod present.
 	*
-	* @param integer	$mod.
+	* @param string	$mod.
 	* @return bool
 	**/
 	public function isMod(string $mod): bool {

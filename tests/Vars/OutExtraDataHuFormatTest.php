@@ -102,7 +102,7 @@ final class OutExtraDataHuFormatTest extends TestCase {
     public function testWithArrayVariable(): void {
         $var = ['key1' => 'value1', 'key2' => 'value2'];
         $customFormats = [
-            OutputType::CONSOLE->name => ['AA:::', 'a:::key1', ' ', 'a:::key2'],
+            OutputType::CONSOLE->name => ['A:::', ['a:::key1'], ' ', ['a:::key2']],
             OutputType::WEB->name => ['v:::'],
             OutputType::FILE->name => ['v:::'],
         ];
@@ -216,13 +216,7 @@ final class OutExtraDataHuFormatTest extends TestCase {
         $var = ['name' => 'Alice', 'age' => 30];
 
         $customFormats = [
-            OutputType::CONSOLE->name => [
-                'A:::',
-                'a:::name',
-                ' is ',
-                'a:::age',
-                ' years old',
-            ],
+            OutputType::CONSOLE->name => ['A:::', ['a:::name'], ' is ', ['a:::age'], ' years old'],
             OutputType::WEB->name => ['v:::'],
             OutputType::FILE->name => ['v:::'],
         ];
