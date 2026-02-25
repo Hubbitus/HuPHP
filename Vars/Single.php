@@ -60,7 +60,7 @@ class Single {
 			See http://ru2.php.net/manual/ru/function.call-user-func-array.php, comment of richard_harrison at rjharrison dot org
 			*/
 			$reflectionObj = new \ReflectionClass($className);
-			
+
 			// Use Reflection to create a new instance, using the $args
 			if (empty($args)) {
 				self::$instance[$hash] = $reflectionObj->newInstance();

@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+
 /**
 * Debug and backtrace toolkit. Example usage of HuFormat.
 *
@@ -13,24 +14,20 @@ declare(strict_types=1);
 **/
 
 include('autoload.php');
-/*-inc
-include_once('Vars/huFormatOutExtraData.php');
-*/
-include_once('macroses/EMPTY_INT.php');
-/**
-* @uses EMPTY_INT()
-* @uses huFormatOutExtraData
-**/
 
-$format = array(
-	'FORMAT_CONSOLE'	=> array(
-		'A:::' => array(
+use Hubbitus\HuPHP\Vars\OutExtraDataHuFormat;
+use Hubbitus\HuPHP\System\OutputType;
+
+
+$format = [
+	OutputType::CONSOLE	=> [
+		'A:::' => [
 			"Diff:\n",
-			array(
-				'I:::' => array(
-					'A:::' =>	array(
+			[
+				'I:::' => [
+					'A:::' => [
 //						"Start\n",
-						array('kn:::', '<', '>'),
+						['kn:::', '<', '>'],
 						"\n",
 /*
 						array('an:::No', "\tNo: ", ';'),
@@ -38,45 +35,45 @@ $format = array(
 						array('an:::field', "\tfield: `", '`;'),
 						"\n",
 */
-						array('E:::', '"\t" . $var["field"] . "(" . $var["No"] . "):"'),
+						['E:::', '"\t" . $var["field"] . "(" . $var["No"] . "):"'],
 						"\n",
 
 						//"a" got index '-' in array, "E" - evaluate it as present in string after
-						array('aE:::-', '"\t" . ( strlen($str = EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"])) < ($rows = EMPTY_INT(`stty size 2>/dev/null | cut -d" " -f2`, 80)/*Console width*/) ? $str : substr($str, 0, $rows - 8/*TAB*/ - 3) . "..." )'),
+						['aE:::-', '"\t" . ( strlen($str = EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"])) < ($rows = EMPTY_INT(`stty size 2>/dev/null | cut -d" " -f2`, 80)/*Console width*/) ? $str : substr($str, 0, $rows - 8/*TAB*/ - 3) . "..." )'],
 						"\n",
 //						array('aE:::+', '"\t".EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"])'),
-						array('aE:::+', '"\t" . ( strlen($str = EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"])) < ($rows = EMPTY_INT(`stty size 2>/dev/null | cut -d" " -f2`, 80)/*Console width*/) ? $str : substr($str, 0, $rows - 8/*TAB*/ - 3) . "..." )'),
+						['aE:::+', '"\t" . ( strlen($str = EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"])) < ($rows = EMPTY_INT(`stty size 2>/dev/null | cut -d" " -f2`, 80)/*Console width*/) ? $str : substr($str, 0, $rows - 8/*TAB*/ - 3) . "..." )'],
 						"\n",
 //Debug:
 //						array('E:::', '"(".dump::a($var, null, true).")"'),
 //						array('E:::', '"(".dump::a($this, null, true).")"'),
-					)
-				),
-			)
-		)
-	)
+					]
+				]
+			]
+		]
+	]
 	,
-	'FORMAT_WEB'	=> array(
-		'A:::' => array(
+	OutputType::WEB => [
+		'A:::' => [
 			"Diff:\n",
-			array(
-				'I:::' => array(
-					'A:::' =>	array(
+			[
+				'I:::' => [
+					'A:::' => [
 						'<table border="1"><tr><th colspan="2">',
-						array('kn:::', '', ': '),
-						array('E:::', '$var["field"] . "(" . $var["No"] . "):"'),
+						['kn:::', '', ': '],
+						['E:::', '$var["field"] . "(" . $var["No"] . "):"'],
 						'</th></tr><tr><td width="50%" valign="top">',
-						//"a" got index '-' in array, "E" - evalueate it as present in string after
-						array('aE:::-', 'wordwrap(EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"]), 10, "<wbr>", true)'),
+						//"a" got index '-' in array, "E" - evaluate it as present in string after
+						['aE:::-', 'wordwrap(EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"]), 10, "<wbr>", true)'],
 						'</td><td>',
-						array('aE:::+', 'wordwrap(EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"]), 10, "<wbr>", true)'),
+						['aE:::+', 'wordwrap(EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"]), 10, "<wbr>", true)'],
 						'</td></tr></table>',
-					)
-				),
-			)
-		)
-	)
-);
+					]
+				]
+			]
+		]
+	]
+];
 
 //$diff = new HuArray(array('ff1' => 11, 'ff2' => 22));
 $diff =
@@ -117,12 +114,6 @@ $diff =
 //  )
 );
 
-/*
-* //WORK, manual
-* $hf = new HuFormat($format['FORMAT_CONSOLE'], $diff->getArray()); // If $diff is HuArray work both: just $diff and $diff->getArray()
-* echo $hf->getString();
-*/
-
 // Auto select appropriate format WEB or CONSOLE:
 $hfo = new OutExtraDataHuFormat($diff, $format);
-echo $hfo->strToPrint();
+echo $hfo->strForPrint();

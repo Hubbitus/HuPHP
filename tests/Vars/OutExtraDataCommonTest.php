@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 use Hubbitus\HuPHP\System\OS;
@@ -47,36 +48,37 @@ class OutExtraDataCommonTest extends TestCase {
 	public function testStrByOutTypeBrowser(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
-		$result = $out->strByOutType(OS::OUT_TYPE_BROWSER);
+		$result = $out->strByOutType(OutputType::WEB);
 		$this->assertIsString($result);
 	}
 
 	public function testStrByOutTypeConsole(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
-		$result = $out->strByOutType(OS::OUT_TYPE_CONSOLE);
+		$result = $out->strByOutType(OutputType::CONSOLE);
 		$this->assertIsString($result);
 	}
 
 	public function testStrByOutTypeFile(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
-		$result = $out->strByOutType(OS::OUT_TYPE_FILE);
+		$result = $out->strByOutType(OutputType::FILE);
 		$this->assertIsString($result);
 	}
 
 	public function testStrByOutTypePrint(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
-		$result = $out->strByOutType(OS::OUT_TYPE_PRINT);
+		$result = $out->strByOutType(OutputType::PRINT);
 		$this->assertIsString($result);
 	}
 
 	public function testStrByOutTypeInvalid(): void {
-		// With strict types, TypeError is thrown for invalid type
+		// With enum type hint, TypeError is thrown for invalid type
 		$this->expectException(\TypeError::class);
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
+		// @phpstan-ignore-next-line argument.type
 		$out->strByOutType('invalid_type');
 	}
 
@@ -90,7 +92,7 @@ class OutExtraDataCommonTest extends TestCase {
 	public function testStrByOutTypeBase(): void {
 		$var = ['test' => 'value'];
 		$out = new OutExtraDataCommon($var);
-		$result = OutExtraDataCommon::strByOutTypeBase($out, OS::OUT_TYPE_CONSOLE);
+		$result = OutExtraDataCommon::strByOutTypeBase($out, OutputType::CONSOLE);
 		$this->assertIsString($result);
 	}
 }

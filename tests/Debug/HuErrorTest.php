@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Debug;
+use Hubbitus\HuPHP\System\OutputType;
 
 use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\Debug\HuError;
@@ -139,14 +140,14 @@ class HuErrorTest extends TestCase {
 
 	public function testStrByOutType(): void {
 		$this->error->message = 'Type error';
-		$output = $this->error->strByOutType(OS::OUT_TYPE_CONSOLE);
+		$output = $this->error->strByOutType(OutputType::CONSOLE);
 
 		$this->assertIsString($output);
 	}
 
 	public function testStrByOutTypeWithFormat(): void {
 		$this->error->message = 'Test';
-		$output = $this->error->strByOutType(OS::OUT_TYPE_FILE, ['message']);
+		$output = $this->error->strByOutType(OutputType::FILE, ['message']);
 
 		$this->assertIsString($output);
 	}
@@ -209,10 +210,11 @@ class HuErrorTest extends TestCase {
 	}
 
 	public function testCurTypeOutProperty(): void {
-		$this->assertEquals(OS::OUT_TYPE_BROWSER, $this->error->_curTypeOut);
+		// Default value is OutputType::CONSOLE
+		$this->assertEquals(OutputType::CONSOLE, $this->error->_curTypeOut);
 
 		$this->error->strForConsole();
-		$this->assertEquals(OS::OUT_TYPE_CONSOLE, $this->error->_curTypeOut);
+		$this->assertEquals(OutputType::CONSOLE, $this->error->_curTypeOut);
 	}
 
 	public function testFormatFieldWithString(): void {

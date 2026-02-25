@@ -38,7 +38,8 @@
         "spamgourmet",
         "Translit",
         "unichr",
-        "uniord"
+        "uniord",
+        "vkontakte"
     ],
     "php.version": "8.3",
     "go-to-next-change.treeView": true

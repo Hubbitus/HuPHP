@@ -8,8 +8,8 @@ namespace Hubbitus\HuPHP\Tests\Database;
 
 use Hubbitus\HuPHP\Database\DatabaseErrorSettings;
 use Hubbitus\HuPHP\Debug\HuErrorSettings;
+use Hubbitus\HuPHP\System\OutputType;
 use PHPUnit\Framework\TestCase;
-use InvalidArgumentException;
 
 /**
  * @covers \Hubbitus\HuPHP\Database\DatabaseErrorSettings
@@ -171,7 +171,7 @@ class DatabaseErrorSettingsTest extends TestCase {
             'TXT_queryFailed' => 'Custom query failed message',
             'TXT_cantConnect' => 'Custom connection failed message',
             'DEBUG' => true,
-            'FORMAT_WEB' => [
+            OutputType::WEB->name => [
                 ['TXT_queryFailed', '<strong>', '</strong>', '']
             ]
         ];
@@ -222,7 +222,7 @@ class DatabaseErrorSettingsTest extends TestCase {
         $clone = clone $original;
 
         $this->assertEquals($original->TXT_queryFailed, $clone->TXT_queryFailed);
-        $this->assertEquals($original->FORMAT_WEB, $clone->FORMAT_WEB);
+        $this->assertEquals($original->WEB, $clone->WEB);
     }
 
     public function testSettingsSerialization(): void {

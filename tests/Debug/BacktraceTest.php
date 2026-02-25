@@ -5,6 +5,7 @@ namespace Hubbitus\HuPHP\Tests\Debug;
 
 use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\Debug\BacktraceNode;
+use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\System\OutputType;
 use PHPUnit\Framework\TestCase;
@@ -12,8 +13,12 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers Hubbitus\HuPHP\Debug\Backtrace
  */
-final class BacktraceTest extends TestCase
-{
+final class BacktraceTest extends TestCase {
+    protected function setUp(): void {
+        // Configure default backtrace format
+        PrintoutDefault::configure();
+    }
+
     public function testConstructorWithNullCreatesBacktrace(): void {
         $bt = new Backtrace(null, 0);
 
@@ -263,28 +268,26 @@ final class BacktraceTest extends TestCase
     }
 
     /**
-     * @todo Fix infinite loop in HuFormat when printing empty backtrace
+     * Test printFormat with empty backtrace.
      */
     public function testPrintFormatWithEmptyBacktrace(): void {
-        $this->markTestSkipped('Infinite loop in HuFormat when printing backtrace');
-
-        // Configure simple default format for testing to avoid infinite loops
-        // Using enum value directly as configuration key
+        // Configure simple default format - print "empty" for empty backtrace
         $GLOBALS['__CONFIG']['backtrace::printout'] = [
-            OutputType::CONSOLE->value => ['file', ':', 'line', "\n"],
+            OutputType::CONSOLE->name => ['v:::empty backtrace'],
         ];
 
         $bt = new Backtrace([], 0);
         $result = $bt->printFormat();
 
         $this->assertIsString($result);
+        $this->assertStringContainsString('Backtrace', $result);
+        $this->assertStringContainsString('0 calls', $result);
     }
 
     /**
      * @todo Fix infinite loop in HuFormat when printing backtrace
      */
     public function testToString(): void {
-        $this->markTestSkipped('Infinite loop in HuFormat when printing backtrace');
         $debugData = [
             [
                 'file' => '/test/file.php',
@@ -296,7 +299,7 @@ final class BacktraceTest extends TestCase
 
         $bt = new Backtrace($debugData, 0);
         // Use explicit format to avoid issues with global configuration
-        $result = $bt->printFormat(['A:::' => ['v:::']]);
+        $result = $bt->printFormat(['v:::']);
 
         $this->assertIsString($result);
         $this->assertNotEmpty($result);
@@ -308,7 +311,7 @@ final class BacktraceTest extends TestCase
         ];
 
         $bt = new Backtrace($debugData, 0);
-        $format = ['FORMAT_CONSOLE' => ['v']];
+        $format = [OutputType::CONSOLE->name => ['A:::', ['v']]];
 
         $result = $bt->setPrintoutFormat($format);
 

@@ -7,7 +7,4 @@ parameters:
     bootstrapFiles:
         - HuPHP.autoload.php
     paths:
-        - Debug/IHuLOGFormatter.php
-        - Debug/HuLOGTextFormatter.php
-        - Debug/HuLOGSimpleTestFormatter.php
-        - System/OutputType.php
+        - Debug/

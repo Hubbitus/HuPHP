@@ -90,9 +90,9 @@ class DatabaseErrorTest extends TestCase {
         $error = new DatabaseError([]);
 
         // Test that format configurations are inherited from HuErrorSettings
-        $this->assertIsArray($error->FORMAT_WEB);
-        $this->assertIsArray($error->FORMAT_CONSOLE);
-        $this->assertIsArray($error->FORMAT_FILE);
+        $this->assertIsArray($error->WEB);
+        $this->assertIsArray($error->CONSOLE);
+        $this->assertIsArray($error->FILE);
     }
 
     public function testSettingsModification(): void {

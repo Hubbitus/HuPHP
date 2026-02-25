@@ -4,16 +4,16 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Debug;
 
 use Hubbitus\HuPHP\Vars\Settings\Settings;
-use Hubbitus\HuPHP\System\OS;
 
-class HuLOGSettings extends Settings{
-	const LOG_TO_FILE	= OS::OUT_TYPE_FILE; // To file
-	const LOG_TO_PRINT	= OS::OUT_TYPE_PRINT; // To stdout (print, echo)
-	// Unfortunately PHP does NOT support computed value of constants
-	//const LOG_TO_BOTH	= OS::OUT_TYPE_FILE + OS::OUT_TYPE_PRINT;	//to both
-	const LOG_TO_BOTH	= 12; // to both
+class HuLOGSettings extends Settings {
+	/** @var int Bitmask for print output */
+	public const int LOG_TO_PRINT = 4;
+	/** @var int Bitmask for file output */
+	public const int LOG_TO_FILE = 8;
+	/** @var int Bitmask for both file and print output */
+	public const int LOG_TO_BOTH = 12; // FILE + PRINT
 
-	protected $__SETS = [
+	protected array $__SETS = [
 		'FILE_PREFIX'		=> 'log_',
 		'LOG_FILE_DIR'		=> './log/',
 

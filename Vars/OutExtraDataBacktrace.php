@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
-
-use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 
 /**
@@ -22,15 +21,15 @@ use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 
 class OutExtraDataBacktrace extends OutExtraDataCommon {
 	public function strForConsole(array|string|null $format = null): string {
-		return $this->_var->printFormat(null, OS::OUT_TYPE_CONSOLE);
+		return $this->_var->printFormat(null, OutputType::CONSOLE);
 	}
 
 	public function strForFile(array|string|null $format = null): string {
-		return $this->_var->printFormat(null, OS::OUT_TYPE_FILE);
+		return $this->_var->printFormat(null, OutputType::FILE);
 	}
 
 	public function strForWeb(array|string|null $format = null): string {
-		return $this->_var->printFormat(null, OS::OUT_TYPE_BROWSER);
+		return $this->_var->printFormat(null, OutputType::WEB);
 	}
 
 	public function __toString(): string {

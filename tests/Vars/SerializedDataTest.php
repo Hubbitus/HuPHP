@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Exceptions\SerializeException;
 use Hubbitus\HuPHP\Vars\SerializedData;

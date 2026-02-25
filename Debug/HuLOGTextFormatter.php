@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
 
+use Hubbitus\HuPHP\System\OutputType;
+
 /**
 * Default log formatter implementation using HuLOGText.
 * Uses the built-in formatting methods of HuLOGText class with settings-based format configuration.
@@ -23,7 +25,7 @@ class HuLOGTextFormatter implements IHuLOGFormatter {
     **/
     public function formatForFile(HuLOGText $logText): string {
         /** @var array<mixed> $format */
-        $format = $logText->getProperty('FORMAT_FILE');
+        $format = $logText->getProperty(OutputType::FILE->name);
         return $logText->strForFile($format);
     }
 
@@ -35,7 +37,7 @@ class HuLOGTextFormatter implements IHuLOGFormatter {
     **/
     public function formatForPrint(HuLOGText $logText): string {
         /** @var array<mixed> $format */
-        $format = $logText->getProperty('FORMAT_CONSOLE');
+        $format = $logText->getProperty(OutputType::CONSOLE->name);
         return $logText->strForConsole($format);
     }
 }

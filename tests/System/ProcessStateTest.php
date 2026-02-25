@@ -6,6 +6,7 @@ declare(strict_types=1);
  */
 
 namespace Hubbitus\HuPHP\Tests\System;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\System\ProcessState;
 use PHPUnit\Framework\TestCase;

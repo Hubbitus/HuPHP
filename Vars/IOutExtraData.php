@@ -2,11 +2,11 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 
 interface IOutExtraData {
-	//public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide format (parts) and need known for what
 
 	/**
 	* String to print into file. Primary for logs string representation
@@ -45,10 +45,10 @@ interface IOutExtraData {
 	/**
 	* Convert to string by provided type.
 	*
-	* @param integer $type	One of OS::OUT_TYPE_* constant. {@link OS::OUT_TYPE_BROWSER}
+	* @param OutputType $type	Output type enum
 	* @param array<mixed>|string|null	$format Any useful helper information to format
 	* @return string
 	* @throws VariableRangeException
 	**/
-	public function strByOutType(int $type, array|string|null $format = null): string;
+	public function strByOutType(OutputType $type, array|string|null $format = null): string;
 }

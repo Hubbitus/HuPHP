@@ -23,7 +23,7 @@ class DatabaseErrorSettings extends HuErrorSettings {
 		'EXTRA_HEADER'		=> 'Extra info',
 		// In format settings::getString(array)
 		// To out in Browser
-		'FORMAT_WEB'	=> [
+		OutputType::WEB => [
 			['TXT_queryFailed', "\n<br \><u><b>", "</b></u>:\n<br \>", ''],
 			'server_message',
 			['errNo', ' (', ')'],
@@ -33,7 +33,7 @@ class DatabaseErrorSettings extends HuErrorSettings {
 			['bt', "<br \>\n"]
         ],
 		// In CLI-mode
-		'FORMAT_CONSOLE'	=> [
+		OutputType::CONSOLE => [
 			['TXT_queryFailed', "\033[1m", "\033[0m:\n", ''],
 			'server_message',
 			['errNo', '(', ')'],
@@ -43,7 +43,7 @@ class DatabaseErrorSettings extends HuErrorSettings {
 			['bt', "\n"]
 		],
 		// Primarily for logs (files)
-		'FORMAT_FILE'	=> [
+		OutputType::FILE => [
 			['TXT_queryFailed', '', ":\n"],
 			'server_message',
 			['errNo', '(', ')'],

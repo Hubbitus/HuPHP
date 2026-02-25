@@ -10,10 +10,8 @@ use function Hubbitus\HuPHP\Macroses\EMPTY_STR;
 use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
 
 /**
-* Provide easy to use settings-class for many purpose. Similar array
-* of settings, but provide several addition methods, and magic methods
-* to be easy done routine tasks, such as get, set, merge and convert to
-* string by provided simple format (For more complex formatting {@see HuFormat} class).
+* Provide easy to use settings-class for many purpose. Similar array of settings, but provide several addition magic methods,
+* to be easy done routine tasks, such as get, set, merge and convert to string by provided simple format (For more complex formatting {@see HuFormat} class).
 *
 * @package Vars
 * @subpackage settings
@@ -23,7 +21,7 @@ use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
 * @created 2008-05-30 23:19
 **/
 class Settings extends HuClass {
-	protected $__SETS = []; // Array of settings itself
+	protected array $__SETS = []; // Array of settings itself
 
 	/**
 	* Constructor.
@@ -97,6 +95,7 @@ class Settings extends HuClass {
 	public function __set($name, $value): void {
 			$this->setSetting($name, $value);
 	}
+
 	/**
 	* useful alias of {@see ::getProperty()} to provide easy access in style of $obj->PropertyName
 	*
@@ -130,6 +129,7 @@ class Settings extends HuClass {
 		}
 		return $str;
 	}
+
 	/**
 	* Format Field Primarily for {@see ::getString}, but may be used and separately
 	* $field one of:

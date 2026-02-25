@@ -262,61 +262,61 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	public function reduce($callback, $initial = 0){
 		return array_reduce($this->__SETS, $callback, $initial);
 	}
-	
+
 	// Iterator-like methods (for testing compatibility)
-	
+
 	public function rewind(): void {
 		\reset($this->__SETS);
 	}
-	
+
 	public function current(): mixed {
 		return \current($this->__SETS);
 	}
-	
+
 	public function key(): int|string|null {
 		return \key($this->__SETS);
 	}
-	
+
 	public function next(): void {
 		\next($this->__SETS);
 	}
-	
+
 	public function valid(): bool {
 		return \current($this->__SETS) !== false;
 	}
-	
+
 	// Additional array manipulation methods
-	
+
 	public function toArray(): array {
 		return $this->__SETS;
 	}
-	
+
 	public function toJson(int $options = 0): string {
 		return \json_encode($this->__SETS, $options);
 	}
-	
+
 	public static function fromJson(string $json): static {
 		return new static(\json_decode($json, true));
 	}
-	
+
 	public function isEmpty(): bool {
 		return empty($this->__SETS);
 	}
-	
+
 	public function getByKey($key): mixed {
 		return $this->__SETS[$key] ?? null;
 	}
-	
+
 	public function &setByKey($key, $value): static {
 		$this->__SETS[$key] = $value;
 		return $this;
 	}
-	
+
 	public function getByIndex(int $index): mixed {
 		$keys = \array_keys($this->__SETS);
 		return $this->__SETS[$keys[$index]] ?? null;
 	}
-	
+
 	public function &setByIndex(int $index, $value): static {
 		$keys = \array_keys($this->__SETS);
 		if (isset($keys[$index])) {
@@ -324,70 +324,70 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		}
 		return $this;
 	}
-	
+
 	public function has($key): bool {
 		return isset($this->__SETS[$key]);
 	}
-	
+
 	public function first(): mixed {
 		if (empty($this->__SETS)) {
 			return null;
 		}
 		return \reset($this->__SETS);
 	}
-	
+
 	public function &append($value): static {
 		$this->__SETS[] = $value;
 		return $this;
 	}
-	
+
 	public function &prepend($value): static {
 		\array_unshift($this->__SETS, $value);
 		return $this;
 	}
-	
+
 	public function pop(): mixed {
 		return \array_pop($this->__SETS);
 	}
-	
+
 	public function shift(): mixed {
 		return \array_shift($this->__SETS);
 	}
-	
+
 	public function &unshift($value): static {
 		\array_unshift($this->__SETS, $value);
 		return $this;
 	}
-	
+
 	public function keys(): static {
 		return new static(\array_keys($this->__SETS));
 	}
-	
+
 	public function values(): static {
 		return new static(\array_values($this->__SETS));
 	}
-	
+
 	public function flip(): static {
 		return new static(\array_flip($this->__SETS));
 	}
-	
+
 	public function reverse(bool $preserve_keys = false): static {
 		return new static(\array_reverse($this->__SETS, $preserve_keys));
 	}
-	
+
 	public function chunk(int $size): static {
 		return new static(\array_chunk($this->__SETS, $size));
 	}
-	
+
 	public function slice(int $offset, ?int $length = null, bool $preserve_keys = false): static {
 		return new static(\array_slice($this->__SETS, $offset, $length, $preserve_keys));
 	}
-	
+
 	public function splice(int $offset, ?int $length = null, array $replacement = []): static {
 		$spliced = \array_splice($this->__SETS, $offset, $length ?? \count($this->__SETS), $replacement);
 		return new static($spliced);
 	}
-	
+
 	public function &merge($arr): static {
 		if ($arr instanceof static) {
 			$arr = $arr->toArray();
@@ -395,14 +395,14 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		$this->__SETS = \array_merge($this->__SETS, $arr);
 		return $this;
 	}
-	
+
 	public function diff($arr): static {
 		if ($arr instanceof static) {
 			$arr = $arr->toArray();
 		}
 		return new static(\array_diff($this->__SETS, $arr));
 	}
-	
+
 	public function udiff($arr): static {
 		if ($arr instanceof static) {
 			$arr = $arr->toArray();
@@ -420,11 +420,11 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	public function unique(): static {
 		return new static(\array_values(\array_unique($this->__SETS)));
 	}
-	
+
 	public function map(callable $callback): static {
 		return new static(\array_map($callback, $this->__SETS));
 	}
-	
+
 	public function every(callable $callback): bool {
 		foreach ($this->__SETS as $key => $value) {
 			if (!$callback($value, $key)) {
@@ -433,7 +433,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		}
 		return true;
 	}
-	
+
 	public function some(callable $callback): bool {
 		foreach ($this->__SETS as $key => $value) {
 			if ($callback($value, $key)) {
@@ -442,7 +442,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		}
 		return false;
 	}
-	
+
 	public function find(callable $callback): mixed {
 		foreach ($this->__SETS as $key => $value) {
 			if ($callback($value, $key)) {
@@ -451,24 +451,24 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		}
 		return null;
 	}
-	
+
 	public function search($search): int|false {
 		return \array_search($search, $this->__SETS, true);
 	}
-	
+
 	public function check($key): bool {
 		return isset($this->__SETS[$key]);
 	}
-	
+
 	public function &tap(callable $callback): static {
 		$callback($this);
 		return $this;
 	}
-	
+
 	public function pipe(callable $callback): mixed {
 		return $callback($this);
 	}
-	
+
 	public function when($condition, callable $callback): static {
 		if ($condition) {
 			$result = $callback($this);
@@ -476,7 +476,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		}
 		return $this;
 	}
-	
+
 	public function unless($condition, callable $callback): static {
 		if (!$condition) {
 			$result = $callback($this);
@@ -484,7 +484,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		}
 		return $this;
 	}
-	
+
 	public function pluck($key): static {
 		$result = [];
 		foreach ($this->__SETS as $item) {
@@ -496,7 +496,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		}
 		return new static($result);
 	}
-	
+
 	public function flatten(int $depth = PHP_INT_MAX): static {
 		$result = [];
 		\array_walk_recursive($this->__SETS, function($a) use (&$result) {
@@ -504,26 +504,26 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		});
 		return new static($result);
 	}
-	
+
 	public function fill(int $start_index, int $count, $value): static {
 		return new static(\array_fill($start_index, $count, $value));
 	}
-	
+
 	public function pad(int $size, $value): static {
 		return new static(\array_pad($this->__SETS, $size, $value));
 	}
-	
+
 	public function column($column_key, $index_key = null): static {
 		return new static(\array_column($this->__SETS, $column_key, $index_key));
 	}
-	
+
 	public function combine($values): static {
 		if ($values instanceof static) {
 			$values = $values->toArray();
 		}
 		return new static(\array_combine($this->__SETS, $values));
 	}
-	
+
 	public function assoc(): static {
 		$result = [];
 		$keys = \array_keys($this->__SETS);
@@ -534,12 +534,12 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		}
 		return new static($result);
 	}
-	
+
 	public function &unsetByKey($key): static {
 		unset($this->__SETS[$key]);
 		return $this;
 	}
-	
+
 	public function &unsetByIndex(int $index): static {
 		$keys = \array_keys($this->__SETS);
 		if (isset($keys[$index])) {
@@ -547,7 +547,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		}
 		return $this;
 	}
-	
+
 	public function sort(?callable $callback = null): static {
 		if ($callback) {
 			\usort($this->__SETS, $callback);
@@ -556,32 +556,32 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		}
 		return $this;
 	}
-	
+
 	public function zip($arr): static {
 		if ($arr instanceof static) {
 			$arr = $arr->toArray();
 		}
 		return new static(\array_map(null, $this->__SETS, $arr));
 	}
-	
+
 	public static function range($start, $end, $step = 1): static {
 		return new static(\range($start, $end, $step));
 	}
-	
+
 	public static function explode(string $delimiter, string $string): static {
 		return new static(\explode($delimiter, $string));
 	}
-	
+
 	// ArrayAccess interface methods
-	
+
 	public function offsetExists($offset): bool {
 		return isset($this->__SETS[$offset]);
 	}
-	
+
 	public function offsetGet($offset): mixed {
 		return $this->__SETS[$offset] ?? null;
 	}
-	
+
 	public function offsetSet($offset, $value): void {
 		if ($offset === null) {
 			$this->__SETS[] = $value;
@@ -589,18 +589,18 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 			$this->__SETS[$offset] = $value;
 		}
 	}
-	
+
 	public function offsetUnset($offset): void {
 		unset($this->__SETS[$offset]);
 	}
-	
+
 	// Countable interface method (already exists as count())
-	
+
 	// String conversion
 	public function __toString(): string {
 		return \json_encode($this->__SETS);
 	}
-	
+
 	// JsonSerializable interface method
 	public function jsonSerialize(): array {
 		return $this->__SETS;

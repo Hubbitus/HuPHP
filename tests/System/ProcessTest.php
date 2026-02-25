@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\System;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\System\Process;
 use Hubbitus\HuPHP\System\ProcessState;

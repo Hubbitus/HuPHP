@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Hubbitus\HuPHP\Debug;
 
+use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableArrayInconsistentException;
@@ -28,6 +29,13 @@ use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
 *     //Point to number in element of array debug_backtrace();
 *     [N] => 1    //Mandatory
 * }
+*
+* @property array<mixed> $args Arguments array
+* @property string $file File path
+* @property int $line Line number
+* @property string $function Function name
+* @property string $class Class name
+* @property string $type Type indicator
 *
 * implements Iterator by example from main description http://php.net/manual/ru/language.oop5.iterations.php
 **/
@@ -68,10 +76,10 @@ class BacktraceNode implements \Iterator {
     *
     * @param array<mixed>|null $arr {@inheritdoc ::__construct()}
     * @param mixed $N {@inheritdoc ::__construct()}
-    * @return static
+    * @return self
     **/
-    public static function create(?array $arr = null, $N = false): static {
-        return new static($arr, $N);
+    public static function create(?array $arr = null, $N = false): self {
+        return new self($arr, $N);
     }
 
     /**
@@ -82,7 +90,7 @@ class BacktraceNode implements \Iterator {
     * @throws ClassPropertyNotExistsException
     **/
     public function &__get($name): mixed {
-        if (!\in_array($name, BacktraceNode::$properties)) {
+        if (!\in_array($name, BacktraceNode::$properties, true)) {
             throw new ClassPropertyNotExistsException('Property "' . $name . '" does NOT exist!');
         }
         return $this->_btn[$name];
@@ -95,7 +103,7 @@ class BacktraceNode implements \Iterator {
     * @return bool
     **/
     public function __isset($name): bool {
-        if (!\in_array($name, BacktraceNode::$properties)) {
+        if (!\in_array($name, BacktraceNode::$properties, true)) {
             throw new ClassPropertyNotExistsException('Property <' . $name . '> does NOT exist!');
         }
         return isset($this->_btn[$name]);
@@ -162,12 +170,16 @@ class BacktraceNode implements \Iterator {
     /**
     * Compares two nodes by fnmatch() all properties in $node1
     *
-    * @param BacktraceNode $toCmp Node compare to
+    * @param BacktraceNode $toCmp Node to compare to
     * @return int 0 if equals. Other otherwise (> or < not defined, but *may be* done later).
     **/
     public function fnmatchCmp(BacktraceNode $toCmp): int {
         foreach ($toCmp as $key => $prop) {
-            if (!isset($this->$key) || !\fnmatch($prop, $this->$key)) {
+            // Dynamic property access - comparing properties by name from iterator
+            if (
+				!isset($this->{$key}) /* @phpstan-ignore property.dynamicName */
+				|| !\fnmatch($prop, $this->{$key}) /* @phpstan-ignore property.dynamicName */
+			) {
                 return 1;
             }
         }
@@ -191,29 +203,31 @@ class BacktraceNode implements \Iterator {
     * Return string of formatted args
     *
     * @param array<mixed>|null $format If null, trying from ->_format set in {@see ::setArgsFormat()}, and finally get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::printout']
-    * @param int|null $outType If present - determine type of format from $format (passed or default). Must be index in $format.
+    * @param OutputType|null $outType If present - determine type of format from $format (passed or default). Must be index in $format.
     * @return string
     * @throws VariableArrayInconsistentException
     **/
-    public function formatArgs(?array $format = null, ?int $outType = null): string {
+    public function formatArgs(?array $format = null, ?OutputType $outType = null): string {
         $outType ??= OS::getOutType();
 
         // Ensure default format is configured
-        if (empty($GLOBALS['__CONFIG']['backtrace::printout'])) {
+        if (!isset($GLOBALS['__CONFIG']['backtrace::printout']) || $GLOBALS['__CONFIG']['backtrace::printout'] === []) {
             PrintoutDefault::configure();
         }
 
         // Get format from parameter, or from instance format, or from global config
         if ($format === null) {
-            $format = $this->_format[$outType]['argtypes']
-                ?? $GLOBALS['__CONFIG']['backtrace::printout'][$outType]['argtypes'];
+            $format = $this->_format[$outType->name]['argtypes']
+                ?? $GLOBALS['__CONFIG']['backtrace::printout'][$outType->name]['argtypes'];
         }
 
         $args = '';
         $hf = new HuFormat();
 
-        foreach ($this->args as $var) {
-            if (!empty($args)) {
+        /** @var array<mixed> $argsArray */
+        $argsArray = $this->args;
+        foreach ($argsArray as $var) {
+            if ($args !== '') {
                 $args .= ', ';
             }
 

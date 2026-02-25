@@ -18,11 +18,12 @@ class HuLOGText extends HuError {
 	*	presented settings!
 	**/
 	public function __construct( /* HuLOG_text_settings | array */ $sets = null){
-		if (\is_array($sets) and !empty($sets)){ //MERGE, NOT overwrite!
+		parent::__construct();
+		if (\is_array($sets) && $sets !== []){ //MERGE, NOT overwrite!
 			$this->_sets = new HuLOGTextSettings();
 			$this->_sets->mergeSettingsArray($sets);
 		}
-		elseif($sets) $this->_sets = $sets;
+		elseif($sets !== null) $this->_sets = $sets;
 		else $this->_sets = new HuLOGTextSettings();//default
 	}
 }

@@ -6,6 +6,7 @@ declare(strict_types=1);
  */
 
 namespace Hubbitus\HuPHP\Tests\Debug;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Debug\Gentime;
 use PHPUnit\Framework\TestCase;
@@ -122,7 +123,7 @@ class GentimeTest extends TestCase {
         $output = ob_get_clean();
 
         $this->assertIsString($output);
-        $this->assertStringContainsString('Среднее время', $output);
+        $this->assertStringContainsString('Average time', $output);
     }
 
     public function testBenchWithIterationCount(): void {
@@ -156,7 +157,7 @@ class GentimeTest extends TestCase {
         $output = ob_get_clean();
 
         $this->assertIsString($output);
-        $this->assertStringContainsString('Среднее время', $output);
+        $this->assertStringContainsString('Average time', $output);
     }
 
     public function testBenchWithLoop(): void {
@@ -178,7 +179,7 @@ class GentimeTest extends TestCase {
         $gentime->bench($code, 5);
         $output = ob_get_clean();
 
-        $this->assertStringContainsString('Максимальное время', $output);
+        $this->assertStringContainsString('Maximum time seconds', $output);
     }
 
     public function testBenchOutputsMinTime(): void {
@@ -189,7 +190,7 @@ class GentimeTest extends TestCase {
         $gentime->bench($code, 5);
         $output = ob_get_clean();
 
-        $this->assertStringContainsString('Минимальное время', $output);
+        $this->assertStringContainsString('Minimum', $output);
     }
 
     public function testBenchWithDefaultIterations(): void {

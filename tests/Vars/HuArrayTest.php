@@ -6,6 +6,7 @@ declare(strict_types=1);
  */
 
 namespace Hubbitus\HuPHP\Tests\Vars;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Vars\HuArray;
 use PHPUnit\Framework\TestCase;

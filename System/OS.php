@@ -1,65 +1,24 @@
 <?php
 declare(strict_types=1);
 
-/**
-* System environment and information
-* @package System ??
-* @version 2.0.3
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created ?2008-11-05 00:47 ver 2.0b to 2.0.1
-**/
-
 namespace Hubbitus\HuPHP\System;
+
+use Hubbitus\HuPHP\System\OutputType;
 
 /**
 * Class OS has mainly (all) static methods, to determine system-environments, like OS or type of out.
 * Was System, but it is registered in PEAR, change to OS
 **/
 class OS {
-	const OUT_TYPE_BROWSER = 1;
-	const OUT_TYPE_CONSOLE = 2;
-	const OUT_TYPE_PRINT = 4; /** Pseudo!!! Need automatically detect OUT_TYPE_BROWSER or OUT_TYPE_CONSOLE */
-	const OUT_TYPE_FILE = 8;
-	const OUT_TYPE_WAP = 16;
-	#const OUT_TYPE_ = 16;
-
 	/**
-	* Possible return-values of
-	* http://ru2.php.net/php_sapi_name comment from "cheezy at lumumba dot luc dot ac dot be"
-	**/
-	public static $SAPIs = [
-		'aolserver',
-		'activescript',
-		'apache',
-		'cgi-fcgi',
-		'cgi',
-		'isapi',
-		'nsapi',
-		'phttpd',
-		'roxen',
-		'java_servlet',
-		'thttpd',
-		'pi3web',
-		'apache2filter',
-		'caudium',
-		'apache2handler',
-		'tux',
-		'webjames',
-		'cli',
-		'embed,',
-		'milter'
-	];
-
-	/**
-	* Determines out type of current-running process.
+	* Determines output type of current-running process.
 	*
-	* @return int now one of const: ::OUT_TYPE_BROWSER or ::OUT_TYPE_CONSOLE
+	* @return OutputType now one of: OutputType::BROWSER or OutputType::CONSOLE
 	**/
-	public static function getOutType(): int {
-		if (isset($_SERVER['HTTP_USER_AGENT'])) return self::OUT_TYPE_BROWSER;
-		else return self::OUT_TYPE_CONSOLE;
+	public static function getOutType(): OutputType {
+		return isset($_SERVER['HTTP_USER_AGENT']) ? OutputType::WEB : OutputType::CONSOLE;
 	}
+
 	/**
 	* php_sapi_name()
 	*
@@ -107,20 +66,20 @@ class OS {
 		if (empty($pathToCheck)) {
 			return false;
 		}
-		
+
 		// Check for stream wrappers first (always absolute)
-		if (preg_match('@^(?:' . implode('|', stream_get_wrappers()) . ')://@', $pathToCheck)) {
+		if (\preg_match('@^(?:' . \implode('|', \stream_get_wrappers()) . ')://@', $pathToCheck)) {
 			return true;
 		}
-		
+
 		// Unix-like: absolute paths start with /
 		if ($pathToCheck[0] === '/') {
 			return true;
 		}
-		
+
 		// Windows: check for drive letter (C:) or UNC path (\\server\share)
 		// Works on any platform for checking any path format
-		$len = strlen($pathToCheck);
+		$len = \strlen($pathToCheck);
 		if ($len >= 2) {
 			// Drive letter: C:, D:, etc.
 			if ($pathToCheck[1] === ':') {
@@ -131,7 +90,7 @@ class OS {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 }

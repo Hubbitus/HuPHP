@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Debug;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Debug\HuFormat;
 use Hubbitus\HuPHP\Debug\HuFormatException;
@@ -75,6 +76,8 @@ class HuFormatTest extends TestCase {
         $this->assertArrayHasKey('A', HuFormat::$MODS);
         $this->assertArrayHasKey('s', HuFormat::$MODS);
         $this->assertArrayHasKey('a', HuFormat::$MODS);
+        $this->assertArrayHasKey('E', HuFormat::$MODS);
+        $this->assertArrayHasKey('I', HuFormat::$MODS);
     }
 
     public function testSprintfVarConstant(): void {

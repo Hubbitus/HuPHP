@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Debug;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Debug\Dump;
 use PHPUnit\Framework\TestCase;

@@ -35,7 +35,7 @@ class OutExtraDataDOMnode extends OutExtraDataCommon {
 	*
 	* @param	\DOMNode	$var Var to output with provided format.
 	* @param	string='utf-8'	$format	Format how output $var. Must contain 3 elements:
-	*	'FORMAT_CONSOLE', 'FORMAT_WEB', 'FORMAT_FILE' each represent according
+	*	`OutputType::CONSOLE`, `OutputType::WEB`, `OutputType::FILE` each represent according to
 	*	format (See class {@see HuFormat} for more details).
 	**/
 	public function  __construct(\DOMNode $var, $encoding = 'utf-8'){

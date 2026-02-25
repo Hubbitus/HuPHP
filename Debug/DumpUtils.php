@@ -18,9 +18,9 @@ class DumpUtils {
 	* Transform string, which is text-representation of requested var into more well formatted form.
 	* print_r variant
 	* @param string $dump String returned by print_r
-	* @return string. Transformed, well-formatted.
+	* @return string Transformed, well-formatted string
 	**/
-	public static function transformCorrect_print_r($dump): string {
+	public static function transformCorrect_print_r(string $dump): string {
 		return \trim(
 			\preg_replace(
 				[
@@ -44,9 +44,9 @@ class DumpUtils {
 	* Transform string, which is text-representation of requested var into more well formatted form.
 	* var_dump variant
 	* @param string $dump String returned by var_dump
-	* @return string. Transformed, well-formatted.
+	* @return string Transformed, well-formatted string
 	**/
-	public static function transformCorrect_var_dump($dump){
+	public static function transformCorrect_var_dump(string $dump): string {
 	return
 		trim(/* For var_dump variant */
 			preg_replace(

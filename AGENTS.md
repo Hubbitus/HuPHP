@@ -3,6 +3,7 @@ This project has started a migration of an ancient PHP framework, originally wri
 # General
 1. All chat conversation with user preferred in Russian
 2. All comments in code and documentation may be only in English!
+3. Our focus - code quality! Not development time or speed! Testability, maintainability and clear OOP design! On refactoring it is strongly prohibited to add tests to skip, allow them fail or leave any found lint or test issues in touched code!
 
 # Code refactoring
 Code refactoring should be made, following these principles and requirements:
@@ -26,7 +27,7 @@ Code refactoring should be made, following these principles and requirements:
 
 
 # Code style
-1. All open braces "{" **must be on the same line** of entity or item they enclose (class or method name, condition and so on...), separated with single space from it.
+1. All open braces `{` **must be on the same line** of entity or item they enclose (class or method name, condition and so on...), separated with single space from it.
 2. Between methods should be 1 single empty line
 3. In all PHP files must present strict declaration clause: `declare(strict_types=1);`.
 4. All PHP files must use full open tag `<?php` and should not use close tag `?>`
@@ -47,6 +48,7 @@ Code refactoring should be made, following these principles and requirements:
    - Left aligned, without space symbol!
    - Two ** on the end end line: `**/`
 11. Declaration of the `namespace` must be at the very beginning of the file, just after `declare(strict_types=1);`!
+12. On equality comparison, left value must be at left side! E.g. `('' == $var)` and not `($var == '')`!
 
 
 # Automated testing
@@ -56,7 +58,7 @@ Continue writing and enabling tests.
 2. In first place tests must be changed, if it fails.
 3. If code needs to be fixed - check to do not introduce logic drifting.
 4. Follow other instructions and code-style from @AGENTS.md for any code write or modification.
-5. Coverage of new tested class should be 100% by methods and lines! If that is not possible, please describe that carefully and provide suggestion how to fis (for example change code itself)
+5. Coverage of new tested class should be 100% by methods and lines! If that is not possible, please describe that carefully and provide suggestion how to fix (for example change code itself)
 6. After complete new test class:
     * run test verification by running script: `tests/run-tests.sh`. Fix any errors and warnings if appeared.
     * suggest (but do NOT run before user acceptance) run git commit with formed message by format:
@@ -76,37 +78,15 @@ PHPStan is used for static analysis to catch type errors and bugs before runtime
    tests/run-tests.sh    # Run unit tests
    tests/lint.sh         # Run PHPStan static analysis
    ```
-
 2. **New code must be PHPStan-clean** - All new code must pass PHPStan analysis at level 5 without errors.
-
 3. **Fix PHPStan errors immediately** - If PHPStan reports errors in your changes, fix them before committing.
-
-4. **Use type hints** - Always add proper type hints for:
-   - Method parameters
-   - Return types
-   - Property types
-
 5. **Use enums for type safety** - Prefer enums over constants for better type safety and readability:
-   ```php
-   // Good: Using enum
-   use Hubbitus\HuPHP\System\OutputType;
-   $type = OutputType::CONSOLE;
-   $key = $type->value;  // 'CONSOLE'
-   
-   // Legacy: Using constants (avoid in new code, refactor to enum)
-   $type = OS::OUT_TYPE_CONSOLE;  // ❌ Refactor to OutputType::CONSOLE
-   ```
-   
-   The `OutputType` enum provides:
-   - `OutputType::BROWSER`, `CONSOLE`, `PRINT`, `FILE`, `WAP` - enum cases
-   - `->value` - access string value ('CONSOLE', etc.)
-
 6. **PHPStan configuration** - The `phpstan.neon` file defines:
    - Analysis level (currently 5)
    - Paths to analyze
    - Ignored errors for legacy code
-
-7. **Commit message for PHPStan fixes** - When fixing PHPStan errors:
+7. Clauses in code `@phpstan-ignore` allowed only if it is absolutely can't resolve issue in another, proper way (for example bug of `PHPStan`). And such annotation **must** have comment why it is present and why we can't resolve such issue by code modification in better way!
+8. **Commit message for PHPStan fixes** - When fixing PHPStan errors:
    ```
    PHPStan: fix type errors in XXX
 

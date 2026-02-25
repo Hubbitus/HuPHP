@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+namespace Hubbitus\HuPHP\Debug;
 
 /**
 * Debug and backtrace toolkit.
@@ -10,9 +11,9 @@ declare(strict_types=1);
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2008-05-30 23:19
+*
+* @property HuLOGSettings $settings Settings object
 **/
-
-namespace Hubbitus\HuPHP\Debug;
 
 use Hubbitus\HuPHP\Debug\HuLOGSettings;
 use Hubbitus\HuPHP\Debug\HuLOGText;
@@ -32,18 +33,27 @@ class HuLOG extends SettingsGet{//HubbitusLOG
 
 	protected ?IHuLOGFormatter $formatter = null;
 
-	public function __construct (HuLOGSettings|array $sets = null, ?IHuLOGFormatter $formatter = null){
-		if (\is_array($sets)) $this->_sets = new HuLOGSettings((array)$sets);
-		elseif($sets) $this->_sets = $sets;
-		else $this->_sets = new HuLOGSettings();//Default
+	public function __construct (HuLOGSettings|array|null $sets = null, ?IHuLOGFormatter $formatter = null){
+		if (\is_array($sets)) {
+			$this->_sets = new HuLOGSettings($sets);
+		} elseif($sets !== null) {
+			$this->_sets = $sets;
+		} else {
+			$this->_sets = new HuLOGSettings();
+		}
+		/** @phpstan-ignore property.notFound */
 		$this->lastLogText = new HuLOGText ($this->settings->HuLOG_Text_settings);
 		$this->formatter = $formatter ?? new HuLOGTextFormatter();
 	}
 
-	private function log_to_file($file='ERR'){
-//	exec('echo -ne '.escapeshellarg($this->lastLogText->strToFile($this->lastLogText->settings->FORMAT_FILE)).' >> '.$this->settings->LOG_FILE_DIR.$this->settings->FILE_PREFIX.$file.' 2>&1');
-		file_put_contents(
-			$this->settings->LOG_FILE_DIR.$this->settings->FILE_PREFIX.$file,
+	private function log_to_file($file='ERR'): void {
+//	exec('echo -ne '.escapeshellarg($this->lastLogText->strToFile($this->lastLogText->settings->FILE)).' >> '.$this->settings->LOG_FILE_DIR.$this->settings->FILE_PREFIX.$file.' 2>&1');
+		/** @phpstan-ignore property.notFound */
+		$logDir = $this->settings->LOG_FILE_DIR;
+		/** @phpstan-ignore property.notFound */
+		$filePrefix = $this->settings->FILE_PREFIX;
+		\file_put_contents(
+			$logDir . $filePrefix . $file,
 			$this->formatter->formatForFile($this->lastLogText),
 			FILE_APPEND
 		);
@@ -56,20 +66,20 @@ class HuLOG extends SettingsGet{//HubbitusLOG
 		$this->lastLogText->setSettingsArray(
 			($extra instanceof NullClass) /* EXPLICIT check what $extra was provided! Null also possible value, what must be dumped, if it provided, It can't be ignored also as any other predefined value! **/
 			?
-			array(
-				'level'	=> sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	//Отступ
+			[
+				'level'	=> \sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	//Отступ
 				'type'	=> $type,			//Type-prefix
 				'logText'	=> $log_string,	//Main text!
-			)
+			]
 			:
-			array(
+			[
 				// Now auto or disabled
 //-				'date'	=> date($this->_sets->DATE_TIME_FORMAT, $this->lastLogTime),//Дата-время
-				'level'	=> sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	//Отступ
+				'level'	=> \sprintf('% ' . (((int)$this->_level)*2) . 's', ' '),	//Отступ
 				'type'	=> $type,			//Type-prefix
 				'logText'	=> $log_string,	//Main text!
 				'extra'	=> ( ($extra instanceof IOutExtraData) ? $extra : new OutExtraDataCommon($extra))	//Additional extra data
-			)
+			]
 		);
 	}
 
@@ -82,7 +92,8 @@ class HuLOG extends SettingsGet{//HubbitusLOG
 	*	* ACS - Доступ (ACesS)
 	* @param $extra - Любая дополнительная переменная, информация, комментарии...
 	**/
-	public function toLog($log_string, $file='ERR', $type='', $extra=null){
+	public function toLog($log_string, $file='ERR', $type='', $extra=null): void {
+		/** @phpstan-ignore property.notFound */
 		if ( ! ($to = $this->settings->getProperty('LOG_TO_'.$file)) ){
 			//От себя (HuLOG) пишем в лог
 			$to = HuLOGSettings::LOG_TO_BOTH;
@@ -99,8 +110,8 @@ class HuLOG extends SettingsGet{//HubbitusLOG
 		$this->makeLogString($log_string, $file, $type, ($func_num_args > 3 ? $extra : new NullClass) );
 		$this->writeLogs($to, $file);
 	}
-	protected function writeLogs($to, $file){
-		if ( $to & HuLOGSettings::LOG_TO_FILE ) $this->log_to_file($file);
-		if ( $to & HuLOGSettings::LOG_TO_PRINT ) $this->log_print();
+	protected function writeLogs(int $to, string $file): void {
+		if (($to & HuLOGSettings::LOG_TO_FILE) !== 0) $this->log_to_file($file);
+		if (($to & HuLOGSettings::LOG_TO_PRINT) !== 0) $this->log_print();
 	}
 }

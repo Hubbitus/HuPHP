@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Debug;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Debug\HuLOG;
 use Hubbitus\HuPHP\Debug\HuLOGSettings;
@@ -22,9 +23,9 @@ class HuLOGTest extends TestCase {
             'LOG_TO_ACS' => HuLOGSettings::LOG_TO_PRINT,
             'DATE_TIME_FORMAT' => 'Y-m-d H:i:s',
             'HuLOG_Text_settings' => [
-                'FORMAT_FILE' => ['v'],
-                'FORMAT_CONSOLE' => ['v'],
-                'FORMAT_PRINT' => ['v'],
+                OutputType::FILE->name => ['v'],
+                OutputType::CONSOLE->name => ['v'],
+                OutputType::PRINT->name => ['v'],
             ],
         ]);
         $formatter = new HuLOGSimpleTestFormatter();
@@ -233,7 +234,7 @@ class HuLOGTest extends TestCase {
             'FILE_PREFIX' => basename($tempFile),
             'DATE_TIME_FORMAT' => 'Y-m-d H:i:s',
             'HuLOG_Text_settings' => [
-                'FORMAT_FILE' => ['v'],
+                OutputType::FILE->name => ['v'],
             ],
         ]);
         $formatter = new HuLOGSimpleTestFormatter();
@@ -266,9 +267,9 @@ class HuLOGTest extends TestCase {
             'FILE_PREFIX' => basename($tempFile),
             'DATE_TIME_FORMAT' => 'Y-m-d H:i:s',
             'HuLOG_Text_settings' => [
-                'FORMAT_FILE' => ['v'],
-                'FORMAT_PRINT' => ['v'],
-                'FORMAT_CONSOLE' => ['v'],
+                OutputType::FILE->name => ['v'],
+                OutputType::PRINT->name => ['v'],
+                OutputType::CONSOLE->name => ['v'],
             ],
         ]);
         $formatter = new HuLOGSimpleTestFormatter();
@@ -300,8 +301,8 @@ class HuLOGTest extends TestCase {
             'LOG_FILE_DIR' => dirname($tempFile) . '/',
             'FILE_PREFIX' => basename($tempFile),
             'HuLOG_Text_settings' => [
-                'FORMAT_FILE' => ['v'],
-                'FORMAT_PRINT' => ['v'],
+                OutputType::FILE->name => ['v'],
+                OutputType::PRINT->name => ['v'],
             ],
         ]);
         $formatter = new HuLOGSimpleTestFormatter();
@@ -332,8 +333,8 @@ class HuLOGTest extends TestCase {
             'LOG_FILE_DIR' => dirname($tempFile) . '/',
             'FILE_PREFIX' => basename($tempFile),
             'HuLOG_Text_settings' => [
-                'FORMAT_FILE' => ['v'],
-                'FORMAT_PRINT' => ['v'],
+                OutputType::FILE->name => ['v'],
+                OutputType::PRINT->name => ['v'],
             ],
         ]);
         $formatter = new HuLOGSimpleTestFormatter();

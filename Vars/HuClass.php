@@ -36,9 +36,10 @@ abstract class HuClass {
 	*	- Unfortunately we can't name it as just clone even in class because it is reserved word.
 	*	- I use clone in method because argument itself again implicitly passed as reference, so it is required.
 	**/
-	public static function cloning($obj){
+	public static function cloning($obj): object {
 		return clone $obj;
 	}
+
 	/**
 	* PHP hasn't any normal possibilities to cast objects into derived class (reinterpret_cast analog). We need hack to do it.
 	* See http://ru2.php.net/mysql_fetch_object comments by "Chris at r3i dot it"

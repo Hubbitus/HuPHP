@@ -20,43 +20,46 @@ namespace Hubbitus\HuPHP\Vars;
 **/
 
 use Hubbitus\HuPHP\Debug\HuFormat;
+use Hubbitus\HuPHP\System\OutputType;
 use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
 
 /**
 * Class to provide easy wrapper around HuFormat for anywhere usage.
 **/
 class OutExtraDataHuFormat extends OutExtraDataCommon {
-	protected $format;	//Array of format
-	protected /* HuFormat */ $_format;
+	protected array $format;	//Array of format
+	protected HuFormat $_format;
 
 	/**
 	* Constructor.
 	*
 	* @param	mixed	$var Var to output with provided format.
 	* @param	array	$format	Format how output $var. Must contain 3 elements:
-	*	'FORMAT_CONSOLE', 'FORMAT_WEB', 'FORMAT_FILE' each represent according
-	*	format (See class {@see HuFormat} for more details).
+	*	`OutputType::CONSOLE`, `OutputType::WEB`, `OutputType::FILE` keys with according format strings
 	**/
-	function  __construct($var, array $format){
+	public function __construct($var, array $format){
 		$this->format = $format;
 		$this->_format = new HuFormat(null, $var);
 	}
+
 	/**
 	*@inheritdoc
 	**/
 	public function strForConsole(array|string|null $format = null): string {
-		return $this->_format->setFormat(EMPTY_VAR($format, $this->format['FORMAT_CONSOLE']))->getString();
+		return $this->_format->setFormat(EMPTY_VAR($format, $this->format[OutputType::CONSOLE->name]))->getString();
 	}
+
 	/**
 	*@inheritdoc
 	**/
 	public function strForFile(array|string|null $format = null): string {
-		return $this->_format->setFormat(EMPTY_VAR($format, $this->format['FORMAT_FILE']))->getString();
+		return $this->_format->setFormat(EMPTY_VAR($format, $this->format[OutputType::FILE->name]))->getString();
 	}
+
 	/**
 	*@inheritdoc
 	**/
 	public function strForWeb(array|string|null $format = null): string {
-		return $this->_format->setFormat(EMPTY_VAR($format, $this->format['FORMAT_WEB']))->getString();
+		return $this->_format->setFormat(EMPTY_VAR($format, $this->format[OutputType::WEB->name]))->getString();
 	}
 }

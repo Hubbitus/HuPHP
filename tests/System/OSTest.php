@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\System;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\System\OS;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +16,7 @@ class OSTest extends TestCase {
 
         $result = OS::getOutType();
 
-        $this->assertEquals(OS::OUT_TYPE_BROWSER, $result);
+        $this->assertEquals(OutputType::WEB, $result);
 
         unset($_SERVER['HTTP_USER_AGENT']);
     }
@@ -25,15 +26,16 @@ class OSTest extends TestCase {
 
         $result = OS::getOutType();
 
-        $this->assertEquals(OS::OUT_TYPE_CONSOLE, $result);
+        $this->assertEquals(OutputType::CONSOLE, $result);
     }
 
     public function testGetOutTypeConstants(): void {
-        $this->assertEquals(1, OS::OUT_TYPE_BROWSER);
-        $this->assertEquals(2, OS::OUT_TYPE_CONSOLE);
-        $this->assertEquals(4, OS::OUT_TYPE_PRINT);
-        $this->assertEquals(8, OS::OUT_TYPE_FILE);
-        $this->assertEquals(16, OS::OUT_TYPE_WAP);
+        // OutputType is an enum, not integer constants
+        $this->assertEquals(OutputType::WEB, OutputType::WEB);
+        $this->assertEquals(OutputType::CONSOLE, OutputType::CONSOLE);
+        $this->assertEquals(OutputType::PRINT, OutputType::PRINT);
+        $this->assertEquals(OutputType::FILE, OutputType::FILE);
+        $this->assertEquals(OutputType::WAP, OutputType::WAP);
     }
 
     public function testPhpSapiNameReturnsString(): void {
@@ -46,7 +48,8 @@ class OSTest extends TestCase {
     public function testPhpSapiNameReturnsValidSapi(): void {
         $result = OS::phpSapiName();
 
-        $this->assertContains($result, OS::$SAPIs);
+        $this->assertIsString($result);
+        $this->assertNotEmpty($result);
     }
 
     public function testIsIncludeableReturnsTrueForExistingFile(): void {

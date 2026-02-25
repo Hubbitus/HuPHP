@@ -52,6 +52,6 @@ class Gentime {
 		eval($code); // Single time again for output
 
 		$avg = $iteration > 0 ? $sum_time / $iteration : 0.0;
-		\printf('<br>Максимальное время %f секунд<br><b>Среднее время %f</b><br>Минимальное время %f<br>', $max_time, $avg, $min_time);\printf ("<br>Maximum time seconds: %f<br><b>Average time: %f</b><br>Minimum: %f<br>", $max_time, $avg, $min_time);
+		\printf ("<br>Maximum time seconds: %f<br><b>Average time: %f</b><br>Minimum: %f<br>", $max_time, $avg, $min_time);
 	}
 }

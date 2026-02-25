@@ -8,10 +8,10 @@ namespace Hubbitus\HuPHP\System;
 * Enum for output types used throughout the framework.
 * Replaces legacy OS::OUT_TYPE_* constants.
 **/
-enum OutputType: string {
-    case BROWSER = 'BROWSER';
-    case CONSOLE = 'CONSOLE';
-    case PRINT = 'PRINT';
-    case FILE = 'FILE';
-    case WAP = 'WAP';
+enum OutputType {
+    case WEB; // Was: 'BROWSER'
+    case CONSOLE;
+    case PRINT;
+    case FILE;
+    case WAP;
 }

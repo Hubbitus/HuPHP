@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Debug;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Debug\HuLOGSimpleTestFormatter;
 use Hubbitus\HuPHP\Debug\HuLOGText;

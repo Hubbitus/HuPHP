@@ -2,11 +2,11 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 use Hubbitus\HuPHP\Vars\Settings\Settings;
-use Hubbitus\HuPHP\System\OS;
 use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
 use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
 use Hubbitus\HuPHP\Vars\IOutExtraData;
@@ -21,6 +21,10 @@ use Hubbitus\HuPHP\Vars\IOutExtraData;
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2008-05-31 03:19
 *
+* @property HuErrorSettings $settings Settings object
+* @property string $date Current date for logging
+* @property string $DATE Current date for logging (alias)
+*
 * @uses EMPTY_VAR()
 * @uses NON_EMPTY_STR()
 * @uses settings
@@ -30,12 +34,14 @@ use Hubbitus\HuPHP\Vars\IOutExtraData;
 * @uses outExtraData.interface
 **/
 class HuError extends Settings implements IOutExtraData {
-	/** Self settings. **/
-	protected /* settings */ $_sets = null;
-	public $_curTypeOut = OS::OUT_TYPE_BROWSER; //Track to helpers, who provide format (parts) and need known for what
+	protected ?HuErrorSettings $_sets = null;
+
+	/** @var OutputType Current output type */
+	public OutputType $_curTypeOut = OutputType::CONSOLE;
 
 	public function __construct(?HuErrorSettings $sets = null){
-		$this->_sets = EMPTY_VAR($sets, new HuErrorSettings);
+		parent::__construct();
+		$this->_sets = EMPTY_VAR($sets, new HuErrorSettings());
 	}
 
 	/**
@@ -43,17 +49,16 @@ class HuError extends Settings implements IOutExtraData {
 	* Overloading to provide ref on settings without change possibility.
 	* In this case change settings is allowed, but change full settings object - not!
 	*
-	* @param string Needed name
+	* @param string $name
 	* @return mixed Object of settings.
 	**/
 	public function &__get ($name): mixed {
 		switch ($name){
-			case 'settings': return $this->_sets;
-				break;
+			case 'settings': return $this->_sets; // @TODO refactor to be it more static
 
 			case 'date':
 			case 'DATE':
-				if (!@$this->getProperty($name)) $this->updateDate();
+				if ($this->getProperty($name) === null) $this->updateDate();
 			//break;	/** NOT need break. Create by read, and continue return value!
 
 			default:
@@ -71,13 +76,14 @@ class HuError extends Settings implements IOutExtraData {
 	* String to print into file.
 	*
 	* @param array<mixed>|string|null $format If @format not-empty use it for formatting result. "Format of $format"
-	*	see in {@link settings::getString()}. If empty string, FORMAT_FILE setting used.
+	*	see in {@link settings::getString()}. If empty string, OutputType::FILE setting used.
 	*	And if it settings empty (or not exists) too, just using dump::log() for all filled fields.
 	* @return string
 	**/
 	public function strForFile(array|string|null $format = null): string {
-		$this->_curTypeOut = OS::OUT_TYPE_FILE;
-		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_FILE)){
+		$this->_curTypeOut = OutputType::FILE;
+		$format = EMPTY_VAR($format, @$this->settings->FILE);
+		if ($format !== null && $format !== []){
 			return $this->getString($format);
 		}
 		else {
@@ -89,28 +95,32 @@ class HuError extends Settings implements IOutExtraData {
 	* String to print into user browser.
 	*
 	* @param array<mixed>|string|null $format If @format not-empty use it for formatting result. "Format of $format"
-	*	see in {@link settings::getString()}. If empty string, FORMAT_WEB setting used.
+	*	see in {@link settings::getString()}. If empty string, OutputType::WEB setting used.
 	*	And if it settings empty (or not exists) too, just using dump::w() for all filled fields.
 	* @return string
 	**/
 	public function strForWeb(array|string|null $format = null): string {
-		$this->_curTypeOut = OS::OUT_TYPE_BROWSER;
-		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_WEB)) return $this->getString($format);
-		else return Dump::w($this->__SETS, null, true);
+		$this->_curTypeOut = OutputType::WEB;
+		$format = EMPTY_VAR($format, @$this->settings->WEB);
+		return ($format !== null && $format !== [])
+			? $this->getString($format)
+			: Dump::w($this->__SETS, null, true);
 	}
 
 	/**
 	* String to print on console.
 	*
 	* @param array<mixed>|string|null $format If @format not-empty use it for formatting result. "Format of $format"
-	*	see in {@link settings::getString()}. If empty string, FORMAT_CONSOLE setting used.
+	*	see in {@link settings::getString()}. If empty string, OutputType::CONSOLE setting used.
 	*	And if it settings empty (or not exists) too, just using dump::c() for all filled fields.
 	* @return string
 	**/
 	public function strForConsole(array|string|null $format = null): string {
-		$this->_curTypeOut = OS::OUT_TYPE_CONSOLE;
-		if ($format = EMPTY_VAR($format, @$this->settings->FORMAT_CONSOLE)) return $this->getString($format);
-		else return Dump::c($this->__SETS, null, true);
+		$this->_curTypeOut = OutputType::CONSOLE;
+		$format = EMPTY_VAR($format, @$this->settings->CONSOLE);
+		return ($format !== null && $format !== [])
+			? $this->getString($format)
+			: Dump::c($this->__SETS, null, true);
 	}
 
 	/**
@@ -128,20 +138,20 @@ class HuError extends Settings implements IOutExtraData {
 	/**
 	* Convert to string by type.
 	*
-	* @param integer $type	One of OS::OUT_TYPE_* constant. {@link OS::OUT_TYPE_BROWSER}
+	* @param OutputType $type Output type enum
 	* @param array<mixed>|string|null $format	If @format not-empty use it for formatting result. "Format of $format"
 	*	see in {@link settings::getString()}. Put in ::strToWeb() or ::strToConsole()
 	* @return string
 	* @throws VariableRangeException
 	**/
-	public function strByOutType(int $type, array|string|null $format = null): string {
+	public function strByOutType(OutputType $type, array|string|null $format = null): string {
 		return OutExtraDataCommon::strByOutTypeBase($this, $type, $format);
 	}
 
 	/**
 	* Detect appropriate print (to Web or Console) and return correct form
 	*
-	* @return string ::strToPrint()
+	* @return string
 	**/
 	public function __toString(): string {
 		return $this->strForPrint();
@@ -196,8 +206,7 @@ class HuError extends Settings implements IOutExtraData {
 	/**
 	* Just alias for ::mergeSettingsArray()
 	*
-	* @param	$setArr
-	* @return mixed	::mergeSettingsArray()
+	* @param array $setArr
 	**/
 	public function mergeFromArray(array $setArr): void {
 		$this->mergeSettingsArray($setArr);
@@ -208,13 +217,10 @@ class HuError extends Settings implements IOutExtraData {
 	* date in ->date
 	**/
 	public function updateDate(): void {
-		if (
-			$this->settings->AUTO_DATE
-			and
-			/** Parent::setSetting instead $this-> to avoid infinity recursion */
-			$this->settings->DATE_FORMAT
-		)
-		parent::setSetting('date', \date($this->settings->DATE_FORMAT));
+		/** @phpstan-ignore booleanAnd.rightNotBoolean */
+		if ($this->settings->AUTO_DATE && $this->settings->DATE_FORMAT) {
+			parent::setSetting('date', \date($this->settings->DATE_FORMAT));
+		}
 	}
 
 	/**
@@ -225,21 +231,25 @@ class HuError extends Settings implements IOutExtraData {
 	public function formatField($field): string {
 		if (\is_array($field)){
 			 if(!isset($field[0])) $field = \array_values($field);
+			/** @phpstan-ignore property.dynamicName */
 			$fieldValue = @$this->{$field[0]};
 		}
 		else{
 			$field = (array)$field;
+			/** @phpstan-ignore property.dynamicName */
 			$fieldValue = EMPTY_VAR(@$this->{$field[0]}, $field[0]); //Setting by name, or it is just text
 		}
 
+		/** @phpstan-ignore class.notFound */
 		if ($fieldValue instanceof OutExtraData){
-			return NON_EMPTY_STR(@$fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
+			/** @phpstan-ignore class.notFound */
+			return NON_EMPTY_STR(@$fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3]) ?? ''; /* @phpstan-ignore nullCoalesce.expr */
 		}
 		elseif($fieldValue instanceof Backtrace){
-			return NON_EMPTY_STR(@$fieldValue->printFormat(null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
+			return NON_EMPTY_STR(@$fieldValue->printFormat(null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3]) ?? ''; /* @phpstan-ignore nullCoalesce.expr */
 		}
 		else {
-			return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]) ?? ''; // Ensure we always return a string, even if NON_EMPTY_STR returns null
+			return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]) ?? ''; /* @phpstan-ignore nullCoalesce.expr */
 		}
 	}
 

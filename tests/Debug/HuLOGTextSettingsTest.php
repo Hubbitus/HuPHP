@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Debug;
+use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Debug\HuLOGTextSettings;
 use PHPUnit\Framework\TestCase;

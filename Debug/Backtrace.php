@@ -3,22 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
 
-/**
-* Debug and backtrace toolkit.
-*
-* @package Debug
-* @subpackage Backtrace
-* @version 2.1.6
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created ?2008-05-30 01:20 v 2.1b to 2.1.1
-*
-* @uses ASSIGN_IF()
-* @uses EMPTY_VAR()
-* @uses REQUIRED_VAR()
-**/
-
 use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Debug\HuFormat;
 use Hubbitus\HuPHP\Debug\Dump;
 use Hubbitus\HuPHP\Exceptions\BaseException;
@@ -28,7 +14,12 @@ use Hubbitus\HuPHP\System\OS;
 use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
 
 /**
+* Debug and backtrace toolkit.
 * Backtrace implementation with Iterator interface.
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
+* @created ?2008-05-30 01:20 v 2.1b to 2.1.1
 **/
 class Backtrace implements \Iterator {
     /** @var array<mixed> */
@@ -43,10 +34,10 @@ class Backtrace implements \Iterator {
     * Constructor
     *
     * @param array<mixed>|null $bt Array as result debug_backtrace() or it part. If null filled by direct debug_backtrace() call.
-    * @param int $removeSelf If filled automatically, contains also this call (or call ::create() if appropriate). This will remove it. Number is amount of arrays remove from stack.
+    * @param int $removeSelf If filled automatically, contains also this call (or call ::create() if appropriate). This will remove it. Number of arrays removed from stack.
     **/
     public function __construct(?array $bt = null, int $removeSelf = 1) {
-        $this->_bt = $bt ?: debug_backtrace();
+        $this->_bt = $bt ?? debug_backtrace();
 
         while ($removeSelf--) {
             \array_shift($this->_bt);
@@ -58,9 +49,9 @@ class Backtrace implements \Iterator {
     *
     * @param array<mixed>|null $bt {@link ::__construct}
     * @param int $removeSelf {@link ::__construct}
-    * @return static
+    * @return self
     **/
-    public static function create(?array $bt = null, int $removeSelf = 2): static {
+    public static function create(?array $bt = null, int $removeSelf = 2): self {
         return new self($bt, $removeSelf);
     }
 
@@ -200,21 +191,21 @@ class Backtrace implements \Iterator {
     * comments of users
     *
     * @param array<mixed>|null $format If null, trying from format set in {@see ::setPrintoutFormat()}, and finally get global defined by default in HuFormat $GLOBALS['__CONFIG']['backtrace::printout']
-    * @param int|null $outType If present - determine type of format from $format (passed or default). Must be index in $format.
+    * @param OutputType|null $outType If present - determine type of format from $format (passed or default). Must be index in $format.
     * @return string
     **/
-    public function printFormat(?array $format = null, ?int $outType = null): string {
+    public function printFormat(?array $format = null, ?OutputType $outType = null): string {
         $outType ??= OS::getOutType();
 
         // Ensure default format is configured
-        if (empty($GLOBALS['__CONFIG']['backtrace::printout'])) {
+        if (!isset($GLOBALS['__CONFIG']['backtrace::printout']) || $GLOBALS['__CONFIG']['backtrace::printout'] === []) {
             PrintoutDefault::configure();
         }
 
         // Get format from parameter, or from instance format, or from global config
-        $format ??= $this->_format[$outType]
-            ?? $GLOBALS['__CONFIG']['backtrace::printout'][$outType]
-            ?? $GLOBALS['__CONFIG']['backtrace::printout']['FORMAT_CONSOLE'];
+        $format ??= $this->_format[$outType->name]
+            ?? $GLOBALS['__CONFIG']['backtrace::printout'][$outType->name]
+            ?? $GLOBALS['__CONFIG']['backtrace::printout'][OutputType::CONSOLE->name];
 
         $hf = new HuFormat($format, $this);
         return $hf->getString();
@@ -235,7 +226,7 @@ class Backtrace implements \Iterator {
     }
 
     /**
-    * By default convert into string will ::printout();
+    * By default convert into string will ::printFormat();
     *
     * @return string
     **/

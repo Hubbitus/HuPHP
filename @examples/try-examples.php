@@ -203,7 +203,7 @@ catch(VariableRequiredException $vre){
 #exit();
 
 //Direct output without logging and only in 1 presentation:
-echo '0) Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true, null, OS::OUT_TYPE_FILE);
+echo '0) Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true, null, OutputType::FILE);
 #Direct, with autoselect appropriate output type:
 echo '1) Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true);
 //rely on __toString magick method, which is invoke ->printout(). Be warned - implicit casting to string is required if we want pass it anywhere, if echoed - it is not needed.!

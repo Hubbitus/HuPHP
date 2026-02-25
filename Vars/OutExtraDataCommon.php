@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
+use Hubbitus\HuPHP\System\OutputType;
 
 /**
 * Debug and backtrace toolkit.
@@ -45,39 +46,24 @@ protected $_var = null;
 	public function strForPrint(array|string|null $format = null): string {
 		return static::strForPrintBase($this, $format);
 	}
-	public function strByOutType(int $type, array|string|null $format = null): string {
+	public function strByOutType(OutputType $type, array|string|null $format = null): string {
 		return static::strByOutTypeBase($this, $type, $format);
 	}
 
-	public static function strByOutTypeBase(/*$this*/&$obj, int $type, array|string|null $format = null): string {
+	public static function strByOutTypeBase(/*$this*/&$obj, OutputType $type, array|string|null $format = null): string {
 		$obj->_curTypeOut = $type;
 
-		switch ($type){
-			case OS::OUT_TYPE_BROWSER:
-			return $obj->strForWeb($format);
-				break;
-
-			case OS::OUT_TYPE_CONSOLE:
-				return $obj->strForConsole($format);
-				break;
-
-			case OS::OUT_TYPE_FILE:
-				return $obj->strForFile($format);
-				break;
-
-			// Addition, pseudo
-			case OS::OUT_TYPE_PRINT:
-				return $obj->strForPrint($format);
-				break;
-
-			default:
-				throw new VariableRangeException("$type MUST be one of: OS::OUT_TYPE_BROWSER, OS::OUT_TYPE_CONSOLE, OS::OUT_TYPE_FILE or OS::OUT_TYPE_PRINT!");
-		}
+		return match($type){
+			OutputType::WEB => $obj->strForWeb($format),
+			OutputType::CONSOLE => $obj->strForConsole($format),
+			OutputType::FILE => $obj->strForFile($format),
+			OutputType::PRINT => $obj->strForPrint($format),
+			default => throw new VariableRangeException("$type MUST be one of: OutputType::BROWSER, OutputType::CONSOLE, OutputType::FILE or OutputType::PRINT!"),
+		};
 	}
 
 	public static function strForPrintBase(/*$this*/&$obj, array|string|null $format = null): string {
-		$obj->_curTypeOut = OS::OUT_TYPE_PRINT;//Pseudo. Will be clarified.
-		if (OS::OUT_TYPE_BROWSER == OS::getOutType()) return $obj->strForWeb($format);
-		else return $obj->strForConsole($format);
+		$obj->_curTypeOut = OutputType::PRINT; //Pseudo. Will be clarified.
+		return OutputType::WEB == OS::getOutType() ? $obj->strForWeb($format) : $obj->strForConsole($format);
 	}
 }
