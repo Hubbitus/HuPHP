@@ -48,11 +48,14 @@ abstract class CharsetConvert {
 	**/
 	abstract public function convert(); //{}
 	/**
-	* Static equivalent of {@see ::convert()} for static, fast invoke
-	*
-	* @return string of result
-	**/
-	public static function conv($text, $inEnc = null, $outEnc = 'UTF-8'){
+	 * Static equivalent of convert() for static, fast invoke.
+	 *
+	 * @param string $text Text to convert
+	 * @param string|null $inEnc Input encoding
+	 * @param string $outEnc Output encoding (default: UTF-8)
+	 * @return string Converted text
+	 **/
+	public static function conv(string $text, ?string $inEnc = null, string $outEnc = 'UTF-8'): string {
 		// This is correct only if Late Static Binding present. So, it starts from PHP 5.3.0
 		// If we want make this code work on earlier releases - just copy this function completely in derivate.
 		$conv = new static($text, $inEnc, $outEnc);
