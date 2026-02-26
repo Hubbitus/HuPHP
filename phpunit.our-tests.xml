@@ -19,6 +19,7 @@
             <file>tests/Database/DatabaseBaseTest.php</file>
             <file>tests/Database/DatabaseWhereTest.php</file>
             <file>tests/Database/DatabaseErrorTest.php</file>
+            <file>tests/System/Console/HuGetoptOptionTest.php</file>
         </testsuite>
     </testsuites>
 

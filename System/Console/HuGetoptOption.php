@@ -23,12 +23,30 @@ use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
 class HuGetoptOption extends SettingsCheck {
 
 	/**
-	* @inheritdoc
-	**/
-	public function __construct(array $possibles, array $array = null){
-		parent::__construct($possibles, $array);
-		foreach (['Opt', 'Sep', 'Val', '=', 'OptT'] as $k){
-			if ( !isset($this->{$k}) ) $this->setSetting($k, new HuArray());
+	 * @inheritdoc
+	 **/
+	public function __construct(array $possibles, ?array $array = null) {
+		// Add internal properties to possibles before calling parent
+		foreach (['Opt', 'Sep', 'Val', '=', 'OptT'] as $k) {
+			if (!isset($possibles[$k])) {
+				$possibles[$k] = null;
+			}
+		}
+		
+		// Call parent constructor without array to avoid premature merge
+		parent::__construct($possibles, null);
+		
+		// Initialize internal properties if not already set
+		foreach (['Opt', 'Sep', 'Val', '=', 'OptT'] as $k) {
+			// Use array_key_exists to avoid triggering __isset which checks properties
+			if (!array_key_exists($k, $this->__SETS)) {
+				$this->setSetting($k, new HuArray());
+			}
+		}
+		
+		// Now merge array data if provided
+		if ($array !== null) {
+			$this->mergeSettingsArray($array);
 		}
 	}
 
