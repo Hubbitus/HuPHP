@@ -22,7 +22,7 @@ class SettingsCheckStatic extends SettingsCheck {
 	* Clear all except uncleared items.
 	**/
 	public function &clear(): static {
-		foreach ($this->getRegularKeys() as $key => $sets){
+		foreach ($this->getRegularKeys() as $key) {
 			$this->__SETS[$key] = null;
 		}
 		return $this;

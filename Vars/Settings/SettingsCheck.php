@@ -26,8 +26,17 @@ class SettingsCheck extends Settings {
 	* @param	array	$possibles. Array of string - possible names of properties.
 	* @param	array=null	$array Initial values.
 	**/
-	public function __construct(array $possibles, ?array $array = null){
-		$this->properties = $possibles;
+	public function __construct(array $possibles, ?array $array = null) {
+		// Support both numeric and associative arrays for $possibles
+		// Numeric: ['name', 'age'] => use values as property names
+		// Associative: ['name' => null, 'age' => null] => use keys as property names
+		$this->properties = array_keys($possibles);
+		
+		// If numeric array, use values as property names
+		if ($this->properties === range(0, count($this->properties) - 1)) {
+			$this->properties = $possibles;
+		}
+		
 		if ($array) $this->mergeSettingsArray($array);
 	}
 
