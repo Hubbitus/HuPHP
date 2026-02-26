@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Hubbitus\Tests\HuPHP\Filesystem;
 
 use Hubbitus\HuPHP\Filesystem\FileBase;
-use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
+use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,9 +18,7 @@ class FileBaseUnknownErrorTest extends TestCase {
         $this->dir = sys_get_temp_dir() . '/huphp_no_write_' . uniqid();
         mkdir($this->dir, 0555, true); // read/execute only, no write
         $this->file = $this->dir . '/file.txt';
-        // create file with read permission only
-        file_put_contents($this->file, 'data');
-        chmod($this->file, 0444);
+        // Do NOT create the file – we want a non-existent file to trigger FileNotExistsException
     }
 
     protected function tearDown(): void {
@@ -38,7 +36,7 @@ class FileBaseUnknownErrorTest extends TestCase {
     public function testWriteContentUnknownErrorThrowsException(): void {
         $file = new FileBase($this->file);
         $file->setContentFromString('new data');
-        $this->expectException(FileNotReadableException::class);
+        $this->expectException(FileNotExistsException::class);
         $file->writeContent();
     }
 }

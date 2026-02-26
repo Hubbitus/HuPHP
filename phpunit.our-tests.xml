@@ -18,6 +18,7 @@
             <file>tests/Vars/Settings/SettingsFilterReadonlyTest.php</file>
             <file>tests/Database/DatabaseBaseTest.php</file>
             <file>tests/Database/DatabaseWhereTest.php</file>
+            <file>tests/Database/DatabaseErrorTest.php</file>
         </testsuite>
     </testsuites>
 

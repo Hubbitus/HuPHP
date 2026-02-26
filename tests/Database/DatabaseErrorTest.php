@@ -1,119 +1,185 @@
 <?php
+declare(strict_types=1);
 
-/**
- * Test for DatabaseError class.
- */
+namespace Hubbitus\Tests\HuPHP\Database;
 
-namespace Hubbitus\HuPHP\Tests\Database;
-
+use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\Database\DatabaseError;
 use Hubbitus\HuPHP\Database\DatabaseErrorSettings;
-use PHPUnit\Framework\TestCase;
+use Hubbitus\HuPHP\Debug\HuErrorSettings;
 
 /**
  * @covers \Hubbitus\HuPHP\Database\DatabaseError
- * @covers \Hubbitus\HuPHP\Database\DatabaseErrorSettings
  */
-class DatabaseErrorTest extends TestCase {
-    public function testClassExtendsHuError(): void {
-        $error = new DatabaseError([]);
+class DatabaseErrorTest extends TestCase
+{
+    private DatabaseError $error;
 
-        $this->assertInstanceOf(DatabaseError::class, $error);
-        $this->assertInstanceOf('Hubbitus\\HuPHP\\Debug\\HuError', $error);
+    protected function setUp(): void
+    {
+        $this->error = new DatabaseError(new DatabaseErrorSettings());
     }
 
-    public function testConstructorWithDefaultSettings(): void {
-        $error = new DatabaseError([]);
+    public function testConstructorWithDatabaseErrorSettings(): void
+    {
+        $settings = new DatabaseErrorSettings();
+        $error = new DatabaseError($settings);
 
         $this->assertInstanceOf(DatabaseError::class, $error);
-        $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\DatabaseErrorSettings', $error->_sets);
+        $this->assertInstanceOf(DatabaseErrorSettings::class, $error->settings);
     }
 
-    public function testConstructorWithArraySettings(): void {
-        $customSettings = [
+    public function testConstructorWithArray(): void
+    {
+        $settings = [
             'TXT_queryFailed' => 'Custom query failed message',
-            'TXT_cantConnect' => 'Custom connection failed message',
-            'TXT_noDBselected' => 'Custom database selection failed message',
-            'DEBUG' => true
+            'AUTO_DATE' => false,
         ];
-
-        $error = new DatabaseError($customSettings);
+        $error = new DatabaseError($settings);
 
         $this->assertInstanceOf(DatabaseError::class, $error);
         $this->assertEquals('Custom query failed message', $error->TXT_queryFailed);
-        $this->assertEquals('Custom connection failed message', $error->TXT_cantConnect);
-        $this->assertEquals('Custom database selection failed message', $error->TXT_noDBselected);
-        $this->assertTrue($error->DEBUG);
+        $this->assertFalse($error->AUTO_DATE);
     }
 
-    public function testConstructorWithSettingsObject(): void {
+    public function testConstructorWithDatabaseError(): void
+    {
+        $originalSettings = new DatabaseErrorSettings();
+        $originalSettings->TXT_queryFailed = 'Original message';
+        $originalError = new DatabaseError($originalSettings);
+
+        $newError = new DatabaseError($originalError);
+
+        $this->assertInstanceOf(DatabaseError::class, $newError);
+        $this->assertEquals('Original message', $newError->TXT_queryFailed);
+    }
+
+    public function testConstructorWithEmptyArray(): void
+    {
+        $error = new DatabaseError([]);
+
+        $this->assertInstanceOf(DatabaseError::class, $error);
+        $this->assertInstanceOf(DatabaseErrorSettings::class, $error->settings);
+    }
+
+    public function testDefaultSettings(): void
+    {
         $settings = new DatabaseErrorSettings();
-        $error = new DatabaseError(['custom_setting' => 'value']);
-
-        $this->assertInstanceOf(DatabaseError::class, $error);
-        $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\DatabaseErrorSettings', $error->_sets);
-    }
-
-    public function testConstructorWithNullSettings(): void {
-        $error = new DatabaseError([]);
-
-        $this->assertInstanceOf(DatabaseError::class, $error);
-        $this->assertInstanceOf('Hubbitus\\HuPHP\\Database\\DatabaseErrorSettings', $error->_sets);
-    }
-
-    public function testSettingsInheritance(): void {
-        $error = new DatabaseError([]);
-
-        // Test that it inherits methods from HuError
-        $this->assertTrue(method_exists($error, 'updateDate'));
-        $this->assertTrue(method_exists($error, 'addExtra'));
-        $this->assertTrue(method_exists($error, 'getExtra'));
-        $this->assertTrue(method_exists($error, 'clearExtra'));
-    }
-
-    public function testDefaultErrorMessages(): void {
-        $error = new DatabaseError([]);
+        $error = new DatabaseError($settings);
 
         $this->assertEquals('SQL Query failed', $error->TXT_queryFailed);
         $this->assertEquals('Could not connect to DB', $error->TXT_cantConnect);
         $this->assertEquals('Can not change database', $error->TXT_noDBselected);
-    }
-
-    public function testAutoDateFormat(): void {
-        $error = new DatabaseError([]);
-
         $this->assertTrue($error->AUTO_DATE);
         $this->assertEquals('Y-m-d H:i:s: ', $error->DATE_FORMAT);
+        $this->assertEquals('Extra info', $error->EXTRA_HEADER);
     }
 
-    public function testFormatConfigurations(): void {
-        $error = new DatabaseError([]);
-
-        // Test that format configurations are inherited from HuErrorSettings
-        $this->assertIsArray($error->WEB);
-        $this->assertIsArray($error->CONSOLE);
-        $this->assertIsArray($error->FILE);
+    public function testInheritsFromHuError(): void
+    {
+        $this->assertInstanceOf(HuErrorSettings::class, $this->error->settings);
     }
 
-    public function testSettingsModification(): void {
-        $error = new DatabaseError([]);
+    public function testSetSetting(): void
+    {
+        $result = $this->error->setSetting('customField', 'customValue');
 
-        // Test that we can modify settings
-        $error->DEBUG = true;
-        $error->TXT_queryFailed = 'Modified query failed message';
-
-        $this->assertTrue($error->DEBUG);
-        $this->assertEquals('Modified query failed message', $error->TXT_queryFailed);
+        $this->assertSame($this->error, $result);
+        $this->assertEquals('customValue', $this->error->customField);
     }
 
-    public function testInheritanceOfHuErrorMethods(): void {
-        $error = new DatabaseError([]);
+    public function testSetSettingsArray(): void
+    {
+        $settings = [
+            'field1' => 'value1',
+            'field2' => 'value2',
+        ];
 
-        // Test that inherited methods work correctly
-        $error->addExtra('test_key', 'test_value');
-        $this->assertEquals('test_value', $error->getExtra('test_key'));
+        $this->error->setSettingsArray($settings);
 
-        $error->clearExtra();
-        $this->assertNull($error->getExtra('test_key'));
+        $this->assertEquals('value1', $this->error->field1);
+        $this->assertEquals('value2', $this->error->field2);
+    }
+
+    public function testMergeSettingsArray(): void
+    {
+        $this->error->field1 = 'original';
+        $this->error->field2 = 'original2';
+
+        $newSettings = [
+            'field1' => 'updated',
+            'field3' => 'new',
+        ];
+
+        $this->error->mergeSettingsArray($newSettings);
+
+        $this->assertEquals('updated', $this->error->field1);
+        $this->assertEquals('original2', $this->error->field2);
+        $this->assertEquals('new', $this->error->field3);
+    }
+
+    public function testStrForFile(): void
+    {
+        $this->error->message = 'Test database error';
+        $this->error->code = 1045;
+
+        $output = $this->error->strForFile();
+
+        $this->assertIsString($output);
+    }
+
+    public function testStrForWeb(): void
+    {
+        $this->error->message = 'Web database error';
+        $output = $this->error->strForWeb();
+
+        $this->assertIsString($output);
+    }
+
+    public function testStrForConsole(): void
+    {
+        $this->error->message = 'Console database error';
+        $output = $this->error->strForConsole();
+
+        $this->assertIsString($output);
+    }
+
+    public function testToString(): void
+    {
+        $this->error->message = 'String error';
+        $output = (string) $this->error;
+
+        $this->assertIsString($output);
+    }
+
+    public function testUpdateDateWithAutoDateEnabled(): void
+    {
+        $settings = new DatabaseErrorSettings();
+        $settings->AUTO_DATE = true;
+        $settings->DATE_FORMAT = 'Y-m-d H:i:s';
+
+        $error = new DatabaseError($settings);
+        $error->updateDate();
+
+        $this->assertNotEmpty($error->date);
+        $this->assertMatchesRegularExpression('/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/', $error->date);
+    }
+
+    public function testUpdateDateWithAutoDateDisabled(): void
+    {
+        $settings = new DatabaseErrorSettings();
+        $settings->AUTO_DATE = false;
+
+        $error = new DatabaseError($settings);
+        $error->updateDate();
+
+        $this->assertNull($error->date);
+    }
+
+    public function testDynamicPropertyAccess(): void
+    {
+        $this->error->customProperty = 'custom value';
+
+        $this->assertEquals('custom value', $this->error->customProperty);
     }
 }

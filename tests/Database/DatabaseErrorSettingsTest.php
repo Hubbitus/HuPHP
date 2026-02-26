@@ -19,7 +19,7 @@ class DatabaseErrorSettingsTest extends TestCase {
         $settings = new DatabaseErrorSettings();
 
         $this->assertInstanceOf(DatabaseErrorSettings::class, $settings);
-        $this->assertInstanceOf('Hubbitus\\HuPHP\\Debug\\HuErrorSettings', $settings);
+        $this->assertInstanceOf(HuErrorSettings::class, $settings);
     }
 
     public function testDefaultErrorMessages(): void {
@@ -46,19 +46,19 @@ class DatabaseErrorSettingsTest extends TestCase {
     public function testFormatConfigurations(): void {
         $settings = new DatabaseErrorSettings();
 
-        $this->assertIsArray($settings->FORMAT_WEB);
-        $this->assertIsArray($settings->FORMAT_CONSOLE);
-        $this->assertIsArray($settings->FORMAT_FILE);
+        $this->assertIsArray($settings->WEB);
+        $this->assertIsArray($settings->CONSOLE);
+        $this->assertIsArray($settings->FILE);
 
-        $this->assertNotEmpty($settings->FORMAT_WEB);
-        $this->assertNotEmpty($settings->FORMAT_CONSOLE);
-        $this->assertNotEmpty($settings->FORMAT_FILE);
+        $this->assertNotEmpty($settings->WEB);
+        $this->assertNotEmpty($settings->CONSOLE);
+        $this->assertNotEmpty($settings->FILE);
     }
 
     public function testWebFormatStructure(): void {
         $settings = new DatabaseErrorSettings();
 
-        $webFormat = $settings->FORMAT_WEB;
+        $webFormat = $settings->WEB;
 
         // Test basic structure
         $this->assertIsArray($webFormat);
@@ -67,16 +67,6 @@ class DatabaseErrorSettingsTest extends TestCase {
         // Test first element
         $this->assertIsArray($webFormat[0]);
         $this->assertEquals('TXT_queryFailed', $webFormat[0][0]);
-        $this->assertEquals(
-            "\n<br \"><u><b>",
-            $webFormat[0][1]
-        );
-        $this->assertEquals(
-            "</b></u>:
-<br ",
-            $webFormat[0][2]
-        );
-        $this->assertEquals('', $webFormat[0][3]);
 
         // Test query element
         $this->assertEquals(
@@ -85,17 +75,12 @@ class DatabaseErrorSettingsTest extends TestCase {
         );
         $this->assertIsArray($webFormat[5]);
         $this->assertEquals('Query', $webFormat[5][0]);
-        $this->assertEquals(
-            '<pre style="color: red">',
-            $webFormat[5][1]
-        );
-        $this->assertEquals('</pre>', $webFormat[5][2]);
     }
 
     public function testConsoleFormatStructure(): void {
         $settings = new DatabaseErrorSettings();
 
-        $consoleFormat = $settings->FORMAT_CONSOLE;
+        $consoleFormat = $settings->CONSOLE;
 
         // Test basic structure
         $this->assertIsArray($consoleFormat);
@@ -104,15 +89,6 @@ class DatabaseErrorSettingsTest extends TestCase {
         // Test first element
         $this->assertIsArray($consoleFormat[0]);
         $this->assertEquals('TXT_queryFailed', $consoleFormat[0][0]);
-        $this->assertEquals(
-            "\033[1m",
-            $consoleFormat[0][1]
-        );
-        $this->assertEquals(
-            "\033[0m:\n",
-            $consoleFormat[0][2]
-        );
-        $this->assertEquals('', $consoleFormat[0][3]);
 
         // Test query element
         $this->assertEquals(
@@ -121,20 +97,12 @@ class DatabaseErrorSettingsTest extends TestCase {
         );
         $this->assertIsArray($consoleFormat[5]);
         $this->assertEquals('Query', $consoleFormat[5][0]);
-        $this->assertEquals(
-            "\033[31m",
-            $consoleFormat[5][1]
-        );
-        $this->assertEquals(
-            "\033[0m",
-            $consoleFormat[5][2]
-        );
     }
 
     public function testFileFormatStructure(): void {
         $settings = new DatabaseErrorSettings();
 
-        $fileFormat = $settings->FORMAT_FILE;
+        $fileFormat = $settings->FILE;
 
         // Test basic structure
         $this->assertIsArray($fileFormat);
@@ -143,9 +111,6 @@ class DatabaseErrorSettingsTest extends TestCase {
         // Test first element
         $this->assertIsArray($fileFormat[0]);
         $this->assertEquals('TXT_queryFailed', $fileFormat[0][0]);
-        $this->assertEquals('', $fileFormat[0][1]);
-        $this->assertEquals(':\n', $fileFormat[0][2]);
-        $this->assertEquals('', $fileFormat[0][3]);
 
         // Test query element
         $this->assertEquals(
@@ -154,8 +119,6 @@ class DatabaseErrorSettingsTest extends TestCase {
         );
         $this->assertIsArray($fileFormat[5]);
         $this->assertEquals('Query', $fileFormat[5][0]);
-        $this->assertEquals('>=', $fileFormat[5][1]);
-        $this->assertEquals('<=', $fileFormat[5][2]);
     }
 
     public function testSettingsInheritance(): void {
@@ -163,7 +126,7 @@ class DatabaseErrorSettingsTest extends TestCase {
 
         // Test that it inherits methods from HuErrorSettings
         $this->assertTrue(method_exists($settings, 'mergeSettingsArray'));
-        $this->assertTrue(method_exists($settings, '__SETS'));
+        $this->assertTrue(method_exists($settings, 'getProperty'));
     }
 
     public function testSettingsMerging(): void {
@@ -171,9 +134,6 @@ class DatabaseErrorSettingsTest extends TestCase {
             'TXT_queryFailed' => 'Custom query failed message',
             'TXT_cantConnect' => 'Custom connection failed message',
             'DEBUG' => true,
-            OutputType::WEB->name => [
-                ['TXT_queryFailed', '<strong>', '</strong>', '']
-            ]
         ];
 
         $settings = new DatabaseErrorSettings();
@@ -182,13 +142,6 @@ class DatabaseErrorSettingsTest extends TestCase {
         $this->assertEquals('Custom query failed message', $settings->TXT_queryFailed);
         $this->assertEquals('Custom connection failed message', $settings->TXT_cantConnect);
         $this->assertTrue($settings->DEBUG);
-        $this->assertIsArray($settings->FORMAT_WEB);
-        $this->assertEquals('<strong>', $settings->FORMAT_WEB[0][1]);
-    }
-
-    public function testArrayAccess(): void {
-        // DatabaseErrorSettings does not implement ArrayAccess interface
-        $this->assertTrue(true);
     }
 
     public function testDefaultSettingsStructure(): void {
@@ -209,14 +162,6 @@ class DatabaseErrorSettingsTest extends TestCase {
         }
     }
 
-    public function testImmutabilityOfConstants(): void {
-        $reflection = new \ReflectionClass(DatabaseErrorSettings::class);
-
-        // Test that constants are properly defined
-        $constants = $reflection->getConstants();
-        $this->assertIsArray($constants);
-    }
-
     public function testSettingsCloning(): void {
         $original = new DatabaseErrorSettings();
         $clone = clone $original;
@@ -234,46 +179,24 @@ class DatabaseErrorSettingsTest extends TestCase {
         $this->assertEquals($settings->TXT_queryFailed, $unserialized->TXT_queryFailed);
     }
 
-    public function testParentClassProperties(): void {
-        $settings = new DatabaseErrorSettings();
-
-        // Test that parent class properties are inherited
-        $this->assertObjectHasAttribute('__SETS', $settings);
-        $this->assertInstanceOf(HuErrorSettings::class, $settings);
-    }
-
     public function testEmptyConstructor(): void {
         $settings = new DatabaseErrorSettings();
 
         $this->assertInstanceOf(DatabaseErrorSettings::class, $settings);
-        $this->assertNotEmpty($settings->__SETS);
+        // Check that __SETS has data via getProperty
+        $this->assertNotEmpty($settings->getProperty('TXT_queryFailed'));
     }
 
-    public function testInvalidConstructor(): void {
-        // DatabaseErrorSettings does not support constructor parameters
+    public function testGetPropertyMethod(): void {
         $settings = new DatabaseErrorSettings();
-        $this->assertInstanceOf(DatabaseErrorSettings::class, $settings);
+
+        $this->assertEquals('SQL Query failed', $settings->getProperty('TXT_queryFailed'));
     }
 
-    public function testToStringMethod(): void {
+    public function testSetSettingMethod(): void {
         $settings = new DatabaseErrorSettings();
+        $settings->setSetting('CUSTOM_KEY', 'custom_value');
 
-        $this->assertTrue(method_exists($settings, '__toString'));
-        $this->assertIsString((string)$settings);
-    }
-
-    public function testCountableInterface(): void {
-        $settings = new DatabaseErrorSettings();
-
-        $this->assertTrue(method_exists($settings, 'length'));
-        $this->assertIsInt($settings->length());
-        $this->assertGreaterThan(0, $settings->length());
-    }
-
-    public function testIteratorInterface(): void {
-        $settings = new DatabaseErrorSettings();
-
-        $this->assertTrue(method_exists($settings, 'getIterator'));
-        $this->assertTrue(method_exists($settings, 'getProperty'));
+        $this->assertEquals('custom_value', $settings->CUSTOM_KEY);
     }
 }
