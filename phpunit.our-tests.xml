@@ -24,6 +24,8 @@
             <file>tests/System/OutputTypeTest.php</file>
             <file>tests/Debug/HuFormatExceptionTest.php</file>
             <file>tests/Debug/DumpUtilsTest.php</file>
+            <file>tests/Exceptions/Variables/VariableIsNullExceptionTest.php</file>
+            <file>tests/Exceptions/Variables/VariableArrayInconsistentExceptionTest.php</file>
         </testsuite>
     </testsuites>
 
