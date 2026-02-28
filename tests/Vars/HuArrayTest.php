@@ -754,4 +754,332 @@ class HuArrayTest extends TestCase {
         $array->rewind();
         $this->assertEquals(1, $array->current());
     }
+
+    /**
+    * Test getSlice method.
+    **/
+    public function testGetSlice(): void {
+        $array = new HuArray([1, 2, 3, 4, 5]);
+        $slice = $array->getSlice(1, 3);
+
+        $this->assertInstanceOf(HuArray::class, $slice);
+        $this->assertCount(3, $slice);
+        $this->assertEquals([2, 3, 4], $slice->getArray());
+    }
+
+    /**
+    * Test getSlice with preserve keys.
+    **/
+    public function testGetSlicePreserveKeys(): void {
+        $array = new HuArray(['a' => 1, 'b' => 2, 'c' => 3]);
+        $slice = $array->getSlice(1, 2, true);
+
+        $this->assertEquals(['b' => 2, 'c' => 3], $slice->getArray());
+    }
+
+    /**
+    * Test getProperty method.
+    **/
+    public function testGetProperty(): void {
+        $array = new HuArray(['key' => 'value']);
+        $property = $array->getProperty('key');
+
+        $this->assertEquals('value', $property);
+    }
+
+    /**
+    * Test __get magic method.
+    **/
+    public function testMagicGet(): void {
+        $array = new HuArray(['name' => 'test']);
+        $this->assertEquals('test', $array->name);
+    }
+
+    /**
+    * Test hu method.
+    **/
+    public function testHuMethod(): void {
+        $array = new HuArray(['key' => 'value']);
+        $this->assertEquals('value', $array->hu('key'));
+    }
+
+    /**
+    * Test __set magic method.
+    **/
+    public function testMagicSet(): void {
+        $array = new HuArray();
+        $array->newKey = 'newValue';
+
+        $this->assertEquals('newValue', $array->newKey);
+    }
+
+    /**
+    * Test walk method.
+    **/
+    public function testWalk(): void {
+        $array = new HuArray([1, 2, 3]);
+        $sum = 0;
+
+        $result = $array->walk(function($value) use (&$sum) {
+            $sum += $value;
+        });
+
+        $this->assertSame($array, $result);
+        $this->assertEquals(6, $sum);
+    }
+
+    /**
+    * Test filterByKeys method.
+    **/
+    public function testFilterByKeys(): void {
+        $array = new HuArray(['a' => 1, 'b' => 2, 'c' => 3]);
+        $filtered = $array->filterByKeys(['a', 'c']);
+
+        $this->assertEquals(['a' => 1, 'c' => 3], $filtered->getArray());
+    }
+
+    /**
+    * Test filterOutByKeys method.
+    **/
+    public function testFilterOutByKeys(): void {
+        $array = new HuArray(['a' => 1, 'b' => 2, 'c' => 3]);
+        $filtered = $array->filterOutByKeys(['b']);
+
+        $this->assertEquals(['a' => 1, 'c' => 3], $filtered->getArray());
+    }
+
+    /**
+    * Test filterKeysCallback method.
+    **/
+    public function testFilterKeysCallback(): void {
+        $array = new HuArray(['a' => 1, 'b' => 2, 'c' => 3]);
+        $filtered = $array->filterKeysCallback(function($key) {
+            return $key === 'a' || $key === 'c';
+        });
+
+        $this->assertEquals(['a' => 1, 'c' => 3], $filtered->getArray());
+    }
+
+    /**
+    * Test every method - all match.
+    **/
+    public function testEveryAllMatch(): void {
+        $array = new HuArray([2, 4, 6, 8]);
+        $result = $array->every(function($value) {
+            return $value % 2 === 0;
+        });
+
+        $this->assertTrue($result);
+    }
+
+    /**
+    * Test every method - some don't match.
+    **/
+    public function testEverySomeDontMatch(): void {
+        $array = new HuArray([2, 3, 4, 6]);
+        $result = $array->every(function($value) {
+            return $value % 2 === 0;
+        });
+
+        $this->assertFalse($result);
+    }
+
+    /**
+    * Test some method - at least one matches.
+    **/
+    public function testSomeAtLeastOne(): void {
+        $array = new HuArray([1, 3, 5, 8]);
+        $result = $array->some(function($value) {
+            return $value % 2 === 0;
+        });
+
+        $this->assertTrue($result);
+    }
+
+    /**
+    * Test some method - none match.
+    **/
+    public function testSomeNoneMatch(): void {
+        $array = new HuArray([1, 3, 5, 7]);
+        $result = $array->some(function($value) {
+            return $value % 2 === 0;
+        });
+
+        $this->assertFalse($result);
+    }
+
+    /**
+    * Test when method - condition true.
+    **/
+    public function testWhenConditionTrue(): void {
+        $array = new HuArray([1, 2, 3]);
+        $result = $array->when(true, function($arr) {
+            return $arr->push(4);
+        });
+
+        $this->assertEquals([1, 2, 3, 4], $result->getArray());
+    }
+
+    /**
+    * Test when method - condition false.
+    **/
+    public function testWhenConditionFalse(): void {
+        $array = new HuArray([1, 2, 3]);
+        $result = $array->when(false, function($arr) {
+            return $arr->push(4);
+        });
+
+        $this->assertEquals([1, 2, 3], $result->getArray());
+    }
+
+    /**
+    * Test unless method - condition false.
+    **/
+    public function testUnlessConditionFalse(): void {
+        $array = new HuArray([1, 2, 3]);
+        $result = $array->unless(false, function($arr) {
+            return $arr->push(4);
+        });
+
+        $this->assertEquals([1, 2, 3, 4], $result->getArray());
+    }
+
+    /**
+    * Test unless method - condition true.
+    **/
+    public function testUnlessConditionTrue(): void {
+        $array = new HuArray([1, 2, 3]);
+        $result = $array->unless(true, function($arr) {
+            return $arr->push(4);
+        });
+
+        $this->assertEquals([1, 2, 3], $result->getArray());
+    }
+
+    /**
+    * Test sort method with default sort.
+    **/
+    public function testSortDefault(): void {
+        $array = new HuArray([3, 1, 4, 1, 5]);
+        $sorted = $array->sort();
+
+        $this->assertEquals([1, 1, 3, 4, 5], $sorted->getArray());
+    }
+
+    /**
+    * Test sort method with custom callback.
+    **/
+    public function testSortWithCallback(): void {
+        $array = new HuArray([3, 1, 4, 1, 5]);
+        $sorted = $array->sort(function($a, $b) {
+            return $b <=> $a;
+        });
+
+        $this->assertEquals([5, 4, 3, 1, 1], $sorted->getArray());
+    }
+
+    /**
+    * Test jsonSerialize method.
+    **/
+    public function testJsonSerialize(): void {
+        $array = new HuArray(['key' => 'value', 'num' => 42]);
+        $serialized = $array->jsonSerialize();
+
+        $this->assertIsArray($serialized);
+        $this->assertEquals(['key' => 'value', 'num' => 42], $serialized);
+    }
+
+    /**
+    * Test __get magic method with _last_ special name.
+    **/
+    public function testMagicGetLastSpecial(): void {
+        $array = new HuArray([1, 2, 3]);
+        $last = $array->_last_;
+
+        $this->assertEquals(3, $last);
+    }
+
+    /**
+    * Test __set magic method with _last_ special name.
+    **/
+    public function testMagicSetLastSpecial(): void {
+        $array = new HuArray([1, 2, 3]);
+        $array->_last_ = 99;
+
+        $this->assertEquals(99, $array->last());
+    }
+
+    /**
+    * Test pluck with nested array.
+    **/
+    public function testPluckNested(): void {
+        $array = new HuArray([
+            ['user' => ['name' => 'John']],
+            ['user' => ['name' => 'Jane']]
+        ]);
+        // Note: pluck only works with direct keys, not nested
+        $plucked = $array->pluck('user');
+
+        $this->assertEquals([['name' => 'John'], ['name' => 'Jane']], $plucked->getArray());
+    }
+
+    /**
+    * Test offsetSet with null offset (append).
+    **/
+    public function testOffsetSetNullOffset(): void {
+        $array = new HuArray([1, 2, 3]);
+        $array->offsetSet(null, 4);
+
+        $this->assertEquals([1, 2, 3, 4], $array->getArray());
+    }
+
+    /**
+    * Test __get magic method with hu:// scheme.
+    **/
+    public function testMagicGetHuScheme(): void {
+        $array = new HuArray(['nested' => [1, 2, 3]]);
+        $result = $array->{'hu://nested'};
+
+        $this->assertInstanceOf(HuArray::class, $result);
+        $this->assertEquals([1, 2, 3], $result->getArray());
+    }
+
+    /**
+    * Test __set magic method with hu:// scheme.
+    **/
+    public function testMagicSetHuScheme(): void {
+        $array = new HuArray();
+        $array->{'hu://newKey'} = [1, 2, 3];
+
+        // After setting via hu://, the value should be stored as HuArray
+        $this->assertArrayHasKey('newKey', $array->getArray());
+        $this->assertEquals([1, 2, 3], $array->newKey);
+    }
+
+    /**
+    * Test __set magic method with hu:// scheme when key already exists as array.
+    **/
+    public function testMagicSetHuSchemeExistingArray(): void {
+        $array = new HuArray(['existing' => [1, 2, 3]]);
+        // Setting via hu:// should convert existing array to HuArray and set new value
+        $array->{'hu://existing'} = [4, 5, 6];
+
+        $this->assertArrayHasKey('existing', $array->getArray());
+        $this->assertEquals([4, 5, 6], $array->existing);
+    }
+
+    /**
+    * Test pluck with array of objects.
+    **/
+    public function testPluckObjects(): void {
+        $obj1 = new \stdClass();
+        $obj1->name = 'John';
+        $obj2 = new \stdClass();
+        $obj2->name = 'Jane';
+
+        $array = new HuArray([$obj1, $obj2]);
+        $plucked = $array->pluck('name');
+
+        $this->assertEquals(['John', 'Jane'], $plucked->getArray());
+    }
 }

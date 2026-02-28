@@ -238,7 +238,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* @return	&$this
 	**/
 	public function &filterByKeys(array $keys): static {
-		$this->__SETS = \array_diff_key( $this->__SETS, \array_flip(  \array_intersect(   \array_keys($this->__SETS), $keys   )  ) );
+		$this->__SETS = \array_intersect_key($this->__SETS, \array_flip($keys));
 		return $this;
 	}
 
@@ -262,9 +262,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* @return	&$this
 	**/
 	public function &filterKeysCallback($callback): static {
-		$keys = new self(array_flip( $this->__SETS ));
-		$keys->filter($callback);
-		$this->filterByKeys($keys->getArray());
+		$this->__SETS = \array_filter($this->__SETS, $callback, \ARRAY_FILTER_USE_KEY);
 		return $this;
 	}
 
