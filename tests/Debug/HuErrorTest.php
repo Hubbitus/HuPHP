@@ -7,7 +7,6 @@ use Hubbitus\HuPHP\System\OutputType;
 use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\Debug\HuError;
 use Hubbitus\HuPHP\Debug\HuErrorSettings;
-use Hubbitus\HuPHP\System\OS;
 
 /**
 * @covers \Hubbitus\HuPHP\Debug\HuError
@@ -252,7 +251,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test addExtra method.
-	*/
+	**/
 	public function testAddExtra(): void {
 		$this->error->addExtra('user_id', 123);
 		$this->error->addExtra('request_id', 'abc-456');
@@ -263,14 +262,14 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test getExtra with non-existent key.
-	*/
+	**/
 	public function testGetExtraNonExistent(): void {
 		$this->assertNull($this->error->getExtra('nonexistent'));
 	}
 
 	/**
 	* Test clearExtra method.
-	*/
+	**/
 	public function testClearExtra(): void {
 		$this->error->addExtra('key1', 'value1');
 		$this->error->addExtra('key2', 'value2');
@@ -283,7 +282,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test getAllExtra method.
-	*/
+	**/
 	public function testGetAllExtra(): void {
 		$this->error->addExtra('key1', 'value1');
 		$this->error->addExtra('key2', 'value2');
@@ -298,7 +297,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test __toString method.
-	*/
+	**/
 	public function testToStringInvocation(): void {
 		$this->error->message = 'Test message for __toString';
 		$output = $this->error->__toString();
@@ -309,7 +308,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test formatField with empty value.
-	*/
+	**/
 	public function testFormatFieldWithEmptyValue(): void {
 		$this->error->emptyField = '';
 		$formatted = $this->error->formatField('emptyField');
@@ -319,7 +318,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test formatField with null value.
-	*/
+	**/
 	public function testFormatFieldWithNullValue(): void {
 		$this->error->nullField = null;
 		$formatted = $this->error->formatField('nullField');
@@ -329,7 +328,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test strForPrint auto-detection.
-	*/
+	**/
 	public function testStrForPrintAutoDetection(): void {
 		$this->error->message = 'Auto-detect output';
 		$output = $this->error->strForPrint();
@@ -340,7 +339,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test strByOutType with WEB type.
-	*/
+	**/
 	public function testStrByOutTypeWeb(): void {
 		$this->error->message = 'Web output';
 		$output = $this->error->strByOutType(OutputType::WEB);
@@ -350,7 +349,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test strByOutType with FILE type.
-	*/
+	**/
 	public function testStrByOutTypeFile(): void {
 		$this->error->message = 'File output';
 		$output = $this->error->strByOutType(OutputType::FILE);
@@ -360,7 +359,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test updateDate with custom format.
-	*/
+	**/
 	public function testUpdateDateCustomFormat(): void {
 		$settings = new HuErrorSettings();
 		$settings->AUTO_DATE = true;
@@ -375,7 +374,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test setFromArray with multiple fields.
-	*/
+	**/
 	public function testSetFromArrayMultipleFields(): void {
 		$settings = [
 			'field1' => 'value1',
@@ -392,7 +391,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test mergeFromArray with existing fields.
-	*/
+	**/
 	public function testMergeFromArrayExistingFields(): void {
 		$this->error->existing = 'original';
 		$this->error->mergeFromArray(['existing' => 'updated', 'new' => 'value']);
@@ -403,7 +402,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test DATE property alias.
-	*/
+	**/
 	public function testDateAlias(): void {
 		$settings = new HuErrorSettings();
 		$settings->AUTO_DATE = true;
@@ -418,7 +417,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test __get magic method for settings.
-	*/
+	**/
 	public function testMagicGetSettings(): void {
 		$settings = $this->error->settings;
 		$this->assertInstanceOf(HuErrorSettings::class, $settings);
@@ -426,7 +425,7 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test __get magic method for date property.
-	*/
+	**/
 	public function testMagicGetDate(): void {
 		$settings = new HuErrorSettings();
 		$settings->AUTO_DATE = true;
@@ -441,11 +440,82 @@ class HuErrorTest extends TestCase {
 
 	/**
 	* Test __get magic method for custom property.
-	*/
+	**/
 	public function testMagicGetCustomProperty(): void {
 		$this->error->customProp = 'custom value';
 		$value = $this->error->customProp;
 
 		$this->assertEquals('custom value', $value);
+	}
+
+	/**
+	* Test __get magic method with DATE uppercase alias.
+	**/
+	public function testMagicGetDateUppercase(): void {
+		$settings = new HuErrorSettings();
+		$settings->AUTO_DATE = true;
+		$settings->DATE_FORMAT = 'Y-m-d';
+
+		$error = new HuError($settings);
+		$error->updateDate();
+
+		// Access via uppercase DATE alias
+		$date = $error->DATE;
+		$this->assertNotEmpty($date);
+		$this->assertMatchesRegularExpression('/\d{4}-\d{2}-\d{2}/', $date);
+	}
+
+	/**
+	* Test formatField with OutExtraData instance.
+	**/
+	public function testFormatFieldWithOutExtraData(): void {
+		$bt = new \Hubbitus\HuPHP\Debug\Backtrace();
+		$extraData = new \Hubbitus\HuPHP\Vars\OutExtraDataBacktrace($bt);
+		$this->error->extraField = $extraData;
+
+		$formatted = $this->error->formatField('extraField');
+
+		$this->assertIsString($formatted);
+		// OutExtraDataBacktrace returns special string
+		$this->assertNotEmpty($formatted);
+	}
+
+	/**
+	* Test formatField with Backtrace instance.
+	**/
+	public function testFormatFieldWithBacktrace(): void {
+		$bt = new \Hubbitus\HuPHP\Debug\Backtrace();
+		$this->error->btField = $bt;
+
+		$formatted = $this->error->formatField('btField');
+
+		$this->assertIsString($formatted);
+		$this->assertStringContainsString('Backtrace', $formatted);
+	}
+
+	/**
+	* Test formatField with array format and suffixes.
+	**/
+	public function testFormatFieldWithArrayAndSuffixes(): void {
+		$this->error->message = 'Test message';
+
+		$formatted = $this->error->formatField(['message', '[', ']']);
+
+		$this->assertIsString($formatted);
+		$this->assertStringContainsString('[', $formatted);
+		$this->assertStringContainsString(']', $formatted);
+	}
+
+	/**
+	* Test formatField with associative array (no index 0).
+	**/
+	public function testFormatFieldWithAssociativeArray(): void {
+		$this->error->message = 'Associative test';
+
+		// Array without index 0 - should trigger array_values()
+		$formatted = $this->error->formatField(['name' => 'message', 'prefix' => '[', 'suffix' => ']']);
+
+		$this->assertIsString($formatted);
+		$this->assertNotEmpty($formatted);
 	}
 }

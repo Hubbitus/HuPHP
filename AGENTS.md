@@ -69,6 +69,7 @@ Continue writing and enabling tests.
     Short description, statistic and coverage summary. 2-7 lines.
     ```
 7. After agree from user and commit, continue tests implementation. Our global goal at least 90% code coverage by classes!
+8. When real bug found in main code - test should not be tried document it or test. Bug must be described for user and fixed immediately!
 
 # Static Analysis (PHPStan)
 

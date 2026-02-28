@@ -53,23 +53,23 @@ class HuError extends Settings implements IOutExtraData {
 	* @return mixed Object of settings.
 	**/
 	public function &__get ($name): mixed {
-		switch ($name){
-			case 'settings': return $this->_sets; // @TODO refactor to be it more static
+		if ('settings' === $name) {
+			return $this->_sets; // @TODO refactor to be it more static
+		}
 
-			case 'date':
-			case 'DATE':
-				if ($this->getProperty($name) === null) $this->updateDate();
-			//break;	/** NOT need break. Create by read, and continue return value!
-
-			default:
-			/**
-			* Set properties is implicit and NOT returned reference by default.
-			* But for 'settings' we want opposite reference. Without compatibility of functions
-			* overload by type arguments - is only way silently ignore Notice: Only variable references should be returned by reference
-			**/
-			$t = $this->getProperty($name);
+		if ('date' === $name || 'DATE' === $name) {
+			if ($this->getProperty('date') === null) $this->updateDate();
+			$t = $this->getProperty('date');
 			return $t;
 		}
+
+		/**
+		* Set properties is implicit and NOT returned reference by default.
+		* But for 'settings' we want opposite reference. Without compatibility of functions
+		* overload by type arguments - is only way silently ignore Notice: Only variable references should be returned by reference
+		**/
+		$t = $this->getProperty($name);
+		return $t;
 	}
 
 	/**
@@ -240,16 +240,14 @@ class HuError extends Settings implements IOutExtraData {
 			$fieldValue = EMPTY_VAR(@$this->{$field[0]}, $field[0]); //Setting by name, or it is just text
 		}
 
-		/** @phpstan-ignore class.notFound */
-		if ($fieldValue instanceof OutExtraData){
-			/** @phpstan-ignore class.notFound */
-			return NON_EMPTY_STR(@$fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3]) ?? ''; /* @phpstan-ignore nullCoalesce.expr */
+		if ($fieldValue instanceof IOutExtraData){
+			return NON_EMPTY_STR($fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
 		}
 		elseif($fieldValue instanceof Backtrace){
-			return NON_EMPTY_STR(@$fieldValue->printFormat(null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3]) ?? ''; /* @phpstan-ignore nullCoalesce.expr */
+			return NON_EMPTY_STR($fieldValue->printFormat(null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
 		}
 		else {
-			return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]) ?? ''; /* @phpstan-ignore nullCoalesce.expr */
+			return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]);
 		}
 	}
 
