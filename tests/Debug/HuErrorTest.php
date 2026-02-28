@@ -249,4 +249,203 @@ class HuErrorTest extends TestCase {
 		$this->assertEquals('value2', $this->error->field2);
 		$this->assertEquals('value3', $this->error->field3);
 	}
+
+	/**
+	* Test addExtra method.
+	*/
+	public function testAddExtra(): void {
+		$this->error->addExtra('user_id', 123);
+		$this->error->addExtra('request_id', 'abc-456');
+
+		$this->assertEquals(123, $this->error->getExtra('user_id'));
+		$this->assertEquals('abc-456', $this->error->getExtra('request_id'));
+	}
+
+	/**
+	* Test getExtra with non-existent key.
+	*/
+	public function testGetExtraNonExistent(): void {
+		$this->assertNull($this->error->getExtra('nonexistent'));
+	}
+
+	/**
+	* Test clearExtra method.
+	*/
+	public function testClearExtra(): void {
+		$this->error->addExtra('key1', 'value1');
+		$this->error->addExtra('key2', 'value2');
+
+		$this->error->clearExtra();
+
+		$this->assertEmpty($this->error->getAllExtra());
+		$this->assertNull($this->error->getExtra('key1'));
+	}
+
+	/**
+	* Test getAllExtra method.
+	*/
+	public function testGetAllExtra(): void {
+		$this->error->addExtra('key1', 'value1');
+		$this->error->addExtra('key2', 'value2');
+
+		$allExtra = $this->error->getAllExtra();
+
+		$this->assertIsArray($allExtra);
+		$this->assertCount(2, $allExtra);
+		$this->assertEquals('value1', $allExtra['key1']);
+		$this->assertEquals('value2', $allExtra['key2']);
+	}
+
+	/**
+	* Test __toString method.
+	*/
+	public function testToStringInvocation(): void {
+		$this->error->message = 'Test message for __toString';
+		$output = $this->error->__toString();
+
+		$this->assertIsString($output);
+		$this->assertNotEmpty($output);
+	}
+
+	/**
+	* Test formatField with empty value.
+	*/
+	public function testFormatFieldWithEmptyValue(): void {
+		$this->error->emptyField = '';
+		$formatted = $this->error->formatField('emptyField');
+
+		$this->assertIsString($formatted);
+	}
+
+	/**
+	* Test formatField with null value.
+	*/
+	public function testFormatFieldWithNullValue(): void {
+		$this->error->nullField = null;
+		$formatted = $this->error->formatField('nullField');
+
+		$this->assertIsString($formatted);
+	}
+
+	/**
+	* Test strForPrint auto-detection.
+	*/
+	public function testStrForPrintAutoDetection(): void {
+		$this->error->message = 'Auto-detect output';
+		$output = $this->error->strForPrint();
+
+		$this->assertIsString($output);
+		$this->assertNotEmpty($output);
+	}
+
+	/**
+	* Test strByOutType with WEB type.
+	*/
+	public function testStrByOutTypeWeb(): void {
+		$this->error->message = 'Web output';
+		$output = $this->error->strByOutType(OutputType::WEB);
+
+		$this->assertIsString($output);
+	}
+
+	/**
+	* Test strByOutType with FILE type.
+	*/
+	public function testStrByOutTypeFile(): void {
+		$this->error->message = 'File output';
+		$output = $this->error->strByOutType(OutputType::FILE);
+
+		$this->assertIsString($output);
+	}
+
+	/**
+	* Test updateDate with custom format.
+	*/
+	public function testUpdateDateCustomFormat(): void {
+		$settings = new HuErrorSettings();
+		$settings->AUTO_DATE = true;
+		$settings->DATE_FORMAT = 'd/m/Y';
+
+		$error = new HuError($settings);
+		$error->updateDate();
+
+		$this->assertNotEmpty($error->date);
+		$this->assertMatchesRegularExpression('/\d{2}\/\d{2}\/\d{4}/', $error->date);
+	}
+
+	/**
+	* Test setFromArray with multiple fields.
+	*/
+	public function testSetFromArrayMultipleFields(): void {
+		$settings = [
+			'field1' => 'value1',
+			'field2' => 'value2',
+			'field3' => 'value3',
+		];
+
+		$this->error->setFromArray($settings);
+
+		$this->assertEquals('value1', $this->error->field1);
+		$this->assertEquals('value2', $this->error->field2);
+		$this->assertEquals('value3', $this->error->field3);
+	}
+
+	/**
+	* Test mergeFromArray with existing fields.
+	*/
+	public function testMergeFromArrayExistingFields(): void {
+		$this->error->existing = 'original';
+		$this->error->mergeFromArray(['existing' => 'updated', 'new' => 'value']);
+
+		$this->assertEquals('updated', $this->error->existing);
+		$this->assertEquals('value', $this->error->new);
+	}
+
+	/**
+	* Test DATE property alias.
+	*/
+	public function testDateAlias(): void {
+		$settings = new HuErrorSettings();
+		$settings->AUTO_DATE = true;
+		$settings->DATE_FORMAT = 'Y-m-d';
+
+		$error = new HuError($settings);
+		$error->updateDate();
+
+		// Test 'date' property
+		$this->assertNotEmpty($error->date);
+	}
+
+	/**
+	* Test __get magic method for settings.
+	*/
+	public function testMagicGetSettings(): void {
+		$settings = $this->error->settings;
+		$this->assertInstanceOf(HuErrorSettings::class, $settings);
+	}
+
+	/**
+	* Test __get magic method for date property.
+	*/
+	public function testMagicGetDate(): void {
+		$settings = new HuErrorSettings();
+		$settings->AUTO_DATE = true;
+		$settings->DATE_FORMAT = 'Y-m-d';
+
+		$error = new HuError($settings);
+		$error->updateDate();
+
+		$date = $error->date;
+		$this->assertNotEmpty($date);
+	}
+
+	/**
+	* Test __get magic method for custom property.
+	*/
+	public function testMagicGetCustomProperty(): void {
+		$this->error->customProp = 'custom value';
+		$value = $this->error->customProp;
+
+		$this->assertEquals('custom value', $value);
+	}
 }
