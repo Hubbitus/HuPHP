@@ -436,8 +436,7 @@ class HuFormat extends HuError {
 					}
 					break;
 
-				default:
-					throw new VariableRangeException('Unknown operator - "'.$op.'"');
+				// No defaults - there is set default for $op before, so there impossible other values
 			}
 		}
 

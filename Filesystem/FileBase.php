@@ -182,12 +182,14 @@ class FileBase {
 	* @return	integer	Count of written bytes
 	**/
 	public function writeContent($flags = 0, $resource_context = null): int {
-		$this->checkOpenError(
-			// $this->rawFilename because may be file generally not exists!
-			false !== ($count = @\file_put_contents($this->path(), $this->content, $flags ?? 0, $resource_context))
-		);
+		try {
+			$this->checkOpenError(
+				false !== ($count = @\file_put_contents($this->path(), $this->content, $flags ?? 0, $resource_context))
+			);
+		} finally {
+			$this->_writePending = false;
+		}
 
-		$this->_writePending = false;
 		return $count ?? 0;
 	}
 

@@ -82,11 +82,14 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	* @param	boolean	$updateLineSep See {@see ::implodeLines()}
 	**/
 	public function writeContent($flags = null, $resource_context = null, ?string $implodeWith = null, bool $updateLineSep = true): int {
-		$this->checkOpenError(
-			// $this->rawFilename because may be file generally not exists!
-			false !==  ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags ?? 0, $resource_context))
-		);
-		$this->_writePending = false;
+		try {
+			$this->checkOpenError(
+				// $this->rawFilename because may be file generally not exists!
+				false !==  ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags ?? 0, $resource_context))
+			);
+		} finally {
+			$this->_writePending = false;
+		}
 		return $count ?? 0;
 	}
 

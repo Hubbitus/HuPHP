@@ -241,13 +241,13 @@ class HuError extends Settings implements IOutExtraData {
 		}
 
 		if ($fieldValue instanceof IOutExtraData){
-			return NON_EMPTY_STR($fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
+			return NON_EMPTY_STR($fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3] ?? '');
 		}
 		elseif($fieldValue instanceof Backtrace){
-			return NON_EMPTY_STR($fieldValue->printFormat(null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3]);
+			return NON_EMPTY_STR($fieldValue->printFormat(null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3] ?? '');
 		}
 		else {
-			return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3]);
+			return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3] ?? '');
 		}
 	}
 
