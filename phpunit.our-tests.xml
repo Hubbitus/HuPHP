@@ -21,6 +21,7 @@
             <file>tests/Database/DatabaseErrorTest.php</file>
             <file>tests/System/Console/HuGetoptOptionTest.php</file>
             <file>tests/RegExp/RegExpBaseTest.php</file>
+            <file>tests/System/OutputTypeTest.php</file>
         </testsuite>
     </testsuites>
 
