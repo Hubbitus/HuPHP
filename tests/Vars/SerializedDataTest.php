@@ -104,4 +104,37 @@ class SerializedDataTest extends TestCase {
         $this->assertEquals('value1', $restored['key1']);
         $this->assertEquals('value2', $restored['key2']);
     }
+
+    public function testMagicIssetReturnsTrueForExistingKey(): void {
+        $original = ['existing' => 'value'];
+        $serialized = \serialize($original);
+        $data = new SerializedData($serialized);
+
+        $this->assertTrue(isset($data->existing));
+    }
+
+    public function testMagicIssetReturnsFalseForNonExistingKey(): void {
+        $data = new SerializedData();
+
+        $this->assertFalse(isset($data->nonexistent));
+    }
+
+    public function testMagicUnsetRemovesKey(): void {
+        $original = ['key1' => 'value1', 'key2' => 'value2'];
+        $serialized = \serialize($original);
+        $data = new SerializedData($serialized);
+
+        unset($data->key1);
+
+        $this->assertFalse(isset($data->key1));
+        $this->assertTrue(isset($data->key2));
+    }
+
+    public function testConstructorWithSerializedBooleanFalse(): void {
+        // 'b:0;' is serialized boolean false - this will fail because
+        // __data is typed as array and false cannot be assigned
+        // This test documents the edge case behavior
+        $this->expectException(\TypeError::class);
+        new SerializedData('b:0;');
+    }
 }

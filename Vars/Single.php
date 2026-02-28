@@ -3,126 +3,118 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
 
+use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\Exceptions\Classes\ClassNotExistsException;
+use function Hubbitus\HuPHP\Vars\CONF;
+
 /**
 * Singleton pattern.
 * Sure I'm aware what Singleton may be anti-pattern. But usage it in the frameworks or small scripts is affordable in many scenarios.
-*
-* @package Vars
-* @subpackage Classes
-* @version 1.2.2
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created ?2008-05-30 13:22
-*
-* @uses OS
-* @uses HuConfig
-* @uses ClassNotExistsException
-**/
-
-use Hubbitus\HuPHP\System\OS;
-use Hubbitus\HuPHP\Exceptions\Classes\ClassNotExistsException;
-
-/**
 * Example from http://ru2.php.net/manual/ru/language.oop5.patterns.php, modified
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @created ?2008-05-30 13:22
 **/
 class Single {
-	/**
-	* Hold an instance of the class
-	**/
-	private static $instance = array();
+    /** @var array<string, object> Hold an instance of the class */
+    private static array $instance = [];
 
-	/**
-	* A private constructor; prevents direct creation of object
-	**/
-	protected final function __construct(){
-		echo 'I am constructed. But can\'t be :) ';
-	}//__c
+    /**
+    * A private constructor; prevents direct creation of object
+    **/
+    protected final function __construct() {
+        echo 'I am constructed. But can\'t be :) ';
+    }
 
-	/**
-	* The main singleton static method
-	* All call must be: Single::singleton('ClassName'). Or by its short alias: Single::def('ClassName')
-	*
-	* @param	string	$className Class name to provide Singleton instance for it.
-	* @params	variable number of parameters. Any other parameters directly passed to instantiated class-constructor.
-	**/
-	public static function &singleton($className){
-		$args = \func_get_args();
-		\array_shift($args); // Remove class name
+    /**
+    * The main singleton static method
+    * All call must be: Single::singleton('ClassName'). Or by its short alias: Single::def('ClassName')
+    *
+    * @param string $className Class name to provide Singleton instance for it.
+    * @return object Singleton instance of the class
+    **/
+    public static function &singleton($className) {
+        $args = \func_get_args();
+        \array_shift($args); // Remove class name
 
-		$hash = $className . '_' . self::hash($args);
-		if (!isset(self::$instance[$hash])){
-			if (!\function_exists('__autoload') && (!\function_exists('spl_autoload_functions') || !\spl_autoload_functions())) {
-				self::tryIncludeByClassName($className);
-			}
+        $hash = $className . '_' . self::hash($args);
+        if (!isset(self::$instance[$hash])) {
+            if (!\function_exists('__autoload') && (!\function_exists('spl_autoload_functions') || !\spl_autoload_functions())) {
+                self::tryIncludeByClassName($className);
+            }
 
-			/*
-			Using Reflection to instantiate class with any args.
-			See http://ru2.php.net/manual/ru/function.call-user-func-array.php, comment of richard_harrison at rjharrison dot org
-			*/
-			$reflectionObj = new \ReflectionClass($className);
+            /*
+            Using Reflection to instantiate class with any args.
+            See http://ru2.php.net/manual/ru/function.call-user-func-array.php, comment of richard_harrison at rjharrison dot org
+            */
+            $reflectionObj = new \ReflectionClass($className);
 
-			// Use Reflection to create a new instance, using the $args
-			if (empty($args)) {
-				self::$instance[$hash] = $reflectionObj->newInstance();
-			} else {
-				try {
-					self::$instance[$hash] = $reflectionObj->newInstanceArgs($args);
-				} catch (\ReflectionException $e) {
-					// Fallback for classes without constructor that accepts arguments
-					self::$instance[$hash] = $reflectionObj->newInstance();
-				}
-			}
-		}
+            // Use Reflection to create a new instance, using the $args
+            if ([] === $args) {
+                self::$instance[$hash] = $reflectionObj->newInstance();
+            } else {
+                try {
+                    self::$instance[$hash] = $reflectionObj->newInstanceArgs($args);
+                } catch (\ReflectionException $e) {
+                    // Fallback for classes without constructor that accepts arguments
+                    self::$instance[$hash] = $reflectionObj->newInstance();
+                }
+            }
+        }
 
-		return self::$instance[$hash];
-	}
-	/**
-	* The default configured. Short alias for {@see ::singleton()}
-	*
-	* @return &Object($classname)
-	**/
-	public static function &def($className){
-		return self::singleton($className, CONF()->getRaw($className, true));
-	}
-	/**
-	* Try include
-	*
-	* @deprecated Use autoload instead.
-	* @param string	$className Name of needed class
-	* @return
-	**/
-	public static function tryIncludeByClassName($className): void {
-		file_put_contents('php://stderr', 'Usage of Single::tryIncludeByClassName is deprecated. Use autoload instead.');
-		// is_readable is not use include_path, so can not use this check. More explanation see {$link OS::is_includeable()}
-		if (!class_exists($className) and isset($GLOBALS['__CONFIG'][$className]['class_file']) and OS::is_includeable($GLOBALS['__CONFIG'][$className]['class_file']))
-		include($GLOBALS['__CONFIG'][$className]['class_file']);
+        return self::$instance[$hash];
+    }
 
-		// Check again
-		if (!class_exists($className)) throw new ClassNotExistsException($className . ' NOT exist!'. (!@$GLOBALS['__CONFIG'][$className]['class_file'] ? '' : ' And, additionaly include provided path ['.$GLOBALS['__CONFIG'][$className]['class_file'].'] not helped in this!'));
-	}
-	/**
-	* Prevent users to clone the instance
-	**/
-	public function __clone(){
-		trigger_error('Clone is not allowed.', E_USER_ERROR);
-	}
-	/**
-	 * Provide simple way of hashing objects and array
-	 *
-	 * @param	mixed $param
-	 * @return	string
-	 */
-	public static function hash($param): string {
-		return md5(http_build_query($param));
-	}
+    /**
+    * The default configured. Short alias for {@see ::singleton()}
+    *
+    * @param string $className Class name to provide Singleton instance for it.
+    * @return object Singleton instance of the class
+    **/
+    public static function &def($className) {
+        $config = CONF()->getRaw($className, true);
+        // If config is null, call singleton without arguments
+        if (null === $config) {
+            return self::singleton($className);
+        }
+        return self::singleton($className, $config);
+    }
+
+    /**
+    * Try include
+    *
+    * @deprecated Use autoload instead.
+    * @param string $className Name of needed class
+    * @return void
+    **/
+    public static function tryIncludeByClassName($className): void {
+        \file_put_contents('php://stderr', 'Usage of Single::tryIncludeByClassName is deprecated. Use autoload instead.');
+        // is_readable is not use include_path, so can not use this check. More explanation see {$link OS::is_includeable()}
+        if (!\class_exists($className) && isset($GLOBALS['__CONFIG'][$className]['class_file']) && OS::is_includeable($GLOBALS['__CONFIG'][$className]['class_file'])) {
+            include($GLOBALS['__CONFIG'][$className]['class_file']);
+        }
+
+        // Check again
+        if (!\class_exists($className)) {
+            throw new ClassNotExistsException($className . ' NOT exist!' . (!@$GLOBALS['__CONFIG'][$className]['class_file'] ? '' : ' And, additionaly include provided path [' . $GLOBALS['__CONFIG'][$className]['class_file'] . '] not helped in this!'));
+        }
+    }
+
+    /**
+    * Prevent users to clone the instance
+    **/
+    public function __clone() {
+        \trigger_error('Clone is not allowed.', E_USER_ERROR);
+    }
+
+    /**
+    * Provide simple way of hashing objects and array
+    *
+    * @param mixed $param
+    * @return string
+    **/
+    public static function hash($param): string {
+        return \md5(\http_build_query($param));
+    }
 }
-/**
-* @example
-* This will always retrieve a single instance of the class
-*
-* $test = Single::singleton();
-* $test->bark();
-* $test = Single::singleton()->bark();
-* //Default invoke, using $GLOBALS['__CONFIG']['classname'] as arguments.
-* Single::def('classname')->...
-**/
+

@@ -17,6 +17,7 @@ namespace Hubbitus\HuPHP\Vars;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use Hubbitus\HuPHP\System\OS;
 use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
+use Hubbitus\HuPHP\Vars\Single;
 use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
 
 /**
@@ -134,10 +135,10 @@ function &CONF($className = null, $noThrow = false){
 	* else return Single::def('HuConfig');
 	**/
 	if ($className) {
-		 return Single::singleton('HuConfig')->__get($className);
+		 return Single::singleton(HuConfig::class)->__get($className);
 	}
 	else {
-		 return Single::singleton('HuConfig');
+		 return Single::singleton(HuConfig::class);
 	}
 }
 

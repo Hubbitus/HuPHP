@@ -34,10 +34,10 @@ class HuGetoptOptionTest extends TestCase {
     }
 
     public function testConstructorWithArray(): void {
-        $possibles = ['long' => 'l'];
+        $possibles = ['OptL' => null, 'OptS' => null];
         $array = ['OptL' => 'long', 'OptS' => 'l'];
         $option = new HuGetoptOption($possibles, $array);
-        
+
         $this->assertEquals('long', $option->OptL);
         $this->assertEquals('l', $option->OptS);
     }
