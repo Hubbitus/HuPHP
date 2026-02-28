@@ -158,6 +158,7 @@ class HuGetoptTest extends TestCase {
 	public function testIsShortOpt(): void {
 		$opts = [['s', 'short', '']];
 		$getopt = new HuGetopt($opts);
+		$getopt->setArgv(['script.php', '-s']);
 
 		$result = $getopt->isShortOpt('-s');
 
@@ -171,6 +172,7 @@ class HuGetoptTest extends TestCase {
 			['c', 'count', ''],
 		];
 		$getopt = new HuGetopt($opts);
+		$getopt->setArgv(['script.php', '-abc']);
 
 		$result = $getopt->isShortOpt('-abc');
 
@@ -180,6 +182,7 @@ class HuGetoptTest extends TestCase {
 	public function testIsShortOptNotOption(): void {
 		$opts = [['x', 'xopt', '']];
 		$getopt = new HuGetopt($opts);
+		$getopt->setArgv(['script.php', 'not-an-option']);
 
 		$result = $getopt->isShortOpt('not-an-option');
 
@@ -189,6 +192,7 @@ class HuGetoptTest extends TestCase {
 	public function testIsLongOpt(): void {
 		$opts = [['l', 'long', '']];
 		$getopt = new HuGetopt($opts);
+		$getopt->setArgv(['script.php', '--long']);
 
 		$result = $getopt->isLongOpt('--long');
 
@@ -198,6 +202,7 @@ class HuGetoptTest extends TestCase {
 	public function testIsLongOptWithValue(): void {
 		$opts = [['f', 'file', ':']];
 		$getopt = new HuGetopt($opts);
+		$getopt->setArgv(['script.php', '--file=test.txt']);
 
 		$result = $getopt->isLongOpt('--file=test.txt');
 
@@ -207,6 +212,7 @@ class HuGetoptTest extends TestCase {
 	public function testIsLongOptNotOption(): void {
 		$opts = [['y', 'yopt', '']];
 		$getopt = new HuGetopt($opts);
+		$getopt->setArgv(['script.php', 'not-long-option']);
 
 		$result = $getopt->isLongOpt('not-long-option');
 
@@ -261,7 +267,7 @@ class HuGetoptTest extends TestCase {
 		$opts = [['t', 'test', '']];
 		$getopt = new HuGetopt($opts);
 
-		$settings = $getopt->settings();
+		$settings = $getopt->sets();
 
 		$this->assertInstanceOf(HuGetoptSettings::class, $settings);
 	}
@@ -270,8 +276,8 @@ class HuGetoptTest extends TestCase {
 		$opts = [['d', 'default', '']];
 		$getopt = new HuGetopt($opts);
 
-		$this->assertEquals(['-'], $getopt->settings()->start_short);
-		$this->assertEquals(['--'], $getopt->settings()->start_long);
+		$this->assertEquals(['-'], $getopt->sets()->start_short);
+		$this->assertEquals(['--'], $getopt->sets()->start_long);
 	}
 
 	public function testParseArgsWithDoubleDash(): void {
