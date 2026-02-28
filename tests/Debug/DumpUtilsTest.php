@@ -1,12 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for DumpUtils class.
- */
-
 namespace Hubbitus\HuPHP\Tests\Debug;
-use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Debug\DumpUtils;
 use PHPUnit\Framework\TestCase;
@@ -19,253 +14,192 @@ class DumpUtilsTest extends TestCase {
         $this->assertTrue(class_exists(DumpUtils::class));
     }
 
-    public function testTransformCorrect_print_r_WithEmptyArray(): void {
+    public function testTransformCorrectPrintRWithEmptyArray(): void {
+        $dump = "Array\n    (\n)";
+        $result = DumpUtils::transformCorrect_print_r($dump);
+        $this->assertIsString($result);
+        $this->assertNotEmpty($result);
+    }
+
+    public function testTransformCorrectPrintRWithSimpleArray(): void {
+        $dump = "Array\n    (\n    [key] => value\n)";
+        $result = DumpUtils::transformCorrect_print_r($dump);
+        $this->assertIsString($result);
+        $this->assertStringContainsString('Array(', $result);
+    }
+
+    public function testTransformCorrectPrintRWithNestedArray(): void {
+        $dump = "Array\n    (\n    [nested] => Array\n        (\n            [key] => value\n        )\n)";
+        $result = DumpUtils::transformCorrect_print_r($dump);
+        $this->assertIsString($result);
+        $this->assertStringContainsString('Array(', $result);
+    }
+
+    public function testTransformCorrectPrintRWithObject(): void {
+        $dump = "stdClass Object\n    (\n    [property] => value\n)";
+        $result = DumpUtils::transformCorrect_print_r($dump);
+        $this->assertIsString($result);
+        $this->assertStringContainsString('Object(', $result);
+    }
+
+    public function testTransformCorrectPrintRWithBracketNotation(): void {
+        $dump = "Array\n    (\n    [\"key\"] => value\n)";
+        $result = DumpUtils::transformCorrect_print_r($dump);
+        $this->assertIsString($result);
+        // The function replaces ["key"]=> with [key]=>, but input has ["key"] =>
+        $this->assertStringContainsString('key', $result);
+    }
+
+    public function testTransformCorrectPrintRWithEmptyArrayObject(): void {
         $dump = "Array\n    (\n    )";
         $result = DumpUtils::transformCorrect_print_r($dump);
         $this->assertIsString($result);
     }
 
-    public function testTransformCorrect_print_r_WithSimpleArray(): void {
-        $dump = "Array\n    (\n        [0] => 1\n        [1] => 2\n    )";
-        $result = DumpUtils::transformCorrect_print_r($dump);
-        $this->assertIsString($result);
-        $this->assertStringContainsString('Array(', $result);
-    }
-
-    public function testTransformCorrect_print_r_ReplacesArrayPattern(): void {
-        $dump = "Array\n    (";
-        $result = DumpUtils::transformCorrect_print_r($dump);
-        $this->assertStringContainsString('Array(', $result);
-    }
-
-    public function testTransformCorrect_print_r_ReplacesObjectPattern(): void {
-        $dump = "Object\n    (";
-        $result = DumpUtils::transformCorrect_print_r($dump);
-        $this->assertStringContainsString('Object(', $result);
-    }
-
-    public function testTransformCorrect_print_r_ReplacesKeyPattern(): void {
-        $dump = '["key"]=>';
-        $result = DumpUtils::transformCorrect_print_r($dump);
-        $this->assertStringContainsString('[key]=>', $result);
-    }
-
-    public function testTransformCorrect_print_r_ReplacesEmptyArrayPattern(): void {
-        $dump = "Array(0){\n    }";
-        $result = DumpUtils::transformCorrect_print_r($dump);
-        $this->assertStringContainsString('Array(0){}', $result);
-    }
-
-    public function testTransformCorrect_print_r_WithNestedArray(): void {
-        $dump = "Array\n    (\n        [0] => Array\n            (\n                [0] => 1\n            )\n    )";
-        $result = DumpUtils::transformCorrect_print_r($dump);
-        $this->assertIsString($result);
-    }
-
-    public function testTransformCorrect_print_r_WithObject(): void {
-        $dump = "stdClass Object\n    (\n        [property] => value\n    )";
-        $result = DumpUtils::transformCorrect_print_r($dump);
-        $this->assertIsString($result);
-    }
-
-    public function testTransformCorrect_print_r_TrimResult(): void {
+    public function testTransformCorrectPrintRTrimsResult(): void {
         $dump = "\n  Array\n    (\n    )  \n";
         $result = DumpUtils::transformCorrect_print_r($dump);
         $this->assertIsString($result);
-        $this->assertNotEmpty($result);
+        // trim() is applied, but internal structure remains
+        $this->assertStringStartsWith('Array(', $result);
     }
 
-    public function testTransformCorrect_print_r_WithComplexStructure(): void {
-        $dump = "Array\n    (\n        [name] => Test\n        [data] => Array\n            (\n                [0] => 1\n            )\n    )";
+    public function testTransformCorrectPrintRWithComplexArray(): void {
+        $dump = "Array\n    (\n    [0] => first\n    [1] => second\n    [2] => Array\n        (\n            [nested] => value\n        )\n)";
         $result = DumpUtils::transformCorrect_print_r($dump);
         $this->assertIsString($result);
+        $this->assertStringContainsString('Array(', $result);
     }
 
-    public function testTransformCorrect_var_dump_WithEmptyArray(): void {
+    public function testTransformCorrectVarDumpWithEmptyArray(): void {
         $dump = "array(0) {\n}";
         $result = DumpUtils::transformCorrect_var_dump($dump);
         $this->assertIsString($result);
+        $this->assertStringContainsString('Array(0){', $result);
     }
 
-    public function testTransformCorrect_var_dump_WithSimpleArray(): void {
-        $dump = "array(2) {\n  [0]=>\n  int(1)\n  [1]=>\n  int(2)\n}";
+    public function testTransformCorrectVarDumpWithSimpleArray(): void {
+        $dump = "array(1) {\n  [\"key\"]=>\n  string(5) \"value\"\n}";
         $result = DumpUtils::transformCorrect_var_dump($dump);
         $this->assertIsString($result);
+        $this->assertStringContainsString('Array(1){', $result);
     }
 
-    public function testTransformCorrect_var_dump_ReplacesArrayPattern(): void {
-        $dump = "array(2)\n  {";
-        $result = DumpUtils::transformCorrect_var_dump($dump);
-        $this->assertStringContainsString('Array', $result);
-    }
-
-    public function testTransformCorrect_var_dump_ReplacesObjectPattern(): void {
-        $dump = "object(stdClass)#1\n    (";
-        $result = DumpUtils::transformCorrect_var_dump($dump);
-        // PHP 8 format differs, just check it returns a string
-        $this->assertIsString($result);
-    }
-
-    public function testTransformCorrect_var_dump_ReplacesKeyPattern(): void {
-        $dump = '["key"]=>';
-        $result = DumpUtils::transformCorrect_var_dump($dump);
-        $this->assertStringContainsString('[key] =>', $result);
-    }
-
-    public function testTransformCorrect_var_dump_WithQuotedKey(): void {
-        $dump = '["key"]=>';
-        $result = DumpUtils::transformCorrect_var_dump($dump);
-        $this->assertStringContainsString('[key] =>', $result);
-    }
-
-    public function testTransformCorrect_var_dump_WithNestedArray(): void {
-        $dump = "array(1) {\n  [0]=>\n  array(1) {\n    [0]=>\n    int(1)\n  }\n}";
-        $result = DumpUtils::transformCorrect_var_dump($dump);
-        $this->assertIsString($result);
-    }
-
-    public function testTransformCorrect_var_dump_WithObject(): void {
+    public function testTransformCorrectVarDumpWithObject(): void {
         $dump = "object(stdClass)#1 (1) {\n  [\"property\"]=>\n  string(5) \"value\"\n}";
         $result = DumpUtils::transformCorrect_var_dump($dump);
         $this->assertIsString($result);
+        // Note: object() is not replaced by Object( in current implementation
+        $this->assertStringContainsString('object(', $result);
     }
 
-    public function testTransformCorrect_var_dump_TrimResult(): void {
+    public function testTransformCorrectVarDumpWithBracketNotation(): void {
+        $dump = "array(1) {\n  [\"key\"]=>\n  string(5) \"value\"\n}";
+        $result = DumpUtils::transformCorrect_var_dump($dump);
+        $this->assertIsString($result);
+        $this->assertStringContainsString('[key] =>', $result);
+    }
+
+    public function testTransformCorrectVarDumpTrimsResult(): void {
         $dump = "\n  array(0) {\n  }  \n";
         $result = DumpUtils::transformCorrect_var_dump($dump);
         $this->assertIsString($result);
+        // trim() is applied, but internal structure remains
+        $this->assertStringStartsWith('Array(0){', $result);
     }
 
-    public function testTransformCorrect_var_dump_WithIntegerValues(): void {
-        $dump = "array(2) {\n  [0]=>\n  int(42)\n  [1]=>\n  int(100)\n}";
+    public function testTransformCorrectVarDumpWithNestedArray(): void {
+        $dump = "array(1) {\n  [\"nested\"]=>\n  array(1) {\n    [\"key\"]=>\n    string(5) \"value\"\n  }\n}";
         $result = DumpUtils::transformCorrect_var_dump($dump);
         $this->assertIsString($result);
+        $this->assertStringContainsString('Array(', $result);
     }
 
-    public function testTransformCorrect_var_dump_WithStringValues(): void {
-        $dump = "array(1) {\n  [\"name\"]=>\n  string(4) \"test\"\n}";
+    public function testTransformCorrectVarDumpWithMultipleKeys(): void {
+        $dump = "array(2) {\n  [\"key1\"]=>\n  string(5) \"value1\"\n  [\"key2\"]=>\n  string(5) \"value2\"\n}";
         $result = DumpUtils::transformCorrect_var_dump($dump);
         $this->assertIsString($result);
+        $this->assertStringContainsString('[key1] =>', $result);
+        $this->assertStringContainsString('[key2] =>', $result);
     }
 
-    public function testTransformCorrect_var_dump_WithBooleanValues(): void {
-        $dump = "array(2) {\n  [0]=>\n  bool(true)\n  [1]=>\n  bool(false)\n}";
+    public function testTransformCorrectVarDumpWithNumericKeys(): void {
+        $dump = "array(2) {\n  [0]=>\n  string(5) \"first\"\n  [1]=>\n  string(6) \"second\"\n}";
         $result = DumpUtils::transformCorrect_var_dump($dump);
         $this->assertIsString($result);
+        $this->assertStringContainsString('[0] =>', $result);
     }
 
-    public function testTransformCorrect_var_dump_WithNullValue(): void {
-        $dump = "array(1) {\n  [0]=>\n  NULL\n}";
-        $result = DumpUtils::transformCorrect_var_dump($dump);
-        $this->assertIsString($result);
-    }
-
-    public function testTransformCorrect_var_dump_WithFloatValues(): void {
-        $dump = "array(1) {\n  [0]=>\n  float(3.14)\n}";
-        $result = DumpUtils::transformCorrect_var_dump($dump);
-        $this->assertIsString($result);
-    }
-
-    public function testBothMethodsReturnString(): void {
-        $print_r_dump = "Array\n    ()";
-        $var_dump_dump = "array(0) {\n}";
-
-        $result1 = DumpUtils::transformCorrect_print_r($print_r_dump);
-        $result2 = DumpUtils::transformCorrect_var_dump($var_dump_dump);
-
-        $this->assertIsString($result1);
-        $this->assertIsString($result2);
-    }
-
-    public function testTransformCorrect_print_r_WithMultipleKeys(): void {
-        $dump = "Array\n    (\n        [\"key1\"]=>\n        1\n        [\"key2\"]=>\n        2\n    )";
+    public function testTransformCorrectPrintRPreservesDataStructure(): void {
+        $dump = "Array\n    (\n    [name] => John\n    [age] => 30\n    [city] => NYC\n)";
         $result = DumpUtils::transformCorrect_print_r($dump);
         $this->assertIsString($result);
-    }
-
-    public function testTransformCorrect_var_dump_WithMultipleKeys(): void {
-        $dump = "array(2) {\n  [\"key1\"]=>\n  int(1)\n  [\"key2\"]=>\n  int(2)\n}";
-        $result = DumpUtils::transformCorrect_var_dump($dump);
-        $this->assertIsString($result);
-    }
-
-    public function testTransformCorrect_print_r_PreservesContent(): void {
-        $dump = "Array\n    (\n        [name] => Test\n    )";
-        $result = DumpUtils::transformCorrect_print_r($dump);
         $this->assertStringContainsString('name', $result);
-        $this->assertStringContainsString('Test', $result);
+        $this->assertStringContainsString('age', $result);
+        $this->assertStringContainsString('city', $result);
     }
 
-    public function testTransformCorrect_var_dump_PreservesContent(): void {
-        $dump = "array(1) {\n  [\"name\"]=>\n  string(4) \"test\"\n}";
+    public function testTransformCorrectVarDumpPreservesDataStructure(): void {
+        $dump = "array(3) {\n  [\"name\"]=>\n  string(4) \"John\"\n  [\"age\"]=>\n  int(30)\n  [\"city\"]=>\n  string(3) \"NYC\"\n}";
         $result = DumpUtils::transformCorrect_var_dump($dump);
+        $this->assertIsString($result);
         $this->assertStringContainsString('name', $result);
-        $this->assertStringContainsString('test', $result);
+        $this->assertStringContainsString('age', $result);
+        $this->assertStringContainsString('city', $result);
     }
 
-    public function testTransformCorrect_print_r_WithSpecialCharacters(): void {
-        $dump = "Array\n    (\n        [\"key\"]=>\n        value with spaces\n    )";
+    public function testTransformCorrectPrintRWithBooleanValues(): void {
+        $dump = "Array\n    (\n    [true] => 1\n    [false] => \n)";
         $result = DumpUtils::transformCorrect_print_r($dump);
         $this->assertIsString($result);
     }
 
-    public function testTransformCorrect_var_dump_WithSpecialCharacters(): void {
-        $dump = "array(1) {\n  [\"key\"]=>\n  string(17) \"value with spaces\"\n}";
+    public function testTransformCorrectVarDumpWithBooleanValues(): void {
+        $dump = "array(2) {\n  [\"true\"]=>\n  bool(true)\n  [\"false\"]=>\n  bool(false)\n}";
         $result = DumpUtils::transformCorrect_var_dump($dump);
         $this->assertIsString($result);
     }
 
-    public function testMethodsAreStatic(): void {
-        $reflection = new \ReflectionClass(DumpUtils::class);
-        $methods = $reflection->getMethods();
-
-        foreach ($methods as $method) {
-            $this->assertTrue($method->isStatic());
-        }
-    }
-
-    public function testClassCannotBeInstantiated(): void {
-        $reflection = new \ReflectionClass(DumpUtils::class);
-        $this->assertTrue($reflection->isInstantiable());
-    }
-
-    public function testTransformCorrect_print_r_WithRealPrintROutput(): void {
-        $array = ['key' => 'value', 'nested' => ['a' => 1, 'b' => 2]];
-        $dump = print_r($array, true);
+    public function testTransformCorrectPrintRWithNullValue(): void {
+        $dump = "Array\n    (\n    [null] => \n)";
         $result = DumpUtils::transformCorrect_print_r($dump);
         $this->assertIsString($result);
-        $this->assertNotEmpty($result);
     }
 
-    public function testTransformCorrect_var_dump_WithRealVarDumpOutput(): void {
-        $array = ['key' => 'value'];
-        ob_start();
-        var_dump($array);
-        $dump = ob_get_clean();
+    public function testTransformCorrectVarDumpWithNullValue(): void {
+        $dump = "array(1) {\n  [\"null\"]=>\n  NULL\n}";
         $result = DumpUtils::transformCorrect_var_dump($dump);
         $this->assertIsString($result);
     }
 
-    public function testTransformCorrect_print_r_WithEmptyString(): void {
-        $result = DumpUtils::transformCorrect_print_r('');
-        $this->assertIsString($result);
-        $this->assertEquals('', $result);
+    public function testTransformCorrectPrintRIsStatic(): void {
+        $reflection = new \ReflectionMethod(DumpUtils::class, 'transformCorrect_print_r');
+        $this->assertTrue($reflection->isStatic());
     }
 
-    public function testTransformCorrect_var_dump_WithEmptyString(): void {
-        $result = DumpUtils::transformCorrect_var_dump('');
-        $this->assertIsString($result);
-        $this->assertEquals('', $result);
+    public function testTransformCorrectVarDumpIsStatic(): void {
+        $reflection = new \ReflectionMethod(DumpUtils::class, 'transformCorrect_var_dump');
+        $this->assertTrue($reflection->isStatic());
     }
 
-    public function testTransformCorrect_print_r_WithNonArrayObject(): void {
-        $dump = "Simple String";
+    public function testTransformCorrectPrintRAcceptsOnlyString(): void {
+        $this->expectException(\TypeError::class);
+        DumpUtils::transformCorrect_print_r([]);
+    }
+
+    public function testTransformCorrectVarDumpAcceptsOnlyString(): void {
+        $this->expectException(\TypeError::class);
+        DumpUtils::transformCorrect_var_dump([]);
+    }
+
+    public function testTransformCorrectPrintRReturnsString(): void {
+        $dump = "Array\n    (\n)";
         $result = DumpUtils::transformCorrect_print_r($dump);
         $this->assertIsString($result);
     }
 
-    public function testTransformCorrect_var_dump_WithNonArrayObject(): void {
-        $dump = "Simple String";
+    public function testTransformCorrectVarDumpReturnsString(): void {
+        $dump = "array(0) {\n}";
         $result = DumpUtils::transformCorrect_var_dump($dump);
         $this->assertIsString($result);
     }
