@@ -155,17 +155,17 @@ class HuGetoptTest extends TestCase {
 		$this->assertInstanceOf('Hubbitus\HuPHP\Vars\HuArray', $nonOpts);
 	}
 
-	public function testIsShortOpt(): void {
+	public function testGetShortOpt(): void {
 		$opts = [['s', 'short', '']];
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', '-s']);
 
-		$result = $getopt->isShortOpt('-s');
+		$result = $getopt->getShortOpt('-s');
 
 		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $result);
 	}
 
-	public function testIsShortOptWithSequence(): void {
+	public function testGetShortOptWithSequence(): void {
 		$opts = [
 			['a', 'all', ''],
 			['b', 'brief', ''],
@@ -174,49 +174,49 @@ class HuGetoptTest extends TestCase {
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', '-abc']);
 
-		$result = $getopt->isShortOpt('-abc');
+		$result = $getopt->getShortOpt('-abc');
 
 		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $result);
 	}
 
-	public function testIsShortOptNotOption(): void {
+	public function testGetShortOptNotOption(): void {
 		$opts = [['x', 'xopt', '']];
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', 'not-an-option']);
 
-		$result = $getopt->isShortOpt('not-an-option');
+		$result = $getopt->getShortOpt('not-an-option');
 
-		$this->assertFalse($result);
+		$this->assertNull($result);
 	}
 
-	public function testIsLongOpt(): void {
+	public function testGetLongOpt(): void {
 		$opts = [['l', 'long', '']];
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', '--long']);
 
-		$result = $getopt->isLongOpt('--long');
+		$result = $getopt->getLongOpt('--long');
 
 		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $result);
 	}
 
-	public function testIsLongOptWithValue(): void {
+	public function testGetLongOptWithValue(): void {
 		$opts = [['f', 'file', ':']];
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', '--file=test.txt']);
 
-		$result = $getopt->isLongOpt('--file=test.txt');
+		$result = $getopt->getLongOpt('--file=test.txt');
 
 		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $result);
 	}
 
-	public function testIsLongOptNotOption(): void {
+	public function testGetLongOptNotOption(): void {
 		$opts = [['y', 'yopt', '']];
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', 'not-long-option']);
 
-		$result = $getopt->isLongOpt('not-long-option');
+		$result = $getopt->getLongOpt('not-long-option');
 
-		$this->assertFalse($result);
+		$this->assertNull($result);
 	}
 
 	public function testParseArgsSimple(): void {

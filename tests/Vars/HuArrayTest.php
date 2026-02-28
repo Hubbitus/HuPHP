@@ -41,13 +41,15 @@ class HuArrayTest extends TestCase {
     }
 
     public function testConstructorWithString(): void {
+        // HuArray constructor only accepts ?array, not strings
+        $this->expectException(\TypeError::class);
         $array = new HuArray('test');
-        $this->assertInstanceOf(HuArray::class, $array);
     }
 
     public function testConstructorWithInteger(): void {
+        // HuArray constructor only accepts ?array, not integers
+        $this->expectException(\TypeError::class);
         $array = new HuArray(42);
-        $this->assertInstanceOf(HuArray::class, $array);
     }
 
     public function testPushSingleValue(): void {

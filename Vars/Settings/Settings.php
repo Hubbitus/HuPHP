@@ -39,7 +39,7 @@ class Settings extends HuClass {
 	* @param	mixed	$value
 	* @return	&$this
 	**/
-	public function &setSetting($name, $value): static {
+	public function &setSetting(string $name, mixed $value): static {
 		$this->__SETS[$name] = $value;
 		return $this;
 	}
@@ -82,7 +82,7 @@ class Settings extends HuClass {
 	* @param        string  $name
 	* @return       mixed
 	**/
-	public function &getProperty($name){
+	public function &getProperty($name): mixed {
 			return $this->__SETS[REQUIRED_NOT_NULL($name)];
 	}
 
@@ -92,7 +92,7 @@ class Settings extends HuClass {
 	* @param        string  $name
 	* @param        mixed   $value
 	**/
-	public function __set($name, $value): void {
+	public function __set(string $name, mixed $value): void {
 			$this->setSetting($name, $value);
 	}
 
@@ -102,7 +102,7 @@ class Settings extends HuClass {
 	* @param        string  $name
 	* @return       mixed
 	**/
-	public function &__get($name){
+	public function &__get(string $name): mixed {
 			return $this->getProperty($name);
 	}
 
@@ -112,7 +112,7 @@ class Settings extends HuClass {
 	* @param        string  $name   Name of requested property
 	* @return       boolean
 	**/
-	public function __isset($name): bool {
+	public function __isset(string $name): bool {
 			return isset($this->__SETS[REQUIRED_NOT_NULL($name)]);
 	}
 
@@ -131,29 +131,27 @@ class Settings extends HuClass {
 	}
 
 	/**
-	* Format Field Primarily for {@see ::getString}, but may be used and separately
-	* $field one of:
-	*	1) Именем настройки. Если найдена такая настройка и она не пуста, подставляется она
-	*	2) Просто константной строкой, тогда выводится как есть
-	*	2) Массивом, формата:
-	*		array(
-	*		'str' => Имя настройки. (обязательно)
+	* Format Field Primarily for {@see ::getString}, but may be used separately too
+	* $field should be one of the:
+	*	1) Property name. If it present and not empty - will be used. Если найдена такая настройка и она не пуста, подставляется она
+	*	2) Constant string (no property found by it) - used "as is"
+	*	3) Array with structure:
+	*	[
+	*		'str' => propertyName
 	*		'prefix' => ''
 	*		'suffix' => ''
 	*		'defValue' => ''
-	*		)
-	*		Вместо ассоциативного массива, допустимы и числовые стандартные индексы, чтобы короче писать не:
-	*		array('str' =>'tag', 'prefix' => '<', 'suffix' => '>', 'defValue' => '<unknown>'),
-	*		а просто, коротко и красиво
-	*		array('tag', '<', '>', '<unknown>'),
-	*		Передаются в макрос NON_EMPTY_STR, см. его для подробностей
+	*	]
+	*	Note. Array may be uses with keys and without, for simplicity of calling. So both variants are equivalents:
+	*	- ['str' => 'tag', 'prefix' => '<', 'suffix' => '>', 'defValue' => '<unknown>']
+	*	- ['tag', '<', '>', '<unknown>']
 	*
 	* @param	array|string	$field
 	* @return string
 	**/
-	public function formatField($field): string {
-		if (is_array($field)){
-			if (!isset($field[0])) $field = array_values($field);
+	public function formatField(array|string $field): string {
+		if (\is_array($field)){
+			if (!isset($field[0])) $field = \array_values($field);
 			return NON_EMPTY_STR(@$this->getProperty($field[0]), @$field[1], @$field[2], @$field[3]);
 		}
 		else{

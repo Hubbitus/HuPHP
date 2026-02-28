@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  * Integration tests for HuGetopt class.
  *
  * @covers \Hubbitus\HuPHP\System\Console\HuGetopt
- */
+**/
 class HuGetoptNewTest extends TestCase {
     public function testHuGetoptClassExists(): void {
         $this->assertTrue(class_exists(HuGetopt::class));
@@ -212,82 +212,82 @@ class HuGetoptNewTest extends TestCase {
         );
     }
 
-    public function testIsShortOpt(): void {
+    public function testGetShortOpt(): void {
         $settings = new HuGetoptSettings();
         $argv = ['script.php', '-v'];
         $opts = [['v', 'verbose', '']];
         $getopt = new HuGetopt($opts, $settings);
         $getopt->setArgv($argv);
 
-        $result = $getopt->isShortOpt('-v');
+        $result = $getopt->getShortOpt('-v');
         $this->assertInstanceOf(
             \Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
             $result
         );
     }
 
-    public function testIsShortOptWithArgument(): void {
+    public function testGetShortOptWithArgument(): void {
         $settings = new HuGetoptSettings();
         $argv = ['script.php', '-f', 'test.txt'];
         $opts = [['f', 'file', ':']];
         $getopt = new HuGetopt($opts, $settings);
         $getopt->setArgv($argv);
 
-        $result = $getopt->isShortOpt('-f');
+        $result = $getopt->getShortOpt('-f');
         $this->assertInstanceOf(
             \Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
             $result
         );
     }
 
-    public function testIsShortOptNotOption(): void {
+    public function testGetShortOptNotOption(): void {
         $settings = new HuGetoptSettings();
         $argv = ['script.php', 'notanoption'];
         $opts = [['v', 'verbose', '']];
         $getopt = new HuGetopt($opts, $settings);
         $getopt->setArgv($argv);
 
-        $result = $getopt->isShortOpt('notanoption');
-        $this->assertFalse($result);
+        $result = $getopt->getShortOpt('notanoption');
+        $this->assertNull($result);
     }
 
-    public function testIsLongOpt(): void {
+    public function testGetLongOpt(): void {
         $settings = new HuGetoptSettings();
         $argv = ['script.php', '--verbose'];
         $opts = [['v', 'verbose', '']];
         $getopt = new HuGetopt($opts, $settings);
         $getopt->setArgv($argv);
 
-        $result = $getopt->isLongOpt('--verbose');
+        $result = $getopt->getLongOpt('--verbose');
         $this->assertInstanceOf(
             \Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
             $result
         );
     }
 
-    public function testIsLongOptWithEquals(): void {
+    public function testGetLongOptWithEquals(): void {
         $settings = new HuGetoptSettings();
         $argv = ['script.php', '--file=test.txt'];
         $opts = [['f', 'file', ':']];
         $getopt = new HuGetopt($opts, $settings);
         $getopt->setArgv($argv);
 
-        $result = $getopt->isLongOpt('--file=test.txt');
+        $result = $getopt->getLongOpt('--file=test.txt');
         $this->assertInstanceOf(
             \Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
             $result
         );
     }
 
-    public function testIsLongOptNotOption(): void {
+    public function testGetLongOptNotOption(): void {
         $settings = new HuGetoptSettings();
         $argv = ['script.php', 'notanoption'];
         $opts = [['v', 'verbose', '']];
         $getopt = new HuGetopt($opts, $settings);
         $getopt->setArgv($argv);
 
-        $result = $getopt->isLongOpt('notanoption');
-        $this->assertFalse($result);
+        $result = $getopt->getLongOpt('notanoption');
+        $this->assertNull($result);
     }
 
 
@@ -450,16 +450,21 @@ class HuGetoptNewTest extends TestCase {
     }
 
     public function testParseArgsWithOptionalArgumentMissing(): void {
-        $this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException::class);
-
+        // :: (optional) - no argument is OK, just leave default value
         $settings = new HuGetoptSettings();
         $argv = ['script.php', '-f'];
         $opts = [['f', 'file', '::']];
         $getopt = new HuGetopt($opts, $settings);
         $getopt->setArgv($argv);
 
-        // :: mod without argument should throw exception
+        // :: mod without argument should NOT throw exception (it's optional!)
         $getopt->parseArgs();
+
+        $opt = $getopt->get('f');
+        $valArray = $opt->Val->getArray();
+        // Should have one element with empty string (default)
+        $this->assertCount(1, $valArray);
+        $this->assertEquals('', $valArray[0]);
     }
 
     public function testParseArgsWithClueShortOptionsWithArgument(): void {
@@ -536,20 +541,23 @@ class HuGetoptNewTest extends TestCase {
     }
 
     public function testParseArgsWithDoubleColonModRequiresArgumentException(): void {
+        // : (required) - no argument should throw exception
         $this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException::class);
         $this->expectExceptionMessage('requires argument');
 
         $settings = new HuGetoptSettings();
         $argv = ['script.php', '-f'];
-        $opts = [['f', 'file', '::']];
+        $opts = [['f', 'file', ':']];  // : not :: - this one REQUIRES argument
         $getopt = new HuGetopt($opts, $settings);
         $getopt->setArgv($argv);
 
-        // This should throw exception for :: mod without argument
+        // : mod without argument should throw exception
         @$getopt->parseArgs();
     }
 
     public function testParseArgsWithDoubleColonModNextIsOption(): void {
+        // Note: After refactoring, :: mod with next arg being an option does NOT consume it.
+        // The -v is left as a separate option to be processed.
         $settings = new HuGetoptSettings();
         $argv = ['script.php', '-f', '-v'];
         $opts = [
@@ -559,17 +567,17 @@ class HuGetoptNewTest extends TestCase {
         $getopt = new HuGetopt($opts, $settings);
         $getopt->setArgv($argv);
 
-        // :: mod with next arg being an option - optional, so no value
-        @$getopt->parseArgs();
+        // :: mod with next arg being an option - leaves default (null)
+        $getopt->parseArgs();
 
         $optF = $getopt->get('f');
         $optV = $getopt->get('v');
 
-        // f should have empty or null Val (next was option)
+        // After fix: -v is NOT value of -f, it's processed as separate option
         $valArrayF = $optF->Val->getArray();
-        $this->assertTrue(empty($valArrayF) || $valArrayF === ['']);
-        // v should be present (check OptL which contains 'v')
-        $this->assertNotEmpty($optV->OptL);
+        $this->assertEquals([null], $valArrayF);
+        // v is also processed as separate option
+        $this->assertNotEmpty($optV->Opt);
     }
 
 

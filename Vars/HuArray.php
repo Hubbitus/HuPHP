@@ -1,6 +1,13 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Vars;
+
+use Hubbitus\HuPHP\Vars\Settings\Settings;
+use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
+use Hubbitus\HuPHP\Exceptions\variables\VariableIsNullException;
+
 /**
 * Class to provide OOP interface to array operations.
 *
@@ -14,25 +21,18 @@ declare(strict_types=1);
 * @uses VariableIsNullException
 * @uses settings
 **/
-
-namespace Hubbitus\HuPHP\Vars;
-
-use Hubbitus\HuPHP\Vars\Settings\Settings;
-use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
-use Hubbitus\HuPHP\Exceptions\variables\VariableIsNullException;
-
 class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \JsonSerializable {
 	private const string HU_SCHEME = 'hu://';
 
 	/**
 	* Constructor.
 	*
-	* @param	(array)mixed=null	$array	 Mixed, explicit cast as array!
+	* @param ?array $array Initial value
 	**/
-	function __construct(/*(array)*/ $array = null){
-		parent::__construct((array)$array);
+	public function __construct(?array $array = null){
+		parent::__construct($array ?? []);
 	}
+
 	/**
 	* Push values.
 	*
@@ -45,9 +45,10 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		//call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), func_get_args()));
 		//Do the same with temp var:
 		$args = func_get_args();
-		call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $args));
+		\call_user_func_array('array_push', \array_merge([0 => &$this->__SETS], $args));
 		return $this;
 	}
+
 	/**
 	* Push array of values.
 	*
@@ -56,49 +57,55 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	**/
 	public function &pushArray(array $arr): static {
 		if ($arr)
-			call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $arr));
+			foreach ($arr as $value)
+				$this->__SETS[] = $value;
 		return $this;
 	}
+
 	/**
 	* Push values from Object(HuArray).
 	*
 	* @param 	mixed	$var.
 	* @return	$this->pushArray()
 	**/
-	public function &pushHuArray(HuArray $arr){
+	public function &pushHuArray(HuArray $arr): static {
 		return $this->pushArray($arr->getArray());
 	}
+
 	/**
 	* Return last element in array. Reference, direct-editable!!
 	*
 	* @return &mixed
 	**/
-	public function &last(){
-		end($this->__SETS);
-		return $this->__SETS[key($this->__SETS)];
+	public function &last(): mixed {
+		\end($this->__SETS);
+		return $this->__SETS[\key($this->__SETS)];
 	}
+
 	/**
 	* Return Array representation (cast to (array)).
 	*
 	* @return	array
 	**/
-	public function getArray(){
+	public function getArray(): array {
 		return $this->__SETS;
 	}
+
 	/**
 	* {@see http://php.net/array_slice}
 	*
 	* @param	integer	$offset
-	*	Если параметр offset положителен, последовательность начнётся на расстоянии offset от начала array. Если offset отрицателен, последовательность начнётся на расстоянии offset от конца.
+	*	If offset is positive, the sequence will start at that offset in the array. If offset is negative, the sequence will start that far from the end of the array.
 	* @param	integer	$length
-	*	Если в эту функцию передан положительный параметр length, последовательность будет включать length элементов. Если в эту функцию передан отрицательный параметр length, в последовательность войдут все элементы исходного массива, начиная с позиции offset и заканчивая позицией, отстоящей на length элементов от конца. Если этот параметр будет опущен, в последовательность войдут все элементы исходного массива, начиная с позиции offset.
+	*	If length is positive, the sequence will have up to length elements. If length is negative, the sequence will stop that many elements from the end of the array. If omitted, the sequence will include all elements from offset to the end.
 	* @param	boolean	$preserve_keys
-	*	Обратите внимание, по умолчанию сбрасываются ключи массива. Можно переопределить это поведение, установив параметр preserve_keys в TRUE.
+	*	Note that by default array keys are reset. You can override this behavior by setting preserve_keys to TRUE.
 	* @return HuArray
 	**/
-	public function getSlice($offset, $length = null, $preserve_keys = false){
-		return new HuArray(array_slice($this->__SETS, $offset, EMPTY_VAR($length, sizeof($this->__SETS)), $preserve_keys));
+	public function getSlice($offset, $length = null, $preserve_keys = false): static {
+		return new HuArray(\array_slice($this->__SETS, $offset, EMPTY_VAR($length, \sizeof($this->__SETS)), $preserve_keys));
 	}
+
 	/**
 	* Overload to return reference.
 	*
@@ -106,24 +113,27 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* @return	&mixed
 	* @throws VariableIsNullException
 	**/
-	public function &getProperty($name){
-		return $this->__SETS[REQUIRED_NOT_NULL($name)];
+	#[\Override]
+	public function &getProperty($name): mixed {
+		$key = REQUIRED_NOT_NULL($name);
+		return $this->__SETS[$key];
 	}
-	/**
-	* @var	&mixed	->_last_
-	**/
+
 	/**
 	* Overload to return reference.
 	*
 	* @param	mixed	$name
 	* @return	&mixed
 	**/
-	function &__get($name){
+	#[\Override]
+	public function &__get(string $name): mixed {
 		/**
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
-		if ('_last_' == $name) return $this->last();
+		if ('_last_' == $name) {
+			return $this->last();
+		}
 		/*
 		* Short form of ::hu. To allow constructions like:
 		* $obj->{'hu://varName'}->{'hu://0'};
@@ -131,10 +141,14 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		* $obj->hu('varName')->hu(0);
 		* As you like
 		**/
-		elseif( self::HU_SCHEME == substr($name, 0, strlen(self::HU_SCHEME)) ) return $this->hu( substr($name, strlen(self::HU_SCHEME)) );
-		else
+		elseif( self::HU_SCHEME == substr($name, 0, strlen(self::HU_SCHEME)) ) {
+			return $this->hu( substr($name, strlen(self::HU_SCHEME)) );
+		}
+		else {
 			return $this->getProperty($name);
+		}
 	}
+
 	/**
 	* Like standard {@see __get()}, but if returned value is regular array, convert it into HuArray and return reference to it.
 	* @example:
@@ -145,51 +159,67 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	*		,'arr' => array(0, 11, 22, 777)
 	*	)
 	* );
-	* dump::a($ha->one);
-	* dump::a($ha->arr);					// Result Array (raw, as is)!
-	* dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
-	* dump::a($ha->hu('arr')->hu(2));			// Property access. Also as any HuArray methods like walk(), filter() and any other.
-	* dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternative method ({@see ::__get()}). Another, form.
+	* Dump::a($ha->one);
+	* Dump::a($ha->arr);					// Result Array (raw, as is)!
+	* Dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
+	* Dump::a($ha->hu('arr')->hu(2));			// Property access. Also as any HuArray methods like walk(), filter() and any other.
+	* Dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternative method ({@see ::__get()}). Another, form.
 	* Also this form is allow writing:
 	* $ha->{'hu://arr'} = 'Qwerty';
 	*
 	* @param	mixed	$name
 	* @return	&mixed
 	**/
-	public function &hu($name){
+	public function &hu($name): mixed {
 		if (\is_array($this->$name)) $this->$name = new HuArray($this->$name);
 		return $this->getProperty($name);
 	}
+
 	/**
 	* Allow change value by short direct form->settingName = 'qwerty';
 	*
 	* @param	string	$name
 	* @param	mixed	$value
 	**/
-	public function &__set($name, $value): void {
+	#[\Override]
+	public function __set($name, $value): void {
 		/**
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
 		if ('_last_' == $name){
-			$ref =& $this->last();
+			// Direct assignment to last element
+			\end($this->__SETS);
+			$key = \key($this->__SETS);
+			$this->__SETS[$key] = $value;
+			return;
 		}
-		elseif( self::HU_SCHEME == substr($name, 0, strlen(self::HU_SCHEME)) ) $ref =& $this->hu( substr($name, strlen(self::HU_SCHEME)) );
+		elseif( self::HU_SCHEME == substr($name, 0, strlen(self::HU_SCHEME)) ) {
+			// Short form hu:// - convert to HuArray if needed and return
+			$key = substr($name, strlen(self::HU_SCHEME));
+			if (\is_array($this->__SETS[$key] ?? null)) {
+				$this->__SETS[$key] = new HuArray($this->__SETS[$key]);
+			}
+			$this->__SETS[$key] = $value;
+			return;
+		}
 		else{
-			$ref =& $this->getProperty($name);
+			$key = $name;
 		}
-		$ref = $value;
+		$this->__SETS[$key] = $value;
 	}
+
 	/**
 	* Apply callback function to each element.
 	*
 	* @param	callback	$callback
 	* @return	&$this
 	**/
-	public function walk($callback){
+	public function walk($callback): static {
 		array_walk($this->__SETS, $callback);
 		return $this;
 	}
+
 	/**
 	* Filter array, using callback. If the callback function returns true, the current value from input is returned into the result
 	* array. Array keys are preserved and NOT reindexed.
@@ -197,19 +227,21 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* @param	callback	$callback
 	* @return	static
 	**/
-	public function filter($callback){
+	public function filter($callback): static {
 		return new static(array_filter($this->__SETS, $callback));
 	}
+
 	/**
 	* Filter array by keys and leave only mentioned in $keys array
 	*
 	* @param	array	$keys
 	* @return	&$this
 	**/
-	public function &filterByKeys(array $keys){
-		$this->__SETS = array_diff_key( $this->__SETS, array_flip(  array_intersect(   array_keys($this->__SETS), $keys   )  ) );
+	public function &filterByKeys(array $keys): static {
+		$this->__SETS = \array_diff_key( $this->__SETS, \array_flip(  \array_intersect(   \array_keys($this->__SETS), $keys   )  ) );
 		return $this;
 	}
+
 	/**
 	* Filter array by keys and leave only NOT mentioned in $keys array (opposite to method {@see ::filterByKeys()})
 	*
@@ -218,39 +250,43 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* @param	array	$keys
 	* @return	&$this
 	**/
-	public function &filterOutByKeys(array $keys){
-		$this->__SETS = array_diff_key( $this->__SETS, array_flip($keys) );
+	public function &filterOutByKeys(array $keys): static{
+		$this->__SETS = \array_diff_key( $this->__SETS, \array_flip($keys) );
 		return $this;
 	}
+
 	/**
 	* Similar to {@see ::filer()} except of operate by keys instead of values.
 	*
 	* @param	callback	$callback
 	* @return	&$this
 	**/
-	public function &filterKeysCallback($callback){
+	public function &filterKeysCallback($callback): static {
 		$keys = new self(array_flip( $this->__SETS ));
 		$keys->filter($callback);
 		$this->filterByKeys($keys->getArray());
 		return $this;
 	}
+
 	/**
 	* Implode to the string using provided delimiter.
 	*
 	* @param	string=''	$delim
 	* @return	string
 	**/
-	public function implode($delim = ''){
+	public function implode($delim = ''): string {
 		return implode($delim, $this->__SETS);
 	}
+
 	/**
 	* Return number of elements
 	*
 	* @return	int
 	**/
-	public function count(){
-		return count($this->__SETS);
+	public function count(): int {
+		return \count($this->__SETS);
 	}
+
 	/**
 	* Iteratively reduce the array to a single value using a callback function.
 	* @link http://ru.php.net/array_reduce
@@ -263,29 +299,33 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		return array_reduce($this->__SETS, $callback, $initial);
 	}
 
-	// Iterator-like methods (for testing compatibility)
+	/** Implementation of {@see \Iterator} methods **/
 
+	#[\Override]
 	public function rewind(): void {
 		\reset($this->__SETS);
 	}
 
+	#[\Override]
 	public function current(): mixed {
 		return \current($this->__SETS);
 	}
 
+	#[\Override]
 	public function key(): int|string|null {
 		return \key($this->__SETS);
 	}
 
+	#[\Override]
 	public function next(): void {
 		\next($this->__SETS);
 	}
 
+	#[\Override]
 	public function valid(): bool {
 		return \current($this->__SETS) !== false;
 	}
-
-	// Additional array manipulation methods
+	/** /Implementation of {@see \Iterator} methods **/
 
 	public function toArray(): array {
 		return $this->__SETS;
@@ -572,16 +612,18 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		return new static(\explode($delimiter, $string));
 	}
 
-	// ArrayAccess interface methods
-
+	/** Implementation of {@see \ArrayAccess} methods **/
+	#[\Override]
 	public function offsetExists($offset): bool {
 		return isset($this->__SETS[$offset]);
 	}
 
+	#[\Override]
 	public function offsetGet($offset): mixed {
 		return $this->__SETS[$offset] ?? null;
 	}
 
+	#[\Override]
 	public function offsetSet($offset, $value): void {
 		if ($offset === null) {
 			$this->__SETS[] = $value;
@@ -592,15 +634,15 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 
 	public function offsetUnset($offset): void {
 		unset($this->__SETS[$offset]);
-	}
-
-	// Countable interface method (already exists as count())
+		}
+	/** /Implementation of {@see \ArrayAccess} methods **/
 
 	// String conversion
 	public function __toString(): string {
 		return \json_encode($this->__SETS);
 	}
 
+	#[\Override]
 	// JsonSerializable interface method
 	public function jsonSerialize(): array {
 		return $this->__SETS;

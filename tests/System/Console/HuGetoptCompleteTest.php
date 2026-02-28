@@ -10,17 +10,17 @@ use Hubbitus\HuPHP\System\Console\HuGetoptSettings;
 use Hubbitus\HuPHP\Vars\HuArray;
 
 /**
- * Complete coverage tests for HuGetopt, HuGetoptOption and HuGetoptSettings.
- *
- * @covers \Hubbitus\HuPHP\System\Console\HuGetopt
- * @covers \Hubbitus\HuPHP\System\Console\HuGetoptOption
- * @covers \Hubbitus\HuPHP\System\Console\HuGetoptSettings
- */
+* Complete coverage tests for HuGetopt, HuGetoptOption and HuGetoptSettings.
+*
+* @covers \Hubbitus\HuPHP\System\Console\HuGetopt
+* @covers \Hubbitus\HuPHP\System\Console\HuGetoptOption
+* @covers \Hubbitus\HuPHP\System\Console\HuGetoptSettings
+**/
 class HuGetoptCompleteTest extends TestCase {
 
 	/**
-	 * Test HuGetoptOption constructor with numeric array.
-	 */
+	* Test HuGetoptOption constructor with numeric array.
+	**/
 	public function testHuGetoptOptionConstructorWithNumericArray(): void {
 		$possibles = ['OptL', 'OptS', 'Mod'];
 		$option = new HuGetoptOption($possibles);
@@ -33,8 +33,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetoptOption constructor with associative array.
-	 */
+	* Test HuGetoptOption constructor with associative array.
+	**/
 	public function testHuGetoptOptionConstructorWithAssociativeArray(): void {
 		$possibles = ['OptL' => null, 'OptS' => null, 'Mod' => null];
 		$array = [
@@ -51,8 +51,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetoptOption constructor with initial array containing internal properties.
-	 */
+	* Test HuGetoptOption constructor with initial array containing internal properties.
+	**/
 	public function testHuGetoptOptionConstructorWithInternalProperties(): void {
 		$possibles = ['OptL', 'OptS', 'Mod'];
 		$array = [
@@ -73,8 +73,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetoptOption add method.
-	 */
+	* Test HuGetoptOption add method.
+	**/
 	public function testHuGetoptOptionAdd(): void {
 		$possibles = ['OptL', 'OptS', 'Mod'];
 		$option1 = new HuGetoptOption($possibles, [
@@ -97,8 +97,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetoptOption add method with all properties.
-	 */
+	* Test HuGetoptOption add method with all properties.
+	**/
 	public function testHuGetoptOptionAddAllProperties(): void {
 		$possibles = ['OptL', 'OptS', 'Mod'];
 		$option1 = new HuGetoptOption($possibles, [
@@ -129,8 +129,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetoptSettings constructor and default values.
-	 */
+	* Test HuGetoptSettings constructor and default values.
+	**/
 	public function testHuGetoptSettingsConstructor(): void {
 		$settings = new HuGetoptSettings();
 
@@ -142,8 +142,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetoptSettings HuGetopt_option_options contains all required properties.
-	 */
+	* Test HuGetoptSettings HuGetopt_option_options contains all required properties.
+	**/
 	public function testHuGetoptSettingsOptionOptions(): void {
 		$settings = new HuGetoptSettings();
 		$options = $settings->HuGetopt_option_options;
@@ -159,8 +159,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetoptSettings can be modified.
-	 */
+	* Test HuGetoptSettings can be modified.
+	**/
 	public function testHuGetoptSettingsModification(): void {
 		$settings = new HuGetoptSettings();
 		$settings->start_short = ['-', '+'];
@@ -173,8 +173,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt with custom settings.
-	 */
+	* Test HuGetopt with custom settings.
+	**/
 	public function testHuGetoptWithCustomSettings(): void {
 		$settings = new HuGetoptSettings();
 		$settings->start_short = ['-', '+'];
@@ -191,8 +191,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt getOptByStr with all type variations.
-	 */
+	* Test HuGetopt getOptByStr with all type variations.
+	**/
 	public function testHuGetoptGetOptByStrAllTypes(): void {
 		$opts = [['x', 'xopt', '']];
 		$getopt = new HuGetopt($opts);
@@ -215,8 +215,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt nextArg method.
-	 */
+	* Test HuGetopt nextArg method.
+	**/
 	public function testHuGetoptNextArg(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
@@ -243,8 +243,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt currentArg method.
-	 */
+	* Test HuGetopt currentArg method.
+	**/
 	public function testHuGetoptCurrentArg(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
@@ -260,8 +260,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt peekNextArg method.
-	 */
+	* Test HuGetopt peekNextArg method.
+	**/
 	public function testHuGetoptPeekNextArg(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
@@ -284,16 +284,16 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt isOpt method (combined short/long check).
-	 */
-	public function testHuGetoptIsOpt(): void {
+	* Test HuGetopt getOpt method (combined short/long check).
+	**/
+	public function testHuGetoptGetOpt(): void {
 		$opts = [['s', 'short', ''], ['l', 'long', '']];
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', '-s']);
 
 		// Access protected method via reflection
 		$reflection = new \ReflectionClass($getopt);
-		$method = $reflection->getMethod('isOpt');
+		$method = $reflection->getMethod('getOpt');
 		$method->setAccessible(true);
 
 		// Test short option
@@ -306,12 +306,12 @@ class HuGetoptCompleteTest extends TestCase {
 
 		// Test non-option
 		$result = $method->invoke($getopt, 'not-an-option');
-		$this->assertFalse($result);
+		$this->assertNull($result);
 	}
 
 	/**
-	 * Test HuGetopt isShortOpt with multiple short options in clue form.
-	 */
+	* Test HuGetopt getShortOpt with multiple short options in clue form.
+	**/
 	public function testHuGetoptIsShortOptClueForm(): void {
 		$opts = [
 			['a', 'all', ''],
@@ -320,51 +320,51 @@ class HuGetoptCompleteTest extends TestCase {
 		];
 		$getopt = new HuGetopt($opts);
 
-		$result = $getopt->isShortOpt('-abc');
+		$result = $getopt->getShortOpt('-abc');
 		$this->assertInstanceOf(HuGetoptOption::class, $result);
 		$this->assertEquals('a', $result->Opt->{0});
 	}
 
 	/**
-	 * Test HuGetopt isShortOpt with option that requires argument.
-	 */
+	* Test HuGetopt getShortOpt with option that requires argument.
+	**/
 	public function testHuGetoptIsShortOptWithRequiredArgument(): void {
 		$opts = [['f', 'file', ':']];
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', '-f', 'test.txt']);
 
-		$result = $getopt->isShortOpt('-f');
+		$result = $getopt->getShortOpt('-f');
 		$this->assertInstanceOf(HuGetoptOption::class, $result);
 	}
 
 	/**
-	 * Test HuGetopt isLongOpt with equals separator.
-	 */
+	* Test HuGetopt getLongOpt with equals separator.
+	**/
 	public function testHuGetoptIsLongOptWithEquals(): void {
 		$opts = [['f', 'file', ':']];
 		$getopt = new HuGetopt($opts);
 
-		$result = $getopt->isLongOpt('--file=value.txt');
+		$result = $getopt->getLongOpt('--file=value.txt');
 		$this->assertInstanceOf(HuGetoptOption::class, $result);
 		$this->assertEquals('=', $result->{'='}->{0});
 		$this->assertEquals('value.txt', $result->Val->{0});
 	}
 
 	/**
-	 * Test HuGetopt isLongOpt with space separator.
-	 */
+	* Test HuGetopt getLongOpt with space separator.
+	**/
 	public function testHuGetoptIsLongOptWithSpace(): void {
 		$opts = [['f', 'file', ':']];
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', '--file', 'test.txt']);
 
-		$result = $getopt->isLongOpt('--file');
+		$result = $getopt->getLongOpt('--file');
 		$this->assertInstanceOf(HuGetoptOption::class, $result);
 	}
 
 	/**
-	 * Test HuGetopt isLongOpt with alternative mode enabled.
-	 */
+	* Test HuGetopt getLongOpt with alternative mode enabled.
+	**/
 	public function testHuGetoptIsLongOptAlternativeMode(): void {
 		$settings = new HuGetoptSettings();
 		$settings->alternative = true;
@@ -374,13 +374,13 @@ class HuGetoptCompleteTest extends TestCase {
 		$getopt->setArgv(['script.php', '-long']);
 
 		// With alternative=true, long options can start with short_start too
-		$result = $getopt->isLongOpt('-long');
+		$result = $getopt->getLongOpt('-long');
 		$this->assertInstanceOf(HuGetoptOption::class, $result);
 	}
 
 	/**
-	 * Test HuGetopt parseArgs with option that has optional value (::) but no value provided.
-	 */
+	* Test HuGetopt parseArgs with option that has optional value (::) but no value provided.
+	**/
 	public function testHuGetoptParseArgsOptionalValueNoValue(): void {
 		$opts = [['o', 'opt', '::']];
 		$getopt = new HuGetopt($opts);
@@ -394,8 +394,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt parseArgs with multiple values for same option.
-	 */
+	* Test HuGetopt parseArgs with multiple values for same option.
+	**/
 	public function testHuGetoptParseArgsMultipleSameOption(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
@@ -409,8 +409,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt getNonOpts with various from indices.
-	 */
+	* Test HuGetopt getNonOpts with various from indices.
+	**/
 	public function testHuGetoptGetNonOptsVariousIndices(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
@@ -431,8 +431,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt readPHPArgv with global $argv.
-	 */
+	* Test HuGetopt readPHPArgv with global $argv.
+	**/
 	public function testHuGetoptReadPhpArgvWithGlobalArgv(): void {
 		global $argv;
 		$originalArgv = $argv ?? null;
@@ -454,8 +454,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt with mixed short and long options parsing.
-	 */
+	* Test HuGetopt with mixed short and long options parsing.
+	**/
 	public function testHuGetoptParseMixedShortAndLong(): void {
 		$opts = [
 			['v', 'verbose', ''],
@@ -479,8 +479,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt parseArgs with complex mixed options.
-	 */
+	* Test HuGetopt parseArgs with complex mixed options.
+	**/
 	public function testHuGetoptParseComplexMixed(): void {
 		$opts = [
 			['h', 'help', ''],
@@ -510,33 +510,33 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt isShortOpt with empty match group 3 (no extra chars after option).
-	 */
+	* Test HuGetopt getShortOpt with empty match group 3 (no extra chars after option).
+	**/
 	public function testHuGetoptIsShortOptEmptyMatch3(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', '-v']);
 
-		$result = $getopt->isShortOpt('-v');
+		$result = $getopt->getShortOpt('-v');
 		$this->assertInstanceOf(HuGetoptOption::class, $result);
 		$this->assertEquals('v', $result->Opt->{0});
 	}
 
 	/**
-	 * Test HuGetopt isLongOpt with empty match group 4 (no value after =).
-	 */
+	* Test HuGetopt getLongOpt with empty match group 4 (no value after =).
+	**/
 	public function testHuGetoptIsLongOptEmptyValue(): void {
 		$opts = [['f', 'file', ':']];
 		$getopt = new HuGetopt($opts);
 		$getopt->setArgv(['script.php', '--file=']);
 
-		$result = $getopt->isLongOpt('--file=');
+		$result = $getopt->getLongOpt('--file=');
 		$this->assertInstanceOf(HuGetoptOption::class, $result);
 	}
 
 	/**
-	 * Test HuGetopt parseArgs with option having explicit value in long form.
-	 */
+	* Test HuGetopt parseArgs with option having explicit value in long form.
+	**/
 	public function testHuGetoptParseArgsLongFormExplicitValue(): void {
 		$opts = [['f', 'file', ':']];
 		$getopt = new HuGetopt($opts);
@@ -550,10 +550,12 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt parseArgs when next arg after required option is another option.
-	 * Note: Current implementation consumes the next option as value.
-	 */
+	* Test HuGetopt parseArgs when required option next is option (should throw exception).
+	**/
 	public function testHuGetoptParseArgsRequiredOptionNextIsOption(): void {
+		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException::class);
+		$this->expectExceptionMessage('requires argument');
+
 		$opts = [
 			['f', 'file', ':'],
 			['v', 'verbose', '']
@@ -562,16 +564,11 @@ class HuGetoptCompleteTest extends TestCase {
 		$getopt->setArgv(['script.php', '-f', '-v']);
 
 		$getopt->parseArgs();
-
-		// Current behavior: -v becomes value of -f
-		$optF = $getopt->get('f');
-		$this->assertCount(1, $optF->Val);
-		$this->assertEquals('-v', $optF->Val->{0});
 	}
 
 	/**
-	 * Test HuGetopt parseArgs when required option at end with no value.
-	 */
+	* Test HuGetopt parseArgs when required option at end with no value.
+	**/
 	public function testHuGetoptParseArgsRequiredOptionAtEnd(): void {
 		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException::class);
 		$this->expectExceptionMessage('requires argument');
@@ -584,9 +581,45 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt parseArgs with optional value (::) followed by another option.
-	 * Note: Current implementation consumes the next option as value.
-	 */
+* Test HuGetopt parseArgs when required option has value in same arg (covers getOptPeeked branch).
+	 This covers the branch where getOptPeeked = true and throws exception.
+	**/
+	public function testHuGetoptParseArgsRequiredOptionWithValueInSameArg(): void {
+		// When -fvalue is passed, the 'value' part becomes match(3) in getShortOpt
+		// and is used directly without calling nextArg()
+		// This should NOT throw exception because value is provided
+		$opts = [['f', 'file', ':']];
+		$getopt = new HuGetopt($opts);
+		$getopt->setArgv(['script.php', '-ftest.txt']);
+
+		$getopt->parseArgs();
+
+		$optF = $getopt->get('f');
+		$this->assertCount(1, $optF->Val);
+		$this->assertEquals('test.txt', $optF->Val->{0});
+	}
+
+	/**
+* Test HuGetopt parseArgs with long option form --opt=value (covers hasExplicitValue branch).
+	 This covers the branch where hasExplicitValue = true.
+	**/
+	public function testHuGetoptParseArgsLongOptionEqualsFormCoversBranches(): void {
+		$opts = [['f', 'file', ':']];
+		$getopt = new HuGetopt($opts);
+		$getopt->setArgv(['script.php', '--file=value.txt']);
+
+		$getopt->parseArgs();
+
+		$optF = $getopt->get('file', 'l');
+		// Val should have explicit value from = form
+		$this->assertCount(1, $optF->Val);
+		$this->assertEquals('value.txt', $optF->Val->{0});
+	}
+
+	/**
+* Test HuGetopt parseArgs with optional value (::) followed by another option.
+	 Note: After refactoring, :: does NOT consume next option.
+	**/
 	public function testHuGetoptParseArgsOptionalValueNextIsOption(): void {
 		$opts = [
 			['o', 'opt', '::'],
@@ -600,17 +633,17 @@ class HuGetoptCompleteTest extends TestCase {
 		$optO = $getopt->get('o');
 		$optV = $getopt->get('v');
 
-		// Current behavior: -v becomes value of -o, but -v is also processed
+		// After fix: -v is NOT value of -o, it's processed as separate option
 		$this->assertCount(1, $optO->Val);
-		$this->assertEquals('-v', $optO->Val->{0});
-		// v is also processed - check OptL which should be populated
-		$this->assertTrue(isset($optV->OptL) || isset($optV->Opt) || $optV->Opt->count() > 0);
+		$this->assertNull($optO->Val->{0});
+		// v is also processed as separate option
+		$this->assertNotEmpty($optV->Opt);
 	}
 
 	/**
-	 * Test HuGetopt isShortOpt with continuation after option (match[3] not empty).
-	 * This covers the branch: if ($re->match(3)[0]) $this->_curArg = '-' . $re->match(3)[0];
-	 */
+* Test HuGetopt getShortOpt with continuation after option (match[3] not empty).
+	 This covers the branch: if ($re->match(3)[0]) $this->_curArg = '-' . $re->match(3)[0];
+	**/
 	public function testHuGetoptIsShortOptWithContinuation(): void {
 		$opts = [
 			['a', 'all', ''],
@@ -620,14 +653,14 @@ class HuGetoptCompleteTest extends TestCase {
 		$getopt->setArgv(['script.php', '-ab']);
 
 		// First call should return option 'a' with continuation 'b'
-		$result = $getopt->isShortOpt('-ab');
+		$result = $getopt->getShortOpt('-ab');
 		$this->assertInstanceOf(HuGetoptOption::class, $result);
 		$this->assertEquals('a', $result->Opt->{0});
 	}
 
 	/**
-	 * Test HuGetopt nextArg when _curArg is set (from continuation).
-	 */
+	* Test HuGetopt nextArg when _curArg is set (from continuation).
+	**/
 	public function testHuGetoptNextArgWithCurArgSet(): void {
 		$opts = [
 			['a', 'all', ''],
@@ -648,8 +681,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt getOptByStr with type 's' explicitly.
-	 */
+	* Test HuGetopt getOptByStr with type 's' explicitly.
+	**/
 	public function testHuGetoptGetOptByStrExplicitShort(): void {
 		$opts = [['x', 'xopt', '']];
 		$getopt = new HuGetopt($opts);
@@ -659,8 +692,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt getOptByStr with type 'l' explicitly.
-	 */
+	* Test HuGetopt getOptByStr with type 'l' explicitly.
+	**/
 	public function testHuGetoptGetOptByStrExplicitLong(): void {
 		$opts = [['x', 'xopt', '']];
 		$getopt = new HuGetopt($opts);
@@ -670,8 +703,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt getOptByStr with type 'a' (auto).
-	 */
+	* Test HuGetopt getOptByStr with type 'a' (auto).
+	**/
 	public function testHuGetoptGetOptByStrTypeAuto(): void {
 		$opts = [['x', 'xopt', '']];
 		$getopt = new HuGetopt($opts);
@@ -681,9 +714,9 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt nextArg branch when _curArg is set.
-	 * This covers: if ($this->_curArg) { $tmp = $this->_curArg; ... }
-	 */
+* Test HuGetopt nextArg branch when _curArg is set.
+	 This covers: if ($this->_curArg) { $tmp = $this->_curArg; ... }
+	**/
 	public function testHuGetoptNextArgCurArgBranch(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
@@ -711,8 +744,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt currentArg when _curArg is set.
-	 */
+	* Test HuGetopt currentArg when _curArg is set.
+	**/
 	public function testHuGetoptCurrentArgWithCurArgSet(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
@@ -736,8 +769,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt peekNextArg when _curArg is set.
-	 */
+	* Test HuGetopt peekNextArg when _curArg is set.
+	**/
 	public function testHuGetoptPeekNextArgWithCurArgSet(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
@@ -759,8 +792,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt peekNextArg when no more args.
-	 */
+	* Test HuGetopt peekNextArg when no more args.
+	**/
 	public function testHuGetoptPeekNextArgNoMoreArgs(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
@@ -780,8 +813,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt nextArg when no more args (else return false).
-	 */
+	* Test HuGetopt nextArg when no more args (else return false).
+	**/
 	public function testHuGetoptNextArgNoMoreArgs(): void {
 		$opts = [['v', 'verbose', '']];
 		$getopt = new HuGetopt($opts);
@@ -800,10 +833,10 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-	 * Test HuGetopt isOpt protected method directly.
-	 * This covers the protected isOpt() method which calls isShortOpt and isLongOpt.
-	 */
-	public function testHuGetoptIsOptProtectedMethod(): void {
+* Test HuGetopt getOpt protected method directly.
+	 This covers the protected getOpt() method which calls getShortOpt and getLongOpt.
+	**/
+	public function testHuGetoptGetOptProtectedMethod(): void {
 		$opts = [
 			['s', 'short', ''],
 			['l', 'long', '']
@@ -813,21 +846,21 @@ class HuGetoptCompleteTest extends TestCase {
 
 		// Access protected method via reflection
 		$reflection = new \ReflectionClass($getopt);
-		$isOptMethod = $reflection->getMethod('isOpt');
-		$isOptMethod->setAccessible(true);
+		$getOptMethod = $reflection->getMethod('getOpt');
+		$getOptMethod->setAccessible(true);
 
 		// Test with short option
-		$result = $isOptMethod->invoke($getopt, '-s');
+		$result = $getOptMethod->invoke($getopt, '-s');
 		$this->assertInstanceOf(HuGetoptOption::class, $result);
 		$this->assertEquals('s', $result->Opt->{0});
 
 		// Test with long option
-		$result = $isOptMethod->invoke($getopt, '--long');
+		$result = $getOptMethod->invoke($getopt, '--long');
 		$this->assertInstanceOf(HuGetoptOption::class, $result);
 		$this->assertEquals('long', $result->Opt->{0});
 
 		// Test with non-option
-		$result = $isOptMethod->invoke($getopt, 'not-an-option');
-		$this->assertFalse($result);
+		$result = $getOptMethod->invoke($getopt, 'not-an-option');
+		$this->assertNull($result);
 	}
 }

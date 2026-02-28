@@ -22,10 +22,9 @@ use PHPUnit\Framework\TestCase;
 * @see \Hubbitus\HuPHP\Vars\VariableStream The class under test
 **/
 class VariableStreamTest extends TestCase {
-    private string $testVar;
-
     protected function setUp(): void {
-        $this->testVar = '';
+        global $testVar;
+        $testVar = '';
     }
 
     public function testStreamWrapperIsRegistered(): void {
@@ -34,7 +33,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamOpen(): void {
-        $this->testVar = 'test content';
+        global $testVar;
+        $testVar = 'test content';
 
         $fp = fopen('var://testVar', 'r');
 
@@ -43,7 +43,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamRead(): void {
-        $this->testVar = 'Hello World';
+        global $testVar;
+        $testVar = 'Hello World';
 
         $fp = fopen('var://testVar', 'r');
         $data = fread($fp, 5);
@@ -53,7 +54,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamReadPartial(): void {
-        $this->testVar = 'Test';
+        global $testVar;
+        $testVar = 'Test';
 
         $fp = fopen('var://testVar', 'r');
         $data1 = fread($fp, 2);
@@ -65,7 +67,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamReadEmpty(): void {
-        $this->testVar = '';
+        global $testVar;
+        $testVar = '';
 
         $fp = fopen('var://testVar', 'r');
         $data = fread($fp, 10);
@@ -75,37 +78,41 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamWrite(): void {
-        $this->testVar = '';
+        global $testVar;
+        $testVar = '';
 
         $fp = fopen('var://testVar', 'w');
         fwrite($fp, 'Hello');
         fclose($fp);
 
-        $this->assertEquals('Hello', $this->testVar);
+        $this->assertEquals('Hello', $testVar);
     }
 
     public function testStreamWriteAppend(): void {
-        $this->testVar = 'Hello';
+        global $testVar;
+        $testVar = 'Hello';
 
         $fp = fopen('var://testVar', 'a');
         fwrite($fp, ' World');
         fclose($fp);
 
-        $this->assertEquals('Hello World', $this->testVar);
+        $this->assertEquals('Hello World', $testVar);
     }
 
     public function testStreamWriteOverwrite(): void {
-        $this->testVar = 'Hello World';
+        global $testVar;
+        $testVar = 'Hello World';
 
         $fp = fopen('var://testVar', 'w');
         fwrite($fp, 'Test');
         fclose($fp);
 
-        $this->assertEquals('Test', $this->testVar);
+        $this->assertEquals('Test', $testVar);
     }
 
     public function testStreamTell(): void {
-        $this->testVar = 'Hello World';
+        global $testVar;
+        $testVar = 'Hello World';
 
         $fp = fopen('var://testVar', 'r');
         fread($fp, 5);
@@ -116,7 +123,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamTellAtEnd(): void {
-        $this->testVar = 'Test';
+        global $testVar;
+        $testVar = 'Test';
 
         $fp = fopen('var://testVar', 'r');
         fread($fp, 4);
@@ -127,7 +135,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamEof(): void {
-        $this->testVar = 'Test';
+        global $testVar;
+        $testVar = 'Test';
 
         $fp = fopen('var://testVar', 'r');
 
@@ -140,7 +149,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamSeekFromStart(): void {
-        $this->testVar = 'Hello World';
+        global $testVar;
+        $testVar = 'Hello World';
 
         $fp = fopen('var://testVar', 'r');
         fseek($fp, 6, SEEK_SET);
@@ -151,7 +161,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamSeekFromCurrent(): void {
-        $this->testVar = 'Hello World';
+        global $testVar;
+        $testVar = 'Hello World';
 
         $fp = fopen('var://testVar', 'r');
         fread($fp, 6);
@@ -163,7 +174,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamSeekFromEnd(): void {
-        $this->testVar = 'Hello World';
+        global $testVar;
+        $testVar = 'Hello World';
 
         $fp = fopen('var://testVar', 'r');
         fseek($fp, -5, SEEK_END);
@@ -174,7 +186,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamSeekInvalidOffset(): void {
-        $this->testVar = 'Test';
+        global $testVar;
+        $testVar = 'Test';
 
         $fp = fopen('var://testVar', 'r');
         $result = fseek($fp, -10, SEEK_SET);
@@ -184,7 +197,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamStat(): void {
-        $this->testVar = 'Test';
+        global $testVar;
+        $testVar = 'Test';
 
         $fp = fopen('var://testVar', 'r');
         $stat = fstat($fp);
@@ -194,7 +208,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamRewind(): void {
-        $this->testVar = 'Hello World';
+        global $testVar;
+        $testVar = 'Hello World';
 
         $fp = fopen('var://testVar', 'r');
         fread($fp, 5);
@@ -206,7 +221,8 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamReadWrite(): void {
-        $this->testVar = 'Hello';
+        global $testVar;
+        $testVar = 'Hello';
 
         $fp = fopen('var://testVar', 'r+');
         $data = fread($fp, 5);
@@ -216,23 +232,25 @@ class VariableStreamTest extends TestCase {
         fwrite($fp, 'World');
         fclose($fp);
 
-        $this->assertEquals('World', $this->testVar);
+        $this->assertEquals('World', $testVar);
     }
 
     public function testStreamMultipleWrites(): void {
-        $this->testVar = '';
+        global $testVar;
+        $testVar = '';
 
         $fp = fopen('var://testVar', 'w');
-        fwrite($fp, 'Line1\n');
-        fwrite($fp, 'Line2\n');
-        fwrite($fp, 'Line3\n');
+        fwrite($fp, "Line1\n");
+        fwrite($fp, "Line2\n");
+        fwrite($fp, "Line3\n");
         fclose($fp);
 
-        $this->assertEquals("Line1\nLine2\nLine3\n", $this->testVar);
+        $this->assertEquals("Line1\nLine2\nLine3\n", $testVar);
     }
 
     public function testStreamReadLineByLine(): void {
-        $this->testVar = "Line1\nLine2\nLine3\n";
+        global $testVar;
+        $testVar = "Line1\nLine2\nLine3\n";
 
         $fp = fopen('var://testVar', 'r');
         $line1 = fgets($fp);
@@ -246,24 +264,26 @@ class VariableStreamTest extends TestCase {
     }
 
     public function testStreamWithBinaryData(): void {
-        $this->testVar = '';
+        global $testVar;
+        $testVar = '';
 
         $fp = fopen('var://testVar', 'w');
         $binaryData = "\x00\x01\x02\x03";
         fwrite($fp, $binaryData);
         fclose($fp);
 
-        $this->assertEquals($binaryData, $this->testVar);
+        $this->assertEquals($binaryData, $testVar);
     }
 
     public function testStreamWithUnicodeData(): void {
-        $this->testVar = '';
+        global $testVar;
+        $testVar = '';
 
         $fp = fopen('var://testVar', 'w');
         $unicodeData = 'Привет Мир';
         fwrite($fp, $unicodeData);
         fclose($fp);
 
-        $this->assertEquals($unicodeData, $this->testVar);
+        $this->assertEquals($unicodeData, $testVar);
     }
 }

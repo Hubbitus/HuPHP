@@ -49,6 +49,7 @@ Code refactoring should be made, following these principles and requirements:
    - Two ** on the end end line: `**/`
 11. Declaration of the `namespace` must be at the very beginning of the file, just after `declare(strict_types=1);`!
 12. On equality comparison, left value must be at left side! E.g. `('' == $var)` and not `($var == '')`!
+13. `#[\Override]` attribute should be present on methods, where overridden have place.
 
 
 # Automated testing
@@ -71,7 +72,7 @@ Continue writing and enabling tests.
 
 # Static Analysis (PHPStan)
 
-PHPStan is used for static analysis to catch type errors and bugs before runtime.
+`PHPStan` is used for static analysis to catch type errors and bugs before runtime.
 
 1. **Always run PHPStan alongside tests** - After making code changes, run both:
    ```bash

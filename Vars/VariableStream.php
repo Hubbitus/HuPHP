@@ -6,102 +6,152 @@ namespace Hubbitus\HuPHP\Vars;
 /**
 * VariableStream stream wrapper. Manipulate stream 'var://varName' as file,
 * where content is $varName.
+* Very useful example from http://www.php.net/manual/ru/function.stream-wrapper-register.php as base for implementation
 *
-* @package Vars
-* @version 1.0b
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2008-06-16 14:33
 **/
-
-/**
-* Very useful example from http://www.php.net/manual/ru/function.stream-wrapper-register.php as base for implementation
-**/
 class VariableStream {
-	var $position;
-	var $varname;
+    public int $position;
+    public string $varname;
 
-	function stream_open($path, $mode, $options, &$opened_path){
-		$url = parse_url($path);
-		$this->varname = $url["host"];
-		$this->position = 0;
+    /**
+    * Open stream.
+    *
+    * @param string $path Stream path
+    * @param string $mode Open mode
+    * @param int $options Stream options
+    * @param string|null $opened_path Opened path
+    **/
+    public function stream_open(string $path, string $mode, int $options, ?string &$opened_path): bool {
+        $url = \parse_url($path);
+        $this->varname = $url['host'];
+        $this->position = 0;
 
-		return true;
-	}
+        // Initialize variable if needed
+        if (!isset($GLOBALS[$this->varname])) {
+            $GLOBALS[$this->varname] = '';
+        }
 
-	function stream_read($count){
-		$ret = substr($GLOBALS[$this->varname], $this->position, $count);
-		$this->position += strlen($ret);
-		return $ret;
-	}
+        // Clear the variable for write modes
+        if ($mode === 'w' || $mode === 'w+') {
+            $GLOBALS[$this->varname] = '';
+        }
 
-	function stream_write($data){
-		$left = substr($GLOBALS[$this->varname], 0, $this->position);
-		$right = substr($GLOBALS[$this->varname], $this->position + strlen($data));
-		$GLOBALS[$this->varname] = $left . $data . $right;
-		$this->position += strlen($data);
-		return strlen($data);
-	}
+        // For append mode, seek to end
+        if ($mode === 'a' || $mode === 'a+') {
+            $this->position = \strlen($GLOBALS[$this->varname]);
+        }
 
-	function stream_tell(){
-		return $this->position;
-	}
+        return true;
+    }
 
-	function stream_eof(){
-		return $this->position >= strlen($GLOBALS[$this->varname]);
-	}
+    /**
+    * Read from stream.
+    *
+    * @param int $count Number of bytes to read
+    **/
+    public function stream_read(int $count): string {
+        $var = $GLOBALS[$this->varname] ?? '';
+        $ret = \substr($var, $this->position, $count);
+        $this->position += \strlen($ret);
+        return $ret;
+    }
 
-	/**
-	* This is STUB, only for warnings supress
-	**/
-	function stream_stat(){
-		return array();
-	}
+    /**
+    * Write to stream.
+    *
+    * @param string $data Data to write
+    * @return int
+    **/
+    public function stream_write(string $data): int {
+        $var = $GLOBALS[$this->varname] ?? '';
+        $left = \substr($var, 0, $this->position);
+        $right = \substr($var, $this->position + \strlen($data));
+        $GLOBALS[$this->varname] = $left . $data . $right;
+        $this->position += \strlen($data);
+        return \strlen($data);
+    }
 
-	function stream_seek($offset, $whence){
-		switch ($whence) {
-			case SEEK_SET:
-				if ($offset < strlen($GLOBALS[$this->varname]) && $offset >= 0) {
-					 $this->position = $offset;
-					 return true;
-				} else {
-					 return false;
-				}
-				break;
+    /**
+    * Get current position.
+    *
+    * @return int
+    **/
+    public function stream_tell(): int {
+        return $this->position;
+    }
 
-			case SEEK_CUR:
-				if ($offset >= 0) {
-					 $this->position += $offset;
-					 return true;
-				} else {
-					 return false;
-				}
-				break;
+    /**
+    * Check if end of stream.
+    *
+    * @return bool
+    **/
+    public function stream_eof(): bool {
+        $var = $GLOBALS[$this->varname] ?? '';
+        return $this->position >= \strlen($var);
+    }
 
-			case SEEK_END:
-				if (strlen($GLOBALS[$this->varname]) + $offset >= 0) {
-					 $this->position = strlen($GLOBALS[$this->varname]) + $offset;
-					 return true;
-				} else {
-					 return false;
-				}
-				break;
+    /**
+    * Get stream statistics.
+    *
+    * @return array<int, mixed>
+    **/
+    public function stream_stat(): array {
+        return [];
+    }
 
-			default:
-				return false;
-		}
-	}
+    /**
+    * Seek to position.
+    *
+    * @param int $offset Offset
+    * @param int $whence Seek mode
+    **/
+    public function stream_seek(int $offset, int $whence): bool {
+        $var = $GLOBALS[$this->varname] ?? '';
+        switch ($whence) {
+            case SEEK_SET:
+                if ($offset >= 0 && $offset < \strlen($var)) {
+                    $this->position = $offset;
+                    return true;
+                } else {
+                    return false;
+                }
+
+            case SEEK_CUR:
+                if ($offset >= 0) {
+                    $this->position += $offset;
+                    return true;
+                } else {
+                    return false;
+                }
+
+            case SEEK_END:
+                if (\strlen($var) + $offset >= 0) {
+                    $this->position = \strlen($var) + $offset;
+                    return true;
+                } else {
+                    return false;
+                }
+
+            default:
+                return false;
+        }
+    }
 }
 
-stream_wrapper_register("var", "VariableStream")
-	or die("Failed to register protocol");
+if (!\in_array('var', \stream_get_wrappers(), true)) {
+    \stream_wrapper_register('var', VariableStream::class)
+        or die('Failed to register protocol');
+}
 
 /*
 @example
 
-$myvar = "";
+$myvar = '';
 
-$fp = fopen("var://myvar", "r+");
+$fp = fopen('var://myvar', 'r+');
 
 fwrite($fp, "line1\n");
 fwrite($fp, "line2\n");
@@ -109,7 +159,7 @@ fwrite($fp, "line3\n");
 
 rewind($fp);
 while (!feof($fp)) {
-	echo fgets($fp);
+    echo fgets($fp);
 }
 fclose($fp);
 var_dump($myvar);

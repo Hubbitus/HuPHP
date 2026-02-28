@@ -27,10 +27,8 @@ class VariableStreamDirectTest extends TestCase {
 
     protected function setUp(): void {
         // Register stream wrapper if not already registered
-        if (!in_array('var', stream_get_wrappers())) {
-            stream_wrapper_register('var', VariableStream::class);
-        }
-
+        // VariableStream is already registered by the autoloader in VariableStream.php
+        // so we just get the existing wrapper instance
         $this->stream = new VariableStream();
     }
 
@@ -42,12 +40,24 @@ class VariableStreamDirectTest extends TestCase {
         $this->assertEquals('testVarOpen', $this->stream->varname);
     }
 
+    public function testStreamOpenWithUnsetVariable(): void {
+        // Test when variable is not set - should be initialized to ''
+        unset($GLOBALS['testVarOpen3']);
+        $result = $this->stream->stream_open('var://testVarOpen3', 'r', 0, $opened_path);
+
+        $this->assertTrue($result);
+        $this->assertEquals('testVarOpen3', $this->stream->varname);
+        $this->assertEquals('', $GLOBALS['testVarOpen3']);
+    }
+
     public function testStreamOpenWithDifferentPath(): void {
         $GLOBALS['testVarOpen2'] = 'test';
         $result = $this->stream->stream_open('var://testVarOpen2', 'w', 0, $opened_path);
 
         $this->assertTrue($result);
         $this->assertEquals('testVarOpen2', $this->stream->varname);
+        // Verify that 'w' mode clears the variable
+        $this->assertEquals('', $GLOBALS['testVarOpen2']);
     }
 
     public function testStreamRead(): void {
@@ -170,6 +180,18 @@ class VariableStreamDirectTest extends TestCase {
 
         $eof = $this->stream->stream_eof();
 
+        $this->assertTrue($eof);
+    }
+
+    public function testStreamEofWithUnsetVar(): void {
+        // Test when variable is not set in GLOBALS (null coalescing branch)
+        unset($GLOBALS['testVarEof5']);
+        $this->stream->varname = 'testVarEof5';
+        $this->stream->position = 0;
+
+        $eof = $this->stream->stream_eof();
+
+        // When var is not set, it defaults to '', so position 0 >= strlen('') = 0
         $this->assertTrue($eof);
     }
 
