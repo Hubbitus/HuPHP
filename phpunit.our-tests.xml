@@ -22,6 +22,7 @@
             <file>tests/System/Console/HuGetoptOptionTest.php</file>
             <file>tests/RegExp/RegExpBaseTest.php</file>
             <file>tests/System/OutputTypeTest.php</file>
+            <file>tests/Debug/HuFormatExceptionTest.php</file>
         </testsuite>
     </testsuites>
 
