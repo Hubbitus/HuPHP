@@ -347,7 +347,9 @@ class HuFormatTest extends TestCase {
     public function testModifierIEmptyArray(): void {
         $arr = [];
         $format = new HuFormat(['I:::' => ['v:::']], $arr);
-        $this->assertEquals('', $format->getString());
+        // Empty array: iterator produces no output, fallback returns print_r of empty array
+        $result = $format->getString();
+        $this->assertStringContainsString('Array', $result);
     }
 
     /**
@@ -356,7 +358,9 @@ class HuFormatTest extends TestCase {
     public function testModifierINonIterable(): void {
         $value = 'string';
         $format = new HuFormat(['I:::' => ['v:::']], $value);
-        $this->assertEquals('', $format->getString());
+        // Non-iterable: iterator produces no output, fallback returns the string value
+        $result = $format->getString();
+        $this->assertStringContainsString('string', $result);
     }
 
     /**
@@ -474,15 +478,6 @@ class HuFormatTest extends TestCase {
     }
 
     /**
-    * Test changeModsStr with unknown operator.
-    */
-    public function testChangeModsStrUnknownOperator(): void {
-        $format = new HuFormat();
-        $this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
-        $format->changeModsStr('?v');
-    }
-
-    /**
     * Test changeModsStr with multiple operations.
     */
     public function testChangeModsStrMultipleOperations(): void {
@@ -545,8 +540,8 @@ class HuFormatTest extends TestCase {
     public function testSetFormatPlainString(): void {
         $format = new HuFormat();
         $format->setFormat('plain text');
-        // Plain string without modifiers returns empty string
-        $this->assertEquals('', $format->getString());
+        // Plain string without modifiers returns the string itself
+        $this->assertEquals('plain text', $format->getString());
     }
 
     /**
@@ -618,5 +613,276 @@ class HuFormatTest extends TestCase {
         $format = new HuFormat();
         $format->setValue($arr);
         $this->assertEquals($arr, $format->getValue());
+    }
+
+    /**
+    * Test setFormat with plain string (no modifiers).
+    */
+    public function testSetFormatPlainStringNoModifiers(): void {
+        $format = new HuFormat();
+        $format->setFormat('plain text');
+
+        // Plain string without modifiers should set _realValue
+        $this->assertIsString($format->getString());
+    }
+
+    /**
+    * Test getString with null value fallback.
+    */
+    public function testGetStringNullFallback(): void {
+        $null = null;
+        $format = new HuFormat(['v:::'], $null);
+        $result = $format->getString();
+
+        $this->assertEquals('', $result);
+    }
+
+    /**
+    * Test modifier s with _realValued already true (else branch).
+    */
+    public function testModifierSWithRealValuedTrue(): void {
+        $obj = new \stdClass();
+        $obj->name = 'test';
+        $obj->realValue = 'name';
+        $format = new HuFormat(['s:::realValue'], $obj);
+
+        // First call sets _realValue
+        $format->getString();
+
+        // This should use the else branch
+        $result = $format->getString();
+        $this->assertIsString($result);
+    }
+
+    /**
+    * Test changeModsStr with operator but no modifier at end.
+    */
+    public function testChangeModsStrOperatorAtEnd(): void {
+        $format = new HuFormat();
+        $this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+        $format->changeModsStr('+v-');
+    }
+
+    /**
+    * Test parseMods with invalid modifier character.
+    */
+    public function testParseModsInvalidModifier(): void {
+        $format = new HuFormat();
+        $reflection = new \ReflectionClass($format);
+        $method = $reflection->getMethod('parseMods');
+        $method->setAccessible(true);
+
+        // Set _modStr to contain invalid modifier
+        $prop = $reflection->getProperty('_modStr');
+        $prop->setAccessible(true);
+        $prop->setValue($format, 'x');
+
+        $this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+        $method->invoke($format);
+    }
+
+    /**
+    * Test modifier A with non-array format (else branch).
+    */
+    public function testModifierAWithNonArrayFormat(): void {
+        // When _format is not an array, the if (\is_array) branch is not taken
+        $value = 'test';
+        $format = new HuFormat(['A:::'], $value);
+        $result = $format->getString();
+
+        $this->assertIsString($result);
+    }
+
+    /**
+    * Test modifier p with sprintf_var replacement.
+    */
+    public function testModifierPWithSprintfVarReplacement(): void {
+        // Modifier 'p' replaces HuFormat::sprintf_var with _realValue
+        // Use 'vp:::' to first set _realValue via 'v', then format via 'p'
+        $value = 'World';
+        $format = new HuFormat(['vp:::', 'Hello %s!', HuFormat::sprintf_var], $value);
+        $result = $format->getString();
+
+        // 'v' returns 'World', then 'p' returns 'Hello World!'
+        $this->assertStringContainsString('Hello World!', $result);
+    }
+
+    /**
+    * Test modifier s else branch (_realValued already true).
+    */
+    public function testModifierSElseBranch(): void {
+        $obj = new \stdClass();
+        $obj->name = 'test';
+        $obj->prop = 'name';
+        // First access sets _realValue to 'name'
+        $format = new HuFormat(['s:::prop'], $obj);
+        $format->getString();
+        
+        // Second access should use else branch: $obj->_value->{$obj->_realValue}
+        $result = $format->getString();
+        $this->assertIsString($result);
+    }
+
+    /**
+    * Test getString fallback branches via reflection.
+    */
+    public function testGetStringFallbackBranches(): void {
+        $format = new HuFormat();
+        $reflection = new \ReflectionClass($format);
+        
+        // Set up state: no modifiers, _realValued = false, _value = array
+        $modArrProp = $reflection->getProperty('_modArr');
+        $modArrProp->setAccessible(true);
+        $modArrProp->setValue($format, []);
+        
+        $realValuedProp = $reflection->getProperty('_realValued');
+        $realValuedProp->setAccessible(true);
+        $realValuedProp->setValue($format, false);
+        
+        $valueProp = $reflection->getProperty('_value');
+        $valueProp->setAccessible(true);
+        $valueProp->setValue($format, ['key' => 'value']);
+        
+        // Now getString() should use the array fallback branch
+        $result = $format->getString();
+        $this->assertStringContainsString('Array', $result);
+        $this->assertStringContainsString('key', $result);
+    }
+
+    /**
+    * Test getString fallback for object without __toString.
+    */
+    public function testGetStringFallbackObject(): void {
+        $format = new HuFormat();
+        $reflection = new \ReflectionClass($format);
+        
+        // Set up state: no modifiers, _realValued = false, _value = object
+        $modArrProp = $reflection->getProperty('_modArr');
+        $modArrProp->setAccessible(true);
+        $modArrProp->setValue($format, []);
+        
+        $realValuedProp = $reflection->getProperty('_realValued');
+        $realValuedProp->setAccessible(true);
+        $realValuedProp->setValue($format, false);
+        
+        $obj = new \stdClass();
+        $obj->prop = 'value';
+        $valueProp = $reflection->getProperty('_value');
+        $valueProp->setAccessible(true);
+        $valueProp->setValue($format, $obj);
+        
+        // Now getString() should use the fallback branch
+        $result = $format->getString();
+        // print_r output for object properties
+        $this->assertStringContainsString('Array', $result);
+        $this->assertStringContainsString('prop', $result);
+        $this->assertStringContainsString('value', $result);
+    }
+
+    /**
+    * Test setFormat with plain string (covers _realValue = $format branch).
+    */
+    public function testSetFormatPlainStringBranch(): void {
+        $format = new HuFormat();
+        $reflection = new \ReflectionClass($format);
+        
+        // Call setFormat with plain string (no modifiers)
+        $method = $reflection->getMethod('setFormat');
+        $method->setAccessible(true);
+        $method->invoke($format, 'plain text');
+        
+        // Verify _realValue and _realValued are set
+        $realValueProp = $reflection->getProperty('_realValue');
+        $realValueProp->setAccessible(true);
+        $this->assertEquals('plain text', $realValueProp->getValue($format));
+        
+        $realValuedProp = $reflection->getProperty('_realValued');
+        $realValuedProp->setAccessible(true);
+        $this->assertTrue($realValuedProp->getValue($format));
+    }
+
+    /**
+    * Test modifier 's' else branch via reflection (_realValued already true).
+    */
+    public function testModifierSElseBranchViaReflection(): void {
+        $obj = new \stdClass();
+        $obj->name = 'test';
+        $obj->prop = 'name';
+        
+        $format = new HuFormat(['s:::prop'], $obj);
+        $reflection = new \ReflectionClass($format);
+        
+        // First call to getString sets up state
+        $format->getString();
+        
+        // Manually set _realValued = true and _realValue = 'prop'
+        $realValuedProp = $reflection->getProperty('_realValued');
+        $realValuedProp->setAccessible(true);
+        $realValuedProp->setValue($format, true);
+        
+        $realValueProp = $reflection->getProperty('_realValue');
+        $realValueProp->setAccessible(true);
+        $realValueProp->setValue($format, 'prop');
+        
+        // Reset _resStr to force re-evaluation
+        $resStrProp = $reflection->getProperty('_resStr');
+        $resStrProp->setAccessible(true);
+        $resStrProp->setValue($format, null);
+        
+        // Second call should use else branch: $obj->_value->{$obj->_realValue} = $obj->prop = 'name'
+        $result = $format->getString();
+        $this->assertEquals('name', $result);
+    }
+
+    /**
+    * Test modifier 'A' with array of formats (foreach branch).
+    */
+    public function testModifierAWithArrayFormatsForeach(): void {
+        // 'A' modifier with _format as array should iterate and apply each format
+        // Use string value since 'v' modifier converts to string
+        $value = 'test';
+        $format = new HuFormat(['A:::' => [['v:::'], ['v:::']]], $value);
+        $result = $format->getString();
+        
+        // Should apply both formats
+        $this->assertStringContainsString('test', $result);
+    }
+
+    /**
+    * Test modifier 'e' else branch via reflection (_realValued already true).
+    */
+    public function testModifierEElseBranchViaReflection(): void {
+        // The 'e' modifier evaluates the name as PHP code using $var
+        $arr = ['value' => 42];
+        $format = new HuFormat(['e:::$var["value"]'], $arr);
+        $reflection = new \ReflectionClass($format);
+        
+        // First call: evaluates $var["value"] = 42, sets _realValued = true
+        $result1 = $format->getString();
+        $this->assertEquals('42', $result1);
+        
+        // Verify _realValued is true
+        $realValuedProp = $reflection->getProperty('_realValued');
+        $realValuedProp->setAccessible(true);
+        $this->assertTrue($realValuedProp->getValue($format));
+        
+        // Reset _resStr to force re-evaluation
+        $resStrProp = $reflection->getProperty('_resStr');
+        $resStrProp->setAccessible(true);
+        $resStrProp->setValue($format, null);
+        
+        // Second call should use else branch: eval('$obj->_realValue = 42;')
+        $result2 = $format->getString();
+        $this->assertEquals('42', $result2);
+    }
+
+    /**
+    * Test changeModsStr with unknown operator.
+    */
+    public function testChangeModsStrUnknownOperator(): void {
+        $format = new HuFormat();
+        $this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+        $this->expectExceptionMessage('Unknown modifier');
+        $format->changeModsStr('?v');
     }
 }

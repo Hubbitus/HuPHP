@@ -120,10 +120,14 @@ class HuFormat extends HuError {
 			**/
 			'e' => function(self $obj): string {
 				if (!$obj->_realValued){
+					${self::evaluate_var} = $obj->getValue(); /* @phpstan-ignore variable.dynamicName */
 					eval('$obj->_realValue = '.$obj->_name.';');
 					$obj->_realValued = true;
 				}
-				else eval('$obj->_realValue = '.$obj->_realValue.';');
+				else {
+					${self::evaluate_var} = $obj->getValue(); /* @phpstan-ignore variable.dynamicName */
+					eval('$obj->_realValue = '.$obj->_realValue.';');
+				}
 				return (string)$obj->_realValue;
 			},
 			/**
@@ -310,7 +314,7 @@ class HuFormat extends HuError {
 			//Parse string format for modifiers
 			$this->parseModsName($format);
 			//If no modifiers, treat as plain string value
-			if ($this->_modArr !== []) {
+			if ($this->_modArr === []) {
 				$this->_realValue = $format;
 				$this->_realValued = true;
 			}
@@ -345,7 +349,7 @@ class HuFormat extends HuError {
 	* @return string
 	**/
 	public function getString(?array $fields = null): string {
-		if (!$this->_resStr){
+		if ($this->_resStr === null){
 			$this->_resStr = '';
 
 			foreach ($this->_modArr as $mod){
@@ -357,11 +361,7 @@ class HuFormat extends HuError {
 			}
 
 			//If all mod_* are only evaluate value and not produce out.
-			if ($this->_resStr === null) {
-				//If format was plain string (no modifiers), return it as is
-				if ($this->_modArr !== [] && $this->_realValued && \is_string($this->_realValue)) {
-					return $this->_realValue;
-				}
+			if ($this->_resStr === ''){
 				$value = $this->getValue();
 				if ($value === null) return '';
 				if (\is_array($value)) return \print_r($value, true);
