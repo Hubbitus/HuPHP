@@ -30,14 +30,6 @@ class FileException extends BaseException {
 		return $this->fullPath;
 	}
 
-	/**
-	* Clone the exception including custom properties
-	**/
-	public function __clone(): void {
-		// Exception base properties (message, code, previous) are cloned automatically
-		// Custom properties need explicit handling if they are objects
-	}
-
 	// custom string representation of object
 	public function __toString(): string {
 		return __CLASS__ . ": [{$this->fullPath}]: {$this->message}\n";

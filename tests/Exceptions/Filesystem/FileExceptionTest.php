@@ -308,11 +308,6 @@ class FileExceptionTest extends TestCase {
         $this->assertStringContainsString('/path/to/file', $string);
     }
 
-    public function testFileExceptionCloneMethodExists(): void {
-        $exception = new FileException('Test', '/path/to/file');
-        $this->assertTrue(method_exists($exception, '__clone'));
-    }
-
     public function testFileExceptionGetFullPath(): void {
         $exception = new FileException('Error', '/full/path/to/file.txt');
         $fullPath = $exception->getFullPath();
