@@ -154,8 +154,8 @@ class Tokenizer {
 		$this->_filePhpSrc->loadContent();
 
 		$reg = '/'
-			.RegExpPcre::quote(@$this->_debugBacktrace->type) // For classes '->' or '::'. For regular functions not exist.
-			.'\b'.$this->_debugBacktrace->function // In case of method and regular function same name present.
+			.RegExpPcre::quote($this->_debugBacktrace->type ?? '') // For classes '->' or '::'. For regular functions not exist.
+			.'\b'.RegExpPcre::quote($this->_debugBacktrace->function) // In case of method and regular function same name present.
 			.'\s*\((.*?)\s*\)' // call
 			.'/xms';
 
@@ -194,7 +194,7 @@ class Tokenizer {
 			$this->_filePhpSrc->getLineSep(),
 			$this->_filePhpSrc->getLines([
 				$this->_callStartLine - 1,
-				$delta + 1,
+				(int)($delta + 1),
 			])
 		);
 		return $this;
