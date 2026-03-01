@@ -314,19 +314,6 @@ class SingleTest extends TestCase {
         $this->assertEquals($hash1, $hash2);
     }
 
-    public function testCloneMethodIsPublic(): void {
-        $reflection = new \ReflectionMethod(Single::class, '__clone');
-        $this->assertTrue($reflection->isPublic());
-    }
-
-    public function testCloneTriggersError(): void {
-        $instance = Single::singleton(\stdClass::class);
-
-        // trigger_error with E_USER_ERROR should be triggered
-        // We can't easily test this in PHPUnit, but we verify method exists
-        $this->assertTrue(method_exists(Single::class, '__clone'));
-    }
-
     public function testHashMethodIsStatic(): void {
         $reflection = new \ReflectionMethod(Single::class, 'hash');
         $this->assertTrue($reflection->isStatic());
@@ -369,5 +356,41 @@ class SingleTest extends TestCase {
         $this->assertSame($instance1, $instance3);
         // instance2 should be different
         $this->assertNotSame($instance1, $instance2);
+    }
+
+    public function testConstructorIsProtected(): void {
+        // Test that __construct is protected (Singleton pattern)
+        $reflection = new \ReflectionClass(Single::class);
+        $constructor = $reflection->getConstructor();
+        
+        $this->assertNotNull($constructor);
+        $this->assertTrue($constructor->isProtected());
+    }
+
+    public function testConstructorOutputsMessage(): void {
+        // Test that __construct outputs message when called (even via reflection)
+        // This covers line 26: echo 'I am constructed. But can\'t be :) ';
+        $reflection = new \ReflectionClass(Single::class);
+        $constructor = $reflection->getConstructor();
+        $constructor->setAccessible(true);
+        
+        $instance = $reflection->newInstanceWithoutConstructor();
+        
+        // Capture output from echo statement
+        ob_start();
+        $constructor->invoke($instance);
+        $output = ob_get_clean();
+        
+        $this->assertStringContainsString('I am constructed', $output);
+    }
+
+    public function testCloneMethodExistsAndIsPublic(): void {
+        // Verify __clone method exists and is public
+        // Note: This method is dead code - singleton() returns instances of other classes,
+        // so Single::__clone() is never actually called in practice.
+        $reflection = new \ReflectionClass(Single::class);
+        $cloneMethod = $reflection->getMethod('__clone');
+        
+        $this->assertTrue($cloneMethod->isPublic());
     }
 }

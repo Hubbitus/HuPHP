@@ -17,7 +17,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Macroses;
 
-use \Hubbitus\HuPHP\Exceptions\variables\VariableRequiredException;
+use \Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use \Hubbitus\HuPHP\Debug\Backtrace;
 
 /**

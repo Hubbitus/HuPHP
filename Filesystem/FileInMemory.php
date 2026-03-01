@@ -243,12 +243,7 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 			}
 		} while(!$found);
 
-		if ($found === true) {
-			return $line;
-		}
-		else {
-			return false;
-		}
+		return $line;
 	}
 
 	/**

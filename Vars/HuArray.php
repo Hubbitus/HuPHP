@@ -6,7 +6,7 @@ namespace Hubbitus\HuPHP\Vars;
 use Hubbitus\HuPHP\Vars\Settings\Settings;
 use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
 use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
-use Hubbitus\HuPHP\Exceptions\variables\VariableIsNullException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
 
 /**
 * Class to provide OOP interface to array operations.

@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Macroses;
 
-use Hubbitus\HuPHP\Exceptions\variables\VariableIsNullException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
 use \Hubbitus\HuPHP\Debug\Backtrace;
 
 /**

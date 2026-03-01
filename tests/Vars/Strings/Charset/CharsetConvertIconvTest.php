@@ -202,4 +202,17 @@ class CharsetConvertIconvTest extends TestCase {
         
         $this->assertInstanceOf(\Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert::class, $converter);
     }
+
+    public function testConvertWithInvalidEncodingThrowsException(): void {
+        // Test that convert() throws CharsetConvertException when iconv fails
+        // This covers error handling branches (lines 66-74)
+        // Note: Exception is thrown in constructor because parent::__construct() calls convert()
+        
+        $this->expectException(\Hubbitus\HuPHP\Exceptions\Strings\Charset\CharsetConvertException::class);
+        $this->expectExceptionMessage('iconv(): Wrong encoding');
+        
+        // Use invalid encoding to trigger iconv error in constructor
+        $text = 'Test text';
+        $converter = new CharsetConvertIconv($text, 'INVALID-ENCODING', 'UTF-8');
+    }
 }

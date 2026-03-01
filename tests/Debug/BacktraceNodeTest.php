@@ -294,4 +294,31 @@ final class BacktraceNodeTest extends TestCase {
     // Note: testFormatArgsThrowsExceptionWithClearMessage is not possible because
     // PrintoutDefault::configure() is automatically called inside formatArgs() to ensure
     // default configuration is always available. This is by design for defensive coding.
+
+    public function testFormatArgsConfiguresPrintoutDefault(): void
+    {
+        // Test that formatArgs() calls PrintoutDefault::configure() when global config is not set
+        // This covers line 215: PrintoutDefault::configure();
+        $debugData = [
+            'file' => '/test/file.php',
+            'line' => 10,
+            'function' => 'testFunction',
+            'args' => ['arg1', 'arg2'],
+            'N' => 0,
+        ];
+
+        $node = new BacktraceNode($debugData, 0);
+
+        // Clear global config to trigger PrintoutDefault::configure()
+        $originalConfig = $GLOBALS['__CONFIG']['backtrace::printout'] ?? null;
+        unset($GLOBALS['__CONFIG']['backtrace::printout']);
+
+        try {
+            $result = $node->formatArgs();
+            $this->assertIsString($result);
+            $this->assertNotEmpty($result);
+        } finally {
+            $GLOBALS['__CONFIG']['backtrace::printout'] = $originalConfig;
+        }
+    }
 }

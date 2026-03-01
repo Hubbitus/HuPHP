@@ -363,4 +363,30 @@ final class BacktraceTest extends TestCase {
             $GLOBALS['__CONFIG']['backtrace::printout'] = $originalConfig;
         }
     }
+
+    public function testToStringReturnsString(): void
+    {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction', 'args' => []],
+        ];
+
+        $bt = new Backtrace($debugData, 0);
+        $result = $bt->__toString();
+
+        $this->assertIsString($result);
+        $this->assertNotEmpty($result);
+    }
+
+    public function testToStringMagicMethod(): void
+    {
+        $debugData = [
+            ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction', 'args' => []],
+        ];
+
+        $bt = new Backtrace($debugData, 0);
+        $result = (string) $bt;
+
+        $this->assertIsString($result);
+        $this->assertNotEmpty($result);
+    }
 }
