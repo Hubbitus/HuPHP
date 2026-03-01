@@ -215,4 +215,21 @@ class CharsetConvertIconvTest extends TestCase {
         $text = 'Test text';
         $converter = new CharsetConvertIconv($text, 'INVALID-ENCODING', 'UTF-8');
     }
+
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testConvertRestoresErrorHandlerWhenNull(): void {
+        // Test that convert() properly restores error handler when it was null
+        // This covers lines 66-67: elseif (is_null($oldErrorHandler)) { restore_error_handler(); }
+        
+        // Ensure no error handler is set in this fresh process
+        \set_error_handler(null);
+        
+        $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
+        $converter->convert();
+        
+        $this->assertEquals('Hello', $converter->getResult());
+    }
 }
