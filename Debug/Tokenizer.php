@@ -193,8 +193,8 @@ class Tokenizer {
 		$this->_callText = \implode(
 			$this->_filePhpSrc->getLineSep(),
 			$this->_filePhpSrc->getLines([
-				(int)($this->_callStartLine - 1),
-				(int)($delta + 1),
+				$this->_callStartLine - 1,
+				$delta + 1,
 			])
 		);
 		return $this;

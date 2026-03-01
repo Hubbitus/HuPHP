@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
 
-use Hubbitus\HuPHP\System\OS;
-use Hubbitus\HuPHP\Exceptions\Classes\ClassNotExistsException;
 use function Hubbitus\HuPHP\Vars\CONF;
 
 /**
@@ -22,8 +20,8 @@ class Single {
     /**
     * A private constructor; prevents direct creation of object
     **/
-    protected final function __construct() {
-        echo 'I am constructed. But can\'t be :) ';
+    final protected function __construct() {
+        echo 'I am constructed. But can\'t be called :)';
     }
 
     /**
@@ -33,16 +31,12 @@ class Single {
     * @param string $className Class name to provide Singleton instance for it.
     * @return object Singleton instance of the class
     **/
-    public static function &singleton($className) {
+    public static function &singleton(string $className): object {
         $args = \func_get_args();
         \array_shift($args); // Remove class name
 
         $hash = $className . '_' . self::hash($args);
         if (!isset(self::$instance[$hash])) {
-            if (!\function_exists('__autoload') && (!\function_exists('spl_autoload_functions') || !\spl_autoload_functions())) {
-                self::tryIncludeByClassName($className);
-            }
-
             /*
             Using Reflection to instantiate class with any args.
             See http://ru2.php.net/manual/ru/function.call-user-func-array.php, comment of richard_harrison at rjharrison dot org
@@ -71,33 +65,13 @@ class Single {
     * @param string $className Class name to provide Singleton instance for it.
     * @return object Singleton instance of the class
     **/
-    public static function &def($className) {
+    public static function &def(string $className): object {
         $config = CONF()->getRaw($className, true);
         // If config is null, call singleton without arguments
         if (null === $config) {
             return self::singleton($className);
         }
         return self::singleton($className, $config);
-    }
-
-    /**
-    * Try include
-    *
-    * @deprecated Use autoload instead.
-    * @param string $className Name of needed class
-    * @return void
-    **/
-    public static function tryIncludeByClassName($className): void {
-        \file_put_contents('php://stderr', 'Usage of Single::tryIncludeByClassName is deprecated. Use autoload instead.');
-        // is_readable is not use include_path, so can not use this check. More explanation see {$link OS::is_includeable()}
-        if (!\class_exists($className) && isset($GLOBALS['__CONFIG'][$className]['class_file']) && OS::is_includeable($GLOBALS['__CONFIG'][$className]['class_file'])) {
-            include($GLOBALS['__CONFIG'][$className]['class_file']);
-        }
-
-        // Check again
-        if (!\class_exists($className)) {
-            throw new ClassNotExistsException($className . ' NOT exist!' . (!@$GLOBALS['__CONFIG'][$className]['class_file'] ? '' : ' And, additionaly include provided path [' . $GLOBALS['__CONFIG'][$className]['class_file'] . '] not helped in this!'));
-        }
     }
 
     /**
@@ -113,8 +87,7 @@ class Single {
     * @param mixed $param
     * @return string
     **/
-    public static function hash($param): string {
+    public static function hash(mixed $param): string {
         return \md5(\http_build_query($param));
     }
 }
-

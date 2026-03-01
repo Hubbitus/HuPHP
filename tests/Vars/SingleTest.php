@@ -319,27 +319,6 @@ class SingleTest extends TestCase {
         $this->assertTrue($reflection->isStatic());
     }
 
-    public function testTryIncludeByClassNameMethodExists(): void {
-        $this->assertTrue(method_exists(Single::class, 'tryIncludeByClassName'));
-    }
-
-    public function testTryIncludeByClassNameIsStatic(): void {
-        $reflection = new \ReflectionMethod(Single::class, 'tryIncludeByClassName');
-        $this->assertTrue($reflection->isStatic());
-    }
-
-    public function testTryIncludeByClassNameWithNonExistentClass(): void {
-        $this->expectException(\Hubbitus\HuPHP\Exceptions\Classes\ClassNotExistsException::class);
-
-        Single::tryIncludeByClassName('NonExistentClass12345');
-    }
-
-    public function testTryIncludeByClassNameDeprecationNotice(): void {
-        // This method is deprecated and shows a deprecation notice
-        // Just verify it exists and is callable
-        $this->assertTrue(method_exists(Single::class, 'tryIncludeByClassName'));
-    }
-
     public function testDefCallsSingleton(): void {
         // def() should call singleton() internally with CONF()->getRaw()
         // Just verify def returns an object
@@ -384,13 +363,18 @@ class SingleTest extends TestCase {
         $this->assertStringContainsString('I am constructed', $output);
     }
 
-    public function testCloneMethodExistsAndIsPublic(): void {
-        // Verify __clone method exists and is public
-        // Note: This method is dead code - singleton() returns instances of other classes,
-        // so Single::__clone() is never actually called in practice.
-        $reflection = new \ReflectionClass(Single::class);
-        $cloneMethod = $reflection->getMethod('__clone');
+    public function testCloneThrowsLogicException(): void {
+        // Test that __clone throws LogicException
+        // This protects Single subclasses, but singleton() returns instances
+        // of other classes (not Single), so __clone is not called in typical usage.
         
-        $this->assertTrue($cloneMethod->isPublic());
+        // Create Single instance via reflection (constructor is protected)
+        $reflection = new \ReflectionClass(Single::class);
+        $instance = $reflection->newInstanceWithoutConstructor();
+        
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Clone is not allowed');
+        
+        clone $instance;
     }
 }
