@@ -1,9 +1,0 @@
-<?php
-declare(strict_types=1);
-
-namespace Hubbitus\HuPHP\Vars;
-
-/**
-* To explicit indicate what value not provided, also Null NOT provided too!
-**/
-class NullClass {}
