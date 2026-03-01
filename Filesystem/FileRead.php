@@ -73,8 +73,8 @@ protected int $_line_no = 0; //Current line number. Read only. For getline() acc
 	**/
 	public function open(string $mode, bool $use_include_path = false, $zContext = null): void {
 		$result = $zContext
-			? ($this->fd = \fopen($this->path(), $mode, $use_include_path, $zContext))
-			: ($this->fd = \fopen($this->path(), $mode, $use_include_path));
+			? ($this->fd = @\fopen($this->path(), $mode, $use_include_path, $zContext))
+			: ($this->fd = @\fopen($this->path(), $mode, $use_include_path));
 
 		// For write modes, just check if fopen succeeded
 		if (\strpos($mode, 'w') !== false || \strpos($mode, 'a') !== false || \strpos($mode, 'x') !== false) {
