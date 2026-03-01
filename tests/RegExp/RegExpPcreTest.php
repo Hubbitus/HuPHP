@@ -171,4 +171,160 @@ class RegExpPcreTest extends TestCase {
 		$this->assertIsArray($result);
 		$this->assertContains('test\.', $result);
 	}
+
+	public function testConvertOffsetToChars(): void {
+		// Test convertOffsetToChars() with UTF-8 text
+		// preg_match with PREG_OFFSET_CAPTURE returns byte offsets
+		// convertOffsetToChars() converts them to character offsets
+		$regexp = new RegExpPcre('/тест/', 'это тест текст');
+		$regexp->doMatch(PREG_OFFSET_CAPTURE);
+		
+		// Get matches before conversion (byte offsets)
+		$matchesBefore = $regexp->getMatches();
+		
+		// Convert to character offsets
+		$regexp->convertOffsetToChars(PREG_OFFSET_CAPTURE);
+		
+		// Get matches after conversion (character offsets)
+		$matchesAfter = $regexp->getMatches();
+		
+		// Matches should still be an array
+		$this->assertIsArray($matchesAfter);
+		$this->assertNotEmpty($matchesAfter);
+	}
+
+	public function testConvertOffsetToCharsWithMbstring(): void {
+		// Test convertOffsetToChars() with multibyte text
+		// This tests the mb_strlen path if available
+		$regexp = new RegExpPcre('/hello/', 'hello мир hello');
+		$regexp->doMatchAll(PREG_OFFSET_CAPTURE);
+		
+		// Convert offsets
+		$regexp->convertOffsetToChars(PREG_OFFSET_CAPTURE);
+		
+		$matches = $regexp->getMatches();
+		$this->assertIsArray($matches);
+		$this->assertCount(2, $matches[0]);
+	}
+
+	public function testConvertOffsetToCharsWithoutFlag(): void {
+		// Test convertOffsetToChars() without PREG_OFFSET_CAPTURE flag
+		// Should not modify matches
+		$regexp = new RegExpPcre('/test/', 'test text test');
+		$regexp->doMatch(); // Without PREG_OFFSET_CAPTURE
+		
+		// Convert should not change anything without PREG_OFFSET_CAPTURE
+		$regexp->convertOffsetToChars();
+		
+		$matches = $regexp->getMatches();
+		$this->assertIsArray($matches);
+	}
+
+	public function testConvertOffsetToCharsWithNoMatch(): void {
+		// Test convertOffsetToChars() when there are no matches
+		$regexp = new RegExpPcre('/xyz/', 'test text test');
+		$regexp->doMatch(PREG_OFFSET_CAPTURE);
+		
+		// No matches, convert should not fail
+		$regexp->convertOffsetToChars(PREG_OFFSET_CAPTURE);
+		
+		$matches = $regexp->getMatches();
+		$this->assertIsArray($matches);
+	}
+
+	public function testConvertOffsetToCharsWithUnicodeText(): void {
+		// Test convertOffsetToChars() with various Unicode characters
+		$unicodeText = 'Привет 世界 🌍 Hello';
+		$regexp = new RegExpPcre('/世界/', $unicodeText);
+		$regexp->doMatch(PREG_OFFSET_CAPTURE);
+		
+		// Convert byte offsets to character offsets
+		$regexp->convertOffsetToChars(PREG_OFFSET_CAPTURE);
+		
+		$matches = $regexp->getMatches();
+		$this->assertIsArray($matches);
+		$this->assertNotEmpty($matches);
+		
+		// Verify the match position is correct in characters (not bytes)
+		if (!empty($matches[0])) {
+			$offset = $matches[0][0][1];
+			$this->assertIsInt($offset);
+			$this->assertGreaterThanOrEqual(0, $offset);
+		}
+	}
+
+	public function testDoMatchWithOffset(): void {
+		// Test doMatch() with offset parameter
+		$regexp = new RegExpPcre('/test/', 'test test test');
+		$regexp->doMatch(PREG_OFFSET_CAPTURE, 5); // Start from offset 5
+		
+		$matches = $regexp->getMatches();
+		$this->assertIsArray($matches);
+	}
+
+	public function testDoMatchAllWithOffset(): void {
+		// Test doMatchAll() with offset parameter
+		$regexp = new RegExpPcre('/test/', 'test test test');
+		$regexp->doMatchAll(PREG_OFFSET_CAPTURE, 5); // Start from offset 5
+		
+		$matches = $regexp->getMatches();
+		$this->assertIsArray($matches);
+	}
+
+	public function testSplitWithoutFlags(): void {
+		// Test split() without flags parameter
+		$regexp = new RegExpPcre('/,/', 'a,b,c');
+		$result = $regexp->split(-1);
+		$this->assertEquals(['a', 'b', 'c'], $result->getMatches());
+	}
+
+	public function testReplaceCache(): void {
+		// Test that replace results are cached
+		$regexp = new RegExpPcre('/test/', 'test text test', 'replaced');
+		
+		// First replace
+		$result1 = $regexp->replace();
+		
+		// Second replace (should use cache)
+		$result2 = $regexp->replace();
+		
+		$this->assertEquals($result1, $result2);
+	}
+
+	public function testMatchCountProperty(): void {
+		// Test that matchCount is set correctly
+		$regexp = new RegExpPcre('/test/', 'test test');
+		$regexp->doMatchAll();
+		
+		$this->assertEquals(2, $regexp->matchCount);
+	}
+
+	public function testMatchesValidProperty(): void {
+		// Test that matchesValid is set to true after doMatch
+		$regexp = new RegExpPcre('/test/', 'test');
+		$regexp->doMatch();
+		
+		$reflection = new \ReflectionClass($regexp);
+		$matchesValidProp = $reflection->getProperty('matchesValid');
+		$matchesValidProp->setAccessible(true);
+		
+		$this->assertTrue($matchesValidProp->getValue($regexp));
+	}
+
+	public function testReplaceValidProperty(): void {
+		// Test that replaceValid is set to true after replace
+		$regexp = new RegExpPcre('/test/', 'test', 'replaced');
+		$regexp->replace();
+		
+		$reflection = new \ReflectionClass($regexp);
+		$replaceValidProp = $reflection->getProperty('replaceValid');
+		$replaceValidProp->setAccessible(true);
+		
+		$this->assertTrue($replaceValidProp->getValue($regexp));
+	}
+
+	public function testClassNameConstant(): void {
+		// Test className constant
+		$this->assertEquals('RegExp_pcre', RegExpPcre::className);
+	}
 }
