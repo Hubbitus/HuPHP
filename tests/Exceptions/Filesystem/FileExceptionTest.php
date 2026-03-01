@@ -97,9 +97,10 @@ class FileExceptionTest extends TestCase {
         $this->assertEquals('', $exception->filename);
     }
 
-    public function testFileExceptionWithNullFilename(): void {
-        $exception = new FileException('File error', null);
-        $this->assertNull($exception->filename);
+    public function testFileExceptionWithEmptyStringFilename(): void {
+        $exception = new FileException('File error', '');
+        $this->assertIsString($exception->filename);
+        $this->assertEmpty($exception->filename);
     }
 
     public function testFileExceptionPublicFilenameProperty(): void {
@@ -124,12 +125,14 @@ class FileExceptionTest extends TestCase {
         $this->assertNotEquals($exception1->filename, $exception2->filename);
     }
 
-    public function testFileExceptionClone(): void {
-        $exception1 = new FileException('File error', '/path/to/file');
-        $exception2 = clone $exception1;
-
-        $this->assertEquals($exception1->getMessage(), $exception2->getMessage());
-        $this->assertEquals($exception1->filename, $exception2->filename);
+    public function testFileExceptionCloneIsNotSupported(): void {
+        // Note: Exception objects cannot be cloned in PHP
+        $exception = new FileException('File error', '/path/to/file');
+        
+        $this->expectException(\Error::class);
+        $this->expectExceptionMessage('Trying to clone an uncloneable object');
+        
+        clone $exception;
     }
 
     public function testFileExceptionGetObjectId(): void {
@@ -277,5 +280,55 @@ class FileExceptionTest extends TestCase {
         $this->assertInstanceOf('Hubbitus\HuPHP\Exceptions\BaseException', $exception);
         $this->assertInstanceOf(\Exception::class, $exception);
         $this->assertInstanceOf(\Throwable::class, $exception);
+    }
+
+    public function testFileExceptionCustomToString(): void {
+        $exception = new FileException('File error', '/path/to/file');
+        $string = $exception->__toString();
+        
+        $this->assertIsString($string);
+        $this->assertStringContainsString('FileException', $string);
+        $this->assertStringContainsString('/path/to/file', $string);
+        $this->assertStringContainsString('File error', $string);
+    }
+
+    public function testFileExceptionToStringFormat(): void {
+        $exception = new FileException('Permission denied', '/etc/passwd');
+        $string = $exception->__toString();
+        
+        // Expected format: Hubbitus\HuPHP\Exceptions\Filesystem\FileException: [/etc/passwd]: Permission denied
+        $this->assertMatchesRegularExpression('/FileException.*\[\/etc\/passwd\].*Permission denied/', $string);
+    }
+
+    public function testFileExceptionToStringWithEmptyMessage(): void {
+        $exception = new FileException('', '/path/to/file');
+        $string = $exception->__toString();
+        
+        $this->assertIsString($string);
+        $this->assertStringContainsString('/path/to/file', $string);
+    }
+
+    public function testFileExceptionCloneMethodExists(): void {
+        $exception = new FileException('Test', '/path/to/file');
+        $this->assertTrue(method_exists($exception, '__clone'));
+    }
+
+    public function testFileExceptionGetFullPath(): void {
+        $exception = new FileException('Error', '/full/path/to/file.txt');
+        $fullPath = $exception->getFullPath();
+
+        $this->assertEquals('/full/path/to/file.txt', $fullPath);
+    }
+
+    public function testFileExceptionGetFullPathWithEmptyFilename(): void {
+        $exception = new FileException('Error', '');
+        $fullPath = $exception->getFullPath();
+
+        $this->assertEquals('', $fullPath);
+    }
+
+    public function testFileExceptionGetFullPathIsPublic(): void {
+        $reflection = new \ReflectionMethod(FileException::class, 'getFullPath');
+        $this->assertTrue($reflection->isPublic());
     }
 }

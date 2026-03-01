@@ -8,15 +8,6 @@
     <testsuites>
         <testsuite name="HuPHP Tests">
             <directory suffix="Test.php">tests</directory>
-            <exclude>tests/Exceptions/BaseExceptionTest.php</exclude>
-            <exclude>tests/Exceptions/Filesystem/FileExceptionTest.php</exclude>
-            <exclude>tests/Exceptions/Network/</exclude>
-            <exclude>tests/Exceptions/Strings/</exclude>
-            <exclude>tests/Exceptions/Variables/VariableExceptionsTest.php</exclude>
-            <exclude>tests/Exceptions/Variables/VariableEmptyExceptionTest.php</exclude>
-            <exclude>tests/System/Console/HuGetoptArgumentRequiredExceptionTest.php</exclude>
-            <exclude>tests/System/Console/HuGetoptTest.php</exclude>
-            <exclude>tests/User/UserBaseTest.php</exclude>
         </testsuite>
     </testsuites>
 

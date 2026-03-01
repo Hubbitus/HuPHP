@@ -8,6 +8,8 @@
     <testsuites>
         <testsuite name="Our New Tests">
             <file>tests/Exceptions/ExceptionHierarchyTest.php</file>
+            <file>tests/Exceptions/BaseExceptionTest.php</file>
+            <file>tests/Exceptions/Filesystem/FileExceptionTest.php</file>
             <file>tests/Debug/DumpTest.php</file>
             <file>tests/Debug/TokenizerTest.php</file>
             <file>tests/System/ProcessTest.php</file>
@@ -34,7 +36,7 @@
             <directory suffix=".php">./Vars</directory>
         </include>
         <report>
-            <text outputFile="php://stdout" showUncoveredFiles="false"/>
+            <text outputFile="php://stdout" showUncoveredFiles="true"/>
         </report>
     </coverage>
 </phpunit>
