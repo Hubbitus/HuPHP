@@ -14,8 +14,6 @@ use Hubbitus\HuPHP\Exceptions\Classes\ClassMethodException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassNotExistsException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassUnknownException;
-use Hubbitus\HuPHP\Exceptions\Database\DatabaseException;
-use Hubbitus\HuPHP\Exceptions\Database\DatabaseSelectException;
 use Hubbitus\HuPHP\Exceptions\Filesystem\FileException;
 use Hubbitus\HuPHP\Exceptions\ProcessException;
 use Hubbitus\HuPHP\Exceptions\SerializeException;
@@ -35,8 +33,6 @@ use PHPUnit\Framework\TestCase;
  * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassNotExistsException
  * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException
  * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassUnknownException
- * @covers \Hubbitus\HuPHP\Exceptions\Database\DatabaseException
- * @covers \Hubbitus\HuPHP\Exceptions\Database\DatabaseSelectException
  * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileException
  * @covers \Hubbitus\HuPHP\Exceptions\ProcessException
  * @covers \Hubbitus\HuPHP\Exceptions\SerializeException
@@ -156,22 +152,6 @@ class ExceptionHierarchyTest extends TestCase {
 
         $this->assertInstanceOf(ClassException::class, $exception);
         $this->assertInstanceOf(ClassUnknownException::class, $exception);
-    }
-
-    public function testDatabaseException(): void {
-        // DatabaseException requires IDatabase object
-        // We test the class hierarchy by checking reflection
-        $reflection = new \ReflectionClass(DatabaseException::class);
-
-        $this->assertTrue($reflection->isSubclassOf(BaseException::class));
-    }
-
-    public function testDatabaseSelectException(): void {
-        // DatabaseSelectException extends DatabaseException which requires IDatabase
-        // We test the class hierarchy by checking reflection
-        $reflection = new \ReflectionClass(DatabaseSelectException::class);
-
-        $this->assertTrue($reflection->isSubclassOf(DatabaseException::class));
     }
 
     public function testFileException(): void {

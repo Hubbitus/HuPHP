@@ -14,7 +14,6 @@ Modern PHP framework supporting PHP 8.0+ for common tasks like debugging, loggin
 - **HuLog** - Flexible logging facility with auto-configuration
 - **Vars** - Domain-oriented programming interfaces
 - **Macroses** - Helper functions for checks and assertions
-- **Database Abstraction** - Supports MSSQL, MySQL, SQLite with charset conversion
 - **RegExp** - OOP wrapper for POSIX and PCRE regular expressions
 - **Filesystem** - System-agnostic file operations
 - **Process** - Execute and manage system processes
@@ -104,22 +103,6 @@ $config = HuConfig::singleton();
 $value = $config->someSetting; // Access via magic __get
 ```
 
-### Database
-
-```php
-use Hubbitus\HuPHP\Database\DatabaseMySQL;
-
-$db = new DatabaseMySQL([
-    'host' => 'localhost',
-    'user' => 'username',
-    'pass' => 'password',
-    'name' => 'database'
-]);
-
-$db->connect();
-$result = $db->query('SELECT * FROM table');
-```
-
 ### Macro Functions
 
 The framework provides helper functions (macroses) that are automatically available after autoload:
@@ -172,7 +155,6 @@ Check the `@examples/` directory for usage examples:
 
 ```
 HuPHP/
-├── Database/          # Database abstraction layer
 ├── Debug/             # Dump, logging, backtrace
 ├── Exceptions/        # Exception hierarchy
 ├── Filesystem/        # File operations
@@ -205,11 +187,12 @@ This version uses **namespaces** and **PSR-4 autoloading**. If you're upgrading 
 2. **Update class references** - all classes now use `Hubbitus\HuPHP\` namespace:
    ```php
    // Old:
-   $db = new DatabaseMySQL();
+   include_once('Debug/Dump.php');
+   Dump::a($variable);
 
    // New:
-   use Hubbitus\HuPHP\Database\DatabaseMySQL;
-   $db = new DatabaseMySQL();
+   use Hubbitus\HuPHP\Debug\Dump;
+   Dump::a($variable);
    ```
 
 3. **Replace manual includes** with `use` statements:

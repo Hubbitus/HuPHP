@@ -16,9 +16,6 @@
             <file>tests/System/OSTest.php</file>
             <file>tests/Debug/HuFormatTest.php</file>
             <file>tests/Vars/Settings/SettingsFilterReadonlyTest.php</file>
-            <file>tests/Database/DatabaseBaseTest.php</file>
-            <file>tests/Database/DatabaseWhereTest.php</file>
-            <file>tests/Database/DatabaseErrorTest.php</file>
             <file>tests/System/Console/HuGetoptOptionTest.php</file>
             <file>tests/RegExp/RegExpBaseTest.php</file>
             <file>tests/System/OutputTypeTest.php</file>
@@ -31,7 +28,6 @@
 
     <coverage>
         <include>
-            <directory suffix=".php">./Database</directory>
             <directory suffix=".php">./Exceptions</directory>
             <directory suffix=".php">./Debug</directory>
             <directory suffix=".php">./System</directory>

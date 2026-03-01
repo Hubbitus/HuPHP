@@ -51,28 +51,7 @@ $ttt = @$t ?: $tt;
 c_dump($ttt);
 */
 ################################################################################################
-/*
-include_once('Database/database_where.php');
-$w = array(
-	array('ID' => 1),					#ID=1   # Operator '=' is default. Field is key, value
-	array('ID.1.1', 1.1),
-	array('ID_second', '1', 'q:>='),			#ID>='1'     # Operator get explicit, owervise '='. One
-	array('ID_third', '1', 'BEtWEEN', 20),		#ID BEtWEEN 1 AND 10   # Special case, ternary operator
-	'OR',
-	array('ID' => array (2, '<=')),		#ID <= 2     # As 1-2, but 2 argument - array. Warning
-	array('ID' => array (2, 'BEtWEEN', 15)),#ID BEtWEEN 1 AND 15
-	"{Simple instruction}",
-	'and',
-	'MailNo'	=> array(1, '<'),
-	'USER'	=> 5,
-	'USERID'	=> array(5),
-	array('Name', '[ABC]%', 'q:LIKE'),		#"Name LIKE '[ABC]%'"
-	array('Name of field', '[ABC]%', 'qe:LIKE'),
-);
-$dw = new database_where($w, '`');
-c_dump($dw->getSQL(), '$dw->getSQL()');
-*/
-################################################################################################
+
 /*
 include_once('file_base.php');
 $f = new file_base();
@@ -208,7 +187,6 @@ echo '0) Требуется переменная: ' . $vre->varName() . "\n" . $
 echo '1) Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt->printout(true);
 //rely on __toString magick method, which is invoke ->printout(). Be warned - implicit casting to string is required if we want pass it anywhere, if echoed - it is not needed.!
 echo '2) Требуется переменная: ' . $vre->varName() . "\n" . $vre->bt;
-////Single::def('HuLog')->toLog('Database error, '.$dbe->getMessage(), 'ERR', 'db', Single::def(__db)->getError());
 Single::def('HuLog')->toLog('Требуется переменная: ' . $vre->varName(), 'ERR', 'var', new backtrace_out($vre->bt));
 }
 exit();
