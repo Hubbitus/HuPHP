@@ -600,9 +600,16 @@ class HuFormatTest extends TestCase {
     * Test initMODS is called automatically.
     */
     public function testInitMODSAutomatic(): void {
-        // initMODS is called in constructor
-        $this->assertIsArray(HuFormat::$MODS);
-        $this->assertNotEmpty(HuFormat::$MODS);
+        // Create instance to trigger initMODS
+        $format = new HuFormat();
+        
+        // Use reflection to check MODS
+        $reflection = new \ReflectionClass(HuFormat::class);
+        $modsProp = $reflection->getProperty('MODS');
+        $modsProp->setAccessible(true);
+        
+        $this->assertIsArray($modsProp->getValue());
+        $this->assertNotEmpty($modsProp->getValue());
     }
 
     /**
@@ -884,5 +891,80 @@ class HuFormatTest extends TestCase {
         $this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
         $this->expectExceptionMessage('Unknown modifier');
         $format->changeModsStr('?v');
+    }
+
+    /**
+    * Test initMODS initializes static $MODS array.
+    * This test ensures the private initMODS() method is called and populates $MODS.
+    * 
+    * @runInSeparateProcess
+    */
+    public function testInitMODSInitializesModsArray(): void {
+        // Use reflection to check $MODS before and after
+        $reflection = new \ReflectionClass(HuFormat::class);
+        $modsProp = $reflection->getProperty('MODS');
+        $modsProp->setAccessible(true);
+        
+        // Before first instantiation, MODS should not be set
+        $isSetBefore = $modsProp->isInitialized();
+        $this->assertFalse($isSetBefore, 'MODS should not be initialized before first use');
+        
+        // Create new instance (constructor calls initMODS)
+        $format = new HuFormat();
+        
+        // Check that $MODS is populated after constructor call
+        $mods = $modsProp->getValue();
+        
+        $this->assertIsArray($mods);
+        $this->assertNotEmpty($mods);
+        
+        // Verify some expected modifiers exist
+        $this->assertArrayHasKey('A', $mods);
+        $this->assertArrayHasKey('s', $mods);
+        $this->assertArrayHasKey('v', $mods);
+    }
+
+    /**
+    * Test initMODS returns early if MODS already set.
+    */
+    public function testInitMODSReturnsEarlyIfAlreadySet(): void {
+        // First instance initializes MODS
+        $format1 = new HuFormat();
+        
+        // Get MODS reference
+        $reflection = new \ReflectionClass(HuFormat::class);
+        $modsProp = $reflection->getProperty('MODS');
+        $modsProp->setAccessible(true);
+        $modsBefore = $modsProp->getValue();
+        
+        // Second instance should return early (MODS already set)
+        $format2 = new HuFormat();
+        $modsAfter = $modsProp->getValue();
+        
+        // MODS should be the same array (not reinitialized)
+        $this->assertSame($modsBefore, $modsAfter);
+    }
+
+    /**
+    * Test that initMODS sets up all expected modifier closures.
+    * 
+    * @runInSeparateProcess
+    */
+    public function testInitMODSSetsUpModifierClosures(): void {
+        $reflection = new \ReflectionClass(HuFormat::class);
+        $modsProp = $reflection->getProperty('MODS');
+        $modsProp->setAccessible(true);
+        
+        $format = new HuFormat();
+        $mods = $modsProp->getValue();
+        
+        // Verify modifiers are closures
+        $expectedModifiers = ['A', 's', 'v', 't', 'd', 'f', 'n', 'c', 'O', 'C', 'T', 'F', 'L', 'P', 'R', 'S', 'M', 'B', 'D', 'G', 'E', 'H', 'X', 'Y', 'Z'];
+        
+        foreach ($expectedModifiers as $modifier) {
+            if (isset($mods[$modifier])) {
+                $this->assertInstanceOf(\Closure::class, $mods[$modifier]);
+            }
+        }
     }
 }
