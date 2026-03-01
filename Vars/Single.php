@@ -76,9 +76,11 @@ class Single {
 
     /**
     * Prevent users to clone the instance
+    * Note: This protects Single subclasses, but singleton() returns instances
+    * of other classes (not Single), so this is not called in typical usage.
     **/
     public function __clone() {
-        \trigger_error('Clone is not allowed.', E_USER_ERROR);
+        throw new \LogicException('Clone is not allowed.');
     }
 
     /**
