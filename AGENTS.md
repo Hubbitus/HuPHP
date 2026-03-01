@@ -4,6 +4,7 @@ This project has started a migration of an ancient PHP framework, originally wri
 1. All chat conversation with user preferred in Russian
 2. All comments in code and documentation may be only in English!
 3. Our focus - code quality! Not development time or speed! Testability, maintainability and clear OOP design! On refactoring it is strongly prohibited to add tests to skip, allow them fail or leave any found lint or test issues in touched code!
+4. Never made conclusion "this is known bug" without providing proofs! Search, experiments and provide official documentation or opened bugs on used versions of software which affected by this bug and used in project!! Also check, if newer version present and we can just update such component.
 
 # Code refactoring
 Code refactoring should be made, following these principles and requirements:

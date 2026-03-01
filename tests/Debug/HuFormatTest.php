@@ -896,8 +896,6 @@ class HuFormatTest extends TestCase {
     /**
     * Test initMODS initializes static $MODS array.
     * This test ensures the private initMODS() method is called and populates $MODS.
-    * 
-    * @runInSeparateProcess
     */
     public function testInitMODSInitializesModsArray(): void {
         // Use reflection to check $MODS before and after
@@ -947,8 +945,6 @@ class HuFormatTest extends TestCase {
 
     /**
     * Test that initMODS sets up all expected modifier closures.
-    * 
-    * @runInSeparateProcess
     */
     public function testInitMODSSetsUpModifierClosures(): void {
         $reflection = new \ReflectionClass(HuFormat::class);

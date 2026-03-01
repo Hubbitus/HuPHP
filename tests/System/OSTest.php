@@ -100,4 +100,18 @@ class OSTest extends TestCase {
 
         $this->assertTrue($result);
     }
+
+    public function testIsPathAbsoluteReturnsFalseForEmptyPath(): void {
+        // Empty path should return false (covers line 67)
+        $result = OS::isPathAbsolute('');
+
+        $this->assertFalse($result);
+    }
+
+    public function testIsPathAbsoluteReturnsFalseForNullPath(): void {
+        // Null path should return false (covers line 67)
+        $result = OS::isPathAbsolute(null);
+
+        $this->assertFalse($result);
+    }
 }

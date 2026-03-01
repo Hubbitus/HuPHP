@@ -17,8 +17,8 @@ if (!isset($GLOBALS['__CONFIG'])) {
     $GLOBALS['__CONFIG'] = [];
 }
 
-// Load HuConfig.php to register CONF() function
-// This is needed because CONF() is a global function, not a class method,
-// so it won't be autoloaded by PSR-4
+// Load HuConfig.php and CONF() function
+// This is needed because CONF() is a global function in namespace, not autoloaded by PSR-4
 require_once $rootDir . '/Vars/HuConfig.php';
+require_once $rootDir . '/Vars/CONF.php';
 
