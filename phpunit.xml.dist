@@ -8,13 +8,6 @@
     <testsuites>
         <testsuite name="HuPHP Tests">
             <directory suffix="Test.php">tests</directory>
-            <exclude>tests/Database/DatabaseMSSQLTest.php</exclude>
-            <exclude>tests/Database/DatabaseOperatorsTest.php</exclude>
-            <exclude>tests/Database/DatabaseSettingsMSSQLTest.php</exclude>
-            <exclude>tests/Database/DatabaseSettingsMySQLTest.php</exclude>
-            <exclude>tests/Database/DatabaseSettingsTest.php</exclude>
-            <exclude>tests/Database/DatabaseSqliteTest.php</exclude>
-            <exclude>tests/Database/IDatabaseTest.php</exclude>
             <exclude>tests/Exceptions/BaseExceptionTest.php</exclude>
             <exclude>tests/Exceptions/Filesystem/FileExceptionTest.php</exclude>
             <exclude>tests/Exceptions/Network/</exclude>
@@ -22,7 +15,6 @@
             <exclude>tests/Exceptions/Variables/VariableExceptionsTest.php</exclude>
             <exclude>tests/Exceptions/Variables/VariableEmptyExceptionTest.php</exclude>
             <exclude>tests/System/Console/HuGetoptArgumentRequiredExceptionTest.php</exclude>
-            <exclude>tests/System/Console/HuGetoptOptionTest.php</exclude>
             <exclude>tests/System/Console/HuGetoptTest.php</exclude>
             <exclude>tests/User/UserBaseTest.php</exclude>
         </testsuite>
@@ -30,7 +22,6 @@
 
     <coverage>
         <include>
-            <directory suffix=".php">./Database</directory>
             <directory suffix=".php">./Debug</directory>
             <directory suffix=".php">./Exceptions</directory>
             <directory suffix=".php">./Filesystem</directory>
@@ -40,10 +31,6 @@
             <directory suffix=".php">./User</directory>
             <directory suffix=".php">./Vars</directory>
         </include>
-        <exclude>
-            <directory suffix=".php">./Database/DatabaseMSSQL.php</directory>
-            <directory suffix=".php">./Database/DatabaseSettingsMSSQL.php</directory>
-        </exclude>
         <report>
             <html outputDirectory="build/coverage"/>
             <text outputFile="build/coverage.txt" showUncoveredFiles="true"/>
