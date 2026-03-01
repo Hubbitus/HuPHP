@@ -248,10 +248,13 @@ class HuConfigTest extends TestCase {
     public function testGetPropertyWithNoThrowReturnsNullViaElseBranch(): void {
         // This test covers the else branch of getProperty when noThrow=true
         // and exception is caught (lines 96-97)
+        // We need to trigger an exception that is NOT ClassPropertyNotExistsException
+        // Passing null as name will trigger VariableIsNullException from REQUIRED_NOT_NULL
         $config = new HuConfig();
         
-        // Call with non-existent property and noThrow=true
-        $value = $config->getProperty('nonexistent_property_12345', true);
+        // Call with null property name and noThrow=true
+        // This will throw VariableIsNullException which goes to else branch
+        $value = $config->getProperty(null, true);
         
         $this->assertNull($value);
     }

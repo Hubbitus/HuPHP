@@ -152,4 +152,25 @@ class FileBaseTest extends TestCase {
 		$file->setContentFromString('test');
 		$file->writeContent();
 	}
+
+	public function testCheckOpenErrorWithUnknownError(): void {
+		// Test checkOpenError protected method with unknown error case
+		// This covers the final throw branch: "Unknown error operate on file"
+		// Create file to ensure it exists and is readable
+		touch($this->testFile);
+		chmod($this->testFile, 0644);
+		
+		$file = new FileBase($this->testFile);
+		
+		// Use reflection to call protected method
+		$reflection = new \ReflectionClass($file);
+		$method = $reflection->getMethod('checkOpenError');
+		$method->setAccessible(true);
+		
+		// File exists and is readable, but we pass false to simulate unknown error
+		// This should throw FileNotReadableException with "Unknown error" message
+		$this->expectException(\Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException::class);
+		$this->expectExceptionMessage('Unknown error operate on file');
+		$method->invoke($file, false);
+	}
 }
