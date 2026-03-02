@@ -191,7 +191,49 @@ class LegacyMacrosTest extends TestCase {
         $this->assertStringContainsString("\n", $result);
     }
 
+    public function testUnicodeUcfirstIsObsolete(): void {
+        // unicode_ucfirst uses deprecated /e modifier removed in PHP 7.0
+        // This test documents that the function exists but returns null on PHP 8.4+
+        $this->assertTrue(function_exists('\Hubbitus\HuPHP\Macroses\unicode_ucfirst'));
+        
+        // Function exists but doesn't work on PHP 8.4+ due to removed /e modifier
+        $result = \Hubbitus\HuPHP\Macroses\unicode_ucfirst('hello');
+        $this->assertNull($result);
+    }
+
+    public function testHitCountExists(): void {
+        $this->assertTrue(function_exists('\Hubbitus\HuPHP\Macroses\hit_count'));
+    }
+
     public function testEmptyIntExists(): void {
         $this->assertTrue(function_exists('\Hubbitus\HuPHP\Macroses\EMPTY_INT'));
+    }
+
+    public function testEmptyIntReturnsIntWhenStringIsNumeric(): void {
+        $str = '123';
+        $result = \Hubbitus\HuPHP\Macroses\EMPTY_INT($str);
+        
+        $this->assertEquals(123, $result);
+    }
+
+    public function testEmptyIntReturnsDefValueWhenStringIsEmpty(): void {
+        $str = '';
+        $result = \Hubbitus\HuPHP\Macroses\EMPTY_INT($str, 42);
+        
+        $this->assertEquals(42, $result);
+    }
+
+    public function testEmptyIntReturnsDefValue2WhenStringAndDefValueAreEmpty(): void {
+        $str = '';
+        $result = \Hubbitus\HuPHP\Macroses\EMPTY_INT($str, 0, 99);
+        
+        $this->assertEquals(99, $result);
+    }
+
+    public function testEmptyIntReturnsZeroWhenAllEmpty(): void {
+        $str = '';
+        $result = \Hubbitus\HuPHP\Macroses\EMPTY_INT($str);
+        
+        $this->assertEquals(0, $result);
     }
 }
