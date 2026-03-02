@@ -21,8 +21,11 @@ namespace Hubbitus\HuPHP\Macroses;
 * @uses mb_strtoupper
 * @param        string  $str    String to process
 * @param        string=UTF-8    $enc
-* @return       string
 **/
-function unicode_ucfirst($str, $enc = 'UTF-8'){
-        return preg_replace('/^./ue', "mb_strtoupper('\\0', '$enc')", $str);
+function unicode_ucfirst($str, $enc = 'UTF-8'): ?string {
+    if (empty($str)) {
+        return '';
+    }
+
+    return \preg_replace_callback('/^./u', fn(array $matches): mixed => \mb_strtoupper($matches[0], $enc), $str);
 }

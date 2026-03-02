@@ -19,14 +19,16 @@ declare(strict_types=1);
 * @param        mixed params    variable amount of arguments to check.
 * @return mixed
 **/
-function EMPTY_callback($call, ...$params){
-$numargs = func_num_args();
-$i = 1; //0 is callback
-        while (
-                $i < $numargs
-                 and
-                !($res = call_user_func($call, $arg = func_get_arg($i++)))
-        ){/*Nothing do, just skip it */}
-
-        if ($res) return $arg;
+function EMPTY_callback($call, ...$params): mixed {
+    $numargs = \func_num_args();
+    $i = 1; //0 is callback
+    $res = false;
+    $arg = null;
+    while (
+        $i < $numargs
+            and
+        !($res = \call_user_func($call, $arg = \func_get_arg($i++)))
+    ){/*Nothing do, just skip it */}
+    if ($res) return $arg;
+    return null;
 }
