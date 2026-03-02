@@ -21,5 +21,9 @@
             <directory suffix=".php">./macroses</directory>
             <directory suffix=".php">./Vars</directory>
         </include>
+        <exclude>
+            <!-- Experimental code requiring runkit extension (not available in standard PHP) -->
+            <directory>./macroses/multipleinheritance</directory>
+        </exclude>
     </source>
 </phpunit>
