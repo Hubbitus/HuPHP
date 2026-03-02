@@ -34,6 +34,18 @@ class FileInMemoryTest extends TestCase {
             unlink($this->testFile);
         }
         if (is_dir($this->testDir)) {
+            // Recursively remove test directory and all contents
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($this->testDir, \RecursiveDirectoryIterator::SKIP_DOTS),
+                \RecursiveIteratorIterator::CHILD_FIRST
+            );
+            foreach ($iterator as $file) {
+                if ($file->isDir()) {
+                    rmdir($file->getPathname());
+                } else {
+                    unlink($file->getPathname());
+                }
+            }
             rmdir($this->testDir);
         }
     }

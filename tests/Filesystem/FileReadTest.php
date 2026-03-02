@@ -681,9 +681,11 @@ class FileReadTest extends TestCase {
         $file = new FileRead($writeFile);
         $file->open('w');
 
-        // File should be empty after open('w')
-        $tail = $file->getTail();
-        $this->assertEquals('', $tail);
+        // File should be empty after open('w'), but we cannot read it because fd is write-only
+        // Attempting to read from write-only fd should throw exception
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Cannot read from file opened in write mode');
+        $file->getTail();
     }
 
     public function testWriteContentWithSpecialCharacters(): void {
@@ -717,8 +719,20 @@ class FileReadTest extends TestCase {
         $file->setContentFromString('New content');
 
         // This should throw RuntimeException because fd is read-only
-        $this->expectException(\RuntimeException::class);
-        $file->writeContent();
+        // We need to catch the exception and reset _writePending to prevent __destruct notice
+        $exceptionThrown = false;
+        try {
+            $file->writeContent();
+        } catch (\RuntimeException $e) {
+            $exceptionThrown = true;
+            // Reset write pending flag to prevent __destruct write attempt
+            $reflection = new \ReflectionClass($file);
+            $property = $reflection->getProperty('_writePending');
+            $property->setAccessible(true);
+            $property->setValue($file, false);
+        }
+        
+        $this->assertTrue($exceptionThrown, 'RuntimeException should be thrown');
     }
 
     public function testWriteContentWithInvalidPath(): void {

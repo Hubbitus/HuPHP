@@ -42,7 +42,8 @@ protected int $_line_no = 0; //Current line number. Read only. For getline() acc
 			// Truncate file to write from beginning
 			ftruncate($this->fd, 0);
 			rewind($this->fd);
-			$result = fwrite($this->fd, $this->content);
+			// Suppress warning - fwrite fails with bad file descriptor when fd is read-only
+			$result = @fwrite($this->fd, $this->content);
 			fflush($this->fd);
 
 			if ($result === false) {
@@ -125,7 +126,16 @@ protected int $_line_no = 0; //Current line number. Read only. For getline() acc
 	* @return	string
 	**/
 	public function getTail (int $maxlength = -1, int $offset = 0): bool|string {
-		return stream_get_contents($this->fd, $maxlength, $offset);
+		// Check if fd is readable before attempting to read
+		if ($this->fd !== null && is_resource($this->fd)) {
+			$meta = stream_get_meta_data($this->fd);
+			if ($meta && isset($meta['mode']) && $meta['mode'] === 'w') {
+				// File opened for writing only - cannot read
+				throw new \RuntimeException('Cannot read from file opened in write mode');
+			}
+		}
+		// Suppress warning - stream_get_contents fails with bad file descriptor when fd is write-only
+		return @stream_get_contents($this->fd, $maxlength, $offset);
 	}
 
 	/**
@@ -135,5 +145,23 @@ protected int $_line_no = 0; //Current line number. Read only. For getline() acc
 	**/
 	public function __toString(): string {
 		return $this->content ?? '';
+	}
+
+	/**
+	* Destructor - only write if file was opened for writing.
+	* Override parent to avoid writing to read-only file descriptors.
+	**/
+	public function __destruct() {
+		// Don't write if file descriptor is open for reading
+		// Check mode before attempting write
+		if ($this->fd !== null && is_resource($this->fd)) {
+			$meta = stream_get_meta_data($this->fd);
+			if ($meta && isset($meta['mode']) && $meta['mode'] === 'r') {
+				// File opened for reading only - skip write
+				return;
+			}
+		}
+		// Safe to write - call parent
+		parent::__destruct();
 	}
 }

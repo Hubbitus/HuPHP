@@ -4,7 +4,9 @@
          bootstrap="tests/bootstrap.php"
          colors="true"
          processIsolation="false"
-         stopOnFailure="false">
+         stopOnFailure="false"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerNotices="true">
     <testsuites>
         <testsuite name="HuPHP Tests">
             <directory suffix="Test.php">tests</directory>
