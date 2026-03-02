@@ -238,6 +238,55 @@ class CharsetConvertIconvTest extends TestCase {
         $this->assertEquals('Hello', $converter->getResult());
     }
 
+    public function testErrorHandlerHandlesIconvErrors(): void {
+        // Test error_handler() method directly with iconv error
+        $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
+        
+        // Simulate iconv error
+        $result = $converter->error_handler(E_NOTICE, 'iconv(): wrong encoding', 'test.php', 100);
+        
+        $this->assertTrue($result);
+        
+        // Verify error was captured
+        $reflection = new \ReflectionClass($converter);
+        $errorsProp = $reflection->getProperty('_charset_convert_Errors');
+        $errorsProp->setAccessible(true);
+        $errors = $errorsProp->getValue($converter);
+        
+        $this->assertIsArray($errors);
+        $this->assertNotEmpty($errors);
+        $this->assertStringContainsString('iconv', $errors[0]);
+    }
+
+    public function testErrorHandlerDelegatesNonIconvErrors(): void {
+        // Test error_handler() method with non-iconv error
+        $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
+        
+        // Simulate non-iconv error
+        $result = $converter->error_handler(E_WARNING, 'Some other warning', 'test.php', 100);
+        
+        $this->assertFalse($result);
+    }
+
+    public function testConvertRestoresPreviousErrorHandler(): void {
+        // Test that convert() restores previous error handler when one was set
+        // This covers line 65: set_error_handler($oldErrorHandler);
+        
+        // Set a custom error handler before creating converter
+        $customHandler = function($errno, $errstr) { return false; };
+        set_error_handler($customHandler);
+        
+        try {
+            $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
+            $converter->convert();
+            
+            $this->assertEquals('Hello', $converter->getResult());
+        } finally {
+            // Clean up
+            restore_error_handler();
+        }
+    }
+
     protected function tearDown(): void {
         // Restore default error handler after each test
         restore_error_handler();

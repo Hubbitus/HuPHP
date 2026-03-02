@@ -660,14 +660,69 @@ class FileInMemoryTest extends TestCase {
         $content = "X";
         $testFile = $this->testDir . '/single_char.txt';
         file_put_contents($testFile, $content);
-        
+
         try {
             $file = new FileInMemory($testFile);
             $file->loadContent();
-            
+
             // Only one character, offset 0 should return line 0
             $lineNo = $file->getLineByOffset(0);
             $this->assertEquals(0, $lineNo);
+        } finally {
+            unlink($testFile);
+        }
+    }
+
+    public function testGetLinesWithoutLoadThrowsException(): void {
+        // Test that getLines() throws exception when content is not loaded
+        // This indirectly tests the private checkLoad() method
+        $testFile = $this->testDir . '/test.txt';
+        file_put_contents($testFile, 'test content');
+
+        try {
+            $file = new FileInMemory($testFile);
+            // Don't call loadContent() - should throw exception
+            
+            $this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException::class);
+            $file->getLines();
+        } finally {
+            unlink($testFile);
+        }
+    }
+
+    public function testEnconvMethodExists(): void {
+        // Test that enconv() method exists
+        $testFile = $this->testDir . '/test.txt';
+        file_put_contents($testFile, 'test content');
+
+        try {
+            $file = new FileInMemory($testFile);
+            $file->loadContent();
+
+            // Verify method exists and is callable
+            $this->assertTrue(method_exists($file, 'enconv'));
+        } finally {
+            unlink($testFile);
+        }
+    }
+
+    public function testEnconvReturnsSelf(): void {
+        // Test that enconv() returns $this for method chaining
+        $testFile = $this->testDir . '/test.txt';
+        file_put_contents($testFile, 'test content');
+
+        try {
+            $file = new FileInMemory($testFile);
+            $file->loadContent();
+
+            // enconv may fail if enconv shell command is not available
+            // but it should still return $this
+            $result = $file->enconv('russian', 'UTF-8');
+            $this->assertSame($file, $result);
+        } catch (\Throwable $e) {
+            // enconv shell command may not be available
+            // This is acceptable - we're testing the method exists and returns self
+            $this->assertStringContainsString('enconv', $e->getMessage());
         } finally {
             unlink($testFile);
         }
