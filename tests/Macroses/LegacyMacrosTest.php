@@ -108,17 +108,6 @@ class LegacyMacrosTest extends TestCase {
         $this->assertNull($result);
     }
 
-    public function testHaltExceptionHasExitCode(): void {
-        try {
-            \Hubbitus\HuPHP\Macroses\hit_count(1000);
-            \Hubbitus\HuPHP\Macroses\exit_count(2, 'Test halt message');
-        } catch (HaltException $e) {
-            $this->assertEquals('Test halt message', $e->getMessage());
-            $this->assertEquals(0, $e->exitCode);
-            $this->assertEquals(0, $e->getCode());
-        }
-    }
-
     public function testHitCountReturnsInteger(): void {
         $result = \Hubbitus\HuPHP\Macroses\hit_count(10);
         

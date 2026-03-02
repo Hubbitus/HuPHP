@@ -194,7 +194,7 @@ class Tokenizer {
 			$this->_filePhpSrc->getLineSep(),
 			$this->_filePhpSrc->getLines([
 				$this->_callStartLine - 1,
-				(int)($delta + 1),
+				(int) ($delta + 1),
 			])
 		);
 		return $this;

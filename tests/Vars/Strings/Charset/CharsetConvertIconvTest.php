@@ -282,14 +282,15 @@ class CharsetConvertIconvTest extends TestCase {
             
             $this->assertEquals('Hello', $converter->getResult());
         } finally {
-            // Clean up
+            // Clean up - restore twice because convert() also restores
+            restore_error_handler();
             restore_error_handler();
         }
     }
 
     protected function tearDown(): void {
-        // Restore default error handler after each test
-        restore_error_handler();
+        // Error handler is already restored by convert() or test cleanup
+        // No need to call restore_error_handler() here
         parent::tearDown();
     }
 }
