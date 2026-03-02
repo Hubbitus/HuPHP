@@ -10,7 +10,7 @@ use Hubbitus\HuPHP\Debug\HuErrorSettings;
 
 /**
 * @covers \Hubbitus\HuPHP\Debug\HuError
-*/
+**/
 class HuErrorTest extends TestCase {
 	private HuError $error;
 

@@ -7,9 +7,10 @@ use Hubbitus\HuPHP\Vars\Single;
 use PHPUnit\Framework\TestCase;
 
 /**
-* Additional coverage for Single class.
-* @covers \Hubbitus\HuPHP\Vars\Single
-**/
+ * Additional coverage for Single class.
+ *
+ * @covers \Hubbitus\HuPHP\Vars\Single
+ **/
 class SingleAdditionalTest extends TestCase {
     protected function setUp(): void {
         // Clear singleton instances between tests
@@ -100,6 +101,6 @@ class DummyArgs {
 
 /**
  * Dummy class with no constructor - used for fallback test
- */
+ **/
 class DummyNoConstructor {
 }

@@ -15,8 +15,8 @@ use PHPUnit\Framework\TestCase;
 **/
 class HuLOGTest extends TestCase {
     /**
-     * Create HuLOG with properly configured settings for testing
-     */
+    * Create HuLOG with properly configured settings for testing
+    **/
     private function createHuLOGWithSettings(): HuLOG {
         $settings = new HuLOGSettings([
             'LOG_TO_ERR' => HuLOGSettings::LOG_TO_PRINT,

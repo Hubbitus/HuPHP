@@ -1,19 +1,17 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for HuArray class.
- */
-
 namespace Hubbitus\HuPHP\Tests\Vars;
-use Hubbitus\HuPHP\System\OutputType;
 
+use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Vars\HuArray;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * Test for HuArray class.
+ *
  * @covers \Hubbitus\HuPHP\Vars\HuArray
- */
+ **/
 class HuArrayTest extends TestCase {
     public function testClassInstantiation(): void {
         $array = new HuArray();

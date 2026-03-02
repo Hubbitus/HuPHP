@@ -65,7 +65,7 @@ final class BacktraceNodeTest extends TestCase {
         $node = new BacktraceNode($this->sampleData);
 
         $this->expectException(ClassPropertyNotExistsException::class);
-        /** @phpstan-ignore-next-line */
+        /** @phpstan-ignore-next-line **/
         $node->nonExistingProperty;
     }
 
