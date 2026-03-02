@@ -139,12 +139,25 @@ class VariableStream {
                 return false;
         }
     }
+
+    /**
+    * Register the 'var' stream wrapper if not already registered.
+    * This method is called automatically when the class is loaded,
+    * but can also be called explicitly for testing purposes.
+    *
+    * @return bool True if wrapper was registered, false if already exists
+    **/
+    public static function registerStreamWrapper(): bool {
+        if (!\in_array('var', \stream_get_wrappers(), true)) {
+            return \stream_wrapper_register('var', VariableStream::class);
+        }
+        return false;
+    }
 }
 
-if (!\in_array('var', \stream_get_wrappers(), true)) {
-    \stream_wrapper_register('var', VariableStream::class)
-        or die('Failed to register protocol');
-}
+// Auto-register stream wrapper on class load
+VariableStream::registerStreamWrapper()
+    or die('Failed to register protocol');
 
 /*
 @example

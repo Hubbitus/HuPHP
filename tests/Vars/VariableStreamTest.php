@@ -286,4 +286,34 @@ class VariableStreamTest extends TestCase {
 
         $this->assertEquals($unicodeData, $testVar);
     }
+
+    public function testRegisterStreamWrapperReturnsTrueOnSuccess(): void {
+        // Test the public static method directly
+        // Unregister first to test registration
+        stream_wrapper_unregister('var');
+        
+        $result = \Hubbitus\HuPHP\Vars\VariableStream::registerStreamWrapper();
+        
+        $this->assertTrue($result);
+        $this->assertContains('var', stream_get_wrappers());
+    }
+
+    public function testRegisterStreamWrapperReturnsFalseWhenAlreadyRegistered(): void {
+        // Test that calling registerStreamWrapper twice returns false
+        // (wrapper already registered)
+        
+        // Ensure it's registered
+        \Hubbitus\HuPHP\Vars\VariableStream::registerStreamWrapper();
+        
+        // Second call should return false
+        $result = \Hubbitus\HuPHP\Vars\VariableStream::registerStreamWrapper();
+        
+        $this->assertFalse($result);
+    }
+
+    public function testRegisterStreamWrapperIsCalledOnClassLoad(): void {
+        // Verify that the stream wrapper is automatically registered
+        // when the class is loaded (via the code at the end of the file)
+        $this->assertContains('var', stream_get_wrappers());
+    }
 }

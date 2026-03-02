@@ -85,10 +85,11 @@ class RegExpPcre extends RegExpBase {
 		if ($this->matchCount and ($flags & PREG_OFFSET_CAPTURE)){
 			$func_strlen = fn(string $str) => function_exists('mb_strlen') ? \mb_strlen($str, 'UTF-8') : \strlen(\utf8_decode($str));
 
-
 			foreach($this->matches as &$match){
 				foreach ($match as &$m){
-					$m[1] = $func_strlen(\substr($this->sourceText, 0, $m[1]));
+					if (\is_array($m)) {
+						$m[1] = $func_strlen(\substr($this->sourceText, 0, (int)$m[1]));
+					}
 				}
 			}
 		}

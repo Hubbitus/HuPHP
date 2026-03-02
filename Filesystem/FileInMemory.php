@@ -193,6 +193,9 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	**/
 	public function getLineAt(int $line, bool $updateLineSep = true): mixed {
 		if (!$this->lineContent) {
+			if (!$this->content) {
+				$this->loadContent();
+			}
 			$this->explodeLines($updateLineSep);
 		}
 		return $this->lineContent[$line] ?? null;

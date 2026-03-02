@@ -22,3 +22,7 @@ if (!isset($GLOBALS['__CONFIG'])) {
 require_once $rootDir . '/Vars/HuConfig.php';
 require_once $rootDir . '/Vars/CONF.php';
 
+// Load VariableStream.php to register 'var' stream wrapper
+// This is needed for tests that use var:// protocol
+require_once $rootDir . '/Vars/VariableStream.php';
+

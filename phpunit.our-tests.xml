@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/13.0/phpunit.xsd"
          bootstrap="tests/bootstrap.php"
          colors="true"
          processIsolation="false"
@@ -28,15 +28,12 @@
         </testsuite>
     </testsuites>
 
-    <coverage>
+    <source>
         <include>
             <directory suffix=".php">./Exceptions</directory>
             <directory suffix=".php">./Debug</directory>
             <directory suffix=".php">./System</directory>
             <directory suffix=".php">./Vars</directory>
         </include>
-        <report>
-            <text outputFile="php://stdout" showUncoveredFiles="true"/>
-        </report>
-    </coverage>
+    </source>
 </phpunit>

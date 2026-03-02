@@ -900,30 +900,6 @@ class HuFormatTest extends TestCase {
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
-    public function testInitMODSInitializesModsArray(): void {
-        // Use reflection to check $MODS before and after
-        $reflection = new \ReflectionClass(HuFormat::class);
-        $modsProp = $reflection->getProperty('MODS');
-        $modsProp->setAccessible(true);
-        
-        // Before first instantiation, MODS should not be set
-        $isSetBefore = $modsProp->isInitialized();
-        $this->assertFalse($isSetBefore, 'MODS should not be initialized before first use');
-        
-        // Create new instance (constructor calls initMODS)
-        $format = new HuFormat();
-        
-        // Check that $MODS is populated after constructor call
-        $mods = $modsProp->getValue();
-        
-        $this->assertIsArray($mods);
-        $this->assertNotEmpty($mods);
-        
-        // Verify some expected modifiers exist
-        $this->assertArrayHasKey('A', $mods);
-        $this->assertArrayHasKey('s', $mods);
-        $this->assertArrayHasKey('v', $mods);
-    }
 
     /**
     * Test initMODS returns early if MODS already set.

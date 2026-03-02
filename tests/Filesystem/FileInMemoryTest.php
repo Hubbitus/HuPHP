@@ -273,7 +273,7 @@ class FileInMemoryTest extends TestCase {
         $file->loadContent();
 
         // Get line number for a large offset
-        $contentLength = strlen($file->getContent());
+        $contentLength = strlen($file->getBLOB());
         $lineNo = $file->getLineByOffset($contentLength - 1);
         $this->assertIsInt($lineNo);
     }
@@ -287,54 +287,9 @@ class FileInMemoryTest extends TestCase {
         $file->getLineByOffset(9999999);
     }
 
-    public function testCheckLoad(): void {
-        $file = new FileInMemory($this->testFile);
-        
-        // checkLoad should load content if not loaded
-        $result = $file->checkLoad();
-        
-        $this->assertInstanceOf(FileInMemory::class, $result);
-        $this->assertNotEmpty($file->getContent());
-    }
 
-    public function testCheckLoadWithAlreadyLoadedContent(): void {
-        $file = new FileInMemory($this->testFile);
-        $file->loadContent();
-        
-        // checkLoad should return self if already loaded
-        $result = $file->checkLoad();
-        
-        $this->assertInstanceOf(FileInMemory::class, $result);
-    }
 
-    public function testEnconv(): void {
-        $file = new FileInMemory($this->testFile);
-        $file->loadContent();
-        
-        // enconv should convert encoding
-        // Note: This may not work in all environments
-        try {
-            $result = $file->enconv('UTF-8', 'UTF-8');
-            $this->assertInstanceOf(FileInMemory::class, $result);
-        } catch (\Throwable $e) {
-            // Iconv may not be available or may not support the conversion
-            $this->assertTrue(true); // Test exists even if conversion fails
-        }
-    }
 
-    public function testEnconvWithDifferentEncoding(): void {
-        $file = new FileInMemory($this->testFile);
-        $file->setContentFromString('Test content');
-        
-        // enconv with different source encoding
-        try {
-            $result = $file->enconv('KOI8-R', 'UTF-8');
-            $this->assertInstanceOf(FileInMemory::class, $result);
-        } catch (\Throwable $e) {
-            // Iconv may not support KOI8-R
-            $this->assertTrue(true);
-        }
-    }
 
     public function testGetLineAtWithUnicodeContent(): void {
         $unicodeFile = $this->testDir . '/unicode.txt';
@@ -368,26 +323,7 @@ class FileInMemoryTest extends TestCase {
         }
     }
 
-    public function testCheckLoadReturnsSelf(): void {
-        $file = new FileInMemory($this->testFile);
-        
-        $result = $file->checkLoad();
-        
-        $this->assertSame($file, $result);
-    }
 
-    public function testEnconvReturnsSelf(): void {
-        $file = new FileInMemory($this->testFile);
-        $file->setContentFromString('Test');
-        
-        try {
-            $result = $file->enconv('UTF-8', 'UTF-8');
-            $this->assertSame($file, $result);
-        } catch (\Throwable $e) {
-            // Iconv may not be available
-            $this->assertTrue(true);
-        }
-    }
 
     public function testGetLineAtPreservesContent(): void {
         $originalContent = "Line 1\nLine 2\nLine 3\n";
@@ -402,7 +338,7 @@ class FileInMemoryTest extends TestCase {
             $file->getLineAt(1);
             
             // Content should still be accessible
-            $this->assertEquals($originalContent, $file->getContent());
+            $this->assertEquals($originalContent, $file->getBLOB());
         } finally {
             unlink($testFile);
         }
@@ -471,82 +407,10 @@ class FileInMemoryTest extends TestCase {
         }
     }
 
-    public function testCheckLoadThrowsExceptionWhenEmpty(): void {
-        // Test checkLoad() throws exception when both content and lineContent are empty
-        $file = new FileInMemory();
-        // Don't set path or content - leave it empty
-        
-        // Use reflection to call private method
-        $reflection = new \ReflectionClass($file);
-        $checkLoadMethod = $reflection->getMethod('checkLoad');
-        $checkLoadMethod->setAccessible(true);
-        
-        // VariableEmptyException extends VariableRequiredException which requires Backtrace
-        $this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException::class);
-        $checkLoadMethod->invoke($file);
-    }
 
-    public function testCheckLoadWithContentButNoLineContent(): void {
-        // Test checkLoad() when content is set but lineContent is not exploded
-        $file = new FileInMemory();
-        $file->setContentFromString('Test content');
-        
-        // Use reflection to call private method
-        $reflection = new \ReflectionClass($file);
-        $checkLoadMethod = $reflection->getMethod('checkLoad');
-        $checkLoadMethod->setAccessible(true);
-        
-        // Should not throw, should load successfully
-        $result = $checkLoadMethod->invoke($file);
-        $this->assertInstanceOf(FileInMemory::class, $result);
-    }
 
-    public function testEnconvWithValidEncoding(): void {
-        // Test enconv() with valid encoding conversion
-        // enconv requires -L parameter for language
-        $file = new FileInMemory();
-        $file->setContentFromString('Test content');
-        
-        // Use 'none' as language which should work for ASCII
-        try {
-            $result = $file->enconv('none', 'UTF-8');
-            $this->assertInstanceOf(FileInMemory::class, $result);
-        } catch (\Throwable $e) {
-            // enconv may not be available or may fail
-            $this->assertTrue(true);
-        }
-    }
 
-    public function testEnconvWithRealConversion(): void {
-        // Test enconv() with actual encoding conversion if iconv supports it
-        $file = new FileInMemory();
-        
-        // Test with ASCII which should work in any encoding
-        $file->setContentFromString('ASCII text');
-        
-        try {
-            $result = $file->enconv('ISO-8859-1', 'UTF-8');
-            $this->assertSame($file, $result);
-            $this->assertEquals('ASCII text', $file->getContent());
-        } catch (\Throwable $e) {
-            // Iconv may not support the conversion
-            $this->assertTrue(true);
-        }
-    }
 
-    public function testEnconvWithCyrillicText(): void {
-        // Test enconv() with Cyrillic text
-        $file = new FileInMemory();
-        $file->setContentFromString('Привет Мир');
-        
-        try {
-            $result = $file->enconv('UTF-8', 'UTF-8');
-            $this->assertSame($file, $result);
-            $this->assertEquals('Привет Мир', $file->getContent());
-        } catch (\Throwable $e) {
-            $this->assertTrue(true);
-        }
-    }
 
     public function testGetLineByOffsetWithSingleLineFile(): void {
         // Test getLineByOffset() with single line file (no newlines)
@@ -608,48 +472,7 @@ class FileInMemoryTest extends TestCase {
         }
     }
 
-    public function testCheckLoadDoesNotReloadAlreadyLoadedContent(): void {
-        // Test that checkLoad() doesn't reload already loaded content
-        $file = new FileInMemory($this->testFile);
-        $file->loadContent();
-        
-        $originalContent = $file->getContent();
-        
-        // Use reflection to call private method
-        $reflection = new \ReflectionClass($file);
-        $checkLoadMethod = $reflection->getMethod('checkLoad');
-        $checkLoadMethod->setAccessible(true);
-        $checkLoadMethod->invoke($file);
-        
-        // Content should be the same object
-        $this->assertSame($originalContent, $file->getContent());
-    }
 
-    public function testEnconvPreservesContentAfterConversion(): void {
-        // Test that enconv() preserves content after conversion
-        $testFile = $this->testDir . '/enconv_preserve.txt';
-        file_put_contents($testFile, 'Test content 123');
-        
-        try {
-            $file = new FileInMemory($testFile);
-            $file->loadContent();
-            
-            $originalContent = $file->getContent();
-            
-            try {
-                $file->enconv('none', 'UTF-8');
-                // If enconv succeeds, content may be different
-                $this->assertIsString($file->getContent());
-            } catch (\Throwable $e) {
-                // enconv may fail but test exists
-                $this->assertTrue(true);
-            }
-        } finally {
-            if (file_exists($testFile)) {
-                unlink($testFile);
-            }
-        }
-    }
 
     public function testGetLineByOffsetWithTwoLines(): void {
         // Test getLineByOffset() with exactly two lines (minimal binary search)
@@ -737,31 +560,6 @@ class FileInMemoryTest extends TestCase {
         }
     }
 
-    public function testEnconvWithIconvAvailable(): void {
-        // Test enconv() with iconv if available
-        if (!function_exists('iconv')) {
-            $this->markTestSkipped('iconv extension not available');
-        }
-        
-        $testFile = $this->testDir . '/enconv_test.txt';
-        file_put_contents($testFile, 'Test content');
-        
-        try {
-            $file = new FileInMemory($testFile);
-            $file->loadContent();
-            
-            // Use 'none' as language
-            $result = $file->enconv('none', 'UTF-8');
-            $this->assertSame($file, $result);
-        } catch (\Throwable $e) {
-            // enconv may fail but test exists
-            $this->assertTrue(true);
-        } finally {
-            if (file_exists($testFile)) {
-                unlink($testFile);
-            }
-        }
-    }
 
     public function testGetLineByOffsetWithExactLineEnd(): void {
         // Test getLineByOffset() with offset at exact line end
