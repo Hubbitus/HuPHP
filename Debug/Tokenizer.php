@@ -182,7 +182,7 @@ class Tokenizer {
 
 		//Search closest line
 		foreach ($this->_regexp->getMatches() as $k => $match){
-			$lineN = $this->_filePhpSrc->getLineByOffset($match[0][1]) + 1; //Indexing from 0
+			$lineN = (int) $this->_filePhpSrc->getLineByOffset($match[0][1]) + 1; //Indexing from 0
 			if ( ($d = $this->_debugBacktrace->line - $lineN) >= 0 and $d < $delta){
 				$delta = $d;
 				$this->_callStartLine = $lineN;
@@ -194,7 +194,7 @@ class Tokenizer {
 			$this->_filePhpSrc->getLineSep(),
 			$this->_filePhpSrc->getLines([
 				$this->_callStartLine - 1,
-				(int) ($delta + 1),
+				$delta + 1,
 			])
 		);
 		return $this;

@@ -105,7 +105,11 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 		$this->checkLoad();
 		if (!$this->lineContent) $this->explodeLines($updateLineSep);
 
-		if(!empty($lines)) return \call_user_func_array('array_slice', \array_merge([0 => $this->lineContent], $lines));
+		if(!empty($lines)) {
+			$offset = (int) ($lines[0] ?? 0);
+			$length = isset($lines[1]) ? (int) $lines[1] : null;
+			return \array_slice($this->lineContent, $offset, $length);
+		}
 		else return $this->lineContent;
 	}
 

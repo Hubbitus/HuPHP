@@ -24,6 +24,8 @@
         <exclude>
             <!-- Experimental code requiring runkit extension (not available in standard PHP) -->
             <directory>./macroses/multipleinheritance</directory>
+            <!-- Legacy template code moved to Templating/ - excluded from coverage -->
+            <directory>./Templating</directory>
         </exclude>
     </source>
 </phpunit>
