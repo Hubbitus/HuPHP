@@ -6,22 +6,28 @@ declare(strict_types=1);
 *
 * @package Macroses
 * @subpackage _count
-* @version 1.0
+* @version 1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
 namespace Hubbitus\HuPHP\Macroses;
 
+use Hubbitus\HuPHP\Exceptions\HaltException;
+
 /**
 * Terminate program with message $message if count exceeded $count.
+* Throws HaltException instead of calling exit() for testability.
 * @param integer        $count  Count compare to. {@see hit_count()}
-* @param string $message=''     Optional message to die with.
+* @param string $message=''     Optional message to halt with.
 *
 * @return       void
+* @throws HaltException
 **/
-function exit_count($count, $message=''){
-        if (true === hit_count($count)) exit($message);
+function exit_count($count, $message=''): void {
+        if (true === hit_count($count)) {
+                throw new HaltException($message, 0);
+        }
 }
 
 /**

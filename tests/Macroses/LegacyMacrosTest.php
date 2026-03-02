@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Macroses;
 
+use Hubbitus\HuPHP\Exceptions\HaltException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -85,6 +86,37 @@ class LegacyMacrosTest extends TestCase {
     public function testExitCountExists(): void {
         // Test that exit_count function exists in the Macroses namespace
         $this->assertTrue(function_exists('\Hubbitus\HuPHP\Macroses\exit_count'));
+    }
+
+    public function testExitCountThrowsHaltException(): void {
+        // Test that exit_count throws HaltException when count is reached
+        // First call to set counter to 1
+        \Hubbitus\HuPHP\Macroses\hit_count(100);
+        
+        $this->expectException(HaltException::class);
+        \Hubbitus\HuPHP\Macroses\exit_count(2);
+    }
+
+    public function testExitCountDoesNotThrowBeforeCountReached(): void {
+        // Reset counter by calling with high number
+        \Hubbitus\HuPHP\Macroses\hit_count(1000);
+        
+        // Should not throw exception
+        $result = \Hubbitus\HuPHP\Macroses\exit_count(5);
+        
+        // Should return void (null)
+        $this->assertNull($result);
+    }
+
+    public function testHaltExceptionHasExitCode(): void {
+        try {
+            \Hubbitus\HuPHP\Macroses\hit_count(1000);
+            \Hubbitus\HuPHP\Macroses\exit_count(2, 'Test halt message');
+        } catch (HaltException $e) {
+            $this->assertEquals('Test halt message', $e->getMessage());
+            $this->assertEquals(0, $e->exitCode);
+            $this->assertEquals(0, $e->getCode());
+        }
     }
 
     public function testHitCountReturnsInteger(): void {
