@@ -2,8 +2,8 @@
 declare(strict_types=1);
 
 /**
- * Test for NullClass class.
- */
+* Test for NullClass class.
+**/
 
 namespace Hubbitus\HuPHP\Tests\Vars;
 use Hubbitus\HuPHP\System\OutputType;
@@ -12,8 +12,8 @@ use Hubbitus\HuPHP\Vars\NullClass;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Vars\NullClass
- */
+* @covers \Hubbitus\HuPHP\Vars\NullClass
+**/
 class NullClassTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(NullClass::class));
@@ -119,7 +119,10 @@ class NullClassTest extends TestCase {
         $null = new NullClass();
         $reflection = new \ReflectionClass($null);
         $methods = $reflection->getMethods();
-        $this->assertEmpty($methods);
+
+        // NullClass has magic methods (__set, __get, __isset, __unset) to prevent dynamic properties
+        $this->assertCount(4, $methods);
+        $this->assertEquals(['__set', '__get', '__isset', '__unset'], \array_map(fn($m) => $m->getName(), $methods));
     }
 
     public function testClassIsFinal(): void {
@@ -216,7 +219,8 @@ class NullClassTest extends TestCase {
     public function testClassEndLineGreaterOrEqualToStartLine(): void {
         $null = new NullClass();
         $reflection = new \ReflectionClass($null);
-        $this->assertGreaterThanOrEqual($reflection->getEndLine(), $reflection->getStartLine());
+        // End line should be >= start line
+        $this->assertGreaterThanOrEqual($reflection->getStartLine(), $reflection->getEndLine());
     }
 
     public function testClassDocComment(): void {
@@ -432,20 +436,63 @@ class NullClassTest extends TestCase {
 
     public function testClassGetOnProperty(): void {
         $null = new NullClass();
-        $this->assertNull($null->property ?? null);
+        // Accessing non-existent property should throw LogicException
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Cannot get dynamic property');
+
+        /** @phpstan-ignore-next-line - Testing dynamic property access */
+        $null->nonexistent;
     }
 
-    public function testClassSetOnProperty(): void {
+    /**
+     * Test that NullClass does NOT allow dynamic properties.
+     *
+     * Magic methods __set/__get/__isset/__unset throw LogicException
+     * for any dynamic property access attempt.
+     */
+    public function testClassDoesNotAllowDynamicProperties(): void {
         $null = new NullClass();
+
+        // Setting dynamic property should throw LogicException
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Cannot set dynamic property');
+
         $null->property = 'value';
-        $this->assertEquals('value', $null->property);
     }
 
-    public function testClassUnsetOnProperty(): void {
+    /**
+     * Test that __get() throws LogicException for dynamic properties.
+     */
+    public function testClassGetMagicMethodThrowsException(): void {
         $null = new NullClass();
-        $null->property = 'value';
-        unset($null->property);
+
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Cannot get dynamic property');
+
+        /** @phpstan-ignore-next-line - Testing dynamic property access */
+        $value = $null->property;
+    }
+
+    /**
+     * Test that __isset() returns false for dynamic properties.
+     */
+    public function testClassIssetMagicMethodReturnsFalse(): void {
+        $null = new NullClass();
+
+        // __isset() should return false, not throw exception
         $this->assertFalse(isset($null->property));
+    }
+
+    /**
+     * Test that __unset() throws LogicException for dynamic properties.
+     */
+    public function testClassUnsetMagicMethodThrowsException(): void {
+        $null = new NullClass();
+
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Cannot unset dynamic property');
+
+        unset($null->property);
     }
 
     public function testClassIssetOnMethod(): void {
