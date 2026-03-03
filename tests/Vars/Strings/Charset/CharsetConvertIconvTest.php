@@ -3,19 +3,17 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Vars\Strings\Charset;
 
+use Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert;
 use Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvertIconv;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvertIconv
- */
+* Tests for CharsetConvertIconv class.
+*
+* @covers \Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvertIconv
+**/
 class CharsetConvertIconvTest extends TestCase {
-    protected function setUp(): void {
-        // Ensure clean error handler state before each test
-        restore_error_handler();
-        parent::setUp();
-    }
 
     public function testConstructor(): void {
         $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
@@ -68,18 +66,6 @@ class CharsetConvertIconvTest extends TestCase {
         $this->expectException(VariableRequiredException::class);
 
         $converter->convert();
-    }
-
-    public function testConvertThrowsExceptionWithInvalidOutEncoding(): void {
-        // outEnc is now typed as string, cannot pass null
-        // This test documents that outEnc must be a non-null string
-        $this->assertTrue(true);
-    }
-
-    public function testConvertThrowsExceptionWithInvalidCharset(): void {
-        // iconv with invalid charset may throw different errors depending on system
-        // This test documents the expected behavior
-        $this->assertTrue(true);
     }
 
     public function testStaticConvMethod(): void {
@@ -153,28 +139,6 @@ class CharsetConvertIconvTest extends TestCase {
         $this->assertEquals('Hello', (string)$converter);
     }
 
-    public function testErrorHandlerForIconvErrors(): void {
-        $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
-
-        $result = $converter->error_handler(E_NOTICE, 'iconv(): Wrong charset', __FILE__, __LINE__);
-
-        $this->assertTrue($result);
-    }
-
-    public function testErrorHandlerForNonIconvErrors(): void {
-        $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
-
-        $result = $converter->error_handler(E_WARNING, 'Some other warning', __FILE__, __LINE__);
-
-        $this->assertFalse($result);
-    }
-
-    public function testConvertWithEmptyString(): void {
-        // REQUIRED_VAR throws exception for empty strings (legacy behavior)
-        // This test documents that empty strings are not supported
-        $this->assertTrue(true);
-    }
-
     public function testConvertWithSpecialCharacters(): void {
         $text = 'Hello @#$%^&*() World!';
         $converter = new CharsetConvertIconv($text, 'UTF-8', 'UTF-8');
@@ -205,92 +169,28 @@ class CharsetConvertIconvTest extends TestCase {
     public function testInheritsFromCharsetConvert(): void {
         $converter = new CharsetConvertIconv('Hello');
 
-        $this->assertInstanceOf(\Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert::class, $converter);
-    }
-
-    public function testConvertWithInvalidEncodingThrowsException(): void {
-        // Test that convert() throws CharsetConvertException when iconv fails
-        // This covers error handling branches (lines 66-74)
-        // Note: Exception is thrown in constructor because parent::__construct() calls convert()
-
-        $this->expectException(\Hubbitus\HuPHP\Exceptions\Strings\Charset\CharsetConvertException::class);
-        $this->expectExceptionMessage('iconv(): Wrong encoding');
-
-        // Use invalid encoding to trigger iconv error in constructor
-        $text = 'Test text';
-        $converter = new CharsetConvertIconv($text, 'INVALID-ENCODING', 'UTF-8');
+        $this->assertInstanceOf(CharsetConvert::class, $converter);
     }
 
     /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
-    public function testConvertRestoresErrorHandlerWhenNull(): void {
-        // Test that convert() properly restores error handler when it was null
-        // This covers lines 66-67: elseif (is_null($oldErrorHandler)) { restore_error_handler(); }
+    * Test conversion with invalid input encoding throws ValueError.
+    *
+    * mb_convert_encoding() throws ValueError for invalid encodings (PHP 8.0+)
+    **/
+    public function testConvertWithInvalidInputEncoding(): void {
+        $this->expectException(\ValueError::class);
 
-        // Ensure no error handler is set in this fresh process
-        \set_error_handler(null);
-
-        $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
-        $converter->convert();
-
-        $this->assertEquals('Hello', $converter->getResult());
+        new CharsetConvertIconv('Test text', 'INVALID-ENCODING-XYZ', 'UTF-8');
     }
 
-    public function testErrorHandlerHandlesIconvErrors(): void {
-        // Test error_handler() method directly with iconv error
-        $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
-        
-        // Simulate iconv error
-        $result = $converter->error_handler(E_NOTICE, 'iconv(): wrong encoding', 'test.php', 100);
-        
-        $this->assertTrue($result);
-        
-        // Verify error was captured
-        $reflection = new \ReflectionClass($converter);
-        $errorsProp = $reflection->getProperty('_charset_convert_Errors');
-        $errorsProp->setAccessible(true);
-        $errors = $errorsProp->getValue($converter);
-        
-        $this->assertIsArray($errors);
-        $this->assertNotEmpty($errors);
-        $this->assertStringContainsString('iconv', $errors[0]);
-    }
+    /**
+     * Test conversion with invalid output encoding throws ValueError.
+     *
+     * mb_convert_encoding() throws ValueError for invalid encodings (PHP 8.0+)
+     **/
+    public function testConvertWithInvalidOutputEncoding(): void {
+        $this->expectException(\ValueError::class);
 
-    public function testErrorHandlerDelegatesNonIconvErrors(): void {
-        // Test error_handler() method with non-iconv error
-        $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
-        
-        // Simulate non-iconv error
-        $result = $converter->error_handler(E_WARNING, 'Some other warning', 'test.php', 100);
-        
-        $this->assertFalse($result);
-    }
-
-    public function testConvertRestoresPreviousErrorHandler(): void {
-        // Test that convert() restores previous error handler when one was set
-        // This covers line 65: set_error_handler($oldErrorHandler);
-        
-        // Set a custom error handler before creating converter
-        $customHandler = function($errno, $errstr) { return false; };
-        set_error_handler($customHandler);
-        
-        try {
-            $converter = new CharsetConvertIconv('Hello', 'UTF-8', 'UTF-8');
-            $converter->convert();
-            
-            $this->assertEquals('Hello', $converter->getResult());
-        } finally {
-            // Clean up - restore twice because convert() also restores
-            restore_error_handler();
-            restore_error_handler();
-        }
-    }
-
-    protected function tearDown(): void {
-        // Error handler is already restored by convert() or test cleanup
-        // No need to call restore_error_handler() here
-        parent::tearDown();
+        new CharsetConvertIconv('Hello', 'UTF-8', 'NONEXISTENT');
     }
 }

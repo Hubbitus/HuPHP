@@ -731,7 +731,7 @@ class FileReadTest extends TestCase {
             $property->setAccessible(true);
             $property->setValue($file, false);
         }
-        
+
         $this->assertTrue($exceptionThrown, 'RuntimeException should be thrown');
     }
 
@@ -770,14 +770,6 @@ class FileReadTest extends TestCase {
         $file->open('w');
     }
 
-    public function testWriteContentWithReadOnlyStream(): void {
-        // Test writeContent() throws RuntimeException when fwrite fails
-        // This covers line 49 in FileRead.php
-        // Note: This is difficult to test in normal conditions as fwrite()
-        // only returns false on serious errors (disk full, no space, etc.)
-        // This test documents the existence of this error handling path
-        $this->assertTrue(true); // Placeholder for documentation
-    }
 
     public function testWriteContentWithFwriteFailure(): void {
         // Test writeContent() throws RuntimeException when fwrite returns false

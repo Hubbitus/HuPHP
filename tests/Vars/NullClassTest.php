@@ -398,11 +398,10 @@ class NullClassTest extends TestCase {
 
     public function testClassInCondition(): void {
         $null = new NullClass();
-        if ($null) {
-            $this->assertTrue(true);
-        } else {
-            $this->assertTrue(false);
-        }
+
+        // NullClass should evaluate to true in boolean context
+        // (unlike null which evaluates to false)
+        $this->assertTrue((bool)$null);
     }
 
     public function testClassEmpty(): void {

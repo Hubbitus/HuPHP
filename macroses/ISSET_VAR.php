@@ -3,19 +3,11 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Macroses;
 
-/**
-* Toolkit of small functions aka "macroses".
-*
-* @package Macroses
-* @version 1.1
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created 2009-01-30 15:10
-**/
-
 use function Hubbitus\HuPHP\macroses\is_set;
 
 /**
+ * Toolkit of small functions aka "macroses".
+*
 * Return value of SCALAR variable if it defined without notices and error-handling.
 * For safely check indexes (in string and arrays use {@see IS_SET_VAR})
 *
@@ -26,6 +18,8 @@ use function Hubbitus\HuPHP\macroses\is_set;
 *
 * With that function we may safely use simple: $str = ISSET_VAR($variable) . 'some'...
 *
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @created 2009-01-30 15:10
 * @param &mixed	$var variable amount of arguments.
 * @return &mixed
 **/

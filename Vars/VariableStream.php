@@ -4,17 +4,41 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Vars;
 
 /**
-* VariableStream stream wrapper. Manipulate stream 'var://varName' as file,
-* where content is $varName.
+* VariableStream stream wrapper. Manipulate stream 'var://varName' as file, where content is $varName.
 * Very useful example from http://www.php.net/manual/ru/function.stream-wrapper-register.php as base for implementation
 *
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2008-06-16 14:33
+*
+* @example
+* ```php
+* $var = '';
+* $fp = fopen('var://var', 'r+');
+* fwrite($fp, "line1\n");
+* fwrite($fp, "line2\n");
+* fwrite($fp, "line3\n");
+* rewind($fp);
+* while (!feof($fp)) {
+*     echo fgets($fp);
+* }
+* fclose($fp);
+* var_dump($var);
+* ```
 **/
 class VariableStream {
     public int $position;
     public string $varname;
+
+    /**
+    * Stream context (set by PHP stream wrapper API)
+    *
+    * Cannot use `?\resource` type hint due to PHP stream wrapper API limitations:
+    * PHP assigns $context before class is fully initialized, causing TypeError.
+    *
+    * @var ?resource
+    **/
+    public $context = null;
 
     /**
     * Open stream.
@@ -158,22 +182,3 @@ class VariableStream {
 // Auto-register stream wrapper on class load
 VariableStream::registerStreamWrapper()
     or die('Failed to register protocol');
-
-/*
-@example
-
-$myvar = '';
-
-$fp = fopen('var://myvar', 'r+');
-
-fwrite($fp, "line1\n");
-fwrite($fp, "line2\n");
-fwrite($fp, "line3\n");
-
-rewind($fp);
-while (!feof($fp)) {
-    echo fgets($fp);
-}
-fclose($fp);
-var_dump($myvar);
-*/
