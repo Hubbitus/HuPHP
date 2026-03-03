@@ -2,33 +2,26 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
+
 use Hubbitus\HuPHP\System\OutputType;
-
-/**
-* Debug and backtrace toolkit.
-*
-* @package Debug
-* @subpackage HuLOG
-* @version 2.0.2
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created ???
-*
-* @uses dump
-* @uses outExtraData.interface
-**/
-
 use Hubbitus\HuPHP\Debug\Dump;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\System\OS;
 
 /**
+* Debug and backtrace toolkit.
+*
 * Common implementation suitable for the most types. Primarily intended for logs, like:
 * Single::def('HuLog')->toLog('Exception occurred: ' . $e->getMessage(), 'ERR', 'Some', new commonOutExtraData($SomeCurrentStructuredData));
 * Output based on dump::* functions
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 **/
 class OutExtraDataCommon implements IOutExtraData {
-protected $_var = null;
+	protected $_var = null;
+
+	/** @var OutputType|null Current output type for formatting */
+	protected ?OutputType $_curTypeOut = null;
 
 	public function __construct($var){
 		$this->_var =& $var;

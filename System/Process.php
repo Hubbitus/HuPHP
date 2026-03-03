@@ -8,152 +8,219 @@ use Hubbitus\HuPHP\Exceptions\ProcessException;
 /**
 * Manipulate processes on *NIX-like systems.
 *
-* @package Process
-* @version 2.0b
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * Base idea got from http://www.php.net/manual/ru/function.proc-open.php
-*
-* @uses ProcessException
 **/
-
 class Process {
-	const STDIN = 0;
-	const STDOUT = 1;
-	const STDERR = 2;
+    public const int STDIN = 0;
+    public const int STDOUT = 1;
+    public const int STDERR = 2;
 
-	private $descriptorSpec = array(
-		0 => array('pipe', 'r'),
-		1 => array('pipe', 'w'),
-		2 => array('pipe', 'w')
-	);
+    /** @var array<int, array<int, string>> Process descriptor specification */
+    private array $descriptorSpec = [
+        self::STDIN  => ['pipe', 'r'],
+        self::STDOUT => ['pipe', 'w'],
+        self::STDERR => ['pipe', 'w']
+    ];
 
-	private $resource = null;
-	private $pipes;
+    /** @var resource|null Process resource */
+    private $resource = null;
 
-	private $state;
+    /** @var array<int, resource>|null Process pipes */
+    private ?array $pipes = null;
 
-	function __construct(ProcessState $state, $doNOTopen = false){
-		$this->setState($state);
-		if ($this->state->CMD and !$doNOTopen ) $this->open();
-	}
-	public function &getState(){
-		return $this->state;
-	}
-	public function setState($state){
-		$this->state = $state;
-	}
-	public function open(){
-		$this->resource = proc_open($this->state->CMD, $this->descriptorSpec, $this->pipes, $this->state->getCwd(), $this->state->getEnv());
+    /** @var ProcessState Process state object */
+    private ProcessState $state;
 
-		if (!is_resource($this->resource)){
-			throw new ProcessException ('Can\'t open process!'.$this->state->describe(), 0, $this->getState());
-		}
-	}
+    /**
+    * Constructor
+    *
+    * @param ProcessState $state Process state object
+    * @param bool $doNOTopen If true, don't open process automatically
+    **/
+    public function __construct(ProcessState $state, bool $doNOTopen = false) {
+        $this->setState($state);
+        if ($this->state->CMD and !$doNOTopen) {
+            $this->open();
+        }
+    }
 
-	public function setNonBlockingMode($nonBlock = true, $nonBlockTimeout = 500000){
-		$this->state->nonBlockingMode = $nonBlock;
-		$this->state->nonBlockTimeout = $nonBlockTimeout;
-		if ($this->state->nonBlockingMode){
-			stream_set_blocking($this->pipes[self::STDIN], false);
-			stream_set_blocking($this->pipes[self::STDOUT], false);
-			stream_set_blocking($this->pipes[self::STDERR], false);
-		}
-	}
-	public function writeIn($inStr = false, $noWait = false){
-		// By default saved data write
-		if ($inStr) $this->state->writeData = $inStr;
-		if ($this->state->writeData !== null) {
-			fwrite($this->pipes[self::STDIN], (string)$this->state->writeData);
-		}
-		fflush($this->pipes[self::STDIN]);
-		if (! $this->state->nonBlockingMode) fclose($this->pipes[self::STDIN]);
-		elseif ($this->state->nonBlockingMode and ! $noWait) usleep ($this->state->nonBlockTimeout);
-	}
-	public function readOut(){
-		$this->state->retVal = stream_get_contents($this->pipes[self::STDOUT]);
-		fflush($this->pipes[self::STDOUT]);
-		if (! $this->state->nonBlockingMode) fclose($this->pipes[self::STDOUT]);
-	}
-	public function readErr(){
-		$this->state->error = stream_get_contents($this->pipes[self::STDERR]);
-		if (! $this->state->nonBlockingMode) fclose($this->pipes[self::STDERR]);
-	}
-	public function closeAll(){
-		if ($this->state->nonBlockingMode){
-			@fclose($this->pipes[self::STDIN]);
-			@fclose($this->pipes[self::STDOUT]);
-			@fclose($this->pipes[self::STDERR]);
-		}
-		$this->state->exit_code = proc_close($this->resource);
-		if ($this->state->exit_code) throw new ProcessException('Ended with non 0 status! - '.$this->state->exit_code."\n".$this->state->describe(), 0, $this->getState());
-	}
-	public function execute(){
-		$this->readErr();
-		$this->readOut();
-		$this->closeAll();
-		if ($this->state->getError()) throw new ProcessException($this->state->getError().$this->state->describe(), 0, $this->getState());
-		return $this->state->getResult();
-	}
-	public static function exec($command, $cwd = null, array $env = null, $writeData = null){
-		if (! $command instanceof ProcessState){
-			$state = new ProcessState();
-			$state->CMD = $command;
-			if ($cwd) $state->setCwd($cwd);
-			if ($env) $state->setEnv($env);
-			if ($writeData) $state->writeData = $writeData;
-		}
-		else{
-			$state = $command;
-		}
+    /**
+    * Get process state
+    *
+    * @return ProcessState Process state object
+    **/
+    public function &getState(): ProcessState {
+        return $this->state;
+    }
 
-		$process = new Process($state);
-		$process->writeIn();
-		return $process->execute();
-	}
-/*
-function __destruct(){
-	if ($this->pipes[self::STDIN]) fclose($this->pipes[self::STDIN]);
-	if ($this->pipes[self::STDOUT]) fclose($this->pipes[self::STDOUT]);
-	if ($this->pipes[self::STDERR]) fclose($this->pipes[self::STDERR]);
-}#__d
-*/
+    /**
+    * Set process state.
+    *
+    * @param ProcessState $state Process state object
+    * @return void
+    **/
+    public function setState(ProcessState $state): void {
+        $this->state = $state;
+    }
+
+    /**
+    * Open process.
+    *
+    * @return void
+    * @throws ProcessException If process cannot be opened
+    **/
+    public function open(): void {
+        $this->resource = \proc_open(
+            $this->state->CMD,
+            $this->descriptorSpec,
+            $this->pipes,
+            $this->state->getCwd(),
+            $this->state->getEnv()
+        );
+
+        if (!\is_resource($this->resource)) {
+            throw new ProcessException('Can\'t open process!' . $this->state->describe(), 0, $this->getState());
+        }
+    }
+
+    /**
+    * Set non-blocking mode for process pipes.
+    *
+    * @param bool $nonBlock Enable non-blocking mode
+    * @param int $nonBlockTimeout Timeout in microseconds
+    * @return void
+    **/
+    public function setNonBlockingMode(bool $nonBlock = true, int $nonBlockTimeout = 500000): void {
+        $this->state->nonBlockingMode = $nonBlock;
+        $this->state->nonBlockTimeout = $nonBlockTimeout;
+        if ($this->state->nonBlockingMode) {
+            \stream_set_blocking($this->pipes[self::STDIN], false);
+            \stream_set_blocking($this->pipes[self::STDOUT], false);
+            \stream_set_blocking($this->pipes[self::STDERR], false);
+        }
+    }
+
+    /**
+    * Write data to process stdin.
+    *
+    * @param mixed $inStr Input string or false to use saved data
+    * @param bool $noWait If true, don't wait after writing
+    * @return void
+    **/
+    public function writeIn(mixed $inStr = false, bool $noWait = false): void {
+        // By default saved data write
+        if ($inStr) {
+            $this->state->writeData = $inStr;
+        }
+        if ($this->state->writeData !== null) {
+            \fwrite($this->pipes[self::STDIN], (string) $this->state->writeData);
+        }
+        \fflush($this->pipes[self::STDIN]);
+        if (!$this->state->nonBlockingMode) {
+            \fclose($this->pipes[self::STDIN]);
+        } elseif ($this->state->nonBlockingMode and !$noWait) {
+            \usleep($this->state->nonBlockTimeout);
+        }
+    }
+
+    /**
+    * Read data from process stdout.
+    *
+    * @return void
+    **/
+    public function readOut(): void {
+        $this->state->retVal = \stream_get_contents($this->pipes[self::STDOUT]);
+        \fflush($this->pipes[self::STDOUT]);
+        if (!$this->state->nonBlockingMode) {
+            \fclose($this->pipes[self::STDOUT]);
+        }
+    }
+
+    /**
+    * Read data from process stderr.
+    *
+    * @return void
+    **/
+    public function readErr(): void {
+        $this->state->error = \stream_get_contents($this->pipes[self::STDERR]);
+        if (!$this->state->nonBlockingMode) {
+            \fclose($this->pipes[self::STDERR]);
+        }
+    }
+
+    /**
+    * Close all process pipes and wait for completion.
+    *
+    * @return void
+    * @throws ProcessException If process ended with non-zero exit code
+    **/
+    public function closeAll(): void {
+        if ($this->state->nonBlockingMode) {
+            @\fclose($this->pipes[self::STDIN]);
+            @\fclose($this->pipes[self::STDOUT]);
+            @\fclose($this->pipes[self::STDERR]);
+        }
+        $this->state->exit_code = \proc_close($this->resource);
+        if ($this->state->exit_code) {
+            throw new ProcessException(
+                'Ended with non 0 status! - ' . $this->state->exit_code . "\n" . $this->state->describe(),
+                0,
+                $this->getState()
+            );
+        }
+    }
+
+    /**
+    * Execute process and return result.
+    *
+    * @return mixed Process result
+    * @throws ProcessException If process failed
+    **/
+    public function execute(): mixed {
+        $this->readErr();
+        $this->readOut();
+        $this->closeAll();
+        if ($this->state->getError()) {
+            throw new ProcessException($this->state->getError() . $this->state->describe(), 0, $this->getState());
+        }
+        return $this->state->getResult();
+    }
+
+    /**
+    * Static method to execute a command.
+    *
+    * @param ProcessState|string $command Command string or ProcessState object
+    * @param string|null $cwd Working directory
+    * @param array<string, string>|null $env Environment variables
+    * @param mixed $writeData Data to write to stdin
+    * @return mixed Command output
+    **/
+    public static function exec(
+        ProcessState|string $command,
+        ?string $cwd = null,
+        ?array $env = null,
+        mixed $writeData = null
+    ): mixed {
+        if (!$command instanceof ProcessState) {
+            $state = new ProcessState();
+            $state->CMD = $command;
+            if ($cwd) {
+                $state->setCwd($cwd);
+            }
+            if ($env) {
+                $state->setEnv($env);
+            }
+            if ($writeData) {
+                $state->writeData = $writeData;
+            }
+        } else {
+            $state = $command;
+        }
+
+        $process = new Process($state);
+        $process->writeIn();
+        return $process->execute();
+    }
 }
-/*
-EXAMPLES
-try{
-//Standalone Usage
-$process = new Process('enca');
-$process->writeIn(file_get_contents('t1'));
-$process->readOut();
-$process->closeAll();
-c_dump($process->getResult());
-//\standalone
-
-//Non Blocking mode of descriptors. Allow execute more than one command!
-$process = new Process('bash');
-$process->setNonBlockingMode(true, 50000);
-$process->writeIn("ls -1\n");
-$process->readErr(); c_dump($process->getError());
-$process->readOut(); c_dump($process->getResult());
-
-$process->writeIn("date\n");
-$process->readErr(); c_dump($process->getError());
-$process->readOut(); c_dump($process->getResult());
-$process->closeAll();
-//\non blocking
-
-//Simple usage
-$process = new Process('df -h');
-echo $process->execute();
-//\simple
-
-//Static call
-echo Process::exec('w');
-//\static
-}
-catch (Exception $e){
-    echo 'Exception: '.$e->getMessage() . "\n";
-    // there was a problem executing the command
-}
-*/

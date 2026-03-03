@@ -1,30 +1,25 @@
 <?php
 declare(strict_types=1);
 
-/**
-* Operations with file by serial read/write
-*
-* @package Filesystem
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-* @version 2.0b
-* @created ?2009-03-25 13:51 ver 2.0b
-*
-* @uses REQUIRED_VAR()
-* @uses VariableRequiredException
-* @uses file_base
-* @uses VariableStream
-**/
-
 namespace Hubbitus\HuPHP\Filesystem;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
 
+/**
+* Operations with file by serial read/write
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
+* @created ?2009-03-25 13:51 ver 2.0b
+**/
 class FileRead extends FileBase {
-private $fd = null;
+	private $fd = null;
 
-protected int $_line_no = 0; //Current line number. Read only. For getline() access.
+	protected int $_line_no = 0; //Current line number. Read only. For getline() access.
+
+	/** @var string|null Cached line content for getLineAt() */
+	private $lineContent = null;
 
 	/**
 	* If file opened before, content will be written in current position of file.

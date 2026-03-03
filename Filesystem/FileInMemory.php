@@ -288,12 +288,12 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 
 		$linesCount = \count($lines);
 		// First line is additional case
-		$this->_linesOffsets[0] = [$offset, ($offset += -1 + \strlen(\utf8_decode($lines[0])) + \strlen(\utf8_decode($this->getLineSep())))];
+		$this->_linesOffsets[0] = [$offset, ($offset += -1 + \strlen(\mb_convert_encoding($lines[0], 'ISO-8859-1', 'UTF-8')) + \strlen(\mb_convert_encoding($this->getLineSep(), 'ISO-8859-1', 'UTF-8')))];
 		// From 1 line, NOT 0
 		for($i = 1; $i < $linesCount; $i++){
 			$this->_linesOffsets[$i] = [
 				$offset + 1,
-				( $offset += \strlen(\utf8_decode($lines[$i])) + \strlen(\utf8_decode($this->getLineSep())) )
+				( $offset += \strlen(\mb_convert_encoding($lines[$i], 'ISO-8859-1', 'UTF-8')) + \strlen(\mb_convert_encoding($this->getLineSep(), 'ISO-8859-1', 'UTF-8')) )
 			];
 		}
 	}
