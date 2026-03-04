@@ -288,8 +288,8 @@ class NullClassTest extends TestCase {
     public function testClassUnserialize(): void {
         $null = new NullClass();
         $serialized = serialize($null);
-        $unserialized = unserialize($serialized);
-        $this->assertInstanceOf(NullClass::class, $unserialized);
+        $unSerialized = unserialize($serialized);
+        $this->assertInstanceOf(NullClass::class, $unSerialized);
     }
 
     public function testClassJsonEncode(): void {
