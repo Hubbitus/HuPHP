@@ -130,9 +130,9 @@ abstract class RegExpBase extends HuClass implements IRegExp {
 	/**
 	* Set Pattern, text, replacement. Shorthand to appropriate methods.
 	*
-	* @param ?string|?array $RegExp
-	* @param ?string $Text
-	* @param ?string|?array $ReplaceTo\
+	* @param string|array|null $RegExp
+	* @param string|null $Text
+	* @param string|array|null $ReplaceTo
 	**/
 	public function &set($RegExp = null, $Text = null, $ReplaceTo = null): static {
 		if ($RegExp !== null) {
@@ -238,10 +238,10 @@ abstract class RegExpBase extends HuClass implements IRegExp {
 	/**
 	* Full(os sub, if $n present) array of matches after call (not checked!) {@see doMatch()}, {@see doMatchAll()}, {@see split()}
 	*
-	* @param ?int $n Number of sub array
+	* @param int|null $n Number of sub array
 	**/
 	public function getMatches(?int $n = null): ?array {
-		return ($n ? ($this->matches[$n] ?? null) : $this->matches);
+		return ($n !== null ? ($this->matches[$n] ?? null) : $this->matches);
 	}
 
 	/**

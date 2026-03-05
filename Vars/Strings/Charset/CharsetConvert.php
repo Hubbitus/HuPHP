@@ -116,7 +116,7 @@ abstract class CharsetConvert {
 	* Return result of conversion. If it is empty, run {@see ::convert()}
 	**/
 	public function getResult(): string {
-		if ($this->_resText === null || $this->_resText === '') {
+		if ($this->_resText === null) {
 			$this->convert();
 		}
 		return $this->_resText;

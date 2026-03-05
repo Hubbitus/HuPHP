@@ -11,6 +11,7 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
 /**
 * Class to provide OOP interface to array operations.
 *
+* @property mixed $_last_
 * @package Vars
 * @version 1.2.4
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
@@ -162,9 +163,9 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	**/
 	public function &hu($name): mixed {
 		/** @var array|mixed $prop */
-		$prop = $this->$name;
+		$prop = $this[$name];
 		if (\is_array($prop)) {
-			$this->$name = new HuArray($prop);
+			$this[$name] = new HuArray($prop);
 		}
 		return $this->getProperty($name);
 	}
@@ -544,10 +545,9 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 			if (\is_array($item) && isset($item[$key])) {
 				$result[] = $item[$key];
 			} elseif (\is_object($item)) {
-				/** @var object $itemObj */
-				$itemObj = $item;
-				if (isset($itemObj->$key)) {
-					$result[] = $itemObj->$key;
+				$itemArr = (array)$item;
+				if (isset($itemArr[$key])) {
+					$result[] = $itemArr[$key];
 				}
 			}
 		}

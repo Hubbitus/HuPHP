@@ -179,18 +179,14 @@ class HuGetopt {
 
             // reference. All modification - in-place.
             /** @var HuGetoptOption $o */
-            $o = $this->getOptByStr($o->Opt->{0}, $o->OptT->{0})->add($o);
+            $o = $this->getOptByStr($o->Opt[0], $o->OptT[0])->add($o);
 
             /** @var string $mod */
             $mod = $o->Mod;
             if ('' === $mod) {
                 /** @var HuArray $val */
                 $val = $o->Val;
-                /** @var bool $last */
-                $last = $val->_last_;
-                /** @var bool $lastNew */
-                $lastNew = $last || true;
-                $val->_last_ = $lastNew;
+                $val->_last_ = true;
             } else {
                 // : or ::
                 // Check if Val already has explicit string value (e.g., from long option form --opt=value or short option -ovalue)
@@ -198,7 +194,7 @@ class HuGetopt {
                 /** @var HuArray $val */
                 $val = $o->Val;
                 /** @var string|null $val0 */
-                $val0 = $val->{0} ?? null;
+                $val0 = $val[0] ?? null;
                 $hasExplicitValue = \is_string($val0);
                 /** @var bool $optarg */
                 /** @var bool $lastVal2 */
@@ -259,7 +255,7 @@ class HuGetopt {
     * @return string|false
     **/
     protected function nextArg(): string|false {
-        if ($this->_curArg) {
+        if ($this->_curArg !== null) {
             $tmp = $this->_curArg;
             $this->_curArg = null;
             return $tmp;
@@ -292,7 +288,7 @@ class HuGetopt {
     * @return string
     **/
     protected function currentArg(): string {
-        if ($this->_curArg) {
+        if ($this->_curArg !== null) {
             $tmp = $this->_curArg;
             $this->_curArg = null;
             return $tmp;
@@ -325,10 +321,10 @@ class HuGetopt {
         );
         $re->doMatch();
 
-        if ($re->matchCount()) {
+        if ($re->matchCount() > 0) {
             // Handle sequence of short options without opt-arguments. E.g. `-otfs`.
             $o = $this->getOptByStr($re->match(2)[0], 's');
-            if ($o && (':' === $o->Mod || '::' === $o->Mod)) {
+            if ($o !== null && (':' === $o->Mod || '::' === $o->Mod)) {
                 // Have optarg - but don't call nextArg() here, let parseArgs handle it
                 // If there's a value in the same arg (e.g., -fvalue), use it
                 $hasInlineValue = '' !== (string) $re->match(3)[0];
@@ -343,7 +339,7 @@ class HuGetopt {
                 );
             } else {
                 // Not have optarg => $re->match(2) is continue of non-optarg options.
-                if ($re->match(3)[0]) {
+                if ('' !== $re->match(3)[0]) {
                     $this->_curArg = '-' . $re->match(3)[0];
                 }
                 return new HuGetoptOption(
@@ -382,14 +378,14 @@ class HuGetopt {
         );
         $re->doMatch();
 
-        if ($re->matchCount()) {
+        if ($re->matchCount() > 0) {
             return new HuGetoptOption(
                 $this->getSettings()->HuGetopt_option_options,
                 [
                     'Sep' => new HuArray([$re->match(1)[0]]),
                     'Opt' => new HuArray([$re->match(2)[0]]),
                     '=' => new HuArray([$re->match(3)[0]]),
-                    'Val' => new HuArray([$re->match(4)[0] ? $re->match(4)[0] : $this->nextArg()]),
+                    'Val' => new HuArray([$re->match(4)[0] !== '' ? $re->match(4)[0] : $this->nextArg()]),
                     'OptT' => new HuArray(['l'])
                 ]
             );

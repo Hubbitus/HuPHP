@@ -18,6 +18,7 @@ use Hubbitus\HuPHP\Debug\Dump;
 **/
 class OutExtraDataDOMnode extends OutExtraDataCommon {
 	/** @var \DOMDocument|null */
+	// @phpstan-ignore-next-line
 	protected mixed $_var = null;
 
 	/**

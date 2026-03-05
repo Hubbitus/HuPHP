@@ -6,10 +6,14 @@ namespace Hubbitus\HuPHP\System\Console;
 use Hubbitus\HuPHP\Vars\Settings\Settings;
 
 /**
- * HuGetopt settings class.
- *
- * @example of use HuGetopt.example.php
- */
+* HuGetopt settings class.
+*
+* @property array $HuGetopt_option_options
+* @property array $start_short
+* @property array $start_long
+* @property bool  $alternative
+* @example of use HuGetopt.example.php
+**/
 class HuGetoptSettings extends Settings {
     /**
      * Constructor.

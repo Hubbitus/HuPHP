@@ -27,7 +27,7 @@ class SettingsFilterDefault extends SettingsFilterBase {
 	public function __construct(string $propName, mixed $defaultValue, ?callable $emptyCallback = null) {
 		parent::__construct($propName, null);
 		$this->default = $defaultValue;
-		$this->callback_ = $emptyCallback ?: fn($var) => $var === null || $var === '' || $var === [] || $var === false || $var === 0;
+		$this->callback_ = $emptyCallback ?? fn($var) => $var === null || $var === '' || $var === [] || $var === false || $var === 0;
 	}
 
 	public function apply(&$name, &$value): mixed {

@@ -294,8 +294,8 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	* @throws VariableEmptyException
 	**/
 	private function &checkLoad(): static {
-		if ($this->lineContent === [] && ($this->content === '' || $this->content === null)) {
-			throw new VariableEmptyException(new Backtrace(), 'Line-Content and Content is empty! May be you forgot call one of ->load*() method first?');
+		if ($this->content === null) {
+			throw new VariableEmptyException(new Backtrace(), 'Content is not loaded! May be you forgot call one of ->load*() method first?');
 		}
 		return $this;
 	}

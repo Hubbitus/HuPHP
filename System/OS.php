@@ -29,17 +29,11 @@ class OS {
 	}
 
 	/**
-	* Check if file is includeable. I can't just use if (@include($file)). Or, more exactly i can, but
-	*	it is have small different meaning:
-	*	@include('include.php') not return and NOT shown errors in including file! Nothing:
-	*		Not Notice, Warning or Fatal!!!!
-	*		See http://ru2.php.net/manual/ru/function.include-once.php comments of
-	*		"flobee at gmail dot com" and "php at metagg dot com" and http://php.net/include/
-	*		comment of "medhefgo at googlemail dot com"
-	*		In other words, absent way (get me known if I am wrong) to suppress errors like
-	*		'file not found' or 'not readable', construction @include suppress ALL (even Critical!)
-	*		in including files, and nested (included from including).
-	*	Result of check may be also applicable to require()
+	* Check if file is includeable. 
+    * This method is a replacement for `if (@include($file))` because the @ operator 
+    * suppresses all errors, including fatal ones, in the included file.
+	* This method only checks for readability using the include_path.
+	* See: http://php.net/manual/en/function.include.php
 	*
 	* @param	string $filename As it can be passed to include or require.
 	**/

@@ -18,6 +18,16 @@ class MockCharsetConvert extends CharsetConvert {
 }
 
 /**
+ * Mock implementation for testing empty string conversion results
+ */
+class MockCharsetConvertEmpty extends CharsetConvert {
+    public function convert(): static {
+        $this->_resText = '';
+        return $this;
+    }
+}
+
+/**
  * @covers \Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert
  * @covers \Hubbitus\HuPHP\Vars\Strings\Charset\MockCharsetConvert
  */
@@ -167,5 +177,11 @@ class CharsetConvertTest extends TestCase {
         $result = $converter->convert();
         
         $this->assertSame($converter, $result);
+    }
+
+    public function testGetResultWithEmptyConversion(): void {
+        $converter = new MockCharsetConvertEmpty('hello');
+        $this->assertEquals('', $converter->getResult()); // First call, converts to ''
+        $this->assertEquals('', $converter->getResult()); // Second call, should return cached ''
     }
 }
