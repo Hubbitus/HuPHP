@@ -826,4 +826,22 @@ class FileInMemoryTest extends TestCase {
             unlink($testFile);
         }
     }
+
+    public function testExplodeLinesWithNullContent(): void {
+        // Test explodeLines when content is null (not loaded yet)
+        $testFile = $this->testDir . '/test_explode_null.txt';
+        file_put_contents($testFile, 'test content');
+        
+        try {
+            $file = new FileInMemory($testFile);
+            // Don't call loadContent - content is null
+            
+            // getLineAt should handle null content
+            $line = $file->getLineAt(0);
+            $this->assertIsString($line);
+            $this->assertEquals('test content', $line);
+        } finally {
+            unlink($testFile);
+        }
+    }
 }
