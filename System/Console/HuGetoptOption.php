@@ -76,7 +76,9 @@ class HuGetoptOption extends SettingsCheck {
     **/
     public function add(HuGetoptOption $toAdd): static {
         foreach (['Opt', 'Sep', 'Val', '=', 'OptT'] as $k) {
-            $this->{$k}->pushHuArray($toAdd->{$k});
+            $this->getProperty($k)->pushHuArray(
+                $toAdd->getProperty($k)
+            );
         }
         return $this;
     }

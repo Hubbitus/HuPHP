@@ -324,7 +324,7 @@ class HuGetopt {
         if ($re->matchCount() > 0) {
             // Handle sequence of short options without opt-arguments. E.g. `-otfs`.
             $o = $this->getOptByStr($re->match(2)[0], 's');
-            if ($o !== null && (':' === $o->Mod || '::' === $o->Mod)) {
+            if (':' === $o->Mod || '::' === $o->Mod) {
                 // Have optarg - but don't call nextArg() here, let parseArgs handle it
                 // If there's a value in the same arg (e.g., -fvalue), use it
                 $hasInlineValue = '' !== (string) $re->match(3)[0];
