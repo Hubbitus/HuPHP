@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars\Settings;
 
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\Macro\Vars;
 
 
 /**
@@ -83,7 +83,7 @@ class SettingsFilter extends SettingsCheckStatic {
 		* This may be done also through array_walk, but in it required intermediate function to swap arguments.
 		* I think direct cycle will be faster.
 		**/
-		foreach (REQUIRED_VAR($setArr) as $key => $value)
+		foreach (Vars::requiredNotEmpty($setArr) as $key => $value)
 			$this->setSetting($key, $value);
 	}
 

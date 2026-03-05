@@ -13,7 +13,7 @@ Modern PHP framework supporting PHP 8.0+ for common tasks like debugging, loggin
 - **HuArray** - Enhanced array manipulation with OOP syntax
 - **HuLog** - Flexible logging facility with auto-configuration
 - **Vars** - Domain-oriented programming interfaces
-- **Macroses** - Helper functions for checks and assertions
+- **Macro** - Static utility classes for variables and Unicode operations
 - **RegExp** - OOP wrapper for POSIX and PCRE regular expressions
 - **Filesystem** - System-agnostic file operations
 - **Process** - Execute and manage system processes
@@ -102,23 +102,33 @@ $config = HuConfig::singleton();
 $value = $config->someSetting; // Access via magic __get
 ```
 
-### Macro Functions
+### Macro Classes
 
-The framework provides helper functions (macroses) that are automatically available after autoload:
+The framework provides static utility classes for common operations:
 
 ```php
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
-use function Hubbitus\HuPHP\Macroses\EMPTY_STR;
-use function Hubbitus\HuPHP\Macroses\ISSET_VAR;
+use Hubbitus\HuPHP\Macro\Vars;
+use Hubbitus\HuPHP\Macro\Unicode;
+use Hubbitus\HuPHP\System\OS;
 
-// Example: ensure variable is set
-$value = REQUIRED_VAR($someVariable, 'Variable name');
+// Example: ensure variable is not empty
+$value = Vars::requiredNotEmpty($someVariable, 'Variable name');
 
-// Example: empty string check
-$str = EMPTY_STR($input, 'default value');
+// Example: get first non-empty string
+$str = Vars::firstMeaningString($input1, $input2, 'default value');
+
+// Example: Unicode operations
+$capitalized = Unicode::ucfirst('привет'); // 'Привет'
+$wrapped = Unicode::wordwrap($text, 75, "\n");
+
+// Example: System utilities
+OS::err('Error message'); // Write to stderr
 ```
 
-**Note:** Macro functions can be used without explicit `use function` statements as they are loaded globally via Composer's `files` autoload, but importing them with `use function` is recommended for clarity and IDE support.
+**Available classes:**
+- `Hubbitus\HuPHP\Macro\Vars` - Variable utilities (firstMeaning, firstMeaningString, surround, requiredNotEmpty, requiredNotNull, swap, isset)
+- `Hubbitus\HuPHP\Macro\Unicode` - Unicode operations (ucfirst, wordwrap, ord, chr)
+- `Hubbitus\HuPHP\System\OS` - Extended with system utilities (err, hitCount, exitCount)
 
 ## Building Distributions
 
@@ -169,7 +179,7 @@ HuPHP/
 ├── Debug/             # Dump, logging, backtrace
 ├── Exceptions/        # Exception hierarchy
 ├── Filesystem/        # File operations
-├── Macroses/          # Helper functions
+├── Macro/             # Static utility classes (Vars, Unicode)
 ├── RegExp/            # Regular expressions
 ├── System/            # System utilities (OS, Process, Console)
 ├── Vars/              # Variables, Settings, HuArray, HuConfig
@@ -204,21 +214,30 @@ This version uses **namespaces** and **PSR-4 autoloading**. If you're upgrading 
    Dump::a($variable);
    ```
 
-3. **Replace manual includes** with `use` statements:
+3. **Replace legacy macro functions** with new static classes:
    ```php
-   // Old:
+   // Old (removed):
    include_once('macroses/REQUIRED_VAR.php');
    $value = REQUIRED_VAR($var);
+   
+   include_once('macroses/EMPTY_STR.php');
+   $str = EMPTY_STR($var1, $var2);
+   
+   include_once('macroses/SWAP.php');
+   SWAP($a, $b);
 
    // New (recommended):
-   use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
-   $value = REQUIRED_VAR($var);
-
-   // Or (still works due to Composer 'files' autoload):
-   $value = REQUIRED_VAR($var);
+   use Hubbitus\HuPHP\Macro\Vars;
+   
+   $value = Vars::requiredNotEmpty($var);
+   $str = Vars::firstMeaningString($var1, $var2);
+   Vars::swap($a, $b); // Swaps values by reference
    ```
 
-4. **Macro functions** are automatically loaded globally via Composer's `files` autoload mechanism defined in `composer.json`. However, using `use function` is recommended for better IDE support and code clarity.
+4. **New Macro classes** provide type-safe static methods:
+   - `Hubbitus\HuPHP\Macro\Vars` - Variable utilities (firstMeaning, firstMeaningString, surround, requiredNotEmpty, requiredNotNull, swap, isset)
+   - `Hubbitus\HuPHP\Macro\Unicode` - Unicode operations (ucfirst, wordwrap, ord, chr)
+   - `Hubbitus\HuPHP\System\OS` - Extended with system utilities (err, hitCount, exitCount)
 
 5. **Removed features**: The old Template engine (`Templating/`) has been removed. Use modern template engines like Twig or League Plates instead.
 
@@ -266,7 +285,7 @@ tests/
 │   └── BaseExceptionTest.php
 ├── Filesystem/
 │   └── FileInMemoryTest.php
-├── Macroses/
+├── Macro/
 │   └── MacrosTest.php
 ├── RegExp/
 │   └── RegExpPcreTest.php

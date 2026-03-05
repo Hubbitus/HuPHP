@@ -4,8 +4,7 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Vars;
 
 use Hubbitus\HuPHP\Vars\Settings\Settings;
-use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
+use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
 
 /**
@@ -97,7 +96,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	public function getSlice($offset, ?int $length = null, bool $preserve_keys = false): static {
 		// Late Static Binding is intentional - allows child classes to return their own instances
 		// @phpstan-ignore new.static
-		return new static(\array_slice($this->__SETS, $offset, EMPTY_VAR($length, \sizeof($this->__SETS)), $preserve_keys));
+		return new static(\array_slice($this->__SETS, $offset, Vars::firstMeaning($length, \sizeof($this->__SETS)), $preserve_keys));
 	}
 
 	/**
@@ -108,7 +107,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	**/
 	#[\Override]
 	public function &getProperty($name): mixed {
-		$key = REQUIRED_NOT_NULL($name);
+		$key = Vars::requiredNotNull($name);
 		return $this->__SETS[$key];
 	}
 

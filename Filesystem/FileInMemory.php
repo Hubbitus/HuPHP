@@ -16,8 +16,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Filesystem;
 
-use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
 use Hubbitus\HuPHP\Debug\Backtrace;
@@ -63,7 +62,7 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	public function &setContentFromString($string): static {
 		$this->lineContent = [];
 		$this->_linesOffsets = [];
-		return parent::setContentFromString(REQUIRED_NOT_NULL($string));
+		return parent::setContentFromString(Vars::requiredNotNull($string));
 	}
 
 	/**
@@ -71,7 +70,7 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	* @inheritdoc
 	**/
 	public function &appendString($string): static {
-		return $this->setContentFromString($this->content . REQUIRED_VAR($string));
+		return $this->setContentFromString($this->content . Vars::requiredNotEmpty($string));
 	}
 
 	/**

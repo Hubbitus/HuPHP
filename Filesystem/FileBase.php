@@ -20,8 +20,7 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Filesystem;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
+use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\System\OS;
 use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException;
 use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
@@ -159,7 +158,7 @@ class FileBase {
 	* @throws VariableRequiredException
 	**/
 	public function &setContentFromString($string): static {
-		$this->content = REQUIRED_NOT_NULL($string);
+		$this->content = Vars::requiredNotNull($string);
 		$this->_writePending = true;
 		return $this;
 	}
@@ -172,7 +171,7 @@ class FileBase {
 	* @throws VariableRequiredException
 	**/
 	public function &appendString($string): static {
-		$this->content .= REQUIRED_VAR($string);
+		$this->content .= Vars::requiredNotEmpty($string);
 		$this->_writePending = true;
 		return $this;
 	}

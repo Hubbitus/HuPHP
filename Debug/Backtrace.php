@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
 
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Debug\HuFormat;
 use Hubbitus\HuPHP\Debug\Dump;
@@ -221,7 +221,7 @@ class Backtrace implements \Iterator {
     * @throws VariableRequiredException
     **/
     public function &setPrintoutFormat(array $format): static {
-        $this->_format = REQUIRED_VAR($format);
+        $this->_format = Vars::requiredNotEmpty($format);
         return $this;
     }
 

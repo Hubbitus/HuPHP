@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Vars\Strings\Charset;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * Charset encoding suite.
@@ -47,8 +47,8 @@ class CharsetConvertIconv extends CharsetConvert {
 	* @throws VariableRequiredException If inEnc or outEnc is not set
 	**/
 	public function convert(): static {
-		REQUIRED_VAR($this->_in, 'InEncoding');
-		REQUIRED_VAR($this->_out, 'OutEncoding');
+		Vars::requiredNotEmpty($this->_in, 'InEncoding');
+		Vars::requiredNotEmpty($this->_out, 'OutEncoding');
 
 		/*
 		* mb_convert_encoding() provides better error handling than iconv():

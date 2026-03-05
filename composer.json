@@ -22,26 +22,7 @@
     "autoload": {
         "psr-4": {
             "Hubbitus\\HuPHP\\": "./"
-        },
-        "files": [
-            "macroses/ASSIGN_IF.php",
-            "macroses/DEFINED_CLASS.php",
-            "macroses/eecho.php",
-            "macroses/EMPTY_callback.php",
-            "macroses/EMPTY_INT.php",
-            "macroses/EMPTY_STR.php",
-            "macroses/EMPTY_VAR.php",
-            "macroses/exit_count.php",
-            "macroses/IS_SET.php",
-            "macroses/ISSET_VAR.php",
-            "macroses/NON_EMPTY_STR.php",
-            "macroses/REQUIRED_NOT_NULL.php",
-            "macroses/REQUIRED_VAR.php",
-            "macroses/SWAP.php",
-            "macroses/unicode_ucfirst.php",
-            "macroses/unicode_wordwrap.php",
-            "macroses/uniord.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {

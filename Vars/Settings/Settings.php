@@ -4,10 +4,7 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Vars\Settings;
 
 use Hubbitus\HuPHP\Vars\HuClass;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
-use function Hubbitus\HuPHP\Macroses\EMPTY_STR;
-use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
+use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * Provide easy to use settings-class for many purpose. Similar array of settings, but provide several addition magic methods,
@@ -53,7 +50,7 @@ class Settings extends HuClass {
 	* @param array $setArr
 	**/
 	public function setSettingsArray(array $setArr): void {
-		$this->__SETS = REQUIRED_VAR($setArr);
+		$this->__SETS = Vars::requiredNotEmpty($setArr);
 	}
 
 	/**
@@ -71,7 +68,7 @@ class Settings extends HuClass {
 		* We also can't use simple array concatenation because want overwrite old values by new one...
 		* So, doing all manually!
 		**/
-		foreach (REQUIRED_VAR($setArr) as $key => $val){
+		foreach (Vars::requiredNotEmpty($setArr) as $key => $val){
 			$this->__SETS[$key] = $val;
 		}
 	}
@@ -82,7 +79,7 @@ class Settings extends HuClass {
 	* @param string $name
 	**/
 	public function &getProperty($name): mixed {
-			return $this->__SETS[REQUIRED_NOT_NULL($name)];
+			return $this->__SETS[Vars::requiredNotNull($name)];
 	}
 
 	/**
@@ -110,7 +107,7 @@ class Settings extends HuClass {
 	* @param string $name Name of requested property
 	**/
 	public function __isset(string $name): bool {
-			return isset($this->__SETS[REQUIRED_NOT_NULL($name)]);
+			return isset($this->__SETS[Vars::requiredNotNull($name)]);
 	}
 
 	/**
@@ -120,7 +117,7 @@ class Settings extends HuClass {
 	**/
 	public function getString(array $fields): string {
 		$str = '';
-		foreach (REQUIRED_VAR($fields) as $field){
+		foreach (Vars::requiredNotEmpty($fields) as $field){
 			$str .= $this->formatField($field);
 		}
 		return $str;
@@ -146,11 +143,18 @@ class Settings extends HuClass {
 	**/
 	public function formatField(array|string $field): string {
 		if (\is_array($field)){
-			if (!isset($field[0])) $field = \array_values($field);
-			return NON_EMPTY_STR(@$this->getProperty($field[0]), @$field[1], @$field[2], @$field[3]);
+			if (!isset($field[0])) {
+				$field = \array_values($field);
+			}
+			return Vars::surround(
+				@$this->getProperty($field[0]),
+				@$field[1],
+				@$field[2],
+				@$field[3]
+			);
 		}
 		else{
-			return EMPTY_STR(@$this->getProperty($field), $field); // Or by name if it just text
+			return Vars::firstMeaningString(@$this->getProperty($field), $field); // Or by name if it just text
 		}
 	}
 

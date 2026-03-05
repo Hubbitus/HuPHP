@@ -17,6 +17,7 @@ include('autoload.php');
 
 use Hubbitus\HuPHP\Vars\OutExtraDataHuFormat;
 use Hubbitus\HuPHP\System\OutputType;
+use Hubbitus\HuPHP\Macro\Vars;
 
 
 $format = [
@@ -39,10 +40,9 @@ $format = [
 						"\n",
 
 						//"a" got index '-' in array, "E" - evaluate it as present in string after
-						['aE:::-', '"\t" . ( strlen($str = EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"])) < ($rows = EMPTY_INT(`stty size 2>/dev/null | cut -d" " -f2`, 80)/*Console width*/) ? $str : substr($str, 0, $rows - 8/*TAB*/ - 3) . "..." )'],
+						['aE:::-', '"\t" . ( strlen($str = Vars::firstMeaningString(@$var["numbervalue"], @$var["stringvalue"])) < ($rows = Vars::firstMeaning(`stty size 2>/dev/null | cut -d" " -f2`, 80)/*Console width*/) ? $str : substr($str, 0, $rows - 8/*TAB*/ - 3) . "..." )'],
 						"\n",
-//						array('aE:::+', '"\t".EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"])'),
-						['aE:::+', '"\t" . ( strlen($str = EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"])) < ($rows = EMPTY_INT(`stty size 2>/dev/null | cut -d" " -f2`, 80)/*Console width*/) ? $str : substr($str, 0, $rows - 8/*TAB*/ - 3) . "..." )'],
+						['aE:::+', '"\t" . ( strlen($str = Vars::firstMeaningString(@$var["numbervalue"], @$var["stringvalue"])) < ($rows = Vars::firstMeaning(`stty size 2>/dev/null | cut -d" " -f2`, 80)/*Console width*/) ? $str : substr($str, 0, $rows - 8/*TAB*/ - 3) . "..." )'],
 						"\n",
 //Debug:
 //						array('E:::', '"(".dump::a($var, null, true).")"'),
@@ -64,9 +64,9 @@ $format = [
 						['E:::', '$var["field"] . "(" . $var["No"] . "):"'],
 						'</th></tr><tr><td width="50%" valign="top">',
 						//"a" got index '-' in array, "E" - evaluate it as present in string after
-						['aE:::-', 'wordwrap(EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"]), 10, "<wbr>", true)'],
+						['aE:::-', 'wordwrap(Vars::firstMeaningString(@$var["numbervalue"], @$var["stringvalue"]), 10, "<wbr>", true)'],
 						'</td><td>',
-						['aE:::+', 'wordwrap(EMPTY_STR(@$var["numbervalue"], @$var["stringvalue"]), 10, "<wbr>", true)'],
+						['aE:::+', 'wordwrap(Vars::firstMeaningString(@$var["numbervalue"], @$var["stringvalue"]), 10, "<wbr>", true)'],
 						'</td></tr></table>',
 					]
 				]

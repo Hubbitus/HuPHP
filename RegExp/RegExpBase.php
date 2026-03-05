@@ -6,7 +6,7 @@ namespace Hubbitus\HuPHP\RegExp;
 use Hubbitus\HuPHP\Vars\HuClass;
 use Hubbitus\HuPHP\Vars\HuArray;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
+use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * RegExp manipulation.
@@ -72,7 +72,7 @@ abstract class RegExpBase extends HuClass implements IRegExp {
 	* @throws VariableIsNullException
 	**/
 	public function &setRegExp($regexp): static {
-		$this->regExp = REQUIRED_NOT_NULL($regexp);
+		$this->regExp = Vars::requiredNotNull($regexp);
 		$this->matchesValid = false;
 		return $this;
 	}
@@ -90,7 +90,7 @@ abstract class RegExpBase extends HuClass implements IRegExp {
 	* @param string $text
 	**/
 	public function &setText($text): static {
-		$this->sourceText = REQUIRED_NOT_NULL($text);
+		$this->sourceText = Vars::requiredNotNull($text);
 		$this->matchesValid = false;
 		return $this;
 	}
@@ -112,7 +112,7 @@ abstract class RegExpBase extends HuClass implements IRegExp {
 	* @param string|array $text
 	**/
 	public function &setReplaceTo($text): static {
-		$this->replaceTo = REQUIRED_NOT_NULL($text);
+		$this->replaceTo = Vars::requiredNotNull($text);
 		$this->replaceValid = $this->matchesValid = false;
 		return $this;
 	}

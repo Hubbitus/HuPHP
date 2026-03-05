@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Vars\Strings\Charset;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * Charset encoding suite
@@ -29,7 +29,7 @@ abstract class CharsetConvert {
 	public function __construct($text, ?string $inEnc = null, ?string $outEnc = 'UTF-8') {
 		$this->setInEnc($inEnc);
 		$this->setOutEnc($outEnc);
-		$this->setText(REQUIRED_VAR($text, 'TextToConvert'));
+		$this->setText(Vars::requiredNotEmpty($text, 'TextToConvert'));
 
 		if ($inEnc !== null && $outEnc !== null) {
 			$this->convert();

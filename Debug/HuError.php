@@ -7,8 +7,7 @@ use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 use Hubbitus\HuPHP\Vars\Settings\Settings;
-use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
-use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
+use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\Vars\IOutExtraData;
 
 /**
@@ -41,7 +40,7 @@ class HuError extends Settings implements IOutExtraData {
 
 	public function __construct(?HuErrorSettings $sets = null){
 		parent::__construct();
-		$this->_sets = EMPTY_VAR($sets, new HuErrorSettings());
+		$this->_sets = Vars::firstMeaning($sets, new HuErrorSettings());
 	}
 
 	/**
@@ -82,7 +81,7 @@ class HuError extends Settings implements IOutExtraData {
 	**/
 	public function strForFile(array|string|null $format = null): string {
 		$this->_curTypeOut = OutputType::FILE;
-		$format = EMPTY_VAR($format, @$this->settings->FILE);
+		$format = Vars::firstMeaning($format, @$this->settings->FILE);
 		if ($format !== null && $format !== []){
 			return $this->getString($format);
 		}
@@ -101,7 +100,7 @@ class HuError extends Settings implements IOutExtraData {
 	**/
 	public function strForWeb(array|string|null $format = null): string {
 		$this->_curTypeOut = OutputType::WEB;
-		$format = EMPTY_VAR($format, @$this->settings->WEB);
+		$format = Vars::firstMeaning($format, @$this->settings->WEB);
 		return ($format !== null && $format !== [])
 			? $this->getString($format)
 			: Dump::w($this->__SETS, null, true);
@@ -117,7 +116,7 @@ class HuError extends Settings implements IOutExtraData {
 	**/
 	public function strForConsole(array|string|null $format = null): string {
 		$this->_curTypeOut = OutputType::CONSOLE;
-		$format = EMPTY_VAR($format, @$this->settings->CONSOLE);
+		$format = Vars::firstMeaning($format, @$this->settings->CONSOLE);
 		return ($format !== null && $format !== [])
 			? $this->getString($format)
 			: Dump::c($this->__SETS, null, true);
@@ -230,24 +229,26 @@ class HuError extends Settings implements IOutExtraData {
 	**/
 	public function formatField($field): string {
 		if (\is_array($field)){
-			 if(!isset($field[0])) $field = \array_values($field);
+			 if(!isset($field[0])) {
+				 $field = \array_values($field);
+			 }
 			/** @phpstan-ignore property.dynamicName */
 			$fieldValue = @$this->{$field[0]};
 		}
 		else{
 			$field = (array)$field;
 			/** @phpstan-ignore property.dynamicName */
-			$fieldValue = EMPTY_VAR(@$this->{$field[0]}, $field[0]); //Setting by name, or it is just text
+			$fieldValue = Vars::firstMeaning(@$this->{$field[0]}, $field[0]); //Setting by name, or it is just text
 		}
 
 		if ($fieldValue instanceof IOutExtraData){
-			return NON_EMPTY_STR($fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3] ?? '');
+			return Vars::surround($fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3] ?? '');
 		}
 		elseif($fieldValue instanceof Backtrace){
-			return NON_EMPTY_STR($fieldValue->printFormat(null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3] ?? '');
+			return Vars::surround($fieldValue->printFormat(null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3] ?? '');
 		}
 		else {
-			return NON_EMPTY_STR($fieldValue, @$field[1], @$field[2], @$field[3] ?? '');
+			return Vars::surround($fieldValue, @$field[1], @$field[2], @$field[3] ?? '');
 		}
 	}
 

@@ -8,8 +8,7 @@ use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableArrayInconsistentException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use Hubbitus\HuPHP\System\OS;
-use function Hubbitus\HuPHP\Macroses\ASSIGN_IF;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * BackTraceNode. In array converted to like this. Otherwise each member accessible separately.
@@ -65,7 +64,7 @@ class BacktraceNode implements \Iterator {
     * @param mixed $N Number of node, got separately (may be already in $arr).
     **/
     public function __construct(?array $arr = null, $N = false) {
-        ASSIGN_IF($this->_btn, $arr);
+        $this->_btn ??= $arr;
         if (false !== $N) {
             $this->_btn['N'] = $N;
         }
@@ -196,7 +195,7 @@ class BacktraceNode implements \Iterator {
     * @throws VariableRequiredException
     **/
     public function setArgsFormat(array $format): void {
-        $this->_format = REQUIRED_VAR($format);
+        $this->_format = Vars::requiredNotEmpty($format);
     }
 
     /**

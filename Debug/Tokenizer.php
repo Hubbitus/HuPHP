@@ -7,7 +7,7 @@ use Hubbitus\HuPHP\Debug\BacktraceNode;
 use Hubbitus\HuPHP\RegExp\RegExpPcre;
 use Hubbitus\HuPHP\Filesystem\FileInMemory;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * Debug and backtrace toolkit.
@@ -150,7 +150,7 @@ class Tokenizer {
 	* @throws VariableRequiredException
 	**/
 	protected function findTextCall(): static {
-		$this->_filePhpSrc = new FileInMemory(REQUIRED_VAR($this->_debugBacktrace->file));
+		$this->_filePhpSrc = new FileInMemory(Vars::requiredNotEmpty($this->_debugBacktrace->file));
 		$this->_filePhpSrc->loadContent();
 
 		$reg = '/'

@@ -1,21 +1,9 @@
 <?php
 declare(strict_types=1);
 
-/**
-* Debug and backtrace toolkit.
-*
-* @package Debug
-* @subpackage HuFormat
-* @version 2.1.1
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created  2009-03-13 19:01
-**/
-
 namespace Hubbitus\HuPHP\Debug;
 
-use function Hubbitus\HuPHP\Macroses\NON_EMPTY_STR;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
+use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 
 // HuFormatException is defined in separate file Debug/HuFormatException.php
@@ -23,6 +11,9 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 /**
 * Class to format different structures.
 * @example HuFormat.example.php
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @created  2009-03-13 19:01
 **/
 class HuFormat extends HuError {
 	/** Replace this in ->_format on real value of _value (after process mod_s) **/
@@ -100,7 +91,7 @@ class HuFormat extends HuError {
 			* Format: ['n:::', 'prefix', 'suffix']
 			**/
 			'n' => function(self $obj): string {
-				return NON_EMPTY_STR($obj->getValue(), @$obj->_format[0], @$obj->_format[1], @$obj->_format[2]);
+				return Vars::surround($obj->getValue(), @$obj->_format[0], @$obj->_format[1], @$obj->_format[2]);
 			},
 			/**
 			* Sprintf - formats value using sprintf.

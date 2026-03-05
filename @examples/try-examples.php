@@ -147,7 +147,7 @@ t($tt,
 */
 ################################################################################################
 /*
-include_once('macroses/REQUIRED_VAR.php');
+use Hubbitus\HuPHP\Macro\Vars;
 
 ////////////////
 include_once('Debug/HuLOG.php');#For defined constants
@@ -167,7 +167,7 @@ $__CONFIG['HuLog'] = array(
 include_once('Debug/backtrace_out.class.php');
 
 try{
-$ttt = REQUIRED_VAR($t);
+$ttt = Vars::requiredNotEmpty($t);
 }
 catch(VariableRequiredException $vre){
 //Direct output:
@@ -636,21 +636,17 @@ echo iconv_charset_convert::conv($testText, 'CP1251_TTT') . "\n";
 */
 ################################################################################################
 /*
-//function is_set($what, &$where){
-//	if (is_string($where) and !is_numeric($what)) return false;
-//	else return isset($where[$what]);
-//}
-include_once('macroses/IS_SET.php');
+use Hubbitus\HuPHP\Macro\Vars;
 
 $str = "Some text, NOT array";
 Dump::a(isset($str["qwerty"]));	//Always TRUE!!!
-Dump::a(is_set('qwerty', $str));	//Always TRUE!!!
+Dump::a(Vars::isset('qwerty', $str));	//Always TRUE!!!
 Dump::a(isset($str[5]));		//Work
-Dump::a(is_set(5, $str));	//Work
+Dump::a(Vars::isset(5, $str));	//Work
 Dump::a(isset($str[500]));	//Work
-Dump::a(is_set(500, $str));	//Work
+Dump::a(Vars::isset(500, $str));	//Work
 Dump::a(isset($str[-5]));	//Work
-Dump::a(is_set(-5, $str));	//Work
+Dump::a(Vars::isset(-5, $str));	//Work
 Dump::a(isset($str{5}));		//Work
 Dump::a(isset($str{-5}));	//Work
 */

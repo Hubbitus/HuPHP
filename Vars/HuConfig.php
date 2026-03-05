@@ -6,7 +6,7 @@ namespace Hubbitus\HuPHP\Vars;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use Hubbitus\HuPHP\System\OS;
 use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
+use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * Class to provide easy access to $GLOBALS['__CONFIG'] variables.
@@ -61,7 +61,7 @@ class HuConfig extends SettingsCheck {
 	**/
 	public function &getProperty($name, $noThrow = false): mixed {
 		try {
-			return $this->__SETS[$this->checkNamePossible(REQUIRED_NOT_NULL($name), __METHOD__)];
+			return $this->__SETS[$this->checkNamePossible(Vars::requiredNotNull($name), __METHOD__)];
 		}
 		catch(\Throwable $e){
 			//Try include appropriate file only for ClassPropertyNotExistsException:

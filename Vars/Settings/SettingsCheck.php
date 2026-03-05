@@ -4,8 +4,7 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Vars\Settings;
 
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
-use function Hubbitus\HuPHP\Macroses\EMPTY_STR;
+use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * Extended variant of {@see Settings}, with check possible options.
@@ -77,8 +76,8 @@ class SettingsCheck extends Settings {
 	* @inheritdoc
 	**/
 	public function setSettingsArray(array $setArr): void {
-		$keys = array_keys(REQUIRED_VAR($setArr));
-		array_walk($keys, array($this, 'checkNamePossible'), __METHOD__);
+		$keys = \array_keys(Vars::requiredNotEmpty($setArr));
+		\array_walk($keys, [$this, 'checkNamePossible'], __METHOD__);
 		parent::setSettingsArray($setArr);
 	}
 
@@ -97,8 +96,8 @@ class SettingsCheck extends Settings {
 	* @inheritdoc
 	**/
 	public function mergeSettingsArray(array $setArr): void {
-		$a = array_keys(REQUIRED_VAR($setArr)); // Variable introduced only for Strict standard check silence: 'Strict Standards: Only variables should be passed by reference'
-		array_walk($a, array($this, 'checkNamePossible'), __METHOD__);
+		$a = \array_keys(Vars::requiredNotEmpty($setArr)); // Variable introduced only for Strict standard check silence: 'Strict Standards: Only variables should be passed by reference'
+		\array_walk($a, [$this, 'checkNamePossible'], __METHOD__);
 		parent::mergeSettingsArray($setArr);
 	}
 
@@ -112,7 +111,16 @@ class SettingsCheck extends Settings {
 	* @throws ClassPropertyNotExistsException
 	**/
 	protected function checkNamePossible($name, $method, $walkmethod = null): string {
-		if (!\in_array($name, $this->properties, true)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist in ' . get_class($this) . '!');
+		if (!\in_array($name, $this->properties, true)) {
+			throw new ClassPropertyNotExistsException(
+				Vars::firstMeaningString($walkmethod, $method)
+				. ': Property "'
+				. $name
+				. '" does NOT exist in '
+				. \get_class($this)
+				. '!'
+			);
+		}
 		return	$name;
 	}
 

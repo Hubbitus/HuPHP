@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Filesystem;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
+use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * Operations with file by serial read/write
@@ -97,7 +97,7 @@ class FileRead extends FileBase {
 		if ($length === 0 || $length < 0) {
 			return '';
 		}
-		return $length !== null ? \fgets(REQUIRED_VAR($this->fd), $length) : \fgets(REQUIRED_VAR($this->fd));
+		return $length !== null ? \fgets(Vars::requiredNotEmpty($this->fd), $length) : \fgets(Vars::requiredNotEmpty($this->fd));
 	}
 
 	/**

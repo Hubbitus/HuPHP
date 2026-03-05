@@ -5,7 +5,7 @@ namespace Hubbitus\HuPHP\Vars;
 
 use Hubbitus\HuPHP\Debug\HuFormat;
 use Hubbitus\HuPHP\System\OutputType;
-use function Hubbitus\HuPHP\Macroses\EMPTY_VAR;
+use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * Class to provide easy wrapper around HuFormat for anywhere usage.
@@ -33,20 +33,20 @@ class OutExtraDataHuFormat extends OutExtraDataCommon {
 	*@inheritdoc
 	**/
 	public function strForConsole(array|string|null $format = null): string {
-		return $this->_format->setFormat(EMPTY_VAR($format, $this->format[OutputType::CONSOLE->name]))->getString();
+		return $this->_format->setFormat(Vars::firstMeaning($format, $this->format[OutputType::CONSOLE->name]))->getString();
 	}
 
 	/**
 	*@inheritdoc
 	**/
 	public function strForFile(array|string|null $format = null): string {
-		return $this->_format->setFormat(EMPTY_VAR($format, $this->format[OutputType::FILE->name]))->getString();
+		return $this->_format->setFormat(Vars::firstMeaning($format, $this->format[OutputType::FILE->name]))->getString();
 	}
 
 	/**
 	*@inheritdoc
 	**/
 	public function strForWeb(array|string|null $format = null): string {
-		return $this->_format->setFormat(EMPTY_VAR($format, $this->format[OutputType::WEB->name]))->getString();
+		return $this->_format->setFormat(Vars::firstMeaning($format, $this->format[OutputType::WEB->name]))->getString();
 	}
 }
