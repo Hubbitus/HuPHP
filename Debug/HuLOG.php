@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Hubbitus\HuPHP\Debug;
 
 /**
@@ -21,28 +22,49 @@ use Hubbitus\HuPHP\Debug\IHuLOGFormatter;
 use Hubbitus\HuPHP\Vars\NullClass;
 use Hubbitus\HuPHP\Vars\IOutExtraData;
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
-use Hubbitus\HuPHP\Vars\Settings\SettingsGet;
 
-class HuLOG extends SettingsGet{//HubbitusLOG
+class HuLOG { //HubbitusLOG
 	public $_level = 0;
 
 	protected ?HuLOGText $lastLogText = null;
 	protected $lastLogTime = null;
 
-	protected $_sets = null;
+	protected ?HuLOGSettings $_sets = null;
+
+	/**
+	* Overloading to provide ref on settings object.
+	* In this case change settings is allowed, but change full settings object - not!
+	*
+	* @param string $name
+	* @return HuLOGSettings|null Object of settings.
+	**/
+	public function &__get (string $name): mixed {
+		if ('settings' === $name) {
+			return $this->_sets;
+		}
+		return null;
+	}
+
+	/**
+	* Get settings object
+	* @return HuLOGSettings|null
+	**/
+	public function &getSettings(): ?HuLOGSettings {
+		return $this->_sets;
+	}
 
 	protected ?IHuLOGFormatter $formatter = null;
 
-	public function __construct (HuLOGSettings|array|null $sets = null, ?IHuLOGFormatter $formatter = null){
-		if (\is_array($sets)) {
-			$this->_sets = new HuLOGSettings($sets);
-		} elseif($sets !== null) {
-			$this->_sets = $sets;
-		} else {
-			$this->_sets = new HuLOGSettings();
-		}
-		/** @phpstan-ignore property.notFound */
-		$this->lastLogText = new HuLOGText ($this->settings->HuLOG_Text_settings);
+	/**
+	* Constructor.
+	*
+	* @param ?HuLOGSettings $sets Settings object. If null - instanced default.
+	* @param ?IHuLOGFormatter $formatter Formatter object. If null - instanced default.
+	**/
+	public function __construct (?HuLOGSettings $sets = null, ?IHuLOGFormatter $formatter = null){
+		$this->_sets = $sets ?? new HuLOGSettings();
+		// Create HuLOGText with default settings (HuLOG_Text_settings not used by default)
+		$this->lastLogText = new HuLOGText(new HuLOGTextSettings());
 		$this->formatter = $formatter ?? new HuLOGTextFormatter();
 	}
 

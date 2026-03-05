@@ -739,4 +739,76 @@ class FileInMemoryTest extends TestCase {
             unlink($testFile);
         }
     }
+
+    public function testConstructorWithFilename(): void {
+        $testFile = $this->testDir . '/test_constructor.txt';
+        file_put_contents($testFile, 'test content');
+        
+        try {
+            $file = new FileInMemory($testFile);
+            $this->assertInstanceOf(FileInMemory::class, $file);
+        } finally {
+            unlink($testFile);
+        }
+    }
+
+    public function testDestructorWritesPendingContent(): void {
+        $testFile = $this->testDir . '/test_destructor.txt';
+        
+        // Create initial file first
+        file_put_contents($testFile, 'original content');
+        
+        // Load and modify content
+        $file = new FileInMemory($testFile);
+        $file->loadContent();
+        $file->setContentFromString('new content');
+        // Don't call writeContent - let destructor do it
+        
+        // Force garbage collection to trigger destructor
+        unset($file);
+        gc_collect_cycles();
+        
+        // Verify file was written with new content
+        $this->assertFileExists($testFile);
+        $this->assertStringEqualsFile($testFile, 'new content');
+        
+        // Cleanup
+        if (file_exists($testFile)) {
+            unlink($testFile);
+        }
+    }
+
+    public function testInheritedConstructorFromFileBase(): void {
+        $testFile = $this->testDir . '/test_inherited_constructor.txt';
+        file_put_contents($testFile, 'test');
+        
+        try {
+            // Test that constructor from FileBase works
+            $file = new FileInMemory($testFile);
+            $this->assertInstanceOf(FileInMemory::class, $file);
+            $this->assertEquals($testFile, $file->path());
+        } finally {
+            unlink($testFile);
+        }
+    }
+
+    public function testInheritedDestructorFromFileBase(): void {
+        $testFile = $this->testDir . '/test_inherited_destructor.txt';
+        
+        // Create file and write without explicit writeContent
+        $file = new FileInMemory($testFile);
+        $file->setContentFromString('content');
+        
+        // Destructor should be called when object is destroyed
+        unset($file);
+        gc_collect_cycles();
+        
+        // File should exist with content
+        $this->assertFileExists($testFile);
+        
+        // Cleanup
+        if (file_exists($testFile)) {
+            unlink($testFile);
+        }
+    }
 }

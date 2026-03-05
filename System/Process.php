@@ -111,7 +111,7 @@ class Process {
     **/
     public function writeIn(mixed $inStr = false, bool $noWait = false): void {
         // By default saved data write
-        if ($inStr) {
+        if ($inStr !== false) {
             $this->state->writeData = $inStr;
         }
         if ($this->state->writeData !== null) {
@@ -120,7 +120,7 @@ class Process {
         \fflush($this->pipes[self::STDIN]);
         if (!$this->state->nonBlockingMode) {
             \fclose($this->pipes[self::STDIN]);
-        } elseif ($this->state->nonBlockingMode and !$noWait) {
+        } elseif ($this->state->nonBlockingMode && !$noWait) {
             \usleep($this->state->nonBlockTimeout);
         }
     }
@@ -163,7 +163,7 @@ class Process {
             @\fclose($this->pipes[self::STDERR]);
         }
         $this->state->exit_code = \proc_close($this->resource);
-        if ($this->state->exit_code) {
+        if ($this->state->exit_code !== 0) {
             throw new ProcessException(
                 'Ended with non 0 status! - ' . $this->state->exit_code . "\n" . $this->state->describe(),
                 0,
@@ -182,8 +182,9 @@ class Process {
         $this->readErr();
         $this->readOut();
         $this->closeAll();
-        if ($this->state->getError()) {
-            throw new ProcessException($this->state->getError() . $this->state->describe(), 0, $this->getState());
+        $error = $this->state->getError();
+        if ($error !== '') {
+            throw new ProcessException($error . $this->state->describe(), 0, $this->getState());
         }
         return $this->state->getResult();
     }
@@ -206,13 +207,13 @@ class Process {
         if (!$command instanceof ProcessState) {
             $state = new ProcessState();
             $state->CMD = $command;
-            if ($cwd) {
+            if ($cwd !== null) {
                 $state->setCwd($cwd);
             }
-            if ($env) {
+            if ($env !== null) {
                 $state->setEnv($env);
             }
-            if ($writeData) {
+            if ($writeData !== null) {
                 $state->writeData = $writeData;
             }
         } else {

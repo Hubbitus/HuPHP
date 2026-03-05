@@ -19,8 +19,13 @@ use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
  * |-> Sep     => HuArray('-')      // '--'
  * |-> Val     => HuArray('Text')   // Or just true if interesting only present it or not.
  * ||| Misc
- * |-> =       => HuArray(false)
+ * |-> equals  => HuArray(false)
  * |-> 'OptT'  => HuArray('s', 'l') // OptType
+ *
+ * @property HuArray $Opt
+ * @property HuArray $Sep
+ * @property HuArray $Val
+ * @property HuArray $OptT
  */
 class HuGetoptOption extends SettingsCheck {
 

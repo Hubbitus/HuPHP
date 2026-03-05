@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 * Tests for CharsetConvertIconv class.
 *
 * @covers \Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvertIconv
+* @covers \Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert
 **/
 class CharsetConvertIconvTest extends TestCase {
 

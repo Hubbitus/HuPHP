@@ -1,80 +1,63 @@
 <?php
+declare(strict_types=1);
+
+namespace Hubbitus\HuPHP\Vars\Consts;
+
 /**
 * Constants manipulation
 *
-* @package Vars
-* @subpackage Consts
-* @version 1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created ?2008-05-29 17:45 ver 1.0 to 1.0.1
-**/
-
-/**
 * @example Consts.example.php
 **/
-namespace Hubbitus\HuPHP\Vars\Consts;
-
-class Consts { // constants
+class Consts {
 	/**
-	* Возвращает массив констант
+	* Return array of constants
 	*
-	* @param	string	Category of constants needed.
-	* @param	string	Regexp to filter out. Default "@.*@i", what meen - no filter, return all.
-	* @param	boolean	True, if want do NOT categorize items
-	* @return	array	Associative array of matched constants with its values.
-	*/
-	public static function get_regexp($category='', $regexp='@.*@i', $not_categorized=false){
-		// It seems just presents of argument checked, without of dependency of it value (true, false and null probed)
-		if ($not_categorized) $constants = get_defined_constants($not_categorized);
-		else $constants = get_defined_constants();
-
-		$consts = ( ($not_categorized or empty($category))? $constants : ($constants[$category] ?? []) );
-		$new_consts = array();
-		if (is_array(reset($consts))){
-			foreach ($consts as $key => $c_arr){
-				$new_c_arr = @array_flip (preg_grep ( $regexp, array_flip($c_arr) ));
-				if ( ! empty($new_c_arr) ) $new_consts[$key] = $new_c_arr;
-			}
+	* @param string $regexp Regexp to filter out. Default "@.*@i", what mean - no filter, return all.
+	* @param ?string $category Category of constants needed. If null - return all categories.
+	* @return array Associative array of matched constants with its values.
+	**/
+	public static function getByRegexp(string $regexp = '@.*@i', ?string $category = null): array {
+		if ($category === null) {
+			$constants = \get_defined_constants();
 		}
-		else{
-			$new_consts = @array_flip (preg_grep ( $regexp, array_flip($consts) ));
+		else {
+			$all_constants = \get_defined_constants(true);
+			$constants = $all_constants[$category] ?? [];
 		}
 
-		return $new_consts;
+		$filtered = @\preg_grep($regexp, \array_flip($constants));
+		if ($filtered !== false) {
+			return \array_flip($filtered);
+		}
+		
+		return [];
 	}
+
 	/**
-	* Return pair Constant-name and it values
+	* Return pair constant-name and its values
 	*
-	* @param	string Constant name.
-	* @return array Associative array with key of constant-name, and value it value
-	*/
-	public static function get($const){
-		return array($const => constant($const));
+	* @param string $const Constant name.
+	* @return array Associative array with key of constant-name, and value its value
+	**/
+	public static function get(string $const): array {
+		return [$const => \constant($const)];
 	}
+
 	/**
 	* Locate constant-name by its value.
 	*
-	* @param mixed	$value - needed value
-	* @param	string	Category of constants needed. {@see ::get_regexp}
-	* @param	string	Regexp to filter out. Default "@.*@i", what meen - no filter, return all. {@see ::get_regexp}
-	* @param	boolean	True, if want do NOT categorize items {@see ::get_regexp}
-	* @return	array	Associative array of matched constants with its values.
+	* @param mixed $value Needed value
+	* @param string $regexp Regexp to filter out. Default "@.*@i", what mean - no filter, return all. {@see ::getByRegexp}
+	* @param ?string $category Category of constants needed. If null - return all categories. {@see ::getByRegexp}
+	* @return array Associative array of matched constants with its values.
 	**/
-	public static function getNameByValue($value, $category='', $regexp='@.*@i', $not_categorized=false){
-		$constants = self::get_regexp($category, $regexp, $not_categorized);
+	public static function getNameByValue($value, string $regexp = '@.*@i', ?string $category = null): array {
+		$constants = self::getByRegexp($regexp, $category);
 
-		if (!is_array(current($constants))) {
-			return array_filter($constants, function($item) use ($value) {
-				return ($value == $item);
-			});
-		} else {
-			foreach ($constants as $key => &$arr) {
-				$constants[$key] = array_filter($constants[$key], function($item) use ($value) {
-					return ($value == $item);
-				});
-			}
-			return array_filter($constants);
-		}
+		return \array_filter($constants, function($item) use ($value) {
+			return ($value === $item);
+		});
 	}
 }

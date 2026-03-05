@@ -3,27 +3,19 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
 
-/**
-* Routine tasks to made easy OOP.
-*
-* @package Vars
-* @subpackage Settings
-* @version 0.4
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-* @created 2009-03-01 22:12
-**/
-
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use Hubbitus\HuPHP\System\OS;
 use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
-use Hubbitus\HuPHP\Vars\Single;
 use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
 
 /**
 * Class to provide easy access to $GLOBALS['__CONFIG'] variables.
 * Intended use with Singleton class as:
 * @example Single::def('HuConfig')->config_value
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
+* @created 2009-03-01 22:12
 **/
 class HuConfig extends SettingsCheck {
 	private $_include_tried = [];
@@ -37,9 +29,8 @@ class HuConfig extends SettingsCheck {
 	* Now {@see __get()} reimplemented to return HuArray instead of raw arrays
 	* Bee careful - after standard call (not raw) original Array value was replaced by HuArray!
 	*
-	* @param string	$varname
-	* @param bool	$noThrow If true - silently not thrown any exception.
-	* @return &mixed
+	* @param string $varname
+	* @param bool $noThrow If true - silently not thrown any exception.
 	**/
 	public function &getRaw($varname, $noThrow = false): mixed {
 		return $this->getProperty($varname, $noThrow);
@@ -49,8 +40,7 @@ class HuConfig extends SettingsCheck {
 	* For more comfort access in config fields without temporary variables like:
 	* Single::def('HuConfig')->test->first
 	*
-	* @param string	$varname
-	* @return &Object(HuArray)
+	* @param string $varname
 	**/
 	public function &__get($varname): mixed {
 		$ret =& $this->getProperty($varname);
@@ -75,7 +65,7 @@ class HuConfig extends SettingsCheck {
 		}
 		catch(\Throwable $e){
 			//Try include appropriate file only for ClassPropertyNotExistsException:
-			if ($e instanceof ClassPropertyNotExistsException && !\in_array($name, $this->_include_tried)){
+			if ($e instanceof ClassPropertyNotExistsException && !\in_array($name, $this->_include_tried, true)){
 				$this->_include_tried[] = $name; //In any case to do not check again next time
 				$path = 'includes/configs/' . $name . '.config.php';
 				if(OS::is_includeable($path)){

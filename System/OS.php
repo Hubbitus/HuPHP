@@ -22,9 +22,9 @@ class OS {
 	/**
 	* php_sapi_name()
 	*
-	* @return
+	* @return string
 	**/
-	public static function phpSapiName(): bool|string {
+	public static function phpSapiName(): string {
 		return php_sapi_name();
 	}
 
@@ -42,9 +42,8 @@ class OS {
 	*	Result of check may be also applicable to require()
 	*
 	* @param	string $filename As it can be passed to include or require.
-	* @return	boolean
 	**/
-	public static function is_includeable($filename){
+	public static function is_includeable($filename): bool {
 		/** is_file, is_readable not suitable, because include_path do not take effect.
 		* And opposite comment of "php at metagg dot com" and "medhefgo at googlemail dot com",
 		* wouldn't manually check all paths in include_path. Just open this file to read
@@ -59,11 +58,11 @@ class OS {
 	* Check if given path is absolute or not.
 	* Cross-platform implementation supporting Unix, Windows and stream wrappers.
 	*
-	* @param $pathToCheck	string Path to check
-	* @return boolean
+	* @param ?string $pathToCheck Path to check
+	* @return bool
 	**/
-	public static function isPathAbsolute($pathToCheck): bool {
-		if (empty($pathToCheck)) {
+	public static function isPathAbsolute(?string $pathToCheck): bool {
+		if ($pathToCheck === null || $pathToCheck === '') {
 			return false;
 		}
 

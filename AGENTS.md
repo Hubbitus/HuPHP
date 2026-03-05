@@ -24,7 +24,8 @@ Code refactoring should be made, following these principles and requirements:
    - argument types (prefer more concrete from context, not always set `mixed`)
    - return value types
 8. Same for constants - specify modifiers, types
-8. PHPDoc must be updated for the modified (refactored method) accordingly. Especially tags `@param`, `@return`, `@throws`
+9. PHPDoc must be updated for the modified (refactored method) accordingly. Especially tags `@param`, `@return`, `@throws`
+10. PHPDoc should not contain `@return {type}` if there is not present return description! Type of return must be present in function declaration type hint!
 
 
 # Code style

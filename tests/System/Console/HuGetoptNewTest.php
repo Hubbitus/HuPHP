@@ -17,14 +17,6 @@ class HuGetoptNewTest extends TestCase {
         $this->assertTrue(class_exists(HuGetopt::class));
     }
 
-    public function testHuGetoptExtendsSettingsGet(): void {
-        $reflection = new \ReflectionClass(HuGetopt::class);
-        $parentClass = $reflection->getParentClass();
-
-        $this->assertNotNull($parentClass);
-        $this->assertEquals('Hubbitus\HuPHP\Vars\Settings\SettingsGet', $parentClass->getName());
-    }
-
     public function testConstructorWithValidSettings(): void {
         $settings = new HuGetoptSettings();
         $opts = [['v', 'verbose', '']];

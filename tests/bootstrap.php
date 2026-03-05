@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 $rootDir = dirname(__DIR__);
 
-// Composer autoload includes all macroses automatically
+// Load composer autoload which includes all macroses and sets up PSR-4 autoloading
+require_once $rootDir . '/vendor/autoload.php';
 
 // Initialize global config array if not exists
 // This is required for HuConfig class and Single::def() to work properly

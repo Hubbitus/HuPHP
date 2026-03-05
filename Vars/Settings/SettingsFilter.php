@@ -47,7 +47,7 @@ class SettingsFilter extends SettingsCheckStatic {
 		foreach ($this->getFilterSet($name) as $filt){
 			$filt->apply($name, $value);
 		}
-		if (!is_null($name)) parent::setSetting($name, $value);
+		parent::setSetting($name, $value);
 		return $this;
 	}
 
@@ -90,8 +90,8 @@ class SettingsFilter extends SettingsCheckStatic {
 	/**
 	* Add filter into property Get filters queue.
 	*
-	* @param	SettingsFilterBase	$filter. Filter to add.
-	* @return	integer.	FilterId to allow delete it later.
+	* @param SettingsFilterBase $filter Filter to add.
+	* @return int FilterId to allow delete it later.
 	**/
 	public function addFilterGet(SettingsFilterBase $filter): int {
 		$q = $this->getFilterGet($filter->propName);
@@ -102,8 +102,8 @@ class SettingsFilter extends SettingsCheckStatic {
 	/**
 	* Add filter into property Set filters queue.
 	*
-	* @param	SettingsFilterBase	$filter. Filter to add.
-	* @return	integer.	FilterId to allow delete it later.
+	* @param SettingsFilterBase $filter Filter to add.
+	* @return int FilterId to allow delete it later.
 	**/
 	public function addFilterSet(SettingsFilterBase $filter): int {
 		$q = $this->getFilterSet($filter->propName);
@@ -117,10 +117,12 @@ class SettingsFilter extends SettingsCheckStatic {
 	*	say by part of name, by start, pattern or even by regular expression!
 	*
 	* @param	string	$name Name of property for what filter search.
-	* @return	&Object(SplDoublyLinkedList) Queue of required filters (may be empty).
+	* @return \SplDoublyLinkedList Queue of required filters (may be empty).
 	**/
 	protected function &getFilterGet($name): \SplDoublyLinkedList {
-		if (!isset($this->__filter_get[$name])) $this->__filter_get[$name] = new \SplDoublyLinkedList();
+		if (!isset($this->__filter_get[$name])) {
+			$this->__filter_get[$name] = new \SplDoublyLinkedList();
+		}
 		return $this->__filter_get[$name];
 	}
 
@@ -129,27 +131,20 @@ class SettingsFilter extends SettingsCheckStatic {
 	* Extend class and reimplement getFilterGet()/getFilterSet() methods may be good idea to provide select,
 	*	say by part of name, by start, pattern or even by regular expression!
 	*
-	* @param	string	$name Name of property for what filter search.
-	* @return	&\SplDoublyLinkedList Queue of required filters (may be empty).
+	* @param string $name Name of property for what filter search.
+	* @return \SplDoublyLinkedList Queue of required filters (may be empty).
 	**/
 	protected function &getFilterSet($name): \SplDoublyLinkedList{
 		if (!isset($this->__filter_set[$name])) $this->__filter_set[$name] = new \SplDoublyLinkedList();
 		return $this->__filter_set[$name];
 	}
-	/** @TODO. Implement RAW-functionality in child class
-	* If for property registered at least one filter with private flag, all property turn to private, and
-	*	requesting its raw value caused exception
-	public function getRaw($name){
-		if(!)
-	}
-	**/
 
 	/**
 	* Delete Get filter property from filters queue.
 	*
-	* @param	string	$name Name of property for what filter search.
-	* @param	integer	$filterId Filter Id from methods {@see addFilter[GS]et()}
-	* @return	&$this
+	* @param string $propName Name of property for what filter search.
+	* @param int $filterId Filter Id from methods {@see addFilter[GS]et()}
+	* @return static
 	**/
 	public function &delFilterGet($propName, $filterId){
 		$this->getFilterGet($propName)->offsetUnset($filterId);;
@@ -161,9 +156,9 @@ class SettingsFilter extends SettingsCheckStatic {
 	* Warning: nothing original values saved, so, delete filter from queue
 	*	will affect only nes set operations. All properties now leave as is.
 	*
-	* @param	string	$name Name of property for what filter search.
-	* @param	integer	$filterId Filter Id from methods {@see addFilter[GS]et()}
-	* @return	&$this
+	* @param string $propName Name of property for what filter search.
+	* @param int $filterId Filter Id from methods {@see addFilter[GS]et()}
+	* @return static
 	**/
 	public function &delFilterSet($propName, $filterId){
 		$this->getFilterSet($propName)->offsetUnset($filterId);;

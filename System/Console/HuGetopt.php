@@ -7,7 +7,6 @@ use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
 use Hubbitus\HuPHP\RegExp\RegExpPcre;
 use Hubbitus\HuPHP\Vars\HuArray;
-use Hubbitus\HuPHP\Vars\Settings\SettingsGet;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 
 /**
@@ -39,7 +38,7 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created ?2008-05-30 15:52 v 0.1.1 to 0.1.2
 **/
-class HuGetopt extends SettingsGet {
+class HuGetopt {
     /**
     * Array of raw arguments to parse
     * @var array<string>
@@ -58,21 +57,28 @@ class HuGetopt extends SettingsGet {
     private HuArray $_nonOpts;
 
     /**
-    * Parsed arguments from command line.
-    * @var array<string>
-    **/
-    private array $_args;
-
-    /**
     * Short and long and long arrays cache. Only fore speedup, otherwise need iterate each time ti find needed.
     * @var array<string, int>
     **/
     private array $_optsL;
     private array $_optsS;
 
+    /**
+    * Settings object
+    **/
+    protected HuGetoptSettings $_sets;
+
     private int $_curArgv = 0;
     private ?string $_curArg = null;
     private string|false $_peekedForNext = false;
+
+    /**
+    * Get settings object
+    * @return HuGetoptSettings
+    **/
+    public function &getSettings(): HuGetoptSettings {
+        return $this->_sets;
+    }
 
     /**
     * Construct
@@ -106,11 +112,11 @@ class HuGetopt extends SettingsGet {
         $this->_optsS = $this->_optsL = $this->_opts = [];
         foreach ($opts as $k => $opt) {
             $this->_opts[$k] = new HuGetoptOption(
-                $this->sets()->HuGetopt_option_options,
+                $this->getSettings()->HuGetopt_option_options,
                 [
                     'OptS' => $opt[0],
                     'OptL' => $opt[1] ?? null,
-                    'Mod' => (string) ($opt[2] ?? '')
+                    'Mod' => $opt[2] ?? ''
                 ]
             );
             $this->_optsS[$opt[0]] = $k;
@@ -172,26 +178,47 @@ class HuGetopt extends SettingsGet {
             }
 
             // reference. All modification - in-place.
+            /** @var HuGetoptOption $o */
             $o = $this->getOptByStr($o->Opt->{0}, $o->OptT->{0})->add($o);
 
-            if ('' === $o->Mod) {
-                $o->Val->_last_ = true;
+            /** @var string $mod */
+            $mod = $o->Mod;
+            if ('' === $mod) {
+                /** @var HuArray $val */
+                $val = $o->Val;
+                /** @var bool $last */
+                $last = $val->_last_;
+                /** @var bool $lastNew */
+                $lastNew = $last || true;
+                $val->_last_ = $lastNew;
             } else {
                 // : or ::
                 // Check if Val already has explicit string value (e.g., from long option form --opt=value or short option -ovalue)
                 // Note: add() pushes the option object, so we need to check if Val has a string value
-                $val0 = $o->Val->{0} ?? null;
+                /** @var HuArray $val */
+                $val = $o->Val;
+                /** @var string|null $val0 */
+                $val0 = $val->{0} ?? null;
                 $hasExplicitValue = \is_string($val0);
-                $optarg = $o->Val->_last_; // def
+                /** @var bool $optarg */
+                /** @var bool $lastVal2 */
+                $lastVal2 = $val->_last_;
+                $optarg = $lastVal2; // def
                 if (!$hasExplicitValue) { // If NOT long option '=' form or short option `-ovalue` form
                     // Use pre-peeked value from main loop (before isOpt consumed it)
                     $peekedArg = $this->_peekedForNext;
                     $isOptPeeked = false !== $peekedArg && \preg_match('/^-./', $peekedArg);
                     if ($isOptPeeked) {
                         // Next is option (starts with -)
-                        if (':' === $o->Mod) {
+                        if (':' === $mod) {
                             // For : - error (required)
-                            $optName = $o->OptS ?? $o->Opt->_last_;
+                            /** @var string|null $optS */
+                            $optS = $o->OptS;
+                            /** @var HuArray $opt */
+                            $opt = $o->Opt;
+                            /** @var string|null $optLast */
+                            $optLast = $opt->_last_;
+                            $optName = $optS ?? $optLast;
                             throw new VariableRequiredException(new Backtrace(), $optName, 'Option [' . $optName . '] requires argument!');
                         }
                         // For :: - leave default (optional), don't consume
@@ -203,15 +230,25 @@ class HuGetopt extends SettingsGet {
                             $optarg = $nextArg;
                         } else {
                             // No more args → error for : (required)
-                            if (':' === $o->Mod) {
-                                $optName = $o->OptS ?? $o->Opt->_last_;
+                            /** @var string $mod2 */
+                            $mod2 = $o->Mod;
+                            if (':' === $mod2) {
+                                /** @var string|null $optS2 */
+                                $optS2 = $o->OptS;
+                                /** @var HuArray $opt2 */
+                                $opt2 = $o->Opt;
+                                /** @var string|null $optLast2 */
+                                $optLast2 = $opt2->_last_;
+                                $optName = $optS2 ?? $optLast2;
                                 throw new VariableRequiredException(new Backtrace(), $optName, 'Option [' . $optName . '] requires argument!');
                             }
                             // For :: - no error, leave default
                         }
                     }
                 }
-                $o->Val->_last_ = $optarg;
+                /** @var HuArray $valFinal */
+                $valFinal = $o->Val;
+                $valFinal->_last_ = $optarg;
             }
         }
     }
@@ -283,7 +320,7 @@ class HuGetopt extends SettingsGet {
     **/
     public function getShortOpt(string $arg): ?HuGetoptOption {
         $re = new RegExpPcre(
-            '/^(' . \implode('|', RegExpPcre::quote($this->sets()->start_short)) . ')(' . \implode('|', \array_keys($this->_optsS)) . ')(.*)/s',
+            '/^(' . \implode('|', RegExpPcre::quote($this->getSettings()->start_short)) . ')(' . \implode('|', \array_keys($this->_optsS)) . ')(.*)/s',
             $arg
         );
         $re->doMatch();
@@ -296,7 +333,7 @@ class HuGetopt extends SettingsGet {
                 // If there's a value in the same arg (e.g., -fvalue), use it
                 $hasInlineValue = '' !== (string) $re->match(3)[0];
                 return new HuGetoptOption(
-                    $this->sets()->HuGetopt_option_options,
+                    $this->getSettings()->HuGetopt_option_options,
                     [
                         'Sep' => new HuArray([$re->match(1)[0]]),
                         'Opt' => new HuArray([$re->match(2)[0]]),
@@ -310,7 +347,7 @@ class HuGetopt extends SettingsGet {
                     $this->_curArg = '-' . $re->match(3)[0];
                 }
                 return new HuGetoptOption(
-                    $this->sets()->HuGetopt_option_options,
+                    $this->getSettings()->HuGetopt_option_options,
                     [
                         'Sep' => new HuArray([$re->match(1)[0]]),
                         'Opt' => new HuArray([$re->match(2)[0]]),
@@ -336,9 +373,9 @@ class HuGetopt extends SettingsGet {
     * @return ?HuGetoptOption
     **/
     public function getLongOpt(string $arg): ?HuGetoptOption {
-        $startPatterns = $this->sets()->alternative
-            ? \array_merge($this->sets()->start_long, $this->sets()->start_short)
-            : $this->sets()->start_long;
+        $startPatterns = $this->getSettings()->alternative
+            ? \array_merge($this->getSettings()->start_long, $this->getSettings()->start_short)
+            : $this->getSettings()->start_long;
         $re = new RegExpPcre(
             '/^(' . \implode('|', RegExpPcre::quote($startPatterns)) . ')(' . \implode('|', \array_keys($this->_optsL)) . ')(=|(?>\s*))(.*)/s',
             $arg
@@ -347,7 +384,7 @@ class HuGetopt extends SettingsGet {
 
         if ($re->matchCount()) {
             return new HuGetoptOption(
-                $this->sets()->HuGetopt_option_options,
+                $this->getSettings()->HuGetopt_option_options,
                 [
                     'Sep' => new HuArray([$re->match(1)[0]]),
                     'Opt' => new HuArray([$re->match(2)[0]]),

@@ -23,21 +23,24 @@ class SettingsCheck extends Settings {
 	/**
 	* Constructor.
 	*
-	* @param	array	$possibles. Array of string - possible names of properties.
-	* @param	array=null	$array Initial values.
+	* @param array $possibles Array of string - possible names of properties.
+	* @param array|null $array Initial values.
 	**/
 	public function __construct(array $possibles, ?array $array = null) {
 		// Support both numeric and associative arrays for $possibles
 		// Numeric: ['name', 'age'] => use values as property names
 		// Associative: ['name' => null, 'age' => null] => use keys as property names
 		$this->properties = array_keys($possibles);
-		
+
 		// If numeric array, use values as property names
 		if ($this->properties === range(0, count($this->properties) - 1)) {
 			$this->properties = $possibles;
 		}
-		
-		if ($array) $this->mergeSettingsArray($array);
+
+		parent::__construct();
+		if ($array !== null && $array !== []) {
+			$this->mergeSettingsArray($array);
+		}
 	}
 
 	/**
@@ -109,9 +112,12 @@ class SettingsCheck extends Settings {
 	* @throws ClassPropertyNotExistsException
 	**/
 	protected function checkNamePossible($name, $method, $walkmethod = null): string {
-		if (!in_array($name, $this->properties)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist in ' . get_class($this) . '!');
+		if (!\in_array($name, $this->properties, true)) throw new ClassPropertyNotExistsException(EMPTY_STR($walkmethod, $method).': Property "'.$name.'" does NOT exist in ' . get_class($this) . '!');
 		return	$name;
 	}
+
+	/** @var array */
+	public $properties_addon = [];
 
 	/**
 	* Emulate nesting.

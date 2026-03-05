@@ -40,12 +40,12 @@ class HuLOGTest extends TestCase {
     }
 
     public function testConstructorWithArray(): void {
-        $settings = ['FILE_PREFIX' => 'test_'];
+        $settings = new HuLOGSettings(['FILE_PREFIX' => 'test_']);
         $formatter = new HuLOGSimpleTestFormatter();
         $log = new HuLOG($settings, $formatter);
 
         $this->assertInstanceOf(HuLOG::class, $log);
-        $this->assertEquals('test_', $log->settings->FILE_PREFIX);
+        $this->assertEquals('test_', $log->getSettings()->FILE_PREFIX);
     }
 
     public function testConstructorWithSettingsObject(): void {
@@ -106,7 +106,7 @@ class HuLOGTest extends TestCase {
         $log = new HuLOG($settings, $formatter);
 
         $this->assertSame($settings, $log->settings);
-        $this->assertEquals('custom_', $log->settings->FILE_PREFIX);
+        $this->assertEquals('custom_', $log->getSettings()->FILE_PREFIX);
     }
 
     public function testToLogWithProperSettings(): void {
@@ -358,5 +358,28 @@ class HuLOGTest extends TestCase {
                 unlink($tempFile);
             }
         }
+    }
+
+    public function testMagicGetSettings(): void {
+        $log = new HuLOG();
+        
+        // Test __get('settings') returns settings object
+        $settings = $log->settings;
+        $this->assertInstanceOf(HuLOGSettings::class, $settings);
+    }
+
+    public function testMagicGetReturnsNullForUnknownProperty(): void {
+        $log = new HuLOG();
+        
+        // Test __get('unknown') returns null
+        $this->assertNull($log->unknownProperty);
+    }
+
+    public function testGetSettings(): void {
+        $log = new HuLOG();
+        
+        // Test getSettings() returns settings object
+        $settings = $log->getSettings();
+        $this->assertInstanceOf(HuLOGSettings::class, $settings);
     }
 }

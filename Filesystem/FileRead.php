@@ -14,26 +14,24 @@ use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
 * @created ?2009-03-25 13:51 ver 2.0b
 **/
 class FileRead extends FileBase {
+	/** @var resource|null */
 	private $fd = null;
 
 	protected int $_line_no = 0; //Current line number. Read only. For getline() access.
-
-	/** @var string|null Cached line content for getLineAt() */
-	private $lineContent = null;
 
 	/**
 	* If file opened before, content will be written in current position of file.
 	* If it wasn't opened - open occurred.
 	* @inheritdoc
 	*
-	* @param	int	Append by default if descriptor opened.	FILE_USE_INCLUDE_PATH supported if fd not opened en we open new.
-	* @param	resource	$resource_context See {@link http://php.net/stream-context-create}.
-	*	Used only if file opened here (was NOT opened before)
-	* @return	int	Count of written bytes
+	* @param int|null $flags Append by default if descriptor opened. FILE_USE_INCLUDE_PATH supported if fd not opened en we open new.
+	* @param resource|null $resource_context See {@link http://php.net/stream-context-create}.
+	*   Used only if file opened here (was NOT opened before)
+	* @return int Count of written bytes
 	**/
 	public function writeContent($flags = null, $resource_context = null): int {
 		// If file was opened, write via file descriptor
-		if ($this->fd) {
+		if ($this->fd !== null) {
 			// Truncate file to write from beginning
 			ftruncate($this->fd, 0);
 			rewind($this->fd);
@@ -46,7 +44,7 @@ class FileRead extends FileBase {
 			}
 
 			$this->_writePending = false;
-			return (int)$result;
+			return $result;
 		}
 
 		// Otherwise use direct file write
@@ -57,46 +55,49 @@ class FileRead extends FileBase {
 		}
 
 		$this->_writePending = false;
-		return (int)$result;
+		return $result;
 	}
 
 	/**
 	* Open file for reading/writing (according to $mode)
 	*
-	* @param	string	$mode. See {@link http://php.net/fopen}
-	* @param	boolean	$use_include_path
-	* @param	resource	$zContext  See {@link http://php.net/fopen}
+	* @param string $mode See {@link http://php.net/fopen}
+	* @param bool $use_include_path
+	* @param resource $resource_context  See {@link http://php.net/fopen}
 	**/
-	public function open(string $mode, bool $use_include_path = false, $zContext = null): void {
-		$result = $zContext
-			? ($this->fd = @\fopen($this->path(), $mode, $use_include_path, $zContext))
-			: ($this->fd = @\fopen($this->path(), $mode, $use_include_path));
+	public function open(string $mode, bool $use_include_path = false, $resource_context = null): void {
+		if ($resource_context !== null) {
+			$this->fd = @\fopen($this->path(), $mode, $use_include_path, $resource_context);
+		} else {
+			$this->fd = @\fopen($this->path(), $mode, $use_include_path);
+		}
 
 		// For write modes, just check if fopen succeeded
 		if (\strpos($mode, 'w') !== false || \strpos($mode, 'a') !== false || \strpos($mode, 'x') !== false) {
-			if ($result === false) {
+			if ($this->fd === false) {
 				throw new \RuntimeException('Failed to open file for writing: ' . $this->path());
 			}
 		} else {
 			// For read modes, use checkOpenError
-			$this->checkOpenError((bool)$result);
+			$this->checkOpenError((bool)$this->fd);
 		}
 
-		$this->lineContent = [];
 		$this->content = '';
 	}
 
 	/**
 	* Get next line from stream.
 	*
-	* @param  int $length. Optional - maximum length of string. If null - all string returned (by default).
+	* @param  int $length Optional - maximum length of string. If null - all string returned (by default).
 	* @return string|false
 	* @throws VariableRequiredException
 	**/
 	public function getline(?int $length = null): string|false {
 		++$this->_line_no;
-		if ($length === 0 || $length < 0) return '';
-		return $length ? \fgets(REQUIRED_VAR($this->fd), $length) : \fgets(REQUIRED_VAR($this->fd));
+		if ($length === 0 || $length < 0) {
+			return '';
+		}
+		return $length !== null ? \fgets(REQUIRED_VAR($this->fd), $length) : \fgets(REQUIRED_VAR($this->fd));
 	}
 
 	/**
@@ -116,15 +117,15 @@ class FileRead extends FileBase {
 	*
 	* {@link http://php.net/stream-get-contents}
 	*
-	* @param	int	$maxlength
-	* @param	int	$offset
-	* @return	string
+	* @param int $maxlength
+	* @param int $offset
+	* @return string|false
 	**/
-	public function getTail (int $maxlength = -1, int $offset = 0): bool|string {
+	public function getTail (int $maxlength = -1, int $offset = 0): string|false {
 		// Check if fd is readable before attempting to read
 		if ($this->fd !== null && is_resource($this->fd)) {
 			$meta = stream_get_meta_data($this->fd);
-			if ($meta && isset($meta['mode']) && $meta['mode'] === 'w') {
+			if ($meta['mode'] === 'w') {
 				// File opened for writing only - cannot read
 				throw new \RuntimeException('Cannot read from file opened in write mode');
 			}
@@ -136,7 +137,7 @@ class FileRead extends FileBase {
 	/**
 	* Convert file content to string.
 	*
-	* @return	string
+	* @return string
 	**/
 	public function __toString(): string {
 		return $this->content ?? '';
@@ -151,7 +152,7 @@ class FileRead extends FileBase {
 		// Check mode before attempting write
 		if ($this->fd !== null && is_resource($this->fd)) {
 			$meta = stream_get_meta_data($this->fd);
-			if ($meta && isset($meta['mode']) && $meta['mode'] === 'r') {
+			if ($meta['mode'] === 'r') {
 				// File opened for reading only - skip write
 				return;
 			}

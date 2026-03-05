@@ -8,24 +8,28 @@ namespace Hubbitus\HuPHP\Vars\Settings;
 **/
 class SettingsGet {
 /** WARNING! Must be initialized in parents! **/
-protected /* settings */ $_sets = null;
+protected ?array $_sets = null;
 
 	/**
 	* Overload to provide ref on settings object. So, settings will be changeable,
 	* but can't be replaced settings object!
 	*
-	* @param <type> $name
-	* @return	mixed
+	* @param string $name
+	* @return ?mixed
 	**/
-	public function &__get ($name){
-		if ('settings' == $name) return $this->_sets;
+	public function &__get ($name): mixed {
+		if ('settings' === $name) {
+			return $this->_sets;
+		}
+		return $this->_sets[$name];
 	}
+
 	/**
 	* Return settings object
 	*
-	* @return	&Object(settings)
+	* @return ?array
 	**/
-	public function &sets(){
+	public function &sets(): ?array {
 		return $this->_sets;
 	}
 }

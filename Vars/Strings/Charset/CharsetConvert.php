@@ -3,135 +3,129 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars\Strings\Charset;
 
-/**
-* Charset encoding suite
-*
-* @package Vars
-* @subpackage charset_convert
-* @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created ?2009-03-06 16:08 ver 1.1 to 1.0
-*
-* @uses REQUIRED_VAR()
-* @uses VariableRequiredException
-**/
-
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use function Hubbitus\HuPHP\Macroses\REQUIRED_VAR;
 
+/**
+* Charset encoding suite
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @created ?2009-03-06 16:08 ver 1.1 to 1.0
+**/
 abstract class CharsetConvert {
-	protected $_in = null;
-	protected $_out = null;
-	protected $_text = null;
-	protected $_resText = null;
+	protected ?string $_in = null;
+	protected ?string $_out = null;
+	protected ?string $_text = null;
+	protected ?string $_resText = null;
 
 	/**
 	* Constructor.
 	*
 	* @param string $text
-	* @param string $inEnc
-	* @param string $outEnc='UTF-8'
+	* @param ?string $inEnc
+	* @param ?string $outEnc
 	* @throws VariableRequiredException
 	**/
-	public function __construct($text, $inEnc = null, $outEnc = 'UTF-8'){
+	public function __construct($text, ?string $inEnc = null, ?string $outEnc = 'UTF-8') {
 		$this->setInEnc($inEnc);
 		$this->setOutEnc($outEnc);
 		$this->setText(REQUIRED_VAR($text, 'TextToConvert'));
 
-		if ($inEnc and $outEnc) $this->convert();
+		if ($inEnc !== null && $outEnc !== null) {
+			$this->convert();
+		}
 	}
+
 	/**
 	* Main working horse. Must be reimplemented each time we should provide new layer of conversion (mb, iconv, recode etc)
-	*
-	* @return &$this
 	**/
-	abstract public function convert(); //{}
+	abstract public function convert(): static;
+
 	/**
-	 * Static equivalent of convert() for static, fast invoke.
-	 *
-	 * @param string $text Text to convert
-	 * @param string|null $inEnc Input encoding
-	 * @param string $outEnc Output encoding (default: UTF-8)
-	 * @return string Converted text
-	 **/
-	public static function conv(string $text, ?string $inEnc = null, string $outEnc = 'UTF-8'): string {
+	* Static equivalent of convert() for static, fast invoke.
+	*
+	* @param string $text Text to convert
+	* @param ?string $inEnc Input encoding
+	* @param ?string $outEnc Output encoding (default: UTF-8)
+	* @return string Converted text
+	**/
+	public static function conv(string $text, ?string $inEnc = null, ?string $outEnc = 'UTF-8'): string {
 		// This is correct only if Late Static Binding present. So, it starts from PHP 5.3.0
 		// If we want make this code work on earlier releases - just copy this function completely in derivate.
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		$conv = new static($text, $inEnc, $outEnc);
 		return $conv->getResult();
 	}
+
 	/**
 	* Set new In encoding
 	*
-	* @param string $enc New encoding
-	* @return &$this
+	* @param ?string $enc New encoding
 	**/
-	public function &setInEnc($enc){
+	public function &setInEnc(?string $enc): static {
 		$this->_in = $enc;
 		$this->_resText = null;
 		return $this;
 	}
+
 	/**
 	* Get current In encoding
 	*
-	* @return string
 	**/
-	public function getInEnc(){
+	public function getInEnc(): ?string {
 		return $this->_in;
 	}
+
 	/**
 	* Set new Out encoding
 	*
-	* @param string $enc New encoding
-	* @return &$this
+	* @param ?string $enc New encoding
 	**/
-	public function &setOutEnc($enc){
+	public function &setOutEnc(?string $enc): static {
 		$this->_out = $enc;
 		$this->_resText = null;
 		return $this;
 	}
+
 	/**
 	* Get current Out encoding
-	*
-	* @return string
 	**/
-	public function getOutEnc(){
+	public function getOutEnc(): ?string {
 		return $this->_out;
 	}
+
 	/**
 	* Set text to convert encoding.
 	*
-	* @package string $newText
-	* @return &$this
+	* @param string $newText
 	**/
-	public function &setText($newText){
+	public function &setText(string $newText): static {
 		$this->_text = $newText;
 		return $this;
 	}
+
 	/**
 	* Get current text
-	*
-	* @return string
 	**/
-	public function getText(){
+	public function getText(): ?string {
 		return $this->_text;
 	}
+
 	/**
 	* Return result of conversion. If it is empty, run {@see ::convert()}
-	*
-	* @return string
 	**/
-	public function getResult(){
-		if (empty($this->_resText)) $this->convert();
+	public function getResult(): string {
+		if ($this->_resText === null || $this->_resText === '') {
+			$this->convert();
+		}
 		return $this->_resText;
 	}
+
 	/**
 	* Auto conversion into string; {@see ->getResult()}
-	*
-	* @return
 	**/
-	public function __toString(){
+	public function __toString(): string {
 		return $this->getResult();
 	}
 }

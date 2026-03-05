@@ -39,7 +39,7 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	* @param	resource	$resource_context
 	* @param	integer	$offset
 	* @param	integer	$maxLen
-	* @return	&$this
+	* @return static
 	**/
 	public function &loadContent(bool $use_include_path = false, $resource_context = null, ?int $offset = null, ?int $maxLen = null): static {
 		$this->checkOpenError(
@@ -78,8 +78,8 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	* @inheritdoc
 	*
 	* Additional parameters are:
-	* @param	string	$implodeWith See {@see ::implodeLines()}
-	* @param	boolean	$updateLineSep See {@see ::implodeLines()}
+	* @param string|null $implodeWith See {@see ::implodeLines()}
+	* @param bool $updateLineSep See {@see ::implodeLines()}
 	**/
 	public function writeContent($flags = null, $resource_context = null, ?string $implodeWith = null, bool $updateLineSep = true): int {
 		try {
@@ -90,35 +90,43 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 		} finally {
 			$this->_writePending = false;
 		}
-		return $count ?? 0;
+		return $count;
 	}
 
 	/**
 	* Return array of specified lines or all by default
 	*
-	* @param	array $lines. If empty array - whole array of lines. Else
-	*	Array(int $offset  [, int $length  [, bool $preserve_keys  ]] ). See http://php.net/array_slice
-	* @param	boolean(true) $updateLineSep. See explanation in ->explodeLines() method.
-	* @return	array Array of lines
+	* @param array $lines If empty array - whole array of lines. Else
+	*   Array(int $offset [, int $length [, bool $preserve_keys ]]). See http://php.net/array_slice
+	* @param bool $updateLineSep See explanation in ->explodeLines() method.
+	* @return array Array of lines
 	**/
 	public function getLines(array $lines = [], bool $updateLineSep = true): array {
 		$this->checkLoad();
-		if (!$this->lineContent) $this->explodeLines($updateLineSep);
+		if ($this->lineContent === []) {
+			$this->explodeLines($updateLineSep);
+		}
 
-		if(!empty($lines)) {
+		if ($lines !== []) {
 			$offset = (int) ($lines[0] ?? 0);
 			$length = isset($lines[1]) ? (int) $lines[1] : null;
 			return \array_slice($this->lineContent, $offset, $length);
+		} else {
+			return $this->lineContent;
 		}
-		else return $this->lineContent;
 	}
 
 	/**
 	* Explode loaded content to lines.
 	*
-	* @param	boolean $updateLineSep if true - update lineSep by presented in whole content.
+	* @param bool $updateLineSep if true - update lineSep by presented in whole content.
 	**/
 	protected function explodeLines(bool $updateLineSep = true): void {
+		if ($this->content === null || $this->content === '') {
+			$this->lineContent = [];
+			$this->_linesOffsets = [];
+			return;
+		}
 		\preg_match_all('/(.*?)([\n\r]|\z)/', $this->content, $matches, PREG_PATTERN_ORDER);
 		if ($updateLineSep && isset($matches[2][0])) {
 			$this->_lineSep = $matches[2][0];
@@ -135,11 +143,13 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	/**
 	* Implode lineContent to whole contents.
 	*
-	* @param	string	$implodeWith String implode with. If null, by default - ->_lineSep.
-	* @param	boolean	$updateLineSep if true - update lineSep by presented $implodeWith.
+	* @param string $implodeWith String implode with. If null, by default - ->_lineSep.
+	* @param bool $updateLineSep if true - update lineSep by presented $implodeWith.
 	**/
 	protected function implodeLines(?string $implodeWith = null, bool $updateLineSep = true): string {
-		if ($implodeWith && $updateLineSep) $this->setLineSep($implodeWith);
+		if ($implodeWith !== null && $updateLineSep) {
+			$this->setLineSep($implodeWith);
+		}
 		$this->_linesOffsets = [];
 		return ($this->content = implode($implodeWith ?? $this->_lineSep, $this->lineContent));
 	}
@@ -147,26 +157,19 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	/**
 	* Return string of content
 	*
-	* @param	string	$implodeWith See {@see ::implodeLines()}
-	* @param	boolean	$updateLineSep See {@see ::implodeLines()}
-	* @return	string
+	* @param string $implodeWith See {@see ::implodeLines()}
+	* @param bool $updateLineSep See {@see ::implodeLines()}
+	* @return string
 	**/
 	public function getBLOB(?string $implodeWith = null, bool $updateLineSep = true): string {
 		if (
 			! $this->content
 			or
-			($implodeWith && $implodeWith != $this->_lineSep)
-		)
-		$this->implodeLines($implodeWith, $updateLineSep);
+			($implodeWith !== null && $implodeWith !== $this->_lineSep)
+		) {
+			$this->implodeLines($implodeWith, $updateLineSep);
+		}
 		return $this->content;
-	}
-
-	/**
-	* Get current used line separator.
-	* @return	string
-	**/
-	public function getLineSep(): string {
-		return $this->_lineSep;
 	}
 
 	/**
@@ -178,8 +181,8 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	*	or even more easy:
 	* $f->setLineSep("\r\n")->loadContent()->->writeContent(nul, null, "\n");
 	*
-	* @param	string	$newSep
-	* @return	&$this
+	* @param string $newSep
+	* @return static
 	**/
 	public function &setLineSep(string $newSep): static {
 		$this->_lineSep = $newSep;
@@ -188,16 +191,25 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	}
 
 	/**
+	* Get current line separator.
+	*
+	* @return string
+	**/
+	public function getLineSep(): string {
+		return $this->_lineSep;
+	}
+
+	/**
 	* Return line with requested number.
 	*
 	* Boundaries NOT checked!
 	*
-	* @param	int	$line
-	* @return	string
+	* @param int $line
+	* @return string|null
 	**/
 	public function getLineAt(int $line, bool $updateLineSep = true): mixed {
-		if (!$this->lineContent) {
-			if (!$this->content) {
+		if ([] === $this->lineContent) {
+			if ($this->content === null || $this->content === '') {
 				$this->loadContent();
 			}
 			$this->explodeLines($updateLineSep);
@@ -208,18 +220,22 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	/**
 	* Calculate line number by file offset.
 	*
-	* @param	integer	$offset
-	* @return	integer
+	* @param int $offset
+	* @return int|false
 	* @throws VariableRangeException
 	**/
 	public function getLineByOffset(int $offset): int|false {
-		if (!$this->_linesOffsets) $this->makeCacheLineOffsets();
-		if ($offset > $this->_linesOffsets[\count($this->_linesOffsets)-1][1])
-		throw new VariableRangeException("Overflow! Offset [$offset] does not exists in [{$this->path()}].");
+		if ([] === $this->_linesOffsets) {
+			$this->makeCacheLineOffsets();
+		}
+		if ($offset > $this->_linesOffsets[\count($this->_linesOffsets)-1][1]) {
+			throw new VariableRangeException("Overflow! Offset [$offset] does not exists in [{$this->path()}].");
+		}
 
 		// Data ordered - provide binary search as fast alternative to array_search
 		$size = \count($this->_linesOffsets) - 1; // For speed up only
-		$left = 0; $right = $size;	// Points of interval
+		$left = 0;
+		$right = $size; // Points of interval
 		$found = false;
 		$line = (int)\ceil($size / 2);
 
@@ -228,27 +244,27 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 		* Additional check of highest value added only to efficient adjusting, because on it point the maximum time for the
 		* convergence of the algorithm
 		**/
-		if ($offset >= $this->_linesOffsets[0][0] && $offset <= $this->_linesOffsets[0][1])
+		if ($offset >= $this->_linesOffsets[0][0] && $offset <= $this->_linesOffsets[0][1]) {
 			return 0;
+		}
 
-		if ($offset >= $this->_linesOffsets[$size][0] && $offset <= $this->_linesOffsets[$size][1])
+		if ($offset >= $this->_linesOffsets[$size][0] && $offset <= $this->_linesOffsets[$size][1]) {
 			return $size;
+		}
 
-		do{
-			if ( $offset >= $this->_linesOffsets[$line][0] ){
-				if ( $offset <= $this->_linesOffsets[$line][1] ){
+		do {
+			if ($offset >= $this->_linesOffsets[$line][0]) {
+				if ($offset <= $this->_linesOffsets[$line][1]) {
 					$found = true; // done
-				}
-				else{
+				} else {
 					$left = $line;
 					$line += (int)\ceil( ($right - $line) / 2 );
 				}
-			}
-			else{
+			} else {
 				$right = $line;
 				$line -= (int)\ceil( ($line - $left) / 2);
 			}
-		} while(!$found);
+		} while (!$found);
 
 		return $line;
 	}
@@ -256,12 +272,17 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	/**
 	* Opposite to {@see ::getLineByOffset()} return offset of line begin.
 	*
-	* @param	integer	$line
-	* @return	array(OffsetBeginLine, OffsetEndLine). In OffsetEndLine included length of ->_lineSep!
+	* @param int $line
+	* @return array{int, int}
+	* @throws VariableRangeException
 	**/
 	public function getOffsetByLine(int $line): array {
-		if (!$this->_linesOffsets) $this->makeCacheLineOffsets();
-		if ($line >= \count($this->_linesOffsets)) throw new VariableRangeException("Overflow! Line [$line] does not exists in [{$this->path()}].");
+		if ($this->_linesOffsets === []) {
+			$this->makeCacheLineOffsets();
+		}
+		if ($line >= \count($this->_linesOffsets)) {
+			throw new VariableRangeException("Overflow! Line [$line] does not exists in [{$this->path()}].");
+		}
 
 		return $this->_linesOffsets[$line];
 	}
@@ -269,12 +290,13 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	/**
 	* Check loaded content is not empty. Throw exception otherwise.
 	*
-	* @return	&this
+	* @return static
 	* @throws VariableEmptyException
 	**/
 	private function &checkLoad(): static {
-		if (empty($this->lineContent) && empty($this->content))
-		throw new VariableEmptyException(new Backtrace(), 'Line-Content and Content is empty! May be you forgot call one of ->load*() method first?');
+		if ($this->lineContent === [] && ($this->content === '' || $this->content === null)) {
+			throw new VariableEmptyException(new Backtrace(), 'Line-Content and Content is empty! May be you forgot call one of ->load*() method first?');
+		}
 		return $this;
 	}
 
@@ -290,7 +312,7 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 		// First line is additional case
 		$this->_linesOffsets[0] = [$offset, ($offset += -1 + \strlen(\mb_convert_encoding($lines[0], 'ISO-8859-1', 'UTF-8')) + \strlen(\mb_convert_encoding($this->getLineSep(), 'ISO-8859-1', 'UTF-8')))];
 		// From 1 line, NOT 0
-		for($i = 1; $i < $linesCount; $i++){
+		for ($i = 1; $i < $linesCount; $i++) {
 			$this->_linesOffsets[$i] = [
 				$offset + 1,
 				( $offset += \strlen(\mb_convert_encoding($lines[$i], 'ISO-8859-1', 'UTF-8')) + \strlen(\mb_convert_encoding($this->getLineSep(), 'ISO-8859-1', 'UTF-8')) )
@@ -302,9 +324,9 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	* Iconv content from one charset to another. If in charset is not known consider use method {@see ::enconv()}
 	*
 	* @uses iconv
-	* @param	string	$fromEnc
-	* @param	string=UTF-8	$toEnc
-	* @return	&$this
+	* @param string $fromEnc
+	* @param string $toEnc
+	* @return static
 	**/
 	public function &iconv(string $fromEnc, string $toEnc = 'UTF-8'): static {
 		$this->setContentFromString(iconv($fromEnc, $toEnc, $this->getBLOB()));
@@ -316,9 +338,9 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	*
 	* @uses Process
 	* @uses shell enconv
-	* @param	string=russian	$lang
-	* @param	string=UTF-8	$toEnc
-	* @return	&$this;
+	* @param string $lang
+	* @param string $toEnc
+	* @return static
 	**/
 	public function &enconv(string $lang = 'russian', string $toEnc = 'UTF-8'): static {
 		$this->setContentFromString(Process::exec("enconv -L $lang -x $toEnc", null, null, $this->getBLOB()));

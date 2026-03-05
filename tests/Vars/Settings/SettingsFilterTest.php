@@ -161,19 +161,6 @@ class SettingsFilterTest extends TestCase {
         $this->assertEquals('prop2_value2', $this->settings->getProperty('prop2'));
     }
 
-    public function testSetSettingWithNullNameDoesNotCallParent(): void {
-        $callback = function(&$name, &$value) {
-            $value = 'modified';
-        };
-        $filter = new SettingsFilterBase('testProp', $callback);
-
-        $this->settings->addFilterSet($filter);
-        $this->settings->setSetting(null, 'value');
-
-        // Should not throw exception, just apply filter
-        $this->assertTrue(true);
-    }
-
     public function testWithDefaultFilter(): void {
         $defaultFilter = new SettingsFilterDefault('testProp', 'default_value');
         $this->settings->addFilterGet($defaultFilter);

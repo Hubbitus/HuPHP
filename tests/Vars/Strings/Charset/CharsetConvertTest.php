@@ -19,6 +19,7 @@ class MockCharsetConvert extends CharsetConvert {
 
 /**
  * @covers \Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert
+ * @covers \Hubbitus\HuPHP\Vars\Strings\Charset\MockCharsetConvert
  */
 class CharsetConvertTest extends TestCase {
 

@@ -29,15 +29,16 @@ class Settings extends HuClass {
 	* @param array $array
 	**/
 	public function __construct(array $array = []){
-		if ($array) $this->mergeSettingsArray($array);
+		if ($array !== []) {
+			$this->mergeSettingsArray($array);
+		}
 	}
 
 	/**
 	* Set setting by its name.
 	*
-	* @param	string	$name
-	* @param	mixed	$value
-	* @return	&$this
+	* @param string $name
+	* @param mixed $value
 	**/
 	public function &setSetting(string $name, mixed $value): static {
 		$this->__SETS[$name] = $value;
@@ -49,8 +50,7 @@ class Settings extends HuClass {
 	*
 	* It will be gracefully if we can turn it into {@see ::setSettings()}, but overloading is not supported in PHP :(
 	*
-	* @param	array	$setArr
-	* @return	void
+	* @param array $setArr
 	**/
 	public function setSettingsArray(array $setArr): void {
 		$this->__SETS = REQUIRED_VAR($setArr);
@@ -61,7 +61,7 @@ class Settings extends HuClass {
 	*
 	* It will be gracefully if we can turn it into {@see ::setSettings()}, but overloading is not supported in PHP :(
 	*
-	* @param	array	$setArr
+	* @param array $setArr
 	**/
 	public function mergeSettingsArray(array $setArr): void {
 		/**
@@ -79,8 +79,7 @@ class Settings extends HuClass {
 	/**
 	* Return requested property by name. For more useful access see {@see ::__get()} method.
 	*
-	* @param        string  $name
-	* @return       mixed
+	* @param string $name
 	**/
 	public function &getProperty($name): mixed {
 			return $this->__SETS[REQUIRED_NOT_NULL($name)];
@@ -89,8 +88,8 @@ class Settings extends HuClass {
 	/**
 	* useful alias of {@see ::setSetting()} to provide easy access in style of $obj->PropertyName = 'Some new value';
 	*
-	* @param        string  $name
-	* @param        mixed   $value
+	* @param string $name
+	* @param mixed $value
 	**/
 	public function __set(string $name, mixed $value): void {
 			$this->setSetting($name, $value);
@@ -99,8 +98,7 @@ class Settings extends HuClass {
 	/**
 	* useful alias of {@see ::getProperty()} to provide easy access in style of $obj->PropertyName
 	*
-	* @param        string  $name
-	* @return       mixed
+	* @param string $name
 	**/
 	public function &__get(string $name): mixed {
 			return $this->getProperty($name);
@@ -109,8 +107,7 @@ class Settings extends HuClass {
 	/**
 	* Check isset of requested property. See http://php.net/isset comment of "phpnotes dot 20 dot zsh at spamgourmet dot com"
 	*
-	* @param        string  $name   Name of requested property
-	* @return       boolean
+	* @param string $name Name of requested property
 	**/
 	public function __isset(string $name): bool {
 			return isset($this->__SETS[REQUIRED_NOT_NULL($name)]);
@@ -119,8 +116,7 @@ class Settings extends HuClass {
 	/**
 	* Get string representation of settings.
 	* @see ::formatField()
-	* @param	array	$fields
-	* @return	string
+	* @param array $fields
 	**/
 	public function getString(array $fields): string {
 		$str = '';
@@ -146,8 +142,7 @@ class Settings extends HuClass {
 	*	- ['str' => 'tag', 'prefix' => '<', 'suffix' => '>', 'defValue' => '<unknown>']
 	*	- ['tag', '<', '>', '<unknown>']
 	*
-	* @param	array|string	$field
-	* @return string
+	* @param array|string $field
 	**/
 	public function formatField(array|string $field): string {
 		if (\is_array($field)){
@@ -161,8 +156,6 @@ class Settings extends HuClass {
 
 	/**
 	* Clear all settings
-	*
-	* @return &$this
 	**/
 	public function &clear(): static {
 		$this->__SETS = [];
@@ -171,8 +164,6 @@ class Settings extends HuClass {
 
 	/**
 	* Return amount of settings.
-	*
-	* @return integer
 	**/
 	public function length(): int {
 		return \sizeof($this->__SETS);

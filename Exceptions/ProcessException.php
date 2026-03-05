@@ -18,9 +18,9 @@ public $state = null;
 
 		// make sure everything is assigned properly
 		if (\is_object($message)) {
-			parent::__construct(\json_encode($message) ?? 'Object message', $code);
+			parent::__construct(\json_encode($message), $code);
 		} elseif (\is_array($message)) {
-			parent::__construct(\json_encode($message) ?? 'Array message', $code);
+			parent::__construct(\json_encode($message), $code);
 		} else {
 			parent::__construct((string)$message, $code);
 		}

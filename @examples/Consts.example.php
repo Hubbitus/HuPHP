@@ -10,8 +10,6 @@
 * @uses dump
 **/
 
-include('autoload.php');
-
 use Hubbitus\HuPHP\Vars\Consts\Consts;
 use Hubbitus\HuPHP\Debug\Dump;
 
@@ -21,9 +19,9 @@ print_r($constants['session']);
 exit(); BUG!!! http://bugs.php.net/47549
 */
 
-Dump::a(Consts::get_regexp('tidy'));
-Dump::A(Consts::get_regexp('', '/TYPE/i'));
-Dump::a(Consts::get_regexp('tidy', '/TYPE/i'));
+Dump::a(Consts::getByRegexp('tidy'));
+Dump::A(Consts::getByRegexp('', '/TYPE/i'));
+Dump::a(Consts::getByRegexp('tidy', '/TYPE/i'));
 
 Dump::a(Consts::get('TIDY_NODETYPE_STARTEND'));
 

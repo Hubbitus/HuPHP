@@ -331,7 +331,7 @@ class RegExpBaseTest extends TestCase {
 
         $properties = [
             'sourceText',
-            'RegExp',
+            'regExp',
             'matchCount',
             'matches',
             'replaceTo',
@@ -355,7 +355,7 @@ class RegExpBaseTest extends TestCase {
         $reflection = new ReflectionClass('Hubbitus\\HuPHP\\RegExp\\RegExpBase');
         $property = $reflection->getProperty('replaceValid');
 
-        // Property has no explicit default value, so it's null until set
-        $this->assertNull($property->getDefaultValue());
+        // Property has explicit default value false
+        $this->assertFalse($property->getDefaultValue());
     }
 }

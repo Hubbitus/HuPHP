@@ -44,21 +44,25 @@ class FileBase {
 	* @param string $filename
 	**/
 	public function __construct($filename = ''){
-		if ($filename) $this->setPath($filename);
+		if ($filename !== '') {
+			$this->setPath($filename);
+		}
 	}
 
 	/**
 	* Write all pending write if it wasn't be done manually before. This is to avoid data loss.
 	**/
 	public function __destruct(){
-		if ($this->_writePending) $this->writeContent();
+		if ($this->_writePending) {
+			$this->writeContent();
+		}
 	}
 
 	/**
 	* Set new path. For example to writing new file.
 	*
-	* @param	string	$filename	New filename
-	* @return	&$this
+	* @param string $filename New filename
+	* @return static
 	**/
 	public function &setPath($filename): static {
 		$this->filename = $this->rawFilename = $filename;
@@ -67,17 +71,16 @@ class FileBase {
 		* Additionally, in __destruct call to getcwd return '/'!!! {@See http://bugs.php.net/bug.php?id=30210}
 		**/
 		// We can't direct use $this->filename instead of $realpath because if it ! we not always want null it!
-		if (!($realpath = \realpath($this->rawFilename))){
+		if (!($realpath = \realpath($this->rawFilename))) {
 			/**
 			* Realpath may fail because file not found. But we can't agree with that,
 			* because setPath may be invoked to set path for write new (create) file!
-			* So, we try manually construct current full path (see abowe why we should do it)
+			* So, we try manually construct current full path (see above why we should do it)
 			**/
-			if (!OS::isPathAbsolute($this->rawFilename)){
+			if (!OS::isPathAbsolute($this->rawFilename)) {
 				$this->filename = getcwd() . DIRECTORY_SEPARATOR . $this->rawFilename;
 			}
-		}
-		else {
+		} else {
 			$this->filename = $realpath;
 		}
 		return $this;
@@ -104,11 +107,11 @@ class FileBase {
 	/**
 	* Return true if current set path is exists.
 	*
-	* @return	boolean
+	* @return boolean
 	**/
 	public function isExists(): bool {
 		// Very strange: file_exists('') === true!!!
-		return ('' != $this->path() and \file_exists($this->path()));
+		return ('' !== $this->path() and \file_exists($this->path()));
 	}
 
 	/**
@@ -141,7 +144,7 @@ class FileBase {
 	/**
 	* Clear pending writes.
 	*
-	* @return	&$this
+	* @return static
 	**/
 	public function &clearPendingWrite(): static {
 		$this->_writePending = false;
@@ -152,7 +155,7 @@ class FileBase {
 	* Set content for write.
 	*
 	* @param string	$string. String to set from.
-	* @return &$this
+	* @return static
 	* @throws VariableRequiredException
 	**/
 	public function &setContentFromString($string): static {
@@ -165,7 +168,7 @@ class FileBase {
 	* Append string to pending write buffer.
 	*
 	* @param	string	$string. String to append from.
-	* @return	&$this
+	* @return static
 	* @throws VariableRequiredException
 	**/
 	public function &appendString($string): static {
@@ -177,9 +180,9 @@ class FileBase {
 	/**
 	* Write whole content to file (filename may be set via ->setPath('NewFileName'))
 	*
-	* @param	integer	flags See {@link http://php.net/file_put_contents}
-	* @param	resource	$resource_context See {@link http://php.net/stream-context-create}
-	* @return	integer	Count of written bytes
+	* @param ?int $flags See {@link http://php.net/file_put_contents}
+	* @param resource|null $resource_context See {@link http://php.net/stream-context-create}
+	* @return int Count of written bytes
 	**/
 	public function writeContent($flags = 0, $resource_context = null): int {
 		try {
@@ -190,7 +193,7 @@ class FileBase {
 			$this->_writePending = false;
 		}
 
-		return $count ?? 0;
+		return $count;
 	}
 
 	protected function checkOpenError($succ): void {

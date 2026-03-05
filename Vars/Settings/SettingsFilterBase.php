@@ -1,20 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
-* Extends settings_check to allow apply get/set filters.
-* It may be constraints check (f.e. check and throw exception on error),
-*	and/or any modifications like clear user input, convert formats and etc.
-*
-* @package settings
-* @subpackage settings_filter
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-* @version 1.2
-* @created 2009-06-29
-* @created ?2009-09-29 13:55 ver 1.0 to 1.1
-**/
-
 namespace Hubbitus\HuPHP\Vars\Settings;
 
 /**
@@ -22,24 +8,27 @@ namespace Hubbitus\HuPHP\Vars\Settings;
 * But it is quite powerful. Children of this basic class may provide any service such as: non-deterministic
 *	state-based results, based on time or amount of call results (f.e. Apply filter only 3 times!?), depend
 *	on any global environment etc...
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @created 2009-06-29
 **/
 class SettingsFilterBase {
 	public $propName;
 	private $callback_;
 
-	public function __construct(string $propName, $callback){
+	public function __construct(string $propName, $callback) {
 		$this->propName = $propName;
 		$this->callback_ = $callback;
 	}
 	/**
 	* In simplest variant - just direct apply provided callback.
-	* $name and $value provided as refrence, so, user can change both as want.
+	* $name and $value provided as reference, so, user can change both as want.
 	* It is useful to jungle and add additional filters by name. F.e. set GET filter like "UC:name"
 	* to return uppercase value of "name", o rename option on set time etc.
 	*
-	* @param	&mixed	$name	Reference to name of option.
-	* @param	&mixed	$value	Reference to new value of option
-	* @return	mixed	Returns what user callback return.
+	* @param mixed $name Reference to name of option.
+	* @param mixed $value Reference to new value of option
+	* @return mixed Returns what user callback return.
 	**/
 	public function apply(&$name, &$value): mixed {
 	/*

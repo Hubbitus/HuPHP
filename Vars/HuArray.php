@@ -16,10 +16,6 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created ?2008-09-22 17:55 ver 1.1 to 1.1.1
-*
-* @uses REQUIRED_NOT_NULL()
-* @uses VariableIsNullException
-* @uses settings
 **/
 class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \JsonSerializable {
 	private const string HU_SCHEME = 'hu://';
@@ -29,22 +25,21 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	*
 	* @param ?array $array Initial value
 	**/
-	public function __construct(?array $array = null){
+	public function __construct(?array $array = null) {
 		parent::__construct($array ?? []);
 	}
 
 	/**
 	* Push values.
 	*
-	* @param	mixed	$var.
-	* @param	array	$params any amount of vars (First explicitly to make mandatory one at once)
-	* @return	&$this
+	* @param mixed $var
+	* @param mixed ...$args
 	**/
-	public function &push($var): static {
+	public function &push($var, ...$args): static {
 		//On old PHP got error: PHP Fatal error:  func_get_args(): Can't be used as a function parameter in /home/_SHARED_/Vars/HuArray.php on line 58
 		//call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), func_get_args()));
 		//Do the same with temp var:
-		$args = func_get_args();
+		$args = \func_get_args();
 		\call_user_func_array('array_push', \array_merge([0 => &$this->__SETS], $args));
 		return $this;
 	}
@@ -52,21 +47,22 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	/**
 	* Push array of values.
 	*
-	* @param 	array	$arr
-	* @return	&$this
+	* @param array $arr
+	* @return static
 	**/
 	public function &pushArray(array $arr): static {
-		if ($arr)
-			foreach ($arr as $value)
+		if ($arr !== []) {
+			foreach ($arr as $value) {
 				$this->__SETS[] = $value;
+			}
+		}
 		return $this;
 	}
 
 	/**
 	* Push values from Object(HuArray).
 	*
-	* @param 	mixed	$var.
-	* @return	$this->pushArray()
+	* @param HuArray $arr
 	**/
 	public function &pushHuArray(HuArray $arr): static {
 		return $this->pushArray($arr->getArray());
@@ -74,8 +70,6 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 
 	/**
 	* Return last element in array. Reference, direct-editable!!
-	*
-	* @return &mixed
 	**/
 	public function &last(): mixed {
 		\end($this->__SETS);
@@ -84,8 +78,6 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 
 	/**
 	* Return Array representation (cast to (array)).
-	*
-	* @return	array
 	**/
 	public function getArray(): array {
 		return $this->__SETS;
@@ -94,23 +86,23 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	/**
 	* {@see http://php.net/array_slice}
 	*
-	* @param	integer	$offset
-	*	If offset is positive, the sequence will start at that offset in the array. If offset is negative, the sequence will start that far from the end of the array.
-	* @param	integer	$length
-	*	If length is positive, the sequence will have up to length elements. If length is negative, the sequence will stop that many elements from the end of the array. If omitted, the sequence will include all elements from offset to the end.
-	* @param	boolean	$preserve_keys
-	*	Note that by default array keys are reset. You can override this behavior by setting preserve_keys to TRUE.
-	* @return HuArray
+	* @param int $offset
+	*   If offset is positive, the sequence will start at that offset in the array. If offset is negative, the sequence will start that far from the end of the array.
+	* @param int|null $length
+	*   If length is positive, the sequence will have up to length elements. If length is negative, the sequence will stop that many elements from the end of the array. If omitted, the sequence will include all elements from offset to the end.
+	* @param bool $preserve_keys
+	*   Note that by default array keys are reset. You can override this behavior by setting preserve_keys to TRUE.
 	**/
-	public function getSlice($offset, $length = null, $preserve_keys = false): static {
-		return new HuArray(\array_slice($this->__SETS, $offset, EMPTY_VAR($length, \sizeof($this->__SETS)), $preserve_keys));
+	public function getSlice($offset, ?int $length = null, bool $preserve_keys = false): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_slice($this->__SETS, $offset, EMPTY_VAR($length, \sizeof($this->__SETS)), $preserve_keys));
 	}
 
 	/**
 	* Overload to return reference.
 	*
-	* @param	mixed	$name
-	* @return	&mixed
+	* @param string $name
 	* @throws VariableIsNullException
 	**/
 	#[\Override]
@@ -122,8 +114,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	/**
 	* Overload to return reference.
 	*
-	* @param	mixed	$name
-	* @return	&mixed
+	* @param string $name
 	**/
 	#[\Override]
 	public function &__get(string $name): mixed {
@@ -131,7 +122,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
-		if ('_last_' == $name) {
+		if ('_last_' === $name) {
 			return $this->last();
 		}
 		/*
@@ -141,8 +132,8 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		* $obj->hu('varName')->hu(0);
 		* As you like
 		**/
-		elseif( self::HU_SCHEME == substr($name, 0, strlen(self::HU_SCHEME)) ) {
-			return $this->hu( substr($name, strlen(self::HU_SCHEME)) );
+		elseif (self::HU_SCHEME === \substr($name, 0, \strlen(self::HU_SCHEME))) {
+			return $this->hu(\substr($name, \strlen(self::HU_SCHEME)));
 		}
 		else {
 			return $this->getProperty($name);
@@ -153,25 +144,28 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* Like standard {@see __get()}, but if returned value is regular array, convert it into HuArray and return reference to it.
 	* @example:
 	* $ha = new HuArray(
-	*	array(
-	*		'one' => 1
-	*		,'two' => 2
-	*		,'arr' => array(0, 11, 22, 777)
-	*	)
+	*   [
+	*     'one' => 1
+	*     ,'two' => 2
+	*     ,'arr' => [0, 11, 22, 777]
+	*   ]
 	* );
 	* Dump::a($ha->one);
-	* Dump::a($ha->arr);					// Result Array (raw, as is)!
-	* Dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
-	* Dump::a($ha->hu('arr')->hu(2));			// Property access. Also as any HuArray methods like walk(), filter() and any other.
-	* Dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternative method ({@see ::__get()}). Another, form.
+	* Dump::a($ha->arr);                       // Result Array (raw, as is)!
+	* Dump::a($ha->hu('arr'));                 // Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
+	* Dump::a($ha->hu('arr')->hu(2));          // Property access. Also as any HuArray methods like walk(), filter() and any other.
+	* Dump::a($ha->{'hu://arr'}->{'hu://2'});  // Alternative method ({@see ::__get()}). Another, form.
 	* Also this form is allow writing:
 	* $ha->{'hu://arr'} = 'Qwerty';
 	*
-	* @param	mixed	$name
-	* @return	&mixed
+	* @param mixed $name
 	**/
 	public function &hu($name): mixed {
-		if (\is_array($this->$name)) $this->$name = new HuArray($this->$name);
+		/** @var array|mixed $prop */
+		$prop = $this->$name;
+		if (\is_array($prop)) {
+			$this->$name = new HuArray($prop);
+		}
 		return $this->getProperty($name);
 	}
 
@@ -187,14 +181,14 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
-		if ('_last_' == $name){
+		if ('_last_' === $name){
 			// Direct assignment to last element
 			\end($this->__SETS);
 			$key = \key($this->__SETS);
 			$this->__SETS[$key] = $value;
 			return;
 		}
-		elseif( self::HU_SCHEME == substr($name, 0, strlen(self::HU_SCHEME)) ) {
+		elseif( self::HU_SCHEME === substr($name, 0, strlen(self::HU_SCHEME)) ) {
 			// Short form hu:// - convert to HuArray if needed and return
 			$key = substr($name, strlen(self::HU_SCHEME));
 			if (\is_array($this->__SETS[$key] ?? null)) {
@@ -212,8 +206,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	/**
 	* Apply callback function to each element.
 	*
-	* @param	callback	$callback
-	* @return	&$this
+	* @param callable $callback
 	**/
 	public function walk($callback): static {
 		array_walk($this->__SETS, $callback);
@@ -224,10 +217,11 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* Filter array, using callback. If the callback function returns true, the current value from input is returned into the result
 	* array. Array keys are preserved and NOT reindexed.
 	*
-	* @param	callback	$callback
-	* @return	static
+	* @param callable $callback
 	**/
 	public function filter($callback): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(array_filter($this->__SETS, $callback));
 	}
 
@@ -235,7 +229,6 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* Filter array by keys and leave only mentioned in $keys array
 	*
 	* @param	array	$keys
-	* @return	&$this
 	**/
 	public function &filterByKeys(array $keys): static {
 		$this->__SETS = \array_intersect_key($this->__SETS, \array_flip($keys));
@@ -248,7 +241,6 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* Implementation idea taken from: http://ru.php.net/array_filter comment of niehztog
 	*
 	* @param	array	$keys
-	* @return	&$this
 	**/
 	public function &filterOutByKeys(array $keys): static{
 		$this->__SETS = \array_diff_key( $this->__SETS, \array_flip($keys) );
@@ -258,8 +250,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	/**
 	* Similar to {@see ::filer()} except of operate by keys instead of values.
 	*
-	* @param	callback	$callback
-	* @return	&$this
+	* @param callable $callback
 	**/
 	public function &filterKeysCallback($callback): static {
 		$this->__SETS = \array_filter($this->__SETS, $callback, \ARRAY_FILTER_USE_KEY);
@@ -269,8 +260,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	/**
 	* Implode to the string using provided delimiter.
 	*
-	* @param	string=''	$delim
-	* @return	string
+	* @param string $delim
 	**/
 	public function implode($delim = ''): string {
 		return implode($delim, $this->__SETS);
@@ -279,7 +269,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	/**
 	* Return number of elements
 	*
-	* @return	int
+	* @return int<0, max>
 	**/
 	public function count(): int {
 		return \count($this->__SETS);
@@ -289,9 +279,8 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* Iteratively reduce the array to a single value using a callback function.
 	* @link http://ru.php.net/array_reduce
 	*
-	* @param	callback	$callback
-	* @param	integer	$initial
-	* @return	mixed
+	* @param callable $callback
+	* @param int $initial
 	**/
 	public function reduce($callback, $initial = 0){
 		return array_reduce($this->__SETS, $callback, $initial);
@@ -334,11 +323,13 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	}
 
 	public static function fromJson(string $json): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\json_decode($json, true));
 	}
 
 	public function isEmpty(): bool {
-		return empty($this->__SETS);
+		return $this->__SETS === [];
 	}
 
 	public function getByKey($key): mixed {
@@ -368,7 +359,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	}
 
 	public function first(): mixed {
-		if (empty($this->__SETS)) {
+		if ($this->__SETS === []) {
 			return null;
 		}
 		return \reset($this->__SETS);
@@ -398,31 +389,45 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	}
 
 	public function keys(): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_keys($this->__SETS));
 	}
 
 	public function values(): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_values($this->__SETS));
 	}
 
 	public function flip(): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_flip($this->__SETS));
 	}
 
 	public function reverse(bool $preserve_keys = false): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_reverse($this->__SETS, $preserve_keys));
 	}
 
 	public function chunk(int $size): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_chunk($this->__SETS, $size));
 	}
 
 	public function slice(int $offset, ?int $length = null, bool $preserve_keys = false): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_slice($this->__SETS, $offset, $length, $preserve_keys));
 	}
 
 	public function splice(int $offset, ?int $length = null, array $replacement = []): static {
 		$spliced = \array_splice($this->__SETS, $offset, $length ?? \count($this->__SETS), $replacement);
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static($spliced);
 	}
 
@@ -438,6 +443,8 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		if ($arr instanceof static) {
 			$arr = $arr->toArray();
 		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_diff($this->__SETS, $arr));
 	}
 
@@ -445,6 +452,8 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		if ($arr instanceof static) {
 			$arr = $arr->toArray();
 		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_values(\array_udiff($this->__SETS, $arr, fn($a, $b) => $a <=> $b)));
 	}
 
@@ -452,14 +461,20 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		if ($arr instanceof static) {
 			$arr = $arr->toArray();
 		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_values(\array_intersect($this->__SETS, $arr)));
 	}
 
 	public function unique(): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_values(\array_unique($this->__SETS)));
 	}
 
 	public function map(callable $callback): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_map($callback, $this->__SETS));
 	}
 
@@ -528,10 +543,16 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		foreach ($this->__SETS as $item) {
 			if (\is_array($item) && isset($item[$key])) {
 				$result[] = $item[$key];
-			} elseif (\is_object($item) && isset($item->$key)) {
-				$result[] = $item->$key;
+			} elseif (\is_object($item)) {
+				/** @var object $itemObj */
+				$itemObj = $item;
+				if (isset($itemObj->$key)) {
+					$result[] = $itemObj->$key;
+				}
 			}
 		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static($result);
 	}
 
@@ -540,18 +561,26 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		\array_walk_recursive($this->__SETS, function($a) use (&$result) {
 			$result[] = $a;
 		});
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static($result);
 	}
 
 	public function fill(int $start_index, int $count, $value): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_fill($start_index, $count, $value));
 	}
 
 	public function pad(int $size, $value): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_pad($this->__SETS, $size, $value));
 	}
 
 	public function column($column_key, $index_key = null): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_column($this->__SETS, $column_key, $index_key));
 	}
 
@@ -559,6 +588,8 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		if ($values instanceof static) {
 			$values = $values->toArray();
 		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_combine($this->__SETS, $values));
 	}
 
@@ -570,6 +601,8 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 				$result[$this->__SETS[$keys[$i]]] = $this->__SETS[$keys[$i + 1]];
 			}
 		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static($result);
 	}
 
@@ -587,7 +620,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	}
 
 	public function sort(?callable $callback = null): static {
-		if ($callback) {
+		if ($callback !== null) {
 			\usort($this->__SETS, $callback);
 		} else {
 			\sort($this->__SETS);
@@ -599,14 +632,20 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		if ($arr instanceof static) {
 			$arr = $arr->toArray();
 		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\array_map(null, $this->__SETS, $arr));
 	}
 
 	public static function range($start, $end, $step = 1): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\range($start, $end, $step));
 	}
 
 	public static function explode(string $delimiter, string $string): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
 		return new static(\explode($delimiter, $string));
 	}
 

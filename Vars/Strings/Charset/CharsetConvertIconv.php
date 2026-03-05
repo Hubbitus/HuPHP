@@ -32,8 +32,8 @@ class CharsetConvertIconv extends CharsetConvert {
 	/**
 	* Constructor.
 	*
-	* @param string|null $text Text to convert
-	* @param string|null $inEnc Input encoding
+	* @param ?string $text Text to convert
+	* @param ?string $inEnc Input encoding
 	* @param string $outEnc Output encoding (default: UTF-8)
 	**/
 	public function __construct(?string $text, ?string $inEnc = null, string $outEnc = 'UTF-8') {
@@ -43,11 +43,10 @@ class CharsetConvertIconv extends CharsetConvert {
 	/**
 	* Convert text encoding using mb_convert_encoding().
 	*
-	* @return void
 	* @throws \ValueError If encoding is invalid (PHP 8.0+)
 	* @throws VariableRequiredException If inEnc or outEnc is not set
 	**/
-	public function convert(): void {
+	public function convert(): static {
 		REQUIRED_VAR($this->_in, 'InEncoding');
 		REQUIRED_VAR($this->_out, 'OutEncoding');
 
@@ -58,17 +57,18 @@ class CharsetConvertIconv extends CharsetConvert {
 		* - More reliable Unicode support
 		*/
 		$this->_resText = \mb_convert_encoding($this->_text, $this->_out, $this->_in);
+		return $this;
 	}
 
 	/**
 	* Static equivalent of convert() for static, fast invoke.
 	*
 	* @param string $text Text to convert
-	* @param string|null $inEnc Input encoding
-	* @param string $outEnc Output encoding (default: UTF-8)
+	* @param ?string $inEnc Input encoding
+	* @param ?string $outEnc Output encoding (default: UTF-8)
 	* @return string Converted text
 	**/
-	public static function conv(string $text, ?string $inEnc = null, string $outEnc = 'UTF-8'): string {
+	public static function conv(string $text, ?string $inEnc = null, ?string $outEnc = 'UTF-8'): string {
 		// This is correct only if Late Static Binding present. So, it starts from PHP 5.3.0
 		// If we want make this code work on earlier releases - just copy this function completely in derivate.
 		$conv = new self($text, $inEnc, $outEnc);

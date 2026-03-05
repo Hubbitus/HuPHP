@@ -1,55 +1,40 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\RegExp;
+
+use Hubbitus\HuPHP\Vars\HuClass;
+use Hubbitus\HuPHP\Vars\HuArray;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
+use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
+
 /**
 * RegExp manipulation.
 *
 * @package RegExp
 * @version 2.1.2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2014, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2008-05-29
-*
-* @uses VariableIsNullException
-* @uses HuClass
-* @uses HuArray
 **/
-
-namespace Hubbitus\HuPHP\RegExp;
-
-use Hubbitus\HuPHP\Vars\HuClass;
-use Hubbitus\HuPHP\Vars\HuArray;
-use function Hubbitus\HuPHP\Macroses\REQUIRED_NOT_NULL;
-
 abstract class RegExpBase extends HuClass implements IRegExp {
-	protected $sourceText;
-	protected $RegExp;
+	protected ?string $sourceText = null;
+	protected string|array|null $regExp = null;
 
-	protected $matchCount;
-	protected $matches;
-	protected $matchesValid = false;
+	protected int $matchCount = 0;
+	protected ?array $matches = null;
+	protected bool $matchesValid = false;
 
-	protected $replaceTo;
-	protected $replaceRes;
-	protected $replaceValid;
+	protected string|array|null $replaceTo = null;
+	protected mixed $replaceRes;
+	protected bool $replaceValid = false;
 
-	// array of paired delimiters, where start not equals end. Key is start delimiter.
-	public $paireddelimeters = array(
+	/** @var array<string, string> */
+	public array $paireddelimeters = [
 		'{' => '}',
 		'<' => '>',
 		'(' => ')',
 		'[' => ']',
-	);
-
-	/**
-	* Aka __construct, but for static call.
-	*
-	* Primarily needed to create object of future defined class in base (see getMatch method)
-	* Derived from HuClass::create
-	*
-	* @method create()
-	* @return Object(RegExp_base)
-	**/
+	];
 
 	/**
 	* Constructor.
@@ -59,172 +44,184 @@ abstract class RegExpBase extends HuClass implements IRegExp {
 	public function __construct($regexp = null, $text = null, $replaceTo = null){
 		$this->set($regexp, $text, $replaceTo);
 	}
+
 	/**
 	* Return N-th single match
 	*
-	* @param int	$Number Number of interesting match
-	* @return string|array
+	* @param int $Number Number of interesting match
 	**/
-	public function match($Number){
-		if (!$this->matchesValid) // May be throw Exception???
+	public function match(int $Number): string|array {
+		if (!$this->matchesValid) {
 			$this->doMatch();
+		}
 
 		return $this->matches[$Number];
 	}
+
 	/**
 	* Return regexp string.
-	*
-	* @return string
 	**/
-	public function getRegExp(){
-		return $this->RegExp;
+	public function getRegExp(): ?string {
+		return $this->regExp;
 	}
+
 	/**
 	* Set RegExp from string.
 	*
-	* @param string|array	$regexp
-	* @return &$this
-	* @thrown VariableIsNullException
+	* @param string|array $regexp
+	* @throws VariableIsNullException
 	**/
 	public function &setRegExp($regexp): static {
-		$this->RegExp = REQUIRED_NOT_NULL($regexp);
+		$this->regExp = REQUIRED_NOT_NULL($regexp);
 		$this->matchesValid = false;
 		return $this;
 	}
+
 	/**
 	* Return current text.
-	*
-	* @return string
 	**/
-	public function getText(){
+	public function getText(): ?string {
 		return $this->sourceText;
 	}
+
 	/**
 	* Set text to match from string.
 	*
-	* @param string	$text
-	* @return &$this
+	* @param string $text
 	**/
-	public function &setText($text){
+	public function &setText($text): static {
 		$this->sourceText = REQUIRED_NOT_NULL($text);
 		$this->matchesValid = false;
 		return $this;
 	}
+
 	/**
 	* Equivalent of {@see ->&setText()}, but assign text by ref. Be very carefully!
 	*
-	* @param string	$text
-	* @return &$this
+	* @param string $text
 	**/
-	public function &setTextRef(&$text){
+	public function &setTextRef(&$text): static {
 		$this->sourceText =& $text;
 		$this->matchesValid = false;
 		return $this;
 	}
+
 	/**
 	* Set ReplaceTo
 	*
-	* @param string|array	$text
-	* @return &$this
+	* @param string|array $text
 	**/
-	public function &setReplaceTo($text){
+	public function &setReplaceTo($text): static {
 		$this->replaceTo = REQUIRED_NOT_NULL($text);
 		$this->replaceValid = $this->matchesValid = false;
 		return $this;
 	}
+
 	/**
 	* Return count of matches. If matches not valid - by default do ::doMatchAll() first
-	*
-	* @return integer
 	**/
-	public function matchCount(){
-		if (!$this->matchesValid) // May be throw Exception???
+	public function matchCount(): int {
+		if (!$this->matchesValid) {
 			$this->doMatchAll();
+		}
 		return $this->matchCount;
 	}
+
 	/**
 	* Set Pattern, text, replacement. Shorthand to appropriate methods.
 	*
-	* @param string|array	$regexp
-	* @param string		$Text
-	* @param string|array	$text
-	* @return	&$this
+	* @param ?string|?array $RegExp
+	* @param ?string $Text
+	* @param ?string|?array $ReplaceTo\
 	**/
-	public function &set($RegExp = null, $Text = null, $replaceTo = null){
-		foreach (array('RegExp', 'Text', 'replaceTo') as $v){
-			if ($$v) $this->{"set$v"} ($$v);
+	public function &set($RegExp = null, $Text = null, $ReplaceTo = null): static {
+		if ($RegExp !== null) {
+			$this->setRegExp($RegExp);
+		}
+		if ($Text !== null) {
+			$this->setText($Text);
+		}
+		if ($ReplaceTo !== null) {
+			$this->setReplaceTo($ReplaceTo);
 		}
 		return $this;
 	}
+
 	/**
 	* Do test, faster then doMatch, don't filling ->matches, ->matchCount and other.
 	**/
 	abstract public function test();
+
 	/**
 	* Description of $flags and $offset see on http://www.php.net/preg_match_all
 	* Called by default, in ->match()!
-	*
-	* @return &$this
 	**/
 	abstract public function &doMatch($flags = null, $offset = null);
 
 	/**
 	* {@see ->doMatch()}. But match all occurrences.
-	*
-	* @return &$this
 	**/
 	abstract public function &doMatchAll($flags = null, $offset = null);
 
 	/**
 	* Return startDelimiter
 	*
-	* @param integer $item. If not null - point to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
-	* @return string
+	* @param ?int $item If not null - point to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	**/
-	public function getRegExpDelimiterStart($item = null){
-		$item = is_null($item) ? 0 : $item;
-		if (is_array($this->RegExp)) return $this->RegExp[$item][0];
-		else return $this->RegExp[0];
+	public function getRegExpDelimiterStart($item = null): string {
+		$item ??= 0;
+		if (\is_array($this->regExp)) {
+			return $this->regExp[$item][0];
+		}
+		else {
+			return $this->regExp[0];
+		}
 	}
+
 	/**
 	* Return endDelimiter
 	*
-	* @param integer	$item. If not null - point to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
-	* @return string
+	* @param ?int $item If not null - point to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	**/
-	public function getRegExpDelimiterEnd($item = null){
-		if (isset($this->paireddelimeters[$this->getRegExpDelimiterStart($item)]))
-			return $this->paireddelimeters[$this->getRegExpDelimiterStart($item)];
-		else
-			return $this->getRegExpDelimiterStart($item);
+	public function getRegExpDelimiterEnd($item = null): string {
+		$startDelimiter = $this->getRegExpDelimiterStart($item);
+		if (isset($this->paireddelimeters[$startDelimiter])) {
+			return $this->paireddelimeters[$startDelimiter];
+		}
+		else {
+			return $startDelimiter;
+		}
 	}
+
 	/**
 	* Assume RegExp correct. Do not check it.
 	*
-	* @param integer	$item. If not null - point to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
-	* @return string
+	* @param ?int $item If not null - point to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	**/
-	public function getRegExpBody($item = null){
-		$item = is_null($item) ? 0 : $item;
-		if (is_array($this->RegExp)) return substr($this->RegExp[$item], 1, strrpos($this->RegExp[$item], $this->getRegExpDelimiterEnd($item)) - 1);
-		else return substr($this->RegExp, 1, strrpos($this->RegExp, $this->getRegExpDelimiterEnd()) - 1);
+	public function getRegExpBody($item = null): string {
+		$item ??= 0;
+		$regexp = \is_array($this->regExp) ? $this->regExp[$item] : $this->regExp;
+		$endPos = \strrpos($regexp, $this->getRegExpDelimiterEnd($item));
+		return \substr($regexp, 1, $endPos - 1);
 	}
+
 	/**
 	* Return RegExpModifiers
 	*
-	* @param integer	$item. If not null - point to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
-	* @return string
+	* @param ?int $item If not null - point to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	**/
-	public function getRegExpModifiers($item = null){
-		$item = is_null($item) ? 0 : $item;
-		if (is_array($this->RegExp)) return (string)substr($this->RegExp[$item], strrpos($this->RegExp[$item], $this->getRegExpDelimiterEnd($item)) + 1 );
-		else return (string)substr($this->RegExp, strrpos($this->RegExp, $this->getRegExpDelimiterEnd()) + 1 );
+	public function getRegExpModifiers($item = null): string{
+		$item ??= 0;
+		$regexp = \is_array($this->regExp) ? $this->regExp[$item] : $this->regExp;
+		$endPos = \strrpos($regexp, $this->getRegExpDelimiterEnd($item));
+		return \substr($regexp, $endPos + 1);
 	}
+
 	/**
 	* Description see {@link http://php.net/preg_replace}
 	*
-	* @param int	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
-	* @return mixed	Replaced value.
+	* @param int $limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
+	* @return mixed Replaced value.
 	**/
 	abstract public function replace($limit = -1);
 
@@ -233,29 +230,26 @@ abstract class RegExpBase extends HuClass implements IRegExp {
 	*
 	* @since Version 2.1.1
 	*
-	* @param int(-1)	$limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
-	* @param int(null)	$flags Flags for the operation.
-	* @return &$this
+	* @param int $limit If present - replace only $limit occurrences. In default case of -1 - replace ALL.
+	* @param ?int $flags Flags for the operation.
 	**/
-	abstract public function &split($limit = -1, $flags = null);
+	abstract public function &split($limit = -1, $flags = null): static;
 
 	/**
 	* Full(os sub, if $n present) array of matches after call (not checked!) {@see doMatch()}, {@see doMatchAll()}, {@see split()}
 	*
-	* @param	int|null	Number of sub array
-	* @return array of last matches.
+	* @param ?int $n Number of sub array
 	**/
-	public function getMatches($n = null){
-		if (is_null($n)) return $this->matches;
-		else return $this->matches[$n];
+	public function getMatches(?int $n = null): ?array {
+		return ($n ? ($this->matches[$n] ?? null) : $this->matches);
 	}
+
 	/**
 	* Full equivalent of {@see getMatches()) except of result returned as Object(HuArray) instead of regular array.
 	*
-	* @param	int|null	Directly passed to {@see getMatches}
-	* @return HuArray of last matches.
+	* @param ?int $n Directly passed to {@see getMatches}
 	**/
-	public function getHuMatches($n = null){
+	public function getHuMatches($n = null): HuArray {
 		return new HuArray($this->getMatches($n));
 	}
 }

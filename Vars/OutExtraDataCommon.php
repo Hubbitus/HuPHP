@@ -18,7 +18,7 @@ use Hubbitus\HuPHP\System\OS;
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 **/
 class OutExtraDataCommon implements IOutExtraData {
-	protected $_var = null;
+	protected mixed $_var = null;
 
 	/** @var OutputType|null Current output type for formatting */
 	protected ?OutputType $_curTypeOut = null;
@@ -46,17 +46,17 @@ class OutExtraDataCommon implements IOutExtraData {
 	public static function strByOutTypeBase(/*$this*/&$obj, OutputType $type, array|string|null $format = null): string {
 		$obj->_curTypeOut = $type;
 
-		return match($type){
+		return match($type) {
 			OutputType::WEB => $obj->strForWeb($format),
 			OutputType::CONSOLE => $obj->strForConsole($format),
 			OutputType::FILE => $obj->strForFile($format),
 			OutputType::PRINT => $obj->strForPrint($format),
-			default => throw new VariableRangeException("$type MUST be one of: OutputType::BROWSER, OutputType::CONSOLE, OutputType::FILE or OutputType::PRINT!"),
+			default => throw new VariableRangeException($type->name . ' MUST be one of: OutputType::BROWSER, OutputType::CONSOLE, OutputType::FILE or OutputType::PRINT!'),
 		};
 	}
 
 	public static function strForPrintBase(/*$this*/&$obj, array|string|null $format = null): string {
 		$obj->_curTypeOut = OutputType::PRINT; //Pseudo. Will be clarified.
-		return OutputType::WEB == OS::getOutType() ? $obj->strForWeb($format) : $obj->strForConsole($format);
+		return OutputType::WEB === OS::getOutType() ? $obj->strForWeb($format) : $obj->strForConsole($format);
 	}
 }

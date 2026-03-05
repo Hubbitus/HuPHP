@@ -1,23 +1,14 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Vars;
+
 /**
 * Routine tasks to made easy OOP.
 *
-* @package Vars
-* @subpackage Classes
-* @version 1.5
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created ?2008-05-31 5:31 v 1.0b to 1.0c
-*
-* @uses REQUIRED_VAR()
-* @uses VariableRequiredException
-* @uses ClassUnknownException
 **/
-
-namespace Hubbitus\HuPHP\Vars;
-
 abstract class HuClass {
 	/**
 	* This is just wrapper for system construction 'clone'. Objects in PHP implicitly returned by
@@ -47,9 +38,8 @@ abstract class HuClass {
 	*
 	* Also this hack was be founded here http://blog.adaniels.nl/articles/a-dark-corner-of-php-class-casting/
 	*
-	* @param $toClassName string Class name to what casting do
-	* @param $what mixed
-	* @return object($toClassName)
+	* @param string $toClassName Class name to what casting do
+	* @param mixed $what
 	**/
 	public static function reinterpret_cast($toClassName, $what): object {
 		return unserialize(

@@ -267,7 +267,7 @@ class HuGetoptTest extends TestCase {
 		$opts = [['t', 'test', '']];
 		$getopt = new HuGetopt($opts);
 
-		$settings = $getopt->sets();
+		$settings = $getopt->getSettings();
 
 		$this->assertInstanceOf(HuGetoptSettings::class, $settings);
 	}
@@ -276,8 +276,8 @@ class HuGetoptTest extends TestCase {
 		$opts = [['d', 'default', '']];
 		$getopt = new HuGetopt($opts);
 
-		$this->assertEquals(['-'], $getopt->sets()->start_short);
-		$this->assertEquals(['--'], $getopt->sets()->start_long);
+		$this->assertEquals(['-'], $getopt->getSettings()->start_short);
+		$this->assertEquals(['--'], $getopt->getSettings()->start_long);
 	}
 
 	public function testParseArgsWithDoubleDash(): void {

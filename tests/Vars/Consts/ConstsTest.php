@@ -8,8 +8,8 @@ use Hubbitus\HuPHP\Vars\Consts\Consts;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Vars\Consts\Consts
- */
+* @covers \Hubbitus\HuPHP\Vars\Consts\Consts
+**/
 class ConstsTest extends TestCase {
 	public function testGet(): void {
 		$constName = 'PHP_VERSION';
@@ -21,20 +21,41 @@ class ConstsTest extends TestCase {
 	}
 
 	public function testGetRegexpNoFilter(): void {
-		$result = Consts::get_regexp();
+		$result = Consts::getByRegexp();
 
 		$this->assertIsArray($result);
 		$this->assertNotEmpty($result);
 	}
 
 	public function testGetRegexpWithCategory(): void {
-		$result = Consts::get_regexp('user');
+		// Test with specific category - should return constants from that category
+		$result = Consts::getByRegexp('@.*@i', 'Core');
 
 		$this->assertIsArray($result);
+		$this->assertNotEmpty($result);
+	}
+
+	public function testGetRegexpWithNonExistentCategory(): void {
+		// Test with non-existent category - should return empty array
+		$result = Consts::getByRegexp('@.*@i', 'NonExistentCategory123');
+
+		$this->assertIsArray($result);
+		$this->assertEmpty($result);
+	}
+
+	public function testGetRegexpWithSpecificRegexp(): void {
+		// Test with specific regexp pattern
+		$result = Consts::getByRegexp('@^PHP_@', 'Core');
+
+		$this->assertIsArray($result);
+		// All keys should start with PHP_
+		foreach (array_keys($result) as $key) {
+			$this->assertStringStartsWith('PHP_', $key);
+		}
 	}
 
 	public function testGetRegexpWithRegexp(): void {
-		$result = Consts::get_regexp('', '@^PHP_@');
+		$result = Consts::getByRegexp('', '@^PHP_@');
 
 		$this->assertIsArray($result);
 		foreach (array_keys($result) as $key) {
@@ -43,7 +64,8 @@ class ConstsTest extends TestCase {
 	}
 
 	public function testGetRegexpNotCategorized(): void {
-		$result = Consts::get_regexp('', '@.*@i', true);
+		// When category is null, returns all constants from all categories
+		$result = Consts::getByRegexp('@.*@i', null);
 
 		$this->assertIsArray($result);
 		$this->assertNotEmpty($result);
@@ -70,7 +92,8 @@ class ConstsTest extends TestCase {
 	}
 
 	public function testGetNameByValueNotCategorized(): void {
-		$result = Consts::getNameByValue(E_ALL, '', '@.*@i', true);
+		// When category is null, searches all constants from all categories
+		$result = Consts::getNameByValue(E_ALL, '@.*@i', null);
 
 		$this->assertIsArray($result);
 		$this->assertNotEmpty($result);
@@ -81,5 +104,15 @@ class ConstsTest extends TestCase {
 
 		$this->assertIsArray($result);
 		$this->assertEmpty($result);
+	}
+
+	public function testGetNameByValueWithCategoryAndRegexp(): void {
+		// Test with both category and regexp
+		// Search for value 1 (E_ERROR) in Core category
+		$result = Consts::getNameByValue(1, '@.*@i', 'Core');
+
+		$this->assertIsArray($result);
+		// Should find constants with value 1
+		$this->assertNotEmpty($result);
 	}
 }

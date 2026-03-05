@@ -319,11 +319,6 @@ class RegExpPcreTest extends TestCase {
 		$this->assertTrue($replaceValidProp->getValue($regexp));
 	}
 
-	public function testClassNameConstant(): void {
-		// Test className constant
-		$this->assertEquals('RegExp_pcre', RegExpPcre::className);
-	}
-
 	/**
 	 * Helper method to access protected properties via reflection
 	 */

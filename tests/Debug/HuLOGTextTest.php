@@ -25,7 +25,8 @@ class HuLOGTextTest extends TestCase {
     }
 
     public function testConstructorWithSettingsArray(): void {
-        $sets = ['EXTRA_HEADER' => 'Custom Header'];
+        $sets = new HuLOGTextSettings();
+        $sets->mergeSettingsArray(['EXTRA_HEADER' => 'Custom Header']);
         $logText = new HuLOGText($sets);
 
         $this->assertInstanceOf(HuLOGText::class, $logText);

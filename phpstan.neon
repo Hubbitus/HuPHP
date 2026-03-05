@@ -4,7 +4,12 @@ includes:
 
 parameters:
     level: 5
-    bootstrapFiles:
-        - HuPHP.autoload.php
     paths:
         - Debug/
+        - Exceptions/
+        - Filesystem/
+        - RegExp/
+        - System/
+        - Vars/
+    # Note: macroses/ excluded from analysis - legacy functions need complete rewrite
+    # TODO: Rewrite macroses as modern PHP functions or remove entirely
