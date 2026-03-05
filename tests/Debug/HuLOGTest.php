@@ -372,7 +372,9 @@ class HuLOGTest extends TestCase {
         $log = new HuLOG();
         
         // Test __get('unknown') returns null
-        $this->assertNull($log->unknownProperty);
+        // Use @ to suppress notice when accessing non-existent property
+        $result = @$log->unknownProperty;
+        $this->assertNull($result);
     }
 
     public function testGetSettings(): void {

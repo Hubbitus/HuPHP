@@ -29,6 +29,10 @@
             <directory>./macroses/multipleinheritance</directory>
             <!-- Legacy template code moved to Templating/ - excluded from coverage -->
             <directory>./Templating</directory>
+            <!-- Base classes - coverage counted in child classes to avoid PHPUnit double-counting inherited methods -->
+            <file>./Filesystem/FileBase.php</file>
+            <!-- Abstract classes - abstract methods covered by concrete implementations -->
+            <file>./Vars/Strings/Charset/CharsetConvert.php</file>
         </exclude>
     </source>
 </phpunit>

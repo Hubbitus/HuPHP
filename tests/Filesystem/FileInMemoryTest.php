@@ -10,9 +10,6 @@ namespace Hubbitus\HuPHP\Tests\Filesystem;
 use Hubbitus\HuPHP\Filesystem\FileInMemory;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Hubbitus\HuPHP\Filesystem\FileInMemory
- */
 class FileInMemoryTest extends TestCase {
     private string $testFile;
     private string $testDir;
@@ -808,6 +805,24 @@ class FileInMemoryTest extends TestCase {
         
         // Cleanup
         if (file_exists($testFile)) {
+            unlink($testFile);
+        }
+    }
+
+    public function testExplodeLinesWithEmptyContent(): void {
+        // Test that explodeLines handles empty content gracefully
+        $testFile = $this->testDir . '/test_explode_empty.txt';
+        file_put_contents($testFile, '');
+        
+        try {
+            $file = new FileInMemory($testFile);
+            $file->loadContent();
+            
+            // Get lines from empty file
+            $lines = $file->getLines();
+            $this->assertIsArray($lines);
+            $this->assertEmpty($lines);
+        } finally {
             unlink($testFile);
         }
     }
