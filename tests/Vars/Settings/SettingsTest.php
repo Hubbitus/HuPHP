@@ -36,6 +36,12 @@ class SettingsTest extends TestCase {
 		$this->assertEquals('value2', $settings->new2);
 	}
 
+	public function testSetSettingsArrayThrowsExceptionOnEmpty(): void {
+		$settings = new Settings();
+		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException::class);
+		$settings->setSettingsArray([]);
+	}
+
 	public function testMergeSettingsArray(): void {
 		$settings = new Settings(['key1' => 'value1']);
 		$settings->mergeSettingsArray(['key2' => 'value2', 'key1' => 'new_value']);
@@ -62,10 +68,24 @@ class SettingsTest extends TestCase {
 		$this->assertEquals('value', $result);
 	}
 
+	public function testMagicGetDirectCall(): void {
+		$settings = new Settings(['name' => 'test']);
+		$result = $settings->__get('name');
+		$this->assertEquals('test', $result);
+	}
+
 	public function testMagicIsset(): void {
 		$settings = new Settings(['key' => 'value']);
 		$this->assertTrue(isset($settings->key));
 		$this->assertFalse(isset($settings->nonexistent));
+	}
+
+	public function testMagicIssetDirectCall(): void {
+		$settings = new Settings(['name' => 'test']);
+		$result = $settings->__isset('name');
+		$this->assertTrue($result);
+		$result = $settings->__isset('nonexistent');
+		$this->assertFalse($result);
 	}
 
 	public function testGetString(): void {
@@ -93,6 +113,12 @@ class SettingsTest extends TestCase {
 		$settings = new Settings([]);
 		$result = $settings->formatField(['nonexistent', '<', '>', '<unknown>']);
 		$this->assertEquals('<unknown>', $result);
+	}
+
+	public function testFormatFieldArrayWithKeys(): void {
+		$settings = new Settings(['tag' => 'div']);
+		$result = $settings->formatField(['str' => 'tag', 'prefix' => '<', 'suffix' => '>', 'defValue' => '<unknown>']);
+		$this->assertEquals('<div>', $result);
 	}
 
 	public function testClear(): void {
