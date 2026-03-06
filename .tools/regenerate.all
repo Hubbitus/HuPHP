@@ -18,8 +18,8 @@ php -d phar.readonly=0 ./Packages/Phar.make.php
 echo '2.1) Simple test run PHAR:';
 php -d phar.readonly=0 ./Packages/Phar.test.php
 
-echo '4) Generate PHPDoc documentation:'
+# echo '3) Generate PHPDoc documentation:'
 # This command in: https://github.com/Hubbitus/shell.scripts
-./generate-phpdoc.sh
+# ./generate-phpdoc.sh
 
 } 2>&1 | tee ${PROJECT_ROOT}/.tools/regenerate.all.log
