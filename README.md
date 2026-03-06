@@ -5,6 +5,19 @@
 
 Modern PHP framework supporting PHP 8.0+ for common tasks like debugging, logging, configuration management and more.
 
+## Developer Documentation
+
+Full API documentation is automatically generated and deployed to GitHub Pages.
+
+**[View Documentation](https://Hubbitus.github.io/HuPHP/)**
+
+To generate the documentation locally:
+
+```bash
+./.tools/generate-phpdoc.sh
+```
+The documentation will be generated in the `@phpdocs/` directory.
+
 **Migration Notice:** This version uses PSR-4 autoloading and namespaces (`Hubbitus\HuPHP\`). All classes are loaded automatically via Composer. Legacy includes have been removed.
 
 ## Features
@@ -143,18 +156,7 @@ To build the packages manually, run:
 
 Built packages will be placed in `.tools/Packages/build/`.
 
-## Developer Documentation
 
-Full API documentation is automatically generated and deployed to GitHub Pages.
-
-**[View Documentation](https://Hubbitus.github.io/HuPHP/)**
-
-To generate the documentation locally:
-
-```bash
-./.tools/generate-phpdoc.sh
-```
-The documentation will be generated in the `@phpdocs/` directory.
 
 ## Examples
 
