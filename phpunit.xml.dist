@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/13.0/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerNotices="true"
+         beStrictAboutChangesToGlobalState="true">
+    <testsuites>
+        <testsuite name="HuPHP Tests">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <source>
+        <include>
+            <directory suffix=".php">./Debug</directory>
+            <directory suffix=".php">./Exceptions</directory>
+            <directory suffix=".php">./Filesystem</directory>
+            <directory suffix=".php">./RegExp</directory>
+            <directory suffix=".php">./System</directory>
+            <directory suffix=".php">./macroses</directory>
+            <directory suffix=".php">./Vars</directory>
+        </include>
+        <exclude>
+            <!-- Experimental code requiring runkit extension (not available in standard PHP) -->
+            <directory>./macroses/multipleinheritance</directory>
+        </exclude>
+    </source>
+</phpunit>

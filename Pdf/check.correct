@@ -1,5 +1,0 @@
-
-# Simple console test to test FPDI import and Unicode text works
-php test_unicode.php > res.pdf; pdftotext res.pdf - | head -n1
-
-rm -rf res.pdf

@@ -1,116 +1,131 @@
-<?
-/**
-* System environment and information
-* @package System ??
-* @version 2.0.3
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created ?2008-11-05 00:47 ver 2.0b to 2.0.1
-**/
+<?php
+declare(strict_types=1);
+
+namespace Hubbitus\HuPHP\System;
+
+use Hubbitus\HuPHP\System\OutputType;
+use Hubbitus\HuPHP\Exceptions\HaltException;
 
 /**
-* Class OS has mainly (all) static methods, to determine system-enveroments, like OS or type of out.
+* Class OS has mainly (all) static methods, to determine system-environments, like OS or type of out.
 * Was System, but it is registered in PEAR, change to OS
 **/
 class OS {
-	const OUT_TYPE_BROWSER = 1;
-	const OUT_TYPE_CONSOLE = 2;
-	const OUT_TYPE_PRINT = 4; /** Pseudo!!! Need automaticaly detect OUT_TYPE_BROWSER or OUT_TYPE_CONSOLE */
-	const OUT_TYPE_FILE = 8;
-	const OUT_TYPE_WAP = 16;
-	#const OUT_TYPE_ = 16;
+	/**
+	 * Counter for hit counting functionality.
+	 */
+	private static int $hitCounter = 0;
 
 	/**
-	* Possible return-values of
-	* http://ru2.php.net/php_sapi_name comment from "cheezy at lumumba dot luc dot ac dot be"
-	**/
-	static $SAPIs = array(
-		'aolserver',
-		'activescript',
-		'apache',
-		'cgi-fcgi',
-		'cgi',
-		'isapi',
-		'nsapi',
-		'phttpd',
-		'roxen',
-		'java_servlet',
-		'thttpd',
-		'pi3web',
-		'apache2filter',
-		'caudium',
-		'apache2handler',
-		'tux',
-		'webjames',
-		'cli',
-		'embed,',
-		'milter'
-	);
-
-
-	/**
-	* Determines out type of current-running process.
+	* Determines output type of current-running process.
 	*
-	* @return Now one of const: ::OUT_TYPE_BROWSER or ::OUT_TYPE_CONSOLE
+	* @return OutputType now one of: OutputType::BROWSER or OutputType::CONSOLE
 	**/
-	static public function getOutType(){
-		if (isset($_SERVER['HTTP_USER_AGENT'])) return self::OUT_TYPE_BROWSER;
-		else return self::OUT_TYPE_CONSOLE;
-	}#m getOutType
+	public static function getOutType(): OutputType {
+		return isset($_SERVER['HTTP_USER_AGENT']) ? OutputType::WEB : OutputType::CONSOLE;
+	}
 
 	/**
 	* php_sapi_name()
 	*
-	* @return
+	* @return string
 	**/
-	static public function phpSapiName(){
-		return php_sapi_name();
-	}#m phpSapiName
+	public static function phpSapiName(): string {
+		return \php_sapi_name();
+	}
 
 	/**
-	* Check if file is includable. I can't just use if (@inlude($file)). Or, more exactly i can, but
-	*	it is have small different meaning:
-	*	@include('include.php') not return and NOT shown errors in including file! Nothing:
-	*		Not Notice, Warning or Fatal!!!!
-	*		See http://ru2.php.net/manual/ru/function.include-once.php comments of
-	*		"flobee at gmail dot com" and "php at metagg dot com" and http://php.net/include/
-	*		comment of "medhefgo at googlemail dot com"
-	*		In other words, absent way (get me known if I am wrong) to suppress errors like
-	*		'file not found' or 'not readable', construction @include suppres ALL (even Critical!)
-	*		in including files, and nested (included from including).
-	*	Result of check may be also applyable to require()
+	* Check if file is includeable.
+    * This method is a replacement for `if (@include($file))` because the @ operator
+    * suppresses all errors, including fatal ones, in the included file.
+	* This method only checks for readability using the include_path.
+	* See: http://php.net/manual/en/function.include.php
 	*
-	* @param	string $filenam As it can be passed to include or require.
-	* @return	boolean
+	* @param	string $filename As it can be passed to include or require.
 	**/
-	static public function is_includeable($filename){
+	public static function is_includeable($filename): bool {
 		/** is_file, is_readable not suitable, because include_path do not take effect.
 		* And opposite comment of "php at metagg dot com" and "medhefgo at googlemail dot com",
-		* woudn't manualy check all paths in include_path. Just open this file to read
+		* wouldn't manually check all paths in include_path. Just open this file to read
 		* with include_path check parameter support! */
-		if ($res = @fopen($filename, 'r', true)){
-			fclose($res);	// Not realy need opened file, only result of opening.
+		if ($res = @\fopen($filename, 'r', true)){
+			\fclose($res);	// Not really need opened file, only result of opening.
 		}
 		return (bool)$res;
-	}#m is_inludeable
+	}
 
 	/**
 	* Check if given path is absolute or not.
+	* Cross-platform implementation supporting Unix, Windows and stream wrappers.
 	*
-	* @param $pathToCheck	string Path to check
-	* @return boolean
+	* @param ?string $pathToCheck Path to check
+	* @return bool
 	**/
-	static public function isPathAbsolute($pathToCheck){
-		if ( preg_match('@^(?:' . implode('|', stream_get_wrappers()) . ')://@', $pathToCheck) ) return true; // Registered wrappers always absolute!
-
-		//@TODO: case 'DAR': ;break; //Darwin http://qaix.com/php-web-programming/139-944-constant-php-os-and-mac-server-read.shtml
-		// This check from http://ru2.php.net/php_uname
-		if ('WIN' != strtoupper(substr(PHP_OS, 0, 3))){
-			return ( '/' == $pathToCheck{0} );
+	public static function isPathAbsolute(?string $pathToCheck): bool {
+		if ($pathToCheck === null || $pathToCheck === '') {
+			return false;
 		}
-		else{//WIN
-			return ( ':' == $pathToCheck{1} );
+
+		// Check for stream wrappers first (always absolute)
+		if (\preg_match('@^(?:' . \implode('|', \stream_get_wrappers()) . ')://@', $pathToCheck)) {
+			return true;
+		}
+
+		// Unix-like: absolute paths start with /
+		if ($pathToCheck[0] === '/') {
+			return true;
+		}
+
+		// Windows: check for drive letter (C:) or UNC path (\\server\share)
+		// Works on any platform for checking any path format
+		$len = \strlen($pathToCheck);
+		if ($len >= 2) {
+			// Drive letter: C:, D:, etc.
+			if ($pathToCheck[1] === ':') {
+				return true;
+			}
+			// UNC path: \\server\share
+			if ($pathToCheck[0] === '\\' && $pathToCheck[1] === '\\') {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	* Writes string to stderr instead of stdout.
+	*
+	* @param string $str String to output
+	* @return int Number of bytes written
+	**/
+	public static function err(string $str): int {
+		return \file_put_contents('php://stderr', $str);
+	}
+
+	/**
+	* Increments and returns hit counter.
+	*
+	* @param int $count Count to compare
+	* @return bool|int True if counter equals $count, otherwise current counter value
+	**/
+	public static function hitCount(int $count): bool|int {
+		if (++self::$hitCounter === $count) {
+			return true;
+		}
+		return self::$hitCounter;
+	}
+
+	/**
+	* Terminates execution with exception if count exceeded.
+	*
+	* @param int $count Count to compare
+	* @param string $message Exception message
+	* @throws HaltException If count is reached
+	**/
+	public static function exitCount(int $count, string $message = ''): void {
+		if (true === self::hitCount($count)) {
+			throw new HaltException($message, 0);
 		}
 	}
-}#c OS
-?>
+}

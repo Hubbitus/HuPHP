@@ -1,0 +1,5 @@
+[default]
+
+[default.extend-words]
+macroses = "macroses"
+Consts = "Consts"

@@ -1,130 +1,130 @@
-<?
+<?php
+declare(strict_types=1);
+
+namespace Hubbitus\HuPHP\Vars;
+
+use Hubbitus\HuPHP\Vars\Settings\Settings;
+use Hubbitus\HuPHP\Macro\Vars;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
+
 /**
 * Class to provide OOP interface to array operations.
 *
+* @property mixed $_last_
 * @package Vars
 * @version 1.2.4
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created ?2008-09-22 17:55 ver 1.1 to 1.1.1
-*
-* @uses REQUIRED_NOT_NULL()
-* @uses VariableIsNullException
-* @uses settings
 **/
-
-include_once('macroses/REQUIRED_VAR.php');
-
-class HuArray extends settings implements Iterator{
-const huScheme = 'hu://';
+class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \JsonSerializable {
+	private const string HU_SCHEME = 'hu://';
 
 	/**
 	* Constructor.
 	*
-	* @param	(array)mixed=null	$array	 Mixed, explicit cast as array!
+	* @param ?array $array Initial value
 	**/
-	function __construct(/*(array)*/ $array = null){
-		parent::__construct((array)$array);
-	}#__c
+	public function __construct(?array $array = null) {
+		parent::__construct($array ?? []);
+	}
 
 	/**
 	* Push values.
 	*
-	* @param	mixed	$var.
-	* @params	mixed	any amount of vars (First explicity to make mandatory one at once)
-	* @return	&$this
+	* @param mixed $var
+	* @param mixed ...$args
 	**/
-	public function &push($var){
+	public function &push($var, ...$args): static {
 		//On old PHP got error: PHP Fatal error:  func_get_args(): Can't be used as a function parameter in /home/_SHARED_/Vars/HuArray.php on line 58
 		//call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), func_get_args()));
 		//Do the same with temp var:
-		$args = func_get_args();
-		call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $args));
+		$args = \func_get_args();
+		\call_user_func_array('array_push', \array_merge([0 => &$this->__SETS], $args));
 		return $this;
-	}#m push
+	}
 
 	/**
 	* Push array of values.
 	*
-	* @param 	array	$arr
-	* @return	&$this
+	* @param array $arr
+	* @return static
 	**/
-	public function &pushArray(array $arr){
-		if ($arr)
-			call_user_func_array('array_push', array_merge(array(0 => &$this->__SETS), $arr));
+	public function &pushArray(array $arr): static {
+		if ($arr !== []) {
+			foreach ($arr as $value) {
+				$this->__SETS[] = $value;
+			}
+		}
 		return $this;
-	}#m pushArray
+	}
 
 	/**
 	* Push values from Object(HuArray).
 	*
-	* @param 	mixed	$var.
-	* @return	$this->pushArray()
+	* @param HuArray $arr
 	**/
-	public function &pushHuArray(HuArray $arr){
+	public function &pushHuArray(HuArray $arr): static {
 		return $this->pushArray($arr->getArray());
-	}#m pushHuArray
+	}
 
 	/**
 	* Return last element in array. Reference, direct-editable!!
-	*
-	* @return &mixed
 	**/
-	public function &last(){
-		end($this->__SETS);
-		return $this->__SETS[key($this->__SETS)];
-	}#m last
+	public function &last(): mixed {
+		\end($this->__SETS);
+		return $this->__SETS[\key($this->__SETS)];
+	}
 
 	/**
 	* Return Array representation (cast to (array)).
-	*
-	* @return	array
 	**/
-	public function getArray(){
+	public function getArray(): array {
 		return $this->__SETS;
-	}#m getArray
+	}
 
 	/**
 	* {@see http://php.net/array_slice}
 	*
-	* @param	integer	$offset
-	*	Если параметр offset положителен, последовательность начнётся на расстоянии offset от начала array. Если offset отрицателен, последовательность начнётся на расстоянии offset от конца.
-	* @param	integer	$length
-	*	Если в эту функцию передан положительный параметр length, последовательность будет включать length элементов. Если в эту функцию передан отрицательный параметр length, в последовательность войдут все элементы исходного массива, начиная с позиции offset и заканчивая позицией, отстоящей на length элементов от конца. Если этот параметр будет опущен, в последовательность войдут все элементы исходного массива, начиная с позиции offset.
-	* @param	boolean	$preserve_keys
-	*	Обратите внимание, поумолчанию сбрасываются ключи массива. Можно переопределить это поведение, установив параметр preserve_keys в TRUE.
-	* @return Object(HuArray)
+	* @param int $offset
+	*   If offset is positive, the sequence will start at that offset in the array. If offset is negative, the sequence will start that far from the end of the array.
+	* @param int|null $length
+	*   If length is positive, the sequence will have up to length elements. If length is negative, the sequence will stop that many elements from the end of the array. If omitted, the sequence will include all elements from offset to the end.
+	* @param bool $preserve_keys
+	*   Note that by default array keys are reset. You can override this behavior by setting preserve_keys to TRUE.
 	**/
-	public function getSlice($offset, $length = null, $preserve_keys = false){
-		return new HuArray(array_slice($this->__SETS, $offset, EMPTY_VAR($length, sizeof($this->__SETS)), $preserve_keys));
-	}#m getSlice
+	public function getSlice($offset, ?int $length = null, bool $preserve_keys = false): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_slice($this->__SETS, $offset, Vars::firstMeaning($length, \sizeof($this->__SETS)), $preserve_keys));
+	}
 
 	/**
 	* Overload to return reference.
 	*
-	* @param	mixed	$name
-	* @return	&mixed
-	* @Throws(VariableIsNullException)
+	* @param string $name
+	* @throws VariableIsNullException
 	**/
-	public function &getProperty($name){
-		return $this->__SETS[REQUIRED_NOT_NULL($name)];
-	}#m getProperty
+	#[\Override]
+	public function &getProperty($name): mixed {
+		$key = Vars::requiredNotNull($name);
+		return $this->__SETS[$key];
+	}
 
-	/**
-	* @var	&mixed	->_last_
-	**/
 	/**
 	* Overload to return reference.
 	*
-	* @param	mixed	$name
-	* @return	&mixed
+	* @param string $name
 	**/
-	function &__get($name){
+	#[\Override]
+	public function &__get(string $name): mixed {
 		/**
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
-		if ('_last_' == $name) return $this->last();
+		if ('_last_' === $name) {
+			return $this->last();
+		}
 		/*
 		* Short form of ::hu. To allow constructions like:
 		* $obj->{'hu://varName'}->{'hu://0'};
@@ -132,91 +132,108 @@ const huScheme = 'hu://';
 		* $obj->hu('varName')->hu(0);
 		* As you like
 		**/
-		elseif( self::huScheme == substr($name, 0, strlen(self::huScheme)) ) return $this->hu( substr($name, strlen(self::huScheme)) );
-		else
+		elseif (self::HU_SCHEME === \substr($name, 0, \strlen(self::HU_SCHEME))) {
+			return $this->hu(\substr($name, \strlen(self::HU_SCHEME)));
+		}
+		else {
 			return $this->getProperty($name);
-	}#m __get
+		}
+	}
 
 	/**
 	* Like standard {@see __get()}, but if returned value is regular array, convert it into HuArray and return reference to it.
 	* @example:
 	* $ha = new HuArray(
-	*	array(
-	*		'one' => 1
-	*		,'two' => 2
-	*		,'arr' => array(0, 11, 22, 777)
-	*	)
+	*   [
+	*     'one' => 1
+	*     ,'two' => 2
+	*     ,'arr' => [0, 11, 22, 777]
+	*   ]
 	* );
-	* dump::a($ha->one);
-	* dump::a($ha->arr);					// Result Array (raw, as is)!
-	* dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
-	* dump::a($ha->hu('arr')->hu(2));			// Property access. Alse as any HuArray methods like walk(), filter() and any other.
-	* dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternative method ({@see ::__get()}). Another, form.
+	* Dump::a($ha->one);
+	* Dump::a($ha->arr);                       // Result Array (raw, as is)!
+	* Dump::a($ha->hu('arr'));                 // Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
+	* Dump::a($ha->hu('arr')->hu(2));          // Property access. Also as any HuArray methods like walk(), filter() and any other.
+	* Dump::a($ha->{'hu://arr'}->{'hu://2'});  // Alternative method ({@see ::__get()}). Another, form.
 	* Also this form is allow writing:
 	* $ha->{'hu://arr'} = 'Qwerty';
 	*
-	* @param	mixed	$name
-	* @return	&mixed
+	* @param mixed $name
 	**/
-	function &hu($name){
-		if (is_array($this->$name)) $this->$name = new HuArray($this->$name);
+	public function &hu($name): mixed {
+		/** @var array|mixed $prop */
+		$prop = $this[$name];
+		if (\is_array($prop)) {
+			$this[$name] = new HuArray($prop);
+		}
 		return $this->getProperty($name);
-	}#m hu
+	}
 
 	/**
-	* Allow change value by short direct form->setttingName = 'qwerty';
+	* Allow change value by short direct form->settingName = 'qwerty';
 	*
 	* @param	string	$name
 	* @param	mixed	$value
 	**/
-	function &__set($name, $value){
+	#[\Override]
+	public function __set($name, $value): void {
 		/**
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
-		if ('_last_' == $name){
-			$ref =& $this->last();
+		if ('_last_' === $name){
+			// Direct assignment to last element
+			\end($this->__SETS);
+			$key = \key($this->__SETS);
+			$this->__SETS[$key] = $value;
+			return;
 		}
-		elseif( self::huScheme == substr($name, 0, strlen(self::huScheme)) ) $ref =& $this->hu( substr($name, strlen(self::huScheme)) );
+		elseif( self::HU_SCHEME === substr($name, 0, strlen(self::HU_SCHEME)) ) {
+			// Short form hu:// - convert to HuArray if needed and return
+			$key = substr($name, strlen(self::HU_SCHEME));
+			if (\is_array($this->__SETS[$key] ?? null)) {
+				$this->__SETS[$key] = new HuArray($this->__SETS[$key]);
+			}
+			$this->__SETS[$key] = $value;
+			return;
+		}
 		else{
-			$ref =& $this->getProperty($name);
+			$key = $name;
 		}
-		$ref = $value;
-	}#m __set
+		$this->__SETS[$key] = $value;
+	}
 
 	/**
 	* Apply callback function to each element.
 	*
-	* @param	callback	$callback
-	* @return	&$this
+	* @param callable $callback
 	**/
-	public function walk($callback){
+	public function walk($callback): static {
 		array_walk($this->__SETS, $callback);
 		return $this;
-	}#m walk
+	}
 
 	/**
 	* Filter array, using callback. If the callback function returns true, the current value from input is returned into the result
-	* array. Array keys are preserved.
+	* array. Array keys are preserved and NOT reindexed.
 	*
-	* @param	callback	$callback
-	* @return	&$this
+	* @param callable $callback
 	**/
-	public function &filter($callback){
-		$this->__SETS = array_filter($this->__SETS, $callback);
-		return $this;
-	}#m filter
+	public function filter($callback): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(array_filter($this->__SETS, $callback));
+	}
 
 	/**
 	* Filter array by keys and leave only mentioned in $keys array
 	*
 	* @param	array	$keys
-	* @return	&$this
 	**/
-	public function &filterByKeys(array $keys){
-		$this->__SETS = array_diff_key( $this->__SETS, array_flip(  array_intersect(   array_keys($this->__SETS), $keys   )  ) );
+	public function &filterByKeys(array $keys): static {
+		$this->__SETS = \array_intersect_key($this->__SETS, \array_flip($keys));
 		return $this;
-	}#m filterByKeys
+	}
 
 	/**
 	* Filter array by keys and leave only NOT mentioned in $keys array (opposite to method {@see ::filterByKeys()})
@@ -224,77 +241,446 @@ const huScheme = 'hu://';
 	* Implementation idea taken from: http://ru.php.net/array_filter comment of niehztog
 	*
 	* @param	array	$keys
-	* @return	&$this
 	**/
-	public function &filterOutByKeys(array $keys){
-		$this->__SETS = array_diff_key( $this->__SETS, array_flip($keys) );
+	public function &filterOutByKeys(array $keys): static{
+		$this->__SETS = \array_diff_key( $this->__SETS, \array_flip($keys) );
 		return $this;
-	}#m filterOutByKeys
+	}
 
 	/**
 	* Similar to {@see ::filer()} except of operate by keys instead of values.
 	*
-	* @param	callback	$callback
-	* @return	&$this
+	* @param callable $callback
 	**/
-	public function &filterKeysCallback($callback){
-		$keys = new self(array_flip( $this->__SETS ));
-		$keys->filter($callback);
-		$this->filterByKeys($keys->getArray());
+	public function &filterKeysCallback($callback): static {
+		$this->__SETS = \array_filter($this->__SETS, $callback, \ARRAY_FILTER_USE_KEY);
 		return $this;
-	}#m filterKeysCallback
+	}
 
 	/**
 	* Implode to the string using provided delimiter.
 	*
-	* @param	string=''	$delim
-	* @return	string
+	* @param string $delim
 	**/
-	public function implode($delim = ''){
+	public function implode($delim = ''): string {
 		return implode($delim, $this->__SETS);
-	}#m implode
+	}
 
 	/**
 	* Return number of elements
 	*
-	* @return	int
+	* @return int<0, max>
 	**/
-	public function count(){
-		return count($this->__SETS);
-	}#m count
+	public function count(): int {
+		return \count($this->__SETS);
+	}
 
 	/**
 	* Iteratively reduce the array to a single value using a callback function.
 	* @link http://ru.php.net/array_reduce
 	*
-	* @param	callback	$callback
-	* @param	integer	$initial
-	* @return	mixed
+	* @param callable $callback
+	* @param int $initial
 	**/
 	public function reduce($callback, $initial = 0){
 		return array_reduce($this->__SETS, $callback, $initial);
-	}#m reduce
+	}
 
-	/// From interface Iterator ///
+	/** Implementation of {@see \Iterator} methods **/
 
-	public function rewind(){
-		reset($this->__SETS);
-	}#m rewind
+	#[\Override]
+	public function rewind(): void {
+		\reset($this->__SETS);
+	}
 
-	public function current(){
-		return /* $var = */ current($this->__SETS);
-	}#m current
+	#[\Override]
+	public function current(): mixed {
+		return \current($this->__SETS);
+	}
 
-	public function key(){
-		return /* $var = */ key($this->__SETS);
-	}#m key
+	#[\Override]
+	public function key(): int|string|null {
+		return \key($this->__SETS);
+	}
 
-	public function next(){
-		return /* $var =*/ next($this->__SETS);
-	}#m next
+	#[\Override]
+	public function next(): void {
+		\next($this->__SETS);
+	}
 
-	public function valid(){
-		return ($this->current() !== false);
-	}#m valid
-}#c HuArray
-?>
+	#[\Override]
+	public function valid(): bool {
+		return \current($this->__SETS) !== false;
+	}
+	/** /Implementation of {@see \Iterator} methods **/
+
+	public function toArray(): array {
+		return $this->__SETS;
+	}
+
+	public function toJson(int $options = 0): string {
+		return \json_encode($this->__SETS, $options);
+	}
+
+	public static function fromJson(string $json): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\json_decode($json, true));
+	}
+
+	public function isEmpty(): bool {
+		return $this->__SETS === [];
+	}
+
+	public function getByKey($key): mixed {
+		return $this->__SETS[$key] ?? null;
+	}
+
+	public function &setByKey($key, $value): static {
+		$this->__SETS[$key] = $value;
+		return $this;
+	}
+
+	public function getByIndex(int $index): mixed {
+		$keys = \array_keys($this->__SETS);
+		return $this->__SETS[$keys[$index]] ?? null;
+	}
+
+	public function &setByIndex(int $index, $value): static {
+		$keys = \array_keys($this->__SETS);
+		if (isset($keys[$index])) {
+			$this->__SETS[$keys[$index]] = $value;
+		}
+		return $this;
+	}
+
+	public function has($key): bool {
+		return isset($this->__SETS[$key]);
+	}
+
+	public function first(): mixed {
+		if ($this->__SETS === []) {
+			return null;
+		}
+		return \reset($this->__SETS);
+	}
+
+	public function &append($value): static {
+		$this->__SETS[] = $value;
+		return $this;
+	}
+
+	public function &prepend($value): static {
+		\array_unshift($this->__SETS, $value);
+		return $this;
+	}
+
+	public function pop(): mixed {
+		return \array_pop($this->__SETS);
+	}
+
+	public function shift(): mixed {
+		return \array_shift($this->__SETS);
+	}
+
+	public function &unshift($value): static {
+		\array_unshift($this->__SETS, $value);
+		return $this;
+	}
+
+	public function keys(): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_keys($this->__SETS));
+	}
+
+	public function values(): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_values($this->__SETS));
+	}
+
+	public function flip(): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_flip($this->__SETS));
+	}
+
+	public function reverse(bool $preserve_keys = false): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_reverse($this->__SETS, $preserve_keys));
+	}
+
+	public function chunk(int $size): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_chunk($this->__SETS, $size));
+	}
+
+	public function slice(int $offset, ?int $length = null, bool $preserve_keys = false): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_slice($this->__SETS, $offset, $length, $preserve_keys));
+	}
+
+	public function splice(int $offset, ?int $length = null, array $replacement = []): static {
+		$spliced = \array_splice($this->__SETS, $offset, $length ?? \count($this->__SETS), $replacement);
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static($spliced);
+	}
+
+	public function &merge($arr): static {
+		if ($arr instanceof static) {
+			$arr = $arr->toArray();
+		}
+		$this->__SETS = \array_merge($this->__SETS, $arr);
+		return $this;
+	}
+
+	public function diff($arr): static {
+		if ($arr instanceof static) {
+			$arr = $arr->toArray();
+		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_diff($this->__SETS, $arr));
+	}
+
+	public function udiff($arr): static {
+		if ($arr instanceof static) {
+			$arr = $arr->toArray();
+		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_values(\array_udiff($this->__SETS, $arr, fn($a, $b) => $a <=> $b)));
+	}
+
+	public function intersect($arr): static {
+		if ($arr instanceof static) {
+			$arr = $arr->toArray();
+		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_values(\array_intersect($this->__SETS, $arr)));
+	}
+
+	public function unique(): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_values(\array_unique($this->__SETS)));
+	}
+
+	public function map(callable $callback): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_map($callback, $this->__SETS));
+	}
+
+	public function every(callable $callback): bool {
+		foreach ($this->__SETS as $key => $value) {
+			if (!$callback($value, $key)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public function some(callable $callback): bool {
+		foreach ($this->__SETS as $key => $value) {
+			if ($callback($value, $key)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public function find(callable $callback): mixed {
+		foreach ($this->__SETS as $key => $value) {
+			if ($callback($value, $key)) {
+				return $value;
+			}
+		}
+		return null;
+	}
+
+	public function search($search): int|false {
+		return \array_search($search, $this->__SETS, true);
+	}
+
+	public function check($key): bool {
+		return isset($this->__SETS[$key]);
+	}
+
+	public function &tap(callable $callback): static {
+		$callback($this);
+		return $this;
+	}
+
+	public function pipe(callable $callback): mixed {
+		return $callback($this);
+	}
+
+	public function when($condition, callable $callback): static {
+		if ($condition) {
+			$result = $callback($this);
+			return $result instanceof static ? $result : $this;
+		}
+		return $this;
+	}
+
+	public function unless($condition, callable $callback): static {
+		if (!$condition) {
+			$result = $callback($this);
+			return $result instanceof static ? $result : $this;
+		}
+		return $this;
+	}
+
+	public function pluck($key): static {
+		$result = [];
+		foreach ($this->__SETS as $item) {
+			if (\is_array($item) && isset($item[$key])) {
+				$result[] = $item[$key];
+			} elseif (\is_object($item)) {
+				$itemArr = (array)$item;
+				if (isset($itemArr[$key])) {
+					$result[] = $itemArr[$key];
+				}
+			}
+		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static($result);
+	}
+
+	public function flatten(int $depth = PHP_INT_MAX): static {
+		$result = [];
+		\array_walk_recursive($this->__SETS, function($a) use (&$result) {
+			$result[] = $a;
+		});
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static($result);
+	}
+
+	public function fill(int $start_index, int $count, $value): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_fill($start_index, $count, $value));
+	}
+
+	public function pad(int $size, $value): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_pad($this->__SETS, $size, $value));
+	}
+
+	public function column($column_key, $index_key = null): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_column($this->__SETS, $column_key, $index_key));
+	}
+
+	public function combine($values): static {
+		if ($values instanceof static) {
+			$values = $values->toArray();
+		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_combine($this->__SETS, $values));
+	}
+
+	public function assoc(): static {
+		$result = [];
+		$keys = \array_keys($this->__SETS);
+		for ($i = 0; $i < \count($keys); $i += 2) {
+			if (isset($keys[$i + 1])) {
+				$result[$this->__SETS[$keys[$i]]] = $this->__SETS[$keys[$i + 1]];
+			}
+		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static($result);
+	}
+
+	public function &unsetByKey($key): static {
+		unset($this->__SETS[$key]);
+		return $this;
+	}
+
+	public function &unsetByIndex(int $index): static {
+		$keys = \array_keys($this->__SETS);
+		if (isset($keys[$index])) {
+			unset($this->__SETS[$keys[$index]]);
+		}
+		return $this;
+	}
+
+	public function sort(?callable $callback = null): static {
+		if ($callback !== null) {
+			\usort($this->__SETS, $callback);
+		} else {
+			\sort($this->__SETS);
+		}
+		return $this;
+	}
+
+	public function zip($arr): static {
+		if ($arr instanceof static) {
+			$arr = $arr->toArray();
+		}
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\array_map(null, $this->__SETS, $arr));
+	}
+
+	public static function range($start, $end, $step = 1): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\range($start, $end, $step));
+	}
+
+	public static function explode(string $delimiter, string $string): static {
+		// Late Static Binding is intentional - allows child classes to return their own instances
+		// @phpstan-ignore new.static
+		return new static(\explode($delimiter, $string));
+	}
+
+	/** Implementation of {@see \ArrayAccess} methods **/
+	#[\Override]
+	public function offsetExists($offset): bool {
+		return isset($this->__SETS[$offset]);
+	}
+
+	#[\Override]
+	public function offsetGet($offset): mixed {
+		return $this->__SETS[$offset] ?? null;
+	}
+
+	#[\Override]
+	public function offsetSet($offset, $value): void {
+		if ($offset === null) {
+			$this->__SETS[] = $value;
+		} else {
+			$this->__SETS[$offset] = $value;
+		}
+	}
+
+	public function offsetUnset($offset): void {
+		unset($this->__SETS[$offset]);
+		}
+	/** /Implementation of {@see \ArrayAccess} methods **/
+
+	// String conversion
+	public function __toString(): string {
+		return \json_encode($this->__SETS);
+	}
+
+	#[\Override]
+	// JsonSerializable interface method
+	public function jsonSerialize(): array {
+		return $this->__SETS;
+	}
+}

@@ -1,33 +1,44 @@
-<?
-class SerializedData{
-private $__data = array();
+<?php
+declare(strict_types=1);
 
-//В классе могут стихийно появляться открытые свойства, используем как контейнер для них
-//public $text = 'Какой-то текст';
+namespace Hubbitus\HuPHP\Vars;
 
-	function __construct (&$serializedStr = null){
-		if ($serializedStr){//Если не задано, то создается контейнер, ничего не надо, просто заполнять его
-			if (! ($this->__data = @unserialize($serializedStr)) ){
-			throw new SerializeException('Ошибка во время ДЕсериализации объекта');
+use Hubbitus\HuPHP\Exceptions\SerializeException;
+
+class SerializedData {
+	private array $__data = [];
+
+	public function __construct(?string $serializedStr = null){
+		if ($serializedStr !== null) {
+			$unSerialized = @\unserialize($serializedStr);
+			if ($unSerialized === false && $serializedStr !== 'b:0;') {
+				throw new SerializeException('Error happened in deserialization');
 			}
+			$this->__data = $unSerialized;
 		}
 	}
 
-	function __get($name){
-	return $this->__data[$name];
-	}#m __get
+	public function __get($name): mixed {
+		return $this->__data[$name] ?? null;
+	}
 
-	function __set($name, $val){
-	$this->__data[$name] = $val;
-	}#m __set
+	public function __set($name, $val): void {
+		$this->__data[$name] = $val;
+	}
 
-	//It is worth noting that before PHP 5.2.0 the __toString  method was only called when it was directly combined with echo() or print().
-	function __toString(){
-	return serialize($this->__data);
-	}#m __toString
+	public function __isset($name): bool {
+		return isset($this->__data[$name]);
+	}
 
-	function toString(){
-	return $this->__toString();
-	}#m __toString
-}#c SerializedData
-?>
+	public function __unset($name): void {
+		unset($this->__data[$name]);
+	}
+
+	public function __toString(): string {
+		return \serialize($this->__data);
+	}
+
+	public function toString(): string {
+		return $this->__toString();
+	}
+}

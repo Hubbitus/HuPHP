@@ -1,1 +1,8 @@
-.tools/regenerate.all.log
+/.tools/regenerate.all.log
+/.tools/Packages/build/
+/.tools/
+/vendor/
+/build/
+/.phpunit.result.cache
+*.log
+/@phpdocs/

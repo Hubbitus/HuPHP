@@ -1,24 +1,24 @@
 #!/bin/bash
 
-# Regenerate all generated stuff: Autoincludes, Docs, Packages (Phar, OneFile)
+# Regenerate all generated stuff: auto-includes, Docs, Packages (Phar, OneFile)
+
+cd $(dirname $0)
+PROJECT_ROOT="$(pwd)/.."
 
 {
-#./auto_extract_class_map.bash
+set -xe
+rm -rf "./Packages/build/*"
 
-rm -f ./Packages/{HuDebug.phar,one.Debug.php}
+echo '1) Simple test run unpackaged (raw):';
+php ./Packages/Raw.test.php
 
-./Packages/makeHuDebug.phar.php
-#./Packages/makeOneFile.php
+echo '2) Create Phar distribution:'
+php ./Packages/Phar.make.php
+echo '2.1) Simple test run PHAR:';
+php ./Packages/Phar.test.php
 
+echo '4) Generate PHPDoc documentation:'
 # This command in: https://github.com/Hubbitus/shell.scripts
-#huPhpDoc .
+./generate-phpdoc.sh
 
-#echo 'Simple test run UNPACKED:';
-#./Packages/test.unpacked.php
-
-#echo 'Simple test run PHAR:';
-#./Packages/test.HuDebug.phar.php
-
-#echo 'Simple test run ONEFILE:';
-#./Packages/test.HuDebug.One.php
-} | tee regenerate.all.log
+} 2>&1 | tee ${PROJECT_ROOT}/.tools/regenerate.all.log
