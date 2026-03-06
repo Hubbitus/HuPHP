@@ -14,7 +14,7 @@ rm -f "$PROJECT_ROOT/phpdoc.xml" "$PROJECT_ROOT/phpdoc.xml.dist" "$PROJECT_ROOT/
 # Use phpdocumentor v3 with minimal working options
 if [ -x "$PROJECT_ROOT/vendor/bin/phpdoc" ]; then
     # Try the most compatible command for v3
-    php "$PROJECT_ROOT/vendor/bin/phpdoc" project:run \
+    php -d memory_limit=-1 "$PROJECT_ROOT/vendor/bin/phpdoc" project:run \
         --directory "$PROJECT_ROOT" \
         --target "$PROJECT_ROOT/@phpdocs" \
         --title "Pavel Alexeev aka Pahan-Hubbitus HuPHP framework documentation" \
@@ -22,7 +22,7 @@ if [ -x "$PROJECT_ROOT/vendor/bin/phpdoc" ]; then
         --parseprivate \
         --sourcecode \
         --template default \
-        --ignore @phpdocs,.git,.svn,phpdocs.log 2>&1 | tee "$PROJECT_ROOT/.tools/phpdocs.log"
+        --ignore @phpdocs,.git,.svn,vendor,phpdocs.log 2>&1 | tee "$PROJECT_ROOT/.tools/phpdocs.log"
     
     echo "PHPDoc generation completed"
 else

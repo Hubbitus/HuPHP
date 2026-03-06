@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+  issue_comment:
+    types: [created]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Generate version
+        id: generate_version
+        run: |
+          VERSION="v$(date +'%Y%m%d%H%M%S')"
+          if [[ "${{ github.event_name }}" == "issue_comment" ]]; then
+            VERSION="$VERSION-pr"
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Create Release for master
+        if: github.event_name == 'push'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: false
+
+      - name: Create Release for PR
+        if: |
+          github.event_name == 'issue_comment' &&
+          github.event.issue.pull_request &&
+          contains(github.event.comment.body, '/release') &&
+          (github.event.comment.author_association == 'COLLABORATOR' || github.event.comment.author_association == 'OWNER')
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: true

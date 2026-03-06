@@ -132,7 +132,9 @@ OS::err('Error message'); // Write to stderr
 
 ## Building Distributions
 
-The framework can be built into packages:
+The framework can be built into a PHAR package. This process is automated via the CI workflow.
+
+To build the packages manually, run:
 
 ```bash
 # Build all packages (raw, phar, single file)
@@ -141,24 +143,18 @@ The framework can be built into packages:
 
 Built packages will be placed in `.tools/Packages/build/`.
 
-**Note:** Building requires additional tools and is primarily for maintainers.
-
 ## Developer Documentation
 
-Full API documentation is available in the `@phpdocs/` directory (generated with phpDocumentor):
+Full API documentation is automatically generated and deployed to GitHub Pages.
 
-```bash
-# Open in browser
-xdg-open @phpdocs/index.html  # Linux
-open @phpdocs/index.html      # macOS
-start @phpdocs\index.html     # Windows
-```
+**[View Documentation](https://OWNER.github.io/REPO/)**
 
-To regenerate documentation:
+To generate the documentation locally:
 
 ```bash
 ./.tools/generate-phpdoc.sh
 ```
+The documentation will be generated in the `@phpdocs/` directory.
 
 ## Examples
 
@@ -249,75 +245,17 @@ MIT License. See LICENSE file for details.
 
 ## Testing
 
-The framework includes comprehensive PHPUnit tests to ensure reliability and maintainability.
+The project uses PHPUnit for unit testing. All tests are run automatically on every commit via the CI workflow.
 
-### Running Tests
-
-To run all tests:
+To run the tests manually:
 
 ```bash
 ./tests/run-tests.sh
 ```
 
-This script runs PHPUnit with coverage reporting enabled.
+### Test Coverage
 
-### Coverage Reporting
-
-After running tests, coverage reports are generated in the `build/` directory:
-- `build/coverage/` - HTML coverage report (open `build/coverage/index.html` in browser)
-- `build/coverage.txt` - Text-based coverage summary
-
-### Requirements for Testing
-
-- PHP 8.3+ with Xdebug extension enabled
-- Composer dependencies installed (`composer install`)
-
-### Writing Tests
-
-Tests should be placed in `tests/` directory following the same structure as the source code.
-
-Example test file structure:
-```
-tests/
-├── Debug/
-│   └── BacktraceTest.php
-├── Exceptions/
-│   └── BaseExceptionTest.php
-├── Filesystem/
-│   └── FileInMemoryTest.php
-├── Macro/
-│   └── MacrosTest.php
-├── RegExp/
-│   └── RegExpPcreTest.php
-├── System/
-│   └── ProcessTest.php
-└── Vars/
-    └── NullClassTest.php
-```
-
-Each test class should extend `PHPUnit\Framework\TestCase` and use strict types declaration.
-
-### Current Coverage Status
-
-**As of this version, the framework has 100% test coverage:**
-
-- **Classes:** 100.00% (56/56)
-- **Methods:** 100.00% (419/419)
-- **Lines:** 100.00% (1771/1771)
-
-All tests pass with zero warnings, deprecations, or risky tests.
-
-### Test Script Options
-
-The `tests/run-tests.sh` script supports the following options:
-- `--help` - Show help information
-- `--no-coverage` - Skip coverage report generation
-- `--verbose` - Enable verbose output
-
-Example:
-```bash
-./tests/run-tests.sh --verbose
-```
+The project has 100% test coverage. The coverage report is generated automatically by the CI workflow.
 
 ## Static Analysis (PHPStan)
 
@@ -365,6 +303,29 @@ Example error:
 
 Some legacy code may have PHPStan errors that require significant refactoring. These are temporarily ignored in `phpstan.neon` with the intention to fix them gradually.
 
+## CI/CD
+
+This project uses GitHub Actions for Continuous Integration and Continuous Deployment.
+
+[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
+[![Release](https://github.com/OWNER/REPO/actions/workflows/release.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/release.yml)
+
+### Continuous Integration
+
+The CI workflow (`.github/workflows/ci.yml`) runs on every commit and pull request to the `master` branch. It performs the following checks:
+
+1.  **Linting**: Runs `./tests/lint.sh` to check for code style issues.
+2.  **Testing**: Runs `./tests/run-tests.sh` to execute the full PHPUnit test suite.
+3.  **Regeneration**: Runs `./.tools/regenerate.all` to ensure all generated files are up-to-date.
+
+If any of these steps fail, the workflow will fail and upload the log files as artifacts for debugging.
+
+### Release Process
+
+The release process is automated using the `.github/workflows/release.yml` workflow.
+
+-   **Automatic Releases**: When a commit is pushed to the `master` branch, a new release is automatically created with a version tag in the format `vYYYYMMDDHHMMSS`.
+-   **Pre-releases from Pull Requests**: To create a pre-release from a pull request, a collaborator can comment `/release` on the PR. This will trigger the workflow to create a pre-release with a `-pr` suffix in the version tag.
 
 ## Contributing
 

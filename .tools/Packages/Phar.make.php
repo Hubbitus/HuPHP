@@ -22,13 +22,6 @@ require('config.php');
 // Load the composer autoloader which includes our custom autoloader
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-// Load macro functions
-require_once __DIR__ . '/../../macroses/REQUIRED_NOT_NULL.php';
-require_once __DIR__ . '/../../macroses/REQUIRED_VAR.php';
-require_once __DIR__ . '/../../macroses/EMPTY_VAR.php';
-require_once __DIR__ . '/../../macroses/EMPTY_STR.php';
-require_once __DIR__ . '/../../macroses/EMPTY_INT.php';
-
 	// create a new phar - phar.readonly must be 0 in php.ini
 	// phar.readonly is enabled by default for security reasons.
 	// On production servers, PHAR need never be created, only executed.
@@ -48,7 +41,7 @@ require_once __DIR__ . '/../../macroses/EMPTY_INT.php';
 				$relativePath = str_replace(__DIR__ . '/../../', '', $path);
 
 				// Skip certain directories
-				if (!preg_match('/^(.tools|.git|vendor)/', $relativePath)) {
+				if (!preg_match('/^(.tools|.git)/', $relativePath)) {
 					$includes[] = $relativePath;
 				}
 			}
@@ -75,7 +68,7 @@ require_once __DIR__ . '/../../macroses/EMPTY_INT.php';
 
 		$p->setStub('<?php
 Phar::mapPhar("' . FILENAME_PHAR . '");
-require_once "phar://' . FILENAME_PHAR . '/HuPHP.autoload.php";
+require_once "phar://' . FILENAME_PHAR . '/vendor/autoload.php";
 __HALT_COMPILER();');
 		fwrite(STDERR, 'PHAR file created successfully: ' . FILEPATH_PHAR . PHP_EOL);
 	} else {
