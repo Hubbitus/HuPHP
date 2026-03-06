@@ -21,7 +21,7 @@ Modern PHP framework supporting PHP 8.0+ for common tasks like debugging, loggin
 
 ## Requirements
 
-- PHP 8.3 or higher
+- PHP 8.4 or higher
 - Composer (for installation)
 
 ## Installation
