@@ -15,7 +15,13 @@ rm -f "$PROJECT_ROOT/phpdoc.xml" "$PROJECT_ROOT/phpdoc.xml.dist" "$PROJECT_ROOT/
 if [ -x "$PROJECT_ROOT/vendor/bin/phpdoc" ]; then
     # Try the most compatible command for v3
     php -d memory_limit=-1 "$PROJECT_ROOT/vendor/bin/phpdoc" project:run \
-        --directory "$PROJECT_ROOT" \
+        --directory "$PROJECT_ROOT/Debug" \
+        --directory "$PROJECT_ROOT/Exceptions" \
+        --directory "$PROJECT_ROOT/Filesystem" \
+        --directory "$PROJECT_ROOT/Macro" \
+        --directory "$PROJECT_ROOT/RegExp" \
+        --directory "$PROJECT_ROOT/System" \
+        --directory "$PROJECT_ROOT/Vars" \
         --target "$PROJECT_ROOT/@phpdocs" \
         --title "Pavel Alexeev aka Pahan-Hubbitus HuPHP framework documentation" \
         --visibility public \

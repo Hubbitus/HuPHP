@@ -26,6 +26,20 @@ jobs:
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, intl, gd, xml, dom, zip, bz2
+          tools: composer
+          ini-values: phar.readonly=0
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Regenerate All
+        run: bash ./.tools/regenerate.all
+
       - name: Create Release for master
         if: github.event_name == 'push'
         uses: actions/create-release@v1
@@ -36,6 +50,9 @@ jobs:
           release_name: Release ${{ env.VERSION }}
           draft: false
           prerelease: false
+          asset_path: ./.tools/Packages/build/HuPHP.phar
+          asset_name: HuPHP.phar
+          asset_content_type: application/octet-stream
 
       - name: Create Release for PR
         if: |
@@ -51,3 +68,6 @@ jobs:
           release_name: Release ${{ env.VERSION }}
           draft: false
           prerelease: true
+          asset_path: ./.tools/Packages/build/HuPHP.phar
+          asset_name: HuPHP.phar
+          asset_content_type: application/octet-stream
