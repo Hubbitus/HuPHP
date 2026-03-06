@@ -147,7 +147,7 @@ Built packages will be placed in `.tools/Packages/build/`.
 
 Full API documentation is automatically generated and deployed to GitHub Pages.
 
-**[View Documentation](https://OWNER.github.io/REPO/)**
+**[View Documentation](https://Hubbitus.github.io/HuPHP/)**
 
 To generate the documentation locally:
 
@@ -307,8 +307,8 @@ Some legacy code may have PHPStan errors that require significant refactoring. T
 
 This project uses GitHub Actions for Continuous Integration and Continuous Deployment.
 
-[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
-[![Release](https://github.com/OWNER/REPO/actions/workflows/release.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/release.yml)
+[![CI](https://github.com/Hubbitus/HuPHP/actions/workflows/ci.yml/badge.svg)](https://github.com/Hubbitus/HuPHP/actions/workflows/ci.yml)
+[![Release](https://github.com/Hubbitus/HuPHP/actions/workflows/release.yml/badge.svg)](https://github.com/Hubbitus/HuPHP/actions/workflows/release.yml)
 
 ### Continuous Integration
 
