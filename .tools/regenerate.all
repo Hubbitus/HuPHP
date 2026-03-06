@@ -10,12 +10,12 @@ set -xe
 rm -rf "./Packages/build/*"
 
 echo '1) Simple test run unpackaged (raw):';
-php ./Packages/Raw.test.php
+php -d phar.readonly=0 ./Packages/Raw.test.php
 
 echo '2) Create Phar distribution:'
-php ./Packages/Phar.make.php
+php -d phar.readonly=0 ./Packages/Phar.make.php
 echo '2.1) Simple test run PHAR:';
-php ./Packages/Phar.test.php
+php -d phar.readonly=0 ./Packages/Phar.test.php
 
 echo '4) Generate PHPDoc documentation:'
 # This command in: https://github.com/Hubbitus/shell.scripts
