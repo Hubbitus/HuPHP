@@ -57,7 +57,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 ## Usage
 
-All classes are autoloaded via Composer following PSR-4 standard under `Hubbitus\HuPHP\` namespace.
+All classes are automatically loaded via Composer following PSR-4 standard under `Hubbitus\HuPHP\` namespace.
 
 ### Basic Example
 
@@ -217,16 +217,16 @@ This version uses **namespaces** and **PSR-4 autoloading**. If you're upgrading 
    // Old (removed):
    include_once('macroses/REQUIRED_VAR.php');
    $value = REQUIRED_VAR($var);
-   
+
    include_once('macroses/EMPTY_STR.php');
    $str = EMPTY_STR($var1, $var2);
-   
+
    include_once('macroses/SWAP.php');
    SWAP($a, $b);
 
    // New (recommended):
    use Hubbitus\HuPHP\Macro\Vars;
-   
+
    $value = Vars::requiredNotEmpty($var);
    $str = Vars::firstMeaningString($var1, $var2);
    Vars::swap($a, $b); // Swaps values by reference

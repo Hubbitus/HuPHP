@@ -66,8 +66,8 @@ jobs:
       - name: Install Dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: Regenerate Docs
-        run: bash ./.tools/regenerate.all
+      - name: Generate PHPDoc
+        run: bash ./.tools/generate-phpdoc.sh
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
