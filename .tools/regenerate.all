@@ -7,6 +7,7 @@ PROJECT_ROOT="$(pwd)/.."
 
 {
 set -xe
+mkdir -p "./Packages/build"
 rm -rf "./Packages/build/*"
 
 echo '1) Simple test run unpackaged (raw):';
