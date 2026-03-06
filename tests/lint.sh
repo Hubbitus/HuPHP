@@ -12,8 +12,8 @@ cd "$PROJECT_ROOT"
 echo "Running PHPStan static analysis..."
 echo "Project root: $PROJECT_ROOT"
 
-# Run PHPStan
-./vendor/bin/phpstan analyse --no-progress "$@"
+# Run PHPStan with increased memory limit
+./vendor/bin/phpstan analyse --no-progress --memory-limit=512M "$@"
 
 echo ""
 echo "PHPStan analysis completed successfully!"
