@@ -40,8 +40,8 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 				// Convert absolute path to relative path
 				$relativePath = str_replace(__DIR__ . '/../../', '', $path);
 
-				// Skip certain directories
-				if (!preg_match('/^(@tools|.git)/', $relativePath)) {
+// Skip certain directories
+			if (!preg_match('/^(@tools|vendor|tests|@phpdocs|build|\.phpdoc|\.git)/', $relativePath)) {
 					$includes[] = $relativePath;
 				}
 			}
@@ -68,7 +68,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 		$p->setStub('<?php
 Phar::mapPhar("' . FILENAME_PHAR . '");
-require_once "phar://' . FILENAME_PHAR . '/vendor/autoload.php";
+require_once "' . __DIR__ . '/../../vendor/autoload.php";
 __HALT_COMPILER();');
 		fwrite(STDERR, 'PHAR file created successfully: ' . FILEPATH_PHAR . PHP_EOL);
 	} else {
