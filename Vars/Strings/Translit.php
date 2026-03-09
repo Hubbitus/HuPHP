@@ -6,14 +6,9 @@ namespace Hubbitus\HuPHP\Vars\Strings;
 /**
 * Class for transliteration Russian data.
 *
-* @package Vars
-* @subpackage translit
-* @version 1.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created ?2009-03-06 16:02 ver 1.0 to 1.1
 **/
-
 class Translit {
 	public static function translit($rus_str){
 		$rusTable = [

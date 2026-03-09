@@ -1,19 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
-* Operations with file in memory.
-*
-* @package Filesystem
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-* @version 2.0.1b
-* @created ?2009-03-25 13:51 ver 2.0b
-*
-* @uses VariableRequiredException
-* @uses file_base
-**/
-
 namespace Hubbitus\HuPHP\Filesystem;
 
 use Hubbitus\HuPHP\Macro\Vars;
@@ -22,6 +9,12 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
 use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\System\Process;
 
+/**
+* Operations with file in memory.
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @created ?2009-03-25 13:51 ver 2.0b
+**/
 class FileInMemory extends FileBase {
 private array $lineContent = [];
 

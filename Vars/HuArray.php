@@ -11,10 +11,8 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
 * Class to provide OOP interface to array operations.
 *
 * @property mixed $_last_
-* @package Vars
-* @version 1.2.4
+*
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created ?2008-09-22 17:55 ver 1.1 to 1.1.1
 **/
 class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \JsonSerializable {

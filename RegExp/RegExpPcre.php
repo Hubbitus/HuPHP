@@ -6,10 +6,7 @@ namespace Hubbitus\HuPHP\RegExp;
 /**
 * RegExp manipulation. PCRE-version.
 *
-* @package RegExp
-* @version 2.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created ?2009-02-11 13:41 ver 2.1 to 2.1.1
 **/
 class RegExpPcre extends RegExpBase {

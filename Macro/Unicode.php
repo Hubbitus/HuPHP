@@ -5,11 +5,8 @@ namespace Hubbitus\HuPHP\Macro;
 
 /**
 * Unicode utility macros as static methods.
-*
-* @package Hubbitus\HuPHP\Macro
 **/
-class Unicode
-{
+class Unicode {
 	/**
 	* Unicode-aware ucfirst function.
 	*

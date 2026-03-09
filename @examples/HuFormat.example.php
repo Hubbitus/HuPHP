@@ -1,15 +1,10 @@
 <?php
 declare(strict_types=1);
 
-
 /**
 * Debug and backtrace toolkit. Example usage of HuFormat.
 *
-* @package Debug
-* @subpackage HuFormat
-* @version 1.0
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2009-03-17 12:55
 **/
 
@@ -17,8 +12,6 @@ include('autoload.php');
 
 use Hubbitus\HuPHP\Vars\OutExtraDataHuFormat;
 use Hubbitus\HuPHP\System\OutputType;
-use Hubbitus\HuPHP\Macro\Vars;
-
 
 $format = [
 	OutputType::CONSOLE	=> [

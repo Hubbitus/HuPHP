@@ -10,11 +10,7 @@ use Hubbitus\HuPHP\Macro\Vars;
 * Provide easy to use settings-class for many purpose. Similar array of settings, but provide several addition magic methods,
 * to be easy done routine tasks, such as get, set, merge and convert to string by provided simple format (For more complex formatting {@see HuFormat} class).
 *
-* @package Vars
-* @subpackage settings
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @version 1.0.5
 * @created 2008-05-30 23:19
 **/
 class Settings extends HuClass {

@@ -5,8 +5,6 @@ namespace Hubbitus\HuPHP\Debug;
 
 /**
 * Simple test formatter for unit tests.
-*
-* @package Debug
 **/
 class HuLOGSimpleTestFormatter implements IHuLOGFormatter {
     public function formatForFile(HuLOGText $logText): string {

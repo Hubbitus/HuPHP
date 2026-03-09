@@ -8,9 +8,6 @@ namespace Hubbitus\HuPHP\Debug;
 *
 * Log text formatter class extending HuError.
 * Used to format and output log messages with customizable format settings.
-*
-* @package Debug
-* @subpackage HuLOG
 **/
 class HuLOGText extends HuError {
 	/**

@@ -1,15 +1,12 @@
 <?php
 declare(strict_types=1);
+
 namespace Hubbitus\HuPHP;
 
 /**
 * Simple exec script wrapper for the WEB
 *
-*
-* @package TopLevel
-* @version 1.0
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
 error_reporting(E_ALL);

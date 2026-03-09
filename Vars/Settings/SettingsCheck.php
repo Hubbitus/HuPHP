@@ -10,10 +10,7 @@ use Hubbitus\HuPHP\Macro\Vars;
 * Extended variant of {@see Settings}, with check possible options.
 * Slowly, but safely.
 *
-* @package settings
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @version 1.0.7
 * @created ?2008-05-30 16:08
 **/
 class SettingsCheck extends Settings {

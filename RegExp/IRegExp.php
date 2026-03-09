@@ -1,21 +1,13 @@
 <?php
 declare(strict_types=1);
 
-/**
-* RegExp manipulation.
-*
-* @package RegExp
-* @version 1.0
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2014, Pahan-Hubbitus (Pavel Alexeev)
-* @created 21.06.2014 14:56:24
-**/
-
 namespace Hubbitus\HuPHP\RegExp;
 
 /**
-* After PHP 5.2.0 get error defining abstract static methods: Strict standards: Static function RegExp_base_base::quote() should not be abstract :
-* http://www.php.net//manual/ru/migration52.incompatible.php , So introduce interface as workaround ( as per http://stackoverflow.com/questions/13494807/strict-standards-static-function-modeltablestruct-should-not-be-abstract-in )
+* RegExp manipulation.
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @created 21.06.2014 14:56:24
 **/
 interface IRegExp {
 	/**

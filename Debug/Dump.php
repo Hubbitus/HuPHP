@@ -6,10 +6,7 @@ namespace Hubbitus\HuPHP\Debug;
 * Debug and backtrace toolkit.
 * Utility class for dumping variables in a human-readable format.
 *
-* @package Debug
-* @version 2.0
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 class Dump {
 	/**

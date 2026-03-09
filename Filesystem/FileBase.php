@@ -1,22 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
-* Base file operations.
-*
-* @package Filesystem
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @version 2.1
-* @created ?2008-08-27 ver 1.0 to 1.1
-*
-* @uses REQUIRED_VAR()
-* @uses VariableRequiredException
-* @uses FileNotExistsException
-* @uses FileNotReadableException
-* @uses OS
-**/
-
 namespace Hubbitus\HuPHP\Filesystem;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
@@ -26,7 +10,10 @@ use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException;
 use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
 
 /**
-* Base class for most file-related operations.
+ * Base class for most file-related operations.
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @created ?2008-08-27 ver 1.0 to 1.1
 **/
 class FileBase {
 	private string $filename = '';

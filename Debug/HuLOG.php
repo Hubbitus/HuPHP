@@ -3,19 +3,6 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
 
-/**
-* Debug and backtrace toolkit.
-*
-* @package Debug
-* @subpackage HuLOG
-* @version 2.0.3
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created 2008-05-30 23:19
-*
-* @property HuLOGSettings $settings Settings object
-**/
-
 use Hubbitus\HuPHP\Debug\HuLOGSettings;
 use Hubbitus\HuPHP\Debug\HuLOGText;
 use Hubbitus\HuPHP\Debug\IHuLOGFormatter;
@@ -23,6 +10,12 @@ use Hubbitus\HuPHP\Vars\NullClass;
 use Hubbitus\HuPHP\Vars\IOutExtraData;
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 
+/**
+* Debug and backtrace toolkit.
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @property HuLOGSettings $settings Settings object
+**/
 class HuLOG { //HubbitusLOG
 	public $_level = 0;
 
@@ -115,8 +108,8 @@ class HuLOG { //HubbitusLOG
 	* @param $extra - Любая дополнительная переменная, информация, комментарии...
 	**/
 	public function toLog($log_string, $file='ERR', $type='', $extra=null): void {
-		/** @phpstan-ignore property.notFound */
-		if ( ! ($to = $this->settings->getProperty('LOG_TO_'.$file)) ){
+		$to = $this->settings->getProperty('LOG_TO_'.$file);
+		if ($to === null || $to === '' || $to === false) {
 			//От себя (HuLOG) пишем в лог
 			$to = HuLOGSettings::LOG_TO_BOTH;
 			$file = 'ERR';
