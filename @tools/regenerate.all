@@ -22,4 +22,4 @@ php -d phar.readonly=0 ./Packages/Phar.test.php
 # This command in: https://github.com/Hubbitus/shell.scripts
 # ./generate-phpdoc.sh
 
-} 2>&1 | tee ${PROJECT_ROOT}/.tools/regenerate.all.log
+} 2>&1 | tee ${PROJECT_ROOT}/@tools/regenerate.all.log
