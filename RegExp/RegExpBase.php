@@ -11,8 +11,6 @@ use Hubbitus\HuPHP\Macro\Vars;
 /**
 * RegExp manipulation.
 *
-* @package RegExp
-* @version 2.1.2.1
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @created 2008-05-29
 **/

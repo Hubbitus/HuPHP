@@ -1,17 +1,15 @@
 <?php
 declare(strict_types=1);
 
-/**
-* FileSystem Exceptions
-* @package Exceptions
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-**/
-
 namespace Hubbitus\HuPHP\Exceptions\Filesystem;
 
 use Hubbitus\HuPHP\Exceptions\BaseException;
 
+/**
+* FileSystem Exceptions
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+**/
 class FileException extends BaseException {
 	public string $filename = '';
 	protected string $fullPath = '';

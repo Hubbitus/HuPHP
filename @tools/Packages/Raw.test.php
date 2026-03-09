@@ -2,7 +2,7 @@
 <?php
 declare(strict_types=1);
 
-// The script is run from .tools directory, so go up to main directory
+// The script is run from @tools directory, so go up to main directory
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Hubbitus\HuPHP\Debug\Dump;

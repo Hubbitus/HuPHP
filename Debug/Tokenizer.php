@@ -33,17 +33,8 @@ use Hubbitus\HuPHP\Macro\Vars;
 * $db[$N]['line'] refer to string with closing call ')' :(.
 * Now search open string number. And then from it string, by function name tokenize all what me need.
 *
-* @package Debug
-* @version 2.1.2
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created 2009-03-18 17:44 ver 2.1 to 2.1.1
-*
-* @uses REQUIRED_VAR()
-* @uses VariableRequiredException
-* @uses backtrace
-* @uses RegExp_pcre
-* @uses file_inmem
+* @created 2009-03-18 17:44
 **/
 class Tokenizer {
 	private ?BacktraceNode $_debugBacktrace = null;

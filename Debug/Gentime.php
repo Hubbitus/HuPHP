@@ -1,18 +1,13 @@
 <?php
 declare(strict_types=1);
 
+namespace Hubbitus\HuPHP\Debug;
+
 /**
 * Debug and backtrace toolkit.
 *
-* @package Debug
-* @version 1.0
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created ???
 **/
-
-namespace Hubbitus\HuPHP\Debug;
-
 class Gentime {
 	public ?float $time_start = null;
 

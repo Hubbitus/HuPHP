@@ -1,18 +1,14 @@
 <?php
 declare(strict_types=1);
 
-/**
-* Debug and backtrace toolkit.
-* @package Debug
-* @subpackage Dump-utils
-* @version 2.3
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-* @created 2008-06-26 03:58
-**/
-
 namespace Hubbitus\HuPHP\Debug;
 
+/**
+* Debug and backtrace toolkit.
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @created 2008-06-26 03:58
+**/
 class DumpUtils {
 	/**
 	* Transform string, which is text-representation of requested var into more well formatted form.

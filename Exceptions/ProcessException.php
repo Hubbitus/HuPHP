@@ -5,11 +5,8 @@ namespace Hubbitus\HuPHP\Exceptions;
 
 /**
 * ProcessException
-* @package Exceptions
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
-
 class ProcessException extends BaseException {
 public $state = null;
 

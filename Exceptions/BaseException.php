@@ -6,11 +6,8 @@ namespace Hubbitus\HuPHP\Exceptions;
 /**
 * BaseException
 *
-* @package Exceptions
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
-
 class BaseException extends \Exception {
 	// $pos = false - at end, else - in beginning
 	public function ADDMessage(string $addonMessage, bool $pos = false): void {

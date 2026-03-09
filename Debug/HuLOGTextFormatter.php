@@ -1,13 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
-* Default log formatter using HuLOGText.
-*
-* @package Debug
-* @subpackage HuLOG
-**/
-
 namespace Hubbitus\HuPHP\Debug;
 
 use Hubbitus\HuPHP\System\OutputType;

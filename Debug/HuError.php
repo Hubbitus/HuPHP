@@ -13,24 +13,12 @@ use Hubbitus\HuPHP\Vars\IOutExtraData;
 /**
 * Debug and backtrace toolkit.
 *
-* @package Debug
-* @subpackage HuLOG
-* @version 2.1.3
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2008-05-31 03:19
 *
 * @property HuErrorSettings $settings Settings object
 * @property string $date Current date for logging
 * @property string $DATE Current date for logging (alias)
-*
-* @uses EMPTY_VAR()
-* @uses NON_EMPTY_STR()
-* @uses settings
-* @uses debug
-* @uses OS
-* @uses VariableRangeException
-* @uses outExtraData.interface
 **/
 class HuError extends Settings implements IOutExtraData {
 	protected ?HuErrorSettings $_sets = null;

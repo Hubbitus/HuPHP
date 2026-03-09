@@ -1,13 +1,7 @@
 <?php
 /**
-* @package Vars
-* @subpackage Consts
-* @version 1.0b
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
-*
-* @uses consts
-* @uses dump
 **/
 
 use Hubbitus\HuPHP\Vars\Consts\Consts;

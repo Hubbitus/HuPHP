@@ -4,12 +4,10 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Exceptions;
 
 /**
- * Exception thrown when execution should be halted (alternative to exit()).
- *
- * @package Exceptions
- * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
- * @copyright Copyright (c) 2026, Pahan-Hubbitus (Pavel Alexeev)
- */
+* Exception thrown when execution should be halted (alternative to exit()).
+*
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+*/
 class HaltException extends \Exception {
     /** @var int Exit code */
     public int $exitCode;

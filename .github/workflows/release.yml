@@ -38,7 +38,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Regenerate All
-        run: bash ./.tools/regenerate.all
+        run: bash ./@tools/regenerate.all
 
       - name: Create Release for master
         if: github.event_name == 'push'
@@ -50,7 +50,7 @@ jobs:
           release_name: Release ${{ env.VERSION }}
           draft: false
           prerelease: false
-          asset_path: ./.tools/Packages/build/HuPHP.phar
+          asset_path: ./@tools/Packages/build/HuPHP.phar
           asset_name: HuPHP.phar
           asset_content_type: application/octet-stream
 
@@ -68,6 +68,6 @@ jobs:
           release_name: Release ${{ env.VERSION }}
           draft: false
           prerelease: true
-          asset_path: ./.tools/Packages/build/HuPHP.phar
+          asset_path: ./@tools/Packages/build/HuPHP.phar
           asset_name: HuPHP.phar
           asset_content_type: application/octet-stream

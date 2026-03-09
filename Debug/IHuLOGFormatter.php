@@ -1,14 +1,11 @@
 <?php
 declare(strict_types=1);
 
-/**
-* Interface for formatting log messages.
-*
-* @package Debug
-**/
-
 namespace Hubbitus\HuPHP\Debug;
 
+/**
+* Interface for formatting log messages.
+**/
 interface IHuLOGFormatter {
     /**
     * Format log message for file output

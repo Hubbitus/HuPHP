@@ -9,8 +9,6 @@ use Hubbitus\HuPHP\Vars\Settings\Settings;
 /**
 * HuError settings class.
 *
-* @package Debug
-*
 * @property array<mixed> $WEB (OutputType) Format for web output
 * @property array<mixed> $CONSOLE (OutputType::) Format for console output
 * @property array<mixed> $FILE OutputType Format for file output

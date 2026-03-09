@@ -9,8 +9,6 @@ use Hubbitus\HuPHP\Debug\Backtrace;
 
 /**
 * Variable utility macros as static methods.
-*
-* @package Hubbitus\HuPHP\Macro
 **/
 class Vars {
 	/**

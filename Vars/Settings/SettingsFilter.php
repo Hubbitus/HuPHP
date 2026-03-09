@@ -1,28 +1,14 @@
 <?php
 declare(strict_types=1);
-
-/**
-* Extends settings_check to allow apply get/set filters.
-* It may be constraints check (f.e. check and throw exception on error),
-*	and/or any modifications like clear user input, convert formats and etc.
-*
-* @package settings
-* @subpackage settings_filter
-* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
-* @copyright Copyright (c) 2009, Pahan-Hubbitus (Pavel Alexeev)
-* @version 1.0
-* @created 2009-06-29
-**/
-
 namespace Hubbitus\HuPHP\Vars\Settings;
 
 use Hubbitus\HuPHP\Macro\Vars;
 
 
 /**
-* Extended variant of settings_check, with check possible options.
-* You may easy add any amount of "filters" on get/set property operations
-* 	by easy register new filter like:
+ * Extended variant of {@seeSettingsCheck}, with check possible options.
+ * You may easy add any amount of "filters" on get/set property operations
+ * 	by easy register new filter like:
 *	$obj->addGetFilter('testProp', callback $func);
 *
 * Set filters intended primarily for static transformations like check, conversions etc.
@@ -32,9 +18,9 @@ use Hubbitus\HuPHP\Macro\Vars;
 * Get filters Primarily intended for dynamic values, non-deterministic behavior.
 *	F.e. to add current datetime to field, check outside params etc...
 *
-* @uses settings_filter_base
-*
-* @example settings_filter.example.php
+* @example SettingsFilter.example.php
+* @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
+* @created 2009-06-29
 **/
 class SettingsFilter extends SettingsCheckStatic {
 	protected $__filter_set = [];

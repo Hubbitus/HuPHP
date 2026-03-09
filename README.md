@@ -14,7 +14,7 @@ Full API documentation is automatically generated and deployed to GitHub Pages.
 To generate the documentation locally:
 
 ```bash
-./.tools/generate-phpdoc.sh
+./@tools/generate-phpdoc.sh
 ```
 The documentation will be generated in the `@phpdocs/` directory.
 
@@ -151,10 +151,10 @@ To build the packages manually, run:
 
 ```bash
 # Build all packages (raw, phar, single file)
-./.tools/regenerate.all
+./@tools/regenerate.all
 ```
 
-Built packages will be placed in `.tools/Packages/build/`.
+Built packages will be placed in `@tools/Packages/build/`.
 
 
 
@@ -318,7 +318,7 @@ The CI workflow (`.github/workflows/ci.yml`) runs on every commit and pull reque
 
 1.  **Linting**: Runs `./tests/lint.sh` to check for code style issues.
 2.  **Testing**: Runs `./tests/run-tests.sh` to execute the full PHPUnit test suite.
-3.  **Regeneration**: Runs `./.tools/regenerate.all` to ensure all generated files are up-to-date.
+3.  **Regeneration**: Runs `./@tools/regenerate.all` to ensure all generated files are up-to-date.
 
 If any of these steps fail, the workflow will fail and upload the log files as artifacts for debugging.
 

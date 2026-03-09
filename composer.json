@@ -32,7 +32,7 @@
     "scripts": {
         "test": "tests/run-tests.sh",
         "phpstan": "phpstan analyse",
-        "clean": "rm -rvf .phpunit.result.cache .tools/regenerate.all.log .tools/Packages/build/* build/* .phpunit.result.cache *.log",
+        "clean": "rm -rvf .phpunit.result.cache @tools/regenerate.all.log @tools/Packages/build/* build/* .phpunit.result.cache *.log",
         "build": "echo 'Build completed'"
     },
     "minimum-stability": "stable",

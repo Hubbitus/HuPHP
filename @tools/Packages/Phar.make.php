@@ -41,7 +41,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 				$relativePath = str_replace(__DIR__ . '/../../', '', $path);
 
 				// Skip certain directories
-				if (!preg_match('/^(.tools|.git)/', $relativePath)) {
+				if (!preg_match('/^(@tools|.git)/', $relativePath)) {
 					$includes[] = $relativePath;
 				}
 			}

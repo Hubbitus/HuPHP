@@ -653,7 +653,7 @@ Dump::a(isset($str{-5}));	//Work
 ################################################################################################
 //$argv[1] = '/var/www/_SHARED_/template/template_class_2.1.php';
 #$argv[1] = '/home/pasha/NetBeansProjects/temp/web/example.php';
-#include('/var/www/_SHARED_/.tools/phpsource.extract_functions.php');
+#include('/var/www/_SHARED_/@tools/phpsource.extract_functions.php');
 ################################################################################################
 /*
 include_once('Vars/HuArray.php');
