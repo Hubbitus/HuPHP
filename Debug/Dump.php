@@ -137,7 +137,7 @@ class Dump {
 	*
 	* @param callable|null $fileReader Optional file reader function for testing. Defaults to file()
 	* @return string|null Variable name/expression or null if cannot detect
-	*/
+	**/
 	public static function detectVarNameFromBacktrace(?callable $fileReader = null): ?string {
 		$backtrace = \debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 		$dumpMethod = null;
@@ -163,15 +163,11 @@ class Dump {
 				$file = $frame['file'];
 				$line = $frame['line'];
 
-				try {
-					$lines = $fileReader !== null ? $fileReader($file) : \file($file);
-					if (!isset($lines[$line - 1])) {
-						continue;
-					}
-					$source = \rtrim($lines[$line - 1]);
-				} catch (\Throwable $e) {
+				$lines = $fileReader !== null ? $fileReader($file) : \file($file);
+				if (!isset($lines[$line - 1])) {
 					continue;
 				}
+				$source = \rtrim($lines[$line - 1]);
 
 				// Remove single-line and multi-line comments
 				$source = \preg_replace('!//.*!', '', $source);
