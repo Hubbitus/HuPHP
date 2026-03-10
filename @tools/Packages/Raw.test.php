@@ -11,6 +11,9 @@ use Hubbitus\HuPHP\Debug\Backtrace;
 $someVar = 'Just test';
 Dump::a($someVar);
 
+$arr = ['oen', 'two', 'three' => ['three-one', ['three-two']]];
+Dump::a($arr);
+
 function f(){
     $bt = Backtrace::create();
     $bt->printFormat();
