@@ -133,18 +133,17 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * @runInSeparateProcess
-     */
-    public function testDumpAutoWithCliEnvironmentMocked(): void
-    {
-        $osMock = $this->createMock(OS::class);
-        $osMock->method('phpSapiName')->willReturn('cli');
+    * @runInSeparateProcess
+    **/
+    public function testDumpAutoWithCliEnvironmentMocked(): void {
+        $osStub = $this->createStub(OS::class);
+        $osStub->method('phpSapiName')->willReturn('cli');
 
         $var = ['key' => 'value'];
         $header = 'CLI Auto Test Mocked';
         $return = true;
 
-        $result = Dump::auto($var, $header, $return, $osMock);
+        $result = Dump::auto($var, $header, $return, $osStub);
 
         $this->assertIsString($result);
         $this->assertStringContainsString("=== {$header} ===", $result);
@@ -153,18 +152,17 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * @runInSeparateProcess
-     */
-    public function testDumpAutoWithWebEnvironmentMocked(): void
-    {
-        $osMock = $this->createMock(OS::class);
-        $osMock->method('phpSapiName')->willReturn('apache2handler');
+    * @runInSeparateProcess
+    **/
+    public function testDumpAutoWithWebEnvironmentMocked(): void {
+        $osStub = $this->createStub(OS::class);
+        $osStub->method('phpSapiName')->willReturn('apache2handler');
 
         $var = ['key' => 'value'];
         $header = 'Web Auto Test Mocked';
         $return = true;
 
-        $result = Dump::auto($var, $header, $return, $osMock);
+        $result = Dump::auto($var, $header, $return, $osStub);
 
         $this->assertIsString($result);
         $this->assertStringContainsString("=== {$header} ===", $result);
@@ -301,7 +299,8 @@ class DumpTest extends TestCase {
               $result = Dump::c($evalVar, null, true);
               return $result;
           ';
-          $result = eval($code);
+          // Suppress warning from eval() - file() will fail to read eval'd code
+          $result = @eval($code);
           $this->assertIsString($result);
           $this->assertStringContainsString('eval_test', $result);
       }
