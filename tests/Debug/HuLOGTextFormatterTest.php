@@ -59,8 +59,8 @@ class HuLOGTextFormatterTest extends TestCase {
             'level' => '  ',
             'type' => 'ERR',
             'logText' => 'Test with extra',
-            'extra' => ['key' => 'value'],
         ]);
+        $this->logText->addExtra('key', 'value');
         $result = $this->formatter->formatForFile($this->logText);
 
         $this->assertIsString($result);
