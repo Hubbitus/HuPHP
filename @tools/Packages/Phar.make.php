@@ -48,7 +48,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 		}
 
 		$i = 0;
-		foreach ($includes as $inc){
+		foreach ($includes as $inc) {
 			echo ++$i . ") Process [$inc]\n";
 
 			// Simply add the file to the PHAR without modifying includes/requires for now
@@ -59,10 +59,10 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 		// With BZIP2 compression you may have trouble on other systems, where Phar not working, and load 100% of CPU
 		// And furthermore, GZIP give me _MORE_ compression than bzip2 (39017 byte opposite 41110)
-		try{//Try GZIP
+		try {//Try GZIP
 			$p->compressFiles(Phar::GZ);
 		}
-		catch (BadMethodCallException $bmce){//Not supported too. So, stay uncompressed.
+		catch (BadMethodCallException $bmce) {//Not supported too. So, stay uncompressed.
 			fwrite(STDERR, 'Warning: GZip compression is not supported too.'."\n");
 		}
 

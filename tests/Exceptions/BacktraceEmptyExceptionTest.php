@@ -9,8 +9,8 @@ use Hubbitus\HuPHP\Exceptions\BacktraceEmptyException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\BacktraceEmptyException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\BacktraceEmptyException
+**/
 class BacktraceEmptyExceptionTest extends TestCase {
 	public function testConstructor(): void {
 		$exception = new BacktraceEmptyException('Backtrace is empty');

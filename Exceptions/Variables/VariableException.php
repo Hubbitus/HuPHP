@@ -11,4 +11,5 @@ use Hubbitus\HuPHP\Exceptions\BaseException;
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @created ?2008-05-29 17:51 ver 2.0b to 2.1
 **/
-class VariableException extends BaseException {}
+class VariableException extends BaseException {
+}

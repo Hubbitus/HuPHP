@@ -20,7 +20,7 @@ class HuLOGSettings extends Settings {
 		'LOG_TO_ACS'		=> self::LOG_TO_BOTH,
 		'LOG_TO_ERR'		=> self::LOG_TO_BOTH,
 
-		/** In SUBarray in order not to generate extra Entity
+		/* In SUBarray in order not to generate extra Entity
 		'HuLOG_Text_settings' => array(
 			// Here may be overwritten defaults settings. {@see HuLOG_text_settings}
 		)

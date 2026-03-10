@@ -1,18 +1,15 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for BaseException class.
- */
-
 namespace Hubbitus\HuPHP\Tests\Exceptions;
 
 use Hubbitus\HuPHP\Exceptions\BaseException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\BaseException
- */
+* Test for BaseException class.
+* @covers \Hubbitus\HuPHP\Exceptions\BaseException
+**/
 class BaseExceptionTest extends TestCase {
     public function testClassInstantiation(): void {
         $exception = new BaseException('Test message');
@@ -175,10 +172,10 @@ class BaseExceptionTest extends TestCase {
         // Note: Exception objects cannot be cloned in PHP
         // This is expected behavior inherited from \Exception
         $exception1 = new BaseException('Clone test');
-        
+
         $this->expectException(\Error::class);
         $this->expectExceptionMessage('Trying to clone an uncloneable object');
-        
+
         clone $exception1;
     }
 

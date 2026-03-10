@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException
+**/
 class VariableEmptyExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new VariableEmptyException(new \Hubbitus\HuPHP\Debug\Backtrace(), );

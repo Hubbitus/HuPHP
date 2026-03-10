@@ -1,19 +1,15 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for Gentime class.
- */
-
 namespace Hubbitus\HuPHP\Tests\Debug;
-use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Debug\Gentime;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Debug\Gentime
- */
+* Test for Gentime class.
+* @covers \Hubbitus\HuPHP\Debug\Gentime
+**/
 class GentimeTest extends TestCase {
     public function testClassInstantiation(): void {
         $gentime = new Gentime();

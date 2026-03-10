@@ -15,7 +15,7 @@ class HuLOGText extends HuError {
 	*
 	* @param HuLOGTextSettings|null $sets Initial settings. If null, default settings are used.
 	**/
-	public function __construct(?HuLOGTextSettings $sets = null){
+	public function __construct(?HuLOGTextSettings $sets = null) {
 		parent::__construct($sets ?? new HuLOGTextSettings());
 	}
 }

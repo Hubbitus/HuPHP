@@ -10,8 +10,8 @@ use Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterDefault;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Vars\Settings\SettingsFilter
- */
+* @covers \Hubbitus\HuPHP\Vars\Settings\SettingsFilter
+**/
 class SettingsFilterTest extends TestCase {
     private $settings;
 

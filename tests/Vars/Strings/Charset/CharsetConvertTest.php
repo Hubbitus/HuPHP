@@ -8,8 +8,8 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Mock implementation of abstract CharsetConvert for testing
- */
+* Mock implementation of abstract CharsetConvert for testing
+**/
 class MockCharsetConvert extends CharsetConvert {
     public function convert(): static {
         $this->_resText = \strtoupper($this->_text);
@@ -18,8 +18,8 @@ class MockCharsetConvert extends CharsetConvert {
 }
 
 /**
- * Mock implementation for testing empty string conversion results
- */
+* Mock implementation for testing empty string conversion results
+**/
 class MockCharsetConvertEmpty extends CharsetConvert {
     public function convert(): static {
         $this->_resText = '';
@@ -28,9 +28,9 @@ class MockCharsetConvertEmpty extends CharsetConvert {
 }
 
 /**
- * @covers \Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert
- * @covers \Hubbitus\HuPHP\Vars\Strings\Charset\MockCharsetConvert
- */
+* @covers \Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert
+* @covers \Hubbitus\HuPHP\Vars\Strings\Charset\MockCharsetConvert
+**/
 class CharsetConvertTest extends TestCase {
 
     public function testConstructorWithAllParameters(): void {

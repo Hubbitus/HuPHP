@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException
+**/
 class FileNotReadableExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new FileNotReadableException();

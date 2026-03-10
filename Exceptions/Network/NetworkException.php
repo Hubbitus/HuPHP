@@ -5,4 +5,5 @@ namespace Hubbitus\HuPHP\Exceptions\Network;
 
 use Hubbitus\HuPHP\Exceptions\BaseException;
 
-class NetworkException extends BaseException {}
+class NetworkException extends BaseException {
+}

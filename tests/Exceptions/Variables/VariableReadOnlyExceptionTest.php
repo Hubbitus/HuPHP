@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException
+**/
 class VariableReadOnlyExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new VariableReadOnlyException();

@@ -12,8 +12,8 @@ use Hubbitus\HuPHP\Exceptions\HaltException;
 **/
 class OS {
 	/**
-	 * Counter for hit counting functionality.
-	 */
+	* Counter for hit counting functionality.
+	**/
 	private static int $hitCounter = 0;
 
 	/**
@@ -36,8 +36,8 @@ class OS {
 
 	/**
 	* Check if file is includeable.
-    * This method is a replacement for `if (@include($file))` because the @ operator
-    * suppresses all errors, including fatal ones, in the included file.
+	* This method is a replacement for `if (@include($file))` because the @ operator
+	* suppresses all errors, including fatal ones, in the included file.
 	* This method only checks for readability using the include_path.
 	* See: http://php.net/manual/en/function.include.php
 	*
@@ -48,7 +48,7 @@ class OS {
 		* And opposite comment of "php at metagg dot com" and "medhefgo at googlemail dot com",
 		* wouldn't manually check all paths in include_path. Just open this file to read
 		* with include_path check parameter support! */
-		if ($res = @\fopen($filename, 'r', true)){
+		if ($res = @\fopen($filename, 'r', true)) {
 			\fclose($res);	// Not really need opened file, only result of opening.
 		}
 		return (bool)$res;

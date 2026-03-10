@@ -10,8 +10,8 @@ use Hubbitus\HuPHP\Debug\Backtrace;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException
+**/
 class VariableIsNullExceptionTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(VariableIsNullException::class));

@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\Exceptions\Network\SocketReadException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Network\SocketReadException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Network\SocketReadException
+**/
 class SocketReadExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new SocketReadException();

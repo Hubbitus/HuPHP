@@ -10,8 +10,8 @@ use ReflectionClass;
 use ReflectionMethod;
 
 /**
- * @covers \Hubbitus\HuPHP\RegExp\RegExpBase
- */
+* @covers \Hubbitus\HuPHP\RegExp\RegExpBase
+**/
 class RegExpBaseTest extends TestCase {
     private RegExpPcre $regexp;
 

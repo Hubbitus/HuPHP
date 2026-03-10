@@ -45,7 +45,7 @@ class HuConfig extends SettingsCheck {
 	public function &__get($varname): mixed {
 		$ret =& $this->getProperty($varname);
 
-		if (\is_array($ret)){
+		if (\is_array($ret)) {
 			$ret = new HuArray($ret); //Replace original on the fly
 			return $ret;
 		}
@@ -63,25 +63,25 @@ class HuConfig extends SettingsCheck {
 		try {
 			return $this->__SETS[$this->checkNamePossible(Vars::requiredNotNull($name), __METHOD__)];
 		}
-		catch(\Throwable $e){
+		catch(\Throwable $e) {
 			//Try include appropriate file only for ClassPropertyNotExistsException:
-			if ($e instanceof ClassPropertyNotExistsException && !\in_array($name, $this->_include_tried, true)){
+			if ($e instanceof ClassPropertyNotExistsException && !\in_array($name, $this->_include_tried, true)) {
 				$this->_include_tried[] = $name; //In any case to do not check again next time
 				$path = 'includes/configs/' . $name . '.config.php';
-				if(OS::is_includeable($path)){
+				if(OS::is_includeable($path)) {
 					include($path);
 				}
-				if(isset($GLOBALS['__CONFIG'][$name])){//New key
+				if(isset($GLOBALS['__CONFIG'][$name])) { //New key
 					$this->addSetting($name, $GLOBALS['__CONFIG'][$name]);
 				}
 				return $this->__SETS[$name];
 			}
 
 			//Silent if required.
-			if (!$noThrow){
+			if (!$noThrow) {
 				throw $e; //If include and fine failed throw outside;
 			}
-			else{
+			else {
 				// Avoid: Notice: Only variable references should be returned by reference in /var/www/_SHARED_/Vars/HuConfig.class.php on line 101
 				$t = null;
 				return $t;

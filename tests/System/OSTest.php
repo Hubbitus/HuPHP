@@ -8,8 +8,8 @@ use Hubbitus\HuPHP\System\OS;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\System\OS
- */
+* @covers \Hubbitus\HuPHP\System\OS
+**/
 class OSTest extends TestCase {
     private OS $os;
 

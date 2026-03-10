@@ -38,7 +38,7 @@ use Hubbitus\HuPHP\Vars\HuArray;
 * @return Single|HuArray If className present - HuArray returned, Single(HuConfig) otherwise
 **/
 if (!\function_exists('Hubbitus\HuPHP\Vars\CONF')) {
-	function &CONF($className = null, $noThrow = false){
+	function &CONF($className = null, $noThrow = false): mixed {
 		/*
 		* Strange, but if we direct return:
 		* if ($className) return Single::def('HuConfig')->$className;

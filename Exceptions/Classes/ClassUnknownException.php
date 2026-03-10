@@ -3,4 +3,5 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Exceptions\Classes;
 
-class ClassUnknownException extends ClassException {}
+class ClassUnknownException extends ClassException {
+}

@@ -22,23 +22,23 @@ use Hubbitus\HuPHP\Exceptions\NotImplementedException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\BaseException
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableException
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException
- * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassException
- * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassMethodException
- * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassNotExistsException
- * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException
- * @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassUnknownException
- * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileException
- * @covers \Hubbitus\HuPHP\Exceptions\ProcessException
- * @covers \Hubbitus\HuPHP\Exceptions\SerializeException
- * @covers \Hubbitus\HuPHP\Exceptions\SessionException
- * @covers \Hubbitus\HuPHP\Exceptions\NotImplementedException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\BaseException
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableException
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException
+* @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassException
+* @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassMethodException
+* @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassNotExistsException
+* @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException
+* @covers \Hubbitus\HuPHP\Exceptions\Classes\ClassUnknownException
+* @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileException
+* @covers \Hubbitus\HuPHP\Exceptions\ProcessException
+* @covers \Hubbitus\HuPHP\Exceptions\SerializeException
+* @covers \Hubbitus\HuPHP\Exceptions\SessionException
+* @covers \Hubbitus\HuPHP\Exceptions\NotImplementedException
+**/
 class ExceptionHierarchyTest extends TestCase {
     public function testBaseExceptionExtendsException(): void {
         $exception = new BaseException('Test message');

@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Hubbitus\Tests\HuPHP\Debug;
 
 use Hubbitus\HuPHP\Debug\HuErrorSettings;
-use Hubbitus\HuPHP\System\OutputType;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Debug\HuErrorSettings
- */
+* @covers \Hubbitus\HuPHP\Debug\HuErrorSettings
+**/
 final class HuErrorSettingsTest extends TestCase {
     public function testConstructorCreatesInstance(): void {
         $settings = new HuErrorSettings();

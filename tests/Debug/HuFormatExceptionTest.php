@@ -8,8 +8,8 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Debug\HuFormatException
- */
+* @covers \Hubbitus\HuPHP\Debug\HuFormatException
+**/
 class HuFormatExceptionTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(HuFormatException::class));

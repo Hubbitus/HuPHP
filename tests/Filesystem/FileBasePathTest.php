@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\Filesystem\FileBase;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Filesystem\FileBase
- */
+* @covers \Hubbitus\HuPHP\Filesystem\FileBase
+**/
 class FileBasePathTest extends TestCase {
     private string $testDir;
     private string $testFile;

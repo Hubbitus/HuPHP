@@ -8,9 +8,9 @@ use Hubbitus\HuPHP\System\Console\HuGetoptSettings;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Integration tests for HuGetopt class.
- *
- * @covers \Hubbitus\HuPHP\System\Console\HuGetopt
+* Integration tests for HuGetopt class.
+*
+* @covers \Hubbitus\HuPHP\System\Console\HuGetopt
 **/
 class HuGetoptNewTest extends TestCase {
     public function testHuGetoptClassExists(): void {

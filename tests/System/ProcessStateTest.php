@@ -1,19 +1,15 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for ProcessState class.
- */
-
 namespace Hubbitus\HuPHP\Tests\System;
-use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\System\ProcessState;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\System\ProcessState
- */
+* Test for ProcessState class.
+* @covers \Hubbitus\HuPHP\System\ProcessState
+**/
 class ProcessStateTest extends TestCase {
     public function testClassInstantiation(): void {
         $state = new ProcessState();

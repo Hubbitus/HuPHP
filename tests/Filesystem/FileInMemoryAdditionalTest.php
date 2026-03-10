@@ -8,9 +8,9 @@ use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Additional coverage for FileInMemory.
- * @covers \Hubbitus\HuPHP\Filesystem\FileInMemory
- */
+* Additional coverage for FileInMemory.
+* @covers \Hubbitus\HuPHP\Filesystem\FileInMemory
+**/
 class FileInMemoryAdditionalTest extends TestCase {
     private string $testDir;
     private string $testFile;

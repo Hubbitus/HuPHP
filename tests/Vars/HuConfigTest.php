@@ -2,16 +2,18 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars;
-use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Vars\HuConfig;
 use Hubbitus\HuPHP\Vars\HuArray;
+use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use PHPUnit\Framework\TestCase;
 
+use function Hubbitus\HuPHP\Vars\CONF;
+
 /**
- * @covers \Hubbitus\HuPHP\Vars\HuConfig
- * @covers \Hubbitus\HuPHP\Vars\CONF
- */
+* @covers \Hubbitus\HuPHP\Vars\HuConfig
+* @covers \Hubbitus\HuPHP\Vars\CONF
+**/
 class HuConfigTest extends TestCase {
     protected function setUp(): void {
         // Initialize global config for tests
@@ -54,7 +56,7 @@ class HuConfigTest extends TestCase {
     }
 
     public function testGetRawThrowsExceptionForNonExistentProperty(): void {
-        $this->expectException(\Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException::class);
+        $this->expectException(ClassPropertyNotExistsException::class);
 
         $GLOBALS['__CONFIG'] = ['existing_key' => 'value'];
 
@@ -116,7 +118,7 @@ class HuConfigTest extends TestCase {
     }
 
     public function testGetPropertyThrowsExceptionForNonExistentProperty(): void {
-        $this->expectException(\Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException::class);
+        $this->expectException(ClassPropertyNotExistsException::class);
 
         $GLOBALS['__CONFIG'] = ['existing_key' => 'value'];
 
@@ -135,9 +137,9 @@ class HuConfigTest extends TestCase {
 
     public function testCONFFunctionWithoutClassName(): void {
         // Test CONF() function without class name returns HuConfig instance (via Single::singleton)
-        $result = \Hubbitus\HuPHP\Vars\CONF();
-        
-        $this->assertInstanceOf(\Hubbitus\HuPHP\Vars\HuConfig::class, $result);
+        $result = CONF();
+
+        $this->assertInstanceOf(HuConfig::class, $result);
     }
 
     public function testCONFFunctionWithClassName(): void {
@@ -145,9 +147,9 @@ class HuConfigTest extends TestCase {
         $GLOBALS['__CONFIG'] = [
             'test_class' => ['key' => 'value']
         ];
-        
-        $result = \Hubbitus\HuPHP\Vars\CONF('test_class');
-        
+
+        $result = CONF('test_class');
+
         $this->assertInstanceOf(HuArray::class, $result);
     }
 
@@ -156,48 +158,48 @@ class HuConfigTest extends TestCase {
         $GLOBALS['__CONFIG'] = [
             'test_setting' => 'test_value'
         ];
-        
-        $result = \Hubbitus\HuPHP\Vars\CONF()->test_setting;
-        
+
+        $result = CONF()->test_setting;
+
         $this->assertEquals('test_value', $result);
     }
 
     public function testCONFWithNoThrow(): void {
         // Test CONF() function with noThrow parameter
-        $result = \Hubbitus\HuPHP\Vars\CONF(null, true);
-        
-        $this->assertInstanceOf(\Hubbitus\HuPHP\Vars\HuConfig::class, $result);
+        $result = CONF(null, true);
+
+        $this->assertInstanceOf(HuConfig::class, $result);
     }
 
     public function testGetPropertyTriesToIncludeConfigFile(): void {
         // Create a temporary config file
-        $configDir = sys_get_temp_dir() . '/includes/configs';
-        @mkdir($configDir, 0777, true);
-        
+        $configDir = \sys_get_temp_dir() . '/includes/configs';
+        @\mkdir($configDir, 0777, true);
+
         $configFile = $configDir . '/test_include.config.php';
-        file_put_contents($configFile, '<?php $GLOBALS["__CONFIG"]["test_include"] = "included_value";');
-        
+        \file_put_contents($configFile, '<?php $GLOBALS["__CONFIG"]["test_include"] = "included_value";');
+
         // Add temp dir to include_path
-        $includePath = get_include_path();
-        set_include_path(sys_get_temp_dir() . PATH_SEPARATOR . $includePath);
-        
+        $includePath = \get_include_path();
+        \set_include_path(\sys_get_temp_dir() . \PATH_SEPARATOR . $includePath);
+
         try {
             $config = new HuConfig();
-            
+
             // First call tries to include the file
             $value = $config->getProperty('test_include', true);
-            
+
             // If file was included, value should be set
             if ($value !== null) {
                 $this->assertEquals('included_value', $value);
             }
         } finally {
             // Cleanup
-            set_include_path($includePath);
-            if (file_exists($configFile)) {
-                unlink($configFile);
+            \set_include_path($includePath);
+            if (\file_exists($configFile)) {
+                \unlink($configFile);
             }
-            @rmdir($configDir);
+            @\rmdir($configDir);
         }
     }
 
@@ -205,13 +207,13 @@ class HuConfigTest extends TestCase {
         $GLOBALS['__CONFIG'] = [
             'ref_key' => 'original_value'
         ];
-        
+
         $config = new HuConfig();
         $value = &$config->getProperty('ref_key');
-        
+
         // Modify through reference
         $value = 'modified_value';
-        
+
         // Get fresh value to verify modification
         $freshValue = $config->getProperty('ref_key');
         $this->assertEquals('modified_value', $freshValue);
@@ -221,13 +223,13 @@ class HuConfigTest extends TestCase {
         $GLOBALS['__CONFIG'] = [
             'conf_ref' => 'original'
         ];
-        
-        $result = &\Hubbitus\HuPHP\Vars\CONF();
+
+        $result = &CONF();
         $value = &$result->conf_ref;
-        
+
         // Modify through reference
         $value = 'modified';
-        
+
         // Get fresh value to verify modification
         $freshValue = $result->conf_ref;
         $this->assertEquals('modified', $freshValue);
@@ -238,9 +240,9 @@ class HuConfigTest extends TestCase {
         $GLOBALS['__CONFIG'] = [
             'my_class' => ['setting' => 'value']
         ];
-        
-        $result = \Hubbitus\HuPHP\Vars\CONF('my_class');
-        
+
+        $result = CONF('my_class');
+
         $this->assertInstanceOf(HuArray::class, $result);
         $this->assertEquals('value', $result->setting);
     }
@@ -251,11 +253,11 @@ class HuConfigTest extends TestCase {
         // We need to trigger an exception that is NOT ClassPropertyNotExistsException
         // Passing null as name will trigger VariableIsNullException from REQUIRED_NOT_NULL
         $config = new HuConfig();
-        
+
         // Call with null property name and noThrow=true
         // This will throw VariableIsNullException which goes to else branch
         $value = $config->getProperty(null, true);
-        
+
         $this->assertNull($value);
     }
 }

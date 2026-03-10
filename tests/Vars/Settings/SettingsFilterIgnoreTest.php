@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterIgnore;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterIgnore
- */
+* @covers \Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterIgnore
+**/
 class SettingsFilterIgnoreTest extends TestCase {
     public function testConstructorStoresPropName(): void {
         $filter = new SettingsFilterIgnore('testProp');

@@ -14,7 +14,7 @@ class FileException extends BaseException {
 	public string $filename = '';
 	protected string $fullPath = '';
 
-	public function __construct(string $message = '', string $filename = '', int $code = 0, ?\Throwable $previous = null){
+	public function __construct(string $message = '', string $filename = '', int $code = 0, ?\Throwable $previous = null) {
 		$this->filename = $filename;
 		$this->fullPath = $filename;
 		parent::__construct($message, $code, $previous);

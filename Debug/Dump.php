@@ -122,14 +122,63 @@ class Dump {
 		}
 
 		if (\is_array($var) || \is_object($var)) {
-			$output .= \print_r($var, true);
+			$output .= self::formatVariable($var, 0);
 		} else {
 			$output .= \var_export($var, true);
 		}
 
-		$output .= "\n";
-
 		return $output;
+	}
+
+	/**
+	* Format array or object with custom formatting
+	*
+	* @param mixed $var Variable to format
+	* @param int $indent Current indentation level
+	* @return string Formatted output
+	**/
+	private static function formatVariable(mixed $var, int $indent = 0): string {
+		$indentStr = \str_repeat('    ', $indent);
+		$innerIndent = \str_repeat('    ', $indent + 1);
+
+		if (\is_array($var)) {
+			$count = \count($var);
+			$output = "Array[size: {$count}] {\n";
+			
+			foreach ($var as $key => $value) {
+				$output .= "{$innerIndent}[{$key}] => ";
+				if (\is_array($value)) {
+					$output .= self::formatVariable($value, $indent + 1);
+				} elseif (\is_object($value)) {
+					$output .= self::formatVariable($value, $indent + 1);
+				} else {
+					$output .= \var_export($value, true) . "\n";
+				}
+			}
+			
+			$output .= "{$indentStr}}\n";
+			return $output;
+		} elseif (\is_object($var)) {
+			$className = $var::class;
+			$output = "{$className} {\n";
+			
+			$props = \get_object_vars($var);
+			foreach ($props as $key => $value) {
+				$output .= "{$innerIndent}[{$key}] => ";
+				if (\is_array($value)) {
+					$output .= self::formatVariable($value, $indent + 1);
+				} elseif (\is_object($value)) {
+					$output .= self::formatVariable($value, $indent + 1);
+				} else {
+					$output .= \var_export($value, true) . "\n";
+				}
+			}
+			
+			$output .= "{$indentStr}}\n";
+			return $output;
+		}
+
+		return '';
 	}
 
 	/**

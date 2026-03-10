@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\Exceptions\Filesystem\FileLoadException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileLoadException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileLoadException
+**/
 class FileLoadExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new FileLoadException();

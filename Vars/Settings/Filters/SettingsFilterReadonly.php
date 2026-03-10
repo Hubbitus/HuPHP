@@ -12,15 +12,16 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException;
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @created 2010-11-18 13:43
 **/
-class SettingsFilterReadonly extends SettingsFilterBase{
-	public function __construct(string $propName){
+class SettingsFilterReadonly extends SettingsFilterBase {
+	public function __construct(string $propName) {
 		parent::__construct($propName, null);
 	}
+
 	/**
 	* @inheritdoc
 	* @throws VariableReadOnlyException
 	**/
-	public function apply(&$name, &$value): mixed{
+	public function apply(&$name, &$value): mixed {
 		throw new VariableReadOnlyException();
 	}
 }

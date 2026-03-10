@@ -11,8 +11,7 @@ class SettingsGetTest extends TestCase {
 		$settingsArray = ['key' => 'value'];
 
 		$settingsGet = new class($settingsArray) extends SettingsGet {
-			public function __construct($sets)
-			{
+			public function __construct($sets) {
 				$this->_sets = $sets;
 			}
 		};
@@ -26,8 +25,7 @@ class SettingsGetTest extends TestCase {
 		$settingsArray = ['key' => 'value'];
 
 		$settingsGet = new class($settingsArray) extends SettingsGet {
-			public function __construct($sets)
-			{
+			public function __construct($sets) {
 				$this->_sets = $sets;
 			}
 		};
@@ -41,8 +39,7 @@ class SettingsGetTest extends TestCase {
 		$settingsArray = ['key' => 'value'];
 
 		$settingsGet = new class($settingsArray) extends SettingsGet {
-			public function __construct($sets)
-			{
+			public function __construct($sets) {
 				$this->_sets = $sets;
 			}
 		};
@@ -57,8 +54,7 @@ class SettingsGetTest extends TestCase {
 		$settingsArray = ['key' => 'value', 'other' => 'data'];
 
 		$settingsGet = new class($settingsArray) extends SettingsGet {
-			public function __construct($sets)
-			{
+			public function __construct($sets) {
 				$this->_sets = $sets;
 			}
 		};

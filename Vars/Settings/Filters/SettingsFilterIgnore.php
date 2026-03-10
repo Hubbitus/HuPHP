@@ -11,11 +11,12 @@ use Hubbitus\HuPHP\Vars\Settings\SettingsFilterBase;
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @created 2010-11-18 13:43
 **/
-class SettingsFilterIgnore extends SettingsFilterBase{
-	public function __construct(string $propName){
+class SettingsFilterIgnore extends SettingsFilterBase {
+	public function __construct(string $propName) {
 		parent::__construct($propName, null);
 	}
-	public function apply(&$name, &$value): mixed{
+
+	public function apply(&$name, &$value): mixed {
 		$value = null;
 		return null;
 	}

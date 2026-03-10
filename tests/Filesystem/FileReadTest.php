@@ -1,18 +1,15 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for FileRead class.
- */
-
 namespace Hubbitus\HuPHP\Tests\Filesystem;
 
 use Hubbitus\HuPHP\Filesystem\FileRead;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Filesystem\FileRead
- */
+* Test for FileRead class.
+* @covers \Hubbitus\HuPHP\Filesystem\FileRead
+**/
 class FileReadTest extends TestCase {
     private string $testFile;
     private string $testDir;

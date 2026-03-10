@@ -39,7 +39,7 @@ abstract class RegExpBase extends HuClass implements IRegExp {
 	*
 	* For parameters {@see ->set()}
 	**/
-	public function __construct($regexp = null, $text = null, $replaceTo = null){
+	public function __construct($regexp = null, $text = null, $replaceTo = null) {
 		$this->set($regexp, $text, $replaceTo);
 	}
 
@@ -208,7 +208,7 @@ abstract class RegExpBase extends HuClass implements IRegExp {
 	*
 	* @param ?int $item If not null - point to item in array of RegExps, ONLY IF it is array. If null - 0 element assumed.
 	**/
-	public function getRegExpModifiers($item = null): string{
+	public function getRegExpModifiers($item = null): string {
 		$item ??= 0;
 		$regexp = \is_array($this->regExp) ? $this->regExp[$item] : $this->regExp;
 		$endPos = \strrpos($regexp, $this->getRegExpDelimiterEnd($item));

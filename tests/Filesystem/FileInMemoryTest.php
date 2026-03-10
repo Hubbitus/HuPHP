@@ -842,8 +842,7 @@ class FileInMemoryTest extends TestCase {
         }
     }
 
-    public function testEnconvIntegration(): void
-    {
+    public function testEnconvIntegration(): void {
         \exec('command -v enconv', $output, $return_var);
         if ($return_var !== 0) {
             $this->markTestSkipped('`enconv` command not found, skipping integration test.');

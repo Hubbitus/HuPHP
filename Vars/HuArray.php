@@ -179,7 +179,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 		* Needed name, because $var->last() = 'NewVal' produce error, even if value returned by reference:
 		* PHP Fatal error:  Can't use method return value in write context in /var/www/_SHARED_/Console/HuGetopt.php on line 233
 		**/
-		if ('_last_' === $name){
+		if ('_last_' === $name) {
 			// Direct assignment to last element
 			\end($this->__SETS);
 			$key = \key($this->__SETS);
@@ -195,7 +195,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 			$this->__SETS[$key] = $value;
 			return;
 		}
-		else{
+		else {
 			$key = $name;
 		}
 		$this->__SETS[$key] = $value;
@@ -240,7 +240,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	*
 	* @param	array	$keys
 	**/
-	public function &filterOutByKeys(array $keys): static{
+	public function &filterOutByKeys(array $keys): static {
 		$this->__SETS = \array_diff_key( $this->__SETS, \array_flip($keys) );
 		return $this;
 	}
@@ -280,7 +280,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* @param callable $callback
 	* @param int $initial
 	**/
-	public function reduce($callback, $initial = 0){
+	public function reduce($callback, $initial = 0): mixed {
 		return array_reduce($this->__SETS, $callback, $initial);
 	}
 

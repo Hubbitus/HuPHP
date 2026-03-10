@@ -8,8 +8,8 @@ use Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterReadonly;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterReadonly
- */
+* @covers \Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterReadonly
+**/
 class SettingsFilterReadonlyTest extends TestCase {
     public function testConstructorStoresPropName(): void {
         $filter = new SettingsFilterReadonly('testProp');

@@ -8,8 +8,8 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableArrayInconsistentException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableArrayInconsistentException
+**/
 class VariableArrayInconsistentExceptionTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(VariableArrayInconsistentException::class));

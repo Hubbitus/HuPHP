@@ -29,7 +29,7 @@ class OutExtraDataDOMnode extends OutExtraDataCommon {
 	*   `OutputType::CONSOLE`, `OutputType::WEB`, `OutputType::FILE` each represent according to
 	*   format (See class {@see HuFormat} for more details).
 	**/
-	public function  __construct(\DOMNode $var, $encoding = 'utf-8'){
+	public function  __construct(\DOMNode $var, $encoding = 'utf-8') {
 		$this->_var = new \DOMDocument('1.0', $encoding); // DOMDocument NEEDED to import into it nodes, it also NEEDED to export result asXML...
 		$this->_var->appendChild($this->_var->importNode($var, true));
 		$this->_var->preserveWhiteSpace = false;

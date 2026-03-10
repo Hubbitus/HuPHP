@@ -226,8 +226,7 @@ final class BacktraceNodeTest extends TestCase {
         $this->assertStringContainsString('123', $result);
     }
 
-    public function testFormatArgsWithGlobalConfig(): void
-    {
+    public function testFormatArgsWithGlobalConfig(): void {
         $node = new BacktraceNode([
             'file' => '/test/file.php',
             'line' => 42,
@@ -244,8 +243,7 @@ final class BacktraceNodeTest extends TestCase {
         $this->assertStringContainsString('123', $result);
     }
 
-    public function testFormatArgsWithInstanceFormat(): void
-    {
+    public function testFormatArgsWithInstanceFormat(): void {
         $node = new BacktraceNode([
             'file' => '/test/file.php',
             'line' => 42,
@@ -295,8 +293,7 @@ final class BacktraceNodeTest extends TestCase {
     // PrintoutDefault::configure() is automatically called inside formatArgs() to ensure
     // default configuration is always available. This is by design for defensive coding.
 
-    public function testFormatArgsConfiguresPrintoutDefault(): void
-    {
+    public function testFormatArgsConfiguresPrintoutDefault(): void {
         // Test that formatArgs() calls PrintoutDefault::configure() when global config is not set
         // This covers line 215: PrintoutDefault::configure();
         $debugData = [

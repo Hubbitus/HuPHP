@@ -23,7 +23,7 @@ class OutExtraDataHuFormat extends OutExtraDataCommon {
 	* @param array $format Format how output $var. Must contain 3 elements:
 	*   `OutputType::CONSOLE`, `OutputType::WEB`, `OutputType::FILE` keys with according format strings
 	**/
-	public function __construct($var, array $format){
+	public function __construct($var, array $format) {
 		$this->format = $format;
 		$this->_format = new HuFormat(null, $var);
 		parent::__construct($var);
