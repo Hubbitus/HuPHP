@@ -5,7 +5,7 @@ namespace Hubbitus\HuPHP\Debug;
 use Hubbitus\HuPHP\System\OutputType;
 
 class HuLOGTextSettings extends HuErrorSettings {
-	protected array $__SETS = [
+	private array $initialSETS = [
 		/**
 		* @see HuError::updateDate()
 		**/
@@ -41,4 +41,10 @@ class HuLOGTextSettings extends HuErrorSettings {
 			"\n"
 		]
 	];
+
+    public function __construct(array $array = []) {
+        parent::__construct($array);
+        $this->mergeSettingsArray($this->initialSETS);
+    }
+
 }

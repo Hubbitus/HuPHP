@@ -17,8 +17,8 @@ use Hubbitus\HuPHP\Vars\Settings\Settings;
 **/
 class HuErrorSettings extends Settings {
 	// Defaults
-	public function __construct(){
-		parent::__construct();
+	public function __construct(array $array = []){
+		parent::__construct($array);
 		$this->initDefaults();
 	}
 

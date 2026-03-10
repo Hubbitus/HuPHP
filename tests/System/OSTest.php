@@ -11,6 +11,13 @@ use PHPUnit\Framework\TestCase;
  * @covers \Hubbitus\HuPHP\System\OS
  */
 class OSTest extends TestCase {
+    private OS $os;
+
+    protected function setUp(): void {
+        parent::setUp();
+        $this->os = new OS();
+    }
+
     public function testGetOutTypeReturnsBrowserWhenUserAgentSet(): void {
         $_SERVER['HTTP_USER_AGENT'] = 'Mozilla/5.0';
 
@@ -39,14 +46,14 @@ class OSTest extends TestCase {
     }
 
     public function testPhpSapiNameReturnsString(): void {
-        $result = OS::phpSapiName();
+        $result = $this->os->phpSapiName();
 
         $this->assertIsString($result);
         $this->assertNotEmpty($result);
     }
 
     public function testPhpSapiNameReturnsValidSapi(): void {
-        $result = OS::phpSapiName();
+        $result = $this->os->phpSapiName();
 
         $this->assertIsString($result);
         $this->assertNotEmpty($result);

@@ -42,9 +42,9 @@ class HuLOGTextTest extends TestCase {
 
     public function testSetSettingsArrayPreservesAllValues(): void {
         $this->logText->setSettingsArray([
-            'extra' => ['key' => 'value'],
             'custom' => 'data',
         ]);
+        $this->logText->addExtra('key', 'value');
 
         // Verify settings were preserved by checking string output
         $result = $this->logText->strForConsole();

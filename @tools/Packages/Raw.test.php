@@ -8,7 +8,8 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use Hubbitus\HuPHP\Debug\Dump;
 use Hubbitus\HuPHP\Debug\Backtrace;
 
-Dump::a('Just test');
+$someVar = 'Just test';
+Dump::a($someVar);
 
 function f(){
     $bt = Backtrace::create();

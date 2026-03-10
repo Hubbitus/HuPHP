@@ -30,7 +30,7 @@ class OS {
 	*
 	* @return string
 	**/
-	public static function phpSapiName(): string {
+	public function phpSapiName(): string {
 		return \php_sapi_name();
 	}
 
