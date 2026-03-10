@@ -9,4 +9,5 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
 * Exception thrown by HuFormat class.
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 **/
-class HuFormatException extends VariableException {}
+class HuFormatException extends VariableException {
+}

@@ -17,7 +17,7 @@ use Hubbitus\HuPHP\Vars\Settings\Settings;
 **/
 class HuErrorSettings extends Settings {
 	// Defaults
-	public function __construct(array $array = []){
+	public function __construct(array $array = []) {
 		parent::__construct($array);
 		$this->initDefaults();
 	}
@@ -26,7 +26,7 @@ class HuErrorSettings extends Settings {
 	* Initialize default settings.
 	*
 	* @return void
-	*/
+	**/
 	protected function initDefaults(): void {
 		$this->__SETS = [];
 		$this->__SETS[OutputType::WEB->name] = [];
@@ -40,7 +40,7 @@ class HuErrorSettings extends Settings {
 	* Get default web format.
 	*
 	* @return array<mixed>
-	*/
+	**/
 	public function getDefaultWebFormat(): array {
 		return $this->__SETS[OutputType::WEB->name];
 	}
@@ -49,7 +49,7 @@ class HuErrorSettings extends Settings {
 	* Get default console format.
 	*
 	* @return array<mixed>
-	*/
+	**/
 	public function getDefaultConsoleFormat(): array {
 		return $this->__SETS[OutputType::CONSOLE->name];
 	}
@@ -58,7 +58,7 @@ class HuErrorSettings extends Settings {
 	* Get default file format.
 	*
 	* @return array<mixed>
-	*/
+	**/
 	public function getDefaultFileFormat(): array {
 		return $this->__SETS[OutputType::FILE->name];
 	}
@@ -67,7 +67,7 @@ class HuErrorSettings extends Settings {
 	* Check if auto date is enabled.
 	*
 	* @return bool
-	*/
+	**/
 	public function isAutoDateEnabled(): bool {
 		return (bool)$this->__SETS['AUTO_DATE'];
 	}
@@ -76,7 +76,7 @@ class HuErrorSettings extends Settings {
 	* Get date format string.
 	*
 	* @return string
-	*/
+	**/
 	public function getDateFormat(): string {
 		return $this->__SETS['DATE_FORMAT'];
 	}

@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\Exceptions\Image\ImageException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Image\ImageException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Image\ImageException
+**/
 class ImageExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new ImageException();

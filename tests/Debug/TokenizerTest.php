@@ -8,8 +8,8 @@ use Hubbitus\HuPHP\Debug\BacktraceNode;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Debug\Tokenizer
- */
+* @covers \Hubbitus\HuPHP\Debug\Tokenizer
+**/
 class TokenizerTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(Tokenizer::class));

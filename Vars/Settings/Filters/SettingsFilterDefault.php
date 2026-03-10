@@ -31,7 +31,7 @@ class SettingsFilterDefault extends SettingsFilterBase {
 	}
 
 	public function apply(&$name, &$value): mixed {
-		if ((bool)\call_user_func($this->callback_, $value)){
+		if ((bool)\call_user_func($this->callback_, $value)) {
 			$value = $this->default;
 		}
 		return $value;

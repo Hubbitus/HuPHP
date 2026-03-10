@@ -11,8 +11,7 @@ use PHPUnit\Framework\TestCase;
 * @covers \Hubbitus\HuPHP\Debug\Dump
 **/
 class DumpTest extends TestCase {
-    public function testDumpConsoleReturnsString(): void
-    {
+    public function testDumpConsoleReturnsString(): void {
         $var = ['key' => 'value'];
         $result = Dump::c($var, 'Test Header', true);
 
@@ -22,8 +21,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('value', $result);
     }
 
-    public function testDumpConsoleWithoutHeader(): void
-    {
+    public function testDumpConsoleWithoutHeader(): void {
         $var = 'test_string';
         $result = Dump::c($var, null, true);
 
@@ -32,8 +30,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('test_string', $result);
     }
 
-    public function testDumpConsoleWithArray(): void
-    {
+    public function testDumpConsoleWithArray(): void {
         $var = ['a' => 1, 'b' => 2];
         $result = Dump::c($var, null, true);
 
@@ -42,8 +39,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('1', $result);
     }
 
-    public function testDumpConsoleWithObject(): void
-    {
+    public function testDumpConsoleWithObject(): void {
         $var = (object) ['prop' => 'value'];
         $result = Dump::c($var, null, true);
 
@@ -51,8 +47,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('prop', $result);
     }
 
-    public function testDumpConsoleWithScalar(): void
-    {
+    public function testDumpConsoleWithScalar(): void {
         $var = 42;
         $result = Dump::c($var, null, true);
 
@@ -60,8 +55,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('42', $result);
     }
 
-    public function testDumpWebReturnsString(): void
-    {
+    public function testDumpWebReturnsString(): void {
         $var = ['key' => 'value'];
         $result = Dump::w($var, 'Web Header', true);
 
@@ -69,8 +63,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('=== Web Header ===', $result);
     }
 
-    public function testDumpLogReturnsString(): void
-    {
+    public function testDumpLogReturnsString(): void {
         $var = ['key' => 'value'];
         $result = Dump::log($var, 'Log Header', true);
 
@@ -78,8 +71,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('=== Log Header ===', $result);
     }
 
-    public function testDumpAReturnsString(): void
-    {
+    public function testDumpAReturnsString(): void {
         $var = ['key' => 'value'];
         $result = Dump::a($var, 'A Header', true);
 
@@ -87,8 +79,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('=== A Header ===', $result);
     }
 
-    public function testDumpAAutoDetectsHeader(): void
-    {
+    public function testDumpAAutoDetectsHeader(): void {
         $var = 'auto_test';
         $result = Dump::a($var, null, true);
 
@@ -97,8 +88,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('auto_test', $result);
     }
 
-    public function testDumpByOutTypeReturnsString(): void
-    {
+    public function testDumpByOutTypeReturnsString(): void {
         $var = ['key' => 'value'];
         $result = Dump::byOutType(1, $var, 'Type Header', true);
 
@@ -106,8 +96,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('=== Type Header ===', $result);
     }
 
-    public function testDumpByOutTypeAutoDetectsHeader(): void
-    {
+    public function testDumpByOutTypeAutoDetectsHeader(): void {
         $var = 'byOut_type_var';
         $result = Dump::byOutType(1, $var, null, true);
 
@@ -116,8 +105,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString($var, $result);
     }
 
-    public function testDumpWebAutoDetectsHeader(): void
-    {
+    public function testDumpWebAutoDetectsHeader(): void {
         $var = 'web_test';
         $result = Dump::w($var, null, true);
 
@@ -126,8 +114,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('web_test', $result);
     }
 
-    public function testDumpLogAutoDetectsHeader(): void
-    {
+    public function testDumpLogAutoDetectsHeader(): void {
         $var = 'log_test';
         $result = Dump::log($var, null, true);
 
@@ -136,8 +123,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('log_test', $result);
     }
 
-    public function testDumpAutoAutoDetectsHeader(): void
-    {
+    public function testDumpAutoAutoDetectsHeader(): void {
         $var = 'auto_detect_test';
         $result = Dump::auto($var, null, true);
 
@@ -147,10 +133,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * @runInSeparateProcess
-     **/
-    public function testDumpAutoWithCliEnvironmentMocked(): void
-    {
+    * @runInSeparateProcess
+    **/
+    public function testDumpAutoWithCliEnvironmentMocked(): void {
         $osStub = $this->createStub(OS::class);
         $osStub->method('phpSapiName')->willReturn('cli');
 
@@ -167,10 +152,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * @runInSeparateProcess
-     **/
-    public function testDumpAutoWithWebEnvironmentMocked(): void
-    {
+    * @runInSeparateProcess
+    **/
+    public function testDumpAutoWithWebEnvironmentMocked(): void {
         $osStub = $this->createStub(OS::class);
         $osStub->method('phpSapiName')->willReturn('apache2handler');
 
@@ -186,8 +170,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('value', $result);
     }
 
-    public function testDumpWithNullValue(): void
-    {
+    public function testDumpWithNullValue(): void {
         $var = null;
         $result = Dump::c($var, 'Null Test', true);
 
@@ -195,8 +178,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('=== Null Test ===', $result);
     }
 
-    public function testDumpWithBooleanValue(): void
-    {
+    public function testDumpWithBooleanValue(): void {
         $var = true;
         $result = Dump::c($var, 'Bool Test', true);
 
@@ -204,8 +186,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('true', $result);
     }
 
-    public function testDumpWithNumericArray(): void
-    {
+    public function testDumpWithNumericArray(): void {
         $var = [1, 2, 3];
         $result = Dump::c($var, 'Numeric Array', true);
 
@@ -215,8 +196,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('3', $result);
     }
 
-    public function testDumpWithNestedArray(): void
-    {
+    public function testDumpWithNestedArray(): void {
         $var = ['outer' => ['inner' => 'value']];
         $result = Dump::c($var, 'Nested', true);
 
@@ -225,8 +205,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('inner', $result);
     }
 
-    public function testDumpConsoleOutputWithoutReturn(): void
-    {
+    public function testDumpConsoleOutputWithoutReturn(): void {
         $var = ['key' => 'value'];
 
         ob_start();
@@ -238,8 +217,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('key', $output);
     }
 
-    public function testDumpWebOutputWithoutReturn(): void
-    {
+    public function testDumpWebOutputWithoutReturn(): void {
         $var = ['key' => 'value'];
 
         ob_start();
@@ -250,8 +228,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('=== Web Output Test ===', $output);
     }
 
-    public function testDumpLogOutputWithoutReturn(): void
-    {
+    public function testDumpLogOutputWithoutReturn(): void {
         $var = ['key' => 'value'];
 
         $tmpfile = \tempnam(\sys_get_temp_dir(), 'huphp-test-log');
@@ -270,8 +247,7 @@ class DumpTest extends TestCase {
         $this->assertStringContainsString('value', $output);
     }
 
-    public function testDumpAutoDetectFailsWhenCalledViaCallUserFunc(): void
-    {
+    public function testDumpAutoDetectFailsWhenCalledViaCallUserFunc(): void {
         $var = 'call_user_func_test';
         $result = call_user_func([Dump::class, 'c'], $var, null, true);
         $this->assertIsString($result);
@@ -279,47 +255,41 @@ class DumpTest extends TestCase {
         $this->assertStringNotContainsString('=== $var ===', $result);
     }
 
-    public function testDetectVarNameFromBacktraceReturnsNullWhenNoDumpFrame(): void
-    {
+    public function testDetectVarNameFromBacktraceReturnsNullWhenNoDumpFrame(): void {
         $method = new \ReflectionMethod(Dump::class, 'detectVarNameFromBacktrace');
         $method->setAccessible(true);
         $result = $method->invoke(null);
         $this->assertNull($result);
     }
 
-    public function testDetectVarNameFromBacktraceReturnsNullWhenNoDumpFramesFound(): void
-    {
+    public function testDetectVarNameFromBacktraceReturnsNullWhenNoDumpFramesFound(): void {
         $result = $this->callDetectVarNameWithoutDumpFrames();
         $this->assertNull($result);
     }
 
-    private function callDetectVarNameWithoutDumpFrames(): ?string
-    {
+    private function callDetectVarNameWithoutDumpFrames(): ?string {
         $method = new \ReflectionMethod(Dump::class, 'detectVarNameFromBacktrace');
         $method->setAccessible(true);
         return $method->invoke(null);
     }
 
-    public function testDetectVarNameFromBacktraceReturnsNullWhenFileReadFails(): void
-    {
+    public function testDetectVarNameFromBacktraceReturnsNullWhenFileReadFails(): void {
         // This tests the "return null;" at line 165 when file reading fails
         // Since we can't easily mock file() to return false in a unit test,
         // we acknowledge this path exists but is hard to test directly
         $this->assertTrue(true);
     }
 
-    public function testDetectVarNameFromBacktraceReturnsNullWhenPatternNoMatch(): void
-    {
+    public function testDetectVarNameFromBacktraceReturnsNullWhenPatternNoMatch(): void {
         $var = 'complex_var_name';
         $result = Dump::c($var, null, true);
         $this->assertIsString($result);
     }
 
     /**
-     * @runInSeparateProcess
-     */
-    public function testDetectVarNameFromBacktraceWithEvalContext(): void
-    {
+    * @runInSeparateProcess
+    **/
+    public function testDetectVarNameFromBacktraceWithEvalContext(): void {
         // This test uses eval to create a scenario where line number
         // in backtrace doesn't match actual file lines
         $code = '
@@ -336,10 +306,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test array formatting with size indicator and proper structure
-     **/
-    public function testDumpArrayFormatWithSize(): void
-    {
+    * Test array formatting with size indicator and proper structure
+    **/
+    public function testDumpArrayFormatWithSize(): void {
         $var = [1, 2, 3];
         $result = Dump::c($var, 'Test', true);
 
@@ -352,10 +321,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test nested array formatting
-     **/
-    public function testDumpNestedArrayFormat(): void
-    {
+    * Test nested array formatting
+    **/
+    public function testDumpNestedArrayFormat(): void {
         $var = ['a' => ['b' => ['c' => 'deep']]];
         $result = Dump::c($var, 'Nested', true);
 
@@ -367,10 +335,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test that array format has opening brace on same line
-     **/
-    public function testDumpArrayFormatOpeningBrace(): void
-    {
+    * Test that array format has opening brace on same line
+    **/
+    public function testDumpArrayFormatOpeningBrace(): void {
         $var = [1, 2];
         $result = Dump::c($var, 'Brace', true);
 
@@ -380,10 +347,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test that array format has closing brace
-     **/
-    public function testDumpArrayFormatClosingBrace(): void
-    {
+    * Test that array format has closing brace
+    **/
+    public function testDumpArrayFormatClosingBrace(): void {
         $var = [1, 2];
         $result = Dump::c($var, 'Close', true);
 
@@ -393,10 +359,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test object formatting with class name
-     **/
-    public function testDumpObjectFormat(): void
-    {
+    * Test object formatting with class name
+    **/
+    public function testDumpObjectFormat(): void {
         $var = (object) ['name' => 'test', 'value' => 42];
         $result = Dump::c($var, 'Object', true);
 
@@ -407,10 +372,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test that there are no empty lines in array output
-     **/
-    public function testDumpArrayFormatNoEmptyLines(): void
-    {
+    * Test that there are no empty lines in array output
+    **/
+    public function testDumpArrayFormatNoEmptyLines(): void {
         $var = [1, 2, 3];
         $result = Dump::c($var, 'NoEmpty', true);
 
@@ -433,10 +397,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test mixed array with string and numeric keys
-     **/
-    public function testDumpMixedKeyArrayFormat(): void
-    {
+    * Test mixed array with string and numeric keys
+    **/
+    public function testDumpMixedKeyArrayFormat(): void {
         $var = ['one', 'two', 'three' => ['nested']];
         $result = Dump::c($var, 'Mixed', true);
 
@@ -448,10 +411,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() array format with size indicator
-     */
-    public function testDumpAArrayFormatWithSize(): void
-    {
+    * Test Dump::a() array format with size indicator
+    **/
+    public function testDumpAArrayFormatWithSize(): void {
         $var = [1, 2, 3];
         $result = Dump::a($var, 'Test Array', true);
 
@@ -464,10 +426,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() associative array format
-     */
-    public function testDumpAAssociativeArrayFormat(): void
-    {
+    * Test Dump::a() associative array format
+    **/
+    public function testDumpAAssociativeArrayFormat(): void {
         $var = ['key1' => 'value1', 'key2' => 42];
         $result = Dump::a($var, 'Assoc Array', true);
 
@@ -479,10 +440,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() array format opening brace on same line
-     */
-    public function testDumpAArrayFormatOpeningBrace(): void
-    {
+    * Test Dump::a() array format opening brace on same line
+    **/
+    public function testDumpAArrayFormatOpeningBrace(): void {
         $var = [1, 2];
         $result = Dump::a($var, 'Brace Test', true);
 
@@ -492,10 +452,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() array format closing brace
-     */
-    public function testDumpAArrayFormatClosingBrace(): void
-    {
+    * Test Dump::a() array format closing brace
+    **/
+    public function testDumpAArrayFormatClosingBrace(): void {
         $var = [1, 2];
         $result = Dump::a($var, 'Close Test', true);
 
@@ -505,10 +464,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() array format no empty lines
-     */
-    public function testDumpAArrayFormatNoEmptyLines(): void
-    {
+    * Test Dump::a() array format no empty lines
+    **/
+    public function testDumpAArrayFormatNoEmptyLines(): void {
         $var = [1, 2, 3];
         $result = Dump::a($var, 'NoEmpty Test', true);
 
@@ -531,10 +489,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() mixed key array format
-     */
-    public function testDumpAMixedKeyArrayFormat(): void
-    {
+    * Test Dump::a() mixed key array format
+    **/
+    public function testDumpAMixedKeyArrayFormat(): void {
         $var = ['one', 'two', 'three' => ['nested']];
         $result = Dump::a($var, 'Mixed A', true);
 
@@ -547,10 +504,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() object format with class name
-     */
-    public function testDumpAObjectFormat(): void
-    {
+    * Test Dump::a() object format with class name
+    **/
+    public function testDumpAObjectFormat(): void {
         $var = (object) ['name' => 'test', 'value' => 42];
         $result = Dump::a($var, 'Test Object', true);
 
@@ -562,10 +518,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() custom object format with class name
-     */
-    public function testDumpACustomObjectFormat(): void
-    {
+    * Test Dump::a() custom object format with class name
+    **/
+    public function testDumpACustomObjectFormat(): void {
         $testClass = new class {
             public string $name = 'custom';
             public int $value = 123;
@@ -585,10 +540,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() object format opening brace on same line
-     */
-    public function testDumpAObjectFormatOpeningBrace(): void
-    {
+    * Test Dump::a() object format opening brace on same line
+    **/
+    public function testDumpAObjectFormatOpeningBrace(): void {
         $var = (object) ['prop' => 'value'];
         $result = Dump::a($var, 'Object Brace', true);
 
@@ -598,10 +552,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() object format closing brace
-     */
-    public function testDumpAObjectFormatClosingBrace(): void
-    {
+    * Test Dump::a() object format closing brace
+    **/
+    public function testDumpAObjectFormatClosingBrace(): void {
         $var = (object) ['prop' => 'value'];
         $result = Dump::a($var, 'Object Close', true);
 
@@ -611,10 +564,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() object format no empty lines
-     */
-    public function testDumpAObjectFormatNoEmptyLines(): void
-    {
+    * Test Dump::a() object format no empty lines
+    **/
+    public function testDumpAObjectFormatNoEmptyLines(): void {
         $var = (object) ['prop1' => 'value1', 'prop2' => 'value2'];
         $result = Dump::a($var, 'Object NoEmpty', true);
 
@@ -637,10 +589,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() array indentation structure - 4 spaces per level
-     */
-    public function testDumpAArrayIndentationStructure(): void
-    {
+    * Test Dump::a() array indentation structure - 4 spaces per level
+    **/
+    public function testDumpAArrayIndentationStructure(): void {
         $var = ['level1' => ['level2' => ['level3' => 'deep']]];
         $result = Dump::a($var, 'Indent Test', true);
 
@@ -656,10 +607,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() object indentation structure - 4 spaces per level
-     */
-    public function testDumpAObjectIndentationStructure(): void
-    {
+    * Test Dump::a() object indentation structure - 4 spaces per level
+    **/
+    public function testDumpAObjectIndentationStructure(): void {
         $var = (object) ['prop1' => (object) ['prop2' => (object) ['prop3' => 'deep']]];
         $result = Dump::a($var, 'Object Indent', true);
 
@@ -675,10 +625,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() mixed indentation with arrays and objects
-     */
-    public function testDumpAMixedIndentationStructure(): void
-    {
+    * Test Dump::a() mixed indentation with arrays and objects
+    **/
+    public function testDumpAMixedIndentationStructure(): void {
         $var = [
             'array_prop' => [1, 2, 3],
             'object_prop' => (object) ['name' => 'test'],
@@ -696,10 +645,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() proper closing brace indentation
-     */
-    public function testDumpAClosingBraceIndentation(): void
-    {
+    * Test Dump::a() proper closing brace indentation
+    **/
+    public function testDumpAClosingBraceIndentation(): void {
         $var = ['nested' => [1, 2]];
         $result = Dump::a($var, 'Brace Indent', true);
 
@@ -715,10 +663,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() deeply nested array structure
-     */
-    public function testDumpADeeplyNestedArray(): void
-    {
+    * Test Dump::a() deeply nested array structure
+    **/
+    public function testDumpADeeplyNestedArray(): void {
         $var = ['level1' => ['level2' => ['level3' => ['level4' => ['level5' => 'deep']]]]];
         $result = Dump::a($var, 'Deep Array', true);
 
@@ -739,10 +686,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() deeply nested object structure
-     */
-    public function testDumpADeeplyNestedObject(): void
-    {
+    * Test Dump::a() deeply nested object structure
+    **/
+    public function testDumpADeeplyNestedObject(): void {
         $var = (object) ['level1' => (object) ['level2' => (object) ['level3' => (object) ['level4' => (object) ['level5' => 'deep']]]]];
         $result = Dump::a($var, 'Deep Object', true);
 
@@ -763,10 +709,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() mixed nested arrays and objects
-     */
-    public function testDumpAMixedNestedStructures(): void
-    {
+    * Test Dump::a() mixed nested arrays and objects
+    **/
+    public function testDumpAMixedNestedStructures(): void {
         $var = [
             'array_part' => [1, 2, ['nested' => 'value']],
             'object_part' => (object) ['prop' => (object) ['nested' => 'value']],
@@ -797,10 +742,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() nested structures with auto-detected header
-     */
-    public function testDumpANestedWithAutoHeader(): void
-    {
+    * Test Dump::a() nested structures with auto-detected header
+    **/
+    public function testDumpANestedWithAutoHeader(): void {
         $nestedVar = ['level1' => ['level2' => 'value']];
         $result = Dump::a($nestedVar, null, true);
 
@@ -814,10 +758,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() with string value
-     */
-    public function testDumpAWithString(): void
-    {
+    * Test Dump::a() with string value
+    **/
+    public function testDumpAWithString(): void {
         $var = 'test string value';
         $result = Dump::a($var, 'String Test', true);
 
@@ -827,10 +770,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() with integer value
-     */
-    public function testDumpAWithInteger(): void
-    {
+    * Test Dump::a() with integer value
+    **/
+    public function testDumpAWithInteger(): void {
         $var = 42;
         $result = Dump::a($var, 'Int Test', true);
 
@@ -840,10 +782,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() with float value
-     */
-    public function testDumpAWithFloat(): void
-    {
+    * Test Dump::a() with float value
+    **/
+    public function testDumpAWithFloat(): void {
         $var = 3.14159;
         $result = Dump::a($var, 'Float Test', true);
 
@@ -853,10 +794,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() with boolean true value
-     */
-    public function testDumpAWithBooleanTrue(): void
-    {
+    * Test Dump::a() with boolean true value
+    **/
+    public function testDumpAWithBooleanTrue(): void {
         $var = true;
         $result = Dump::a($var, 'Bool True Test', true);
 
@@ -866,10 +806,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() with boolean false value
-     */
-    public function testDumpAWithBooleanFalse(): void
-    {
+    * Test Dump::a() with boolean false value
+    **/
+    public function testDumpAWithBooleanFalse(): void {
         $var = false;
         $result = Dump::a($var, 'Bool False Test', true);
 
@@ -879,10 +818,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() with null value
-     */
-    public function testDumpAWithNull(): void
-    {
+    * Test Dump::a() with null value
+    **/
+    public function testDumpAWithNull(): void {
         $var = null;
         $result = Dump::a($var, 'Null Test', true);
 
@@ -892,10 +830,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() with empty array
-     */
-    public function testDumpAWithEmptyArray(): void
-    {
+    * Test Dump::a() with empty array
+    **/
+    public function testDumpAWithEmptyArray(): void {
         $var = [];
         $result = Dump::a($var, 'Empty Array', true);
 
@@ -906,10 +843,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() with empty object
-     */
-    public function testDumpAWithEmptyObject(): void
-    {
+    * Test Dump::a() with empty object
+    **/
+    public function testDumpAWithEmptyObject(): void {
         $var = (object) [];
         $result = Dump::a($var, 'Empty Object', true);
 
@@ -920,10 +856,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() output without return (echo)
-     */
-    public function testDumpAOutputWithoutReturn(): void
-    {
+    * Test Dump::a() output without return (echo)
+    **/
+    public function testDumpAOutputWithoutReturn(): void {
         $var = ['key' => 'value'];
 
         ob_start();
@@ -936,10 +871,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() with various data types in array
-     */
-    public function testDumpAWithMixedTypesInArray(): void
-    {
+    * Test Dump::a() with various data types in array
+    **/
+    public function testDumpAWithMixedTypesInArray(): void {
         $var = [
             'string' => 'hello',
             'int' => 42,
@@ -964,10 +898,9 @@ class DumpTest extends TestCase {
     }
 
     /**
-     * Test Dump::a() with special characters in string
-     */
-    public function testDumpAWithSpecialCharacters(): void
-    {
+    * Test Dump::a() with special characters in string
+    **/
+    public function testDumpAWithSpecialCharacters(): void {
         $var = "line1\nline2\ttab\r\nwindows";
         $result = Dump::a($var, 'Special Chars', true);
 
@@ -984,10 +917,9 @@ class DumpTest extends TestCase {
     // =========================================================================
 
     /**
-     * Test Dump::a() exact output format - simple array
-     */
-    public function testDumpAExactOutputSimpleArray(): void
-    {
+    * Test Dump::a() exact output format - simple array
+    **/
+    public function testDumpAExactOutputSimpleArray(): void {
         $var = [1, 2, 3];
         $result = Dump::a($var, 'Test', true);
 
@@ -1002,10 +934,9 @@ Array[size: 3] {
     }
 
     /**
-     * Test Dump::a() exact output format - associative array
-     */
-    public function testDumpAExactOutputAssociativeArray(): void
-    {
+    * Test Dump::a() exact output format - associative array
+    **/
+    public function testDumpAExactOutputAssociativeArray(): void {
         $var = ['a' => 1, 'b' => 2];
         $result = Dump::a($var, 'Assoc', true);
 
@@ -1019,10 +950,9 @@ Array[size: 2] {
     }
 
     /**
-     * Test Dump::a() exact output format - nested array (2 levels)
-     */
-    public function testDumpAExactOutputNestedArray2Levels(): void
-    {
+    * Test Dump::a() exact output format - nested array (2 levels)
+    **/
+    public function testDumpAExactOutputNestedArray2Levels(): void {
         $var = ['outer' => ['inner' => 'value']];
         $result = Dump::a($var, 'Nested', true);
 
@@ -1037,10 +967,9 @@ Array[size: 1] {
     }
 
     /**
-     * Test Dump::a() exact output format - nested array (3 levels)
-     */
-    public function testDumpAExactOutputNestedArray3Levels(): void
-    {
+    * Test Dump::a() exact output format - nested array (3 levels)
+    **/
+    public function testDumpAExactOutputNestedArray3Levels(): void {
         $var = ['l1' => ['l2' => ['l3' => 'deep']]];
         $result = Dump::a($var, 'Deep', true);
 
@@ -1057,10 +986,9 @@ Array[size: 1] {
     }
 
     /**
-     * Test Dump::a() exact output format - simple object
-     */
-    public function testDumpAExactOutputSimpleObject(): void
-    {
+    * Test Dump::a() exact output format - simple object
+    **/
+    public function testDumpAExactOutputSimpleObject(): void {
         $var = (object) ['name' => 'test', 'value' => 42];
         $result = Dump::a($var, 'Object', true);
 
@@ -1074,10 +1002,9 @@ stdClass {
     }
 
     /**
-     * Test Dump::a() exact output format - nested object (2 levels)
-     */
-    public function testDumpAExactOutputNestedObject2Levels(): void
-    {
+    * Test Dump::a() exact output format - nested object (2 levels)
+    **/
+    public function testDumpAExactOutputNestedObject2Levels(): void {
         $var = (object) ['outer' => (object) ['inner' => 'value']];
         $result = Dump::a($var, 'Nested Obj', true);
 
@@ -1092,10 +1019,9 @@ stdClass {
     }
 
     /**
-     * Test Dump::a() exact output format - nested object (3 levels)
-     */
-    public function testDumpAExactOutputNestedObject3Levels(): void
-    {
+    * Test Dump::a() exact output format - nested object (3 levels)
+    **/
+    public function testDumpAExactOutputNestedObject3Levels(): void {
         $var = (object) ['l1' => (object) ['l2' => (object) ['l3' => 'deep']]];
         $result = Dump::a($var, 'Deep Obj', true);
 
@@ -1112,10 +1038,9 @@ stdClass {
     }
 
     /**
-     * Test Dump::a() exact output format - mixed array and object
-     */
-    public function testDumpAExactOutputMixedArrayObject(): void
-    {
+    * Test Dump::a() exact output format - mixed array and object
+    **/
+    public function testDumpAExactOutputMixedArrayObject(): void {
         $var = [
             'array_key' => [1, 2],
             'object_key' => (object) ['prop' => 'val'],
@@ -1137,10 +1062,9 @@ Array[size: 2] {
     }
 
     /**
-     * Test Dump::a() exact output format - empty array
-     */
-    public function testDumpAExactOutputEmptyArray(): void
-    {
+    * Test Dump::a() exact output format - empty array
+    **/
+    public function testDumpAExactOutputEmptyArray(): void {
         $var = [];
         $result = Dump::a($var, 'Empty', true);
 
@@ -1152,10 +1076,9 @@ Array[size: 0] {
     }
 
     /**
-     * Test Dump::a() exact output format - empty object
-     */
-    public function testDumpAExactOutputEmptyObject(): void
-    {
+    * Test Dump::a() exact output format - empty object
+    **/
+    public function testDumpAExactOutputEmptyObject(): void {
         $var = (object) [];
         $result = Dump::a($var, 'Empty Obj', true);
 
@@ -1167,10 +1090,9 @@ stdClass {
     }
 
     /**
-     * Test Dump::a() exact output format - scalar string
-     */
-    public function testDumpAExactOutputScalarString(): void
-    {
+    * Test Dump::a() exact output format - scalar string
+    **/
+    public function testDumpAExactOutputScalarString(): void {
         $var = 'hello world';
         $result = Dump::a($var, 'String', true);
 
@@ -1180,10 +1102,9 @@ stdClass {
     }
 
     /**
-     * Test Dump::a() exact output format - scalar integer
-     */
-    public function testDumpAExactOutputScalarInteger(): void
-    {
+    * Test Dump::a() exact output format - scalar integer
+    **/
+    public function testDumpAExactOutputScalarInteger(): void {
         $var = 42;
         $result = Dump::a($var, 'Integer', true);
 
@@ -1193,10 +1114,9 @@ stdClass {
     }
 
     /**
-     * Test Dump::a() exact output format - scalar float
-     */
-    public function testDumpAExactOutputScalarFloat(): void
-    {
+    * Test Dump::a() exact output format - scalar float
+    **/
+    public function testDumpAExactOutputScalarFloat(): void {
         $var = 3.14159;
         $result = Dump::a($var, 'Float', true);
 
@@ -1206,10 +1126,9 @@ stdClass {
     }
 
     /**
-     * Test Dump::a() exact output format - boolean true
-     */
-    public function testDumpAExactOutputBoolTrue(): void
-    {
+    * Test Dump::a() exact output format - boolean true
+    **/
+    public function testDumpAExactOutputBoolTrue(): void {
         $var = true;
         $result = Dump::a($var, 'BoolTrue', true);
 
@@ -1219,10 +1138,9 @@ true";
     }
 
     /**
-     * Test Dump::a() exact output format - boolean false
-     */
-    public function testDumpAExactOutputBoolFalse(): void
-    {
+    * Test Dump::a() exact output format - boolean false
+    **/
+    public function testDumpAExactOutputBoolFalse(): void {
         $var = false;
         $result = Dump::a($var, 'BoolFalse', true);
 
@@ -1232,10 +1150,9 @@ false";
     }
 
     /**
-     * Test Dump::a() exact output format - null
-     */
-    public function testDumpAExactOutputNull(): void
-    {
+    * Test Dump::a() exact output format - null
+    **/
+    public function testDumpAExactOutputNull(): void {
         $var = null;
         $result = Dump::a($var, 'Null', true);
 
@@ -1245,10 +1162,9 @@ NULL";
     }
 
     /**
-     * Test Dump::a() exact output format - array with multiple types
-     */
-    public function testDumpAExactOutputArrayMultipleTypes(): void
-    {
+    * Test Dump::a() exact output format - array with multiple types
+    **/
+    public function testDumpAExactOutputArrayMultipleTypes(): void {
         $var = [
             'string' => 'text',
             'int' => 100,
@@ -1271,10 +1187,9 @@ Array[size: 5] {
     }
 
     /**
-     * Test Dump::a() exact output format - deeply nested (4 levels)
-     */
-    public function testDumpAExactOutputDeeplyNested4Levels(): void
-    {
+    * Test Dump::a() exact output format - deeply nested (4 levels)
+    **/
+    public function testDumpAExactOutputDeeplyNested4Levels(): void {
         $var = ['a' => ['b' => ['c' => ['d' => 'deep']]]];
         $result = Dump::a($var, 'Deep4', true);
 
@@ -1293,10 +1208,9 @@ Array[size: 1] {
     }
 
     /**
-     * Test Dump::a() exact output format - object with nested array
-     */
-    public function testDumpAExactOutputObjectWithNestedArray(): void
-    {
+    * Test Dump::a() exact output format - object with nested array
+    **/
+    public function testDumpAExactOutputObjectWithNestedArray(): void {
         $var = (object) ['items' => [1, 2, 3], 'name' => 'test'];
         $result = Dump::a($var, 'ObjArr', true);
 
@@ -1314,10 +1228,9 @@ stdClass {
     }
 
     /**
-     * Test Dump::a() exact output format - array with nested object
-     */
-    public function testDumpAExactOutputArrayWithNestedObject(): void
-    {
+    * Test Dump::a() exact output format - array with nested object
+    **/
+    public function testDumpAExactOutputArrayWithNestedObject(): void {
         $var = ['obj' => (object) ['x' => 1, 'y' => 2]];
         $result = Dump::a($var, 'ArrObj', true);
 
@@ -1333,10 +1246,9 @@ Array[size: 1] {
     }
 
     /**
-     * Test Dump::a() exact output format - complex mixed structure
-     */
-    public function testDumpAExactOutputComplexMixed(): void
-    {
+    * Test Dump::a() exact output format - complex mixed structure
+    **/
+    public function testDumpAExactOutputComplexMixed(): void {
         $var = [
             'users' => [
                 ['name' => 'Alice', 'age' => 30],
@@ -1368,10 +1280,9 @@ Array[size: 2] {
     }
 
     /**
-     * Test Dump::c() exact output format - console method
-     */
-    public function testDumpCExactOutput(): void
-    {
+    * Test Dump::c() exact output format - console method
+    **/
+    public function testDumpCExactOutput(): void {
         $var = ['x' => 10, 'y' => 20];
         $result = Dump::c($var, 'Console', true);
 
@@ -1385,10 +1296,9 @@ Array[size: 2] {
     }
 
     /**
-     * Test Dump::w() exact output format - web method
-     */
-    public function testDumpWExactOutput(): void
-    {
+    * Test Dump::w() exact output format - web method
+    **/
+    public function testDumpWExactOutput(): void {
         $var = ['key' => 'value'];
         $result = Dump::w($var, 'Web', true);
 
@@ -1401,10 +1311,9 @@ Array[size: 1] {
     }
 
     /**
-     * Test Dump::log() exact output format - log method
-     */
-    public function testDumpLogExactOutput(): void
-    {
+    * Test Dump::log() exact output format - log method
+    **/
+    public function testDumpLogExactOutput(): void {
         $var = ['log' => 'entry'];
         $result = Dump::log($var, 'Log', true);
 
@@ -1417,10 +1326,9 @@ Array[size: 1] {
     }
 
     /**
-     * Test Dump::a() exact output - string with special chars
-     */
-    public function testDumpAExactOutputStringSpecialChars(): void
-    {
+    * Test Dump::a() exact output - string with special chars
+    **/
+    public function testDumpAExactOutputStringSpecialChars(): void {
         $var = "line1\nline2\ttab";
         $result = Dump::a($var, 'Special', true);
 
@@ -1431,10 +1339,9 @@ line2\ttab'";
     }
 
     /**
-     * Test Dump::a() exact output - negative numbers
-     */
-    public function testDumpAExactOutputNegativeNumbers(): void
-    {
+    * Test Dump::a() exact output - negative numbers
+    **/
+    public function testDumpAExactOutputNegativeNumbers(): void {
         $var = [-5, -10.5, -100];
         $result = Dump::a($var, 'Negative', true);
 
@@ -1449,10 +1356,9 @@ Array[size: 3] {
     }
 
     /**
-     * Test Dump::a() exact output - zero values
-     */
-    public function testDumpAExactOutputZeroValues(): void
-    {
+    * Test Dump::a() exact output - zero values
+    **/
+    public function testDumpAExactOutputZeroValues(): void {
         $var = ['int' => 0, 'float' => 0.0, 'bool' => false];
         $result = Dump::a($var, 'Zero', true);
 
@@ -1467,10 +1373,9 @@ Array[size: 3] {
     }
 
     /**
-     * Test Dump::a() exact output - array with numeric keys
-     */
-    public function testDumpAExactOutputNumericKeys(): void
-    {
+    * Test Dump::a() exact output - array with numeric keys
+    **/
+    public function testDumpAExactOutputNumericKeys(): void {
         $var = [0 => 'zero', 5 => 'five', 10 => 'ten'];
         $result = Dump::a($var, 'NumericKeys', true);
 
@@ -1485,10 +1390,9 @@ Array[size: 3] {
     }
 
     /**
-     * Test Dump::a() exact output - long string
-     */
-    public function testDumpAExactOutputLongString(): void
-    {
+    * Test Dump::a() exact output - long string
+    **/
+    public function testDumpAExactOutputLongString(): void {
         $var = 'This is a very long string that contains many characters and should be properly exported';
         $result = Dump::a($var, 'LongStr', true);
 
@@ -1498,10 +1402,9 @@ Array[size: 3] {
     }
 
     /**
-     * Test Dump::a() exact output - scientific notation
-     */
-    public function testDumpAExactOutputScientificNotation(): void
-    {
+    * Test Dump::a() exact output - scientific notation
+    **/
+    public function testDumpAExactOutputScientificNotation(): void {
         $var = 1.23e+10;
         $result = Dump::a($var, 'Sci', true);
 
@@ -1511,10 +1414,9 @@ Array[size: 3] {
     }
 
     /**
-     * Test Dump::a() exact output - very deep nested (5 levels array)
-     */
-    public function testDumpAExactOutputVeryDeepNested(): void
-    {
+    * Test Dump::a() exact output - very deep nested (5 levels array)
+    **/
+    public function testDumpAExactOutputVeryDeepNested(): void {
         $var = ['a' => ['b' => ['c' => ['d' => ['e' => 'five']]]]];
         $result = Dump::a($var, 'Deep5', true);
 
@@ -1535,10 +1437,9 @@ Array[size: 1] {
     }
 
     /**
-     * Test formatVariable with unsupported type (resource) - covers unreachable code path
-     */
-    public function testDumpFormatVariableWithResource(): void
-    {
+    * Test formatVariable with unsupported type (resource) - covers unreachable code path
+    **/
+    public function testDumpFormatVariableWithResource(): void {
         $method = new \ReflectionMethod(Dump::class, 'formatVariable');
         $method->setAccessible(true);
 

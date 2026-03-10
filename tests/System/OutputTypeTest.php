@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\System\OutputType;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\System\OutputType
- */
+* @covers \Hubbitus\HuPHP\System\OutputType
+**/
 class OutputTypeTest extends TestCase {
     public function testWebCaseExists(): void {
         $this->assertEquals(OutputType::WEB, OutputType::WEB);

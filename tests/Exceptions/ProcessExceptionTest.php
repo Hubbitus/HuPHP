@@ -1,10 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for ProcessException class.
- */
-
 namespace Hubbitus\HuPHP\Tests\Exceptions;
 
 use Hubbitus\HuPHP\Exceptions\ProcessException;
@@ -12,8 +8,8 @@ use Hubbitus\HuPHP\Exceptions\BaseException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\ProcessException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\ProcessException
+**/
 class ProcessExceptionTest extends TestCase {
     public function testClassInstantiation(): void {
         $state = new \stdClass();

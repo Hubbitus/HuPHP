@@ -8,8 +8,8 @@ use Hubbitus\HuPHP\Vars\OutExtraDataHuFormat;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers Hubbitus\HuPHP\Vars\OutExtraDataHuFormat
- */
+* @covers Hubbitus\HuPHP\Vars\OutExtraDataHuFormat
+**/
 final class OutExtraDataHuFormatTest extends TestCase {
     private array $testFormats = [
         OutputType::CONSOLE->name => ['v:::'],

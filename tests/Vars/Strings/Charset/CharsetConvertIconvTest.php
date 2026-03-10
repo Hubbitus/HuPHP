@@ -185,10 +185,10 @@ class CharsetConvertIconvTest extends TestCase {
     }
 
     /**
-     * Test conversion with invalid output encoding throws ValueError.
-     *
-     * mb_convert_encoding() throws ValueError for invalid encodings (PHP 8.0+)
-     **/
+    * Test conversion with invalid output encoding throws ValueError.
+    *
+    * mb_convert_encoding() throws ValueError for invalid encodings (PHP 8.0+)
+    **/
     public function testConvertWithInvalidOutputEncoding(): void {
         $this->expectException(\ValueError::class);
 

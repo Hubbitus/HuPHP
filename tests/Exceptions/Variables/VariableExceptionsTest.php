@@ -1,10 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for simple Variable exception classes.
- */
-
 namespace Hubbitus\HuPHP\Tests\Exceptions\Variables;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
@@ -16,8 +12,9 @@ use Hubbitus\HuPHP\Exceptions\BaseException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableException
+* Test for simple Variable exception classes.
+**/
 class VariableExceptionsTest extends TestCase {
     public function testVariableExceptionInstantiation(): void {
         $exception = new VariableException('Variable error');

@@ -3,6 +3,5 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Exceptions\Network;
 
-use Hubbitus\HuPHP\Exceptions\BaseException;
-
-class SocketOpenException extends NetworkException {}
+class SocketOpenException extends NetworkException {
+}

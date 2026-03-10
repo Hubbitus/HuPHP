@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\Exceptions\Network\SocketOpenException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Network\SocketOpenException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Network\SocketOpenException
+**/
 class SocketOpenExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new SocketOpenException();

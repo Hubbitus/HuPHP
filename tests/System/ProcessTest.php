@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\System;
-use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\System\Process;
 use Hubbitus\HuPHP\System\ProcessState;
@@ -10,9 +9,9 @@ use Hubbitus\HuPHP\Exceptions\ProcessException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\System\Process
- * @covers \Hubbitus\HuPHP\System\ProcessState
- */
+* @covers \Hubbitus\HuPHP\System\Process
+* @covers \Hubbitus\HuPHP\System\ProcessState
+**/
 class ProcessTest extends TestCase {
     public function testClassHasConstants(): void {
         $this->assertEquals(0, Process::STDIN);
@@ -91,10 +90,10 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = 'echo "test"';
         $process = new Process($state, true); // Don't open in constructor
-        
+
         // Open manually
         $process->open();
-        
+
         $this->assertNotNull($process);
     }
 
@@ -104,10 +103,10 @@ class ProcessTest extends TestCase {
         $state->CMD = 'cat';
         $process = new Process($state, true);
         $process->open();
-        
+
         // Enable non-blocking mode
         $process->setNonBlockingMode(true, 100000);
-        
+
         $this->assertTrue($state->nonBlockingMode);
         $this->assertEquals(100000, $state->nonBlockTimeout);
     }
@@ -117,10 +116,10 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = 'echo "test"';
         $process = new Process($state, true);
-        
+
         // Disable non-blocking mode (default) - don't call open to avoid blocking
         $process->setNonBlockingMode(false);
-        
+
         $this->assertFalse($state->nonBlockingMode);
     }
 
@@ -130,12 +129,12 @@ class ProcessTest extends TestCase {
         $state->CMD = 'cat';
         $process = new Process($state, true);
         $process->open();
-        
+
         // Write input
         $process->writeIn('test data');
-        
+
         $this->assertEquals('test data', $state->writeData);
-        
+
         // Cleanup
         $process->readOut();
         $process->readErr();
@@ -149,12 +148,12 @@ class ProcessTest extends TestCase {
         $process = new Process($state, true);
         $process->open();
         $process->setNonBlockingMode(true, 50000);
-        
+
         // Write input with noWait
         $process->writeIn('test', true);
-        
+
         $this->assertEquals('test', $state->writeData);
-        
+
         // Cleanup - don't check exit code as cat may exit with non-zero in non-blocking mode
         $process->readOut();
         $process->readErr();
@@ -170,12 +169,12 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = 'echo "output"';
         $process = new Process($state);
-        
+
         $process->writeIn();
         $process->readOut();
-        
+
         $this->assertStringContainsString('output', $state->retVal);
-        
+
         // Cleanup
         $process->readErr();
         $process->closeAll();
@@ -186,12 +185,12 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = 'echo "error" >&2';
         $process = new Process($state);
-        
+
         $process->writeIn();
         $process->readErr();
-        
+
         $this->assertStringContainsString('error', $state->error);
-        
+
         // Cleanup
         $process->readOut();
         $process->closeAll();
@@ -202,14 +201,14 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = 'echo "test"';
         $process = new Process($state);
-        
+
         $process->writeIn();
         $process->readOut();
         $process->readErr();
-        
+
         // Close all should complete without error for successful command
         $process->closeAll();
-        
+
         $this->assertEquals(0, $state->exit_code);
     }
 
@@ -220,14 +219,14 @@ class ProcessTest extends TestCase {
         $process = new Process($state, true);
         $process->open();
         $process->setNonBlockingMode(true, 50000);
-        
+
         $process->writeIn();
         $process->readOut();
         $process->readErr();
-        
+
         // Close all in non-blocking mode
         $process->closeAll();
-        
+
         $this->assertEquals(0, $state->exit_code);
     }
 
@@ -236,11 +235,11 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = 'false'; // Command that exits with code 1
         $process = new Process($state);
-        
+
         $process->writeIn();
         $process->readOut();
         $process->readErr();
-        
+
         $this->expectException(ProcessException::class);
         $this->expectExceptionMessage('Ended with non 0 status');
         $process->closeAll();
@@ -251,9 +250,9 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = 'echo "result"';
         $process = new Process($state);
-        
+
         $result = $process->execute();
-        
+
         $this->assertStringContainsString('result', $result);
     }
 
@@ -262,7 +261,7 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = 'echo "error" >&2';
         $process = new Process($state);
-        
+
         $this->expectException(ProcessException::class);
         $process->execute();
     }
@@ -272,16 +271,16 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = 'echo "hello world"';
         $process = new Process($state);
-        
+
         $result = $process->execute();
-        
+
         $this->assertStringContainsString('hello world', $result);
     }
 
     public function testExecWithCustomCwdAndEnv(): void {
         // Test exec() with both cwd and env
         $result = Process::exec('pwd', '/tmp', ['TEST' => 'value']);
-        
+
         $this->assertIsString($result);
         $this->assertStringContainsString('/tmp', $result);
     }
@@ -291,19 +290,14 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = 'echo "test"';
         $state->setCwd('/tmp');
-        
+
         $result = Process::exec($state);
-        
+
         $this->assertIsString($result);
         $this->assertEquals('/tmp', $state->getCwd());
     }
 
     public function testProcessWithStdioConstants(): void {
-        // Test process using STDIN, STDOUT, STDERR constants
-        $state = new ProcessState();
-        $state->CMD = 'cat';
-        $process = new Process($state, true);
-        
         // Verify constants are accessible
         $this->assertEquals(0, Process::STDIN);
         $this->assertEquals(1, Process::STDOUT);
@@ -316,13 +310,13 @@ class ProcessTest extends TestCase {
         $state->CMD = 'cat';
         $state->writeData = 'predefined data';
         $process = new Process($state);
-        
+
         $process->writeIn(); // No argument, should use predefined data
-        
+
         $process->readOut();
         $process->readErr();
         $process->closeAll();
-        
+
         $this->assertStringContainsString('predefined data', $state->retVal);
     }
 
@@ -332,9 +326,9 @@ class ProcessTest extends TestCase {
         $state->CMD = 'cat';
         $process = new Process($state, true);
         $process->open();
-        
+
         $process->setNonBlockingMode(); // Default: true, 500000
-        
+
         $this->assertTrue($state->nonBlockingMode);
         $this->assertEquals(500000, $state->nonBlockTimeout);
     }
@@ -345,10 +339,10 @@ class ProcessTest extends TestCase {
         $state = new ProcessState();
         $state->CMD = '/nonexistent/command';
         $process = new Process($state, true);
-        
+
         // Open should not create a valid resource but also not throw
         $process->open();
-        
+
         // Verify process exists
         $this->assertNotNull($process);
     }
@@ -356,13 +350,13 @@ class ProcessTest extends TestCase {
     public function testOpenThrowsExceptionWhenProcOpenFails(): void {
         // Test open() throws ProcessException when proc_open returns false
         // This covers the exception path in open() method
-        set_error_handler(function() { return true; }); // Suppress warnings
-        
+        \set_error_handler(function() { return true; }); // Suppress warnings
+
         try {
             $state = new ProcessState();
             $state->CMD = 'echo test';
             $process = new Process($state, true);
-            
+
             // Modify descriptor spec to make proc_open fail
             $reflection = new \ReflectionClass($process);
             $descriptorSpecProp = $reflection->getProperty('descriptorSpec');
@@ -370,12 +364,12 @@ class ProcessTest extends TestCase {
             $descriptorSpecProp->setValue($process, [
                 0 => ['invalid_type', 'r'] // Invalid descriptor type
             ]);
-            
+
             $this->expectException(ProcessException::class);
             $this->expectExceptionMessage('Can\'t open process!');
             $process->open();
         } finally {
-            restore_error_handler();
+            \restore_error_handler();
         }
     }
 }

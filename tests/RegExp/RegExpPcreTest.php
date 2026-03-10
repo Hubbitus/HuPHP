@@ -320,8 +320,8 @@ class RegExpPcreTest extends TestCase {
 	}
 
 	/**
-	 * Helper method to access protected properties via reflection
-	 */
+	* Helper method to access protected properties via reflection
+	**/
 	private function getProtectedProperty($object, string $propertyName): mixed {
 		$reflection = new \ReflectionClass($object);
 		$property = $reflection->getProperty($propertyName);

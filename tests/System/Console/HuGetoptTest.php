@@ -6,11 +6,10 @@ namespace Hubbitus\HuPHP\Tests\System\Console;
 use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\System\Console\HuGetopt;
 use Hubbitus\HuPHP\System\Console\HuGetoptSettings;
-use Hubbitus\HuPHP\System\Console\HuGetoptArgumentRequiredException;
 
 /**
 * @covers \Hubbitus\HuPHP\System\Console\HuGetopt
-*/
+**/
 class HuGetoptTest extends TestCase {
 	private HuGetopt $getopt;
 

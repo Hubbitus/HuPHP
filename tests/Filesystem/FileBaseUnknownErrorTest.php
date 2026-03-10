@@ -8,8 +8,8 @@ use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Filesystem\FileBase
- */
+* @covers \Hubbitus\HuPHP\Filesystem\FileBase
+**/
 class FileBaseUnknownErrorTest extends TestCase {
     private string $dir;
     private string $file;

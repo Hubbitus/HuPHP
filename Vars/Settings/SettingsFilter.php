@@ -6,9 +6,9 @@ use Hubbitus\HuPHP\Macro\Vars;
 
 
 /**
- * Extended variant of {@seeSettingsCheck}, with check possible options.
- * You may easy add any amount of "filters" on get/set property operations
- * 	by easy register new filter like:
+* Extended variant of {@seeSettingsCheck}, with check possible options.
+* You may easy add any amount of "filters" on get/set property operations
+* 	by easy register new filter like:
 *	$obj->addGetFilter('testProp', callback $func);
 *
 * Set filters intended primarily for static transformations like check, conversions etc.
@@ -30,8 +30,8 @@ class SettingsFilter extends SettingsCheckStatic {
 	* Apply all desired filters and set value.
 	**/
 	public function &setSetting($name, $value): static {
-		foreach ($this->getFilterSet($name) as $filt){
-			$filt->apply($name, $value);
+		foreach ($this->getFilterSet($name) as $filter) {
+			$filter->apply($name, $value);
 		}
 		parent::setSetting($name, $value);
 		return $this;
@@ -44,8 +44,8 @@ class SettingsFilter extends SettingsCheckStatic {
 	**/
 	public function &getProperty($name): mixed {
 		$val =& parent::getProperty($name);
-		foreach ($this->getFilterGet($name) as $filt){
-			$filt->apply($name, $val);
+		foreach ($this->getFilterGet($name) as $filter) {
+			$filter->apply($name, $val);
 		}
 		return $val;
 	}
@@ -120,7 +120,7 @@ class SettingsFilter extends SettingsCheckStatic {
 	* @param string $name Name of property for what filter search.
 	* @return \SplDoublyLinkedList Queue of required filters (may be empty).
 	**/
-	protected function &getFilterSet($name): \SplDoublyLinkedList{
+	protected function &getFilterSet($name): \SplDoublyLinkedList {
 		if (!isset($this->__filter_set[$name])) $this->__filter_set[$name] = new \SplDoublyLinkedList();
 		return $this->__filter_set[$name];
 	}
@@ -132,10 +132,11 @@ class SettingsFilter extends SettingsCheckStatic {
 	* @param int $filterId Filter Id from methods {@see addFilter[GS]et()}
 	* @return static
 	**/
-	public function &delFilterGet($propName, $filterId){
+	public function &delFilterGet($propName, $filterId): static {
 		$this->getFilterGet($propName)->offsetUnset($filterId);;
 		return $this;
 	}
+
 	/**
 	* Delete Set filter property from filters queue.
 	*
@@ -146,7 +147,7 @@ class SettingsFilter extends SettingsCheckStatic {
 	* @param int $filterId Filter Id from methods {@see addFilter[GS]et()}
 	* @return static
 	**/
-	public function &delFilterSet($propName, $filterId){
+	public function &delFilterSet($propName, $filterId): static {
 		$this->getFilterSet($propName)->offsetUnset($filterId);;
 		return $this;
 	}

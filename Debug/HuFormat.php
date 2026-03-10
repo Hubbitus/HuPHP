@@ -28,7 +28,7 @@ class HuFormat extends HuError {
 	* For each present modifier will maintain method of implementation..
 	*
 	* @var array<string, \Closure>
-	*/
+	**/
 	public static array $MODS;
 
 	/**
@@ -51,8 +51,8 @@ class HuFormat extends HuError {
 				}
 				$hf = new self(null, $obj->_value, $obj->_key);
 				$ret = '';
-				if (\is_array($obj->_format)){
-					foreach ($obj->_format as $f){
+				if (\is_array($obj->_format)) {
+					foreach ($obj->_format as $f) {
 						$hf->setFormat($f);
 						$ret .= $hf->getString();
 					}
@@ -64,7 +64,7 @@ class HuFormat extends HuError {
 			* Format: ['s:::propertyName']
 			**/
 			's' => function(self $obj): string {
-				if (!$obj->_realValued){
+				if (!$obj->_realValued) {
 					/** @phpstan-ignore property.dynamicName */
 					$obj->_realValue = @$obj->_value->{$obj->_name};
 					$obj->_realValued = true;
@@ -80,7 +80,7 @@ class HuFormat extends HuError {
 			* Format: ['a:::keyName']
 			**/
 			'a' => function(self $obj): string {
-				if (!$obj->_realValued){
+				if (!$obj->_realValued) {
 					$obj->_realValue = $obj->_value[$obj->_name];
 					$obj->_realValued = true;
 				}
@@ -100,7 +100,7 @@ class HuFormat extends HuError {
 			'p' => function(self $obj): mixed {
 				//Replace by real value.
 				$format = $obj->_format;
-				foreach (array_keys($format, self::sprintf_var, true) as $key){
+				foreach (array_keys($format, self::sprintf_var, true) as $key) {
 					$format[$key] = $obj->_realValue;
 				}
 				return \call_user_func_array('sprintf', $format);
@@ -110,7 +110,7 @@ class HuFormat extends HuError {
 			* Format: ['e:::PHP expression with $var']
 			**/
 			'e' => function(self $obj): string {
-				if (!$obj->_realValued){
+				if (!$obj->_realValued) {
 					${self::evaluate_var} = $obj->getValue(); /* @phpstan-ignore variable.dynamicName */
 					eval('$obj->_realValue = '.$obj->_name.';');
 					$obj->_realValued = true;
@@ -137,11 +137,11 @@ class HuFormat extends HuError {
 			* Format: ['v:::']
 			**/
 			'v' => function(self $obj): string {
-				if (!$obj->_realValued){
+				if (!$obj->_realValued) {
 					$obj->_realValue = $obj->_value;
 					$obj->_realValued = true;
 				}
-				else{
+				else {
 					throw new HuFormatException('Got conflicted format modifiers!');
 				}
 				// Avoid infinite recursion when value is Backtrace or OutExtraDataBacktrace
@@ -164,7 +164,7 @@ class HuFormat extends HuError {
 
 				$value = $obj->getValue();
 				if (\is_iterable($value)) {
-					foreach ($value as $key => $v){
+					foreach ($value as $key => $v) {
 						$hf->setValue($v);
 						$hf->_key = $key; //Only for I useful
 						$result = $hf->getString();
@@ -213,7 +213,7 @@ class HuFormat extends HuError {
 	* {@see ::set()}
 	*	Be careful - you should explicit provide value like false (invoke as __construct(null, $t = false) for example, because 2d parameter is reference). Otherwise default value null means - using $this as value!
 	**/
-	public function __construct(?array $format = null, &$value = null, $key = null){
+	public function __construct(?array $format = null, &$value = null, $key = null) {
 		self::initMODS();
 		parent::__construct();
 		$this->set($format, $value, $key);
@@ -229,7 +229,7 @@ class HuFormat extends HuError {
 	* @param	mixed	$key	Key of iteration in mod_I and/or mod_A.
 	* @return	$this
 	**/
-	public function &set($format = null, &$value = null, $key = null){
+	public function &set($format = null, &$value = null, $key = null) {
 		if (null !== $value) $this->setValue($value);
 		if (null !== $format) $this->setFormat($format);
 		$this->_key = $key;
@@ -254,7 +254,7 @@ class HuFormat extends HuError {
 	* @return $this
 	**/
 	public function &setValue(&$value): static {
-		if(null === $value){
+		if(null === $value) {
 		$this->_value =& $this;
 		}
 		else $this->_value = $value;
@@ -291,17 +291,17 @@ class HuFormat extends HuError {
 		$this->_modArr = array();
 		$this->_realValued = false;
 
-		if (\is_array($format)){
-			if (\is_array($format[key($format)])){//<2>
+		if (\is_array($format)) {
+			if (\is_array($format[key($format)])) {//<2>
 				$this->parseModsName(key($format));
 				$this->_format = $format[key($format)];
 			}
-			else{//<1>
+			else {//<1>
 				$this->parseModsName(array_shift($format));
 				$this->_format = $format;//Tail
 			}
 		}
-		else{//<3>
+		else {//<3>
 			//Parse string format for modifiers
 			$this->parseModsName($format);
 			//If no modifiers, treat as plain string value
@@ -323,11 +323,11 @@ class HuFormat extends HuError {
 	**/
 	protected function &parseModsName($str): HuFormat {
 		$str = (string) $str;
-		if (!\strstr($str, self::mods_separator)){//Whole name
+		if (!\strstr($str, self::mods_separator)) {//Whole name
 			$this->_name = $str;
 			$this->_modStr = '';
 		}
-		else{//Separator present
+		else {//Separator present
 			list($this->_modStr, $this->_name) = \explode(self::mods_separator, $str);
 		}
 		return $this->parseMods();
@@ -340,10 +340,10 @@ class HuFormat extends HuError {
 	* @return string
 	**/
 	public function getString(?array $fields = null): string {
-		if ($this->_resStr === null){
+		if ($this->_resStr === null) {
 			$this->_resStr = '';
 
-			foreach ($this->_modArr as $mod){
+			foreach ($this->_modArr as $mod) {
 				$method = self::$MODS[$mod];
 				$result = $method($this);
 				if ($result !== null) {
@@ -352,7 +352,7 @@ class HuFormat extends HuError {
 			}
 
 			//If all mod_* are only evaluate value and not produce out.
-			if ($this->_resStr === ''){
+			if ($this->_resStr === '') {
 				$value = $this->getValue();
 				if ($value === null) return '';
 				if (\is_array($value)) return \print_r($value, true);
@@ -390,8 +390,8 @@ class HuFormat extends HuError {
 	**/
 	public function &changeModsStr(string $mods): static {
 		$len = \strlen($mods);
-		for($i=0; $i < $len; $i++){
-			if (\in_array($mods[$i], ['+', '-', '*'], true)){
+		for($i=0; $i < $len; $i++) {
+			if (\in_array($mods[$i], ['+', '-', '*'], true)) {
 				$op = $mods[$i];
 				++$i;
 				if ($i >= $len) {
@@ -399,7 +399,7 @@ class HuFormat extends HuError {
 				}
 				$mod = $mods[$i];
 			}
-			else{
+			else {
 				$mod = $mods[$i];
 				$op = '+';	//Default
 			}
@@ -408,7 +408,7 @@ class HuFormat extends HuError {
 				throw new VariableRangeException('Unknown modifier - "'.$mod.'"');
 			}
 
-			switch ($op){
+			switch ($op) {
 				case '+':
 					if (!\in_array($mod, $this->_mods, true)) {
 						$this->_mods[] = $mod;
@@ -455,9 +455,9 @@ class HuFormat extends HuError {
 	**/
 	protected function &parseMods(): static {
 		$this->_mods = [];
-		for($i=0; $i < strlen($this->_modStr); $i++){
+		for($i=0; $i < strlen($this->_modStr); $i++) {
 			$mod = $this->_modStr[$i];
-			if (isset(self::$MODS[$mod])){
+			if (isset(self::$MODS[$mod])) {
 				$this->_mods[] = $mod;
 				$this->_modArr[] = $mod;
 			}

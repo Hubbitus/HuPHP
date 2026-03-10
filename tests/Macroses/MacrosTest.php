@@ -68,9 +68,9 @@ class MacrosTest extends TestCase {
     }
 
     /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    * @runInSeparateProcess
+    * @preserveGlobalState disabled
+    **/
     public function testExitCountThrowsHaltException(): void {
         // In fresh process, counter starts from 0
         // First call increments to 1, second to 2 which should throw
@@ -85,9 +85,9 @@ class MacrosTest extends TestCase {
     }
 
     /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    * @runInSeparateProcess
+    * @preserveGlobalState disabled
+    **/
     public function testExitCountDoesNotThrowBeforeCountReached(): void {
         // In fresh process, counter starts from 0
         // OS::exitCount(5) will increment counter to 1, which is not equal to 5

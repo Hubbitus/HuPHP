@@ -8,7 +8,7 @@ use Hubbitus\HuPHP\Exceptions\SerializeException;
 class SerializedData {
 	private array $__data = [];
 
-	public function __construct(?string $serializedStr = null){
+	public function __construct(?string $serializedStr = null) {
 		if ($serializedStr !== null) {
 			$unSerialized = @\unserialize($serializedStr);
 			if ($unSerialized === false && $serializedStr !== 'b:0;') {

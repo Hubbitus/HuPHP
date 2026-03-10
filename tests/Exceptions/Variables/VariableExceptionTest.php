@@ -7,8 +7,8 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableException
+**/
 class VariableExceptionTest extends TestCase {
     public function testConstructorWithNoArguments(): void {
         $exception = new VariableException();

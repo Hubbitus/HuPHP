@@ -3,20 +3,22 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Exceptions\Variables;
 
+use Hubbitus\HuPHP\Debug\Tokenizer;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use Hubbitus\HuPHP\Debug\Backtrace;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException
- */
+* @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException
+**/
 class VariableRequiredExceptionTest extends TestCase {
     public function testConstructorWithBacktrace(): void {
         $backtrace = new Backtrace();
         $exception = new VariableRequiredException($backtrace);
 
         $this->assertInstanceOf(VariableRequiredException::class, $exception);
-        $this->assertInstanceOf(\Hubbitus\HuPHP\Exceptions\Variables\VariableException::class, $exception);
+        $this->assertInstanceOf(VariableException::class, $exception);
     }
 
     public function testConstructorWithBacktraceAndVarName(): void {
@@ -109,7 +111,7 @@ class VariableRequiredExceptionTest extends TestCase {
         try {
             $tokenizer = $exception->getTokenizer();
             // If successful, verify return type
-            $this->assertInstanceOf(\Hubbitus\HuPHP\Debug\Tokenizer::class, $tokenizer);
+            $this->assertInstanceOf(Tokenizer::class, $tokenizer);
         } catch (\TypeError $e) {
             // Tokenizer may fail with TypeError due to internal issues
             // But method was called and lines were executed
@@ -164,13 +166,13 @@ class VariableRequiredExceptionTest extends TestCase {
             $backtrace = new Backtrace();
             return new VariableRequiredException($backtrace, 'testParam', 'Test message');
         };
-        
+
         $exception = $createException();
-        
+
         // getTokenizer should return Tokenizer instance
         $tokenizer = $exception->getTokenizer();
-        
-        $this->assertInstanceOf(\Hubbitus\HuPHP\Debug\Tokenizer::class, $tokenizer);
+
+        $this->assertInstanceOf(Tokenizer::class, $tokenizer);
     }
 
     public function testGetTokenizerReturnsCachedInstance(): void {
@@ -179,15 +181,15 @@ class VariableRequiredExceptionTest extends TestCase {
             $backtrace = new Backtrace();
             return new VariableRequiredException($backtrace, 'testParam', 'Test message');
         };
-        
+
         $exception = $createException();
-        
+
         // First call creates tokenizer
         $tokenizer1 = $exception->getTokenizer();
-        
+
         // Second call should return cached instance
         $tokenizer2 = $exception->getTokenizer();
-        
+
         $this->assertSame($tokenizer1, $tokenizer2);
     }
 }

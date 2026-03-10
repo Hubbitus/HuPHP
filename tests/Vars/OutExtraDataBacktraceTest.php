@@ -1,21 +1,16 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for OutExtraDataBacktrace class.
- */
-
 namespace Hubbitus\HuPHP\Tests\Vars;
 
 use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
-use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Vars\OutExtraDataBacktrace;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers Hubbitus\HuPHP\Vars\OutExtraDataBacktrace
- */
+* @covers Hubbitus\HuPHP\Vars\OutExtraDataBacktrace
+**/
 class OutExtraDataBacktraceTest extends TestCase {
     protected function setUp(): void {
         // Configure default backtrace format
@@ -208,18 +203,18 @@ class OutExtraDataBacktraceTest extends TestCase {
     }
 
     /**
-     * Test serialization of OutExtraDataBacktrace.
-     */
+    * Test serialization of OutExtraDataBacktrace.
+    **/
     public function testSerialization(): void {
         $backtrace = new Backtrace();
         $extraData = new OutExtraDataBacktrace($backtrace);
 
         $serialized = serialize($extraData);
         $this->assertIsString($serialized);
-        
-        // Test unserialization
-        $unserialized = unserialize($serialized);
-        $this->assertInstanceOf(OutExtraDataBacktrace::class, $unserialized);
+
+        // Test un-serialization
+        $unSerialized = unserialize($serialized);
+        $this->assertInstanceOf(OutExtraDataBacktrace::class, $unSerialized);
     }
 
     public function testToString(): void {

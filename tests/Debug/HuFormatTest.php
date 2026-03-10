@@ -42,7 +42,7 @@ class HuFormatTest extends TestCase {
 
     /**
     * Test constructor with key.
-   **/
+    **/
     public function testConstructorWithKey(): void {
         $value = 'value';
         $format = new HuFormat(['v:::'], $value, 'test_key');

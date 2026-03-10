@@ -1,19 +1,14 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for Single class.
- */
-
 namespace Hubbitus\HuPHP\Tests\Vars;
-use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Vars\Single;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Vars\Single
- */
+* @covers \Hubbitus\HuPHP\Vars\Single
+**/
 class SingleTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(Single::class));
@@ -341,7 +336,7 @@ class SingleTest extends TestCase {
         // Test that __construct is protected (Singleton pattern)
         $reflection = new \ReflectionClass(Single::class);
         $constructor = $reflection->getConstructor();
-        
+
         $this->assertNotNull($constructor);
         $this->assertTrue($constructor->isProtected());
     }
@@ -352,14 +347,14 @@ class SingleTest extends TestCase {
         $reflection = new \ReflectionClass(Single::class);
         $constructor = $reflection->getConstructor();
         $constructor->setAccessible(true);
-        
+
         $instance = $reflection->newInstanceWithoutConstructor();
-        
+
         // Capture output from echo statement
         ob_start();
         $constructor->invoke($instance);
         $output = ob_get_clean();
-        
+
         $this->assertStringContainsString('I am constructed', $output);
     }
 
@@ -367,14 +362,14 @@ class SingleTest extends TestCase {
         // Test that __clone throws LogicException
         // This protects Single subclasses, but singleton() returns instances
         // of other classes (not Single), so __clone is not called in typical usage.
-        
+
         // Create Single instance via reflection (constructor is protected)
         $reflection = new \ReflectionClass(Single::class);
         $instance = $reflection->newInstanceWithoutConstructor();
-        
+
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Clone is not allowed');
-        
+
         clone $instance;
     }
 }

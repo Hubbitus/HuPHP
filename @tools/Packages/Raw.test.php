@@ -14,7 +14,7 @@ Dump::a($someVar);
 $arr = ['oen', 'two', 'three' => ['three-one', ['three-two']]];
 Dump::a($arr);
 
-function f(){
+function f() {
     $bt = Backtrace::create();
     $bt->printFormat();
 }

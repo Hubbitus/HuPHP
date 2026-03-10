@@ -1,12 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
-* Test for NullClass class.
-**/
-
 namespace Hubbitus\HuPHP\Tests\Vars;
-use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Vars\NullClass;
 use PHPUnit\Framework\TestCase;
@@ -445,11 +440,11 @@ class NullClassTest extends TestCase {
     }
 
     /**
-     * Test that NullClass does NOT allow dynamic properties.
-     *
-     * Magic methods __set/__get/__isset/__unset throw LogicException
-     * for any dynamic property access attempt.
-     */
+    * Test that NullClass does NOT allow dynamic properties.
+    *
+    * Magic methods __set/__get/__isset/__unset throw LogicException
+    * for any dynamic property access attempt.
+    **/
     public function testClassDoesNotAllowDynamicProperties(): void {
         $null = new NullClass();
 
@@ -461,8 +456,8 @@ class NullClassTest extends TestCase {
     }
 
     /**
-     * Test that __get() throws LogicException for dynamic properties.
-     */
+    * Test that __get() throws LogicException for dynamic properties.
+    **/
     public function testClassGetMagicMethodThrowsException(): void {
         $null = new NullClass();
 
@@ -474,8 +469,8 @@ class NullClassTest extends TestCase {
     }
 
     /**
-     * Test that __isset() returns false for dynamic properties.
-     */
+    * Test that __isset() returns false for dynamic properties.
+    **/
     public function testClassIssetMagicMethodReturnsFalse(): void {
         $null = new NullClass();
 
@@ -484,8 +479,8 @@ class NullClassTest extends TestCase {
     }
 
     /**
-     * Test that __unset() throws LogicException for dynamic properties.
-     */
+    * Test that __unset() throws LogicException for dynamic properties.
+    **/
     public function testClassUnsetMagicMethodThrowsException(): void {
         $null = new NullClass();
 

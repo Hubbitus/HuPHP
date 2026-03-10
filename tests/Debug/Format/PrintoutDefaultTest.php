@@ -3,18 +3,17 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Debug\Format;
 
-use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
 use Hubbitus\HuPHP\System\OutputType;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Debug\Format\PrintoutDefault
- */
+* @covers \Hubbitus\HuPHP\Debug\Format\PrintoutDefault
+**/
 final class PrintoutDefaultTest extends TestCase {
     /**
-     * @var array|null Backup of original config
-     */
+    * @var array|null Backup of original config
+    **/
     private ?array $originalConfig = null;
 
     protected function setUp(): void {

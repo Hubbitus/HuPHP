@@ -172,9 +172,9 @@ class Tokenizer {
 		$this->_callStartLine = 0;
 
 		//Search closest line
-		foreach ($this->_regexp->getMatches() as $k => $match){
+		foreach ($this->_regexp->getMatches() as $k => $match) {
 			$lineN = (int) $this->_filePhpSrc->getLineByOffset($match[0][1]) + 1; //Indexing from 0
-			if ( ($d = $this->_debugBacktrace->line - $lineN) >= 0 and $d < $delta){
+			if ( ($d = $this->_debugBacktrace->line - $lineN) >= 0 and $d < $delta) {
 				$delta = $d;
 				$this->_callStartLine = $lineN;
 			}
@@ -221,11 +221,11 @@ class Tokenizer {
 		$this->addArg();
 		$sParenthesis = 0; //stack
 		$sz = \sizeof($this->_tokens);
-		while ($this->_curTokPos < $sz){
+		while ($this->_curTokPos < $sz) {
 			$token =& $this->_tokens[$this->_curTokPos++];
 
-			if (\is_string($token)){
-				switch($token){
+			if (\is_string($token)) {
+				switch($token) {
 					case '(':
 						++$sParenthesis;
 						// Self ( - do not want
@@ -247,8 +247,8 @@ class Tokenizer {
 						$this->addToArg($token);
 				}
 			}
-			else{
-				switch($token[0]){
+			else {
+				switch($token[0]) {
 					case T_COMMENT:
 					case T_DOC_COMMENT:
 						if (!$stripComments) $this->addToArg($token[1]);
@@ -273,7 +273,7 @@ class Tokenizer {
 	**/
 	private function skipToStartCallArguments(): Tokenizer {
 		$sz = \sizeof($this->_tokens);
-		while ($this->_curTokPos < $sz){
+		while ($this->_curTokPos < $sz) {
 			$token =& $this->_tokens[$this->_curTokPos++];
 			if (\is_array($token) && T_STRING === $token[0] && $token[1] === $this->_debugBacktrace->function)
 				return $this;

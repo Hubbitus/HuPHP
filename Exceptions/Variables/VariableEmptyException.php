@@ -5,4 +5,5 @@ namespace Hubbitus\HuPHP\Exceptions\Variables;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 
-class VariableEmptyException extends VariableRequiredException {}
+class VariableEmptyException extends VariableRequiredException {
+}

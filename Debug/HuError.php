@@ -26,7 +26,7 @@ class HuError extends Settings implements IOutExtraData {
 	/** @var OutputType Current output type */
 	public OutputType $_curTypeOut = OutputType::CONSOLE;
 
-	public function __construct(?HuErrorSettings $sets = null){
+	public function __construct(?HuErrorSettings $sets = null) {
 		parent::__construct();
 		$this->_sets = Vars::firstMeaning($sets, new HuErrorSettings());
 	}
@@ -70,7 +70,7 @@ class HuError extends Settings implements IOutExtraData {
 	public function strForFile(array|string|null $format = null): string {
 		$this->_curTypeOut = OutputType::FILE;
 		$format = Vars::firstMeaning($format, @$this->settings->FILE);
-		if ($format !== null && $format !== []){
+		if ($format !== null && $format !== []) {
 			return $this->getString($format);
 		}
 		else {
@@ -216,23 +216,23 @@ class HuError extends Settings implements IOutExtraData {
 	* @inheritdoc
 	**/
 	public function formatField($field): string {
-		if (\is_array($field)){
+		if (\is_array($field)) {
 			 if(!isset($field[0])) {
 				 $field = \array_values($field);
 			 }
 			/** @phpstan-ignore property.dynamicName */
 			$fieldValue = @$this->{$field[0]};
 		}
-		else{
+		else {
 			$field = (array)$field;
 			/** @phpstan-ignore property.dynamicName */
 			$fieldValue = Vars::firstMeaning(@$this->{$field[0]}, $field[0]); //Setting by name, or it is just text
 		}
 
-		if ($fieldValue instanceof IOutExtraData){
+		if ($fieldValue instanceof IOutExtraData) {
 			return Vars::surround($fieldValue->strByOutType($this->_curTypeOut), @$field[1], @$field[2], @$field[3] ?? '');
 		}
-		elseif($fieldValue instanceof Backtrace){
+		elseif($fieldValue instanceof Backtrace) {
 			return Vars::surround($fieldValue->printFormat(null, $this->_curTypeOut), @$field[1], @$field[2], @$field[3] ?? '');
 		}
 		else {

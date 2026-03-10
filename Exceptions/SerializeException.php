@@ -3,4 +3,5 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Exceptions;
 
-class SerializeException extends BaseException {}
+class SerializeException extends BaseException {
+}

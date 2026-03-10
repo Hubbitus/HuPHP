@@ -10,4 +10,5 @@ use Hubbitus\HuPHP\Exceptions\BaseException;
 *
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 **/
-class CharsetConvertException extends BaseException {}
+class CharsetConvertException extends BaseException {
+}

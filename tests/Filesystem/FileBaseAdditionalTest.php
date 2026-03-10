@@ -8,8 +8,8 @@ use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Filesystem\FileBase
- */
+* @covers \Hubbitus\HuPHP\Filesystem\FileBase
+**/
 class FileBaseAdditionalTest extends TestCase {
     private string $testFile;
     private string $testDir;

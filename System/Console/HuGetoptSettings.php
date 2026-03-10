@@ -16,16 +16,16 @@ use Hubbitus\HuPHP\Vars\Settings\Settings;
 **/
 class HuGetoptSettings extends Settings {
     /**
-     * Constructor.
-     */
+    * Constructor.
+    **/
     public function __construct() {
         parent::__construct();
         $this->initDefaults();
     }
 
     /**
-     * Initialize default settings.
-     */
+    * Initialize default settings.
+    **/
     protected function initDefaults(): void {
         $this->__SETS = [
             'start_short' => ['-'],

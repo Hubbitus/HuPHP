@@ -2,15 +2,14 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars;
-use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Exceptions\SerializeException;
 use Hubbitus\HuPHP\Vars\SerializedData;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Vars\SerializedData
- */
+* @covers \Hubbitus\HuPHP\Vars\SerializedData
+**/
 class SerializedDataTest extends TestCase {
     public function testConstructorCreatesEmptyContainer(): void {
         $data = new SerializedData();

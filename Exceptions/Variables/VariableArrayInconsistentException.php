@@ -5,4 +5,5 @@ namespace Hubbitus\HuPHP\Exceptions\Variables;
 
 use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
 
-class VariableArrayInconsistentException extends VariableException {}
+class VariableArrayInconsistentException extends VariableException {
+}

@@ -581,8 +581,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-* Test HuGetopt parseArgs when required option has value in same arg (covers getOptPeeked branch).
-	 This covers the branch where getOptPeeked = true and throws exception.
+	* Test HuGetopt parseArgs when required option has value in same arg (covers getOptPeeked branch).
+	* This covers the branch where getOptPeeked = true and throws exception.
 	**/
 	public function testHuGetoptParseArgsRequiredOptionWithValueInSameArg(): void {
 		// When -fvalue is passed, the 'value' part becomes match(3) in getShortOpt
@@ -600,8 +600,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-* Test HuGetopt parseArgs with long option form --opt=value (covers hasExplicitValue branch).
-	 This covers the branch where hasExplicitValue = true.
+	* Test HuGetopt parseArgs with long option form --opt=value (covers hasExplicitValue branch).
+	* This covers the branch where hasExplicitValue = true.
 	**/
 	public function testHuGetoptParseArgsLongOptionEqualsFormCoversBranches(): void {
 		$opts = [['f', 'file', ':']];
@@ -617,8 +617,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-* Test HuGetopt parseArgs with optional value (::) followed by another option.
-	 Note: After refactoring, :: does NOT consume next option.
+	* Test HuGetopt parseArgs with optional value (::) followed by another option.
+	* Note: After refactoring, :: does NOT consume next option.
 	**/
 	public function testHuGetoptParseArgsOptionalValueNextIsOption(): void {
 		$opts = [
@@ -641,8 +641,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-* Test HuGetopt getShortOpt with continuation after option (match[3] not empty).
-	 This covers the branch: if ($re->match(3)[0]) $this->_curArg = '-' . $re->match(3)[0];
+	* Test HuGetopt getShortOpt with continuation after option (match[3] not empty).
+	* This covers the branch: if ($re->match(3)[0]) $this->_curArg = '-' . $re->match(3)[0];
 	**/
 	public function testHuGetoptIsShortOptWithContinuation(): void {
 		$opts = [
@@ -714,8 +714,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-* Test HuGetopt nextArg branch when _curArg is set.
-	 This covers: if ($this->_curArg) { $tmp = $this->_curArg; ... }
+	* Test HuGetopt nextArg branch when _curArg is set.
+	* This covers: if ($this->_curArg) { $tmp = $this->_curArg; ... }
 	**/
 	public function testHuGetoptNextArgCurArgBranch(): void {
 		$opts = [['v', 'verbose', '']];
@@ -833,8 +833,8 @@ class HuGetoptCompleteTest extends TestCase {
 	}
 
 	/**
-* Test HuGetopt getOpt protected method directly.
-	 This covers the protected getOpt() method which calls getShortOpt and getLongOpt.
+	* Test HuGetopt getOpt protected method directly.
+	* This covers the protected getOpt() method which calls getShortOpt and getLongOpt.
 	**/
 	public function testHuGetoptGetOptProtectedMethod(): void {
 		$opts = [

@@ -23,7 +23,7 @@ class OutExtraDataCommon implements IOutExtraData {
 	/** @var OutputType|null Current output type for formatting */
 	protected ?OutputType $_curTypeOut = null;
 
-	public function __construct($var){
+	public function __construct($var) {
 		$this->_var =& $var;
 	}
 

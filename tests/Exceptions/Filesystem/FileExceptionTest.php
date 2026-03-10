@@ -1,18 +1,15 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Test for Filesystem exception classes.
- */
-
 namespace Hubbitus\HuPHP\Tests\Exceptions\Filesystem;
 
 use Hubbitus\HuPHP\Exceptions\Filesystem\FileException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileException
- */
+* Test for Filesystem exception classes.
+* @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileException
+**/
 class FileExceptionTest extends TestCase {
     public function testFileExceptionInstantiation(): void {
         $exception = new FileException('File error', '/path/to/file');
@@ -128,10 +125,10 @@ class FileExceptionTest extends TestCase {
     public function testFileExceptionCloneIsNotSupported(): void {
         // Note: Exception objects cannot be cloned in PHP
         $exception = new FileException('File error', '/path/to/file');
-        
+
         $this->expectException(\Error::class);
         $this->expectExceptionMessage('Trying to clone an uncloneable object');
-        
+
         clone $exception;
     }
 
@@ -285,7 +282,7 @@ class FileExceptionTest extends TestCase {
     public function testFileExceptionCustomToString(): void {
         $exception = new FileException('File error', '/path/to/file');
         $string = $exception->__toString();
-        
+
         $this->assertIsString($string);
         $this->assertStringContainsString('FileException', $string);
         $this->assertStringContainsString('/path/to/file', $string);
@@ -295,7 +292,7 @@ class FileExceptionTest extends TestCase {
     public function testFileExceptionToStringFormat(): void {
         $exception = new FileException('Permission denied', '/etc/passwd');
         $string = $exception->__toString();
-        
+
         // Expected format: Hubbitus\HuPHP\Exceptions\Filesystem\FileException: [/etc/passwd]: Permission denied
         $this->assertMatchesRegularExpression('/FileException.*\[\/etc\/passwd\].*Permission denied/', $string);
     }
@@ -303,7 +300,7 @@ class FileExceptionTest extends TestCase {
     public function testFileExceptionToStringWithEmptyMessage(): void {
         $exception = new FileException('', '/path/to/file');
         $string = $exception->__toString();
-        
+
         $this->assertIsString($string);
         $this->assertStringContainsString('/path/to/file', $string);
     }

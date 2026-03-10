@@ -9,19 +9,16 @@ use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\System\OutputType;
 
 /**
- * @covers \Hubbitus\HuPHP\Debug\HuLOGTextSettings
- */
-final class HuLOGTextSettingsTest extends TestCase
-{
-    public function testCanBeInstantiatedAndInheritsFromHuErrorSettings(): void
-    {
+* @covers \Hubbitus\HuPHP\Debug\HuLOGTextSettings
+**/
+final class HuLOGTextSettingsTest extends TestCase {
+    public function testCanBeInstantiatedAndInheritsFromHuErrorSettings(): void {
         $settings = new HuLOGTextSettings();
         $this->assertInstanceOf(HuLOGTextSettings::class, $settings);
         $this->assertInstanceOf(HuErrorSettings::class, $settings);
     }
 
-    public function testDefaultSettingsAreCorrectlySet(): void
-    {
+    public function testDefaultSettingsAreCorrectlySet(): void {
         $settings = new HuLOGTextSettings();
 
         // Check some default values from HuLOGTextSettings

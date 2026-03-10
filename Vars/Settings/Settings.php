@@ -21,7 +21,7 @@ class Settings extends HuClass {
 	*
 	* @param array $array
 	**/
-	public function __construct(array $array = []){
+	public function __construct(array $array = []) {
 		if ($array !== []) {
 			$this->mergeSettingsArray($array);
 		}
@@ -64,7 +64,7 @@ class Settings extends HuClass {
 		* We also can't use simple array concatenation because want overwrite old values by new one...
 		* So, doing all manually!
 		**/
-		foreach (Vars::requiredNotEmpty($setArr) as $key => $val){
+		foreach (Vars::requiredNotEmpty($setArr) as $key => $val) {
 			$this->__SETS[$key] = $val;
 		}
 	}
@@ -113,7 +113,7 @@ class Settings extends HuClass {
 	**/
 	public function getString(array $fields): string {
 		$str = '';
-		foreach (Vars::requiredNotEmpty($fields) as $field){
+		foreach (Vars::requiredNotEmpty($fields) as $field) {
 			$str .= $this->formatField($field);
 		}
 		return $str;
@@ -138,7 +138,7 @@ class Settings extends HuClass {
 	* @param array|string $field
 	**/
 	public function formatField(array|string $field): string {
-		if (\is_array($field)){
+		if (\is_array($field)) {
 			if (!isset($field[0])) {
 				$field = \array_values($field);
 			}
@@ -149,7 +149,7 @@ class Settings extends HuClass {
 				@$field[3]
 			);
 		}
-		else{
+		else {
 			return Vars::firstMeaningString(@$this->getProperty($field), $field); // Or by name if it just text
 		}
 	}

@@ -11,8 +11,8 @@ use Hubbitus\HuPHP\System\OutputType;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers Hubbitus\HuPHP\Debug\Backtrace
- */
+* @covers Hubbitus\HuPHP\Debug\Backtrace
+**/
 final class BacktraceTest extends TestCase {
     protected function setUp(): void {
         // Configure default backtrace format
@@ -268,8 +268,8 @@ final class BacktraceTest extends TestCase {
     }
 
     /**
-     * Test printFormat with empty backtrace.
-     */
+    * Test printFormat with empty backtrace.
+    **/
     public function testPrintFormatWithEmptyBacktrace(): void {
         // Configure simple default format - print "empty" for empty backtrace
         $GLOBALS['__CONFIG']['backtrace::printout'] = [
@@ -285,8 +285,8 @@ final class BacktraceTest extends TestCase {
     }
 
     /**
-     * @todo Fix infinite loop in HuFormat when printing backtrace
-     */
+    * @todo Fix infinite loop in HuFormat when printing backtrace
+    **/
     public function testToString(): void {
         $debugData = [
             [
@@ -318,8 +318,7 @@ final class BacktraceTest extends TestCase {
         $this->assertSame($bt, $result);
     }
 
-    public function testDump(): void
-    {
+    public function testDump(): void {
         $debugData = [
             ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction'],
         ];
@@ -331,8 +330,7 @@ final class BacktraceTest extends TestCase {
         $this->assertStringContainsString('/test/file.php', $result);
     }
 
-    public function testFindRegexpThrowsException(): void
-    {
+    public function testFindRegexpThrowsException(): void {
         $debugData = [
             ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction'],
         ];
@@ -344,8 +342,7 @@ final class BacktraceTest extends TestCase {
         $bt->findRegexp($searchNode);
     }
 
-    public function testPrintFormatConfiguresDefaultFormat(): void
-    {
+    public function testPrintFormatConfiguresDefaultFormat(): void {
         $debugData = [
             ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction', 'args' => []],
         ];
@@ -364,8 +361,7 @@ final class BacktraceTest extends TestCase {
         }
     }
 
-    public function testToStringReturnsString(): void
-    {
+    public function testToStringReturnsString(): void {
         $debugData = [
             ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction', 'args' => []],
         ];
@@ -377,8 +373,7 @@ final class BacktraceTest extends TestCase {
         $this->assertNotEmpty($result);
     }
 
-    public function testToStringMagicMethod(): void
-    {
+    public function testToStringMagicMethod(): void {
         $debugData = [
             ['file' => '/test/file.php', 'line' => 10, 'function' => 'testFunction', 'args' => []],
         ];

@@ -6,21 +6,21 @@ namespace Hubbitus\HuPHP\Tests\Vars;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Functional tests for VariableStream class using stream wrapper protocol.
- *
- * These tests verify the stream wrapper works correctly through standard
- * file operations (fopen, fread, fwrite, etc.).
- *
- * Note: Code coverage for these tests is not measurable due to PHPUnit/Xdebug
- * limitation with stream_wrapper_register(). Methods are called internally by
- * PHP's stream layer and Xdebug cannot track them as covered lines.
- *
- * For measurable coverage, see VariableStreamDirectTest which calls methods directly.
- *
- * @covers \Hubbitus\HuPHP\Vars\VariableStream
- * @see VariableStreamDirectTest For direct method tests with measurable coverage
- * @see \Hubbitus\HuPHP\Vars\VariableStream The class under test
- **/
+* Functional tests for VariableStream class using stream wrapper protocol.
+*
+* These tests verify the stream wrapper works correctly through standard
+* file operations (fopen, fread, fwrite, etc.).
+*
+* Note: Code coverage for these tests is not measurable due to PHPUnit/Xdebug
+* limitation with stream_wrapper_register(). Methods are called internally by
+* PHP's stream layer and Xdebug cannot track them as covered lines.
+*
+* For measurable coverage, see VariableStreamDirectTest which calls methods directly.
+*
+* @covers \Hubbitus\HuPHP\Vars\VariableStream
+* @see VariableStreamDirectTest For direct method tests with measurable coverage
+* @see \Hubbitus\HuPHP\Vars\VariableStream The class under test
+**/
 class VariableStreamTest extends TestCase {
     protected function setUp(): void {
         global $testVar;

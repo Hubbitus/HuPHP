@@ -11,7 +11,7 @@ Code refactoring should be made, following these principles and requirements:
 1. Compatibility with PHP versions 8.0 and later. All compatibility "crutches" with versions below 7 should be removed (calls must be refactored accordingly).
 2. Class names, function names, and file names must follow [PSR-4](https://www.php-fig.org/psr/psr-4). Rename everything that doesn't match and bring it to this:
    - All classes and files must use namespaces. The top-level namespace of the framework: `namespace Hubbitus\HuPHP`. For other files names based on conventions by directory path
-   - Files must have `use` statements to use classes by simple name, without specifying the full package at the usage point.
+   - Files must have `use` statements to use classes by simple name (`use function` for functions), without specifying the full package at the usage point.
    - Rely on autoloading and class import by namespaces. Manual `include`/`require` calls must be removed everywhere.
      - If they need to be kept somewhere directly (only some rare "magic"), there must be a comment explaining why this is unavoidable!
    - All calls to global functions must be denoted by "\", like `\is_array()`.

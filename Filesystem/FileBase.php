@@ -10,7 +10,7 @@ use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException;
 use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
 
 /**
- * Base class for most file-related operations.
+* Base class for most file-related operations.
 *
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @created ?2008-08-27 ver 1.0 to 1.1
@@ -29,7 +29,7 @@ class FileBase {
 	*
 	* @param string $filename
 	**/
-	public function __construct($filename = ''){
+	public function __construct($filename = '') {
 		if ($filename !== '') {
 			$this->setPath($filename);
 		}
@@ -38,7 +38,7 @@ class FileBase {
 	/**
 	* Write all pending write if it wasn't be done manually before. This is to avoid data loss.
 	**/
-	public function __destruct(){
+	public function __destruct() {
 		if ($this->_writePending) {
 			$this->writeContent();
 		}
@@ -183,7 +183,7 @@ class FileBase {
 	}
 
 	protected function checkOpenError($succ): void {
-		if ( ! $succ ){
+		if (!$succ) {
 			if (!$this->isExists()) throw new FileNotExistsException('File not found', $this->path());
 			if (!$this->isReadable()) throw new FileNotReadableException('File not readable. Check permissions.', $this->path());
 			throw new FileNotReadableException('Unknown error operate on file.', $this->path());

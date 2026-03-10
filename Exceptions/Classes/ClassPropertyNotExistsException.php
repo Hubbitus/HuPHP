@@ -3,4 +3,5 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Exceptions\Classes;
 
-class ClassPropertyNotExistsException extends ClassException {}
+class ClassPropertyNotExistsException extends ClassException {
+}

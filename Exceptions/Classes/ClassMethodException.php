@@ -5,4 +5,5 @@ namespace Hubbitus\HuPHP\Exceptions\Classes;
 
 use Hubbitus\HuPHP\Exceptions\Classes\ClassException;
 
-class ClassMethodException extends ClassException{}
+class ClassMethodException extends ClassException {
+}
