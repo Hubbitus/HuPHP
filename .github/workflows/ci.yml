@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup PHP
-        uses: actions/setup-php@v4
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           extensions: mbstring, intl, gd, xml, dom, zip, bz2
@@ -78,7 +78,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup PHP
-        uses: actions/setup-php@v4
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           extensions: mbstring, intl, gd, xml, dom, zip, bz2
