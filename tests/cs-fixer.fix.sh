@@ -12,7 +12,7 @@ echo "### Running hphp-cs-fixer check analysis..."
 echo "## Project root: $PROJECT_ROOT"
 
 # Run PHPStan with increased memory limit
-./vendor/bin/php-cs-fixer fix -vvv
+./vendor/bin/php-cs-fixer fix -vvv --allow-risky=yes
 
 echo ""
 echo "## php-cs-fixer analysis completed successfully!"

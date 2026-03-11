@@ -18,7 +18,6 @@ use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
 class FileBase {
 	private string $filename = '';
 	private string $rawFilename = ''; //Filename to try open. For error-reports.
-
 	protected $_writePending = false;
 
 	/** Pending content for write **/
@@ -64,7 +63,7 @@ class FileBase {
 			* So, we try manually construct current full path (see above why we should do it)
 			**/
 			if (!OS::isPathAbsolute($this->rawFilename)) {
-				$this->filename = getcwd() . DIRECTORY_SEPARATOR . $this->rawFilename;
+				$this->filename = \getcwd() . DIRECTORY_SEPARATOR . $this->rawFilename;
 			}
 		} else {
 			$this->filename = $realpath;
@@ -115,7 +114,7 @@ class FileBase {
 	* @return boolean
 	**/
 	public function unlink(): bool {
-		return unlink($this->path());
+		return \unlink($this->path());
 	}
 
 	/**
@@ -124,7 +123,7 @@ class FileBase {
 	* @return	string
 	**/
 	public function getDir(): string {
-		return dirname($this->path());
+		return \dirname($this->path());
 	}
 
 	/**
@@ -184,8 +183,12 @@ class FileBase {
 
 	protected function checkOpenError($succ): void {
 		if (!$succ) {
-			if (!$this->isExists()) throw new FileNotExistsException('File not found', $this->path());
-			if (!$this->isReadable()) throw new FileNotReadableException('File not readable. Check permissions.', $this->path());
+			if (!$this->isExists()) {
+				throw new FileNotExistsException('File not found', $this->path());
+			}
+			if (!$this->isReadable()) {
+				throw new FileNotReadableException('File not readable. Check permissions.', $this->path());
+			}
 			throw new FileNotReadableException('Unknown error operate on file.', $this->path());
 		}
 	}

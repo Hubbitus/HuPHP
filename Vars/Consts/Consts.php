@@ -31,7 +31,7 @@ class Consts {
 		if ($filtered !== false) {
 			return \array_flip($filtered);
 		}
-		
+
 		return [];
 	}
 

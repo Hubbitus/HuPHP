@@ -26,10 +26,10 @@ class SettingsCheck extends Settings {
 		// Support both numeric and associative arrays for $possibles
 		// Numeric: ['name', 'age'] => use values as property names
 		// Associative: ['name' => null, 'age' => null] => use keys as property names
-		$this->properties = array_keys($possibles);
+		$this->properties = \array_keys($possibles);
 
 		// If numeric array, use values as property names
-		if ($this->properties === range(0, count($this->properties) - 1)) {
+		if ($this->properties === \range(0, \count($this->properties) - 1)) {
 			$this->properties = $possibles;
 		}
 
@@ -138,6 +138,6 @@ class SettingsCheck extends Settings {
 	**/
 	public function nesting(): void {
 		//We can't use here nor operator + (union), nor array_merge function. We need ADD elements.
-		array_splice($this->properties, count($this->properties), 1, $this->properties_addon);
+		\array_splice($this->properties, \count($this->properties), 1, $this->properties_addon);
 	}
 }

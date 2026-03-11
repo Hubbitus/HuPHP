@@ -75,7 +75,7 @@ class Settings extends HuClass {
 	* @param string $name
 	**/
 	public function &getProperty($name): mixed {
-			return $this->__SETS[Vars::requiredNotNull($name)];
+		return $this->__SETS[Vars::requiredNotNull($name)];
 	}
 
 	/**
@@ -85,7 +85,7 @@ class Settings extends HuClass {
 	* @param mixed $value
 	**/
 	public function __set(string $name, mixed $value): void {
-			$this->setSetting($name, $value);
+		$this->setSetting($name, $value);
 	}
 
 	/**
@@ -94,7 +94,7 @@ class Settings extends HuClass {
 	* @param string $name
 	**/
 	public function &__get(string $name): mixed {
-			return $this->getProperty($name);
+		return $this->getProperty($name);
 	}
 
 	/**
@@ -103,7 +103,7 @@ class Settings extends HuClass {
 	* @param string $name Name of requested property
 	**/
 	public function __isset(string $name): bool {
-			return isset($this->__SETS[Vars::requiredNotNull($name)]);
+		return isset($this->__SETS[Vars::requiredNotNull($name)]);
 	}
 
 	/**

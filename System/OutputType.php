@@ -9,9 +9,9 @@ namespace Hubbitus\HuPHP\System;
 * Replaces legacy OS::OUT_TYPE_* constants.
 **/
 enum OutputType {
-    case WEB; // Was: 'BROWSER'
-    case CONSOLE;
-    case PRINT;
-    case FILE;
-    case WAP;
+	case WEB; // Was: 'BROWSER'
+	case CONSOLE;
+	case PRINT;
+	case FILE;
+	case WAP;
 }

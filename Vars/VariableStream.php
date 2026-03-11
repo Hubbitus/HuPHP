@@ -27,158 +27,158 @@ namespace Hubbitus\HuPHP\Vars;
 * ```
 **/
 class VariableStream {
-    public int $position;
-    public string $varname;
+	public int $position;
+	public string $varname;
 
-    /**
-    * Stream context (set by PHP stream wrapper API)
-    *
-    * Cannot use `?\resource` type hint due to PHP stream wrapper API limitations:
-    * PHP assigns $context before class is fully initialized, causing TypeError.
-    *
-    * @var ?resource
-    **/
-    public $context = null;
+	/**
+	* Stream context (set by PHP stream wrapper API)
+	*
+	* Cannot use `?\resource` type hint due to PHP stream wrapper API limitations:
+	* PHP assigns $context before class is fully initialized, causing TypeError.
+	*
+	* @var ?resource
+	**/
+	public $context = null;
 
-    /**
-    * Open stream.
-    *
-    * @param string $path Stream path
-    * @param string $mode Open mode
-    * @param int $options Stream options
-    * @param string|null $opened_path Opened path
-    **/
-    public function stream_open(string $path, string $mode, int $options, ?string &$opened_path): bool {
-        $url = \parse_url($path);
-        $this->varname = $url['host'];
-        $this->position = 0;
+	/**
+	* Open stream.
+	*
+	* @param string $path Stream path
+	* @param string $mode Open mode
+	* @param int $options Stream options
+	* @param string|null $opened_path Opened path
+	**/
+	public function stream_open(string $path, string $mode, int $options, ?string &$opened_path): bool {
+		$url = \parse_url($path);
+		$this->varname = $url['host'];
+		$this->position = 0;
 
-        // Initialize variable if needed
-        if (!isset($GLOBALS[$this->varname])) {
-            $GLOBALS[$this->varname] = '';
-        }
+		// Initialize variable if needed
+		if (!isset($GLOBALS[$this->varname])) {
+			$GLOBALS[$this->varname] = '';
+		}
 
-        // Clear the variable for write modes
-        if ($mode === 'w' || $mode === 'w+') {
-            $GLOBALS[$this->varname] = '';
-        }
+		// Clear the variable for write modes
+		if ($mode === 'w' || $mode === 'w+') {
+			$GLOBALS[$this->varname] = '';
+		}
 
-        // For append mode, seek to end
-        if ($mode === 'a' || $mode === 'a+') {
-            $this->position = \strlen($GLOBALS[$this->varname]);
-        }
+		// For append mode, seek to end
+		if ($mode === 'a' || $mode === 'a+') {
+			$this->position = \strlen($GLOBALS[$this->varname]);
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    /**
-    * Read from stream.
-    *
-    * @param int $count Number of bytes to read
-    **/
-    public function stream_read(int $count): string {
-        $var = $GLOBALS[$this->varname] ?? '';
-        $ret = \substr($var, $this->position, $count);
-        $this->position += \strlen($ret);
-        return $ret;
-    }
+	/**
+	* Read from stream.
+	*
+	* @param int $count Number of bytes to read
+	**/
+	public function stream_read(int $count): string {
+		$var = $GLOBALS[$this->varname] ?? '';
+		$ret = \substr($var, $this->position, $count);
+		$this->position += \strlen($ret);
+		return $ret;
+	}
 
-    /**
-    * Write to stream.
-    *
-    * @param string $data Data to write
-    * @return int
-    **/
-    public function stream_write(string $data): int {
-        $var = $GLOBALS[$this->varname] ?? '';
-        $left = \substr($var, 0, $this->position);
-        $right = \substr($var, $this->position + \strlen($data));
-        $GLOBALS[$this->varname] = $left . $data . $right;
-        $this->position += \strlen($data);
-        return \strlen($data);
-    }
+	/**
+	* Write to stream.
+	*
+	* @param string $data Data to write
+	* @return int
+	**/
+	public function stream_write(string $data): int {
+		$var = $GLOBALS[$this->varname] ?? '';
+		$left = \substr($var, 0, $this->position);
+		$right = \substr($var, $this->position + \strlen($data));
+		$GLOBALS[$this->varname] = $left . $data . $right;
+		$this->position += \strlen($data);
+		return \strlen($data);
+	}
 
-    /**
-    * Get current position.
-    *
-    * @return int
-    **/
-    public function stream_tell(): int {
-        return $this->position;
-    }
+	/**
+	* Get current position.
+	*
+	* @return int
+	**/
+	public function stream_tell(): int {
+		return $this->position;
+	}
 
-    /**
-    * Check if end of stream.
-    *
-    * @return bool
-    **/
-    public function stream_eof(): bool {
-        $var = $GLOBALS[$this->varname] ?? '';
-        return $this->position >= \strlen($var);
-    }
+	/**
+	* Check if end of stream.
+	*
+	* @return bool
+	**/
+	public function stream_eof(): bool {
+		$var = $GLOBALS[$this->varname] ?? '';
+		return $this->position >= \strlen($var);
+	}
 
-    /**
-    * Get stream statistics.
-    *
-    * @return array<int, mixed>
-    **/
-    public function stream_stat(): array {
-        return [];
-    }
+	/**
+	* Get stream statistics.
+	*
+	* @return array<int, mixed>
+	**/
+	public function stream_stat(): array {
+		return [];
+	}
 
-    /**
-    * Seek to position.
-    *
-    * @param int $offset Offset
-    * @param int $whence Seek mode
-    **/
-    public function stream_seek(int $offset, int $whence): bool {
-        $var = $GLOBALS[$this->varname] ?? '';
-        switch ($whence) {
-            case SEEK_SET:
-                if ($offset >= 0 && $offset < \strlen($var)) {
-                    $this->position = $offset;
-                    return true;
-                } else {
-                    return false;
-                }
+	/**
+	* Seek to position.
+	*
+	* @param int $offset Offset
+	* @param int $whence Seek mode
+	**/
+	public function stream_seek(int $offset, int $whence): bool {
+		$var = $GLOBALS[$this->varname] ?? '';
+		switch ($whence) {
+			case SEEK_SET:
+				if ($offset >= 0 && $offset < \strlen($var)) {
+					$this->position = $offset;
+					return true;
+				} else {
+					return false;
+				}
 
-            case SEEK_CUR:
-                if ($offset >= 0) {
-                    $this->position += $offset;
-                    return true;
-                } else {
-                    return false;
-                }
+			case SEEK_CUR:
+				if ($offset >= 0) {
+					$this->position += $offset;
+					return true;
+				} else {
+					return false;
+				}
 
-            case SEEK_END:
-                if (\strlen($var) + $offset >= 0) {
-                    $this->position = \strlen($var) + $offset;
-                    return true;
-                } else {
-                    return false;
-                }
+			case SEEK_END:
+				if (\strlen($var) + $offset >= 0) {
+					$this->position = \strlen($var) + $offset;
+					return true;
+				} else {
+					return false;
+				}
 
-            default:
-                return false;
-        }
-    }
+			default:
+				return false;
+		}
+	}
 
-    /**
-    * Register the 'var' stream wrapper if not already registered.
-    * This method is called automatically when the class is loaded,
-    * but can also be called explicitly for testing purposes.
-    *
-    * @return bool True if wrapper was registered, false if already exists
-    **/
-    public static function registerStreamWrapper(): bool {
-        if (!\in_array('var', \stream_get_wrappers(), true)) {
-            return \stream_wrapper_register('var', VariableStream::class);
-        }
-        return false;
-    }
+	/**
+	* Register the 'var' stream wrapper if not already registered.
+	* This method is called automatically when the class is loaded,
+	* but can also be called explicitly for testing purposes.
+	*
+	* @return bool True if wrapper was registered, false if already exists
+	**/
+	public static function registerStreamWrapper(): bool {
+		if (!\in_array('var', \stream_get_wrappers(), true)) {
+			return \stream_wrapper_register('var', VariableStream::class);
+		}
+		return false;
+	}
 }
 
 // Auto-register stream wrapper on class load
 VariableStream::registerStreamWrapper()
-    or die('Failed to register protocol');
+	or die('Failed to register protocol');

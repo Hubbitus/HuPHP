@@ -17,7 +17,6 @@ use Hubbitus\HuPHP\Vars\HuArray;
 * @covers \Hubbitus\HuPHP\System\Console\HuGetoptSettings
 **/
 class HuGetoptCompleteTest extends TestCase {
-
 	/**
 	* Test HuGetoptOption constructor with numeric array.
 	**/

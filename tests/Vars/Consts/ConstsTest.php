@@ -49,7 +49,7 @@ class ConstsTest extends TestCase {
 
 		$this->assertIsArray($result);
 		// All keys should start with PHP_
-		foreach (array_keys($result) as $key) {
+		foreach (\array_keys($result) as $key) {
 			$this->assertStringStartsWith('PHP_', $key);
 		}
 	}
@@ -58,8 +58,8 @@ class ConstsTest extends TestCase {
 		$result = Consts::getByRegexp('', '@^PHP_@');
 
 		$this->assertIsArray($result);
-		foreach (array_keys($result) as $key) {
-			$this->assertStringStartsWith('PHP_', is_string($key) ? $key : (is_array($result[$key]) ? array_keys($result[$key])[0] : ''));
+		foreach (\array_keys($result) as $key) {
+			$this->assertStringStartsWith('PHP_', \is_string($key) ? $key : (\is_array($result[$key]) ? \array_keys($result[$key])[0] : ''));
 		}
 	}
 
@@ -76,7 +76,7 @@ class ConstsTest extends TestCase {
 
 		$this->assertIsArray($result);
 		$this->assertNotEmpty($result);
-		$this->assertContains('E_ALL', array_keys($result));
+		$this->assertContains('E_ALL', \array_keys($result));
 	}
 
 	public function testGetNameByValueWithCategory(): void {

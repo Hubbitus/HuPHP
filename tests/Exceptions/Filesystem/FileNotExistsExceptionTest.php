@@ -10,28 +10,28 @@ use PHPUnit\Framework\TestCase;
 * @covers \Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException
 **/
 class FileNotExistsExceptionTest extends TestCase {
-    public function testConstructorWithNoArguments(): void {
-        $exception = new FileNotExistsException();
+	public function testConstructorWithNoArguments(): void {
+		$exception = new FileNotExistsException();
 
-        $this->assertInstanceOf(FileNotExistsException::class, $exception);
-    }
+		$this->assertInstanceOf(FileNotExistsException::class, $exception);
+	}
 
-    public function testConstructorWithMessage(): void {
-        $exception = new FileNotExistsException('File not found');
+	public function testConstructorWithMessage(): void {
+		$exception = new FileNotExistsException('File not found');
 
-        $this->assertInstanceOf(FileNotExistsException::class, $exception);
-        $this->assertEquals('File not found', $exception->getMessage());
-    }
+		$this->assertInstanceOf(FileNotExistsException::class, $exception);
+		$this->assertEquals('File not found', $exception->getMessage());
+	}
 
-    public function testIsThrowable(): void {
-        $exception = new FileNotExistsException();
+	public function testIsThrowable(): void {
+		$exception = new FileNotExistsException();
 
-        $this->assertInstanceOf(\Throwable::class, $exception);
-    }
+		$this->assertInstanceOf(\Throwable::class, $exception);
+	}
 
-    public function testExceptionCanBeThrown(): void {
-        $this->expectException(FileNotExistsException::class);
+	public function testExceptionCanBeThrown(): void {
+		$this->expectException(FileNotExistsException::class);
 
-        throw new FileNotExistsException('File does not exist');
-    }
+		throw new FileNotExistsException('File does not exist');
+	}
 }

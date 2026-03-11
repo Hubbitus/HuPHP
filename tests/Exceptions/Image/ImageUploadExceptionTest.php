@@ -10,28 +10,28 @@ use PHPUnit\Framework\TestCase;
 * @covers \Hubbitus\HuPHP\Exceptions\Image\ImageUploadException
 **/
 class ImageUploadExceptionTest extends TestCase {
-    public function testConstructorWithNoArguments(): void {
-        $exception = new ImageUploadException();
+	public function testConstructorWithNoArguments(): void {
+		$exception = new ImageUploadException();
 
-        $this->assertInstanceOf(ImageUploadException::class, $exception);
-    }
+		$this->assertInstanceOf(ImageUploadException::class, $exception);
+	}
 
-    public function testConstructorWithMessage(): void {
-        $exception = new ImageUploadException('Upload failed');
+	public function testConstructorWithMessage(): void {
+		$exception = new ImageUploadException('Upload failed');
 
-        $this->assertInstanceOf(ImageUploadException::class, $exception);
-        $this->assertEquals('Upload failed', $exception->getMessage());
-    }
+		$this->assertInstanceOf(ImageUploadException::class, $exception);
+		$this->assertEquals('Upload failed', $exception->getMessage());
+	}
 
-    public function testIsThrowable(): void {
-        $exception = new ImageUploadException();
+	public function testIsThrowable(): void {
+		$exception = new ImageUploadException();
 
-        $this->assertInstanceOf(\Throwable::class, $exception);
-    }
+		$this->assertInstanceOf(\Throwable::class, $exception);
+	}
 
-    public function testExceptionCanBeThrown(): void {
-        $this->expectException(ImageUploadException::class);
+	public function testExceptionCanBeThrown(): void {
+		$this->expectException(ImageUploadException::class);
 
-        throw new ImageUploadException('Image upload failed');
-    }
+		throw new ImageUploadException('Image upload failed');
+	}
 }

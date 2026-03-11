@@ -38,14 +38,14 @@ class OutExtraDataDOMnode extends OutExtraDataCommon {
 	}
 
 	public function strForConsole(array|string|null $format = null): string {
-		return Dump::c(trim($this->_var->saveXML()), null, true);
+		return Dump::c(\trim($this->_var->saveXML()), null, true);
 	}
 
 	public function strForFile(array|string|null $format = null): string {
-		return Dump::log(trim($this->_var->saveXML()), '', true);
+		return Dump::log(\trim($this->_var->saveXML()), '', true);
 	}
 
 	public function strForWeb(array|string|null $format = null): string {
-		return Dump::w(trim($this->_var->saveXML()), '', true);
+		return Dump::w(\trim($this->_var->saveXML()), '', true);
 	}
 }

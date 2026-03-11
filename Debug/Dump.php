@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Hubbitus\HuPHP\Debug;
 
 use Hubbitus\HuPHP\System\OS;
@@ -144,7 +145,7 @@ class Dump {
 		if (\is_array($var)) {
 			$count = \count($var);
 			$output = "Array[size: {$count}] {\n";
-			
+
 			foreach ($var as $key => $value) {
 				$output .= "{$innerIndent}[{$key}] => ";
 				if (\is_array($value)) {
@@ -155,13 +156,13 @@ class Dump {
 					$output .= \var_export($value, true) . "\n";
 				}
 			}
-			
+
 			$output .= "{$indentStr}}\n";
 			return $output;
 		} elseif (\is_object($var)) {
 			$className = $var::class;
 			$output = "{$className} {\n";
-			
+
 			$props = \get_object_vars($var);
 			foreach ($props as $key => $value) {
 				$output .= "{$innerIndent}[{$key}] => ";
@@ -173,7 +174,7 @@ class Dump {
 					$output .= \var_export($value, true) . "\n";
 				}
 			}
-			
+
 			$output .= "{$indentStr}}\n";
 			return $output;
 		}
@@ -206,9 +207,6 @@ class Dump {
 		// Find the frame for the Dump method call itself; this frame's file/line point to the call site
 		foreach ($backtrace as $frame) {
 			if (isset($frame['class']) && $frame['class'] === __CLASS__ && $frame['function'] === $dumpMethod) {
-				if (!isset($frame['file'], $frame['line'])) {
-					continue;
-				}
 				$file = $frame['file'];
 				$line = $frame['line'];
 

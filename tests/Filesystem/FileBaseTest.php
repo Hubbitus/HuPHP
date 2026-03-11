@@ -11,20 +11,20 @@ class FileBaseTest extends TestCase {
 	private string $testDir;
 
 	protected function setUp(): void {
-		$this->testDir = sys_get_temp_dir() . '/hubbitus_test_' . uniqid();
+		$this->testDir = \sys_get_temp_dir() . '/hubbitus_test_' . \uniqid();
 		$this->testFile = $this->testDir . '/test_file.txt';
 
-		if (!is_dir($this->testDir)) {
-			mkdir($this->testDir, 0777, true);
+		if (!\is_dir($this->testDir)) {
+			\mkdir($this->testDir, 0777, true);
 		}
 	}
 
 	protected function tearDown(): void {
-		if (file_exists($this->testFile)) {
-			unlink($this->testFile);
+		if (\file_exists($this->testFile)) {
+			\unlink($this->testFile);
 		}
-		if (is_dir($this->testDir)) {
-			rmdir($this->testDir);
+		if (\is_dir($this->testDir)) {
+			\rmdir($this->testDir);
 		}
 	}
 
@@ -58,34 +58,34 @@ class FileBaseTest extends TestCase {
 	}
 
 	public function testIsExistsTrue(): void {
-		touch($this->testFile);
+		\touch($this->testFile);
 		$file = new FileBase($this->testFile);
 		$this->assertTrue($file->isExists());
 	}
 
 	public function testIsReadableFalse(): void {
-		touch($this->testFile);
-		chmod($this->testFile, 0000);
+		\touch($this->testFile);
+		\chmod($this->testFile, 0000);
 		$file = new FileBase($this->testFile);
 		// On some systems root can read any file
 		$result = $file->isReadable();
-		chmod($this->testFile, 0644);
+		\chmod($this->testFile, 0644);
 		$this->assertIsBool($result);
 	}
 
 	public function testIsReadableTrue(): void {
-		touch($this->testFile);
-		chmod($this->testFile, 0644);
+		\touch($this->testFile);
+		\chmod($this->testFile, 0644);
 		$file = new FileBase($this->testFile);
 		$this->assertTrue($file->isReadable());
 	}
 
 	public function testUnlink(): void {
-		touch($this->testFile);
+		\touch($this->testFile);
 		$file = new FileBase($this->testFile);
 		$result = $file->unlink();
 		$this->assertTrue($result);
-		$this->assertFalse(file_exists($this->testFile));
+		$this->assertFalse(\file_exists($this->testFile));
 	}
 
 	public function testGetDir(): void {
@@ -116,7 +116,7 @@ class FileBaseTest extends TestCase {
 		$file->appendString(' appended');
 		// Content is protected, verify by writing and reading
 		$file->writeContent();
-		$this->assertEquals('test content appended', file_get_contents($this->testFile));
+		$this->assertEquals('test content appended', \file_get_contents($this->testFile));
 		unset($file);
 	}
 
@@ -124,13 +124,13 @@ class FileBaseTest extends TestCase {
 		$file = new FileBase($this->testFile);
 		$file->setContentFromString('test content');
 		$count = $file->writeContent(0);
-		$this->assertEquals(strlen('test content'), $count);
-		$this->assertTrue(file_exists($this->testFile));
-		$this->assertEquals('test content', file_get_contents($this->testFile));
+		$this->assertEquals(\strlen('test content'), $count);
+		$this->assertTrue(\file_exists($this->testFile));
+		$this->assertEquals('test content', \file_get_contents($this->testFile));
 	}
 
 	public function testWriteContentWithFlags(): void {
-		touch($this->testFile);
+		\touch($this->testFile);
 		$file = new FileBase($this->testFile);
 		$file->setContentFromString('test content');
 		$count = $file->writeContent(FILE_APPEND);
@@ -143,7 +143,7 @@ class FileBaseTest extends TestCase {
 		$file->setContentFromString('test content');
 		// __destruct should write pending content
 		unset($file);
-		$this->assertEquals('test content', file_get_contents($this->testFile));
+		$this->assertEquals('test content', \file_get_contents($this->testFile));
 	}
 
 	public function testWriteContentToNonExistingDirectory(): void {
@@ -157,16 +157,16 @@ class FileBaseTest extends TestCase {
 		// Test checkOpenError protected method with unknown error case
 		// This covers the final throw branch: "Unknown error operate on file"
 		// Create file to ensure it exists and is readable
-		touch($this->testFile);
-		chmod($this->testFile, 0644);
-		
+		\touch($this->testFile);
+		\chmod($this->testFile, 0644);
+
 		$file = new FileBase($this->testFile);
-		
+
 		// Use reflection to call protected method
 		$reflection = new \ReflectionClass($file);
 		$method = $reflection->getMethod('checkOpenError');
 		$method->setAccessible(true);
-		
+
 		// File exists and is readable, but we pass false to simulate unknown error
 		// This should throw FileNotReadableException with "Unknown error" message
 		$this->expectException(\Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException::class);

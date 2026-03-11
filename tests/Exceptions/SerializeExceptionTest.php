@@ -10,28 +10,28 @@ use PHPUnit\Framework\TestCase;
 * @covers \Hubbitus\HuPHP\Exceptions\SerializeException
 **/
 class SerializeExceptionTest extends TestCase {
-    public function testConstructorWithNoArguments(): void {
-        $exception = new SerializeException();
+	public function testConstructorWithNoArguments(): void {
+		$exception = new SerializeException();
 
-        $this->assertInstanceOf(SerializeException::class, $exception);
-    }
+		$this->assertInstanceOf(SerializeException::class, $exception);
+	}
 
-    public function testConstructorWithMessage(): void {
-        $exception = new SerializeException('Serialize error');
+	public function testConstructorWithMessage(): void {
+		$exception = new SerializeException('Serialize error');
 
-        $this->assertInstanceOf(SerializeException::class, $exception);
-        $this->assertEquals('Serialize error', $exception->getMessage());
-    }
+		$this->assertInstanceOf(SerializeException::class, $exception);
+		$this->assertEquals('Serialize error', $exception->getMessage());
+	}
 
-    public function testIsThrowable(): void {
-        $exception = new SerializeException();
+	public function testIsThrowable(): void {
+		$exception = new SerializeException();
 
-        $this->assertInstanceOf(\Throwable::class, $exception);
-    }
+		$this->assertInstanceOf(\Throwable::class, $exception);
+	}
 
-    public function testExceptionCanBeThrown(): void {
-        $this->expectException(SerializeException::class);
+	public function testExceptionCanBeThrown(): void {
+		$this->expectException(SerializeException::class);
 
-        throw new SerializeException('Serialization failed');
-    }
+		throw new SerializeException('Serialization failed');
+	}
 }

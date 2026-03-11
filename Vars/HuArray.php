@@ -186,9 +186,9 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 			$this->__SETS[$key] = $value;
 			return;
 		}
-		elseif( self::HU_SCHEME === substr($name, 0, strlen(self::HU_SCHEME)) ) {
+		elseif( self::HU_SCHEME === \substr($name, 0, \strlen(self::HU_SCHEME)) ) {
 			// Short form hu:// - convert to HuArray if needed and return
-			$key = substr($name, strlen(self::HU_SCHEME));
+			$key = \substr($name, \strlen(self::HU_SCHEME));
 			if (\is_array($this->__SETS[$key] ?? null)) {
 				$this->__SETS[$key] = new HuArray($this->__SETS[$key]);
 			}
@@ -207,7 +207,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* @param callable $callback
 	**/
 	public function walk($callback): static {
-		array_walk($this->__SETS, $callback);
+		\array_walk($this->__SETS, $callback);
 		return $this;
 	}
 
@@ -220,7 +220,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	public function filter($callback): static {
 		// Late Static Binding is intentional - allows child classes to return their own instances
 		// @phpstan-ignore new.static
-		return new static(array_filter($this->__SETS, $callback));
+		return new static(\array_filter($this->__SETS, $callback));
 	}
 
 	/**
@@ -261,7 +261,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* @param string $delim
 	**/
 	public function implode($delim = ''): string {
-		return implode($delim, $this->__SETS);
+		return \implode($delim, $this->__SETS);
 	}
 
 	/**
@@ -281,7 +281,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	* @param int $initial
 	**/
 	public function reduce($callback, $initial = 0): mixed {
-		return array_reduce($this->__SETS, $callback, $initial);
+		return \array_reduce($this->__SETS, $callback, $initial);
 	}
 
 	/** Implementation of {@see \Iterator} methods **/
@@ -310,7 +310,8 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 	public function valid(): bool {
 		return \current($this->__SETS) !== false;
 	}
-	/** /Implementation of {@see \Iterator} methods **/
+
+	/* /Implementation of {@see \Iterator} methods */
 
 	public function toArray(): array {
 		return $this->__SETS;
@@ -668,7 +669,7 @@ class HuArray extends Settings implements \Iterator, \ArrayAccess, \Countable, \
 
 	public function offsetUnset($offset): void {
 		unset($this->__SETS[$offset]);
-		}
+	}
 	/** /Implementation of {@see \ArrayAccess} methods **/
 
 	// String conversion

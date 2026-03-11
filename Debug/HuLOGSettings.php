@@ -8,8 +8,10 @@ use Hubbitus\HuPHP\Vars\Settings\Settings;
 class HuLOGSettings extends Settings {
 	/** @var int Bitmask for print output */
 	public const int LOG_TO_PRINT = 4;
+
 	/** @var int Bitmask for file output */
 	public const int LOG_TO_FILE = 8;
+
 	/** @var int Bitmask for both file and print output */
 	public const int LOG_TO_BOTH = 12; // FILE + PRINT
 

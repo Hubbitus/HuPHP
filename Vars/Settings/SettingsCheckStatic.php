@@ -10,6 +10,7 @@ namespace Hubbitus\HuPHP\Vars\Settings;
 **/
 class SettingsCheckStatic extends SettingsCheck {
 	protected $static_settings = [];
+
 	/**
 	* Clear all except uncleared items.
 	**/
@@ -19,12 +20,13 @@ class SettingsCheckStatic extends SettingsCheck {
 		}
 		return $this;
 	}
+
 	/**
 	* Return array of regular keys, without 'uncleared' (private, static)
 	*
 	* @return	array
 	**/
 	public function getRegularKeys(): array {
-		return array_diff(array_keys($this->__SETS), $this->static_settings);
+		return \array_diff(\array_keys($this->__SETS), $this->static_settings);
 	}
 }

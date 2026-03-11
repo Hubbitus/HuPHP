@@ -42,9 +42,8 @@ class HuLOGTextSettings extends HuErrorSettings {
 		]
 	];
 
-    public function __construct(array $array = []) {
-        parent::__construct($array);
-        $this->mergeSettingsArray($this->initialSETS);
-    }
-
+	public function __construct(array $array = []) {
+		parent::__construct($array);
+		$this->mergeSettingsArray($this->initialSETS);
+	}
 }

@@ -15,9 +15,9 @@ $arr = ['oen', 'two', 'three' => ['three-one', ['three-two']]];
 Dump::a($arr);
 
 function f() {
-    $bt = Backtrace::create();
-    $bt->printFormat();
+	$bt = Backtrace::create();
+	$bt->printFormat();
 }
-f();
+\f();
 
 echo "Raw test completed successfully!\n";
