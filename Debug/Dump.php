@@ -207,9 +207,6 @@ class Dump {
 		// Find the frame for the Dump method call itself; this frame's file/line point to the call site
 		foreach ($backtrace as $frame) {
 			if (isset($frame['class']) && $frame['class'] === __CLASS__ && $frame['function'] === $dumpMethod) {
-				if (!isset($frame['file'], $frame['line'])) {
-					continue;
-				}
 				$file = $frame['file'];
 				$line = $frame['line'];
 

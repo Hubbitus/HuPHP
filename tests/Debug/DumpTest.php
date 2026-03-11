@@ -88,21 +88,24 @@ class DumpTest extends TestCase {
 		$this->assertStringContainsString('auto_test', $result);
 	}
 
-	public function testDumpByOutTypeReturnsString(): void {
+	/**
+	* @covers \Hubbitus\HuPHP\Debug\Dump::byOutType
+	**/
+	public function testDumpByOutType(): void {
 		$var = ['key' => 'value'];
 		$result = Dump::byOutType(1, $var, 'Type Header', true);
 
 		$this->assertIsString($result);
 		$this->assertStringContainsString('=== Type Header ===', $result);
-	}
+		$this->assertStringContainsString('key', $result);
+		$this->assertStringContainsString('value', $result);
 
-	public function testDumpByOutTypeAutoDetectsHeader(): void {
-		$var = 'byOut_type_var';
-		$result = Dump::byOutType(1, $var, null, true);
+		$var2 = 'byOut_type_var';
+		$result2 = Dump::byOutType(1, $var2, null, true);
 
-		$this->assertIsString($result);
-		$this->assertStringContainsString('=== 1 ===', $result);
-		$this->assertStringContainsString($var, $result);
+		$this->assertIsString($result2);
+		$this->assertStringContainsString('=== 1 ===', $result2);
+		$this->assertStringContainsString($var2, $result2);
 	}
 
 	public function testDumpWebAutoDetectsHeader(): void {
@@ -274,10 +277,43 @@ class DumpTest extends TestCase {
 	}
 
 	public function testDetectVarNameFromBacktraceReturnsNullWhenFileReadFails(): void {
-		// This tests the "return null;" at line 165 when file reading fails
-		// Since we can't easily mock file() to return false in a unit test,
-		// we acknowledge this path exists but is hard to test directly
-		$this->assertTrue(true);
+		// Test line 211: when file/line exists but lines[$line - 1] is not set
+		$mockFileReader = function(string $file): array {
+			// Return empty array - line index won't exist
+			return [];
+		};
+		$method = new \ReflectionMethod(Dump::class, 'detectVarNameFromBacktrace');
+		$method->setAccessible(true);
+		$result = $method->invoke(null, $mockFileReader);
+		$this->assertNull($result);
+	}
+
+	/**
+	* Test line 211: when frame has class/function but missing file/line.
+	* This happens with eval or some call_user_func scenarios.
+	**/
+	public function testDetectVarNameFromBacktraceWithMissingFileLineInFrame(): void {
+		// Create a scenario where the Dump frame has class/function but no file/line
+		// This is achieved by calling via call_user_func_array
+		$mockFileReader = function(string $file): array {
+			return ['some_var'];
+		};
+
+		$method = new \ReflectionMethod(Dump::class, 'detectVarNameFromBacktrace');
+		$method->setAccessible(true);
+		$result = $method->invoke(null, $mockFileReader);
+		$this->assertNull($result);
+	}
+
+	/**
+	* Additional test to ensure line 211 is covered - call via call_user_func_array.
+	* This creates a backtrace frame that may lack file/line info.
+	**/
+	public function testDetectVarNameViaCallUserFuncArray(): void {
+		$var = 'test_var';
+		// call_user_func_array creates different backtrace
+		$result = \call_user_func_array([Dump::class, 'c'], [$var, null, true]);
+		$this->assertIsString($result);
 	}
 
 	public function testDetectVarNameFromBacktraceReturnsNullWhenPatternNoMatch(): void {

@@ -428,6 +428,22 @@ class HuFormatTest extends TestCase {
 	}
 
 	/**
+	* Test isMod with empty _mods but set _modStr triggers parseMods.
+	* This covers lines 392-393 in HuFormat.php.
+	**/
+	public function testIsModWithEmptyModsAndSetModStr(): void {
+		$format = new HuFormat();
+		// Use reflection to set _modStr directly without populating _mods
+		$reflection = new \ReflectionClass($format);
+		$modStrProp = $reflection->getProperty('_modStr');
+		$modStrProp->setAccessible(true);
+		$modStrProp->setValue($format, 'v');
+
+		// isMod should trigger parseMods() because _mods is empty but _modStr is set
+		$this->assertTrue($format->isMod('v'));
+	}
+
+	/**
 	* Test changeModsStr with add operator.
 	**/
 	public function testChangeModsStrAdd(): void {
@@ -489,14 +505,24 @@ class HuFormatTest extends TestCase {
 	}
 
 	/**
+	* Test changeModsStr with add operator for existing modifier.
+	**/
+	public function testChangeModsStrAddExisting(): void {
+		$value = 'test';
+		$format = new HuFormat(['v:::'], $value);
+		$this->assertTrue($format->isMod('v'));
+		$format->changeModsStr('+v');
+		$this->assertTrue($format->isMod('v'));
+	}
+
+	/**
 	* Test getModsStr method.
 	**/
 	public function testGetModsStr(): void {
 		$value = 'test';
-		$format = new HuFormat(['v:::'], $value);
-		// getModsStr returns the modifier string - suppress reference warning
-		$modsStr = @$format->getModsStr();
-		$this->assertIsString($modsStr);
+		$format = new HuFormat(['vsn:::'], $value);
+		$modsStr = $format->getModsStr();
+		$this->assertEquals('vsn', $modsStr);
 	}
 
 	/**

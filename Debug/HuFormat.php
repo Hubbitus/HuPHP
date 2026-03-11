@@ -459,7 +459,7 @@ class HuFormat extends HuError {
 	*
 	* @return string
 	**/
-	public function &getModsStr(): string {
+	public function getModsStr(): string {
 		return \implode('', $this->_modArr);
 	}
 
