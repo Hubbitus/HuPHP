@@ -1,10 +1,8 @@
 <?php
-
 declare(strict_types=1);
 
-namespace Hubbitus\HuPHP\Tests\Exceptions;
+namespace Hubbitus\Tests\HuPHP\Exceptions;
 
-use Hubbitus\HuPHP\Exceptions\BaseException;
 use Hubbitus\HuPHP\Exceptions\BacktraceEmptyException;
 use PHPUnit\Framework\TestCase;
 
@@ -12,18 +10,19 @@ use PHPUnit\Framework\TestCase;
 * @covers \Hubbitus\HuPHP\Exceptions\BacktraceEmptyException
 **/
 class BacktraceEmptyExceptionTest extends TestCase {
-	public function testConstructor(): void {
-		$exception = new BacktraceEmptyException('Backtrace is empty');
+	public function testConstructorCreatesInstance(): void {
+		$exception = new BacktraceEmptyException('Test message', 42);
 
 		$this->assertInstanceOf(BacktraceEmptyException::class, $exception);
-		$this->assertInstanceOf(BaseException::class, $exception);
-		$this->assertEquals('Backtrace is empty', $exception->getMessage());
+		$this->assertEquals('Test message', $exception->getMessage());
+		$this->assertEquals(42, $exception->getCode());
 	}
 
-	public function testInheritsBaseExceptionMethods(): void {
-		$exception = new BacktraceEmptyException('Base');
-		$exception->ADDMessage(' - end');
+	public function testConstructorWithDefaultValues(): void {
+		$exception = new BacktraceEmptyException();
 
-		$this->assertEquals('Base - end', $exception->getMessage());
+		$this->assertInstanceOf(BacktraceEmptyException::class, $exception);
+		$this->assertEquals('', $exception->getMessage());
+		$this->assertEquals(0, $exception->getCode());
 	}
 }

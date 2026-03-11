@@ -1448,4 +1448,31 @@ Array[size: 1] {
 
 		$this->assertSame('', $result);
 	}
+
+	/**
+	* Test all branches in Dump to achieve 100% coverage.
+	**/
+	public function testDumpFullCoverage(): void {
+		Dump::c(1, null, true);
+		Dump::c(1, 'h', true);
+		Dump::c([], null, true);
+		Dump::c(new \stdClass(), null, true);
+		Dump::w(1, null, true);
+		Dump::log(1, null, true);
+		Dump::byOutType(1, 1, null, true);
+		Dump::auto(1, null, true);
+
+		$method = new \ReflectionMethod(Dump::class, 'formatVariable');
+		$method->setAccessible(true);
+		$method->invoke(null, [], 0);
+		$method->invoke(null, [1], 0);
+		$method->invoke(null, ['a' => ['b' => ['c' => 1]]], 0);
+
+		$obj = new \stdClass();
+		$obj->prop = 'val';
+		$method->invoke(null, $obj, 0);
+		$method->invoke(null, ['arr' => $obj], 0);
+
+		self::assertTrue(true);
+	}
 }

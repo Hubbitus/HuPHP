@@ -3,25 +3,25 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Exceptions;
 
-use Hubbitus\HuPHP\Exceptions\BaseException;
+use Hubbitus\HuPHP\Exceptions\HaltException;
 use PHPUnit\Framework\TestCase;
 
 /**
-* @covers \Hubbitus\HuPHP\Exceptions\BaseException
+* @covers \Hubbitus\HuPHP\Exceptions\HaltException
 **/
-class BaseExceptionTest extends TestCase {
+class HaltExceptionTest extends TestCase {
 	public function testConstructorCreatesInstance(): void {
-		$exception = new BaseException('Test message', 42);
+		$exception = new HaltException('Test message', 42);
 
-		$this->assertInstanceOf(BaseException::class, $exception);
+		$this->assertInstanceOf(HaltException::class, $exception);
 		$this->assertEquals('Test message', $exception->getMessage());
 		$this->assertEquals(42, $exception->getCode());
 	}
 
 	public function testConstructorWithDefaultValues(): void {
-		$exception = new BaseException();
+		$exception = new HaltException();
 
-		$this->assertInstanceOf(BaseException::class, $exception);
+		$this->assertInstanceOf(HaltException::class, $exception);
 		$this->assertEquals('', $exception->getMessage());
 		$this->assertEquals(0, $exception->getCode());
 	}
