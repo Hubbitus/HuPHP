@@ -125,7 +125,7 @@ class Dump {
 		if (\is_array($var) || \is_object($var)) {
 			$output .= self::formatVariable($var, 0);
 		} else {
-			$output .= \var_export($var, true);
+			$output .= \var_export($var, true) . "\n";
 		}
 
 		return $output;

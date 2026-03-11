@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Vars\Settings;
 
+use Hubbitus\HuPHP\Vars\Settings\Settings;
+use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
 use Hubbitus\HuPHP\Vars\Settings\SettingsCheckStatic;
 use PHPUnit\Framework\TestCase;
 
@@ -107,14 +109,14 @@ class SettingsCheckStaticTest extends TestCase {
 		$possibles = ['prop1' => null];
 		$settings = new SettingsCheckStatic($possibles);
 
-		$this->assertInstanceOf(\Hubbitus\HuPHP\Vars\Settings\SettingsCheck::class, $settings);
+		$this->assertInstanceOf(SettingsCheck::class, $settings);
 	}
 
 	public function testInheritsFromSettings(): void {
 		$possibles = ['prop1' => null];
 		$settings = new SettingsCheckStatic($possibles);
 
-		$this->assertInstanceOf(\Hubbitus\HuPHP\Vars\Settings\Settings::class, $settings);
+		$this->assertInstanceOf(Settings::class, $settings);
 	}
 
 	public function testStaticSettingsPropertyIsProtected(): void {

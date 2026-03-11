@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\System\Console;
 
+use Hubbitus\HuPHP\System\Console\HuGetoptOption;
+use Hubbitus\HuPHP\Vars\HuArray;
 use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\System\Console\HuGetopt;
 use Hubbitus\HuPHP\System\Console\HuGetoptSettings;
@@ -48,7 +50,7 @@ class HuGetoptTest extends TestCase {
 
 		$opt = $getopt->getOptByStr('s', 's');
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $opt);
+		$this->assertInstanceOf(HuGetoptOption::class, $opt);
 	}
 
 	public function testGetOptByStrLong(): void {
@@ -57,7 +59,7 @@ class HuGetoptTest extends TestCase {
 
 		$opt = $getopt->getOptByStr('long', 'l');
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $opt);
+		$this->assertInstanceOf(HuGetoptOption::class, $opt);
 	}
 
 	public function testGetOptByStrAutoDetectShort(): void {
@@ -66,7 +68,7 @@ class HuGetoptTest extends TestCase {
 
 		$opt = $getopt->getOptByStr('x');
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $opt);
+		$this->assertInstanceOf(HuGetoptOption::class, $opt);
 	}
 
 	public function testGetOptByStrAutoDetectLong(): void {
@@ -75,7 +77,7 @@ class HuGetoptTest extends TestCase {
 
 		$opt = $getopt->getOptByStr('yopt');
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $opt);
+		$this->assertInstanceOf(HuGetoptOption::class, $opt);
 	}
 
 	public function testSetArgv(): void {
@@ -94,7 +96,7 @@ class HuGetoptTest extends TestCase {
 
 		$opt = $getopt->get('g', 's');
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $opt);
+		$this->assertInstanceOf(HuGetoptOption::class, $opt);
 	}
 
 	public function testGetListShortOpts(): void {
@@ -142,7 +144,7 @@ class HuGetoptTest extends TestCase {
 
 		$nonOpts = $getopt->getNonOpts();
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\Vars\HuArray', $nonOpts);
+		$this->assertInstanceOf(HuArray::class, $nonOpts);
 	}
 
 	public function testGetNonOptsWithFromIndex(): void {
@@ -151,7 +153,7 @@ class HuGetoptTest extends TestCase {
 
 		$nonOpts = $getopt->getNonOpts(1);
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\Vars\HuArray', $nonOpts);
+		$this->assertInstanceOf(HuArray::class, $nonOpts);
 	}
 
 	public function testGetShortOpt(): void {
@@ -161,7 +163,7 @@ class HuGetoptTest extends TestCase {
 
 		$result = $getopt->getShortOpt('-s');
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $result);
+		$this->assertInstanceOf(HuGetoptOption::class, $result);
 	}
 
 	public function testGetShortOptWithSequence(): void {
@@ -175,7 +177,7 @@ class HuGetoptTest extends TestCase {
 
 		$result = $getopt->getShortOpt('-abc');
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $result);
+		$this->assertInstanceOf(HuGetoptOption::class, $result);
 	}
 
 	public function testGetShortOptNotOption(): void {
@@ -195,7 +197,7 @@ class HuGetoptTest extends TestCase {
 
 		$result = $getopt->getLongOpt('--long');
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $result);
+		$this->assertInstanceOf(HuGetoptOption::class, $result);
 	}
 
 	public function testGetLongOptWithValue(): void {
@@ -205,7 +207,7 @@ class HuGetoptTest extends TestCase {
 
 		$result = $getopt->getLongOpt('--file=test.txt');
 
-		$this->assertInstanceOf('Hubbitus\HuPHP\System\Console\HuGetoptOption', $result);
+		$this->assertInstanceOf(HuGetoptOption::class, $result);
 	}
 
 	public function testGetLongOptNotOption(): void {

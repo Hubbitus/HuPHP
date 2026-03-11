@@ -30,32 +30,34 @@ class FileRead extends FileBase {
 	* @return int Count of written bytes
 	**/
 	public function writeContent($flags = null, $resource_context = null): int {
-		// If file was opened, write via file descriptor
-		if ($this->fd !== null) {
-			// Truncate file to write from beginning
-			\ftruncate($this->fd, 0);
-			\rewind($this->fd);
-			// Suppress warning - fwrite fails with bad file descriptor when fd is read-only
-			$result = @\fwrite($this->fd, $this->content);
-			\fflush($this->fd);
+		try {
+			// If file was opened, write via file descriptor
+			if ($this->fd !== null) {
+				// Truncate file to write from beginning
+				\ftruncate($this->fd, 0);
+				\rewind($this->fd);
+				// Suppress warning - fwrite fails with bad file descriptor when fd is read-only
+				$result = @\fwrite($this->fd, $this->content);
+				\fflush($this->fd);
 
-			if ($result === false) {
-				throw new \RuntimeException('Failed to write content to file');
+				if ($result === false) {
+					throw new \RuntimeException('Failed to write content to file');
+				}
+
+				return $result;
 			}
 
-			$this->_writePending = false;
+			// Otherwise use direct file write
+			$result = @\file_put_contents($this->path(), $this->content, $flags ?? 0, $resource_context);
+
+			if ($result === false) {
+				throw new \RuntimeException('Failed to write content to file: ' . $this->path());
+			}
+
 			return $result;
+		} finally {
+			$this->_writePending = false;
 		}
-
-		// Otherwise use direct file write
-		$result = @\file_put_contents($this->path(), $this->content, $flags ?? 0, $resource_context);
-
-		if ($result === false) {
-			throw new \RuntimeException('Failed to write content to file: ' . $this->path());
-		}
-
-		$this->_writePending = false;
-		return $result;
 	}
 
 	/**

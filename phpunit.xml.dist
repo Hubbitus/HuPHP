@@ -21,7 +21,7 @@
             <directory suffix=".php">./Filesystem</directory>
             <directory suffix=".php">./RegExp</directory>
             <directory suffix=".php">./System</directory>
-            <directory suffix=".php">./macroses</directory>
+            <directory suffix=".php">./Macro</directory>
             <directory suffix=".php">./Vars</directory>
         </include>
         <exclude>

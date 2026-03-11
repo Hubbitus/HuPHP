@@ -1133,7 +1133,7 @@ stdClass {
 		$result = Dump::a($var, 'String', true);
 
 		$expected = "=== String ===
-'hello world'";
+'hello world'\n";
 		$this->assertSame($expected, $result);
 	}
 
@@ -1145,7 +1145,7 @@ stdClass {
 		$result = Dump::a($var, 'Integer', true);
 
 		$expected = "=== Integer ===
-42";
+42\n";
 		$this->assertSame($expected, $result);
 	}
 
@@ -1157,7 +1157,7 @@ stdClass {
 		$result = Dump::a($var, 'Float', true);
 
 		$expected = "=== Float ===
-3.14159";
+3.14159\n";
 		$this->assertSame($expected, $result);
 	}
 
@@ -1169,7 +1169,7 @@ stdClass {
 		$result = Dump::a($var, 'BoolTrue', true);
 
 		$expected = "=== BoolTrue ===
-true";
+true\n";
 		$this->assertSame($expected, $result);
 	}
 
@@ -1181,7 +1181,7 @@ true";
 		$result = Dump::a($var, 'BoolFalse', true);
 
 		$expected = "=== BoolFalse ===
-false";
+false\n";
 		$this->assertSame($expected, $result);
 	}
 
@@ -1193,7 +1193,7 @@ false";
 		$result = Dump::a($var, 'Null', true);
 
 		$expected = "=== Null ===
-NULL";
+NULL\n";
 		$this->assertSame($expected, $result);
 	}
 
@@ -1370,7 +1370,7 @@ Array[size: 1] {
 
 		$expected = "=== Special ===
 'line1
-line2\ttab'";
+line2\ttab'\n";
 		$this->assertSame($expected, $result);
 	}
 
@@ -1433,7 +1433,7 @@ Array[size: 3] {
 		$result = Dump::a($var, 'LongStr', true);
 
 		$expected = "=== LongStr ===
-'This is a very long string that contains many characters and should be properly exported'";
+'This is a very long string that contains many characters and should be properly exported'\n";
 		$this->assertSame($expected, $result);
 	}
 
@@ -1445,7 +1445,7 @@ Array[size: 3] {
 		$result = Dump::a($var, 'Sci', true);
 
 		$expected = "=== Sci ===
-12300000000.0";
+12300000000.0\n";
 		$this->assertSame($expected, $result);
 	}
 
