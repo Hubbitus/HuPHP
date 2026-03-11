@@ -2,13 +2,14 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\System;
-use Hubbitus\HuPHP\System\OutputType;
 
+use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\Exceptions\HaltException;
 use PHPUnit\Framework\TestCase;
 
 /**
-* @covers \Hubbitus\HuPHP\System\OS
+* Tests for OS utility class
 **/
 class OSTest extends TestCase {
 	private OS $os;
@@ -120,5 +121,48 @@ class OSTest extends TestCase {
 		$result = OS::isPathAbsolute(null);
 
 		$this->assertFalse($result);
+	}
+
+	/**
+	* Test OS::err writes to stderr and returns number of bytes
+	**/
+	public function testErr(): void {
+		$result = OS::err('test error');
+
+		$this->assertIsInt($result);
+		$this->assertGreaterThan(0, $result);
+	}
+
+	/**
+	* Test OS::hitCount increments and returns counter
+	**/
+	public function testHitCount(): void {
+		// Reset static counter via reflection
+		$rc = new \ReflectionClass(OS::class);
+		$prop = $rc->getProperty('hitCounter');
+		$prop->setAccessible(true);
+		$prop->setValue($this->os, 0);
+
+		$this->assertSame(1, OS::hitCount(5));
+		$this->assertSame(2, OS::hitCount(10));
+		$this->assertTrue(OS::hitCount(3)); // returns true when equals
+		$this->assertSame(4, OS::hitCount(20));
+	}
+
+	/**
+	* Test OS::exitCount throws HaltException when count reached
+	**/
+	public function testExitCount(): void {
+		// Reset counter
+		$rc = new \ReflectionClass(OS::class);
+		$prop = $rc->getProperty('hitCounter');
+		$prop->setAccessible(true);
+		$prop->setValue($this->os, 0);
+
+		OS::hitCount(1);
+		OS::hitCount(2);
+
+		$this->expectException(HaltException::class);
+		OS::exitCount(3);
 	}
 }
