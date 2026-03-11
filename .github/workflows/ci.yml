@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivamathur/setup-php@v2
         with:
           php-version: '8.4'
           extensions: mbstring, intl, gd, xml, dom, zip, bz2
@@ -31,8 +31,30 @@ jobs:
       - name: Run Lint
         run: ./tests/lint.sh
 
-      - name: Run Tests
-        run: ./tests/run-tests.sh
+      - name: Run Tests with Coverage
+        run: |
+          mkdir -p build
+          XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=build/coverage.xml
+
+      - name: Check 100% Coverage
+        run: |
+          # Install bc if not available
+          apt-get update && apt-get install -y bc || true
+          COVERAGE=$(./vendor/bin/phpunit --coverage-text 2>/dev/null | grep "^  Lines:" | awk '{print $3}' | tr -d '%')
+          echo "Coverage: $COVERAGE%"
+          if (( $(echo "$COVERAGE < 100" | bc -l) )); then
+            echo "❌ Coverage is below 100% ($COVERAGE%). Fix tests to achieve 100% coverage."
+            exit 1
+          fi
+          echo "✅ 100% coverage achieved!"
+
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./build/coverage.xml
+          flags: unittests
+          name: huphp
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Regenerate All
         run: bash ./@tools/regenerate.all
@@ -43,7 +65,7 @@ jobs:
         with:
           name: logs
           path: './@tools/regenerate.all.log'
-          
+
   deploy-docs:
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -54,9 +76,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivamathur/setup-php@v2
         with:
           php-version: '8.4'
           extensions: mbstring, intl, gd, xml, dom, zip, bz2
