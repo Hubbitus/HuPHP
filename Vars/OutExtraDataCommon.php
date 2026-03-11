@@ -30,15 +30,19 @@ class OutExtraDataCommon implements IOutExtraData {
 	public function strForConsole(array|string|null $format = null): string {
 		return Dump::c($this->_var, null, true);
 	}
+
 	public function strForFile(array|string|null $format = null): string {
 		return Dump::log($this->_var, null, true);
 	}
+
 	public function strForWeb(array|string|null $format = null): string {
 		return Dump::w($this->_var, null, true);
 	}
+
 	public function strForPrint(array|string|null $format = null): string {
 		return static::strForPrintBase($this, $format);
 	}
+
 	public function strByOutType(OutputType $type, array|string|null $format = null): string {
 		return static::strByOutTypeBase($this, $type, $format);
 	}

@@ -40,156 +40,156 @@ use PHPUnit\Framework\TestCase;
 * @covers \Hubbitus\HuPHP\Exceptions\NotImplementedException
 **/
 class ExceptionHierarchyTest extends TestCase {
-    public function testBaseExceptionExtendsException(): void {
-        $exception = new BaseException('Test message');
+	public function testBaseExceptionExtendsException(): void {
+		$exception = new BaseException('Test message');
 
-        $this->assertInstanceOf(\Exception::class, $exception);
-        $this->assertInstanceOf(BaseException::class, $exception);
-    }
+		$this->assertInstanceOf(\Exception::class, $exception);
+		$this->assertInstanceOf(BaseException::class, $exception);
+	}
 
-    public function testBaseExceptionWithMessage(): void {
-        $exception = new BaseException('Test message');
+	public function testBaseExceptionWithMessage(): void {
+		$exception = new BaseException('Test message');
 
-        $this->assertEquals('Test message', $exception->getMessage());
-    }
+		$this->assertEquals('Test message', $exception->getMessage());
+	}
 
-    public function testBaseExceptionWithCode(): void {
-        $exception = new BaseException('Test message', 42);
+	public function testBaseExceptionWithCode(): void {
+		$exception = new BaseException('Test message', 42);
 
-        $this->assertEquals(42, $exception->getCode());
-    }
+		$this->assertEquals(42, $exception->getCode());
+	}
 
-    public function testBaseExceptionWithPrevious(): void {
-        $previous = new \Exception('Previous');
-        $exception = new BaseException('Test message', 0, $previous);
+	public function testBaseExceptionWithPrevious(): void {
+		$previous = new \Exception('Previous');
+		$exception = new BaseException('Test message', 0, $previous);
 
-        $this->assertSame($previous, $exception->getPrevious());
-    }
+		$this->assertSame($previous, $exception->getPrevious());
+	}
 
-    public function testBaseExceptionADDMessageAppend(): void {
-        $exception = new BaseException('Original');
-        $exception->ADDMessage(' Added');
+	public function testBaseExceptionADDMessageAppend(): void {
+		$exception = new BaseException('Original');
+		$exception->ADDMessage(' Added');
 
-        $this->assertEquals('Original Added', $exception->getMessage());
-    }
+		$this->assertEquals('Original Added', $exception->getMessage());
+	}
 
-    public function testBaseExceptionADDMessagePrepend(): void {
-        $exception = new BaseException('Original');
-        $exception->ADDMessage('Added ', true);
+	public function testBaseExceptionADDMessagePrepend(): void {
+		$exception = new BaseException('Original');
+		$exception->ADDMessage('Added ', true);
 
-        $this->assertEquals('Added Original', $exception->getMessage());
-    }
+		$this->assertEquals('Added Original', $exception->getMessage());
+	}
 
-    public function testVariableExceptionExtendsBaseException(): void {
-        $exception = new VariableException('Test message');
+	public function testVariableExceptionExtendsBaseException(): void {
+		$exception = new VariableException('Test message');
 
-        $this->assertInstanceOf(BaseException::class, $exception);
-        $this->assertInstanceOf(VariableException::class, $exception);
-    }
+		$this->assertInstanceOf(BaseException::class, $exception);
+		$this->assertInstanceOf(VariableException::class, $exception);
+	}
 
-    public function testVariableEmptyExceptionExtendsVariableException(): void {
-        // VariableEmptyException extends VariableRequiredException which requires Backtrace
-        // We test the class hierarchy by checking reflection
-        $reflection = new \ReflectionClass(\Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException::class);
+	public function testVariableEmptyExceptionExtendsVariableException(): void {
+		// VariableEmptyException extends VariableRequiredException which requires Backtrace
+		// We test the class hierarchy by checking reflection
+		$reflection = new \ReflectionClass(\Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException::class);
 
-        $this->assertTrue($reflection->isSubclassOf(VariableException::class));
-        $this->assertTrue($reflection->isSubclassOf(BaseException::class));
-    }
+		$this->assertTrue($reflection->isSubclassOf(VariableException::class));
+		$this->assertTrue($reflection->isSubclassOf(BaseException::class));
+	}
 
-    public function testVariableRangeException(): void {
-        $exception = new VariableRangeException('Test message');
+	public function testVariableRangeException(): void {
+		$exception = new VariableRangeException('Test message');
 
-        $this->assertInstanceOf(VariableException::class, $exception);
-        $this->assertInstanceOf(VariableRangeException::class, $exception);
-    }
+		$this->assertInstanceOf(VariableException::class, $exception);
+		$this->assertInstanceOf(VariableRangeException::class, $exception);
+	}
 
-    public function testVariableReadOnlyException(): void {
-        $exception = new VariableReadOnlyException('Test message');
+	public function testVariableReadOnlyException(): void {
+		$exception = new VariableReadOnlyException('Test message');
 
-        $this->assertInstanceOf(VariableException::class, $exception);
-        $this->assertInstanceOf(VariableReadOnlyException::class, $exception);
-    }
+		$this->assertInstanceOf(VariableException::class, $exception);
+		$this->assertInstanceOf(VariableReadOnlyException::class, $exception);
+	}
 
-    public function testVariableRequiredException(): void {
-        // VariableRequiredException requires Backtrace object
-        // We test the class hierarchy by checking reflection
-        $reflection = new \ReflectionClass(VariableRequiredException::class);
+	public function testVariableRequiredException(): void {
+		// VariableRequiredException requires Backtrace object
+		// We test the class hierarchy by checking reflection
+		$reflection = new \ReflectionClass(VariableRequiredException::class);
 
-        $this->assertTrue($reflection->isSubclassOf(VariableException::class));
-        $this->assertTrue($reflection->isSubclassOf(BaseException::class));
-    }
+		$this->assertTrue($reflection->isSubclassOf(VariableException::class));
+		$this->assertTrue($reflection->isSubclassOf(BaseException::class));
+	}
 
-    public function testClassExceptionExtendsBaseException(): void {
-        $exception = new ClassException('Test message');
+	public function testClassExceptionExtendsBaseException(): void {
+		$exception = new ClassException('Test message');
 
-        $this->assertInstanceOf(BaseException::class, $exception);
-        $this->assertInstanceOf(ClassException::class, $exception);
-    }
+		$this->assertInstanceOf(BaseException::class, $exception);
+		$this->assertInstanceOf(ClassException::class, $exception);
+	}
 
-    public function testClassMethodException(): void {
-        $exception = new ClassMethodException('Test message');
+	public function testClassMethodException(): void {
+		$exception = new ClassMethodException('Test message');
 
-        $this->assertInstanceOf(ClassException::class, $exception);
-        $this->assertInstanceOf(ClassMethodException::class, $exception);
-    }
+		$this->assertInstanceOf(ClassException::class, $exception);
+		$this->assertInstanceOf(ClassMethodException::class, $exception);
+	}
 
-    public function testClassNotExistsException(): void {
-        $exception = new ClassNotExistsException('Test message');
+	public function testClassNotExistsException(): void {
+		$exception = new ClassNotExistsException('Test message');
 
-        $this->assertInstanceOf(ClassException::class, $exception);
-        $this->assertInstanceOf(ClassNotExistsException::class, $exception);
-    }
+		$this->assertInstanceOf(ClassException::class, $exception);
+		$this->assertInstanceOf(ClassNotExistsException::class, $exception);
+	}
 
-    public function testClassPropertyNotExistsException(): void {
-        $exception = new ClassPropertyNotExistsException('Test message');
+	public function testClassPropertyNotExistsException(): void {
+		$exception = new ClassPropertyNotExistsException('Test message');
 
-        $this->assertInstanceOf(ClassException::class, $exception);
-        $this->assertInstanceOf(ClassPropertyNotExistsException::class, $exception);
-    }
+		$this->assertInstanceOf(ClassException::class, $exception);
+		$this->assertInstanceOf(ClassPropertyNotExistsException::class, $exception);
+	}
 
-    public function testClassUnknownException(): void {
-        $exception = new ClassUnknownException('Test message');
+	public function testClassUnknownException(): void {
+		$exception = new ClassUnknownException('Test message');
 
-        $this->assertInstanceOf(ClassException::class, $exception);
-        $this->assertInstanceOf(ClassUnknownException::class, $exception);
-    }
+		$this->assertInstanceOf(ClassException::class, $exception);
+		$this->assertInstanceOf(ClassUnknownException::class, $exception);
+	}
 
-    public function testFileException(): void {
-        // FileException requires fullPath parameter
-        $exception = new FileException('Test message', '/path/to/file');
+	public function testFileException(): void {
+		// FileException requires fullPath parameter
+		$exception = new FileException('Test message', '/path/to/file');
 
-        $this->assertInstanceOf(BaseException::class, $exception);
-        $this->assertInstanceOf(FileException::class, $exception);
-        $this->assertEquals('/path/to/file', $exception->getFullPath());
-    }
+		$this->assertInstanceOf(BaseException::class, $exception);
+		$this->assertInstanceOf(FileException::class, $exception);
+		$this->assertEquals('/path/to/file', $exception->getFullPath());
+	}
 
-    public function testProcessException(): void {
-        // ProcessException requires state parameter
-        $exception = new ProcessException('Test message', 0, 'running');
+	public function testProcessException(): void {
+		// ProcessException requires state parameter
+		$exception = new ProcessException('Test message', 0, 'running');
 
-        $this->assertInstanceOf(BaseException::class, $exception);
-        $this->assertInstanceOf(ProcessException::class, $exception);
-        $this->assertEquals('running', $exception->state);
-    }
+		$this->assertInstanceOf(BaseException::class, $exception);
+		$this->assertInstanceOf(ProcessException::class, $exception);
+		$this->assertEquals('running', $exception->state);
+	}
 
-    public function testSerializeException(): void {
-        $exception = new SerializeException('Test message');
+	public function testSerializeException(): void {
+		$exception = new SerializeException('Test message');
 
-        $this->assertInstanceOf(BaseException::class, $exception);
-        $this->assertInstanceOf(SerializeException::class, $exception);
-    }
+		$this->assertInstanceOf(BaseException::class, $exception);
+		$this->assertInstanceOf(SerializeException::class, $exception);
+	}
 
-    public function testSessionException(): void {
-        $exception = new SessionException('Test message');
+	public function testSessionException(): void {
+		$exception = new SessionException('Test message');
 
-        $this->assertInstanceOf(BaseException::class, $exception);
-        $this->assertInstanceOf(SessionException::class, $exception);
-    }
+		$this->assertInstanceOf(BaseException::class, $exception);
+		$this->assertInstanceOf(SessionException::class, $exception);
+	}
 
-    public function testNotImplementedException(): void {
-        $exception = new NotImplementedException('Test message');
+	public function testNotImplementedException(): void {
+		$exception = new NotImplementedException('Test message');
 
-        $this->assertInstanceOf(BaseException::class, $exception);
-        $this->assertInstanceOf(NotImplementedException::class, $exception);
-    }
+		$this->assertInstanceOf(BaseException::class, $exception);
+		$this->assertInstanceOf(NotImplementedException::class, $exception);
+	}
 }

@@ -69,8 +69,9 @@ class SettingsFilter extends SettingsCheckStatic {
 		* This may be done also through array_walk, but in it required intermediate function to swap arguments.
 		* I think direct cycle will be faster.
 		**/
-		foreach (Vars::requiredNotEmpty($setArr) as $key => $value)
+		foreach (Vars::requiredNotEmpty($setArr) as $key => $value) {
 			$this->setSetting($key, $value);
+		}
 	}
 
 	/**
@@ -121,7 +122,9 @@ class SettingsFilter extends SettingsCheckStatic {
 	* @return \SplDoublyLinkedList Queue of required filters (may be empty).
 	**/
 	protected function &getFilterSet($name): \SplDoublyLinkedList {
-		if (!isset($this->__filter_set[$name])) $this->__filter_set[$name] = new \SplDoublyLinkedList();
+		if (!isset($this->__filter_set[$name])) {
+			$this->__filter_set[$name] = new \SplDoublyLinkedList();
+		}
 		return $this->__filter_set[$name];
 	}
 

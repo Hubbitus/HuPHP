@@ -19,21 +19,21 @@ dump::a($p);
 // Load the PHAR file using path relative to this script
 $pharPath = __DIR__ . '/build/HuPHP.phar';
 
-if (!file_exists($pharPath)) {
-    fwrite(STDERR, "Error: PHAR file does not exist at path: " . $pharPath . "\n");
-    exit(1);
+if (!\file_exists($pharPath)) {
+	\fwrite(STDERR, "Error: PHAR file does not exist at path: " . $pharPath . "\n");
+	exit(1);
 }
 
 // Attempt to require the PHAR file and handle any errors
 try {
-    require_once($pharPath);
+	require_once($pharPath);
 
-    // The PHAR should have the autoloader built-in, so now we can use the classes
-    Dump::a('Just test');
-    $testString = 'some';
-    Dump::a($testString);
-    echo "PHAR test completed successfully!" . PHP_EOL;
+	// The PHAR should have the autoloader built-in, so now we can use the classes
+	Dump::a('Just test');
+	$testString = 'some';
+	Dump::a($testString);
+	echo "PHAR test completed successfully!" . PHP_EOL;
 } catch (Throwable $e) {
-    fwrite(STDERR, "Error loading or executing PHAR: " . $e->getMessage() . "\n");
-    exit(1);
+	\fwrite(STDERR, "Error loading or executing PHAR: " . $e->getMessage() . "\n");
+	exit(1);
 }

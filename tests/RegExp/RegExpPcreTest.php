@@ -178,16 +178,16 @@ class RegExpPcreTest extends TestCase {
 		// convertOffsetToChars() converts them to character offsets
 		$regexp = new RegExpPcre('/тест/', 'это тест текст');
 		$regexp->doMatch(PREG_OFFSET_CAPTURE);
-		
+
 		// Get matches before conversion (byte offsets)
 		$matchesBefore = $regexp->getMatches();
-		
+
 		// Convert to character offsets
 		$regexp->convertOffsetToChars(PREG_OFFSET_CAPTURE);
-		
+
 		// Get matches after conversion (character offsets)
 		$matchesAfter = $regexp->getMatches();
-		
+
 		// Matches should still be an array
 		$this->assertIsArray($matchesAfter);
 		$this->assertNotEmpty($matchesAfter);
@@ -198,10 +198,10 @@ class RegExpPcreTest extends TestCase {
 		// This tests the mb_strlen path if available
 		$regexp = new RegExpPcre('/hello/', 'hello мир hello');
 		$regexp->doMatchAll(PREG_OFFSET_CAPTURE);
-		
+
 		// Convert offsets
 		$regexp->convertOffsetToChars(PREG_OFFSET_CAPTURE);
-		
+
 		$matches = $regexp->getMatches();
 		$this->assertIsArray($matches);
 		$this->assertCount(2, $matches[0]);
@@ -212,10 +212,10 @@ class RegExpPcreTest extends TestCase {
 		// Should not modify matches
 		$regexp = new RegExpPcre('/test/', 'test text test');
 		$regexp->doMatch(); // Without PREG_OFFSET_CAPTURE
-		
+
 		// Convert should not change anything without PREG_OFFSET_CAPTURE
 		$regexp->convertOffsetToChars();
-		
+
 		$matches = $regexp->getMatches();
 		$this->assertIsArray($matches);
 	}
@@ -224,10 +224,10 @@ class RegExpPcreTest extends TestCase {
 		// Test convertOffsetToChars() when there are no matches
 		$regexp = new RegExpPcre('/xyz/', 'test text test');
 		$regexp->doMatch(PREG_OFFSET_CAPTURE);
-		
+
 		// No matches, convert should not fail
 		$regexp->convertOffsetToChars(PREG_OFFSET_CAPTURE);
-		
+
 		$matches = $regexp->getMatches();
 		$this->assertIsArray($matches);
 	}
@@ -237,14 +237,14 @@ class RegExpPcreTest extends TestCase {
 		$unicodeText = 'Привет мир';
 		$regexp = new RegExpPcre('/мир/', $unicodeText);
 		$regexp->doMatch(PREG_OFFSET_CAPTURE);
-		
+
 		// Convert byte offsets to character offsets
 		$regexp->convertOffsetToChars(PREG_OFFSET_CAPTURE);
-		
+
 		$matches = $regexp->getMatches();
 		$this->assertIsArray($matches);
 		$this->assertNotEmpty($matches);
-		
+
 		// Verify matches exist (offset conversion may have issues with multibyte)
 		$this->assertArrayHasKey(0, $matches);
 	}
@@ -253,7 +253,7 @@ class RegExpPcreTest extends TestCase {
 		// Test doMatch() with offset parameter
 		$regexp = new RegExpPcre('/test/', 'test test test');
 		$regexp->doMatch(PREG_OFFSET_CAPTURE, 5); // Start from offset 5
-		
+
 		$matches = $regexp->getMatches();
 		$this->assertIsArray($matches);
 	}
@@ -262,7 +262,7 @@ class RegExpPcreTest extends TestCase {
 		// Test doMatchAll() with offset parameter
 		$regexp = new RegExpPcre('/test/', 'test test test');
 		$regexp->doMatchAll(PREG_OFFSET_CAPTURE, 5); // Start from offset 5
-		
+
 		$matches = $regexp->getMatches();
 		$this->assertIsArray($matches);
 	}
@@ -277,13 +277,13 @@ class RegExpPcreTest extends TestCase {
 	public function testReplaceCache(): void {
 		// Test that replace results are cached
 		$regexp = new RegExpPcre('/test/', 'test text test', 'replaced');
-		
+
 		// First replace
 		$result1 = $regexp->replace();
-		
+
 		// Second replace (should use cache)
 		$result2 = $regexp->replace();
-		
+
 		$this->assertEquals($result1, $result2);
 	}
 
@@ -291,7 +291,7 @@ class RegExpPcreTest extends TestCase {
 		// Test that matchCount is set correctly
 		$regexp = new RegExpPcre('/test/', 'test test');
 		$regexp->doMatchAll();
-		
+
 		$this->assertEquals(2, $this->getProtectedProperty($regexp, 'matchCount'));
 	}
 
@@ -299,11 +299,11 @@ class RegExpPcreTest extends TestCase {
 		// Test that matchesValid is set to true after doMatch
 		$regexp = new RegExpPcre('/test/', 'test');
 		$regexp->doMatch();
-		
+
 		$reflection = new \ReflectionClass($regexp);
 		$matchesValidProp = $reflection->getProperty('matchesValid');
 		$matchesValidProp->setAccessible(true);
-		
+
 		$this->assertTrue($matchesValidProp->getValue($regexp));
 	}
 
@@ -311,11 +311,11 @@ class RegExpPcreTest extends TestCase {
 		// Test that replaceValid is set to true after replace
 		$regexp = new RegExpPcre('/test/', 'test', 'replaced');
 		$regexp->replace();
-		
+
 		$reflection = new \ReflectionClass($regexp);
 		$replaceValidProp = $reflection->getProperty('replaceValid');
 		$replaceValidProp->setAccessible(true);
-		
+
 		$this->assertTrue($replaceValidProp->getValue($regexp));
 	}
 

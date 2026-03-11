@@ -21,7 +21,7 @@ class HuConfig extends SettingsCheck {
 	private $_include_tried = [];
 
 	public function __construct() {
-		parent::__construct(array_keys($GLOBALS['__CONFIG']), $GLOBALS['__CONFIG']);
+		parent::__construct(\array_keys($GLOBALS['__CONFIG']), $GLOBALS['__CONFIG']);
 	}
 
 	/**
@@ -49,7 +49,9 @@ class HuConfig extends SettingsCheck {
 			$ret = new HuArray($ret); //Replace original on the fly
 			return $ret;
 		}
-		else return $ret;
+		else {
+			return $ret;
+		}
 	}
 
 	/**

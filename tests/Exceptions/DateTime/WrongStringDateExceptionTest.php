@@ -10,28 +10,28 @@ use PHPUnit\Framework\TestCase;
 * @covers \Hubbitus\HuPHP\Exceptions\DateTime\WrongStringDateException
 **/
 class WrongStringDateExceptionTest extends TestCase {
-    public function testConstructorWithNoArguments(): void {
-        $exception = new WrongStringDateException();
+	public function testConstructorWithNoArguments(): void {
+		$exception = new WrongStringDateException();
 
-        $this->assertInstanceOf(WrongStringDateException::class, $exception);
-    }
+		$this->assertInstanceOf(WrongStringDateException::class, $exception);
+	}
 
-    public function testConstructorWithMessage(): void {
-        $exception = new WrongStringDateException('Invalid date format');
+	public function testConstructorWithMessage(): void {
+		$exception = new WrongStringDateException('Invalid date format');
 
-        $this->assertInstanceOf(WrongStringDateException::class, $exception);
-        $this->assertEquals('Invalid date format', $exception->getMessage());
-    }
+		$this->assertInstanceOf(WrongStringDateException::class, $exception);
+		$this->assertEquals('Invalid date format', $exception->getMessage());
+	}
 
-    public function testIsThrowable(): void {
-        $exception = new WrongStringDateException();
+	public function testIsThrowable(): void {
+		$exception = new WrongStringDateException();
 
-        $this->assertInstanceOf(\Throwable::class, $exception);
-    }
+		$this->assertInstanceOf(\Throwable::class, $exception);
+	}
 
-    public function testExceptionCanBeThrown(): void {
-        $this->expectException(WrongStringDateException::class);
+	public function testExceptionCanBeThrown(): void {
+		$this->expectException(WrongStringDateException::class);
 
-        throw new WrongStringDateException('Wrong date string');
-    }
+		throw new WrongStringDateException('Wrong date string');
+	}
 }

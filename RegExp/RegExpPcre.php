@@ -10,7 +10,6 @@ namespace Hubbitus\HuPHP\RegExp;
 * @created ?2009-02-11 13:41 ver 2.1 to 2.1.1
 **/
 class RegExpPcre extends RegExpBase {
-
 	/**
 	* {@inheritdoc}
 	**/
@@ -78,7 +77,7 @@ class RegExpPcre extends RegExpBase {
 		*	2.2) For compatibility, provide fallback to strlen(utf8_decode(...)) (2nd place of speed)
 		**/
 		if ($this->matchCount > 0 && ($flags & PREG_OFFSET_CAPTURE) !== 0) {
-			$func_strlen = fn(string $str) => function_exists('mb_strlen') ? \mb_strlen($str, 'UTF-8') : \strlen(\utf8_decode($str));
+			$func_strlen = fn(string $str) => \function_exists('mb_strlen') ? \mb_strlen($str, 'UTF-8') : \strlen(\utf8_decode($str));
 
 			foreach ($this->matches as &$match) {
 				foreach ($match as &$m) {

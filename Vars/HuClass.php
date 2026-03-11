@@ -42,11 +42,11 @@ abstract class HuClass {
 	* @param mixed $what
 	**/
 	public static function reinterpret_cast($toClassName, $what): object {
-		return unserialize(
-			preg_replace(
+		return \unserialize(
+			\preg_replace(
 				'/^O:[0-9]+:"[^"]+":/',
-				'O:'.strlen($toClassName).':"' . $toClassName . '":',
-				serialize($what)
+				'O:'.\strlen($toClassName).':"' . $toClassName . '":',
+				\serialize($what)
 			)
 		);
 	}

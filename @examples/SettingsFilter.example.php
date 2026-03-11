@@ -1,27 +1,34 @@
 <?php
 declare(strict_types=1);
 
-include_once('autoload.php');
+namespace Hubbitus\HuPHP\Examples;
 
-$filt = new SettingsFilter(array('foo', 'bar'), array('foo' => 5, 'bar' => 'Test string'));
-//Then register 2 filters:
-$getFilterNo = $filt->addFilterGet(new SettingsFilterBase('foo', create_function('$name, $val', 'return $val * 10;')));
-$filt->addFilterSet(new SettingsFilterBase('bar', create_function('$name, $val', 'return str_replace("-", "--", $val);')));
-$filt->addFilterSet(new SettingsFilterBase('bar', create_function('$name, $val', 'return trim($val);')));
+use Hubbitus\HuPHP\Vars\Settings\SettingsFilter;
+use Hubbitus\HuPHP\Vars\Settings\SettingsFilterBase;
 
-echo $filt->foo . "\n"; //Prints: 50
-$filt->bar = '   This-is-test    ';
-echo '[' . $filt->bar . ']' . "\n"; //Prints: [This--is--test]
-	/* IS NOT IMPLEMENTED YET
-	// If for property does not register any filters with 'private' field {@see ::add[GS]etFilter()} methods parameter $private.
-	// You may request its raw value:
-	try{
-	echo $filt->getRaw('foo'); //Prints: 5
-	}
-	catch(settings_filter_exception $e){
-	echo 'Request Raw value does not possible due to registered private filters';
-	}
-	*/
-//  You may want to delete prevouse added filter:
-$filt->delFilterGet('foo', $getFilterNo);
-echo $filt->foo . "\n"; //Prints: 5
+include_once(__DIR__ . '/../vendor/autoload.php');
+
+$filter = new SettingsFilter(['foo', 'bar'], ['foo' => 5, 'bar' => 'Test string']);
+
+// Then register 2 filters:
+// GET filter multiplies value by 10
+$getFilterNo = $filter->addFilterGet(new SettingsFilterBase('foo', function(&$name, &$val) {
+	$val = $val * 10;
+	return $val;
+}));
+
+// SET filters: replace '-' with '--' and trim whitespace
+$filter->addFilterSet(new SettingsFilterBase('bar', function(&$name, &$val) {
+	$val = \str_replace('-', '--', $val);
+	return $val;
+}));
+$filter->addFilterSet(new SettingsFilterBase('bar', function(&$name, &$val) {
+	$val = \trim($val);
+	return $val;
+}));
+
+echo $filter->foo . "\n"; // Prints: 50
+
+$filter->bar = '   This-is-test    ';
+echo '[' . $filter->bar . ']' . "\n"; // Prints: [This--is--test]
+

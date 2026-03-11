@@ -9,18 +9,13 @@ class ProcessState {
 	/*All this members was private on Process class, so, now will be public,
 	if we do not provides complex of get/set method to each */
 	public $writeData;
-
 	public $exit_code;
-
 	private $cwd = null;
-	private $env = array();
-
+	private $env = [];
 	public $nonBlockingMode = false;
 	public $nonBlockTimeout = 500000;// microseconds
-
 	public $retVal;
 	public $error;
-
 	public $CMD;
 
 	public function getCwd(): mixed {
@@ -44,7 +39,7 @@ class ProcessState {
 	}
 
 	public function getError(): string {
-		return trim($this->error ?? '');
+		return \trim($this->error ?? '');
 	}
 
 	public function describe(): string {

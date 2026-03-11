@@ -10,28 +10,28 @@ use PHPUnit\Framework\TestCase;
 * @covers \Hubbitus\HuPHP\Exceptions\SessionException
 **/
 class SessionExceptionTest extends TestCase {
-    public function testConstructorWithNoArguments(): void {
-        $exception = new SessionException();
+	public function testConstructorWithNoArguments(): void {
+		$exception = new SessionException();
 
-        $this->assertInstanceOf(SessionException::class, $exception);
-    }
+		$this->assertInstanceOf(SessionException::class, $exception);
+	}
 
-    public function testConstructorWithMessage(): void {
-        $exception = new SessionException('Session error');
+	public function testConstructorWithMessage(): void {
+		$exception = new SessionException('Session error');
 
-        $this->assertInstanceOf(SessionException::class, $exception);
-        $this->assertEquals('Session error', $exception->getMessage());
-    }
+		$this->assertInstanceOf(SessionException::class, $exception);
+		$this->assertEquals('Session error', $exception->getMessage());
+	}
 
-    public function testIsThrowable(): void {
-        $exception = new SessionException();
+	public function testIsThrowable(): void {
+		$exception = new SessionException();
 
-        $this->assertInstanceOf(\Throwable::class, $exception);
-    }
+		$this->assertInstanceOf(\Throwable::class, $exception);
+	}
 
-    public function testExceptionCanBeThrown(): void {
-        $this->expectException(SessionException::class);
+	public function testExceptionCanBeThrown(): void {
+		$this->expectException(SessionException::class);
 
-        throw new SessionException('Session failed');
-    }
+		throw new SessionException('Session failed');
+	}
 }

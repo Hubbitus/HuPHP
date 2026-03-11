@@ -33,11 +33,11 @@ class FileRead extends FileBase {
 		// If file was opened, write via file descriptor
 		if ($this->fd !== null) {
 			// Truncate file to write from beginning
-			ftruncate($this->fd, 0);
-			rewind($this->fd);
+			\ftruncate($this->fd, 0);
+			\rewind($this->fd);
 			// Suppress warning - fwrite fails with bad file descriptor when fd is read-only
-			$result = @fwrite($this->fd, $this->content);
-			fflush($this->fd);
+			$result = @\fwrite($this->fd, $this->content);
+			\fflush($this->fd);
 
 			if ($result === false) {
 				throw new \RuntimeException('Failed to write content to file');
@@ -48,7 +48,7 @@ class FileRead extends FileBase {
 		}
 
 		// Otherwise use direct file write
-		$result = @file_put_contents($this->path(), $this->content, $flags ?? 0, $resource_context);
+		$result = @\file_put_contents($this->path(), $this->content, $flags ?? 0, $resource_context);
 
 		if ($result === false) {
 			throw new \RuntimeException('Failed to write content to file: ' . $this->path());
@@ -123,15 +123,15 @@ class FileRead extends FileBase {
 	**/
 	public function getTail (int $maxlength = -1, int $offset = 0): string|false {
 		// Check if fd is readable before attempting to read
-		if ($this->fd !== null && is_resource($this->fd)) {
-			$meta = stream_get_meta_data($this->fd);
+		if ($this->fd !== null && \is_resource($this->fd)) {
+			$meta = \stream_get_meta_data($this->fd);
 			if ($meta['mode'] === 'w') {
 				// File opened for writing only - cannot read
 				throw new \RuntimeException('Cannot read from file opened in write mode');
 			}
 		}
 		// Suppress warning - stream_get_contents fails with bad file descriptor when fd is write-only
-		return @stream_get_contents($this->fd, $maxlength, $offset);
+		return @\stream_get_contents($this->fd, $maxlength, $offset);
 	}
 
 	/**
@@ -150,8 +150,8 @@ class FileRead extends FileBase {
 	public function __destruct() {
 		// Don't write if file descriptor is open for reading
 		// Check mode before attempting write
-		if ($this->fd !== null && is_resource($this->fd)) {
-			$meta = stream_get_meta_data($this->fd);
+		if ($this->fd !== null && \is_resource($this->fd)) {
+			$meta = \stream_get_meta_data($this->fd);
 			if ($meta['mode'] === 'r') {
 				// File opened for reading only - skip write
 				return;

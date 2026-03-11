@@ -45,7 +45,9 @@ class HuError extends Settings implements IOutExtraData {
 		}
 
 		if ('date' === $name || 'DATE' === $name) {
-			if ($this->getProperty('date') === null) $this->updateDate();
+			if ($this->getProperty('date') === null) {
+				$this->updateDate();
+			}
 			$t = $this->getProperty('date');
 			return $t;
 		}
@@ -217,9 +219,9 @@ class HuError extends Settings implements IOutExtraData {
 	**/
 	public function formatField($field): string {
 		if (\is_array($field)) {
-			 if(!isset($field[0])) {
-				 $field = \array_values($field);
-			 }
+			if(!isset($field[0])) {
+				$field = \array_values($field);
+			}
 			/** @phpstan-ignore property.dynamicName */
 			$fieldValue = @$this->{$field[0]};
 		}

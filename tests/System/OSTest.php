@@ -11,114 +11,114 @@ use PHPUnit\Framework\TestCase;
 * @covers \Hubbitus\HuPHP\System\OS
 **/
 class OSTest extends TestCase {
-    private OS $os;
+	private OS $os;
 
-    protected function setUp(): void {
-        parent::setUp();
-        $this->os = new OS();
-    }
+	protected function setUp(): void {
+		parent::setUp();
+		$this->os = new OS();
+	}
 
-    public function testGetOutTypeReturnsBrowserWhenUserAgentSet(): void {
-        $_SERVER['HTTP_USER_AGENT'] = 'Mozilla/5.0';
+	public function testGetOutTypeReturnsBrowserWhenUserAgentSet(): void {
+		$_SERVER['HTTP_USER_AGENT'] = 'Mozilla/5.0';
 
-        $result = OS::getOutType();
+		$result = OS::getOutType();
 
-        $this->assertEquals(OutputType::WEB, $result);
+		$this->assertEquals(OutputType::WEB, $result);
 
-        unset($_SERVER['HTTP_USER_AGENT']);
-    }
+		unset($_SERVER['HTTP_USER_AGENT']);
+	}
 
-    public function testGetOutTypeReturnsConsoleWhenUserAgentNotSet(): void {
-        unset($_SERVER['HTTP_USER_AGENT']);
+	public function testGetOutTypeReturnsConsoleWhenUserAgentNotSet(): void {
+		unset($_SERVER['HTTP_USER_AGENT']);
 
-        $result = OS::getOutType();
+		$result = OS::getOutType();
 
-        $this->assertEquals(OutputType::CONSOLE, $result);
-    }
+		$this->assertEquals(OutputType::CONSOLE, $result);
+	}
 
-    public function testGetOutTypeConstants(): void {
-        // OutputType is an enum, not integer constants
-        $this->assertEquals(OutputType::WEB, OutputType::WEB);
-        $this->assertEquals(OutputType::CONSOLE, OutputType::CONSOLE);
-        $this->assertEquals(OutputType::PRINT, OutputType::PRINT);
-        $this->assertEquals(OutputType::FILE, OutputType::FILE);
-        $this->assertEquals(OutputType::WAP, OutputType::WAP);
-    }
+	public function testGetOutTypeConstants(): void {
+		// OutputType is an enum, not integer constants
+		$this->assertEquals(OutputType::WEB, OutputType::WEB);
+		$this->assertEquals(OutputType::CONSOLE, OutputType::CONSOLE);
+		$this->assertEquals(OutputType::PRINT, OutputType::PRINT);
+		$this->assertEquals(OutputType::FILE, OutputType::FILE);
+		$this->assertEquals(OutputType::WAP, OutputType::WAP);
+	}
 
-    public function testPhpSapiNameReturnsString(): void {
-        $result = $this->os->phpSapiName();
+	public function testPhpSapiNameReturnsString(): void {
+		$result = $this->os->phpSapiName();
 
-        $this->assertIsString($result);
-        $this->assertNotEmpty($result);
-    }
+		$this->assertIsString($result);
+		$this->assertNotEmpty($result);
+	}
 
-    public function testPhpSapiNameReturnsValidSapi(): void {
-        $result = $this->os->phpSapiName();
+	public function testPhpSapiNameReturnsValidSapi(): void {
+		$result = $this->os->phpSapiName();
 
-        $this->assertIsString($result);
-        $this->assertNotEmpty($result);
-    }
+		$this->assertIsString($result);
+		$this->assertNotEmpty($result);
+	}
 
-    public function testIsIncludeableReturnsTrueForExistingFile(): void {
-        $result = OS::is_includeable(__FILE__);
+	public function testIsIncludeableReturnsTrueForExistingFile(): void {
+		$result = OS::is_includeable(__FILE__);
 
-        $this->assertTrue($result);
-    }
+		$this->assertTrue($result);
+	}
 
-    public function testIsIncludeableReturnsFalseForNonExistingFile(): void {
-        $result = OS::is_includeable('/non/existing/file.php');
+	public function testIsIncludeableReturnsFalseForNonExistingFile(): void {
+		$result = OS::is_includeable('/non/existing/file.php');
 
-        $this->assertFalse($result);
-    }
+		$this->assertFalse($result);
+	}
 
-    public function testIsPathAbsoluteReturnsTrueForUnixAbsolutePath(): void {
-        $result = OS::isPathAbsolute('/var/www/file.php');
+	public function testIsPathAbsoluteReturnsTrueForUnixAbsolutePath(): void {
+		$result = OS::isPathAbsolute('/var/www/file.php');
 
-        $this->assertTrue($result);
-    }
+		$this->assertTrue($result);
+	}
 
-    public function testIsPathAbsoluteReturnsFalseForUnixRelativePath(): void {
-        $result = OS::isPathAbsolute('var/www/file.php');
+	public function testIsPathAbsoluteReturnsFalseForUnixRelativePath(): void {
+		$result = OS::isPathAbsolute('var/www/file.php');
 
-        $this->assertFalse($result);
-    }
+		$this->assertFalse($result);
+	}
 
-    public function testIsPathAbsoluteReturnsTrueForWindowsAbsolutePath(): void {
-        // Test Windows absolute paths (work on any platform)
-        $result = OS::isPathAbsolute('C:\\Windows\\file.php');
-        $this->assertTrue($result, 'Windows drive letter path should be absolute');
+	public function testIsPathAbsoluteReturnsTrueForWindowsAbsolutePath(): void {
+		// Test Windows absolute paths (work on any platform)
+		$result = OS::isPathAbsolute('C:\\Windows\\file.php');
+		$this->assertTrue($result, 'Windows drive letter path should be absolute');
 
-        $result = OS::isPathAbsolute('D:\\Program Files\\app.exe');
-        $this->assertTrue($result, 'Windows drive letter path with spaces should be absolute');
+		$result = OS::isPathAbsolute('D:\\Program Files\\app.exe');
+		$this->assertTrue($result, 'Windows drive letter path with spaces should be absolute');
 
-        // Test Windows UNC paths
-        $result = OS::isPathAbsolute('\\\\server\\share\\file.txt');
-        $this->assertTrue($result, 'Windows UNC path should be absolute');
-    }
+		// Test Windows UNC paths
+		$result = OS::isPathAbsolute('\\\\server\\share\\file.txt');
+		$this->assertTrue($result, 'Windows UNC path should be absolute');
+	}
 
-    public function testIsPathAbsoluteReturnsTrueForStreamWrappers(): void {
-        $result = OS::isPathAbsolute('php://stdout');
+	public function testIsPathAbsoluteReturnsTrueForStreamWrappers(): void {
+		$result = OS::isPathAbsolute('php://stdout');
 
-        $this->assertTrue($result);
-    }
+		$this->assertTrue($result);
+	}
 
-    public function testIsPathAbsoluteReturnsTrueForHttpStream(): void {
-        $result = OS::isPathAbsolute('http://example.com/file.php');
+	public function testIsPathAbsoluteReturnsTrueForHttpStream(): void {
+		$result = OS::isPathAbsolute('http://example.com/file.php');
 
-        $this->assertTrue($result);
-    }
+		$this->assertTrue($result);
+	}
 
-    public function testIsPathAbsoluteReturnsFalseForEmptyPath(): void {
-        // Empty path should return false (covers line 67)
-        $result = OS::isPathAbsolute('');
+	public function testIsPathAbsoluteReturnsFalseForEmptyPath(): void {
+		// Empty path should return false (covers line 67)
+		$result = OS::isPathAbsolute('');
 
-        $this->assertFalse($result);
-    }
+		$this->assertFalse($result);
+	}
 
-    public function testIsPathAbsoluteReturnsFalseForNullPath(): void {
-        // Null path should return false (covers line 67)
-        $result = OS::isPathAbsolute(null);
+	public function testIsPathAbsoluteReturnsFalseForNullPath(): void {
+		// Null path should return false (covers line 67)
+		$result = OS::isPathAbsolute(null);
 
-        $this->assertFalse($result);
-    }
+		$this->assertFalse($result);
+	}
 }

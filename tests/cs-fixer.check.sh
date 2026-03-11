@@ -8,11 +8,12 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")" # "
 
 cd "$PROJECT_ROOT"
 
-echo "### Running hphp-cs-fixer check analysis..."
+echo "### Running php-cs-fixer check analysis..."
 echo "## Project root: $PROJECT_ROOT"
 
-# Run PHPStan with increased memory limit
-./vendor/bin/php-cs-fixer check -vvv
+# Run php-cs-fixer in dry-run mode to check code style
+# --allow-risky=yes is required for native_function_invocation rule
+./vendor/bin/php-cs-fixer fix --dry-run --allow-risky=yes -vvv
 
 echo ""
 echo "## php-cs-fixer analysis completed successfully!"

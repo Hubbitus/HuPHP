@@ -686,4 +686,4 @@ Dump::a( $ha->filterOutByKeys(array(0,2)) );
 $ha->setSettingsArray( $testArray );
 Dump::a($ha, 'Renewed to original');
 
-Dump::a( $ha->filterKeysCallback( create_function('&$key', 'return ( $key % 2 );') ) );
+Dump::a( $ha->filterKeysCallback( \create_function('&$key', 'return ( $key % 2 );') ) );

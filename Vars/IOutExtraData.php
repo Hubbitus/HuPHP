@@ -7,7 +7,6 @@ use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 
 interface IOutExtraData {
-
 	/**
 	* String to print into file. Primary for logs string representation
 	*

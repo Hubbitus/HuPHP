@@ -38,7 +38,6 @@ use Hubbitus\HuPHP\Macro\Vars;
 **/
 class Tokenizer {
 	private ?BacktraceNode $_debugBacktrace = null;
-
 	protected ?FileInMemory $_filePhpSrc = null;
 	private int $_callStartLine = 0;
 	private string $_callText = '';
@@ -102,8 +101,12 @@ class Tokenizer {
 	* @return string
 	**/
 	public function getArg(int $n, bool $trim = true): string {
-		if ($trim) return \trim($this->_args[$n]);
-		else return $this->_args[$n];
+		if ($trim) {
+			return \trim($this->_args[$n]);
+		}
+		else {
+			return $this->_args[$n];
+		}
 	}
 
 	/**
@@ -166,7 +169,9 @@ class Tokenizer {
 	* @return $this
 	**/
 	protected function findCallStrings(): static {
-		if ($this->_regexp === null) $this->findTextCall();
+		if ($this->_regexp === null) {
+			$this->findTextCall();
+		}
 
 		$delta = PHP_INT_MAX;
 		$this->_callStartLine = 0;
@@ -178,7 +183,9 @@ class Tokenizer {
 				$delta = $d;
 				$this->_callStartLine = $lineN;
 			}
-			else break;//Not needed more
+			else {
+				break;
+			}//Not needed more
 		}
 
 		$this->_callText = \implode(
@@ -197,7 +204,9 @@ class Tokenizer {
 	* @return $this
 	**/
 	public function parseTokens(): static {
-		if ('' === $this->_callText) $this->findCallStrings();
+		if ('' === $this->_callText) {
+			$this->findCallStrings();
+		}
 
 		// Without start and end tags not parsed properly.
 		$this->_tokens = \token_get_all('Throws' . $this->_callText . '?>');
@@ -215,7 +224,9 @@ class Tokenizer {
 	* @return $this
 	**/
 	public function parseCallArgs(bool $stripWhitespace = false, bool $stripComments = false): static {
-		if ($this->_tokens === null) $this->parseTokens();
+		if ($this->_tokens === null) {
+			$this->parseTokens();
+		}
 
 		$this->skipToStartCallArguments();
 		$this->addArg();
@@ -229,18 +240,26 @@ class Tokenizer {
 					case '(':
 						++$sParenthesis;
 						// Self ( - do not want
-						if ($sParenthesis > 1) $this->addToArg($token);
+						if ($sParenthesis > 1) {
+							$this->addToArg($token);
+						}
 						break;
 
 					case ')':
 						--$sParenthesis;
-						if (0 === $sParenthesis) break 2;
+						if (0 === $sParenthesis) {
+							break 2;
+						}
 						$this->addToArg($token);
 						break;
 
 					case ',':
-						if (1 === $sParenthesis) $this->addArg();
-						else $this->addToArg($token);
+						if (1 === $sParenthesis) {
+							$this->addArg();
+						}
+						else {
+							$this->addToArg($token);
+						}
 						break;
 
 					default:
@@ -251,11 +270,15 @@ class Tokenizer {
 				switch($token[0]) {
 					case T_COMMENT:
 					case T_DOC_COMMENT:
-						if (!$stripComments) $this->addToArg($token[1]);
+						if (!$stripComments) {
+							$this->addToArg($token[1]);
+						}
 						break;
 
 					case T_WHITESPACE:
-						if (!$stripWhitespace) $this->addToArg($token[1]);
+						if (!$stripWhitespace) {
+							$this->addToArg($token[1]);
+						}
 						break;
 
 					default:
@@ -275,8 +298,9 @@ class Tokenizer {
 		$sz = \sizeof($this->_tokens);
 		while ($this->_curTokPos < $sz) {
 			$token =& $this->_tokens[$this->_curTokPos++];
-			if (\is_array($token) && T_STRING === $token[0] && $token[1] === $this->_debugBacktrace->function)
+			if (\is_array($token) && T_STRING === $token[0] && $token[1] === $this->_debugBacktrace->function) {
 				return $this;
+			}
 		}
 		return $this;
 	}
@@ -304,11 +328,15 @@ class Tokenizer {
 	* @return string
 	**/
 	public static function trimQuotes(string $arg, bool $all = false): string {
-		if ($arg === '') return '';
+		if ($arg === '') {
+			return '';
+		}
 
 		$len = \strlen($arg);
 		$from = ('"' === $arg[0] or '\'' === $arg[0]) ? 1 : 0;
-		if ('"' === $arg[$len-1] or '\'' === $arg[$len-1]) $len -= (1 + $from);
+		if ('"' === $arg[$len-1] or '\'' === $arg[$len-1]) {
+			$len -= (1 + $from);
+		}
 
 		if ($all) {
 			return (\substr($arg, $from, $len));

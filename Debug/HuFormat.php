@@ -18,6 +18,7 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 class HuFormat extends HuError {
 	/** Replace this in ->_format on real value of _value (after process mod_s) **/
 	public const string sprintf_var = '__vAr__';
+
 	/** Var to process in eval-string in mod_e. In eval string off course witch sign $. **/
 	public const string evaluate_var = 'var';
 
@@ -35,7 +36,9 @@ class HuFormat extends HuError {
 	* Initialize $MODS with Closure methods.
 	**/
 	private static function initMODS(): void {
-		if (isset(self::$MODS)) return;
+		if (isset(self::$MODS)) {
+			return;
+		}
 		self::$MODS = [
 			/**
 			* ALL modifier - recursively processes all sub-formats.
@@ -44,7 +47,7 @@ class HuFormat extends HuError {
 			'A' => function(self $obj): string {
 				// Avoid infinite recursion with Backtrace/OutExtraDataBacktrace
 				if ($obj->_value instanceof \Hubbitus\HuPHP\Debug\Backtrace) {
-					return sprintf('Backtrace[%d calls]', $obj->_value->length());
+					return \sprintf('Backtrace[%d calls]', $obj->_value->length());
 				}
 				if ($obj->_value instanceof \Hubbitus\HuPHP\Vars\OutExtraDataBacktrace) {
 					return 'OutExtraDataBacktrace';
@@ -100,7 +103,7 @@ class HuFormat extends HuError {
 			'p' => function(self $obj): mixed {
 				//Replace by real value.
 				$format = $obj->_format;
-				foreach (array_keys($format, self::sprintf_var, true) as $key) {
+				foreach (\array_keys($format, self::sprintf_var, true) as $key) {
 					$format[$key] = $obj->_realValue;
 				}
 				return \call_user_func_array('sprintf', $format);
@@ -146,7 +149,7 @@ class HuFormat extends HuError {
 				}
 				// Avoid infinite recursion when value is Backtrace or OutExtraDataBacktrace
 				if ($obj->_realValue instanceof \Hubbitus\HuPHP\Debug\Backtrace) {
-					return sprintf('Backtrace[%d calls]', $obj->_realValue->length());
+					return \sprintf('Backtrace[%d calls]', $obj->_realValue->length());
 				}
 				if ($obj->_realValue instanceof \Hubbitus\HuPHP\Vars\OutExtraDataBacktrace) {
 					return 'OutExtraDataBacktrace';
@@ -196,7 +199,6 @@ class HuFormat extends HuError {
 	private $_realValued = false;	//Flag, to allow pipe through several mods (like as s. a, e)
 	private $_name;
 	private $_key;					//Key from mod_I iteration for the mod_k
-
 	private $_resStr;				//For caching
 
 	/**
@@ -229,9 +231,13 @@ class HuFormat extends HuError {
 	* @param	mixed	$key	Key of iteration in mod_I and/or mod_A.
 	* @return	$this
 	**/
-	public function &set($format = null, &$value = null, $key = null) {
-		if (null !== $value) $this->setValue($value);
-		if (null !== $format) $this->setFormat($format);
+	public function &set($format = null, &$value = null, $key = null): static {
+		if (null !== $value) {
+			$this->setValue($value);
+		}
+		if (null !== $format) {
+			$this->setFormat($format);
+		}
 		$this->_key = $key;
 		return $this;
 	}
@@ -242,8 +248,12 @@ class HuFormat extends HuError {
 	* @return mixed
 	**/
 	public function &getValue(): mixed {
-		if ($this->_realValued) return $this->_realValue;
-		else return $this->_value;
+		if ($this->_realValued) {
+			return $this->_realValue;
+		}
+		else {
+			return $this->_value;
+		}
 	}
 
 	/**
@@ -255,9 +265,11 @@ class HuFormat extends HuError {
 	**/
 	public function &setValue(&$value): static {
 		if(null === $value) {
-		$this->_value =& $this;
+			$this->_value =& $this;
 		}
-		else $this->_value = $value;
+		else {
+			$this->_value = $value;
+		}
 		$this->_realValued = false;
 		$this->_resStr = null;
 		return $this;
@@ -292,12 +304,12 @@ class HuFormat extends HuError {
 		$this->_realValued = false;
 
 		if (\is_array($format)) {
-			if (\is_array($format[key($format)])) {//<2>
-				$this->parseModsName(key($format));
-				$this->_format = $format[key($format)];
+			if (\is_array($format[\key($format)])) {//<2>
+				$this->parseModsName(\key($format));
+				$this->_format = $format[\key($format)];
 			}
 			else {//<1>
-				$this->parseModsName(array_shift($format));
+				$this->parseModsName(\array_shift($format));
 				$this->_format = $format;//Tail
 			}
 		}
@@ -354,8 +366,12 @@ class HuFormat extends HuError {
 			//If all mod_* are only evaluate value and not produce out.
 			if ($this->_resStr === '') {
 				$value = $this->getValue();
-				if ($value === null) return '';
-				if (\is_array($value)) return \print_r($value, true);
+				if ($value === null) {
+					return '';
+				}
+				if (\is_array($value)) {
+					return \print_r($value, true);
+				}
 				if (\is_object($value) && !\method_exists($value, '__toString')) {
 					return \print_r((array)$value, true);
 				}
@@ -373,7 +389,9 @@ class HuFormat extends HuError {
 	* @return bool
 	**/
 	public function isMod(string $mod): bool {
-		if ($this->_mods === [] && $this->_modStr) $this->parseMods();
+		if ($this->_mods === [] && $this->_modStr) {
+			$this->parseMods();
+		}
 		return \in_array($mod, $this->_mods, true);
 	}
 
@@ -427,7 +445,7 @@ class HuFormat extends HuError {
 					}
 					break;
 
-				// No defaults - there is set default for $op before, so there impossible other values
+					// No defaults - there is set default for $op before, so there impossible other values
 			}
 		}
 
@@ -436,15 +454,13 @@ class HuFormat extends HuError {
 		return $this;
 	}
 
-
-
 	/**
 	* Get string of Modifiers.
 	*
 	* @return string
 	**/
 	public function &getModsStr(): string {
-		return implode('', $this->_modArr);
+		return \implode('', $this->_modArr);
 	}
 
 	/**
@@ -455,13 +471,15 @@ class HuFormat extends HuError {
 	**/
 	protected function &parseMods(): static {
 		$this->_mods = [];
-		for($i=0; $i < strlen($this->_modStr); $i++) {
+		for($i=0; $i < \strlen($this->_modStr); $i++) {
 			$mod = $this->_modStr[$i];
 			if (isset(self::$MODS[$mod])) {
 				$this->_mods[] = $mod;
 				$this->_modArr[] = $mod;
 			}
-			else throw new VariableRangeException("Unknown modifier [{$mod}]");
+			else {
+				throw new VariableRangeException("Unknown modifier [{$mod}]");
+			}
 		}
 
 		//In modified mods - must recalculate values

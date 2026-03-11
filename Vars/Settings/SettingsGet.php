@@ -7,8 +7,8 @@ namespace Hubbitus\HuPHP\Vars\Settings;
 * Parent class for more useful using in parents who want be "customizable". Convenient nesting.
 **/
 class SettingsGet {
-/** WARNING! Must be initialized in parents! **/
-protected ?array $_sets = null;
+	/** WARNING! Must be initialized in parents! **/
+	protected ?array $_sets = null;
 
 	/**
 	* Overload to provide ref on settings object. So, settings will be changeable,

@@ -16,11 +16,9 @@ use Hubbitus\HuPHP\System\Process;
 * @created ?2009-03-25 13:51 ver 2.0b
 **/
 class FileInMemory extends FileBase {
-private array $lineContent = [];
-
-private string $_lineSep = "\n"; // Unix by default
-
-private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffsetByLine methods
+	private array $lineContent = [];
+	private string $_lineSep = "\n"; // Unix by default
+	private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffsetByLine methods
 
 	/**
 	* Load full content of file into memory.
@@ -37,10 +35,10 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 		$this->checkOpenError(
 			false !== (
 				($maxLen !== null && $offset !== null)
-					? ($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset, $maxLen))
+					? ($this->content = \file_get_contents($this->path(), $use_include_path, $resource_context, $offset, $maxLen))
 					: (($offset !== null)
-						? ($this->content = file_get_contents($this->path(), $use_include_path, $resource_context, $offset))
-						: ($this->content = file_get_contents($this->path(), $use_include_path, $resource_context))
+						? ($this->content = \file_get_contents($this->path(), $use_include_path, $resource_context, $offset))
+						: ($this->content = \file_get_contents($this->path(), $use_include_path, $resource_context))
 					)
 			)
 		);
@@ -77,7 +75,7 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 		try {
 			$this->checkOpenError(
 				// $this->rawFilename because may be file generally not exists!
-				false !==  ($count = @file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags ?? 0, $resource_context))
+				false !==  ($count = @\file_put_contents($this->path(), $this->getBLOB($implodeWith, $updateLineSep), $flags ?? 0, $resource_context))
 			);
 		} finally {
 			$this->_writePending = false;
@@ -143,7 +141,7 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 			$this->setLineSep($implodeWith);
 		}
 		$this->_linesOffsets = [];
-		return ($this->content = implode($implodeWith ?? $this->_lineSep, $this->lineContent));
+		return ($this->content = \implode($implodeWith ?? $this->_lineSep, $this->lineContent));
 	}
 
 	/**
@@ -321,7 +319,7 @@ private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffse
 	* @return static
 	**/
 	public function &iconv(string $fromEnc, string $toEnc = 'UTF-8'): static {
-		$this->setContentFromString(iconv($fromEnc, $toEnc, $this->getBLOB()));
+		$this->setContentFromString(\iconv($fromEnc, $toEnc, $this->getBLOB()));
 		return $this;
 	}
 

@@ -8,7 +8,7 @@ namespace Hubbitus\HuPHP\Exceptions;
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 **/
 class ProcessException extends BaseException {
-public $state = null;
+	public $state = null;
 
 	public function __construct($message = null, $code = 0, $pr = null) {
 		$this->state = $pr;

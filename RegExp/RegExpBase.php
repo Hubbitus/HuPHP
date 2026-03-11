@@ -17,11 +17,9 @@ use Hubbitus\HuPHP\Macro\Vars;
 abstract class RegExpBase extends HuClass implements IRegExp {
 	protected ?string $sourceText = null;
 	protected string|array|null $regExp = null;
-
 	protected int $matchCount = 0;
 	protected ?array $matches = null;
 	protected bool $matchesValid = false;
-
 	protected string|array|null $replaceTo = null;
 	protected mixed $replaceRes;
 	protected bool $replaceValid = false;

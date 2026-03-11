@@ -20,6 +20,7 @@ class SettingsFilterBase {
 		$this->propName = $propName;
 		$this->callback_ = $callback;
 	}
+
 	/**
 	* In simplest variant - just direct apply provided callback.
 	* $name and $value provided as reference, so, user can change both as want.
@@ -31,10 +32,10 @@ class SettingsFilterBase {
 	* @return mixed Returns what user callback return.
 	**/
 	public function apply(&$name, &$value): mixed {
-	/*
-	* call_user_func_array to pass reference, what is not allowed in call_user_func.
-	* Solution found in man, see Example1 http://ru2.php.net/call_user_func
-	**/
-		return call_user_func_array( $this->callback_, array(&$name, &$value) );
+		/*
+		* call_user_func_array to pass reference, what is not allowed in call_user_func.
+		* Solution found in man, see Example1 http://ru2.php.net/call_user_func
+		**/
+		return \call_user_func_array( $this->callback_, array(&$name, &$value) );
 	}
 }

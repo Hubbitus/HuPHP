@@ -62,7 +62,7 @@ class SettingsGetTest extends TestCase {
 		// Test accessing array element via __get
 		$result = $settingsGet->key;
 		$this->assertEquals('value', $result);
-		
+
 		$result = $settingsGet->other;
 		$this->assertEquals('data', $result);
 	}
