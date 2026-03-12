@@ -42,6 +42,7 @@ jobs:
 
       - name: Create Release for master
         if: github.event_name == 'push'
+        id: create_release_master
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,9 +51,17 @@ jobs:
           release_name: Release ${{ env.VERSION }}
           draft: false
           prerelease: false
+
+      - name: Upload Master Release Asset
+        if: github.event_name == 'push'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release_master.outputs.upload_url }}
           asset_path: ./@tools/Packages/build/HuPHP.phar
           asset_name: HuPHP.phar
-          asset_content_type: application/octet-stream
+          asset_content_type: application/phar
 
       - name: Create Release for PR
         if: |
@@ -60,6 +69,7 @@ jobs:
           github.event.issue.pull_request &&
           contains(github.event.comment.body, '/release') &&
           (github.event.comment.author_association == 'COLLABORATOR' || github.event.comment.author_association == 'OWNER')
+        id: create_release_pr
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -68,6 +78,18 @@ jobs:
           release_name: Release ${{ env.VERSION }}
           draft: false
           prerelease: true
+
+      - name: Upload PR Release Asset
+        if: |
+          github.event_name == 'issue_comment' &&
+          github.event.issue.pull_request &&
+          contains(github.event.comment.body, '/release') &&
+          (github.event.comment.author_association == 'COLLABORATOR' || github.event.comment.author_association == 'OWNER')
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release_pr.outputs.upload_url }}
           asset_path: ./@tools/Packages/build/HuPHP.phar
           asset_name: HuPHP.phar
-          asset_content_type: application/octet-stream
+          asset_content_type: application/phar
