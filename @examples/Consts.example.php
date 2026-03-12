@@ -4,8 +4,8 @@
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 **/
 
-use Hubbitus\HuPHP\Vars\Consts\Consts;
 use Hubbitus\HuPHP\Debug\Dump;
+use Hubbitus\HuPHP\Vars\Consts\Consts;
 
 /*
 $constants = get_defined_constants(true);

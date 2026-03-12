@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Macro;
 
-use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
 use Hubbitus\HuPHP\Debug\Backtrace;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 
 /**
 * Variable utility macros as static methods.

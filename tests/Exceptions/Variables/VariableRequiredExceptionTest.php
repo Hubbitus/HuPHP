@@ -3,16 +3,17 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Exceptions\Variables;
 
+use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\Debug\Tokenizer;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
-use Hubbitus\HuPHP\Debug\Backtrace;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
 * @covers \Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException
 **/
-#[\PHPUnit\Framework\Attributes\CoversClass(\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException::class)]
+#[CoversClass(VariableRequiredException::class)]
 class VariableRequiredExceptionTest extends TestCase {
 	public function testConstructorWithBacktrace(): void {
 		$backtrace = new Backtrace();

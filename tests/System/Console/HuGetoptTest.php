@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\System\Console;
 
+use Hubbitus\HuPHP\System\Console\HuGetopt;
 use Hubbitus\HuPHP\System\Console\HuGetoptOption;
+use Hubbitus\HuPHP\System\Console\HuGetoptSettings;
 use Hubbitus\HuPHP\Vars\HuArray;
 use PHPUnit\Framework\TestCase;
-use Hubbitus\HuPHP\System\Console\HuGetopt;
-use Hubbitus\HuPHP\System\Console\HuGetoptSettings;
 
 /**
 * @covers \Hubbitus\HuPHP\System\Console\HuGetopt

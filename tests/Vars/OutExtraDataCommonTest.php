@@ -5,9 +5,7 @@ namespace Hubbitus\Tests\HuPHP\Vars;
 use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
-use Hubbitus\HuPHP\System\OS;
 use PHPUnit\Framework\TestCase;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 
 class OutExtraDataCommonTest extends TestCase {
 	public function testConstructor(): void {

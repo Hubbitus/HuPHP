@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Exceptions\Variables;
 
+use Hubbitus\HuPHP\Debug\Backtrace;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
-use Hubbitus\HuPHP\Debug\Backtrace;
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -2,13 +2,13 @@
 declare(strict_types=1);
 namespace Hubbitus\HuPHP\Debug;
 
-use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableArrayInconsistentException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
-use Hubbitus\HuPHP\System\OS;
 use Hubbitus\HuPHP\Macro\Vars;
+use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\System\OutputType;
 
 /**
 * BackTraceNode. In array converted to like this. Otherwise each member accessible separately.

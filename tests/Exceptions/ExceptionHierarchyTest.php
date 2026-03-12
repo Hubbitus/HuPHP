@@ -4,21 +4,21 @@ declare(strict_types=1);
 namespace Hubbitus\Tests\HuPHP\Exceptions;
 
 use Hubbitus\HuPHP\Exceptions\BaseException;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassMethodException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassNotExistsException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassUnknownException;
 use Hubbitus\HuPHP\Exceptions\Filesystem\FileException;
+use Hubbitus\HuPHP\Exceptions\NotImplementedException;
 use Hubbitus\HuPHP\Exceptions\ProcessException;
 use Hubbitus\HuPHP\Exceptions\SerializeException;
 use Hubbitus\HuPHP\Exceptions\SessionException;
-use Hubbitus\HuPHP\Exceptions\NotImplementedException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -90,7 +90,7 @@ class ExceptionHierarchyTest extends TestCase {
 	public function testVariableEmptyExceptionExtendsVariableException(): void {
 		// VariableEmptyException extends VariableRequiredException which requires Backtrace
 		// We test the class hierarchy by checking reflection
-		$reflection = new \ReflectionClass(\Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException::class);
+		$reflection = new \ReflectionClass(VariableEmptyException::class);
 
 		$this->assertTrue($reflection->isSubclassOf(VariableException::class));
 		$this->assertTrue($reflection->isSubclassOf(BaseException::class));

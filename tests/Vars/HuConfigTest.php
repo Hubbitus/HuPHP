@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars;
 
-use Hubbitus\HuPHP\Vars\HuConfig;
-use Hubbitus\HuPHP\Vars\HuArray;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
+use Hubbitus\HuPHP\Vars\HuArray;
+use Hubbitus\HuPHP\Vars\HuConfig;
 use PHPUnit\Framework\TestCase;
 
 use function Hubbitus\HuPHP\Vars\CONF;

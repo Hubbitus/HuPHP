@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Macro;
 
-use Hubbitus\HuPHP\Macro\Unicode;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+use Hubbitus\HuPHP\Macro\Unicode;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

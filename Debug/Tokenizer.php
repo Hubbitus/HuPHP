@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
 
-use Hubbitus\HuPHP\Debug\BacktraceNode;
-use Hubbitus\HuPHP\RegExp\RegExpPcre;
-use Hubbitus\HuPHP\Filesystem\FileInMemory;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
+use Hubbitus\HuPHP\Filesystem\FileInMemory;
 use Hubbitus\HuPHP\Macro\Vars;
+use Hubbitus\HuPHP\RegExp\RegExpPcre;
 
 /**
 * Debug and backtrace toolkit.

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars\Settings\Filters;
 
-use Hubbitus\HuPHP\Vars\Settings\SettingsFilterBase;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException;
+use Hubbitus\HuPHP\Vars\Settings\SettingsFilterBase;
 
 /**
 * ReadOnly set - filter. Throws VariableReadOnlyException on try change value.

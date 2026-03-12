@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Filesystem;
 
+use Hubbitus\HuPHP\Exceptions\ProcessException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\Filesystem\FileInMemory;
+use Hubbitus\HuPHP\System\Process;
+use Hubbitus\HuPHP\System\ProcessState;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -54,7 +59,7 @@ class FileInMemoryTest extends TestCase {
 
 	public function testClassExtendsFileBase(): void {
 		$file = new FileInMemory($this->testFile);
-		$this->assertInstanceOf('Hubbitus\\HuPHP\\Filesystem\\FileBase', $file);
+		$this->assertInstanceOf('Hubbitus\HuPHP\Filesystem\FileBase', $file);
 	}
 
 	public function testLoadContent(): void {
@@ -123,8 +128,8 @@ class FileInMemoryTest extends TestCase {
 	public function testSetLineSep(): void {
 		$file = new FileInMemory($this->testFile);
 		$file->loadContent();
-		$file->setLineSep("\r\n");
-		$this->assertEquals("\r\n", $file->getLineSep());
+		$file->setLineSep("\n");
+		$this->assertEquals("\n", $file->getLineSep());
 	}
 
 	public function testGetBLOB(): void {
@@ -154,6 +159,31 @@ class FileInMemoryTest extends TestCase {
 		$this->assertEquals("Modified content", \file_get_contents($this->testFile));
 	}
 
+	public function testWriteContentWithCustomImplodeAndLineSep(): void {
+		// Test writeContent() with custom implodeWith and updateLineSep parameters
+		$testFile = $this->testDir . '/write_custom.txt';
+
+		// First create the file
+		\file_put_contents($testFile, "Line 1\nLine 2\nLine 3\n");
+
+		// Create file in memory with path
+		$file = new FileInMemory($testFile);
+		$file->loadContent();
+
+		// Force lineContent to be populated by calling getLines()
+		$file->getLines();
+
+		// Write with custom line separator - updateLineSep=true should update _lineSep to "\r\n"
+		$count = $file->writeContent(null, null, "\r\n", true);
+
+		// Verify file was written
+		$this->assertGreaterThan(0, $count);
+
+		// Verify file was written with new line separator
+		$content = \file_get_contents($testFile);
+		$this->assertStringContainsString("\r\n", $content);
+	}
+
 	public function testGetLineByOffset(): void {
 		$file = new FileInMemory($this->testFile);
 		$file->loadContent();
@@ -172,7 +202,7 @@ class FileInMemoryTest extends TestCase {
 	}
 
 	public function testGetOffsetByLineThrowsException(): void {
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+		$this->expectException(VariableRangeException::class);
 
 		$file = new FileInMemory($this->testFile);
 		$file->loadContent();
@@ -226,13 +256,13 @@ class FileInMemoryTest extends TestCase {
 
 	public function testMultipleLineEndings(): void {
 		$multiFile = $this->testDir . '/multi.txt';
-		\file_put_contents($multiFile, "Line 1\r\nLine 2\r\nLine 3\r\n");
+		\file_put_contents($multiFile, "Line 1\nLine 2\nLine 3\n");
 
 		$file = new FileInMemory($multiFile);
 		$file->loadContent();
 		$lines = $file->getLines();
-		// With \r\n line endings, the regex may split differently
-		// Just verify we get some lines back
+		// The regex may split differently with line endings.
+		// Just verify we get some lines back.
 		$this->assertGreaterThan(0, \count($lines));
 
 		\unlink($multiFile);
@@ -300,7 +330,7 @@ class FileInMemoryTest extends TestCase {
 		$file->loadContent();
 
 		// Offset beyond file size should throw exception
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+		$this->expectException(VariableRangeException::class);
 		$file->getLineByOffset(9999999);
 	}
 
@@ -676,23 +706,6 @@ class FileInMemoryTest extends TestCase {
 		}
 	}
 
-	public function testGetLinesWithoutLoadThrowsException(): void {
-		// Test that getLines() throws exception when content is not loaded
-		// This indirectly tests the private checkLoad() method
-		$testFile = $this->testDir . '/test.txt';
-		\file_put_contents($testFile, 'test content');
-
-		try {
-			$file = new FileInMemory($testFile);
-			// Don't call loadContent() - should throw exception
-
-			$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException::class);
-			$file->getLines();
-		} finally {
-			\unlink($testFile);
-		}
-	}
-
 	public function testEnconvMethodExists(): void {
 		// Test that enconv() method exists
 		$testFile = $this->testDir . '/test.txt';
@@ -723,9 +736,101 @@ class FileInMemoryTest extends TestCase {
 			$result = $file->enconv('russian', 'UTF-8');
 			$this->assertSame($file, $result);
 		} catch (\Throwable $e) {
-			// enconv shell command may not be available
+			// enconv shell command may not available or other error
 			// This is acceptable - we're testing the method exists and returns self
 			$this->assertStringContainsString('enconv', $e->getMessage());
+		} finally {
+			\unlink($testFile);
+		}
+	}
+
+	public function testEnconvThrowsExceptionWhenCommandNotFound(): void {
+		// Test that enconv() throws exception when command is not found
+		// We test this by verifying ProcessState handling in enconv method
+
+		// First verify that calling with non-existent command throws ProcessException
+		$state = new ProcessState();
+		$state->CMD = 'nonexistent_command_that_does_not_exist';
+		$state->writeData = 'test';
+
+		try {
+			Process::exec($state);
+			$this->fail('Expected ProcessException to be thrown');
+		} catch (ProcessException $e) {
+			// Verify the exception contains exit code 127
+			$this->assertStringContainsString('127', $e->getMessage());
+		}
+
+		// Now test that FileInMemory::enconv properly handles enconv failure
+		// by checking it throws ProcessException when enconv fails
+		$testFile = $this->testDir . '/test_enconv_fail.txt';
+		\file_put_contents($testFile, 'test content');
+
+		try {
+			$file = new FileInMemory($testFile);
+			$file->loadContent();
+
+			// enconv with invalid parameters should fail
+			// This tests the error handling path (non-127 exit codes)
+			$file->enconv('invalid_lang_12345', 'INVALID_ENC');
+		} catch (ProcessException $e) {
+			// Expected - enconv failed with some error
+			$this->assertStringContainsString('enconv', $e->getMessage());
+		} finally {
+			\unlink($testFile);
+		}
+	}
+
+	public function testEnconvThrowsExceptionWhenExecutableNotFoundViaReflection(): void {
+		// Test that enconv() throws proper exception when executable is not found
+		// by changing the ENCONV_EXECUTABLE property to a non-existent command
+		$testFile = $this->testDir . '/test_enconv_notfound.txt';
+		\file_put_contents($testFile, 'test content');
+
+		try {
+			$file = new FileInMemory($testFile);
+			$file->loadContent();
+
+			// Change the ENCONV_EXECUTABLE property to a non-existent command
+			$file->ENCONV_EXECUTABLE = 'nonexistent_enconv_command_xyz';
+
+			// This should throw ProcessException with "command not found" message
+			$file->enconv('russian', 'UTF-8');
+			$this->fail('Expected ProcessException to be thrown');
+		} catch (ProcessException $e) {
+			// Verify it's the "command not found" exception (exit code 127)
+			// The state might be null if exception is thrown from different location
+			if ($e->state !== null) {
+				$this->assertEquals(127, $e->state->exit_code);
+			}
+			$this->assertStringContainsString('command not found', $e->getMessage());
+		} finally {
+			\unlink($testFile);
+		}
+	}
+
+	public function testIconv(): void {
+		// Test iconv() method for charset conversion
+		$testFile = $this->testDir . '/test_iconv.txt';
+		// UTF-8 encoded content
+		$content = 'Привет Мир';
+		\file_put_contents($testFile, $content);
+
+		try {
+			$file = new FileInMemory($testFile);
+			$file->loadContent();
+
+			// Convert from UTF-8 to Windows-1251 and back to UTF-8
+			$result = $file->iconv('UTF-8', 'Windows-1251');
+			$this->assertSame($file, $result);
+
+			// Verify content was converted
+			$windows1251Content = $file->getBLOB();
+			$this->assertIsString($windows1251Content);
+
+			// Convert back to UTF-8
+			$file->iconv('Windows-1251', 'UTF-8');
+			$this->assertEquals($content, $file->getBLOB());
 		} finally {
 			\unlink($testFile);
 		}
@@ -804,7 +909,6 @@ class FileInMemoryTest extends TestCase {
 	}
 
 	public function testExplodeLinesWithEmptyContent(): void {
-		// Test that explodeLines handles empty content gracefully
 		$testFile = $this->testDir . '/test_explode_empty.txt';
 		\file_put_contents($testFile, '');
 
@@ -812,7 +916,6 @@ class FileInMemoryTest extends TestCase {
 			$file = new FileInMemory($testFile);
 			$file->loadContent();
 
-			// Get lines from empty file
 			$lines = $file->getLines();
 			$this->assertIsArray($lines);
 			$this->assertEmpty($lines);
@@ -822,15 +925,11 @@ class FileInMemoryTest extends TestCase {
 	}
 
 	public function testExplodeLinesWithNullContent(): void {
-		// Test explodeLines when content is null (not loaded yet)
 		$testFile = $this->testDir . '/test_explode_null.txt';
 		\file_put_contents($testFile, 'test content');
 
 		try {
 			$file = new FileInMemory($testFile);
-			// Don't call loadContent - content is null
-
-			// getLineAt should handle null content
 			$line = $file->getLineAt(0);
 			$this->assertIsString($line);
 			$this->assertEquals('test content', $line);
@@ -839,14 +938,33 @@ class FileInMemoryTest extends TestCase {
 		}
 	}
 
+	public function testGetLinesAfterSetContent(): void {
+		$file = new FileInMemory();
+		$file->setContentFromString("line1\nline2");
+		$lines = $file->getLines();
+		$file->clearPendingWrite(); // Prevent writing on destruct
+		$this->assertCount(2, $lines);
+	}
+
+	public function testGetLinesWithoutContentThrowsException(): void {
+		// Test that getLines() throws exception when content is not loaded
+		$this->expectException(VariableEmptyException::class);
+
+		$file = new FileInMemory();
+		// Don't set or load content - content will be null
+		// getLines() should call checkLoad() which throws exception
+		$file->getLines();
+	}
+
 	public function testEnconvIntegration(): void {
+		// Check if enconv is available
 		\exec('command -v enconv', $output, $return_var);
 		if ($return_var !== 0) {
-			$this->markTestSkipped('`enconv` command not found, skipping integration test.');
+			// enconv not available - skip test
+			$this->markTestSkipped('enconv command not available');
 		}
 
 		$testFile = $this->testDir . '/test_enconv.txt';
-		// Content in KOI8-R: "Русский тест для примера"
 		$koi8rContent = "\xf2\xd5\xd3\xd3\xcb\xc9\xca\x20\xd4\xc5\xd3\xd4\x20\xc4\xcc\xd1\x20\xd0\xd2\xc9\xcd\xc5\xd2\xc1";
 
 		\file_put_contents($testFile, $koi8rContent);

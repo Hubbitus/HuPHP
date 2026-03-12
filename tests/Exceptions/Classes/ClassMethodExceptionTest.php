@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Exceptions\Classes;
 
+use Hubbitus\HuPHP\Exceptions\Classes\ClassException;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassMethodException;
 use PHPUnit\Framework\TestCase;
 
@@ -14,7 +15,7 @@ class ClassMethodExceptionTest extends TestCase {
 		$exception = new ClassMethodException();
 
 		$this->assertInstanceOf(ClassMethodException::class, $exception);
-		$this->assertInstanceOf(\Hubbitus\HuPHP\Exceptions\Classes\ClassException::class, $exception);
+		$this->assertInstanceOf(ClassException::class, $exception);
 	}
 
 	public function testConstructorWithMessage(): void {

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Debug;
 
-use Hubbitus\HuPHP\Debug\Tokenizer;
 use Hubbitus\HuPHP\Debug\BacktraceNode;
+use Hubbitus\HuPHP\Debug\Tokenizer;
 use PHPUnit\Framework\TestCase;
 
 /**

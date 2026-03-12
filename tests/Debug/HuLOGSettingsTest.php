@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Tests\Debug;
 
 use Hubbitus\HuPHP\Debug\HuLOGSettings;
+use Hubbitus\HuPHP\Vars\Settings\Settings;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -75,7 +76,7 @@ class HuLOGSettingsTest extends TestCase {
 
 	public function testExtendsSettings(): void {
 		$settings = new HuLOGSettings();
-		$this->assertInstanceOf(\Hubbitus\HuPHP\Vars\Settings\Settings::class, $settings);
+		$this->assertInstanceOf(Settings::class, $settings);
 	}
 
 	public function testHasLengthMethod(): void {

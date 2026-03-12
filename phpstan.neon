@@ -13,3 +13,6 @@ parameters:
         - Vars/
     # Note: macroses/ excluded from analysis - legacy functions need complete rewrite
     # TODO: Rewrite macroses as modern PHP functions or remove entirely
+    ignoreErrors:
+        # Function CONF() is defined in CONF.php but PHPStan cannot detect it in same namespace
+        - '#Function CONF not found#'

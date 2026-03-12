@@ -5,6 +5,7 @@ namespace Hubbitus\HuPHP\Tests\System\Console;
 
 use Hubbitus\HuPHP\System\Console\HuGetoptOption;
 use Hubbitus\HuPHP\Vars\HuArray;
+use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -114,7 +115,7 @@ class HuGetoptOptionTest extends TestCase {
 		$possibles = ['long' => 'l'];
 		$option = new HuGetoptOption($possibles);
 
-		$this->assertInstanceOf(\Hubbitus\HuPHP\Vars\Settings\SettingsCheck::class, $option);
+		$this->assertInstanceOf(SettingsCheck::class, $option);
 	}
 
 	public function testPropertyAccess(): void {

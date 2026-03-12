@@ -3,11 +3,12 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\System\Console;
 
-use PHPUnit\Framework\TestCase;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use Hubbitus\HuPHP\System\Console\HuGetopt;
 use Hubbitus\HuPHP\System\Console\HuGetoptOption;
 use Hubbitus\HuPHP\System\Console\HuGetoptSettings;
 use Hubbitus\HuPHP\Vars\HuArray;
+use PHPUnit\Framework\TestCase;
 
 /**
 * Complete coverage tests for HuGetopt, HuGetoptOption and HuGetoptSettings.
@@ -552,7 +553,7 @@ class HuGetoptCompleteTest extends TestCase {
 	* Test HuGetopt parseArgs when required option next is option (should throw exception).
 	**/
 	public function testHuGetoptParseArgsRequiredOptionNextIsOption(): void {
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException::class);
+		$this->expectException(VariableRequiredException::class);
 		$this->expectExceptionMessage('requires argument');
 
 		$opts = [
@@ -569,7 +570,7 @@ class HuGetoptCompleteTest extends TestCase {
 	* Test HuGetopt parseArgs when required option at end with no value.
 	**/
 	public function testHuGetoptParseArgsRequiredOptionAtEnd(): void {
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException::class);
+		$this->expectException(VariableRequiredException::class);
 		$this->expectExceptionMessage('requires argument');
 
 		$opts = [['f', 'file', ':']];

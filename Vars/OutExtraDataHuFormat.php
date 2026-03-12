@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Vars;
 
 use Hubbitus\HuPHP\Debug\HuFormat;
-use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Macro\Vars;
+use Hubbitus\HuPHP\System\OutputType;
 
 /**
 * Class to provide easy wrapper around HuFormat for anywhere usage.

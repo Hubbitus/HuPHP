@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
 
-use Hubbitus\HuPHP\Vars\Settings\Settings;
-use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
+use Hubbitus\HuPHP\Macro\Vars;
+use Hubbitus\HuPHP\Vars\Settings\Settings;
 
 /**
 * Class to provide OOP interface to array operations.

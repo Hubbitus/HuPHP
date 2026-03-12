@@ -2,11 +2,12 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Debug;
-use Hubbitus\HuPHP\System\OutputType;
-
 use Hubbitus\HuPHP\Debug\HuLOG;
+
 use Hubbitus\HuPHP\Debug\HuLOGSettings;
 use Hubbitus\HuPHP\Debug\HuLOGSimpleTestFormatter;
+use Hubbitus\HuPHP\Debug\HuLOGText;
+use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Vars\NullClass;
 use PHPUnit\Framework\TestCase;
 
@@ -78,7 +79,7 @@ class HuLOGTest extends TestCase {
 		$property->setAccessible(true);
 		$value = $property->getValue($log);
 
-		$this->assertInstanceOf(\Hubbitus\HuPHP\Debug\HuLOGText::class, $value);
+		$this->assertInstanceOf(HuLOGText::class, $value);
 	}
 
 	public function testLastLogTimeIsNullInitially(): void {

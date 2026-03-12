@@ -1,40 +1,56 @@
 ---
+# Codecov Configuration for HuPHP Project
+# Documentation: https://docs.codecov.com/docs/codecovyml-reference
+
 coverage:
-  precision: 2
-  round: down
-  range: "70...100"
+  precision: 2          # Number of decimal places for coverage percentage
+  round: down           # Round coverage down (e.g., 99.99% stays 99.99%, not rounded to 100%)
+  range: "70...100"     # Coverage range for color coding in UI (70% = red, 100% = green)
 
   status:
     project:
       default:
-        target: 100%
-        threshold: 0.1%
-    patch: off
+        target: 100%      # Require 100% coverage for project status
+        threshold: 0.1%   # Allow 0.1% margin of error (floating point precision)
+    patch:
+      default:
+        # Patch coverage checks only the changed lines in the PR
+        # This ensures new code is also fully covered
+        target: 100%      # Require 100% coverage for changed lines
+        threshold: 0.1%   # Allow 0.1% margin of error
 
   ignore:
-    - "tests/**"
-    - "@examples/**"
-    - ".php-cs-fixer.php"
-    - "exec.php"
-    - "phpunit.xml.dist"
-    - "phpstan.neon"
-    - ".phpunit.result.cache"
+    # Files and directories to exclude from coverage reports
+    - "tests/**"                    # Test files themselves
+    - "@examples/**"                # Example code
+    - ".php-cs-fixer.php"           # Code style configuration
+    - "exec.php"                    # Entry point script
+    - "phpunit.xml.dist"            # PHPUnit configuration
+    - "phpstan.neon"                # PHPStan configuration
+    - ".phpunit.result.cache"       # PHPUnit cache file
 
 parsers:
   gcov:
     branch_detection:
-      conditional: yes
-      loop: yes
-      macro: no
-      method: no
+      conditional: yes    # Detect branches in conditional statements (if/else)
+      loop: yes           # Detect branches in loops (for/while)
+      macro: no           # Don't detect branches in macros (not applicable to PHP)
+      method: no          # Don't detect branches in method calls
 
   vcs:
     git:
-      slow: yes
+      slow: yes           # Enable slow but accurate VCS parsing
 
 comment:
-  layout: "reach,diff,flags,tree,about"
-  behavior: default
-  require_changes: false
+  layout: "reach,diff,flags,tree,about"  # Sections to show in PR comment
+  behavior: update          # Update existing comment instead of posting new ones
+  require_changes: false    # Show comment even if no coverage changes
+  after_n_builds: 1         # Wait for 1 coverage upload before posting comment
+                            # Increase this if you have multiple CI jobs uploading coverage
+
+# GitHub Checks integration
+github_checks:
+  annotations: true         # Show coverage annotations directly in the diff
+                            # (green/red highlights on covered/uncovered lines)
 
 ...

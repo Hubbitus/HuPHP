@@ -14,6 +14,8 @@
 * @see https://github.com/PHP-CS-Fixer/PHP-CS-Fixer
 **/
 
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
 use PhpCsFixer\Fixer\FixerInterface;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\VersionSpecification;
@@ -108,10 +110,10 @@ class HuPhpDocFixer implements FixerInterface {
 	/**
 	* {@inheritdoc}
 	*
-	* @param \SplFileInfo $file File to check
+	* @param SplFileInfo $file File to check
 	* @return bool Always true - supports all PHP files
 	**/
-	public function supports(\SplFileInfo $file): bool {
+	public function supports(SplFileInfo $file): bool {
 		return true;
 	}
 
@@ -124,10 +126,10 @@ class HuPhpDocFixer implements FixerInterface {
 	* 3. Keeping all content after asterisk unchanged
 	* 4. Ensuring closing line uses two asterisks format
 	*
-	* @param \SplFileInfo $file File being fixed
+	* @param SplFileInfo $file File being fixed
 	* @param Tokens $tokens All tokens in the file
 	**/
-	public function fix(\SplFileInfo $file, Tokens $tokens): void {
+	public function fix(SplFileInfo $file, Tokens $tokens): void {
 		foreach ($tokens as $index => $token) {
 			if ($token->isGivenKind(T_DOC_COMMENT)) {
 				$content = $token->getContent();
@@ -199,7 +201,7 @@ class HuPhpDocFixer implements FixerInterface {
 
 // Find all PHP files in project directory, excluding vendor, node_modules, and build
 // ignoreDotFiles(false) to include .php-cs-fixer.php and other dot files
-$finder = PhpCsFixer\Finder::create()
+$finder = Finder::create()
 	->ignoreDotFiles(false)
 	->exclude('vendor')
 	->exclude('node_modules')
@@ -207,7 +209,7 @@ $finder = PhpCsFixer\Finder::create()
 	->in(__DIR__);
 
 // Configure PHP-CS-Fixer with custom rules
-$config = new PhpCsFixer\Config();
+$config = new Config();
 return $config
 	->registerCustomFixers([new HuPhpDocFixer()])
 	->setRules([
@@ -275,6 +277,24 @@ return $config
 			'scope' => 'all',            // Fix all function calls, not just in namespaces
 			'strict' => true,            // Remove leading \ if not meant to have it
 			'exclude' => [],             // Don't exclude any functions
+		],
+
+		// Enable fully qualified strict types - require use statements instead of FQCN
+		'fully_qualified_strict_types' => [
+			'import_symbols' => true,     // Import classes, functions, and constants
+			'phpdoc_tags' => ['param', 'return', 'property', 'property-read', 'property-write', 'var', 'method'], // Fix PHPDoc type annotations
+		],
+
+		// Enable no leading import slash - remove leading backslash from use statements
+		'no_leading_import_slash' => true,
+
+		// Enable no unused imports - remove unused use statements
+		'no_unused_imports' => true,
+
+		// Enable ordered imports - sort use statements alphabetically
+		'ordered_imports' => [
+			'imports_order' => ['class', 'function', 'const'], // Order: classes, then functions, then constants
+			'sort_algorithm' => 'alpha', // Alphabetical sorting
 		],
 
 		// Enable only our custom PHPDoc fixer

@@ -196,14 +196,14 @@ class Process {
 	* @param string|null $cwd Working directory
 	* @param array<string, string>|null $env Environment variables
 	* @param mixed $writeData Data to write to stdin
-	* @return mixed Command output
+	* @return ProcessState Process state object with execution results
 	**/
 	public static function exec(
 		ProcessState|string $command,
 		?string $cwd = null,
 		?array $env = null,
 		mixed $writeData = null
-	): mixed {
+	): ProcessState {
 		if (!$command instanceof ProcessState) {
 			$state = new ProcessState();
 			$state->CMD = $command;
@@ -222,6 +222,7 @@ class Process {
 
 		$process = new Process($state);
 		$process->writeIn();
-		return $process->execute();
+		$process->execute();
+		return $state;
 	}
 }

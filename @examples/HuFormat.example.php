@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 include('autoload.php');
 
-use Hubbitus\HuPHP\Vars\OutExtraDataHuFormat;
 use Hubbitus\HuPHP\System\OutputType;
+use Hubbitus\HuPHP\Vars\OutExtraDataHuFormat;
 
 $format = [
 	OutputType::CONSOLE	=> [

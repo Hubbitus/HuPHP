@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
-use Hubbitus\HuPHP\System\OutputType;
-
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+
+use Hubbitus\HuPHP\System\OutputType;
 
 interface IOutExtraData {
 	/**

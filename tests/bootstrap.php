@@ -22,3 +22,7 @@ require_once $rootDir . '/Vars/CONF.php';
 // This is needed for tests that use var:// protocol
 require_once $rootDir . '/Vars/VariableStream.php';
 
+// Load SingleDefTest.bootstrap.php to define CONF() function for SingleDefTest
+// This is needed because SingleDefTest requires CONF() function to be defined
+require_once $rootDir . '/tests/Vars/SingleDefTest.bootstrap.php';
+

@@ -5,9 +5,9 @@ namespace Hubbitus\HuPHP\System\Console;
 
 use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use Hubbitus\HuPHP\RegExp\RegExpPcre;
 use Hubbitus\HuPHP\Vars\HuArray;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 
 /**
 * Console package to parse parameters in CLI-mode

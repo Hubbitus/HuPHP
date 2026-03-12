@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Exceptions\Variables;
 
-use Hubbitus\HuPHP\Debug\Tokenizer;
 use Hubbitus\HuPHP\Debug\Backtrace;
+use Hubbitus\HuPHP\Debug\Tokenizer;
 
 /**
 * Exception thrown when a required variable is not provided.
