@@ -2,6 +2,7 @@
 
 [![Minimum PHP Version](https://img.shields.io/badge/PHP-8.0%2B-blue)](https://php.net/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![codecov](https://codecov.io/gh/Hubbitus/HuPHP/graph/badge.svg?token=0OQR2IAY0A)](https://codecov.io/gh/Hubbitus/HuPHP)
 
 Modern PHP framework supporting PHP 8.0+ for common tasks like debugging, logging, configuration management and more.
 
