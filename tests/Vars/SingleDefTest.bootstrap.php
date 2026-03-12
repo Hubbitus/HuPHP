@@ -8,8 +8,8 @@ function CONF(): object {
 			'Hubbitus\Tests\HuPHP\Vars\TestConfigClass' => ['config_arg1', 'config_arg2'],
 		];
 
-		public function getRaw(string $className, bool $flag): array {
-			return $this->configs[$className] ?? [];
+		public function getRaw(string $className, bool $flag): ?array {
+			return $this->configs[$className] ?? null;
 		}
 	};
 }
