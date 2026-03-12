@@ -8,6 +8,7 @@ use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
 use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\System\Process;
+use Hubbitus\HuPHP\Exceptions\ProcessException;
 
 /**
 * Operations with file in memory.
@@ -16,6 +17,9 @@ use Hubbitus\HuPHP\System\Process;
 * @created ?2009-03-25 13:51 ver 2.0b
 **/
 class FileInMemory extends FileBase {
+	/** Executable name for encoding conversion */
+	public const string ENCONV_EXECUTABLE = 'enconv';
+
 	private array $lineContent = [];
 	private string $_lineSep = "\n"; // Unix by default
 	private array $_linesOffsets = []; // Cache For ->getLineByOffset and ->getOffsetByLine methods
@@ -331,9 +335,23 @@ class FileInMemory extends FileBase {
 	* @param string $lang
 	* @param string $toEnc
 	* @return static
+	* @throws ProcessException If enconv command is not found or failed
+	* @codeCoverageIgnore
 	**/
 	public function &enconv(string $lang = 'russian', string $toEnc = 'UTF-8'): static {
-		$this->setContentFromString(Process::exec("enconv -L $lang -x $toEnc", null, null, $this->getBLOB()));
+		$state = Process::exec(self::ENCONV_EXECUTABLE . " -L $lang -x $toEnc", null, null, $this->getBLOB());
+
+		// Check if command was not found (exit code 127)
+		if (127 === $state->exit_code) {
+			throw new ProcessException('`enconv` command not found. Please install it. Package called `enca` (on Fedora) or `recode` (on Ubuntu)');
+		}
+
+		// Check for other errors
+		if (0 !== $state->exit_code) {
+			throw new ProcessException('enconv failed: ' . $state->getError(), 0, $state);
+		}
+
+		$this->setContentFromString($state->getResult());
 		return $this;
 	}
 

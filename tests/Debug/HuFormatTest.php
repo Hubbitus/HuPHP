@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Debug;
 
+use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\Debug\HuFormat;
 use Hubbitus\HuPHP\Debug\HuFormatException;
 use PHPUnit\Framework\TestCase;
@@ -305,7 +306,7 @@ class HuFormatTest extends TestCase {
 	* Test modifier 'v' with Backtrace object.
 	**/
 	public function testModifierVWithBacktrace(): void {
-		$bt = new \Hubbitus\HuPHP\Debug\Backtrace();
+		$bt = new Backtrace();
 		$format = new HuFormat(['v:::'], $bt);
 		$result = $format->getString();
 		$this->assertStringContainsString('Backtrace', $result);

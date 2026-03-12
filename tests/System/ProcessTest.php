@@ -49,8 +49,9 @@ class ProcessTest extends TestCase {
 	public function testExec(): void {
 		$result = Process::exec('echo "test"');
 
-		$this->assertIsString($result);
-		$this->assertStringContainsString('test', $result);
+		$this->assertInstanceOf(ProcessState::class, $result);
+		$this->assertIsString($result->getResult());
+		$this->assertStringContainsString('test', $result->getResult());
 	}
 
 	public function testExecWithProcessState(): void {
@@ -59,30 +60,34 @@ class ProcessTest extends TestCase {
 
 		$result = Process::exec($state);
 
-		$this->assertIsString($result);
-		$this->assertStringContainsString('hello', $result);
+		$this->assertInstanceOf(ProcessState::class, $result);
+		$this->assertIsString($result->getResult());
+		$this->assertStringContainsString('hello', $result->getResult());
 	}
 
 	public function testExecWithCwd(): void {
 		$result = Process::exec('pwd', '/tmp');
 
-		$this->assertIsString($result);
-		$this->assertStringContainsString('/tmp', $result);
+		$this->assertInstanceOf(ProcessState::class, $result);
+		$this->assertIsString($result->getResult());
+		$this->assertStringContainsString('/tmp', $result->getResult());
 	}
 
 	public function testExecWithEnv(): void {
 		$result = Process::exec('echo $TEST_VAR', null, ['TEST_VAR' => 'custom_value']);
 
-		$this->assertIsString($result);
-		$this->assertStringContainsString('custom_value', $result);
+		$this->assertInstanceOf(ProcessState::class, $result);
+		$this->assertIsString($result->getResult());
+		$this->assertStringContainsString('custom_value', $result->getResult());
 	}
 
 	public function testExecWithWriteData(): void {
 		// Test with cat command which echoes input
 		$result = Process::exec('cat', null, null, 'test input');
 
-		$this->assertIsString($result);
-		$this->assertStringContainsString('test input', $result);
+		$this->assertInstanceOf(ProcessState::class, $result);
+		$this->assertIsString($result->getResult());
+		$this->assertStringContainsString('test input', $result->getResult());
 	}
 
 	public function testOpen(): void {
@@ -281,8 +286,9 @@ class ProcessTest extends TestCase {
 		// Test exec() with both cwd and env
 		$result = Process::exec('pwd', '/tmp', ['TEST' => 'value']);
 
-		$this->assertIsString($result);
-		$this->assertStringContainsString('/tmp', $result);
+		$this->assertInstanceOf(ProcessState::class, $result);
+		$this->assertIsString($result->getResult());
+		$this->assertStringContainsString('/tmp', $result->getResult());
 	}
 
 	public function testExecPreservesState(): void {
@@ -293,7 +299,8 @@ class ProcessTest extends TestCase {
 
 		$result = Process::exec($state);
 
-		$this->assertIsString($result);
+		$this->assertInstanceOf(ProcessState::class, $result);
+		$this->assertIsString($result->getResult());
 		$this->assertEquals('/tmp', $state->getCwd());
 	}
 

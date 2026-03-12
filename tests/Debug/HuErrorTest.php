@@ -2,8 +2,10 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Debug;
+use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\System\OutputType;
 
+use Hubbitus\HuPHP\Vars\OutExtraDataBacktrace;
 use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\Debug\HuError;
 use Hubbitus\HuPHP\Debug\HuErrorSettings;
@@ -469,8 +471,8 @@ class HuErrorTest extends TestCase {
 	* Test formatField with OutExtraData instance.
 	**/
 	public function testFormatFieldWithOutExtraData(): void {
-		$bt = new \Hubbitus\HuPHP\Debug\Backtrace();
-		$extraData = new \Hubbitus\HuPHP\Vars\OutExtraDataBacktrace($bt);
+		$bt = new Backtrace();
+		$extraData = new OutExtraDataBacktrace($bt);
 		$this->error->extraField = $extraData;
 
 		$formatted = $this->error->formatField('extraField');
@@ -484,7 +486,7 @@ class HuErrorTest extends TestCase {
 	* Test formatField with Backtrace instance.
 	**/
 	public function testFormatFieldWithBacktrace(): void {
-		$bt = new \Hubbitus\HuPHP\Debug\Backtrace();
+		$bt = new Backtrace();
 		$this->error->btField = $bt;
 
 		$formatted = $this->error->formatField('btField');

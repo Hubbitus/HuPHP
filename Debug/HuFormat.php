@@ -5,6 +5,7 @@ namespace Hubbitus\HuPHP\Debug;
 
 use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+use Hubbitus\HuPHP\Vars\OutExtraDataBacktrace;
 
 // HuFormatException is defined in separate file Debug/HuFormatException.php
 
@@ -46,10 +47,10 @@ class HuFormat extends HuError {
 			**/
 			'A' => function(self $obj): string {
 				// Avoid infinite recursion with Backtrace/OutExtraDataBacktrace
-				if ($obj->_value instanceof \Hubbitus\HuPHP\Debug\Backtrace) {
+				if ($obj->_value instanceof Backtrace) {
 					return \sprintf('Backtrace[%d calls]', $obj->_value->length());
 				}
-				if ($obj->_value instanceof \Hubbitus\HuPHP\Vars\OutExtraDataBacktrace) {
+				if ($obj->_value instanceof OutExtraDataBacktrace) {
 					return 'OutExtraDataBacktrace';
 				}
 				$hf = new self(null, $obj->_value, $obj->_key);
@@ -148,10 +149,10 @@ class HuFormat extends HuError {
 					throw new HuFormatException('Got conflicted format modifiers!');
 				}
 				// Avoid infinite recursion when value is Backtrace or OutExtraDataBacktrace
-				if ($obj->_realValue instanceof \Hubbitus\HuPHP\Debug\Backtrace) {
+				if ($obj->_realValue instanceof Backtrace) {
 					return \sprintf('Backtrace[%d calls]', $obj->_realValue->length());
 				}
-				if ($obj->_realValue instanceof \Hubbitus\HuPHP\Vars\OutExtraDataBacktrace) {
+				if ($obj->_realValue instanceof OutExtraDataBacktrace) {
 					return 'OutExtraDataBacktrace';
 				}
 				return (string)$obj->_realValue;

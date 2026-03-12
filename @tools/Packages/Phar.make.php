@@ -2,6 +2,8 @@
 <?php
 declare(strict_types=1);
 
+use Hubbitus\HuPHP\Filesystem\FileInMemory;
+
 /**
 * Debug and backtrace toolkit.
 * Utility to generate one Phar-file suitable for debugging, contained all needed dependencies.
@@ -52,7 +54,7 @@ if (Phar::canWrite()) {
 		echo ++$i . ") Process [$inc]\n";
 
 		// Simply add the file to the PHAR without modifying includes/requires for now
-		$file = new \Hubbitus\HuPHP\Filesystem\FileInMemory(__DIR__ . '/../../' . $inc);
+		$file = new FileInMemory(__DIR__ . '/../../' . $inc);
 		$file->loadContent();
 		$p[$inc] = $file->getBLOB();
 	}
