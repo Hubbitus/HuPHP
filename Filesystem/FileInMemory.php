@@ -336,22 +336,19 @@ class FileInMemory extends FileBase {
 	* @param string $toEnc
 	* @return static
 	* @throws ProcessException If enconv command is not found or failed
-	* @codeCoverageIgnore
 	**/
 	public function &enconv(string $lang = 'russian', string $toEnc = 'UTF-8'): static {
-		$state = Process::exec(self::ENCONV_EXECUTABLE . " -L $lang -x $toEnc", null, null, $this->getBLOB());
-
-		// Check if command was not found (exit code 127)
-		if (127 === $state->exit_code) {
-			throw new ProcessException('`enconv` command not found. Please install it. Package called `enca` (on Fedora) or `recode` (on Ubuntu)');
+		try {
+			$state = Process::exec(self::ENCONV_EXECUTABLE . " -L $lang -x $toEnc", null, null, $this->getBLOB());
+			$this->setContentFromString($state->getResult());
+		} catch (ProcessException $e) {
+			// Check if it's "command not found" (exit code 127)
+			if (127 === $e->state->exit_code) {
+				throw new ProcessException('`enconv` command not found. Please install it. Package called `enca` (on Fedora) or `recode` (on Ubuntu)');
+			}
+			// Re-throw other errors
+			throw $e;
 		}
-
-		// Check for other errors
-		if (0 !== $state->exit_code) {
-			throw new ProcessException('enconv failed: ' . $state->getError(), 0, $state);
-		}
-
-		$this->setContentFromString($state->getResult());
 		return $this;
 	}
 

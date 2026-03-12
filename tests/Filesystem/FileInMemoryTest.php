@@ -929,6 +929,13 @@ class FileInMemoryTest extends TestCase {
 	}
 
 	public function testEnconvIntegration(): void {
+		// Check if enconv is available
+		\exec('command -v enconv', $output, $return_var);
+		if ($return_var !== 0) {
+			// enconv not available - skip test
+			$this->markTestSkipped('enconv command not available');
+		}
+
 		$testFile = $this->testDir . '/test_enconv.txt';
 		$koi8rContent = "\xf2\xd5\xd3\xd3\xcb\xc9\xca\x20\xd4\xc5\xd3\xd4\x20\xc4\xcc\xd1\x20\xd0\xd2\xc9\xcd\xc5\xd2\xc1";
 
