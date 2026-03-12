@@ -15,7 +15,11 @@ jobs:
       
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          # On PR comments, checkout the PR's head commit. Otherwise, checkout the default branch.
+          ref: ${{ github.event_name == 'issue_comment' && github.event.issue.pull_request.head.sha || github.ref }}
+          fetch-depth: 0
 
       - name: Generate version
         id: generate_version
