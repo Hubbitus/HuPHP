@@ -38,12 +38,19 @@ jobs:
 
       - name: Check 100% Coverage
         run: |
-          # Install bc if not available
-          apt-get update && apt-get install -y bc || true
-          COVERAGE=$(XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text 2>/dev/null | grep "Lines:" | awk '{print $2}' | tr -d '%')
-          echo "Coverage: $COVERAGE%"
-          if (( $(echo "$COVERAGE < 100" | bc -l) )); then
-            echo "❌ Coverage is below 100% ($COVERAGE%). Fix tests to achieve 100% coverage."
+          echo "--- Checking coverage ---"
+          # Print the full text report to the log for debugging.
+          FULL_REPORT=$(XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text)
+          echo "$FULL_REPORT"
+          echo "--- End of report ---"
+
+          COVERAGE=$(echo "$FULL_REPORT" | grep "Lines:" | awk '{print $2}' | tr -d '%')
+          echo "Coverage from report: $COVERAGE%"
+
+          # Correctly check if coverage is less than 100 using bc.
+          # The `|| true` is a safeguard in case COVERAGE is empty.
+          if [ "$(echo "$COVERAGE < 100" | bc -l || true)" -eq 1 ]; then
+            echo "❌ Coverage is below 100% ($COVERAGE%). See report above for details."
             exit 1
           fi
           echo "✅ 100% coverage achieved!"
