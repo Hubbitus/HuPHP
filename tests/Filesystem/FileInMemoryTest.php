@@ -781,6 +781,34 @@ class FileInMemoryTest extends TestCase {
 		}
 	}
 
+	public function testEnconvThrowsExceptionWhenExecutableNotFoundViaReflection(): void {
+		// Test that enconv() throws proper exception when executable is not found
+		// by changing the ENCONV_EXECUTABLE property to a non-existent command
+		$testFile = $this->testDir . '/test_enconv_notfound.txt';
+		\file_put_contents($testFile, 'test content');
+
+		try {
+			$file = new FileInMemory($testFile);
+			$file->loadContent();
+
+			// Change the ENCONV_EXECUTABLE property to a non-existent command
+			$file->ENCONV_EXECUTABLE = 'nonexistent_enconv_command_xyz';
+
+			// This should throw ProcessException with "command not found" message
+			$file->enconv('russian', 'UTF-8');
+			$this->fail('Expected ProcessException to be thrown');
+		} catch (ProcessException $e) {
+			// Verify it's the "command not found" exception (exit code 127)
+			// The state might be null if exception is thrown from different location
+			if ($e->state !== null) {
+				$this->assertEquals(127, $e->state->exit_code);
+			}
+			$this->assertStringContainsString('command not found', $e->getMessage());
+		} finally {
+			\unlink($testFile);
+		}
+	}
+
 	public function testIconv(): void {
 		// Test iconv() method for charset conversion
 		$testFile = $this->testDir . '/test_iconv.txt';

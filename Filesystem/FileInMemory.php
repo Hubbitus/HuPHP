@@ -17,8 +17,11 @@ use Hubbitus\HuPHP\System\Process;
 * @created ?2009-03-25 13:51 ver 2.0b
 **/
 class FileInMemory extends FileBase {
-	/** Executable name for encoding conversion */
-	public const string ENCONV_EXECUTABLE = 'enconv';
+	/**
+	* Executable name for encoding conversion
+	* Primarily for the possible customization and testability
+	**/
+	public string $ENCONV_EXECUTABLE = 'enconv';
 
 	private array $lineContent = [];
 	private string $_lineSep = "\n"; // Unix by default
@@ -339,7 +342,7 @@ class FileInMemory extends FileBase {
 	**/
 	public function &enconv(string $lang = 'russian', string $toEnc = 'UTF-8'): static {
 		try {
-			$state = Process::exec(self::ENCONV_EXECUTABLE . " -L $lang -x $toEnc", null, null, $this->getBLOB());
+			$state = Process::exec($this->ENCONV_EXECUTABLE . " -L $lang -x $toEnc", null, null, $this->getBLOB());
 			$this->setContentFromString($state->getResult());
 		} catch (ProcessException $e) {
 			// Check if it's "command not found" (exit code 127)
