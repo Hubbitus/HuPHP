@@ -979,4 +979,27 @@ class FileInMemoryTest extends TestCase {
 			\unlink($testFile);
 		}
 	}
+
+	public function testEnconvThrowsExceptionOnInvalidEncoding(): void {
+		// This test requires the `enconv` command to be installed.
+		\exec('command -v enconv', $output, $return_var);
+		if ($return_var !== 0) {
+			$this->markTestSkipped('enconv command not available, cannot test failure mode.');
+		}
+
+		$this->expectException(ProcessException::class);
+
+		$file = new FileInMemory($this->testFile);
+		$file->loadContent();
+
+		try {
+			// Call enconv with an invalid encoding to trigger a failure with an exit code other than 127.
+			$file->enconv('russian', 'invalid-encoding-that-does-not-exist');
+		} catch (ProcessException $e) {
+			// Assert that the failure was for a reason other than "command not found".
+			$this->assertNotEquals(127, $e->state->exit_code);
+			// Re-throw the exception to satisfy PHPUnit's expectException.
+			throw $e;
+		}
+	}
 }

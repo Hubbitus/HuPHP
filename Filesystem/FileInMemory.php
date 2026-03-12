@@ -347,7 +347,7 @@ class FileInMemory extends FileBase {
 		} catch (ProcessException $e) {
 			// Check if it's "command not found" (exit code 127)
 			if (127 === $e->state->exit_code) {
-				throw new ProcessException('`enconv` command not found. Please install it. Package called `enca` (on Fedora) or `recode` (on Ubuntu)');
+				throw new ProcessException('`enconv` command not found. Please install it. The package is usually called `enca`.');
 			}
 			// Re-throw other errors
 			throw $e;
