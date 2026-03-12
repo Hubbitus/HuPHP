@@ -1,5 +1,8 @@
 #!/bin/env php
 <?php
+
+use Hubbitus\HuPHP\Debug\Dump;
+use Hubbitus\HuPHP\Vars\HuArray;
 include('autoload.php');
 
 /*
@@ -672,18 +675,18 @@ Dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternate method. Fully equivalent of
 */
 ################################################################################################
 //include_once('Vars/HuArray.php');
-$testArray = array(0, 11, 22, 777);
-$ha = new HuArray( $testArray );
+$testArray = [0, 11, 22, 777];
+$ha = new HuArray($testArray);
 Dump::a($ha, 'Original HuArray');
 
-Dump::a( $ha->filterByKeys(array(0,1)) );
+Dump::a($ha->filterByKeys([0,1]));
 
 $ha->setSettingsArray( $testArray );
 Dump::a($ha, 'Renewed to original');
 
-Dump::a( $ha->filterOutByKeys(array(0,2)) );
+Dump::a($ha->filterOutByKeys([0,2]));
 
 $ha->setSettingsArray( $testArray );
 Dump::a($ha, 'Renewed to original');
 
-Dump::a( $ha->filterKeysCallback( \create_function('&$key', 'return ( $key % 2 );') ) );
+Dump::a($ha->filterKeysCallback( \create_function('&$key', 'return ( $key % 2 );') ));

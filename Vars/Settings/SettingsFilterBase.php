@@ -36,6 +36,6 @@ class SettingsFilterBase {
 		* call_user_func_array to pass reference, what is not allowed in call_user_func.
 		* Solution found in man, see Example1 http://ru2.php.net/call_user_func
 		**/
-		return \call_user_func_array( $this->callback_, array(&$name, &$value) );
+		return \call_user_func_array($this->callback_, [&$name, &$value]);
 	}
 }

@@ -46,16 +46,16 @@ class DumpUtils {
 		return
 			\trim(/* For var_dump variant */
 				\preg_replace(
-					array(
+					[
 						'/array(\(\d+\))\s+({)/i',
 						'/object\([^)]+\)\s+\(/',
 						'/\["?(.+?)"?\]=>/',
-					),
-					array(
+					],
+					[
 						'Array\1\2',
 						'Object(',
 						'[\1] => ',
-					),
+					],
 					$dump
 				)
 			);

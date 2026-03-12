@@ -1,9 +1,11 @@
 <?php
+
+use Hubbitus\HuPHP\Debug\HuLOGSettings;
 /**
 * @uses HuLOG
 **/
 
-$GLOBALS['__CONFIG']['HuLOG'] = array(
+$GLOBALS['__CONFIG']['HuLOG'] = [
 	'FILE_PREFIX'		=> 'log_',
 	'LOG_FILE_DIR'		=> './_log/',
 
@@ -11,7 +13,7 @@ $GLOBALS['__CONFIG']['HuLOG'] = array(
 	'LOG_TO_ERR' => HuLOGSettings::LOG_TO_BOTH,
 
 	/* In SUBarray in order not to generate extra Entity  */
-	'HuLOG_Text_settings' => array(
+	'HuLOG_Text_settings' => [
 		'EXTRA_HEADER' => null, // NOT false!
-	),
-);
+	],
+];

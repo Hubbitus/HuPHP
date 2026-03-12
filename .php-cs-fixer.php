@@ -297,6 +297,11 @@ return $config
 			'sort_algorithm' => 'alpha', // Alphabetical sorting
 		],
 
+		// Enable array syntax - enforce short array syntax [] instead of array()
+		'array_syntax' => [
+			'syntax' => 'short', // Use [] instead of array()
+		],
+
 		// Enable only our custom PHPDoc fixer
 		'HubbitusPHPDocStyle/phpdoc_style' => true,
 	])

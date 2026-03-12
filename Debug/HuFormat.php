@@ -301,7 +301,7 @@ class HuFormat extends HuError {
 	public function &setFormat($format): static {
 		$this->_mods = [];
 		$this->_modStr = $this->_name = $this->_resStr = $this->_realValue = null;
-		$this->_modArr = array();
+		$this->_modArr = [];
 		$this->_realValued = false;
 
 		if (\is_array($format)) {

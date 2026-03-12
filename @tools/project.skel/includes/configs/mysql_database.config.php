@@ -1,7 +1,7 @@
 <?php
 $GLOBALS['__CONFIG']['db'] = 'mysql_database'; //Current used DB configuration
 
-$GLOBALS['__CONFIG']['mysql_database'] = array(
+$GLOBALS['__CONFIG']['mysql_database'] = [
 	'class_file'	=> 'Database/mysql_database.php'
 	,'class_name'	=> 'mysql_database'
 
@@ -12,4 +12,4 @@ $GLOBALS['__CONFIG']['mysql_database'] = array(
 	,'persistent'	=> true
 	,'DEBUG'		=> true
 	,'CHARSET_RECODE' => false
-);
+];
