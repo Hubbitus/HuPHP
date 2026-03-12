@@ -38,14 +38,23 @@ jobs:
 
       - name: Check 100% Coverage
         run: |
-          # Install bc if not available
           apt-get update && apt-get install -y bc || true
-          COVERAGE=$(XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text 2>/dev/null | grep "Lines:" | awk '{print $2}' | tr -d '%')
-          echo "Coverage: $COVERAGE%"
-          if (( $(echo "$COVERAGE < 100" | bc -l) )); then
-            echo "❌ Coverage is below 100% ($COVERAGE%). Fix tests to achieve 100% coverage."
+
+          FULL_REPORT=$(XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text)
+          COVERAGE=$(echo "$FULL_REPORT" | grep "Lines:" | awk '{print $2}' | tr -d '%')
+
+          echo "Coverage is $COVERAGE%"
+
+          # Use bc for floating point comparison.
+          # On failure, print the full report for easy debugging.
+          if [ "$(echo "$COVERAGE < 100" | bc)" -eq 1 ]; then
+            echo "❌ Coverage is below 100%."
+            echo "--- Full Coverage Report ---"
+            echo "$FULL_REPORT"
+            echo "----------------------------"
             exit 1
           fi
+
           echo "✅ 100% coverage achieved!"
 
       - name: Upload Coverage to Codecov

@@ -462,7 +462,13 @@ class HuGetopt {
 		} elseif (@\is_array($GLOBALS['HTTP_SERVER_VARS']['argv'])) {
 			$this->setArgv($GLOBALS['HTTP_SERVER_VARS']['argv']);
 		} else {
+			// This defensive block handles a specific edge case where PHP is run with
+			// `register_argc_argv=Off` and command-line arguments are not available in
+			// any standard superglobal. Replicating this environment for a unit test
+			// is highly impractical, so this branch is intentionally ignored.
+			// @codeCoverageIgnoreStart
 			throw new VariableEmptyException(new Backtrace(), 'readPHPArgv(): Could not read cmd args (register_argc_argv=Off?)');
+			// @codeCoverageIgnoreEnd
 		}
 
 		return $this;

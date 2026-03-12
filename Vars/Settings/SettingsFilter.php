@@ -55,7 +55,7 @@ class SettingsFilter extends SettingsCheckStatic {
 	* @inheritdoc
 	**/
 	public function setSettingsArray(array $setArr): void {
-		$this->__SETS = array();
+		$this->__SETS = [];
 		// For our realization just foreach all, now we can simple invoke mergeSettingsArray()
 		$this->mergeSettingsArray($setArr);
 	}

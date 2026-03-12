@@ -23,6 +23,7 @@ coverage:
     # Files and directories to exclude from coverage reports
     - "tests/**"                    # Test files themselves
     - "@examples/**"                # Example code
+    - "@tools/**"                   # Build tools and scripts
     - ".php-cs-fixer.php"           # Code style configuration
     - "exec.php"                    # Entry point script
     - "phpunit.xml.dist"            # PHPUnit configuration
