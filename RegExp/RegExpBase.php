@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\RegExp;
 
-use Hubbitus\HuPHP\Vars\HuClass;
-use Hubbitus\HuPHP\Vars\HuArray;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
 use Hubbitus\HuPHP\Macro\Vars;
+use Hubbitus\HuPHP\Vars\HuArray;
+use Hubbitus\HuPHP\Vars\HuClass;
 
 /**
 * RegExp manipulation.

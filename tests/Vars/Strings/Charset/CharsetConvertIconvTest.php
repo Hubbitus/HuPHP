@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Vars\Strings\Charset;
 
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert;
 use Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvertIconv;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use PHPUnit\Framework\TestCase;
 
 /**

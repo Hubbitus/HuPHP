@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Filesystem;
 
-use Hubbitus\HuPHP\Filesystem\FileInMemory;
-use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\Exceptions\ProcessException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+use Hubbitus\HuPHP\Filesystem\FileInMemory;
+use Hubbitus\HuPHP\System\Process;
+use Hubbitus\HuPHP\System\ProcessState;
+use PHPUnit\Framework\TestCase;
 
 /**
 * Test for FileInMemory class.
@@ -198,7 +202,7 @@ class FileInMemoryTest extends TestCase {
 	}
 
 	public function testGetOffsetByLineThrowsException(): void {
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+		$this->expectException(VariableRangeException::class);
 
 		$file = new FileInMemory($this->testFile);
 		$file->loadContent();
@@ -326,7 +330,7 @@ class FileInMemoryTest extends TestCase {
 		$file->loadContent();
 
 		// Offset beyond file size should throw exception
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+		$this->expectException(VariableRangeException::class);
 		$file->getLineByOffset(9999999);
 	}
 
@@ -745,12 +749,12 @@ class FileInMemoryTest extends TestCase {
 		// We test this by verifying ProcessState handling in enconv method
 
 		// First verify that calling with non-existent command throws ProcessException
-		$state = new \Hubbitus\HuPHP\System\ProcessState();
+		$state = new ProcessState();
 		$state->CMD = 'nonexistent_command_that_does_not_exist';
 		$state->writeData = 'test';
 
 		try {
-			\Hubbitus\HuPHP\System\Process::exec($state);
+			Process::exec($state);
 			$this->fail('Expected ProcessException to be thrown');
 		} catch (ProcessException $e) {
 			// Verify the exception contains exit code 127
@@ -916,7 +920,7 @@ class FileInMemoryTest extends TestCase {
 
 	public function testGetLinesWithoutContentThrowsException(): void {
 		// Test that getLines() throws exception when content is not loaded
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException::class);
+		$this->expectException(VariableEmptyException::class);
 
 		$file = new FileInMemory();
 		// Don't set or load content - content will be null

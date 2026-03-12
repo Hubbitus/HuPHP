@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
 
-use function Hubbitus\HuPHP\Vars\CONF;
 
 /**
 * Singleton pattern.
@@ -66,7 +65,7 @@ class Single {
 	* @return object Singleton instance of the class
 	**/
 	public static function &def(string $className): object {
-		$config = CONF()->getRaw($className, true);
+		$config = \CONF()->getRaw($className, true);
 		// If config is null, call singleton without arguments
 		if (null === $config) {
 			return self::singleton($className);

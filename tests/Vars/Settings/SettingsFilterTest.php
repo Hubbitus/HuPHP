@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars\Settings;
 
+use Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterDefault;
+use Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterIgnore;
 use Hubbitus\HuPHP\Vars\Settings\SettingsFilter;
 use Hubbitus\HuPHP\Vars\Settings\SettingsFilterBase;
-use Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterIgnore;
-use Hubbitus\HuPHP\Vars\Settings\Filters\SettingsFilterDefault;
 use PHPUnit\Framework\TestCase;
 
 /**

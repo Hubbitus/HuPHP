@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
 
-use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Debug\Dump;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\System\OutputType;
 
 /**
 * Debug and backtrace toolkit.

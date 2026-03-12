@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars\Strings\Charset;
 
-use Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
+use Hubbitus\HuPHP\Vars\Strings\Charset\CharsetConvert;
 use PHPUnit\Framework\TestCase;
 
 /**

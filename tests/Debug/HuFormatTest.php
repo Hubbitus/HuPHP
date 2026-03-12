@@ -4,15 +4,20 @@ declare(strict_types=1);
 namespace Hubbitus\Tests\HuPHP\Debug;
 
 use Hubbitus\HuPHP\Debug\Backtrace;
+use Hubbitus\HuPHP\Debug\HuError;
 use Hubbitus\HuPHP\Debug\HuFormat;
 use Hubbitus\HuPHP\Debug\HuFormatException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+use Hubbitus\HuPHP\Vars\OutExtraDataBacktrace;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
 * @covers \Hubbitus\HuPHP\Debug\HuFormat
 * @covers \Hubbitus\HuPHP\Debug\HuFormatException
 **/
-#[\PHPUnit\Framework\Attributes\CoversClass(\Hubbitus\HuPHP\Debug\HuFormat::class)]
+#[CoversClass(HuFormat::class)]
 class HuFormatTest extends TestCase {
 	/**
 	* Test constructor creates instance.
@@ -129,7 +134,7 @@ class HuFormatTest extends TestCase {
 	public function testFormatExtendsHuError(): void {
 		$format = new HuFormat();
 		$this->assertInstanceOf(HuFormat::class, $format);
-		$this->assertInstanceOf(\Hubbitus\HuPHP\Debug\HuError::class, $format);
+		$this->assertInstanceOf(HuError::class, $format);
 	}
 
 	/**
@@ -138,7 +143,7 @@ class HuFormatTest extends TestCase {
 	public function testFormatExceptionExtendsVariableException(): void {
 		$exception = new HuFormatException('test message');
 		$this->assertInstanceOf(HuFormatException::class, $exception);
-		$this->assertInstanceOf(\Hubbitus\HuPHP\Exceptions\Variables\VariableException::class, $exception);
+		$this->assertInstanceOf(VariableException::class, $exception);
 	}
 
 	/**
@@ -317,7 +322,7 @@ class HuFormatTest extends TestCase {
 	**/
 	public function testModifierVWithOutExtraDataBacktrace(): void {
 		$data = ['test' => 'value'];
-		$btData = new \Hubbitus\HuPHP\Vars\OutExtraDataBacktrace($data);
+		$btData = new OutExtraDataBacktrace($data);
 		$format = new HuFormat(['v:::'], $btData);
 		$result = $format->getString();
 		// OutExtraDataBacktrace has special handling in modifier 'v'
@@ -394,7 +399,7 @@ class HuFormatTest extends TestCase {
 	* Test modifier 'A' - all modifier with Backtrace.
 	**/
 	public function testModifierAWithBacktrace(): void {
-		$bt = new \Hubbitus\HuPHP\Debug\Backtrace();
+		$bt = new Backtrace();
 		$format = new HuFormat(['A:::'], $bt);
 		$result = $format->getString();
 		$this->assertStringContainsString('Backtrace', $result);
@@ -405,7 +410,7 @@ class HuFormatTest extends TestCase {
 	**/
 	public function testModifierAWithOutExtraDataBacktrace(): void {
 		$data = ['test' => 'value'];
-		$btData = new \Hubbitus\HuPHP\Vars\OutExtraDataBacktrace($data);
+		$btData = new OutExtraDataBacktrace($data);
 		$format = new HuFormat(['A:::'], $btData);
 		$this->assertStringContainsString('OutExtraDataBacktrace', $format->getString());
 	}
@@ -481,7 +486,7 @@ class HuFormatTest extends TestCase {
 	**/
 	public function testChangeModsStrUnknownModifier(): void {
 		$format = new HuFormat();
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+		$this->expectException(VariableRangeException::class);
 		$format->changeModsStr('+x');
 	}
 
@@ -490,7 +495,7 @@ class HuFormatTest extends TestCase {
 	**/
 	public function testChangeModsStrOperatorWithoutModifier(): void {
 		$format = new HuFormat();
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+		$this->expectException(VariableRangeException::class);
 		$format->changeModsStr('+');
 	}
 
@@ -692,7 +697,7 @@ class HuFormatTest extends TestCase {
 	**/
 	public function testChangeModsStrOperatorAtEnd(): void {
 		$format = new HuFormat();
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+		$this->expectException(VariableRangeException::class);
 		$format->changeModsStr('+v-');
 	}
 
@@ -710,7 +715,7 @@ class HuFormatTest extends TestCase {
 		$prop->setAccessible(true);
 		$prop->setValue($format, 'x');
 
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+		$this->expectException(VariableRangeException::class);
 		$method->invoke($format);
 	}
 
@@ -914,7 +919,7 @@ class HuFormatTest extends TestCase {
 	**/
 	public function testChangeModsStrUnknownOperator(): void {
 		$format = new HuFormat();
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException::class);
+		$this->expectException(VariableRangeException::class);
 		$this->expectExceptionMessage('Unknown modifier');
 		$format->changeModsStr('?v');
 	}

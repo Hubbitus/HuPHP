@@ -3,11 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
 
-use Hubbitus\HuPHP\Debug\HuLOGSettings;
-use Hubbitus\HuPHP\Debug\HuLOGText;
-use Hubbitus\HuPHP\Debug\IHuLOGFormatter;
-use Hubbitus\HuPHP\Vars\NullClass;
 use Hubbitus\HuPHP\Vars\IOutExtraData;
+use Hubbitus\HuPHP\Vars\NullClass;
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 
 /**

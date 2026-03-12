@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Macro;
 
-use Hubbitus\HuPHP\Macro\Vars;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
+use Hubbitus\HuPHP\Macro\Vars;
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -4,11 +4,12 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Tests\Debug;
 
 use Hubbitus\HuPHP\Debug\BacktraceNode;
+use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableArrayInconsistentException;
 use Hubbitus\HuPHP\System\OS;
 use Hubbitus\HuPHP\System\OutputType;
 use PHPUnit\Framework\TestCase;
-use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
 
 /**
 * @covers Hubbitus\HuPHP\Debug\BacktraceNode
@@ -284,7 +285,7 @@ final class BacktraceNodeTest extends TestCase {
 			// No 'default' and no 'resource'
 		];
 
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableArrayInconsistentException::class);
+		$this->expectException(VariableArrayInconsistentException::class);
 		$this->expectExceptionMessage('Format of type resource not found. "default" also not provided in $format');
 		$node->formatArgs($format);
 	}

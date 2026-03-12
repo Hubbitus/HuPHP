@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars\Settings;
 
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use Hubbitus\HuPHP\Vars\Settings\Settings;
 use PHPUnit\Framework\TestCase;
 
@@ -38,7 +39,7 @@ class SettingsTest extends TestCase {
 
 	public function testSetSettingsArrayThrowsExceptionOnEmpty(): void {
 		$settings = new Settings();
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException::class);
+		$this->expectException(VariableRequiredException::class);
 		$settings->setSettingsArray([]);
 	}
 

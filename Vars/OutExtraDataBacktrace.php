@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
 use Hubbitus\HuPHP\System\OutputType;
-use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 
 /**
 * Debug and backtrace toolkit.

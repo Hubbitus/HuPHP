@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Filesystem;
 
+use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException;
+use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException;
 use Hubbitus\HuPHP\Filesystem\FileBase;
 use PHPUnit\Framework\TestCase;
 
@@ -147,7 +149,7 @@ class FileBaseTest extends TestCase {
 	}
 
 	public function testWriteContentToNonExistingDirectory(): void {
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException::class);
+		$this->expectException(FileNotExistsException::class);
 		$file = new FileBase('/nonexistent/dir/file.txt');
 		$file->setContentFromString('test');
 		$file->writeContent();
@@ -169,7 +171,7 @@ class FileBaseTest extends TestCase {
 
 		// File exists and is readable, but we pass false to simulate unknown error
 		// This should throw FileNotReadableException with "Unknown error" message
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Filesystem\FileNotReadableException::class);
+		$this->expectException(FileNotReadableException::class);
 		$this->expectExceptionMessage('Unknown error operate on file');
 		$method->invoke($file, false);
 	}

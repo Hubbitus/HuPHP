@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars;
-use Hubbitus\HuPHP\System\OutputType;
 
 use Hubbitus\HuPHP\Vars\OutExtraDataDOMnode;
 use PHPUnit\Framework\TestCase;

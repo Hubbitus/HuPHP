@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Debug;
 
-use Hubbitus\HuPHP\Debug\HuLOGTextSettings;
 use Hubbitus\HuPHP\Debug\HuErrorSettings;
-use PHPUnit\Framework\TestCase;
+use Hubbitus\HuPHP\Debug\HuLOGTextSettings;
 use Hubbitus\HuPHP\System\OutputType;
+use PHPUnit\Framework\TestCase;
 
 /**
 * @covers \Hubbitus\HuPHP\Debug\HuLOGTextSettings

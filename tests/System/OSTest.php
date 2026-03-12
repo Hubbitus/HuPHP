@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\System;
 
-use Hubbitus\HuPHP\System\OutputType;
-use Hubbitus\HuPHP\System\OS;
 use Hubbitus\HuPHP\Exceptions\HaltException;
+use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\System\OutputType;
 use PHPUnit\Framework\TestCase;
 
 /**

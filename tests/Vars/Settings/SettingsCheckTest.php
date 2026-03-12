@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Vars\Settings;
 
-use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
+use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
 use PHPUnit\Framework\TestCase;
 
 class SettingsCheckTest extends TestCase {

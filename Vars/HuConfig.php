@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Hubbitus\HuPHP\Vars;
 
 use Hubbitus\HuPHP\Exceptions\Classes\ClassPropertyNotExistsException;
+use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\System\OS;
 use Hubbitus\HuPHP\Vars\Settings\SettingsCheck;
-use Hubbitus\HuPHP\Macro\Vars;
 
 /**
 * Class to provide easy access to $GLOBALS['__CONFIG'] variables.

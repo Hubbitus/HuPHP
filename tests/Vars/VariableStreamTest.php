@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Vars;
 
+use Hubbitus\HuPHP\Vars\VariableStream;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -292,7 +293,7 @@ class VariableStreamTest extends TestCase {
 		// Unregister first to test registration
 		\stream_wrapper_unregister('var');
 
-		$result = \Hubbitus\HuPHP\Vars\VariableStream::registerStreamWrapper();
+		$result = VariableStream::registerStreamWrapper();
 
 		$this->assertTrue($result);
 		$this->assertContains('var', \stream_get_wrappers());
@@ -303,10 +304,10 @@ class VariableStreamTest extends TestCase {
 		// (wrapper already registered)
 
 		// Ensure it's registered
-		\Hubbitus\HuPHP\Vars\VariableStream::registerStreamWrapper();
+		VariableStream::registerStreamWrapper();
 
 		// Second call should return false
-		$result = \Hubbitus\HuPHP\Vars\VariableStream::registerStreamWrapper();
+		$result = VariableStream::registerStreamWrapper();
 
 		$this->assertFalse($result);
 	}

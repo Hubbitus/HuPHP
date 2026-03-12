@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Debug;
 use Hubbitus\HuPHP\Debug\Backtrace;
-use Hubbitus\HuPHP\System\OutputType;
+use Hubbitus\HuPHP\Debug\HuError;
 
+use Hubbitus\HuPHP\Debug\HuErrorSettings;
+use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Vars\OutExtraDataBacktrace;
 use PHPUnit\Framework\TestCase;
-use Hubbitus\HuPHP\Debug\HuError;
-use Hubbitus\HuPHP\Debug\HuErrorSettings;
 
 /**
 * @covers \Hubbitus\HuPHP\Debug\HuError

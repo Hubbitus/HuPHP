@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\System\Console;
 
+use Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException;
 use Hubbitus\HuPHP\System\Console\HuGetopt;
+use Hubbitus\HuPHP\System\Console\HuGetoptOption;
 use Hubbitus\HuPHP\System\Console\HuGetoptSettings;
+use Hubbitus\HuPHP\Vars\HuArray;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -73,7 +77,7 @@ class HuGetoptNewTest extends TestCase {
 
 		$nonOpts = $getopt->getNonOpts();
 
-		$this->assertInstanceOf(\Hubbitus\HuPHP\Vars\HuArray::class, $nonOpts);
+		$this->assertInstanceOf(HuArray::class, $nonOpts);
 	}
 
 	public function testSetOptsReturnsReference(): void {
@@ -130,7 +134,7 @@ class HuGetoptNewTest extends TestCase {
 		$opt = $getopt->getOptByStr('v');
 
 		$this->assertInstanceOf(
-			\Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
+			HuGetoptOption::class,
 			$opt
 		);
 	}
@@ -143,7 +147,7 @@ class HuGetoptNewTest extends TestCase {
 		$opt = $getopt->get('v');
 
 		$this->assertInstanceOf(
-			\Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
+			HuGetoptOption::class,
 			$opt
 		);
 	}
@@ -157,7 +161,7 @@ class HuGetoptNewTest extends TestCase {
 		$opt = $getopt->getOptByStr('v');
 
 		$this->assertInstanceOf(
-			\Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
+			HuGetoptOption::class,
 			$opt
 		);
 	}
@@ -171,7 +175,7 @@ class HuGetoptNewTest extends TestCase {
 		$opt = $getopt->getOptByStr('verbose');
 
 		$this->assertInstanceOf(
-			\Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
+			HuGetoptOption::class,
 			$opt
 		);
 	}
@@ -185,7 +189,7 @@ class HuGetoptNewTest extends TestCase {
 		$opt = $getopt->getOptByStr('v', 's');
 
 		$this->assertInstanceOf(
-			\Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
+			HuGetoptOption::class,
 			$opt
 		);
 	}
@@ -199,7 +203,7 @@ class HuGetoptNewTest extends TestCase {
 		$opt = $getopt->getOptByStr('verbose', 'l');
 
 		$this->assertInstanceOf(
-			\Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
+			HuGetoptOption::class,
 			$opt
 		);
 	}
@@ -213,7 +217,7 @@ class HuGetoptNewTest extends TestCase {
 
 		$result = $getopt->getShortOpt('-v');
 		$this->assertInstanceOf(
-			\Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
+			HuGetoptOption::class,
 			$result
 		);
 	}
@@ -227,7 +231,7 @@ class HuGetoptNewTest extends TestCase {
 
 		$result = $getopt->getShortOpt('-f');
 		$this->assertInstanceOf(
-			\Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
+			HuGetoptOption::class,
 			$result
 		);
 	}
@@ -252,7 +256,7 @@ class HuGetoptNewTest extends TestCase {
 
 		$result = $getopt->getLongOpt('--verbose');
 		$this->assertInstanceOf(
-			\Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
+			HuGetoptOption::class,
 			$result
 		);
 	}
@@ -266,7 +270,7 @@ class HuGetoptNewTest extends TestCase {
 
 		$result = $getopt->getLongOpt('--file=test.txt');
 		$this->assertInstanceOf(
-			\Hubbitus\HuPHP\System\Console\HuGetoptOption::class,
+			HuGetoptOption::class,
 			$result
 		);
 	}
@@ -532,7 +536,7 @@ class HuGetoptNewTest extends TestCase {
 
 	public function testParseArgsWithDoubleColonModRequiresArgumentException(): void {
 		// : (required) - no argument should throw exception
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableRequiredException::class);
+		$this->expectException(VariableRequiredException::class);
 		$this->expectExceptionMessage('requires argument');
 
 		$settings = new HuGetoptSettings();
@@ -630,7 +634,7 @@ class HuGetoptNewTest extends TestCase {
 	}
 
 	public function testReadPHPArgvThrowsExceptionWhenNoArgv(): void {
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\Variables\VariableEmptyException::class);
+		$this->expectException(VariableEmptyException::class);
 
 		global $argv;
 		$originalArgv = $argv ?? null;

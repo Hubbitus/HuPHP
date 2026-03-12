@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Tests\Exceptions\Variables;
 
+use Hubbitus\HuPHP\Debug\Backtrace;
+use Hubbitus\HuPHP\Exceptions\BaseException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableArrayInconsistentException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableException;
+use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableReadOnlyException;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableArrayInconsistentException;
-use Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException;
-use Hubbitus\HuPHP\Exceptions\BaseException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -146,17 +147,17 @@ class VariableExceptionsTest extends TestCase {
 	}
 
 	public function testVariableIsNullExceptionInstantiation(): void {
-		$exception = new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Variable is null');
+		$exception = new VariableIsNullException(new Backtrace(), 'Variable is null');
 		$this->assertInstanceOf(VariableIsNullException::class, $exception);
 	}
 
 	public function testVariableIsNullExceptionMessage(): void {
-		$exception = new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), null, 'Required variable is null');
+		$exception = new VariableIsNullException(new Backtrace(), null, 'Required variable is null');
 		$this->assertEquals('Required variable is null', $exception->getMessage());
 	}
 
 	public function testVariableIsNullExceptionCode(): void {
-		$exception = new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Null value', null, 400);
+		$exception = new VariableIsNullException(new Backtrace(), 'Null value', null, 400);
 		$this->assertEquals(400, $exception->getCode());
 	}
 
@@ -164,11 +165,11 @@ class VariableExceptionsTest extends TestCase {
 		$this->expectException(VariableIsNullException::class);
 		$this->expectExceptionMessage('Variable cannot be null');
 
-		throw new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), null, 'Variable cannot be null');
+		throw new VariableIsNullException(new Backtrace(), null, 'Variable cannot be null');
 	}
 
 	public function testVariableIsNullExceptionInheritance(): void {
-		$exception = new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Error');
+		$exception = new VariableIsNullException(new Backtrace(), 'Error');
 		$this->assertInstanceOf(\Throwable::class, $exception);
 		$this->assertInstanceOf(\Exception::class, $exception);
 	}
@@ -179,7 +180,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -193,7 +194,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -207,7 +208,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test message 2'),
 			new VariableReadOnlyException('Test message 3'),
 			new VariableArrayInconsistentException('Test message 4'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), null, 'Test message 5')
+			new VariableIsNullException(new Backtrace(), null, 'Test message 5')
 		];
 
 		foreach ($exceptions as $index => $exception) {
@@ -221,7 +222,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test', 2),
 			new VariableReadOnlyException('Test', 3),
 			new VariableArrayInconsistentException('Test', 4),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test', null, 5)
+			new VariableIsNullException(new Backtrace(), 'Test', null, 5)
 		];
 
 		$codes = [1, 2, 3, 4, 5];
@@ -236,7 +237,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -251,7 +252,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -266,7 +267,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -280,7 +281,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -294,7 +295,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -309,7 +310,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -324,7 +325,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -338,7 +339,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -352,7 +353,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -373,7 +374,7 @@ class VariableExceptionsTest extends TestCase {
 		$exception4 = new VariableArrayInconsistentException('Test');
 		$this->assertEquals('Hubbitus\HuPHP\Exceptions\Variables\VariableArrayInconsistentException', \get_class($exception4));
 
-		$exception5 = new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test');
+		$exception5 = new VariableIsNullException(new Backtrace(), 'Test');
 		$this->assertEquals('Hubbitus\HuPHP\Exceptions\Variables\VariableIsNullException', \get_class($exception5));
 	}
 
@@ -406,7 +407,7 @@ class VariableExceptionsTest extends TestCase {
 	}
 
 	public function testNullExceptionInheritanceChain(): void {
-		$exception = new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Error');
+		$exception = new VariableIsNullException(new Backtrace(), 'Error');
 
 		$this->assertInstanceOf(VariableIsNullException::class, $exception);
 		$this->assertInstanceOf(\Exception::class, $exception);
@@ -457,7 +458,7 @@ class VariableExceptionsTest extends TestCase {
 			new VariableRangeException('Test'),
 			new VariableReadOnlyException('Test'),
 			new VariableArrayInconsistentException('Test'),
-			new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), 'Test')
+			new VariableIsNullException(new Backtrace(), 'Test')
 		];
 
 		foreach ($exceptions as $exception) {
@@ -567,7 +568,7 @@ class VariableExceptionsTest extends TestCase {
 	}
 
 	public function testNullExceptionSpecificMessage(): void {
-		$exception = new VariableIsNullException(new \Hubbitus\HuPHP\Debug\Backtrace(), null, 'Required parameter $id is null');
+		$exception = new VariableIsNullException(new Backtrace(), null, 'Required parameter $id is null');
 		$this->assertStringContainsString('null', \strtolower($exception->getMessage()));
 	}
 }

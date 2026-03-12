@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-use PHPUnit\Framework\TestCase;
 use Hubbitus\HuPHP\Debug\HuFormatException;
+use PHPUnit\Framework\TestCase;
 
 /**
 * Class HuFormatExceptionTest.
 **/
 class HuFormatExceptionTest extends TestCase {
 	public function testExceptionClass(): void {
-		$this->assertInstanceOf(\Exception::class, new HuFormatException('Test message'));
+		$this->assertInstanceOf(Exception::class, new HuFormatException('Test message'));
 	}
 
 	public function testExceptionMessage(): void {

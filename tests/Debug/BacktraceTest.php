@@ -6,6 +6,7 @@ namespace Hubbitus\HuPHP\Tests\Debug;
 use Hubbitus\HuPHP\Debug\Backtrace;
 use Hubbitus\HuPHP\Debug\BacktraceNode;
 use Hubbitus\HuPHP\Debug\Format\PrintoutDefault;
+use Hubbitus\HuPHP\Exceptions\BaseException;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
 use Hubbitus\HuPHP\System\OutputType;
 use PHPUnit\Framework\TestCase;
@@ -338,7 +339,7 @@ final class BacktraceTest extends TestCase {
 		$bt = new Backtrace($debugData, 0);
 		$searchNode = new BacktraceNode(['function' => 'testFunction']);
 
-		$this->expectException(\Hubbitus\HuPHP\Exceptions\BaseException::class);
+		$this->expectException(BaseException::class);
 		$bt->findRegexp($searchNode);
 	}
 

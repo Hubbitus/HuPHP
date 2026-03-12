@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars;
 
-use Hubbitus\HuPHP\Vars\Single;
-use Hubbitus\HuPHP\Vars\HuArray;
 
 /**
 * CONF() function - short alias to Single::def('config')

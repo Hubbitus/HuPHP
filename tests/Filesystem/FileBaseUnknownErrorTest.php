@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\Tests\HuPHP\Filesystem;
 
-use Hubbitus\HuPHP\Filesystem\FileBase;
 use Hubbitus\HuPHP\Exceptions\Filesystem\FileNotExistsException;
+use Hubbitus\HuPHP\Filesystem\FileBase;
 use PHPUnit\Framework\TestCase;
 
 /**

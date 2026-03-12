@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
 
-use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+use Hubbitus\HuPHP\Macro\Vars;
 use Hubbitus\HuPHP\Vars\OutExtraDataBacktrace;
 
 // HuFormatException is defined in separate file Debug/HuFormatException.php

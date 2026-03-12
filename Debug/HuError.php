@@ -2,13 +2,13 @@
 declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Debug;
-use Hubbitus\HuPHP\System\OutputType;
-
 use Hubbitus\HuPHP\Exceptions\Variables\VariableRangeException;
+
+use Hubbitus\HuPHP\Macro\Vars;
+use Hubbitus\HuPHP\System\OutputType;
+use Hubbitus\HuPHP\Vars\IOutExtraData;
 use Hubbitus\HuPHP\Vars\OutExtraDataCommon;
 use Hubbitus\HuPHP\Vars\Settings\Settings;
-use Hubbitus\HuPHP\Macro\Vars;
-use Hubbitus\HuPHP\Vars\IOutExtraData;
 
 /**
 * Debug and backtrace toolkit.

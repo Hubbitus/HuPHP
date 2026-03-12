@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\Vars\Settings;
 
-use Hubbitus\HuPHP\Vars\HuClass;
 use Hubbitus\HuPHP\Macro\Vars;
+use Hubbitus\HuPHP\Vars\HuClass;
 
 /**
 * Provide easy to use settings-class for many purpose. Similar array of settings, but provide several addition magic methods,

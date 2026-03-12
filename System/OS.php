@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Hubbitus\HuPHP\System;
 
-use Hubbitus\HuPHP\System\OutputType;
 use Hubbitus\HuPHP\Exceptions\HaltException;
 
 /**
