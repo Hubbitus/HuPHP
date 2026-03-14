@@ -3,19 +3,7 @@
 
 use Hubbitus\HuPHP\Debug\Dump;
 use Hubbitus\HuPHP\Vars\HuArray;
-include('autoload.php');
-
-/*
-<html>
-<head>
-<meta http-equiv="Content-type" content="text/html; charset=windows-1251"/>
-</head>
-<body>
-*/
-//include('template/template_class.php');
-//include('Debug/debug.php');
-//include('Debug/Phar/HuDebug.phar');
-//include_once('autoload.php');
+include('../vendor/autoload.php');
 
 ################################################################################################
 /*
@@ -527,45 +515,13 @@ Dump::a(f_or());
 */
 ################################################################################################
 /*
-class A{
-public $publicvar = '7';
-
-	function getRef(){
-	return $this->publicvar;
-	}
-
-	function &__get($var){
-	Dump::a($var);
-		if ('_last_' == $var) return $this->publicvar;
-	}
-	function __set($var, $value){
-	Dump::a($var, '__set');
-		if ('_last_' == $var){
-		//$this->publicvar = $value;
-		$ref =& $this->getRef();
-		$ref = 78;
-		}
-	}
-}
-$a = new A;
-Dump::a($a);
-Dump::a($a->_last_);
-$ttt = $a->_last_ = 77;
-//$a->qwerty = 777;
-//$a->publicvar = 88;
-Dump::a($a);
-Dump::a($a->_last_);
-Dump::a($ttt);
-*/
-################################################################################################
-/*
 Dump::a($argv);
 $cont = file_get_contents('php://stdin');
 Dump::a($cont);
 
 $ttt = array($argv[4]);
 Dump::a($ttt);
-array_walk($ttt, create_function('&$v', 'eval(\'$v ="\' . addcslashes($v, \'"\') . \'";\');'));
+\array_walk($ttt, fn(&$v) => $v = \addcslashes($v, '"'));
 Dump::a($ttt);
 
 eval('$to = "'.addcslashes($ttt[0], '"').'";');
@@ -574,7 +530,7 @@ Dump::a($to);
 //$res = preg_replace($argv[2], $argv[4], $cont);
 $res = preg_replace($argv[2], $to, $cont);
 Dump::a($res);
-//#For string-eval esape characters like \n, \t, \r and other!
+//#For string-eval escape characters like \n, \t, \r and other!
 //eval('$nRes = "'.addcslashes($res, '"').'";');
 //Dump::a($nRes);
 
@@ -598,19 +554,6 @@ xdebug_var_dump($srcArr);
 */
 ################################################################################################
 /*
-$length = 10000;
-
-$direct = str_pad('', $length, '-=').'END';
-//Dump::a($direct);
-eval('$evalresult = str_pad("", '.$length.', "-=")."END";');
-//Dump::a($evalresult);
-
-//$ttt = 'LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPS09LT0tPQ==';
-//Dump::a($ttt);
-//Dump::a(base64_decode($ttt));
-*/
-################################################################################################
-/*
 phpinfo();
 Dump::a(0 | 2);
 Dump::a(ini_get('xdebug.overload_var_dumpQ'));
@@ -629,16 +572,6 @@ f(6);
 */
 ################################################################################################
 /*
-include_once('Strings/charset/iconv_charset_convert.php');
-//error_reporting(E_ALL ^ E_NOTICE);
-$testText = '����';
-//echo iconv('CP1251_TTT', 'UTF-8', '����') . "\n";
-//echo iconv_charset_convert::conv($testText, 'CP1251', 'UTF-8') . "\n";
-//echo iconv_charset_convert::conv($testText, 'CP1251') . "\n";
-echo iconv_charset_convert::conv($testText, 'CP1251_TTT') . "\n";
-*/
-################################################################################################
-/*
 use Hubbitus\HuPHP\Macro\Vars;
 
 $str = "Some text, NOT array";
@@ -654,10 +587,6 @@ Dump::a(isset($str{5}));		//Work
 Dump::a(isset($str{-5}));	//Work
 */
 ################################################################################################
-//$argv[1] = '/var/www/_SHARED_/template/template_class_2.1.php';
-#$argv[1] = '/home/pasha/NetBeansProjects/temp/web/example.php';
-#include('/var/www/_SHARED_/@tools/phpsource.extract_functions.php');
-################################################################################################
 /*
 include_once('Vars/HuArray.php');
 $ha = new HuArray(
@@ -670,11 +599,11 @@ $ha = new HuArray(
 Dump::a($ha->one);
 Dump::a($ha->arr);					// Result Array (raw, as is)!
 Dump::a($ha->hu('arr'));				// Result HuArray (only if result had to be array, as is otherwise)!!! Original modified in place!
-Dump::a($ha->hu('arr')->hu(2));		// Property access. Alse as any HuArray methods like walk(), filter() and any other.
+Dump::a($ha->hu('arr')->hu(2));		// Property access. Also as any HuArray methods like walk(), filter() and any other.
 Dump::a($ha->{'hu://arr'}->{'hu://2'});	// Alternate method. Fully equivalent of line before. Just another form.
 */
 ################################################################################################
-//include_once('Vars/HuArray.php');
+
 $testArray = [0, 11, 22, 777];
 $ha = new HuArray($testArray);
 Dump::a($ha, 'Original HuArray');
@@ -689,4 +618,4 @@ Dump::a($ha->filterOutByKeys([0,2]));
 $ha->setSettingsArray( $testArray );
 Dump::a($ha, 'Renewed to original');
 
-Dump::a($ha->filterKeysCallback( \create_function('&$key', 'return ( $key % 2 );') ));
+Dump::a($ha->filterKeysCallback(fn($key) => (bool)($key % 2)));

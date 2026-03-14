@@ -78,17 +78,17 @@ class Dump {
 	}
 
 	/**
-	* Universal dump function - alias for console dump
+	* Universal dump function - alias for the {@see Dump::auto}
 	* Automatically detects variable name from calling code when no header provided
 	*
+	* @see Dump::auto()
 	* @param mixed $var Variable to dump
 	* @param string|null $header Optional header to display. If null, auto-detected from call site
 	* @param bool $return Whether to return the output instead of printing it
 	* @return mixed Returns output if $return is true, void otherwise
 	**/
 	public static function a(mixed $var, ?string $header = null, bool $return = false): mixed {
-		$header ??= self::detectVarNameFromBacktrace();
-		return static::c($var, $header, $return);
+		return static::auto($var, $header, $return);
 	}
 
 	/**
@@ -163,7 +163,12 @@ class Dump {
 			$className = $var::class;
 			$output = "{$className} {\n";
 
-			$props = \get_object_vars($var);
+			// Use __debugInfo() if available (for objects like HuArray that hide internal state)
+			if (\method_exists($var, '__debugInfo')) {
+				$props = $var->__debugInfo();
+			} else {
+				$props = \get_object_vars($var);
+			}
 			foreach ($props as $key => $value) {
 				$output .= "{$innerIndent}[{$key}] => ";
 				if (\is_array($value)) {
@@ -191,44 +196,41 @@ class Dump {
 	public static function detectVarNameFromBacktrace(?callable $fileReader = null): ?string {
 		$backtrace = \debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 		$dumpMethod = null;
+		$callSiteFrame = null;
 
-		// Find the Dump method name (the first Dump frame that is not this helper)
+		// Find the last Dump method in the call chain (the one called from user code)
+		// and remember its call site (file/line from the frame itself)
 		foreach ($backtrace as $frame) {
 			if (isset($frame['class']) && $frame['class'] === __CLASS__ && $frame['function'] !== __FUNCTION__) {
 				$dumpMethod = $frame['function'];
-				break;
+				$callSiteFrame = $frame;
 			}
 		}
 
-		if ($dumpMethod === null) {
+		if ($dumpMethod === null || $callSiteFrame === null) {
 			return null;
 		}
 
-		// Find the frame for the Dump method call itself; this frame's file/line point to the call site
-		foreach ($backtrace as $frame) {
-			if (isset($frame['class']) && $frame['class'] === __CLASS__ && $frame['function'] === $dumpMethod) {
-				$file = $frame['file'];
-				$line = $frame['line'];
+		$file = $callSiteFrame['file'];
+		$line = $callSiteFrame['line'];
 
-				$lines = $fileReader !== null ? $fileReader($file) : \file($file);
-				if (!isset($lines[$line - 1])) {
-					continue;
-				}
-				$source = \rtrim($lines[$line - 1]);
+		$lines = $fileReader !== null ? $fileReader($file) : \file($file);
+		if (!isset($lines[$line - 1])) {
+			return null;
+		}
+		$source = \rtrim($lines[$line - 1]);
 
-				// Remove single-line and multi-line comments
-				$source = \preg_replace('!//.*!', '', $source);
-				$source = \preg_replace('!/\*.*?\*/!', '', $source);
+		// Remove single-line and multi-line comments
+		$source = \preg_replace('!//.*!', '', $source);
+		$source = \preg_replace('!/\*.*?\*/!', '', $source);
 
-				// Build pattern to match Dump::<method>(... first argument ...)
-				$pattern = '/([a-zA-Z_\\\\][a-zA-Z0-9_\\\\]*)?\s*::\s*' . \preg_quote($dumpMethod, '/') . '\s*\(\s*([^),]+)/';
+		// Build pattern to match Dump::<method>(... first argument ...)
+		$pattern = '/([a-zA-Z_\\\\][a-zA-Z0-9_\\\\]*)?\s*::\s*' . \preg_quote($dumpMethod, '/') . '\s*\(\s*([^),]+)/';
 
-				if (\preg_match($pattern, $source, $matches)) {
-					$varExpr = \trim($matches[2]);
-					if ($varExpr !== '') {
-						return $varExpr;
-					}
-				}
+		if (\preg_match($pattern, $source, $matches)) {
+			$varExpr = \trim($matches[2]);
+			if ($varExpr !== '') {
+				return $varExpr;
 			}
 		}
 

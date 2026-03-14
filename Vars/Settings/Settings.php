@@ -168,4 +168,13 @@ class Settings extends HuClass {
 	public function length(): int {
 		return \sizeof($this->__SETS);
 	}
+
+	/**
+	* Return debug info for var_dump() and similar functions.
+	*
+	* @return array<string, mixed>
+	**/
+	public function __debugInfo(): array {
+		return $this->__SETS;
+	}
 }
