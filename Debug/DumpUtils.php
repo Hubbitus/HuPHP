@@ -16,7 +16,7 @@ class DumpUtils {
 	* @param string $dump String returned by print_r
 	* @return string Transformed, well-formatted string
 	**/
-	public static function transformCorrect_print_r(string $dump): string {
+	public static function transformCorrectPrintR(string $dump): string {
 		return \trim(
 			\preg_replace(
 				[
@@ -42,7 +42,7 @@ class DumpUtils {
 	* @param string $dump String returned by var_dump
 	* @return string Transformed, well-formatted string
 	**/
-	public static function transformCorrect_var_dump(string $dump): string {
+	public static function transformCorrectVarDump(string $dump): string {
 		return
 			\trim(/* For var_dump variant */
 				\preg_replace(

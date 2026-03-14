@@ -41,7 +41,7 @@ abstract class HuClass {
 	* @param string $toClassName Class name to what casting do
 	* @param mixed $what
 	**/
-	public static function reinterpret_cast($toClassName, $what): object {
+	public static function reinterpretCast($toClassName, $what): object {
 		return \unserialize(
 			\preg_replace(
 				'/^O:[0-9]+:"[^"]+":/',

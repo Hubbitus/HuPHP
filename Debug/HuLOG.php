@@ -124,10 +124,10 @@ class HuLOG { //HubbitusLOG
 	**/
 	protected function writeLogs(int $to, string $file): void {
 		if (($to & HuLOGSettings::LOG_TO_FILE) !== 0) {
-			$this->log_to_file($file);
+			$this->logToFile($file);
 		}
 		if (($to & HuLOGSettings::LOG_TO_PRINT) !== 0) {
-			$this->log_print();
+			$this->logPrint();
 		}
 	}
 
@@ -136,7 +136,7 @@ class HuLOG { //HubbitusLOG
 	*
 	* @param string $file File identifier (default 'ERR')
 	**/
-	private function log_to_file(string $file = 'ERR'): void {
+	private function logToFile(string $file = 'ERR'): void {
 		/** @phpstan-ignore property.notFound */
 		$logDir = $this->settings->LOG_FILE_DIR;
 		/** @phpstan-ignore property.notFound */
@@ -151,7 +151,7 @@ class HuLOG { //HubbitusLOG
 	/**
 	* Print log to output
 	**/
-	private function log_print(): void {
+	private function logPrint(): void {
 		echo $this->formatter->formatForPrint($this->lastLogText);
 	}
 }

@@ -352,7 +352,7 @@ echo "temp.php 0\n";
 //include('Not existent file');
 //Dump::a(@require('include.php'));
 //Dump::a(@include('include.php'));
-Dump::a(OS::is_includeable('include.php', false));
+Dump::a(OS::isIncludeable('include.php', false));
 echo "temp.php 1\n";
 //echo TTT;
 */

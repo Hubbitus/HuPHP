@@ -34,6 +34,7 @@ namespace Hubbitus\HuPHP\Vars;
 * @param string|null $className Optional class name
 * @param boolean     $noThrow   If true - silently not thrown any exception.
 * @return Single|HuArray If className present - HuArray returned, Single(HuConfig) otherwise
+* @SuppressWarnings("php:S100")
 **/
 if (!\function_exists('Hubbitus\HuPHP\Vars\CONF')) {
 	function &CONF($className = null, $noThrow = false): mixed {
