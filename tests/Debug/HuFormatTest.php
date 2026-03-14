@@ -111,21 +111,21 @@ class HuFormatTest extends TestCase {
 	* Test sprintf_var constant.
 	**/
 	public function testSprintfVarConstant(): void {
-		$this->assertEquals('__vAr__', HuFormat::sprintf_var);
+		$this->assertEquals('__vAr__', HuFormat::SPRINTF_VAR);
 	}
 
 	/**
 	* Test evaluate_var constant.
 	**/
 	public function testEvaluateVarConstant(): void {
-		$this->assertEquals('var', HuFormat::evaluate_var);
+		$this->assertEquals('var', HuFormat::EVALUATE_VAR);
 	}
 
 	/**
 	* Test mods_separator constant.
 	**/
 	public function testModsSeparatorConstant(): void {
-		$this->assertEquals(':::', HuFormat::mods_separator);
+		$this->assertEquals(':::', HuFormat::MODS_SEPARATOR);
 	}
 
 	/**
@@ -735,10 +735,10 @@ class HuFormatTest extends TestCase {
 	* Test modifier p with sprintf_var replacement.
 	**/
 	public function testModifierPWithSprintfVarReplacement(): void {
-		// Modifier 'p' replaces HuFormat::sprintf_var with _realValue
+		// Modifier 'p' replaces HuFormat::SPRINTF_VAR with _realValue
 		// Use 'vp:::' to first set _realValue via 'v', then format via 'p'
 		$value = 'World';
-		$format = new HuFormat(['vp:::', 'Hello %s!', HuFormat::sprintf_var], $value);
+		$format = new HuFormat(['vp:::', 'Hello %s!', HuFormat::SPRINTF_VAR], $value);
 		$result = $format->getString();
 
 		// 'v' returns 'World', then 'p' returns 'Hello World!'
