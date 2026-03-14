@@ -42,7 +42,7 @@ class OS {
 	*
 	* @param	string $filename As it can be passed to include or require.
 	**/
-	public static function is_includeable($filename): bool {
+	public static function isIncludeable($filename): bool {
 		/** is_file, is_readable not suitable, because include_path do not take effect.
 		* And opposite comment of "php at metagg dot com" and "medhefgo at googlemail dot com",
 		* wouldn't manually check all paths in include_path. Just open this file to read

@@ -70,7 +70,7 @@ class HuConfig extends SettingsCheck {
 			if ($e instanceof ClassPropertyNotExistsException && !\in_array($name, $this->_include_tried, true)) {
 				$this->_include_tried[] = $name; //In any case to do not check again next time
 				$path = 'includes/configs/' . $name . '.config.php';
-				if(OS::is_includeable($path)) {
+				if(OS::isIncludeable($path)) {
 					include($path);
 				}
 				if(isset($GLOBALS['__CONFIG'][$name])) { //New key

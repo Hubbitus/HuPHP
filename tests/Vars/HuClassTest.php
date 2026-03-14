@@ -25,7 +25,7 @@ class HuClassTest extends TestCase {
 		$source = new Settings(['name' => 'test', 'value' => 123]);
 
 		// Cast to SettingsCheck which extends Settings
-		$result = HuClass::reinterpret_cast(Settings::class, $source);
+		$result = HuClass::reinterpretCast(Settings::class, $source);
 
 		$this->assertInstanceOf(Settings::class, $result);
 		$this->assertEquals('test', $result->name);

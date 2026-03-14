@@ -61,13 +61,13 @@ class OSTest extends TestCase {
 	}
 
 	public function testIsIncludeableReturnsTrueForExistingFile(): void {
-		$result = OS::is_includeable(__FILE__);
+		$result = OS::isIncludeable(__FILE__);
 
 		$this->assertTrue($result);
 	}
 
 	public function testIsIncludeableReturnsFalseForNonExistingFile(): void {
-		$result = OS::is_includeable('/non/existing/file.php');
+		$result = OS::isIncludeable('/non/existing/file.php');
 
 		$this->assertFalse($result);
 	}

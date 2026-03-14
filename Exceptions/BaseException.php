@@ -10,7 +10,7 @@ namespace Hubbitus\HuPHP\Exceptions;
 **/
 class BaseException extends \Exception {
 	// $pos = false - at end, else - in beginning
-	public function ADDMessage(string $addonMessage, bool $pos = false): void {
+	public function addMessage(string $addonMessage, bool $pos = false): void {
 		if (!$pos) {
 			$this->message .= $addonMessage;
 		}

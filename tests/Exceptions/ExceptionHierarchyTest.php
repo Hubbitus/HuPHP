@@ -66,16 +66,16 @@ class ExceptionHierarchyTest extends TestCase {
 		$this->assertSame($previous, $exception->getPrevious());
 	}
 
-	public function testBaseExceptionADDMessageAppend(): void {
+	public function testBaseExceptionAddMessageAppend(): void {
 		$exception = new BaseException('Original');
-		$exception->ADDMessage(' Added');
+		$exception->addMessage(' Added');
 
 		$this->assertEquals('Original Added', $exception->getMessage());
 	}
 
-	public function testBaseExceptionADDMessagePrepend(): void {
+	public function testBaseExceptionAddMessagePrepend(): void {
 		$exception = new BaseException('Original');
-		$exception->ADDMessage('Added ', true);
+		$exception->addMessage('Added ', true);
 
 		$this->assertEquals('Added Original', $exception->getMessage());
 	}

@@ -80,7 +80,7 @@ final class PrintoutDefaultTest extends TestCase {
 	}
 
 	public function testBacktracePrintoutWebHelperReturnsString(): void {
-		$result = PrintoutDefault::backtrace__printout_WEB_helper('short', 'long');
+		$result = PrintoutDefault::backtracePrintoutWebHelper('short', 'long');
 
 		$this->assertIsString($result);
 		$this->assertStringContainsString('short', $result);
@@ -88,7 +88,7 @@ final class PrintoutDefaultTest extends TestCase {
 	}
 
 	public function testBacktracePrintoutWebHelperWithCustomTags(): void {
-		$result = PrintoutDefault::backtrace__printout_WEB_helper(
+		$result = PrintoutDefault::backtracePrintoutWebHelper(
 			'short',
 			'long',
 			'<div>',
@@ -101,7 +101,7 @@ final class PrintoutDefaultTest extends TestCase {
 	}
 
 	public function testBacktracePrintoutWebHelperEscapesQuotes(): void {
-		$result = PrintoutDefault::backtrace__printout_WEB_helper(
+		$result = PrintoutDefault::backtracePrintoutWebHelper(
 			"test'string",
 			"long'string"
 		);

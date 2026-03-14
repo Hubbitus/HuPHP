@@ -15,7 +15,7 @@ class PrintoutDefault {
 	* @param string $innerTagEnd
 	* @return string
 	**/
-	public static function backtrace__printout_WEB_helper(string $shortVar, string $longVar, string $innerTagStart = '<textarea', string $innerTagEnd = '</textarea>'): string {
+	public static function backtracePrintoutWebHelper(string $shortVar, string $longVar, string $innerTagStart = '<textarea', string $innerTagEnd = '</textarea>'): string {
 		$str = '<span title="' . $longVar . '" onclick=\'' .
 			'this.onclickBak=this.onclick; this.onclick=null; var ttt = this.innerHTML; this.innerHTML="' . $innerTagStart . ' style=\\"color: green; width: 50em; height: 7em; overflow: auto\\" ondblclick=\\"this.parentNode.onclick=this.parentNode.onclickBak; var ttt=this.parentNode.title; this.parentNode.title=( this.defaultValue ? this.defaultValue : this.innerHTML); this.parentNode.innerHTML = ttt; \\" + this.title + "' . $innerTagEnd . '"; this.title = ttt;\'' .
 			'>' . $shortVar . '</span>';
@@ -52,8 +52,8 @@ class PrintoutDefault {
 				'argtypes' => [
 					'integer' => ['v:::'], // As is
 					'double' => ['v:::'],
-					'string' => ['E:::', self::backtrace__printout_WEB_helper('\\\'\'.htmlspecialchars(substr($var, 0, 32)).((($sl = strlen($var)) < 32) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}', '\'.htmlspecialchars($var).\'')],
-					'array' => ['E:::', self::backtrace__printout_WEB_helper('\'.\'Array(\'.sizeof($var).\')\'.\'', '\'.htmlspecialchars(dump::byOutType(OutputType::WEB, $var, null, true)).\'', '<div style=\\\"display: table; border: thick dashed green; border-top: none\\\"', '</div>')],
+					'string' => ['E:::', self::backtracePrintoutWebHelper('\\\'\'.htmlspecialchars(substr($var, 0, 32)).((($sl = strlen($var)) < 32) ? \'\' : \'...\').\'\\\'{\'.$sl.\'}', '\'.htmlspecialchars($var).\'')],
+					'array' => ['E:::', self::backtracePrintoutWebHelper('\'.\'Array(\'.sizeof($var).\')\'.\'', '\'.htmlspecialchars(dump::byOutType(OutputType::WEB, $var, null, true)).\'', '<div style=\\\"display: table; border: thick dashed green; border-top: none\\\"', '</div>')],
 					'object' => ['E:::', '\'Object(\'.get_class($var).\')\''],
 					'resource' => ['E:::', '\'Resource(\'.strstr($var, \'#\').\')\''],
 					'boolean' => ['E:::', '$var ? \'True\' : \'False\''],
