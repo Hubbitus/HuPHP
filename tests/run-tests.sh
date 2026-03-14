@@ -47,8 +47,8 @@ echo "Project root: $PROJECT_ROOT"
 
 # Проверка phpunit
 if [[ ! -f "$PHPUNIT" ]]; then
-    echo "Error: phpunit not found at $PHPUNIT"
-    echo "Run: cd '$PROJECT_ROOT' && composer install"
+    echo "Error: phpunit not found at $PHPUNIT" >&2
+    echo "Run: cd '$PROJECT_ROOT' && composer install" >&2
     exit 1
 fi
 
