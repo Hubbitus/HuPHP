@@ -7,6 +7,10 @@ namespace Hubbitus\HuPHP\Vars;
 * VariableStream stream wrapper. Manipulate stream 'var://varName' as file, where content is $varName.
 * Very useful example from http://www.php.net/manual/ru/function.stream-wrapper-register.php as base for implementation
 *
+* SonarQube rule php:S100 (method names should be camelCase) is suppressed for all stream_* methods in this class.
+* This is because the PHP stream wrapper API requires these specific snake_case method names to function correctly.
+* Renaming them would break the stream wrapper functionality.
+*
 * @author Pahan-Hubbitus (Pavel Alexeev) <Pahan@Hubbitus.info>
 * @copyright Copyright (c) 2008, Pahan-Hubbitus (Pavel Alexeev)
 * @created 2008-06-16 14:33
@@ -47,6 +51,7 @@ class VariableStream {
 	* @param string $mode Open mode
 	* @param int $options Stream options
 	* @param string|null $opened_path Opened path
+	* @SuppressWarnings("php:S100") see rationale in class description
 	**/
 	public function stream_open(string $path, string $mode, int $options, ?string &$opened_path): bool {
 		$url = \parse_url($path);
@@ -75,6 +80,7 @@ class VariableStream {
 	* Read from stream.
 	*
 	* @param int $count Number of bytes to read
+	* @SuppressWarnings("php:S100") see rationale in class description
 	**/
 	public function stream_read(int $count): string {
 		$var = $GLOBALS[$this->varname] ?? '';
@@ -88,6 +94,7 @@ class VariableStream {
 	*
 	* @param string $data Data to write
 	* @return int
+	* @SuppressWarnings("php:S100") see rationale in class description
 	**/
 	public function stream_write(string $data): int {
 		$var = $GLOBALS[$this->varname] ?? '';
@@ -102,6 +109,7 @@ class VariableStream {
 	* Get current position.
 	*
 	* @return int
+	* @SuppressWarnings("php:S100") see rationale in class description
 	**/
 	public function stream_tell(): int {
 		return $this->position;
@@ -111,6 +119,7 @@ class VariableStream {
 	* Check if end of stream.
 	*
 	* @return bool
+	* @SuppressWarnings("php:S100") see rationale in class description
 	**/
 	public function stream_eof(): bool {
 		$var = $GLOBALS[$this->varname] ?? '';
@@ -121,6 +130,7 @@ class VariableStream {
 	* Get stream statistics.
 	*
 	* @return array<int, mixed>
+	* @SuppressWarnings("php:S100") see rationale in class description
 	**/
 	public function stream_stat(): array {
 		return [];
@@ -131,6 +141,7 @@ class VariableStream {
 	*
 	* @param int $offset Offset
 	* @param int $whence Seek mode
+	* @SuppressWarnings("php:S100") see rationale in class description
 	**/
 	public function stream_seek(int $offset, int $whence): bool {
 		$var = $GLOBALS[$this->varname] ?? '';
