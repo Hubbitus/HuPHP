@@ -18,13 +18,13 @@ use Hubbitus\HuPHP\Vars\OutExtraDataBacktrace;
 **/
 class HuFormat extends HuError {
 	/** Replace this in ->_format on real value of _value (after process mod_s) **/
-	public const string sprintf_var = '__vAr__';
+	public const string SPRINTF_VAR = '__vAr__';
 
 	/** Var to process in eval-string in mod_e. In eval string off course witch sign $. **/
-	public const string evaluate_var = 'var';
+	public const string EVALUATE_VAR = 'var';
 
 	/** Separator to separate mods from name in one string. For more info see {@see ::parseModsName()} **/
-	public const string mods_separator = ':::';
+	public const string MODS_SEPARATOR = ':::';
 
 	/**
 	* For each present modifier will maintain method of implementation..
@@ -104,7 +104,7 @@ class HuFormat extends HuError {
 			'p' => function(self $obj): mixed {
 				//Replace by real value.
 				$format = $obj->_format;
-				foreach (\array_keys($format, self::sprintf_var, true) as $key) {
+				foreach (\array_keys($format, self::SPRINTF_VAR, true) as $key) {
 					$format[$key] = $obj->_realValue;
 				}
 				return \call_user_func_array('sprintf', $format);
@@ -115,12 +115,12 @@ class HuFormat extends HuError {
 			**/
 			'e' => function(self $obj): string {
 				if (!$obj->_realValued) {
-					${self::evaluate_var} = $obj->getValue(); /* @phpstan-ignore variable.dynamicName */
+					${self::EVALUATE_VAR} = $obj->getValue(); /* @phpstan-ignore variable.dynamicName */
 					eval('$obj->_realValue = '.$obj->_name.';');
 					$obj->_realValued = true;
 				}
 				else {
-					${self::evaluate_var} = $obj->getValue(); /* @phpstan-ignore variable.dynamicName */
+					${self::EVALUATE_VAR} = $obj->getValue(); /* @phpstan-ignore variable.dynamicName */
 					eval('$obj->_realValue = '.$obj->_realValue.';');
 				}
 				return (string)$obj->_realValue;
@@ -131,7 +131,7 @@ class HuFormat extends HuError {
 			**/
 			'E' => function(self $obj): mixed {
 				/** @phpstan-ignore variable.dynamicName */
-				${self::evaluate_var} = $obj->getValue();
+				${self::EVALUATE_VAR} = $obj->getValue();
 				eval('$ret = '.$obj->_format[0].';');
 				/** @phpstan-ignore variable.undefined */
 				return $ret;
@@ -328,7 +328,7 @@ class HuFormat extends HuError {
 	}
 
 	/**
-	* Parses and set from given str. As separator used {@see self::mods_separator}.
+	* Parses and set from given str. As separator used {@see self::MODS_SEPARATOR}.
 	* F.e.: 'AI:::line'. If separator not present - whole string in NAME!
 	*
 	* @param string|int $str
@@ -336,12 +336,12 @@ class HuFormat extends HuError {
 	**/
 	protected function &parseModsName($str): HuFormat {
 		$str = (string) $str;
-		if (!\strstr($str, self::mods_separator)) {//Whole name
+		if (!\strstr($str, self::MODS_SEPARATOR)) {//Whole name
 			$this->_name = $str;
 			$this->_modStr = '';
 		}
 		else {//Separator present
-			list($this->_modStr, $this->_name) = \explode(self::mods_separator, $str);
+			list($this->_modStr, $this->_name) = \explode(self::MODS_SEPARATOR, $str);
 		}
 		return $this->parseMods();
 	}
