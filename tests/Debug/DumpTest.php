@@ -5,6 +5,8 @@ namespace Hubbitus\Tests\HuPHP\Debug;
 
 use Hubbitus\HuPHP\Debug\Dump;
 use Hubbitus\HuPHP\System\OS;
+use Hubbitus\HuPHP\Vars\HuArray;
+use Hubbitus\HuPHP\Vars\Settings\Settings;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -1510,5 +1512,206 @@ Array[size: 1] {
 		$method->invoke(null, ['arr' => $obj], 0);
 
 		self::assertTrue(true);
+	}
+
+	/**
+	* Test Dump::a() with object that has __debugInfo() method (like HuArray)
+	**/
+	public function testDumpAWithDebugInfoObject(): void {
+		$var = new class {
+			public function __debugInfo(): array {
+				return ['key1' => 'value1', 'key2' => 42];
+			}
+		};
+
+		$result = Dump::a($var, 'DebugInfo Object', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== DebugInfo Object ===', $result);
+		$this->assertStringContainsString('[key1] => \'value1\'', $result);
+		$this->assertStringContainsString('[key2] => 42', $result);
+	}
+
+	/**
+	* Test Dump::a() with nested __debugInfo objects
+	**/
+	public function testDumpAWithNestedDebugInfoObjects(): void {
+		$inner = new class {
+			public function __debugInfo(): array {
+				return ['inner_key' => 'inner_value'];
+			}
+		};
+
+		$outer = new class($inner) {
+			private object $nested;
+
+			public function __construct(object $nested) {
+				$this->nested = $nested;
+			}
+
+			public function __debugInfo(): array {
+				return ['outer_key' => 'outer_value', 'nested' => $this->nested];
+			}
+		};
+
+		$result = Dump::a($outer, 'Nested DebugInfo', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== Nested DebugInfo ===', $result);
+		$this->assertStringContainsString('[outer_key] => \'outer_value\'', $result);
+		$this->assertStringContainsString('[nested]', $result);
+		$this->assertStringContainsString('[inner_key] => \'inner_value\'', $result);
+	}
+
+	// =========================================================================
+	// Tests with real framework classes (HuArray, Settings)
+	// =========================================================================
+
+	/**
+	* Test Dump::a() with HuArray - numeric indexed array
+	**/
+	public function testDumpAWithHuArrayNumeric(): void {
+		$ha = new HuArray([0, 11, 22, 777]);
+		$result = Dump::a($ha, 'HuArray Numeric', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== HuArray Numeric ===', $result);
+		$this->assertStringContainsString(HuArray::class . ' {', $result);
+		$this->assertStringContainsString('[0] => 0', $result);
+		$this->assertStringContainsString('[1] => 11', $result);
+		$this->assertStringContainsString('[2] => 22', $result);
+		$this->assertStringContainsString('[3] => 777', $result);
+		$this->assertStringContainsString('}', $result);
+	}
+
+	/**
+	* Test Dump::a() with HuArray - associative array
+	**/
+	public function testDumpAWithHuArrayAssociative(): void {
+		$ha = new HuArray(['name' => 'test', 'value' => 42, 'active' => true]);
+		$result = Dump::a($ha, 'HuArray Assoc', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== HuArray Assoc ===', $result);
+		$this->assertStringContainsString(HuArray::class . ' {', $result);
+		$this->assertStringContainsString('[name] => \'test\'', $result);
+		$this->assertStringContainsString('[value] => 42', $result);
+		$this->assertStringContainsString('[active] => true', $result);
+	}
+
+	/**
+	* Test Dump::a() with HuArray - nested arrays
+	**/
+	public function testDumpAWithHuArrayNested(): void {
+		$ha = new HuArray([
+			'user' => ['name' => 'Alice', 'age' => 30],
+			'items' => [1, 2, 3],
+		]);
+		$result = Dump::a($ha, 'HuArray Nested', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== HuArray Nested ===', $result);
+		$this->assertStringContainsString(HuArray::class . ' {', $result);
+		$this->assertStringContainsString('[user] => Array[size: 2]', $result);
+		$this->assertStringContainsString('[items] => Array[size: 3]', $result);
+		$this->assertStringContainsString('[name] => \'Alice\'', $result);
+		$this->assertStringContainsString('[age] => 30', $result);
+	}
+
+	/**
+	* Test Dump::a() with HuArray - empty
+	**/
+	public function testDumpAWithHuArrayEmpty(): void {
+		$ha = new HuArray([]);
+		$result = Dump::a($ha, 'HuArray Empty', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== HuArray Empty ===', $result);
+		$this->assertStringContainsString(HuArray::class . ' {', $result);
+		$this->assertStringContainsString('}', $result);
+	}
+
+	/**
+	* Test Dump::a() with Settings - basic
+	**/
+	public function testDumpAWithSettingsBasic(): void {
+		$settings = new Settings(['option1' => 'value1', 'option2' => 42]);
+		$result = Dump::a($settings, 'Settings Basic', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== Settings Basic ===', $result);
+		$this->assertStringContainsString(Settings::class . ' {', $result);
+		$this->assertStringContainsString('[option1] => \'value1\'', $result);
+		$this->assertStringContainsString('[option2] => 42', $result);
+		$this->assertStringContainsString('}', $result);
+	}
+
+	/**
+	* Test Dump::a() with Settings - nested structures
+	**/
+	public function testDumpAWithSettingsNested(): void {
+		$settings = new Settings([
+			'database' => ['host' => 'localhost', 'port' => 3306],
+			'debug' => true,
+		]);
+		$result = Dump::a($settings, 'Settings Nested', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== Settings Nested ===', $result);
+		$this->assertStringContainsString(Settings::class . ' {', $result);
+		$this->assertStringContainsString('[database] => Array[size: 2]', $result);
+		$this->assertStringContainsString('[debug] => true', $result);
+		$this->assertStringContainsString('[host] => \'localhost\'', $result);
+		$this->assertStringContainsString('[port] => 3306', $result);
+	}
+
+	/**
+	* Test Dump::a() with Settings - empty
+	**/
+	public function testDumpAWithSettingsEmpty(): void {
+		$settings = new Settings([]);
+		$result = Dump::a($settings, 'Settings Empty', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== Settings Empty ===', $result);
+		$this->assertStringContainsString(Settings::class . ' {', $result);
+		$this->assertStringContainsString('}', $result);
+	}
+
+	/**
+	* Test Dump::a() with mixed HuArray and Settings
+	**/
+	public function testDumpAWithMixedHuArrayAndSettings(): void {
+		$data = [
+			'array' => new HuArray([1, 2, 3]),
+			'settings' => new Settings(['key' => 'value']),
+		];
+		$result = Dump::a($data, 'Mixed Framework', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== Mixed Framework ===', $result);
+		$this->assertStringContainsString('Array[size: 2]', $result);
+		$this->assertStringContainsString('[array] => ' . HuArray::class . ' {', $result);
+		$this->assertStringContainsString('[settings] => ' . Settings::class . ' {', $result);
+		$this->assertStringContainsString('[key] => \'value\'', $result);
+	}
+
+	/**
+	* Test Dump::a() with HuArray containing Settings
+	**/
+	public function testDumpAWithHuArrayContainingSettings(): void {
+		$ha = new HuArray([
+			'config' => new Settings(['debug' => true, 'version' => '1.0']),
+			'name' => 'test',
+		]);
+		$result = Dump::a($ha, 'HuArray with Settings', true);
+
+		$this->assertIsString($result);
+		$this->assertStringContainsString('=== HuArray with Settings ===', $result);
+		$this->assertStringContainsString(HuArray::class . ' {', $result);
+		$this->assertStringContainsString('[config] => ' . Settings::class . ' {', $result);
+		$this->assertStringContainsString('[debug] => true', $result);
+		$this->assertStringContainsString('[version] => \'1.0\'', $result);
+		$this->assertStringContainsString('[name] => \'test\'', $result);
 	}
 }
