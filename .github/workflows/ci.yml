@@ -64,13 +64,11 @@ jobs:
 
           echo "✅ 100% coverage achieved!"
 
-      - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          file: ./build/coverage.xml
-          flags: unittests
-          name: huphp
-          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Regenerate All
         run: bash ./@tools/regenerate.all
