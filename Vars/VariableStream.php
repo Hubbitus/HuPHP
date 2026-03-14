@@ -48,7 +48,7 @@ class VariableStream {
 	* @param int $options Stream options
 	* @param string|null $opened_path Opened path
 	**/
-	public function streamOpen(string $path, string $mode, int $options, ?string &$opened_path): bool {
+	public function stream_open(string $path, string $mode, int $options, ?string &$opened_path): bool {
 		$url = \parse_url($path);
 		$this->varname = $url['host'];
 		$this->position = 0;
@@ -76,7 +76,7 @@ class VariableStream {
 	*
 	* @param int $count Number of bytes to read
 	**/
-	public function streamRead(int $count): string {
+	public function stream_read(int $count): string {
 		$var = $GLOBALS[$this->varname] ?? '';
 		$ret = \substr($var, $this->position, $count);
 		$this->position += \strlen($ret);
@@ -89,7 +89,7 @@ class VariableStream {
 	* @param string $data Data to write
 	* @return int
 	**/
-	public function streamWrite(string $data): int {
+	public function stream_write(string $data): int {
 		$var = $GLOBALS[$this->varname] ?? '';
 		$left = \substr($var, 0, $this->position);
 		$right = \substr($var, $this->position + \strlen($data));
@@ -103,7 +103,7 @@ class VariableStream {
 	*
 	* @return int
 	**/
-	public function streamTell(): int {
+	public function stream_tell(): int {
 		return $this->position;
 	}
 
@@ -112,7 +112,7 @@ class VariableStream {
 	*
 	* @return bool
 	**/
-	public function streamEof(): bool {
+	public function stream_eof(): bool {
 		$var = $GLOBALS[$this->varname] ?? '';
 		return $this->position >= \strlen($var);
 	}
@@ -122,7 +122,7 @@ class VariableStream {
 	*
 	* @return array<int, mixed>
 	**/
-	public function streamStat(): array {
+	public function stream_stat(): array {
 		return [];
 	}
 
@@ -132,7 +132,7 @@ class VariableStream {
 	* @param int $offset Offset
 	* @param int $whence Seek mode
 	**/
-	public function streamSeek(int $offset, int $whence): bool {
+	public function stream_seek(int $offset, int $whence): bool {
 		$var = $GLOBALS[$this->varname] ?? '';
 		switch ($whence) {
 			case SEEK_SET:
